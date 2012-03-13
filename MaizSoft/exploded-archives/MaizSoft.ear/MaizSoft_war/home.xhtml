@@ -1,0 +1,29 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+    <ui:define name="body">
+<h:form id="homeForm">
+        <h1>Taller 2 Operaciones CRUD!</h1>
+        <rich:panel>
+            <h:panelGrid columns="2">
+                <h:graphicImage value="/img/seamlogo.png" alt="Seam logo"/>
+                <s:div styleClass="info">
+                    <p><strong>Tu proyecto esta desplegado, ya debes tener las entidades del Taller 1 listas</strong></p>
+                   <div class="actionButtons">
+           				 <h:commandButton id="crear" value="Crear" action="#{authenticator.authenticate()}"/>
+           				  <h:commandButton id="find" value="Find" action="#{taller.crearResgistro()}"/>
+           				  
+       				 </div>
+                </s:div>
+            </h:panelGrid>
+        </rich:panel>
+  </h:form>
+    </ui:define>
+</ui:composition>

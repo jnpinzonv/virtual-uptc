@@ -9,7 +9,30 @@
         <h:outputText value="#{projectName}:"/>
         <s:link id="menuHomeId" view="/home.xhtml" value="Home" propagation="none"/>
     </rich:toolBarGroup>
-    <s:link view="/useradmin/home.xhtml" id="identityManagement" value="Identity Management" propagation="none" rendered="#{true or identity.hasRole('admin')}"/><ui:remove><!-- temporarily enabled for all --></ui:remove>
+    <rich:dropDownMenu showDelay="250" hideDelay="0" submitMode="none">
+        <f:facet name="label">Browse data</f:facet>
+	<rich:menuItem>
+    	<s:link view="/UserAccountList.xhtml"
+           	value="UserAccount List"
+           	id="UserAccountId"
+			includePageParams="false"
+     		propagation="none"/>
+     </rich:menuItem>
+	<rich:menuItem>
+    	<s:link view="/UserRoleList.xhtml"
+           	value="UserRole List"
+           	id="UserRoleId"
+			includePageParams="false"
+     		propagation="none"/>
+     </rich:menuItem>
+	<rich:menuItem>
+    	<s:link view="/UserPermissionList.xhtml"
+           	value="UserPermission List"
+           	id="UserPermissionId"
+			includePageParams="false"
+     		propagation="none"/>
+     </rich:menuItem>
+    </rich:dropDownMenu>
     <!-- @newMenuItem@ -->
     <rich:toolBarGroup location="right">
         <h:outputText id="menuWelcomeId" value="signed in as: #{credentials.username}" rendered="#{identity.loggedIn}"/>

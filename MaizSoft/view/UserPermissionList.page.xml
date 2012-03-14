@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.1.xsd">
+
+   <param name="firstResult" value="#{userPermissionList.firstResult}"/>
+   <param name="sort" value="#{userPermissionList.orderColumn}"/>
+   <param name="dir" value="#{userPermissionList.orderDirection}"/>
+   <param name="logic" value="#{userPermissionList.restrictionLogicOperator}"/>
+
+   <param name="from"/>
+   <param name="action" value="#{userPermissionList.userPermission.action}"/>
+   <param name="discriminator" value="#{userPermissionList.userPermission.discriminator}"/>
+   <param name="recipient" value="#{userPermissionList.userPermission.recipient}"/>
+   <param name="target" value="#{userPermissionList.userPermission.target}"/>
+
+</page>

@@ -187,13 +187,14 @@
                         value="#{_userAccount.id}"/>
             </s:link>
             #{' '}
-            <s:link view="/UserAccountEdit.xhtml"
-                   value="Edit"
+            <s:link view="/useradmin/home.xhtml"
+                   value="Identity Management"
              propagation="none"
-                      id="userAccountEdit"
-                rendered="#{empty from}">
+                      id="identityManagement"
+                rendered="#{true or identity.hasRole('admin')}">
                 <f:param name="userAccountId"
-                        value="#{_userAccount.id}"/>
+                        value="#{_userAccount.id}"/>                       
+                        
             </s:link>
         </rich:column>
     </rich:dataTable>

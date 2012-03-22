@@ -15,6 +15,11 @@
         <rich:simpleTogglePanel label="UserAccount Search Filter" switchType="ajax">
 
             <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Username</ui:define>
+                <h:inputText id="username" value="#{userAccountList.userAccount.username}"/>
+            </s:decorate>
+
+            <s:decorate template="layout/display.xhtml">
                 <ui:define name="label">Apellidos</ui:define>
                 <h:inputText id="apellidos" value="#{userAccountList.userAccount.apellidos}"/>
             </s:decorate>
@@ -37,16 +42,6 @@
             <s:decorate template="layout/display.xhtml">
                 <ui:define name="label">Segundo nombre</ui:define>
                 <h:inputText id="segundoNombre" value="#{userAccountList.userAccount.segundoNombre}"/>
-            </s:decorate>
-
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Tipo documento</ui:define>
-                <h:inputText id="tipoDocumento" value="#{userAccountList.userAccount.tipoDocumento}"/>
-            </s:decorate>
-
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Username</ui:define>
-                <h:inputText id="username" value="#{userAccountList.userAccount.username}"/>
             </s:decorate>
 
             <s:decorate template="layout/display.xhtml">
@@ -81,11 +76,11 @@
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Id"/>
-                    <ui:param name="propertyPath" value="userAccount.id"/>
+                    <ui:param name="propertyLabel" value="Username"/>
+                    <ui:param name="propertyPath" value="userAccount.username"/>
                 </ui:include>
             </f:facet>
-            <h:outputText value="#{_userAccount.id}"/>
+            <h:outputText value="#{_userAccount.username}"/>
         </h:column>
         <h:column>
             <f:facet name="header">
@@ -167,34 +162,23 @@
             </f:facet>
             <h:outputText value="#{_userAccount.tipoDocumento}"/>
         </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Username"/>
-                    <ui:param name="propertyPath" value="userAccount.username"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.username}"/>
-        </h:column>
         <rich:column styleClass="action">
             <f:facet name="header">Action</f:facet>
             <s:link view="/#{empty from ? 'UserAccount' : from}.xhtml"
                    value="#{empty from ? 'View' : 'Select'}"
              propagation="#{empty from ? 'none' : 'default'}"
                       id="userAccountViewId">
-                <f:param name="userAccountId"
-                        value="#{_userAccount.id}"/>
+                <f:param name="userAccountUsername"
+                        value="#{_userAccount.username}"/>
             </s:link>
             #{' '}
-            <s:link view="/useradmin/home.xhtml"
-                   value="Identity Management"
+            <s:link view="/UserAccountEdit.xhtml"
+                   value="Edit"
              propagation="none"
-                      id="identityManagement"
-                rendered="#{true or identity.hasRole('admin')}">
-                <f:param name="userAccountId"
-                        value="#{_userAccount.id}"/>                       
-                        
+                      id="userAccountEdit"
+                rendered="#{empty from}">
+                <f:param name="userAccountUsername"
+                        value="#{_userAccount.username}"/>
             </s:link>
         </rich:column>
     </rich:dataTable>
@@ -242,7 +226,7 @@
                     id="create"
            propagation="none"
                  value="Create userAccount">
-            <f:param name="userAccountId"/>
+            <f:param name="userAccountUsername"/>
         </s:button>
     </s:div>
 

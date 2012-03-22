@@ -10,7 +10,7 @@
    <action execute="#{userAccountHome.wire}"/>
 
    <param name="userAccountFrom"/>
-   <param name="userAccountId" value="#{userAccountHome.userAccountId}"/>
+   <param name="userAccountUsername" value="#{userAccountHome.userAccountUsername}"/>
 
 
    <navigation from-action="#{userAccountHome.persist}">

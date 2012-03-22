@@ -1,21 +1,18 @@
 package com.mydomain.Directorio.action;
 
 import com.mydomain.Directorio.model.*;
-
-
-import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
 
 @Name("userAccountHome")
 public class UserAccountHome extends EntityHome<UserAccount> {
 
-	public void setUserAccountId(Long id) {
+	public void setUserAccountUsername(String id) {
 		setId(id);
 	}
 
-	public Long getUserAccountId() {
-		return (Long) getId();
+	public String getUserAccountUsername() {
+		return (String) getId();
 	}
 
 	@Override
@@ -42,12 +39,4 @@ public class UserAccountHome extends EntityHome<UserAccount> {
 		return isIdDefined() ? getInstance() : null;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.jboss.seam.framework.EntityHome#create()
-	 */
-	
-	@Factory("listaTipoDocumentos")
-	public TipoDocumento[] getTipoDocumentos(){
-		return TipoDocumento.values();
-	}
 }

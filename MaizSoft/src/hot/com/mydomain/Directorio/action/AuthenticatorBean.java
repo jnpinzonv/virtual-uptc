@@ -37,23 +37,21 @@ public class AuthenticatorBean implements Authenticator {
 
 	@PersistenceContext
 	EntityManager entityManager;
-	
-	@In(create=true)
+
+	@In(create = true)
 	UserAction userAction;
 
 	public boolean authenticate() {
-		
-			
-			//MessageDigest messageDigest;
-			
-			//messageDigest = MessageDigest.getInstance("SHA");
-		
+
+		//MessageDigest messageDigest;
+
+		//messageDigest = MessageDigest.getInstance("SHA");
+
 		//messageDigest.update(credentials.getUsername().getBytes());
-			
-			
-			//String tem=messageDigest.digest()+"" ;
-			
-			return true;
+
+		//String tem=messageDigest.digest()+"" ;
+
+		return true;
 	}
 
 }

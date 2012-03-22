@@ -41,7 +41,7 @@ public class UserAccount implements Serializable {
 	 */
 	private static final long serialVersionUID = 6368734442192368866L;
 
-	private int documentoIdentidad;
+	private long documentoIdentidad;
 	
 	private TipoDocumento tipoDocumento;
 	
@@ -58,10 +58,6 @@ public class UserAccount implements Serializable {
 	
 	
 	
-	/**
-	 * identificador del usuario de la plataforma
-	 */
-	private Long id;
 	/**
 	 * Nombre de usuario de identificacion de la plataforma
 	 */
@@ -85,16 +81,22 @@ public class UserAccount implements Serializable {
 	 * @return the documentoIdentidad
 	 */
 	@NotNull
-	public int getDocumentoIdentidad() {
+	public long getDocumentoIdentidad() {
 		return documentoIdentidad;
 	}
+	
+	
 
 	/**
 	 * @param documentoIdentidad the documentoIdentidad to set
 	 */
-	public void setDocumentoIdentidad(int documentoIdentidad) {
+	public void setDocumentoIdentidad(long documentoIdentidad) {
 		this.documentoIdentidad = documentoIdentidad;
 	}
+
+
+
+	
 
 	/**
 	 * @return the tipoDocumento
@@ -184,27 +186,14 @@ public class UserAccount implements Serializable {
 	 * 
 	 * @return id
 	 */
-	@Id
-	@GeneratedValue
-	public Long getId() {
-		return id;
-	}
-
-	/**
-	 * Impone el id de usuario.
-	 * 
-	 * @param id
-	 *            =! null
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
 	/**
 	 * Retorna el nombre del usuario
 	 * 
 	 * @return usuername
 	 */
+	
+	@Id
 	@NotNull
 	@UserPrincipal
 	public String getUsername() {

@@ -17,6 +17,16 @@
             <f:facet name="header">#{userAccountHome.managed ? 'Edit' : 'Add'} User account</f:facet>
 
 
+            <s:decorate id="usernameField" template="layout/edit.xhtml">
+                <ui:define name="label">Username</ui:define>
+                <h:inputTextarea id="username"
+                               cols="80"
+                               rows="3"
+                           disabled="#{userAccountHome.managed}"
+                           required="true"
+                              value="#{userAccountHome.instance.username}"/>
+            </s:decorate>
+
 
             <s:decorate id="apellidosField" template="layout/edit.xhtml">
                 <ui:define name="label">Apellidos</ui:define>
@@ -93,21 +103,10 @@
 
             <s:decorate id="tipoDocumentoField" template="layout/edit.xhtml">
                 <ui:define name="label">Tipo documento</ui:define>
-                <h:selectOneMenu value="#{userAccountHome.instance.tipoDocumento}">
-                <s:selectItems var="tipoDocumento" value="#{listaTipoDocumentos}"
-                label = "#{tipoDocumento}" noSelectionLabel="Seleccionar"/>
-                <s:convertEnum/>
-                </h:selectOneMenu >
-            </s:decorate>
-
-
-            <s:decorate id="usernameField" template="layout/edit.xhtml">
-                <ui:define name="label">Username</ui:define>
-                <h:inputTextarea id="username"
-                               cols="80"
-                               rows="3"
-                           required="true"
-                              value="#{userAccountHome.instance.username}"/>
+                <h:inputText id="tipoDocumento"
+                          value="#{userAccountHome.instance.tipoDocumento}">
+                    <a:support event="onblur" reRender="tipoDocumentoField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
             </s:decorate>
 
             <div style="clear:both">

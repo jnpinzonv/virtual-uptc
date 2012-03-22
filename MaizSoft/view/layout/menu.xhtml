@@ -35,6 +35,7 @@
     </rich:dropDownMenu>
     <!-- @newMenuItem@ -->
     <rich:toolBarGroup location="right">
+     <s:link view="/useradmin/home.xhtml" id="identityManagement" value="Identity Management" propagation="none" rendered="#{true or identity.hasRole('admin')}"/><ui:remove><!-- temporarily enabled for all --></ui:remove>
         <h:outputText id="menuWelcomeId" value="signed in as: #{credentials.username}" rendered="#{identity.loggedIn}"/>
         <s:link id="menuLoginId" view="/login.xhtml" value="Login" rendered="#{not identity.loggedIn}" propagation="none"/>
         <s:link id="menuLogoutId" view="/home.xhtml" action="#{identity.logout}" value="Logout" rendered="#{identity.loggedIn}" propagation="none"/>

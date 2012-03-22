@@ -31,7 +31,7 @@
 		</drools:rule-files>
 	</drools:rule-base>
 	
-	<security:identity authenticate-method="#{authenticator.authenticate()}"/>
+	
 	
 	
 	<security:rule-based-permission-resolver

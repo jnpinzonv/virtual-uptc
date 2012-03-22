@@ -8,7 +8,7 @@
 
    <context-param>
       <param-name>org.richfaces.SKIN</param-name>
-      <param-value>ruby</param-value>
+      <param-value>blueSky</param-value>
    </context-param>
 
    <!-- Suppress spurious stylesheets -->

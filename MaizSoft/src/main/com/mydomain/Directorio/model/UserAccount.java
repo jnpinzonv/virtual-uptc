@@ -57,6 +57,7 @@ public class UserAccount implements Serializable {
 	
 	
 	
+	private int id;
 	
 	/**
 	 * Nombre de usuario de identificacion de la plataforma
@@ -77,6 +78,22 @@ public class UserAccount implements Serializable {
 	private Set<UserRole> roles;
 	
 	
+	
+	
+	@Id
+	@GeneratedValue
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
 	/**
 	 * @return the documentoIdentidad
 	 */
@@ -193,7 +210,7 @@ public class UserAccount implements Serializable {
 	 * @return usuername
 	 */
 	
-	@Id
+
 	@NotNull
 	@UserPrincipal
 	public String getUsername() {

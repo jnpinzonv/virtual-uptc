@@ -2,7 +2,6 @@ package com.mydomain.Directorio.action;
 
 import com.mydomain.Directorio.model.*;
 
-import org.hibernate.search.annotations.Factory;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
 

@@ -5,8 +5,7 @@
 
    <navigation from-action="#{identity.login}">
       <rule if="#{identity.loggedIn}">
-         <redirect view-id="/home.xhtml"/>
+         <redirect view-id="/UserAccount.xhtml"/>
       </rule>
    </navigation>
-
 </page>

@@ -1,0 +1,102 @@
+
+#topPrincipal {
+    position: relative;
+    float: right;
+    background-color: #184B96;
+    width: 180px;
+    height: 30px;
+    margin-top: 4px;
+}
+
+#topLogo {
+    position: relative;
+    float: left;
+    background-color: #184B96;
+    width: 280px;
+    height: 30px;
+    margin-top: 4px;
+}
+
+#topSearch {
+    position: relative;
+    width: 300px;
+    height: 30px;
+    float: inherit;
+    margin-top: 37px;
+    margin-left: 350px;
+    vertical-align: middle; 
+}
+
+#top {
+    position: relative;
+    background-color: #184B96;
+    color: white;   
+    height: 80px;    
+}
+
+#center {
+    position:static;
+    background-color: #FFFFFF;
+   
+    height: 400px;
+    color: #000000;
+}
+
+#center2 {
+    position:static;
+    background-color: #FFFFFF;  
+    margin: -10px 0px 0px 0px;
+    height: 400px;
+    color: #000000;
+}
+
+
+#bottom {
+    position: relative;
+    background-image:url(images/MenuMiddle3.jpg);
+    padding: 5px;
+    margin-top: 120px;
+}
+
+#left {
+    float: left;
+    background-image:url(images/MenuMiddle2.jpg);
+    padding: 5px;
+    width: 150px;
+    height: 350px;
+}
+
+#right {
+    float: right;
+    background-image:url(images/MenuMiddle2_1.jpg);
+    padding: 5px;
+    width: 150px;
+    height: 350px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 210px 0px 210px;
+    margin-top: 10px;
+}
+
+#top a:link, #top a:visited {
+  color: white;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+  color: black;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+#menucontentt{
+	width:210px;
+        background-image:url(images/MenuMiddle3.jpg);
+	padding-top:10px;
+	background-repeat: repeat-y;
+}
+

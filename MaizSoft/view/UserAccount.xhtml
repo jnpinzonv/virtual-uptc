@@ -8,7 +8,41 @@
     xmlns:rich="http://richfaces.org/rich"
     template="layout/template.xhtml">
 
+<ui:define name="head">
+	<link href="css/cssLayoutPrincipal.css" rel="stylesheet" type="text/css"/>
+    <link href="css/default.css" rel="stylesheet" type="text/css" />
+</ui:define>
+
+
 <ui:define name="body">
+
+	<s:div styleClass="top" style="color: white">
+            <ui:insert name="top">Top</ui:insert>
+            <div id="topLogo">
+                <h:outputText value="logo"/>
+                <pre>
+                    <p>Navegar</p>
+                </pre>
+            </div>
+		 <div id="topPrincipal">
+                     <h:form>
+                        <h:outputText id="menuWelcomeId" value="#{credentials.username}" rendered="#{identity.loggedIn}"/>
+                        <s:link id="menuLogoutId" view="/home.xhtml" action="#{identity.logout}" value="Salir" rendered="#{identity.loggedIn}" propagation="none" style="color: white"/>
+                    </h:form>
+                     <pre>
+                        <p>7:15 a.m</p>
+                    </pre>
+                </div>
+
+            <div id="topSearch">
+                
+                <form class="searchform">
+                    <input class="searchfield" type="text" value="Buscar..." onFocus="if (this.value == 'Buscar...') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Buscar...';}" />
+                    <input class="searchbutton" type="button" value="Buscar" />
+                </form>
+            </div>
+
+        </s:div>
 
     <rich:panel>
         <f:facet name="header">User account Details</f:facet>

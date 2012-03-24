@@ -1,6 +1,8 @@
 package com.mydomain.Directorio.action;
 
 import com.mydomain.Directorio.model.*;
+
+import org.hibernate.search.annotations.Factory;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
 
@@ -37,6 +39,11 @@ public class UserAccountHome extends EntityHome<UserAccount> {
 
 	public UserAccount getDefinedInstance() {
 		return isIdDefined() ? getInstance() : null;
+	}
+	
+	@org.jboss.seam.annotations.Factory ("listaTipoDocumento")
+	public TipoDocumento[] getListaTipoDocumento(){
+		return TipoDocumento.values();
 	}
 
 }

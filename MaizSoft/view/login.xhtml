@@ -8,40 +8,97 @@
     xmlns:rich="http://richfaces.org/rich"
     template="layout/template.xhtml">
 
+<ui:define name="head">
+	<link href="css/cssLayoutAutenticar.css" rel="stylesheet" type="text/css"/>
+    	<link href="css/default.css" rel="stylesheet" type="text/css" />	
+</ui:define>
+
 <ui:define name="body">
-
-    <h:form id="loginForm">
-
-        <rich:panel>
-            <f:facet name="header">Login</f:facet>
-
-            <p>Please login here</p>
-
-            <div class="dialog">
-                <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
-                    <h:outputLabel for="username">Username</h:outputLabel>
-                    <h:inputText id="username"
-                              value="#{credentials.username}"/>
-                    <h:outputLabel for="password">Password</h:outputLabel>
-                    <h:inputSecret id="password"
+	
+	<s:div styleClass="top">Banner</s:div>
+	
+	<div class="center2">
+	
+		<div class="left">
+            <ui:insert name="top">
+                <div class="menuheaderNoticias"></div>
+                <div class="menucontent"></div>
+                <div class="menucontent"></div>
+                <div class="menucontent"></div>
+                <div class="menucontent"></div>
+                <div class="menudown"></div>
+            </ui:insert>
+        	<pre></pre>
+            <ui:insert name="centers">
+                <div class="menuheaderguias"></div>
+                <div class="menucontent"></div>
+                <div class="menucontent"></div>
+                <div class="menucontent"></div>
+                <div class="menucontent"></div>
+                <div class="menudown"></div>
+            </ui:insert>
+        </div>
+		
+		<div class="right">
+        	<ui:insert name="right">
+            <div class="menuheaderentrar"></div>
+             <div class="menucontent">
+             	<h:form>
+		
+        			<rich:panel>
+            			
+    			        <div class="dialog">
+	            		    <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
+                    			<h:outputLabel for="username">nombre Usuario</h:outputLabel>
+                    			<h:inputText id="username"
+                              	value="#{credentials.username}"/>
+                    			<h:outputLabel for="password">Contrase&#241;a</h:outputLabel>
+                    			<h:inputSecret id="password"
                                 value="#{credentials.password}"/>
-                    <h:outputLabel for="rememberMe">Remember me</h:outputLabel>
-                    <h:selectBooleanCheckbox id="rememberMe"
+                    			<h:outputLabel for="rememberMe">Recordar</h:outputLabel>
+                    			<h:selectBooleanCheckbox id="rememberMe"
                                           value="#{rememberMe.enabled}"/>
-                </h:panelGrid>
-            </div>
+               			 	</h:panelGrid>
+		            	</div>
+       	 		</rich:panel>
+					
+					<center>
+			 			<div>
+            				<h:commandButton value="Entrar" style="background:#6F90C5" action="#{identity.login}"/>
+            				<br/>    
+            				       						       
+        				</div>
+					</center>
+						
+						<h:commandLink value= "&#191;Ha olvidado su contrase&#241;a?" /> 
+    			</h:form>                        
+           	</div>
+            	<div class="menudown"></div>            	
+            	<pre></pre>
+                        <div class="menuheadercalendario"></div>
+                        <div class="menucontent">
+                        	<rich:panel>
+                        		<rich:calendar popup="false"/>
+                        	</rich:panel>     	                    
+                        </div>
+                        <div class="menudown"></div>
+         </ui:insert>  
+   		</div>
 
-            <p>
-              <i>Note - </i> You may login with the username 'admin' and a blank password.
-            </p>
-
-        </rich:panel>
-
-        <div class="actionButtons">
-            <h:commandButton id="submit" value="Login" action="#{identity.login}"/>
+        <div class="center2" style="color: #000000">
+        	<ui:insert name="center2">-------------------------------IMAGEN------------------------------------
+        	</ui:insert>
+        	
         </div>
 
-    </h:form>
-
+    	<div class="down" align="center" >
+            <pre>Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
+            Facultad de Ingenier&#237;a            
+   Ingenier&#237;a de Sistemas y Computaci&#243;n
+Grupo de Investigaci&#243;n en Ingenier&#237;a del Software
+Correo:gis@uptc.edu.co
+</pre>
+        	</div>
+	</div> 
  </ui:define>
 </ui:composition>

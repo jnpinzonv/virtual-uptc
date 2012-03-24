@@ -76,11 +76,11 @@
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Username"/>
-                    <ui:param name="propertyPath" value="userAccount.username"/>
+                    <ui:param name="propertyLabel" value="Id"/>
+                    <ui:param name="propertyPath" value="userAccount.id"/>
                 </ui:include>
             </f:facet>
-            <h:outputText value="#{_userAccount.username}"/>
+            <h:outputText value="#{_userAccount.id}"/>
         </h:column>
         <h:column>
             <f:facet name="header">
@@ -168,8 +168,8 @@
                    value="#{empty from ? 'View' : 'Select'}"
              propagation="#{empty from ? 'none' : 'default'}"
                       id="userAccountViewId">
-                <f:param name="userAccountUsername"
-                        value="#{_userAccount.username}"/>
+                <f:param name="userAccountId"
+                        value="#{_userAccount.id}"/>
             </s:link>
             #{' '}
             <s:link view="/UserAccountEdit.xhtml"
@@ -177,8 +177,8 @@
              propagation="none"
                       id="userAccountEdit"
                 rendered="#{empty from}">
-                <f:param name="userAccountUsername"
-                        value="#{_userAccount.username}"/>
+                <f:param name="userAccountId"
+                        value="#{_userAccount.id}"/>
             </s:link>
         </rich:column>
     </rich:dataTable>
@@ -226,7 +226,7 @@
                     id="create"
            propagation="none"
                  value="Create userAccount">
-            <f:param name="userAccountUsername"/>
+            <f:param name="userAccountId"/>
         </s:button>
     </s:div>
 

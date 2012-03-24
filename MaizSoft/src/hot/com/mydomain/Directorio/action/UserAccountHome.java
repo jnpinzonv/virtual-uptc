@@ -8,12 +8,13 @@ import org.jboss.seam.framework.EntityHome;
 @Name("userAccountHome")
 public class UserAccountHome extends EntityHome<UserAccount> {
 
-	public void setUserAccountUsername(String id) {
+	
+	public void setUserAccountId(Long id) {
 		setId(id);
 	}
 
-	public String getUserAccountUsername() {
-		return (String) getId();
+	public Long getUserAccountId() {
+		return (Long) getId();
 	}
 
 	@Override
@@ -39,10 +40,11 @@ public class UserAccountHome extends EntityHome<UserAccount> {
 	public UserAccount getDefinedInstance() {
 		return isIdDefined() ? getInstance() : null;
 	}
+
 	
 	@org.jboss.seam.annotations.Factory ("listaTipoDocumento")
 	public TipoDocumento[] getListaTipoDocumento(){
 		return TipoDocumento.values();
 	}
-
 }
+

@@ -54,10 +54,7 @@ public class UserAccount implements Serializable {
 	private String correoElectronico;
 	
 	
-	
-	
-	
-	private int id;
+	private Long id;
 	
 	/**
 	 * Nombre de usuario de identificacion de la plataforma
@@ -79,19 +76,15 @@ public class UserAccount implements Serializable {
 	
 	
 	
-	
 	@Id
 	@GeneratedValue
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-
-
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 
 	/**

@@ -58,25 +58,7 @@
                     <a:support event="onblur" reRender="documentoIdentidadField" bypassUpdates="true" ajaxSingle="true"/>
                 </h:inputText>
             </s:decorate>
-
-
-            <s:decorate id="enabledField" template="layout/edit.xhtml">
-                <ui:define name="label">Enabled</ui:define>
-                <h:selectBooleanCheckbox id="enabled"
-                                   required="true"
-                                      value="#{userAccountHome.instance.enabled}"/>
-            </s:decorate>
-
-
-            <s:decorate id="passwordHashField" template="layout/edit.xhtml">
-                <ui:define name="label">Password hash</ui:define>
-                <h:inputTextarea id="passwordHash"
-                               cols="80"
-                               rows="3"
-                              value="#{userAccountHome.instance.passwordHash}"/>
-            </s:decorate>
-
-
+            
             <s:decorate id="primerNombreField" template="layout/edit.xhtml">
                 <ui:define name="label">Primer nombre</ui:define>
                 <h:inputText id="primerNombre"
@@ -87,9 +69,7 @@
                     <a:support event="onblur" reRender="primerNombreField" bypassUpdates="true" ajaxSingle="true"/>
                 </h:inputText>
             </s:decorate>
-
-
-
+            
             <s:decorate id="segundoNombreField" template="layout/edit.xhtml">
                 <ui:define name="label">Segundo nombre</ui:define>
                 <h:inputText id="segundoNombre"
@@ -103,10 +83,12 @@
 
             <s:decorate id="tipoDocumentoField" template="layout/edit.xhtml">
                 <ui:define name="label">Tipo documento</ui:define>
-                <h:inputText id="tipoDocumento"
+                <h:selectOneMenu id="tipoDocumento"
                           value="#{userAccountHome.instance.tipoDocumento}">
-                    <a:support event="onblur" reRender="tipoDocumentoField" bypassUpdates="true" ajaxSingle="true"/>
-                </h:inputText>
+                          <s:selectItems var="tipoDocumento" value="#{listaTipoDocumento}" label="#{tipoDocumento}" noSelectionLabel="Seleccionar">
+                          </s:selectItems> 
+                          <s:convertEnum/>                
+                </h:selectOneMenu>
             </s:decorate>
 
             <div style="clear:both">

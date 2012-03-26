@@ -78,8 +78,14 @@
                         <div class="menuheadercalendario"></div>
                         <div class="menucontent">
                         	<rich:panel>
-                        		<rich:calendar popup="false"/>
-                        	</rich:panel>     	                    
+                        		<!--  <rich:calendar popup="false"/>-->
+                        		<rich:calendar  id = "myCalendar"    popup = "false"    cellWidth = "30px"    cellHeight = "20px" > 
+                        		 <f:facet    name = "weekNumber">
+                        		 	<h:outputText value = ""    style = "color:red" /> 
+       							 </f:facet > 
+                        		</rich:calendar> 
+                        		
+                           	</rich:panel>     	                    
                         </div>
                         <div class="menudown"></div>
          </ui:insert>  

@@ -17,12 +17,21 @@
 <ui:define name="body">
 
 	<s:div styleClass="top" style="color: white">
+			
             <ui:insert name="top">Top</ui:insert>
             <div id="topLogo">
-                <h:outputText value="logo"/>
-                <pre>
-                    <p>Navegar</p>
-                </pre>
+            	
+                <h:outputText value="MaizSoft"></h:outputText>
+                <h:outputText value="..." style="color:#184B96"></h:outputText>
+                <h:commandButton image="css/images/calendario.png" style="width:30px"/>
+                <h:outputText value=".." style="color:#184B96"></h:outputText>
+                <h:commandButton image="css/images/mensajes.png" style="width:30px"/>
+                <h:outputText value=".." style="color:#184B96"></h:outputText>
+                <h:commandButton image="css/images/actualizacion.png" style="width:30px"/>
+                <br/>
+                <br/>
+                <br/>
+                <h:outputText value="Navegar"></h:outputText>
             </div>
 		 <div id="topPrincipal">
                      <h:form>
@@ -32,21 +41,88 @@
                      <pre>
                         <p>7:15 a.m</p>
                     </pre>
-                </div>
+         </div>
 
             <div id="topSearch">
                 
                 <form class="searchform">
-                    <input class="searchfield" type="text" value="Buscar..." onFocus="if (this.value == 'Buscar...') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Buscar...';}" />
-                    <input class="searchbutton" type="button" value="Buscar" />
+                    <input class="searchfield" type="text" value="Buscar..." onFocus="if (this.value == 'Buscar...') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Buscar...';}"/>
+                    
+                    <h:commandButton class="searchbutton" image="css/images/buscar.png"  style="width:24px"/>
                 </form>
             </div>
-
         </s:div>
+	
+	<div id="center2">
+		<div id="left">
+                    <rich:panel>
+                      <h:form>                        
+                        
+                        <h:commandLink value="#{credentials.username}"/>
+                        <hr />
+                       
+                        <div class="navigation">
+    						<ul class="top-level">
+        						<li><h:commandLink value="Administrar Usuarios"/>
+            						<ul class="sub-level">
+                						<li><a href="/MaizSoft/UserAccountEdit.seam">Adicionar Usuario</a></li>
+                						<li><a href="/MaizSoft/UserAccountEdit.seam">Editar Usuario</a></li>
+                						<li><a href="/MaizSoft/UserAccountEdit.seam">Eliminar Usuario</a></li>
+                						<li><a href="/MaizSoft/UserAccountList.seam">Buscar Usuario</a></li>
+            						</ul>
+        						</li>
+        						<li><h:commandLink value="Administrar Roles"/>
+        							<ul class="sub-level">
+        								<li><a href="/MaizSoft/UserRoleEdit.seam">Adicionar Rol</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Editar Rol</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Eliminar Rol</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Buscar Rol</a></li>
+        							</ul>
+        						</li>	
+        						<li><h:commandLink value="Administrar Curso"/></li>
+        						
+   		 					</ul>
+						</div>
+                      </h:form>
+                    </rich:panel>
+       	     </div>
 
-    <rich:panel>
-        <f:facet name="header">User account Details</f:facet>
+	      <div id="right">
+     		     <ui:insert name="right">Right</ui:insert>
+     		</div>
 
+    		<div id="content" class="right_content">
+             
+                 <rich:panel>
+        			<f:facet name="header">Detalles de cuentas de usuario</f:facet>
+		
+					<h:outputText value="Username:     #{userAccountHome.instance.username}"/>
+					<br />
+					<br />
+					<h:outputText value="Contrasena:     #{userAccountHome.instance.passwordHash}"/>
+					<br />
+					<br />
+					<h:outputText value="Primer Nombre: #{userAccountHome.instance.primerNombre}"/>
+					<br />
+					<br />
+					<h:outputText value="Segundo Nombre: #{userAccountHome.instance.segundoNombre}"/>
+					<br />
+					<br />
+					<h:outputText value="Apellidos:     #{userAccountHome.instance.apellidos}"/>
+					<br />
+					<br />
+					<h:outputText value="Correo Electronico:     #{userAccountHome.instance.correoElectronico}"/>
+					<br />
+					<br />			
+					<h:outputText value="Tipo Documento: #{userAccountHome.instance.tipoDocumento}"/>
+					<br />
+					<br />
+					<h:outputText value="Documento Identidad:     #{userAccountHome.instance.documentoIdentidad}"/>
+					<br />
+					<br />
+					<h:outputText value="Activado:     #{userAccountHome.instance.enabled}"/>
+												
+		<!--  
         <s:decorate id="username" template="layout/display.xhtml">
             <ui:define name="label">Username</ui:define>
             <h:outputText value="#{userAccountHome.instance.username}"/>
@@ -93,20 +169,33 @@
         </s:decorate>
 
         <div style="clear:both"/>
-
+	-->
     </rich:panel>
 
     <div class="actionButtons">
 
         <s:button view="/UserAccountEdit.xhtml"
                     id="edit"
-                 value="Edit"/>
+                 value="Editar"/>
 
         <s:button view="/#{empty userAccountFrom ? 'UserAccountList' : userAccountFrom}.xhtml"
                     id="done"
-                 value="Done"/>
+                 value="Aceptar"/>
 
     </div>
+             
+       	</div>
+		<div id="bottom" align="center">
+       		 <pre>Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
+            Facultad de Ingenier&#237;a            
+   Ingenier&#237;a de Sistemas y Computaci&#243;n
+Grupo de Investigaci&#243;n en Ingenier&#237;a del Software
+Correo:gis@uptc.edu.co
+</pre>
+	</div>
+     </div>
+  
+   
 
 </ui:define>
 

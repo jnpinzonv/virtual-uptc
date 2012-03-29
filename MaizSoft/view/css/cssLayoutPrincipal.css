@@ -34,31 +34,30 @@
     height: 80px;    
 }
 
-#center {
+.center {
     position:static;
-    background-color: #FFFFFF;
-   
+    background-color: #FFFFFF;   
     height: 400px;
     color: #000000;
 }
 
-#center2 {
+.center2 {
     position:static;
     background-color: #FFFFFF;  
-    margin: -10px 0px 0px 0px;
+    margin-left: 70px;
+    margin-right: 70px;
     height: 400px;
     color: #000000;
 }
 
-
-#bottom {
+.bottom {
     position: relative;
     background-image:url(images/MenuMiddle3.jpg);
     padding: 5px;
     margin-top: 40px;
 }
 
-#left {
+.left {
     float: left;
     background-image:url(images/MenuMiddle2.jpg);
     padding: 5px;
@@ -66,7 +65,7 @@
     height: 350px;
 }
 
-#right {
+.right {
     float: right;
     background-image:url(images/MenuMiddle2_1.jpg);
     padding: 5px;
@@ -100,26 +99,25 @@
 	background-repeat: no-repeat;
 }
 
+.navigation {
+	font-size:20; 
+	width:150px;
+	margin-left: -30px
+}
 
 
-
-.navigation {font-size:20; width:150px;}
+.navigation {width:150px;}
 
 .navigation ul {margin:0; padding:0;}
 
 .navigation li {list-style: none;}
 
-<!-- cambiar background:#fff; -->
-ul.top-level {	
-	margin-left: -30px;	
+ul.top-level {
+	
 }
 
-<!-- border-bottom: #fff solid;
- border-top: #fff solid;
- border-width: 1px;-->
- 
 ul.top-level li {
- 
+ border-width: 1px;
 }
 
 
@@ -127,24 +125,26 @@ ul.sub-level {
     display: none;
 }
 
+
 li:hover .sub-level {
-    background: #999;
+    background: #CCC;
     border: #fff solid;
     border-width: 1px;
     display: block;
     position: absolute;
-    left: 75px;
+    left: 158px;
+     text-align:left;
     top: 5px;
 }
 
 ul.sub-level li {
     border: none;
     float:left;
+    text-align:left;
     width:150px;
 }
 
 #navigation a {
- color: #fff;
  cursor: pointer;
  display:block;
  height:25px;
@@ -159,12 +159,11 @@ ul.sub-level li {
 }
 
 #navigation li:hover {
- background: #009AFF;
+ background: transparent;
  position: relative;
 }
 
 .navigation a {
- color: #fff;
  cursor: pointer;
  display:block;
  height:25px;
@@ -178,15 +177,14 @@ ul.sub-level li {
  text-decoration:underline;
 }
 
-.navigation li:hover {
- background: #009AFF;
+.navigation li:hover {			
+ background: transparent;	
  position: relative;
 }
 
-<!-- Color gris de sub nivel-->
 #navigation .sub-level {
-    background: #999;
-}
+    background: #CCC;
+}	
 
 /*Third Level*/
 #navigation .sub-level .sub-level {

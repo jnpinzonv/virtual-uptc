@@ -15,10 +15,10 @@
 
 
 <ui:define name="body">
-
-	<s:div styleClass="top" style="color: white">
-			
-            <ui:insert name="top">Top</ui:insert>
+	<s:div styleClass="top" style="color: white; margin-left: 70px; margin-rigth: 70px;" >
+			<div style="color: #184B96">
+            <ui:insert name="top">.</ui:insert>
+            </div>
             <div id="topLogo">
             	
                 <h:outputText value="MaizSoft"></h:outputText>
@@ -30,7 +30,7 @@
                 <h:commandButton image="css/images/actualizacion.png" style="width:30px"/>
                 <br/>
                 <br/>
-                <br/>
+               
                 <h:outputText value="Navegar"></h:outputText>
             </div>
 		 <div id="topPrincipal">
@@ -53,14 +53,12 @@
             </div>
         </s:div>
 	
-	<div id="center2">
-		<div id="left">
+	<div class="center2">
+		<div class="left">
                     <rich:panel>
-                      <h:form>                        
-                        
+                      <h:form> 
                         <h:commandLink value="#{credentials.username}"/>
                         <hr />
-                       
                         <div class="navigation">
     						<ul class="top-level">
         						<li><h:commandLink value="Administrar Usuarios"/>
@@ -75,7 +73,7 @@
         							<ul class="sub-level">
         								<li><a href="/MaizSoft/UserRoleEdit.seam">Adicionar Rol</a></li>
                 						<li><a href="/MaizSoft/UserRoleList.seam">Editar Rol</a></li>
-                						<li><a href="/MaizSoft/UserRoleList.seam">Eliminar Rol</a></li>
+                						<li><a href="/MaizSoft/UserRoleEliminar.seam">Eliminar Rol</a></li>
                 						<li><a href="/MaizSoft/UserRoleList.seam">Buscar Rol</a></li>
         							</ul>
         						</li>	
@@ -87,7 +85,7 @@
                     </rich:panel>
        	     </div>
 
-	      <div id="right">
+	      <div class="right">
      		     <ui:insert name="right">Right</ui:insert>
      		</div>
 
@@ -185,7 +183,7 @@
     </div>
              
        	</div>
-		<div id="bottom" align="center">
+		<div class="bottom" align="center">
        		 <pre>Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
             Facultad de Ingenier&#237;a            
    Ingenier&#237;a de Sistemas y Computaci&#243;n
@@ -194,9 +192,5 @@ Correo:gis@uptc.edu.co
 </pre>
 	</div>
      </div>
-  
-   
-
 </ui:define>
-
 </ui:composition>

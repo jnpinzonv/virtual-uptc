@@ -46,18 +46,19 @@
              	<h:form>
 		
         			<rich:panel>
-            			
     			        <div class="dialog">
 	            		    <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
-                    			<h:outputLabel for="username">nombre Usuario</h:outputLabel>
+                    			<h:outputLabel for="username">Nombre de Usuario</h:outputLabel>
                     			<h:inputText id="username"
                               	value="#{credentials.username}"/>
                     			<h:outputLabel for="password">Contrase&#241;a</h:outputLabel>
                     			<h:inputSecret id="password"
                                 value="#{credentials.password}"/>
-                    			<h:outputLabel for="rememberMe">Recordar</h:outputLabel>
-                    			<h:selectBooleanCheckbox id="rememberMe"
+                               
+                                <h:outputLabel for="rememberMe">Recordar</h:outputLabel>
+                                <h:selectBooleanCheckbox  id="rememberMe"
                                           value="#{rememberMe.enabled}"/>
+                    			
                			 	</h:panelGrid>
 		            	</div>
        	 		</rich:panel>
@@ -69,8 +70,10 @@
             				       						       
         				</div>
 					</center>
-						
-						<h:commandLink value= "&#191;Ha olvidado su contrase&#241;a?" /> 
+						<div style="margin-left: -23px">
+							<h:commandLink value= "&#191;Ha olvidado su contrase&#241;a?" />
+						</div>
+						 
     			</h:form>                        
            	</div>
             	<div class="menudown"></div>            	
@@ -79,7 +82,7 @@
                         <div class="menucontent">
                         	<rich:panel>
                         		<!--  <rich:calendar popup="false"/>-->
-                        		<rich:calendar  id = "myCalendar"    popup = "false"    cellWidth = "30px"    cellHeight = "20px" > 
+                        		<rich:calendar  popup = "false"> 
                         		 <f:facet    name = "weekNumber">
                         		 	<h:outputText value = ""    style = "color:red" /> 
        							 </f:facet > 

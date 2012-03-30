@@ -1,0 +1,125 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="facultad" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{facultadHome.managed ? 'Edit' : 'Add'} Facultad</f:facet>
+
+
+
+            <s:decorate id="descripcionFacultadField" template="layout/edit.xhtml">
+                <ui:define name="label">Descripcion facultad</ui:define>
+                <h:inputTextarea id="descripcionFacultad"
+                               cols="80"
+                               rows="3"
+                              value="#{facultadHome.instance.descripcionFacultad}"/>
+            </s:decorate>
+
+
+
+            <s:decorate id="nombreFacultadField" template="layout/edit.xhtml">
+                <ui:define name="label">Nombre facultad</ui:define>
+                <h:inputTextarea id="nombreFacultad"
+                               cols="80"
+                               rows="3"
+                              value="#{facultadHome.instance.nombreFacultad}"/>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{facultadHome.persist}"
+                       disabled="#{!facultadHome.wired}"
+                       rendered="#{!facultadHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{facultadHome.update}"
+                       rendered="#{facultadHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{facultadHome.remove}"
+                      immediate="true"
+                       rendered="#{facultadHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/Facultad.xhtml"
+                rendered="#{facultadHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty facultadFrom ? 'FacultadList' : facultadFrom}.xhtml"
+                rendered="#{!facultadHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Lista escuela">
+        <h:form styleClass="association" id="listaEscuelaChildren">
+
+            <h:outputText value="There are no listaEscuela associated with this facultad."
+                       rendered="#{empty facultadHome.listaEscuela}"/>
+
+            <rich:dataTable value="#{facultadHome.listaEscuela}"
+                           var="_escuela"
+                      rendered="#{not empty facultadHome.listaEscuela}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="listaEscuelaTable">
+                <rich:column sortBy="#{_escuela.idEscuela}">
+                    <f:facet name="header">Id escuela</f:facet>
+                    <h:outputText value="#{_escuela.idEscuela}"/>
+                </rich:column>
+                <rich:column sortBy="#{_escuela.descripcionEscuela}">
+                    <f:facet name="header">Descripcion escuela</f:facet>
+                    <h:outputText value="#{_escuela.descripcionEscuela}"/>
+                </rich:column>
+                <rich:column sortBy="#{_escuela.nombreEscuela}">
+                    <f:facet name="header">Nombre escuela</f:facet>
+                    <h:outputText value="#{_escuela.nombreEscuela}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{facultadHome.managed}" id="listaEscuela">
+        <div class="actionButtons">
+            <s:button id="addescuela"
+                   value="Add escuela"
+                    view="/EscuelaEdit.xhtml"
+             propagation="none">
+                 <f:param name="facultadIdFacultad"
+                         value="#{facultadHome.instance.idFacultad}"/>
+                 <f:param name="escuelaFrom" value="Facultad"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

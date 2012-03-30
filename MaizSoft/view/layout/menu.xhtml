@@ -12,9 +12,51 @@
     <rich:dropDownMenu showDelay="250" hideDelay="0" submitMode="none">
         <f:facet name="label">Browse data</f:facet>
 	<rich:menuItem>
+    	<s:link view="/SemestreList.xhtml"
+           	value="Semestre List"
+           	id="SemestreId"
+			includePageParams="false"
+     		propagation="none"/>
+     </rich:menuItem>
+	<rich:menuItem>
+    	<s:link view="/ActividadList.xhtml"
+           	value="Actividad List"
+           	id="ActividadId"
+			includePageParams="false"
+     		propagation="none"/>
+     </rich:menuItem>
+	<rich:menuItem>
+    	<s:link view="/CursoList.xhtml"
+           	value="Curso List"
+           	id="CursoId"
+			includePageParams="false"
+     		propagation="none"/>
+     </rich:menuItem>
+	<rich:menuItem>
+    	<s:link view="/GrupoCursoList.xhtml"
+           	value="GrupoCurso List"
+           	id="GrupoCursoId"
+			includePageParams="false"
+     		propagation="none"/>
+     </rich:menuItem>
+	<rich:menuItem>
     	<s:link view="/UserAccountList.xhtml"
            	value="UserAccount List"
            	id="UserAccountId"
+			includePageParams="false"
+     		propagation="none"/>
+     </rich:menuItem>
+	<rich:menuItem>
+    	<s:link view="/FacultadList.xhtml"
+           	value="Facultad List"
+           	id="FacultadId"
+			includePageParams="false"
+     		propagation="none"/>
+     </rich:menuItem>
+	<rich:menuItem>
+    	<s:link view="/EscuelaList.xhtml"
+           	value="Escuela List"
+           	id="EscuelaId"
 			includePageParams="false"
      		propagation="none"/>
      </rich:menuItem>
@@ -29,6 +71,13 @@
     	<s:link view="/UserPermissionList.xhtml"
            	value="UserPermission List"
            	id="UserPermissionId"
+			includePageParams="false"
+     		propagation="none"/>
+     </rich:menuItem>
+	<rich:menuItem>
+    	<s:link view="/NotaList.xhtml"
+           	value="Nota List"
+           	id="NotaId"
 			includePageParams="false"
      		propagation="none"/>
      </rich:menuItem>

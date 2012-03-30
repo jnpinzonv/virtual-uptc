@@ -15,11 +15,6 @@
         <rich:simpleTogglePanel label="UserAccount Search Filter" switchType="ajax">
 
             <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Username</ui:define>
-                <h:inputText id="username" value="#{userAccountList.userAccount.username}"/>
-            </s:decorate>
-
-            <s:decorate template="layout/display.xhtml">
                 <ui:define name="label">Apellidos</ui:define>
                 <h:inputText id="apellidos" value="#{userAccountList.userAccount.apellidos}"/>
             </s:decorate>
@@ -42,6 +37,11 @@
             <s:decorate template="layout/display.xhtml">
                 <ui:define name="label">Segundo nombre</ui:define>
                 <h:inputText id="segundoNombre" value="#{userAccountList.userAccount.segundoNombre}"/>
+            </s:decorate>
+
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Username</ui:define>
+                <h:inputText id="username" value="#{userAccountList.userAccount.username}"/>
             </s:decorate>
 
             <s:decorate template="layout/display.xhtml">
@@ -126,6 +126,26 @@
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{userAccountList}"/>
+                    <ui:param name="propertyLabel" value="Foto user"/>
+                    <ui:param name="propertyPath" value="userAccount.fotoUser"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_userAccount.fotoUser}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{userAccountList}"/>
+                    <ui:param name="propertyLabel" value="Grupo curso id grupo"/>
+                    <ui:param name="propertyPath" value="userAccount.grupoCurso.idGrupo"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_userAccount.grupoCurso.idGrupo}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{userAccountList}"/>
                     <ui:param name="propertyLabel" value="Password hash"/>
                     <ui:param name="propertyPath" value="userAccount.passwordHash"/>
                 </ui:include>
@@ -161,6 +181,16 @@
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_userAccount.tipoDocumento}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{userAccountList}"/>
+                    <ui:param name="propertyLabel" value="Username"/>
+                    <ui:param name="propertyPath" value="userAccount.username"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_userAccount.username}"/>
         </h:column>
         <rich:column styleClass="action">
             <f:facet name="header">Action</f:facet>

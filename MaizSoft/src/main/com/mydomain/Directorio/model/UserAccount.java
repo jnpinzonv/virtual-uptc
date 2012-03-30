@@ -11,7 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -41,7 +43,7 @@ public class UserAccount implements Serializable {
 	 */
 	private static final long serialVersionUID = 6368734442192368866L;
 
-	private long documentoIdentidad;
+	private Long documentoIdentidad;
 	
 	private TipoDocumento tipoDocumento;
 	
@@ -68,12 +70,16 @@ public class UserAccount implements Serializable {
 	 * Representa el estado de la cuenta activa/inactiva
 	 */
 	private boolean enabled;
+	
+	private byte[] fotoUser;
 
 	/**
 	 * Lista de roles que desemplenia el usuario dentro de la plataforma
 	 */
 	private Set<UserRole> roles;
 	
+	
+	private GrupoCurso grupoCurso;
 	
 	
 	@Id
@@ -87,23 +93,7 @@ public class UserAccount implements Serializable {
 	}
 
 
-	/**
-	 * @return the documentoIdentidad
-	 */
-	@NotNull
-	public long getDocumentoIdentidad() {
-		return documentoIdentidad;
-	}
 	
-	
-
-	/**
-	 * @param documentoIdentidad the documentoIdentidad to set
-	 */
-	public void setDocumentoIdentidad(long documentoIdentidad) {
-		this.documentoIdentidad = documentoIdentidad;
-	}
-
 
 
 	
@@ -281,4 +271,54 @@ public class UserAccount implements Serializable {
 	public void setRoles(Set<UserRole> roles) {
 		this.roles = roles;
 	}
+
+	/**
+	 * @return the grupoCurso
+	 */
+	@ManyToOne
+	public GrupoCurso getGrupoCurso() {
+		return grupoCurso;
+	}
+
+	/**
+	 * @param grupoCurso the grupoCurso to set
+	 */
+	public void setGrupoCurso(GrupoCurso grupoCurso) {
+		this.grupoCurso = grupoCurso;
+	}
+
+	/**
+	 * @return the fotoUser
+	 */
+	@Lob
+	public byte[] getFotoUser() {
+		return fotoUser;
+	}
+
+	/**
+	 * @param fotoUser the fotoUser to set
+	 */
+	public void setFotoUser(byte[] fotoUser) {
+		this.fotoUser = fotoUser;
+	}
+
+	/**
+	 * @param documentoIdentidad the documentoIdentidad to set
+	 */
+	
+	public void setDocumentoIdentidad(Long documentoIdentidad) {
+		this.documentoIdentidad = documentoIdentidad;
+	}
+
+	/**
+	 * @return the documentoIdentidad
+	 */
+	@NotNull
+	public Long getDocumentoIdentidad() {
+		return documentoIdentidad;
+	}
+	
+	
+	
+	
 }

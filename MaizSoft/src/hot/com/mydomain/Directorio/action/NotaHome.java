@@ -5,24 +5,24 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
 
-@Name("userAccountHome")
-public class UserAccountHome extends EntityHome<UserAccount> {
+@Name("notaHome")
+public class NotaHome extends EntityHome<Nota> {
 
 	@In(create = true)
-	GrupoCursoHome grupoCursoHome;
+	ActividadHome actividadHome;
 
-	public void setUserAccountId(Long id) {
+	public void setNotaIdNota(Long id) {
 		setId(id);
 	}
 
-	public Long getUserAccountId() {
+	public Long getNotaIdNota() {
 		return (Long) getId();
 	}
 
 	@Override
-	protected UserAccount createInstance() {
-		UserAccount userAccount = new UserAccount();
-		return userAccount;
+	protected Nota createInstance() {
+		Nota nota = new Nota();
+		return nota;
 	}
 
 	public void load() {
@@ -33,9 +33,9 @@ public class UserAccountHome extends EntityHome<UserAccount> {
 
 	public void wire() {
 		getInstance();
-		GrupoCurso grupoCurso = grupoCursoHome.getDefinedInstance();
-		if (grupoCurso != null) {
-			getInstance().setGrupoCurso(grupoCurso);
+		Actividad actividad = actividadHome.getDefinedInstance();
+		if (actividad != null) {
+			getInstance().setActividad(actividad);
 		}
 	}
 
@@ -43,7 +43,7 @@ public class UserAccountHome extends EntityHome<UserAccount> {
 		return true;
 	}
 
-	public UserAccount getDefinedInstance() {
+	public Nota getDefinedInstance() {
 		return isIdDefined() ? getInstance() : null;
 	}
 

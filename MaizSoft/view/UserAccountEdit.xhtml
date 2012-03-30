@@ -17,16 +17,6 @@
             <f:facet name="header">#{userAccountHome.managed ? 'Edit' : 'Add'} User account</f:facet>
 
 
-            <s:decorate id="usernameField" template="layout/edit.xhtml">
-                <ui:define name="label">Username</ui:define>
-                <h:inputTextarea id="username"
-                               cols="80"
-                               rows="3"
-                           disabled="#{userAccountHome.managed}"
-                           required="true"
-                              value="#{userAccountHome.instance.username}"/>
-            </s:decorate>
-
 
             <s:decorate id="apellidosField" template="layout/edit.xhtml">
                 <ui:define name="label">Apellidos</ui:define>
@@ -59,6 +49,34 @@
                 </h:inputText>
             </s:decorate>
 
+
+            <s:decorate id="enabledField" template="layout/edit.xhtml">
+                <ui:define name="label">Enabled</ui:define>
+                <h:selectBooleanCheckbox id="enabled"
+                                   required="true"
+                                      value="#{userAccountHome.instance.enabled}"/>
+            </s:decorate>
+
+
+            <s:decorate id="fotoUserField" template="layout/edit.xhtml">
+                <ui:define name="label">Foto user</ui:define>
+                <h:inputText id="fotoUser"
+                          value="#{userAccountHome.instance.fotoUser}">
+                    <a:support event="onblur" reRender="fotoUserField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+
+            <s:decorate id="passwordHashField" template="layout/edit.xhtml">
+                <ui:define name="label">Password hash</ui:define>
+                <h:inputTextarea id="passwordHash"
+                               cols="80"
+                               rows="3"
+                              value="#{userAccountHome.instance.passwordHash}"/>
+            </s:decorate>
+
+
             <s:decorate id="primerNombreField" template="layout/edit.xhtml">
                 <ui:define name="label">Primer nombre</ui:define>
                 <h:inputText id="primerNombre"
@@ -69,6 +87,8 @@
                     <a:support event="onblur" reRender="primerNombreField" bypassUpdates="true" ajaxSingle="true"/>
                 </h:inputText>
             </s:decorate>
+
+
 
             <s:decorate id="segundoNombreField" template="layout/edit.xhtml">
                 <ui:define name="label">Segundo nombre</ui:define>
@@ -83,12 +103,20 @@
 
             <s:decorate id="tipoDocumentoField" template="layout/edit.xhtml">
                 <ui:define name="label">Tipo documento</ui:define>
-                <h:selectOneMenu id="tipoDocumento"
+                <h:inputText id="tipoDocumento"
                           value="#{userAccountHome.instance.tipoDocumento}">
-                          <s:selectItems var="tipoDocumento" value="#{listaTipoDocumento}" label="#{tipoDocumento}" noSelectionLabel="Seleccionar">
-                          </s:selectItems> 
-                          <s:convertEnum/>                
-                </h:selectOneMenu>
+                    <a:support event="onblur" reRender="tipoDocumentoField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="usernameField" template="layout/edit.xhtml">
+                <ui:define name="label">Username</ui:define>
+                <h:inputTextarea id="username"
+                               cols="80"
+                               rows="3"
+                           required="true"
+                              value="#{userAccountHome.instance.username}"/>
             </s:decorate>
 
             <div style="clear:both">
@@ -101,8 +129,8 @@
         <div class="actionButtons">
 
             <h:commandButton id="save"
-                          value="Aceptar"
-                          action="#{userAccountHome.persist}"
+                          value="Save"
+                         action="#{userAccountHome.persist}"
                        disabled="#{!userAccountHome.wired}"
                        rendered="#{!userAccountHome.managed}"/>
 
@@ -132,6 +160,47 @@
         </div>
     </h:form>
 
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Grupo curso">
+    <div class="association" id="grupoCursoParent">
+
+        <h:outputText value="There is no grupoCurso associated with this userAccount."
+                   rendered="#{userAccountHome.instance.grupoCurso == null}"/>
+
+        <rich:dataTable var="_grupoCurso"
+                   value="#{userAccountHome.instance.grupoCurso}"
+                rendered="#{userAccountHome.instance.grupoCurso != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="grupoCursoTable">
+            <h:column>
+                <f:facet name="header">Id grupo</f:facet>
+                <h:outputText value="#{_grupoCurso.idGrupo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Cupos</f:facet>
+                <h:outputText value="#{_grupoCurso.cupos}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Curso grupo codigo</f:facet>
+                <h:outputText value="#{_grupoCurso.cursoGrupo.codigo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Inscritos</f:facet>
+                <h:outputText value="#{_grupoCurso.inscritos}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{userAccountHome.instance.grupoCurso != null ? 'changeParent' : 'selectParent'}" value="#{userAccountHome.instance.grupoCurso != null ? 'Change' : 'Select'} grupoCurso"
+                       view="/GrupoCursoList.xhtml">
+                <f:param name="from" value="UserAccountEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
 </ui:define>
 
 </ui:composition>

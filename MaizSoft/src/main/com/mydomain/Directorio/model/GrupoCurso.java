@@ -3,6 +3,7 @@
  */
 package com.mydomain.Directorio.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -97,6 +98,9 @@ public class GrupoCurso {
 	 */
 	@OneToMany(mappedBy="grupoCurso")
 	public Set<UserAccount> getListaUsuarios() {
+		if(listaUsuarios==null){
+			return new HashSet<UserAccount>();
+		}
 		return listaUsuarios;
 	}
 
@@ -112,6 +116,9 @@ public class GrupoCurso {
 	 */
 	@OneToMany(mappedBy="actividadGrupoCurso")
 	public Set<Actividad> getActividades() {
+		if(actividades==null){
+			return new HashSet<Actividad>();
+		}
 		return actividades;
 	}
 

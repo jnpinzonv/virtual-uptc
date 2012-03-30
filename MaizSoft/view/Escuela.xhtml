@@ -1,0 +1,138 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Escuela Details</f:facet>
+
+        <s:decorate id="idEscuela" template="layout/display.xhtml">
+            <ui:define name="label">Id escuela</ui:define>
+            <h:outputText value="#{escuelaHome.instance.idEscuela}"/>
+        </s:decorate>
+
+        <s:decorate id="descripcionEscuela" template="layout/display.xhtml">
+            <ui:define name="label">Descripcion escuela</ui:define>
+            <h:outputText value="#{escuelaHome.instance.descripcionEscuela}"/>
+        </s:decorate>
+
+        <s:decorate id="nombreEscuela" template="layout/display.xhtml">
+            <ui:define name="label">Nombre escuela</ui:define>
+            <h:outputText value="#{escuelaHome.instance.nombreEscuela}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/EscuelaEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty escuelaFrom ? 'EscuelaList' : escuelaFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Facultad</h:panelGroup>
+        </f:facet>
+    <div class="association" id="facultadParent">
+
+        <h:outputText value="There is no facultad associated with this escuela."
+                   rendered="#{escuelaHome.instance.facultad == null}"/>
+
+        <rich:dataTable var="_facultad"
+                   value="#{escuelaHome.instance.facultad}"
+                rendered="#{escuelaHome.instance.facultad != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="facultadTable">
+            <h:column>
+                <f:facet name="header">Id facultad</f:facet>
+                <h:outputText value="#{_facultad.idFacultad}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Descripcion facultad</f:facet>
+                <h:outputText value="#{_facultad.descripcionFacultad}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nombre facultad</f:facet>
+                <h:outputText value="#{_facultad.nombreFacultad}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewfacultad"
+                     value="View"
+                      view="/Facultad.xhtml">
+                    <f:param name="facultadIdFacultad"
+                           value="#{_facultad.idFacultad}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Lista cursos ofrecidos</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="listaCursosOfrecidosChildren">
+
+        <h:outputText value="There are no listaCursosOfrecidos associated with this escuela."
+                   rendered="#{empty escuelaHome.listaCursosOfrecidos}"/>
+
+        <rich:dataTable value="#{escuelaHome.listaCursosOfrecidos}"
+                       var="_curso"
+                  rendered="#{not empty escuelaHome.listaCursosOfrecidos}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="listaCursosOfrecidosTable">
+            <rich:column sortBy="#{_curso.codigo}">
+                <f:facet name="header">Codigo</f:facet>
+                <h:outputText value="#{_curso.codigo}"/>
+            </rich:column>
+            <rich:column sortBy="#{_curso.nombreAsignatura}">
+                <f:facet name="header">Nombre asignatura</f:facet>
+                <h:outputText value="#{_curso.nombreAsignatura}"/>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selectcurso"
+                     value="Select"
+                      view="/Curso.xhtml">
+                    <f:param name="cursoCodigo"
+                            value="#{_curso.codigo}"/>
+                    <f:param name="cursoFrom" value="Escuela"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add curso"
+                view="/CursoEdit.xhtml">
+            <f:param name="escuelaIdEscuela"
+                    value="#{escuelaHome.instance.idEscuela}"/>
+            <f:param name="cursoFrom" value="Escuela"/>
+        </s:button>
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

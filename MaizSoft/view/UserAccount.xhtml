@@ -8,123 +8,11 @@
     xmlns:rich="http://richfaces.org/rich"
     template="layout/template.xhtml">
 
-<ui:define name="head">
-	<link href="css/cssLayoutPrincipal.css" rel="stylesheet" type="text/css"/>
-    <link href="css/default.css" rel="stylesheet" type="text/css" />
-</ui:define>
-
-
 <ui:define name="body">
-	<s:div styleClass="top" style="color: white; margin-left: 70px; margin-rigth: 70px;" >
-			<div style="color: #184B96">
-            <ui:insert name="top">.</ui:insert>
-            </div>
-            <div id="topLogo">
-            	
-                <h:outputText value="MaizSoft"></h:outputText>
-                <h:outputText value="..." style="color:#184B96"></h:outputText>
-                <h:commandButton image="css/images/calendario.png" style="width:30px"/>
-                <h:outputText value=".." style="color:#184B96"></h:outputText>
-                <h:commandButton image="css/images/mensajes.png" style="width:30px"/>
-                <h:outputText value=".." style="color:#184B96"></h:outputText>
-                <h:commandButton image="css/images/actualizacion.png" style="width:30px"/>
-                <br/>
-                <br/>
-               
-                <h:outputText value="Navegar"></h:outputText>
-            </div>
-		 <div id="topPrincipal">
-                     <h:form>
-                        <h:outputText id="menuWelcomeId" value="#{credentials.username}" rendered="#{identity.loggedIn}"/>
-                        <s:link id="menuLogoutId" view="/home.xhtml" action="#{identity.logout}" value="Salir" rendered="#{identity.loggedIn}" propagation="none" style="color: white"/>
-                    </h:form>
-                     <pre>
-                        <p>7:15 a.m</p>
-                    </pre>
-         </div>
 
-            <div id="topSearch">
-                
-                <form class="searchform">
-                    <input class="searchfield" type="text" value="Buscar..." onFocus="if (this.value == 'Buscar...') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Buscar...';}"/>
-                    
-                    <h:commandButton class="searchbutton" image="css/images/buscar.png"  style="width:24px"/>
-                </form>
-            </div>
-        </s:div>
-	
-	<div class="center2">
-		<div class="left">
-                    <rich:panel>
-                      <h:form> 
-                        <h:commandLink value="#{credentials.username}"/>
-                        <hr />
-                        <div class="navigation">
-    						<ul class="top-level">
-        						<li><h:commandLink value="Administrar Usuarios"/>
-            						<ul class="sub-level">
-                						<li><a href="/MaizSoft/UserAccountEdit.seam">Adicionar Usuario</a></li>
-                						<li><a href="/MaizSoft/UserAccountEdit.seam">Editar Usuario</a></li>
-                						<li><a href="/MaizSoft/UserAccountEdit.seam">Eliminar Usuario</a></li>
-                						<li><a href="/MaizSoft/UserAccountList.seam">Buscar Usuario</a></li>
-            						</ul>
-        						</li>
-        						<li><h:commandLink value="Administrar Roles"/>
-        							<ul class="sub-level">
-        								<li><a href="/MaizSoft/UserRoleEdit.seam">Adicionar Rol</a></li>
-                						<li><a href="/MaizSoft/UserRoleList.seam">Editar Rol</a></li>
-                						<li><a href="/MaizSoft/UserRoleEliminar.seam">Eliminar Rol</a></li>
-                						<li><a href="/MaizSoft/UserRoleList.seam">Buscar Rol</a></li>
-        							</ul>
-        						</li>	
-        						<li><h:commandLink value="Administrar Curso"/></li>
-        						
-   		 					</ul>
-						</div>
-                      </h:form>
-                    </rich:panel>
-       	     </div>
+    <rich:panel>
+        <f:facet name="header">User account Details</f:facet>
 
-	      <div class="right">
-     		     <ui:insert name="right">Right</ui:insert>
-     		</div>
-
-    		<div id="content" class="right_content">
-             
-                 <rich:panel>
-        			<f:facet name="header">Detalles de cuentas de usuario</f:facet>
-		
-					<h:outputText value="Username:     #{userAccountHome.instance.username}"/>
-					<br />
-					<br />
-					<h:outputText value="Contrasena:     #{userAccountHome.instance.passwordHash}"/>
-					<br />
-					<br />
-					<h:outputText value="Primer Nombre: #{userAccountHome.instance.primerNombre}"/>
-					<br />
-					<br />
-					<h:outputText value="Segundo Nombre: #{userAccountHome.instance.segundoNombre}"/>
-					<br />
-					<br />
-					<h:outputText value="Apellidos:     #{userAccountHome.instance.apellidos}"/>
-					<br />
-					<br />
-					<h:outputText value="Correo Electronico:     #{userAccountHome.instance.correoElectronico}"/>
-					<br />
-					<br />			
-					<h:outputText value="Tipo Documento: #{userAccountHome.instance.tipoDocumento}"/>
-					<br />
-					<br />
-					<h:outputText value="Documento Identidad:     #{userAccountHome.instance.documentoIdentidad}"/>
-					<br />
-					<br />
-					<h:outputText value="Activado:     #{userAccountHome.instance.enabled}"/>
-												
-		<!--  
-        <s:decorate id="username" template="layout/display.xhtml">
-            <ui:define name="label">Username</ui:define>
-            <h:outputText value="#{userAccountHome.instance.username}"/>
-        </s:decorate>
 
         <s:decorate id="apellidos" template="layout/display.xhtml">
             <ui:define name="label">Apellidos</ui:define>
@@ -144,6 +32,11 @@
         <s:decorate id="enabled" template="layout/display.xhtml">
             <ui:define name="label">Enabled</ui:define>
             <h:outputText value="#{userAccountHome.instance.enabled}"/>
+        </s:decorate>
+
+        <s:decorate id="fotoUser" template="layout/display.xhtml">
+            <ui:define name="label">Foto user</ui:define>
+            <h:outputText value="#{userAccountHome.instance.fotoUser}"/>
         </s:decorate>
 
         <s:decorate id="passwordHash" template="layout/display.xhtml">
@@ -166,31 +59,73 @@
             <h:outputText value="#{userAccountHome.instance.tipoDocumento}"/>
         </s:decorate>
 
+        <s:decorate id="username" template="layout/display.xhtml">
+            <ui:define name="label">Username</ui:define>
+            <h:outputText value="#{userAccountHome.instance.username}"/>
+        </s:decorate>
+
         <div style="clear:both"/>
-	-->
+
     </rich:panel>
 
     <div class="actionButtons">
 
         <s:button view="/UserAccountEdit.xhtml"
                     id="edit"
-                 value="Editar"/>
+                 value="Edit"/>
 
         <s:button view="/#{empty userAccountFrom ? 'UserAccountList' : userAccountFrom}.xhtml"
                     id="done"
-                 value="Aceptar"/>
+                 value="Done"/>
 
     </div>
-             
-       	</div>
-		<div class="bottom" align="center">
-       		 <pre>Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
-            Facultad de Ingenier&#237;a            
-   Ingenier&#237;a de Sistemas y Computaci&#243;n
-Grupo de Investigaci&#243;n en Ingenier&#237;a del Software
-Correo:gis@uptc.edu.co
-</pre>
-	</div>
-     </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Grupo curso</h:panelGroup>
+        </f:facet>
+    <div class="association" id="grupoCursoParent">
+
+        <h:outputText value="There is no grupoCurso associated with this userAccount."
+                   rendered="#{userAccountHome.instance.grupoCurso == null}"/>
+
+        <rich:dataTable var="_grupoCurso"
+                   value="#{userAccountHome.instance.grupoCurso}"
+                rendered="#{userAccountHome.instance.grupoCurso != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="grupoCursoTable">
+            <h:column>
+                <f:facet name="header">Id grupo</f:facet>
+                <h:outputText value="#{_grupoCurso.idGrupo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Cupos</f:facet>
+                <h:outputText value="#{_grupoCurso.cupos}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Curso grupo codigo</f:facet>
+                <h:outputText value="#{_grupoCurso.cursoGrupo.codigo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Inscritos</f:facet>
+                <h:outputText value="#{_grupoCurso.inscritos}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewgrupoCurso"
+                     value="View"
+                      view="/GrupoCurso.xhtml">
+                    <f:param name="grupoCursoIdGrupo"
+                           value="#{_grupoCurso.idGrupo}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
 </ui:define>
+
 </ui:composition>

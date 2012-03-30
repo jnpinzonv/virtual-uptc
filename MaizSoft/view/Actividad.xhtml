@@ -1,0 +1,135 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Actividad Details</f:facet>
+
+
+        <s:decorate id="descripcionActividad" template="layout/display.xhtml">
+            <ui:define name="label">Descripcion actividad</ui:define>
+            <h:outputText value="#{actividadHome.instance.descripcionActividad}"/>
+        </s:decorate>
+
+        <s:decorate id="evaluable" template="layout/display.xhtml">
+            <ui:define name="label">Evaluable</ui:define>
+            <h:outputText value="#{actividadHome.instance.evaluable}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/ActividadEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty actividadFrom ? 'ActividadList' : actividadFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Actividad grupo curso</h:panelGroup>
+        </f:facet>
+    <div class="association" id="actividadGrupoCursoParent">
+
+        <h:outputText value="There is no actividadGrupoCurso associated with this actividad."
+                   rendered="#{actividadHome.instance.actividadGrupoCurso == null}"/>
+
+        <rich:dataTable var="_grupoCurso"
+                   value="#{actividadHome.instance.actividadGrupoCurso}"
+                rendered="#{actividadHome.instance.actividadGrupoCurso != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="actividadGrupoCursoTable">
+            <h:column>
+                <f:facet name="header">Id grupo</f:facet>
+                <h:outputText value="#{_grupoCurso.idGrupo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Cupos</f:facet>
+                <h:outputText value="#{_grupoCurso.cupos}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Curso grupo codigo</f:facet>
+                <h:outputText value="#{_grupoCurso.cursoGrupo.codigo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Inscritos</f:facet>
+                <h:outputText value="#{_grupoCurso.inscritos}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewgrupoCurso"
+                     value="View"
+                      view="/GrupoCurso.xhtml">
+                    <f:param name="grupoCursoIdGrupo"
+                           value="#{_grupoCurso.idGrupo}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Nota</h:panelGroup>
+        </f:facet>
+    <div class="association" id="notaParent">
+
+        <h:outputText value="There is no nota associated with this actividad."
+                   rendered="#{actividadHome.instance.nota == null}"/>
+
+        <rich:dataTable var="_nota"
+                   value="#{actividadHome.instance.nota}"
+                rendered="#{actividadHome.instance.nota != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="notaTable">
+            <h:column>
+                <f:facet name="header">Id nota</f:facet>
+                <h:outputText value="#{_nota.idNota}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Actividad id actividad</f:facet>
+                <h:outputText value="#{_nota.actividad.idActividad}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Porcentaje</f:facet>
+                <h:outputText value="#{_nota.porcentaje}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Valor nota</f:facet>
+                <h:outputText value="#{_nota.valorNota}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewnota"
+                     value="View"
+                      view="/Nota.xhtml">
+                    <f:param name="notaIdNota"
+                           value="#{_nota.idNota}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

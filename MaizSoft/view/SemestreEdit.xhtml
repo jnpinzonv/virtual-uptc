@@ -1,0 +1,121 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="semestre" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{semestreHome.managed ? 'Edit' : 'Add'} Semestre</f:facet>
+
+
+
+            <s:decorate id="anioAcademicoField" template="layout/edit.xhtml">
+                <ui:define name="label">Anio academico</ui:define>
+                <h:inputText id="anioAcademico"
+                          value="#{semestreHome.instance.anioAcademico}">
+                    <a:support event="onblur" reRender="anioAcademicoField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+
+            <s:decorate id="semestreAcademicoField" template="layout/edit.xhtml">
+                <ui:define name="label">Semestre academico</ui:define>
+                <h:inputText id="semestreAcademico"
+                          value="#{semestreHome.instance.semestreAcademico}">
+                    <a:support event="onblur" reRender="semestreAcademicoField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{semestreHome.persist}"
+                       disabled="#{!semestreHome.wired}"
+                       rendered="#{!semestreHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{semestreHome.update}"
+                       rendered="#{semestreHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{semestreHome.remove}"
+                      immediate="true"
+                       rendered="#{semestreHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/Semestre.xhtml"
+                rendered="#{semestreHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty semestreFrom ? 'SemestreList' : semestreFrom}.xhtml"
+                rendered="#{!semestreHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Curso semestre">
+        <h:form styleClass="association" id="cursoSemestreChildren">
+
+            <h:outputText value="There are no cursoSemestre associated with this semestre."
+                       rendered="#{empty semestreHome.cursoSemestre}"/>
+
+            <rich:dataTable value="#{semestreHome.cursoSemestre}"
+                           var="_curso"
+                      rendered="#{not empty semestreHome.cursoSemestre}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="cursoSemestreTable">
+                <rich:column sortBy="#{_curso.codigo}">
+                    <f:facet name="header">Codigo</f:facet>
+                    <h:outputText value="#{_curso.codigo}"/>
+                </rich:column>
+                <rich:column sortBy="#{_curso.nombreAsignatura}">
+                    <f:facet name="header">Nombre asignatura</f:facet>
+                    <h:outputText value="#{_curso.nombreAsignatura}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{semestreHome.managed}" id="cursoSemestre">
+        <div class="actionButtons">
+            <s:button id="addcurso"
+                   value="Add curso"
+                    view="/CursoEdit.xhtml"
+             propagation="none">
+                 <f:param name="semestreIdSemestre"
+                         value="#{semestreHome.instance.idSemestre}"/>
+                 <f:param name="cursoFrom" value="Semestre"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

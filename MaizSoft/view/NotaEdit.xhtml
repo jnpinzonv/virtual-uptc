@@ -1,0 +1,127 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="nota" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{notaHome.managed ? 'Edit' : 'Add'} Nota</f:facet>
+
+
+
+
+            <s:decorate id="porcentajeField" template="layout/edit.xhtml">
+                <ui:define name="label">Porcentaje</ui:define>
+                <h:inputText id="porcentaje"
+                          value="#{notaHome.instance.porcentaje}">
+                    <a:support event="onblur" reRender="porcentajeField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="valorNotaField" template="layout/edit.xhtml">
+                <ui:define name="label">Valor nota</ui:define>
+                <h:inputText id="valorNota"
+                          value="#{notaHome.instance.valorNota}">
+                    <a:support event="onblur" reRender="valorNotaField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{notaHome.persist}"
+                       disabled="#{!notaHome.wired}"
+                       rendered="#{!notaHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{notaHome.update}"
+                       rendered="#{notaHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{notaHome.remove}"
+                      immediate="true"
+                       rendered="#{notaHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/Nota.xhtml"
+                rendered="#{notaHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty notaFrom ? 'NotaList' : notaFrom}.xhtml"
+                rendered="#{!notaHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Actividad">
+    <div class="association" id="actividadParent">
+
+        <h:outputText value="There is no actividad associated with this nota."
+                   rendered="#{notaHome.instance.actividad == null}"/>
+
+        <rich:dataTable var="_actividad"
+                   value="#{notaHome.instance.actividad}"
+                rendered="#{notaHome.instance.actividad != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="actividadTable">
+            <h:column>
+                <f:facet name="header">Id actividad</f:facet>
+                <h:outputText value="#{_actividad.idActividad}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Actividad grupo curso id grupo</f:facet>
+                <h:outputText value="#{_actividad.actividadGrupoCurso.idGrupo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Descripcion actividad</f:facet>
+                <h:outputText value="#{_actividad.descripcionActividad}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Evaluable</f:facet>
+                <h:outputText value="#{_actividad.evaluable}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nota id nota</f:facet>
+                <h:outputText value="#{_actividad.nota.idNota}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{notaHome.instance.actividad != null ? 'changeParent' : 'selectParent'}" value="#{notaHome.instance.actividad != null ? 'Change' : 'Select'} actividad"
+                       view="/ActividadList.xhtml">
+                <f:param name="from" value="NotaEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

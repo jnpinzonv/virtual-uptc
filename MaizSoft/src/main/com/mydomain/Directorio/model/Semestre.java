@@ -4,6 +4,7 @@
 package com.mydomain.Directorio.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -81,6 +82,9 @@ public class Semestre {
 	 */
 	@OneToMany(mappedBy="semestreCurso")
 	public Set<Curso> getCursoSemestre() {
+		if(cursoSemestre==null){
+			return new HashSet<Curso>();
+		}
 		return cursoSemestre;
 	}
 

@@ -114,4 +114,23 @@
       <persistence-unit-name>../MaizSoft.jar#MaizSoft</persistence-unit-name>
    </persistence-unit-ref>
 
+   <!-- uncomment <ejb-local-ref> entries when deploying to GlassFish and (optionally) JBoss AS 5 -->
+   <!--
+   <ejb-local-ref>
+      <ejb-ref-name>MaizSoft/AuthenticatorBean/local</ejb-ref-name>
+      <ejb-ref-type>Session</ejb-ref-type>
+      <local-home/>
+      <local>com.mydomain.Directorio.action.Authenticator</local>
+   </ejb-local-ref>
+   -->
+
+   <!-- Add entries for each EJB session bean which is also a Seam component (not required on JBoss AS) -->
+
+   <persistence-unit-ref>
+      <persistence-unit-ref-name>MaizSoft/pu</persistence-unit-ref-name>
+      <!-- The relative reference doesn't work on GlassFish. Instead, set the <persistence-unit-name> to "MaizSoft",
+           package persistence.xml in the WAR, and add a <jar-file> element in persistence.xml with value "../../MaizSoft.jar". -->
+      <persistence-unit-name>../MaizSoft.jar#MaizSoft</persistence-unit-name>
+   </persistence-unit-ref>
+
 </web-app>

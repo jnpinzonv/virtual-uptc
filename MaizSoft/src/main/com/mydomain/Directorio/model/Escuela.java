@@ -3,6 +3,7 @@
  */
 package com.mydomain.Directorio.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -95,6 +96,9 @@ public class Escuela {
 	 */
 	@OneToMany(mappedBy="escuelaCurso")
 	public Set<Curso> getListaCursosOfrecidos() {
+		if(listaCursosOfrecidos==null){
+			return new HashSet<Curso>();
+		}
 		return listaCursosOfrecidos;
 	}
 

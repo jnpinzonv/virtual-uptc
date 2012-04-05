@@ -93,11 +93,6 @@ public class UserAccount implements Serializable {
 	}
 
 
-	
-
-
-	
-
 	/**
 	 * @return the tipoDocumento
 	 */
@@ -151,7 +146,7 @@ public class UserAccount implements Serializable {
 	 * @return the apellidos
 	 */
 	@NotNull
-	@Length(min=4, max=15)
+	@Length(max=15)
 	@Pattern(regex="^\\w*$", message="Apellidos no validos")
 	public String getApellidos() {
 		return apellidos;

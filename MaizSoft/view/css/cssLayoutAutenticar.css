@@ -1,6 +1,6 @@
 .top {
     position: relative;
-    background-color: #036fab;
+    background-color: #3B5999;
     color: white;
     padding: 5px;
     margin-left: 110px;
@@ -9,13 +9,13 @@
 
 .topPrincipal {
     position: relative;
-    background-color: #036fab;
+    background-color: #3B5999;
     float: right;
 }
 
 .down {
     position: relative;
-    background-color: #184B96;
+    background-color: #3B5999;
     color: white;
     margin-top: -20px;    
 }

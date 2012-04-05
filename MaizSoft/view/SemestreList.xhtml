@@ -11,9 +11,19 @@
 <ui:define name="body">
 
     <h:form id="semestreSearch" styleClass="edit">
-
+		    
         <rich:simpleTogglePanel label="Semestre Search Filter" switchType="ajax">
-
+			
+			<s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Anio Academico</ui:define>
+                <h:inputText id="anioAcademico" value="#{semestreList.semestre.anioAcademico}"/>
+            </s:decorate>
+            
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Semestre Academico</ui:define>
+                <h:inputText id="semestreAcademico" value="#{semestreList.semestre.semestreAcademico}"/>
+            </s:decorate>
+			
             <s:decorate template="layout/display.xhtml">
                 <ui:define name="label">Match</ui:define>
                 <h:selectOneRadio id="logic" value="#{semestreList.restrictionLogicOperator}" styleClass="radio">
@@ -33,7 +43,7 @@
 
     <rich:panel>
         <f:facet name="header">Semestre Search Results (#{empty semestreList.resultList ? 0 : (semestreList.paginated ? semestreList.resultCount : semestreList.resultList.size)})</f:facet>
-    <div class="results" id="semestreList">
+    	<div class="results" id="semestreList">
 
     <h:outputText value="The semestre search returned no results."
                rendered="#{empty semestreList.resultList}"/>

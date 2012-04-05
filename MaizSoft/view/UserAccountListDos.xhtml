@@ -142,15 +142,14 @@
 
     <h:outputText value="La busqueda no arrojo resultados"
                rendered="#{empty userAccountList.resultList}"/>
-	
+
     <rich:dataTable id="userAccountList"
-    			var="_userAccount"
+                var="_userAccount"
               value="#{userAccountList.resultList}"
-           rendered="#{not empty userAccountList.resultList}" 
- 			style="background: #eeeeee; margin-left:-10px; position:static;
- 			width: 210px"> 
+           rendered="#{not empty userAccountList.resultList}"
+           style=" background: #eeeeee"> 
         
-        	
+        
         	<h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
@@ -218,14 +217,7 @@
                         value="#{_userAccount.id}"/>
             </s:link>
             #{' '}
-            <s:link view="/UserAccountEdit.xhtml"
-                   value="Editar"
-             propagation="none"
-                      id="userAccountEdit"
-                rendered="#{empty from}">
-                <f:param name="userAccountId"
-                        value="#{_userAccount.id}"/>
-            </s:link>
+            
         </rich:column>
     </rich:dataTable>
 
@@ -291,7 +283,14 @@
                 						<li><a href="/MaizSoft/UserRoleList.seam">Buscar Rol</a></li>
         							</ul>
         						</li>	
-        						<li><h:commandLink value="Administrar Curso"/></li>
+        						<li><h:commandLink value="Administrar Curso"/>
+        							<ul class="sub-level">
+        								<li><a href="/MaizSoft/UserRoleEdit.seam">Adicionar Curso</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Editar Curso</a></li>
+                						<li><a href="/MaizSoft/UserRoleEliminar.seam">Eliminar Curso</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Buscar Curso</a></li>
+        							</ul>
+        						</li>
         						
    		 					</ul>
 						</div>
@@ -305,22 +304,15 @@
 
     
 		<div class="bottom" align="center">
-       		        		<img src="css/images/uptc.png" style="height: 80px; margin-left: -430px" />
-            
-            <div style="margin-top: -90px">
-            <pre>Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
+       		 <pre>Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
             Facultad de Ingenier&#237;a            
    Ingenier&#237;a de Sistemas y Computaci&#243;n
 Grupo de Investigaci&#243;n en Ingenier&#237;a del Software
 Correo:gis@uptc.edu.co
 </pre>
-				
-			</div>
-        	<div style="margin-top: -88px">
-        		<img src="css/images/gis.png" style="height: 80px; width: 80px; margin-left: 470px" />
-        	</div>		
-        	</div>
 	</div>
-	</body> 
- </ui:define>
+
+	</div>
+	</body>
+</ui:define>
 </ui:composition>

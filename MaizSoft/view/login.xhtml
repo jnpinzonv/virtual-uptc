@@ -49,12 +49,13 @@
     			        <div class="dialog">
 	            		    <h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
                     			<h:outputLabel for="username">Nombre de Usuario</h:outputLabel>
-                    			<h:inputText id="username"
+                    			<h:inputText required="true" id="username"
                               	value="#{credentials.username}"/>
+                              	<h:message for="username" style="top" errorStyle="color:red"/>
                     			<h:outputLabel for="password">Contrase&#241;a</h:outputLabel>
                     			<h:inputSecret id="password"
                                 value="#{credentials.password}"/>
-                               
+                               <h:message for="password" style="top" errorStyle="color:red"/>
                                 <h:outputLabel for="rememberMe">Recordar</h:outputLabel>
                                 <h:selectBooleanCheckbox  id="rememberMe"
                                           value="#{rememberMe.enabled}"/>
@@ -65,7 +66,7 @@
 					
 					<center>
 			 			<div>
-            				<h:commandButton value="Entrar" style="background:#6F90C5" action="#{identity.login}"/>
+            				<h:commandButton value="Entrar" action="#{identity.login}"/>
             				<br/>    
             				       						       
         				</div>
@@ -101,12 +102,20 @@
         </div>
 
     	<div class="down" align="center" >
+    		<img src="css/images/uptc.png" style="height: 80px; margin-left: -430px" />
+            
+            <div style="margin-top: -90px">
             <pre>Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
             Facultad de Ingenier&#237;a            
    Ingenier&#237;a de Sistemas y Computaci&#243;n
 Grupo de Investigaci&#243;n en Ingenier&#237;a del Software
 Correo:gis@uptc.edu.co
 </pre>
+				
+			</div>
+        	<div style="margin-top: -88px">
+        		<img src="css/images/gis1.png" style="height: 80px; width: 80px; margin-left: 470px" />
+        	</div>		
         	</div>
 	</div> 
  </ui:define>

@@ -7,79 +7,158 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:rich="http://richfaces.org/rich"
     template="layout/template.xhtml">
+    
+    <ui:define name="head">
+		<link href="css/cssLayoutPrincipal.css" rel="stylesheet" type="text/css"/>
+    	<link href="css/default.css" rel="stylesheet" type="text/css" />
+    	
+    	<script language="JavaScript"> 
 
+    	function mueveReloj(){ 
+    	   	momentoActual = new Date()
+    	   	hora = momentoActual.getHours() 
+   			minuto = momentoActual.getMinutes() 
+   			segundo = momentoActual.getSeconds() 
+
+   			str_segundo = new String (segundo) 
+   			if (str_segundo.length == 1) 
+      	 		segundo = "0" + segundo 
+
+   			str_minuto = new String (minuto) 
+   			if (str_minuto.length == 1) 
+      	 		minuto = "0" + minuto 
+
+   			str_hora = new String (hora) 
+   			if (str_hora.length == 1) 
+	      	 	hora = "0" + hora 
+
+   			horaImprimible = "hora: "+hora + " : " + minuto + " : " + segundo 
+
+   			document.form_reloj.reloj.value = horaImprimible 
+
+   			setTimeout("mueveReloj()",1000) 
+} 
+</script>
+    	
+	</ui:define>
+    
 <ui:define name="body">
+<body onload="mueveReloj()">
+	<s:div styleClass="top" style="color: white; margin-left: 70px; margin-rigth: 70px;" >
+			<div style="color: #184B96">
+            <ui:insert name="top">.</ui:insert>
+            </div>
+            <div id="topLogo">
+            	
+                <h:outputText value="MaizSoft"></h:outputText>
+                <h:outputText value="..." style="color:#3B5999"></h:outputText>
+                <h:commandButton image="css/images/calendario.png" style="width:30px"/>
+                <h:outputText value=".." style="color:#3B5999"></h:outputText>
+                <h:commandButton image="css/images/mensajes.png" style="width:30px"/>
+                <h:outputText value=".." style="color:#3B5999"></h:outputText>
+                <h:commandButton image="css/images/actualizacion.png" style="width:30px"/>
+                <br/>
+                <br/>
+               
+                <h:outputText value="Navegar"></h:outputText>
+            </div>
+		 <div id="topPrincipal">
+                     <h:form>
+                        <h:outputText id="menuWelcomeId" value="#{credentials.username}" rendered="#{identity.loggedIn}"/>
+                        <s:link id="menuLogoutId" view="/home.xhtml" action="#{identity.logout}" value="Salir" rendered="#{identity.loggedIn}" propagation="none" style="color: white"/>
+                    </h:form>
+                    <br />
+                   	<br />
+                    <form name="form_reloj"> 
+                    	
+						<input type="text" name="reloj" size="17" style="color: #FFFFFF; background: #3B5999; text-align : center" onfocus="window.document.form_reloj.reloj.blur()"/> 
+					</form> 
+         </div>
 
-    <rich:panel>
-        <f:facet name="header">User account Details</f:facet>
+            <div id="topSearch">
+                
+                <form class="searchform">
+                    <input class="searchfield" type="text" value="Buscar..." onFocus="if (this.value == 'Buscar...') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Buscar...';}"/>
+                    
+                    <h:commandButton class="searchbutton" image="css/images/buscar.png"  style="width:24px"/>
+                </form>
+            </div>
+        </s:div>
+	
+	<div class="center2" style="height: 500px">
+	
+		    		<div id="content" class="right_content">
+             
+                <rich:panel>
+        <f:facet name="header">Detalles de usuario</f:facet>
+		
+		<s:decorate id="fotoUser" template="layout/display.xhtml">
+            <ui:define name="label">Foto user</ui:define>
+            <h:outputText value="#{userAccountHome.instance.fotoUser}"/>
+        </s:decorate>
 
-
+		<s:decorate id="primerNombre" template="layout/display.xhtml">
+            <ui:define name="label">Primer nombre</ui:define>
+            <h:outputText value="#{userAccountHome.instance.primerNombre}"/>
+        </s:decorate>
+        
+        <s:decorate id="segundoNombre" template="layout/display.xhtml">
+            <ui:define name="label">Segundo nombre</ui:define>
+            <h:outputText value="#{userAccountHome.instance.segundoNombre}"/>
+        </s:decorate>
+		
         <s:decorate id="apellidos" template="layout/display.xhtml">
             <ui:define name="label">Apellidos</ui:define>
             <h:outputText value="#{userAccountHome.instance.apellidos}"/>
         </s:decorate>
 
-        <s:decorate id="correoElectronico" template="layout/display.xhtml">
-            <ui:define name="label">Correo electronico</ui:define>
-            <h:outputText value="#{userAccountHome.instance.correoElectronico}"/>
+		<s:decorate id="tipoDocumento" template="layout/display.xhtml">
+            <ui:define name="label">Tipo documento</ui:define>
+            <h:outputText value="#{userAccountHome.instance.tipoDocumento}"/>
         </s:decorate>
 
         <s:decorate id="documentoIdentidad" template="layout/display.xhtml">
             <ui:define name="label">Documento identidad</ui:define>
             <h:outputText value="#{userAccountHome.instance.documentoIdentidad}"/>
         </s:decorate>
-
-        <s:decorate id="enabled" template="layout/display.xhtml">
-            <ui:define name="label">Enabled</ui:define>
-            <h:outputText value="#{userAccountHome.instance.enabled}"/>
+        
+        <s:decorate id="correoElectronico" template="layout/display.xhtml">
+            <ui:define name="label">Correo electronico</ui:define>
+            <h:outputText value="#{userAccountHome.instance.correoElectronico}"/>
         </s:decorate>
-
-        <s:decorate id="fotoUser" template="layout/display.xhtml">
-            <ui:define name="label">Foto user</ui:define>
-            <h:outputText value="#{userAccountHome.instance.fotoUser}"/>
-        </s:decorate>
-
-        <s:decorate id="passwordHash" template="layout/display.xhtml">
-            <ui:define name="label">Password hash</ui:define>
-            <h:outputText value="#{userAccountHome.instance.passwordHash}"/>
-        </s:decorate>
-
-        <s:decorate id="primerNombre" template="layout/display.xhtml">
-            <ui:define name="label">Primer nombre</ui:define>
-            <h:outputText value="#{userAccountHome.instance.primerNombre}"/>
-        </s:decorate>
-
-        <s:decorate id="segundoNombre" template="layout/display.xhtml">
-            <ui:define name="label">Segundo nombre</ui:define>
-            <h:outputText value="#{userAccountHome.instance.segundoNombre}"/>
-        </s:decorate>
-
-        <s:decorate id="tipoDocumento" template="layout/display.xhtml">
-            <ui:define name="label">Tipo documento</ui:define>
-            <h:outputText value="#{userAccountHome.instance.tipoDocumento}"/>
-        </s:decorate>
-
-        <s:decorate id="username" template="layout/display.xhtml">
-            <ui:define name="label">Username</ui:define>
+		
+		<s:decorate id="username" template="layout/display.xhtml">
+            <ui:define name="label">Nombre de Usuario</ui:define>
             <h:outputText value="#{userAccountHome.instance.username}"/>
         </s:decorate>
-
+        
+        <s:decorate id="passwordHash" template="layout/display.xhtml">
+            <ui:define name="label">Contrase&#241;a</ui:define>
+            <h:outputText value="#{userAccountHome.instance.passwordHash}"/>
+        </s:decorate>
+		
+        <s:decorate id="enabled" template="layout/display.xhtml">
+            <ui:define name="label">Activo</ui:define>
+            <h:outputText value="#{userAccountHome.instance.enabled}"/>
+        </s:decorate>
+        
         <div style="clear:both"/>
 
     </rich:panel>
+
 
     <div class="actionButtons">
 
         <s:button view="/UserAccountEdit.xhtml"
                     id="edit"
-                 value="Edit"/>
+                 value="Editar"/>
 
         <s:button view="/#{empty userAccountFrom ? 'UserAccountList' : userAccountFrom}.xhtml"
                     id="done"
-                 value="Done"/>
+                 value="Aceptar"/>
 
     </div>
-
+    
     <rich:tabPanel switchType="ajax">
 
     <rich:tab>
@@ -88,7 +167,7 @@
         </f:facet>
     <div class="association" id="grupoCursoParent">
 
-        <h:outputText value="There is no grupoCurso associated with this userAccount."
+        <h:outputText value="No hay cursos asociados a este usuario"
                    rendered="#{userAccountHome.instance.grupoCurso == null}"/>
 
         <rich:dataTable var="_grupoCurso"
@@ -126,6 +205,69 @@
     </div>
     </rich:tab>
 </rich:tabPanel>
-</ui:define>
+             
+       	</div>
+       	
+		<div class="left" style="margin-top: -427px; height: 500px">
+                    <rich:panel>
+                      <h:form> 
+                       
+                        <h:commandLink value="#{credentials.username}" action="/MaizSoft/UserAccountEdit.seam"/>
+                        <hr />
+                        <div class="navigation">
+    						<ul class="top-level">
+        						<li><h:commandLink value="Administrar Usuarios"/>
+            						<ul class="sub-level">
+                						<li><a href="/MaizSoft/UserAccountEdit.seam">Adicionar Usuario</a></li>
+                						<li><a href="/MaizSoft/UserAccountList.seam">Editar/Eliminar</a></li>
+                						<li><a href="/MaizSoft/UserAccountListDos.seam">Buscar Usuario</a></li>
+            						</ul>
+        						</li>
+        						<li><h:commandLink value="Administrar Roles"/>
+        							<ul class="sub-level">
+        								<li><a href="/MaizSoft/UserRoleEdit.seam">Adicionar Rol</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Editar Rol</a></li>
+                						<li><a href="/MaizSoft/UserRoleEliminar.seam">Eliminar Rol</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Buscar Rol</a></li>
+        							</ul>
+        						</li>	
+        						<li><h:commandLink value="Administrar Curso"/>
+        							<ul class="sub-level">
+        								<li><a href="/MaizSoft/UserRoleEdit.seam">Crear Asignatura</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Editar Asignatura</a></li>
+                						<li><a href="/MaizSoft/UserRoleEliminar.seam">Eliminar Asignatura</a></li>
+                						<li><a href="/MaizSoft/CursoList.seam">Buscar Asignatura</a></li>
+        							</ul>
+        						</li>	
+   		 					</ul>
+						</div>
+                      </h:form>
+                    </rich:panel>
+       	     </div>
 
+	      <div class="right" style="margin-top: -427px; height: 500px">
+     		     <ui:insert name="right">Right</ui:insert>
+     		</div>
+
+
+		<div class="bottom" align="center">
+       		<img src="css/images/uptc.png" style="height: 80px; margin-left: -430px" />
+            
+            <div style="margin-top: -90px">
+            <pre>Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
+            Facultad de Ingenier&#237;a            
+   Ingenier&#237;a de Sistemas y Computaci&#243;n
+Grupo de Investigaci&#243;n en Ingenier&#237;a del Software
+Correo:gis@uptc.edu.co
+</pre>
+				
+			</div>
+        	<div style="margin-top: -88px">
+        		<img src="css/images/gis.png" style="height: 80px; width: 80px; margin-left: 470px" />
+        	</div>		
+        	</div>
+	</div>
+	</body> 
+ </ui:define>
 </ui:composition>
+

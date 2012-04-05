@@ -31,7 +31,7 @@
    <navigation from-action="#{userAccountHome.persist}">
       <rule if-outcome="persisted">
          <end-conversation/>
-         <redirect view-id="/UserAccount.xhtml"/>
+         <redirect view-id="/useradmin/userdetail.xhtml"/>
       </rule>
    </navigation>
 

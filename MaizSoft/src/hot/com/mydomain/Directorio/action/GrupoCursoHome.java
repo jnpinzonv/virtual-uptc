@@ -53,6 +53,28 @@ public class GrupoCursoHome extends EntityHome<GrupoCurso> {
 		return getInstance() == null ? null : new ArrayList<Actividad>(
 				getInstance().getActividades());
 	}
+	public List<GestorEnlacesExternos> getEnlacesExternos() {
+		return getInstance() == null
+				? null
+				: new ArrayList<GestorEnlacesExternos>(getInstance()
+						.getEnlacesExternos());
+	}
+	public List<GestorAnuncios> getGestorAnuncios() {
+		return getInstance() == null ? null : new ArrayList<GestorAnuncios>(
+				getInstance().getGestorAnuncios());
+	}
+	public List<GestorAudioConferencia> getGestorAudio() {
+		return getInstance() == null
+				? null
+				: new ArrayList<GestorAudioConferencia>(getInstance()
+						.getGestorAudio());
+	}
+	public List<GestorVideoConferencia> getGestorVideo() {
+		return getInstance() == null
+				? null
+				: new ArrayList<GestorVideoConferencia>(getInstance()
+						.getGestorVideo());
+	}
 	public List<UserAccount> getListaUsuarios() {
 		return getInstance() == null ? null : new ArrayList<UserAccount>(
 				getInstance().getListaUsuarios());

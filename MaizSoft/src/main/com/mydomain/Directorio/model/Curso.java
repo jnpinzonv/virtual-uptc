@@ -31,7 +31,7 @@ public class Curso {
 	
 	private Semestre semestreCurso;
 	
-	private Set<GrupoCurso> grupoCursos; 
+	private Set<GrupoCurso> grupoCursos;
 	
 	
 	
@@ -112,6 +112,7 @@ public class Curso {
 		this.grupoCursos = grupoCursos;
 	}
 
+	
 	
 	
 

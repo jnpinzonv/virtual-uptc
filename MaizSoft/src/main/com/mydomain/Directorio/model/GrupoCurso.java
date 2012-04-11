@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,7 +22,7 @@ import javax.persistence.Table;
 @Table(name= "grupo_curso")
 public class GrupoCurso {
 	
-	private Long IdGrupo;
+	private Long idGrupo;
 		
 	private Integer cupos;
 	
@@ -32,19 +33,27 @@ public class GrupoCurso {
 	private Set<UserAccount> listaUsuarios;
 
 	private Set< Actividad> actividades;
+	
+	private Set<GestorEnlacesExternos> enlacesExternos;
+	
+	private Set<GestorAnuncios> gestorAnuncios;
+	
+	private Set<GestorAudioConferencia> gestorAudio;
+	
+	private Set<GestorVideoConferencia> gestorVideo;
 	/**
 	 * @return the idGrupo
 	 */
 	@Id
 	public Long getIdGrupo() {
-		return IdGrupo;
+		return idGrupo;
 	}
 
 	/**
 	 * @param idGrupo the idGrupo to set
 	 */
 	public void setIdGrupo(Long idGrupo) {
-		IdGrupo = idGrupo;
+		idGrupo = idGrupo;
 	}
 
 	
@@ -128,6 +137,80 @@ public class GrupoCurso {
 	public void setActividades(Set<Actividad> actividades) {
 		this.actividades = actividades;
 	}
+
+	/**
+	 * @return the enlacesExternos
+	 */
+	@OneToMany(mappedBy="grupoCurso")
+	public Set<GestorEnlacesExternos> getEnlacesExternos() {
+		if(enlacesExternos==null){
+			return new HashSet<GestorEnlacesExternos>();
+		}
+		return enlacesExternos;
+	}
+
+	/**
+	 * @param enlacesExternos the enlacesExternos to set
+	 */
+	public void setEnlacesExternos(Set<GestorEnlacesExternos> enlacesExternos) {
+		this.enlacesExternos = enlacesExternos;
+	}
+
+	/**
+	 * @return the gestorAnuncios
+	 */
+	@OneToMany(mappedBy="grupoCursoAnuncio")
+	public Set<GestorAnuncios> getGestorAnuncios() {
+		if(gestorAnuncios==null){
+			return new HashSet<GestorAnuncios>();
+		}
+		return gestorAnuncios;
+	}
+
+	/**
+	 * @param gestorAnuncios the gestorAnuncios to set
+	 */
+	public void setGestorAnuncios(Set<GestorAnuncios> gestorAnuncios) {
+		this.gestorAnuncios = gestorAnuncios;
+	}
+
+	/**
+	 * @return the gestorAudio
+	 */
+	@OneToMany(mappedBy="grupoCursoAudio")
+	public Set<GestorAudioConferencia> getGestorAudio() {
+		if(gestorAudio==null){
+			return new HashSet<GestorAudioConferencia>();
+		}
+		return gestorAudio;
+	}
+
+	/**
+	 * @param gestorAudio the gestorAudio to set
+	 */
+	
+	public void setGestorAudio(Set<GestorAudioConferencia> gestorAudio) {
+		this.gestorAudio = gestorAudio;
+	}
+
+	/**
+	 * @return the gestorVideo
+	 */
+	@OneToMany(mappedBy="grupoCursoVideo")
+	public Set<GestorVideoConferencia> getGestorVideo() {
+		if(gestorVideo==null){
+			return new HashSet<GestorVideoConferencia>();
+		}
+		return gestorVideo;
+	}
+
+	/**
+	 * @param gestorVideo the gestorVideo to set
+	 */
+	public void setGestorVideo(Set<GestorVideoConferencia> gestorVideo) {
+		this.gestorVideo = gestorVideo;
+	}
+
 	
 	
 	

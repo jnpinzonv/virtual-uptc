@@ -1,0 +1,188 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Gestor video conferencia Details</f:facet>
+
+
+        <s:decorate id="descripcionVideoConferencia" template="layout/display.xhtml">
+            <ui:define name="label">Descripcion video conferencia</ui:define>
+            <h:outputText value="#{gestorVideoConferenciaHome.instance.descripcionVideoConferencia}"/>
+        </s:decorate>
+
+        <s:decorate id="fechaVideoConferencia" template="layout/display.xhtml">
+            <ui:define name="label">Fecha video conferencia</ui:define>
+            <h:outputText value="#{gestorVideoConferenciaHome.instance.fechaVideoConferencia}">
+                <s:convertDateTime type="date" dateStyle="short"/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="horaVideoConferencia" template="layout/display.xhtml">
+            <ui:define name="label">Hora video conferencia</ui:define>
+            <h:outputText value="#{gestorVideoConferenciaHome.instance.horaVideoConferencia}"/>
+        </s:decorate>
+
+        <s:decorate id="tipoAmPm" template="layout/display.xhtml">
+            <ui:define name="label">Tipo am pm</ui:define>
+            <h:outputText value="#{gestorVideoConferenciaHome.instance.tipoAmPm}"/>
+        </s:decorate>
+
+        <s:decorate id="tituloVideoConferencia" template="layout/display.xhtml">
+            <ui:define name="label">Titulo video conferencia</ui:define>
+            <h:outputText value="#{gestorVideoConferenciaHome.instance.tituloVideoConferencia}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/GestorVideoConferenciaEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty gestorVideoConferenciaFrom ? 'GestorVideoConferenciaList' : gestorVideoConferenciaFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Grupo curso video</h:panelGroup>
+        </f:facet>
+    <div class="association" id="grupoCursoVideoParent">
+
+        <h:outputText value="There is no grupoCursoVideo associated with this gestorVideoConferencia."
+                   rendered="#{gestorVideoConferenciaHome.instance.grupoCursoVideo == null}"/>
+
+        <rich:dataTable var="_grupoCurso"
+                   value="#{gestorVideoConferenciaHome.instance.grupoCursoVideo}"
+                rendered="#{gestorVideoConferenciaHome.instance.grupoCursoVideo != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="grupoCursoVideoTable">
+            <h:column>
+                <f:facet name="header">Id grupo</f:facet>
+                <h:outputText value="#{_grupoCurso.idGrupo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Cupos</f:facet>
+                <h:outputText value="#{_grupoCurso.cupos}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Curso grupo codigo</f:facet>
+                <h:outputText value="#{_grupoCurso.cursoGrupo.codigo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Inscritos</f:facet>
+                <h:outputText value="#{_grupoCurso.inscritos}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewgrupoCurso"
+                     value="View"
+                      view="/GrupoCurso.xhtml">
+                    <f:param name="grupoCursoIdGrupo"
+                           value="#{_grupoCurso.idGrupo}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Usuario creador</h:panelGroup>
+        </f:facet>
+    <div class="association" id="usuarioCreadorParent">
+
+        <h:outputText value="There is no usuarioCreador associated with this gestorVideoConferencia."
+                   rendered="#{gestorVideoConferenciaHome.instance.usuarioCreador == null}"/>
+
+        <rich:dataTable var="_userAccount"
+                   value="#{gestorVideoConferenciaHome.instance.usuarioCreador}"
+                rendered="#{gestorVideoConferenciaHome.instance.usuarioCreador != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="usuarioCreadorTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_userAccount.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Apellidos</f:facet>
+                <h:outputText value="#{_userAccount.apellidos}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Correo electronico</f:facet>
+                <h:outputText value="#{_userAccount.correoElectronico}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Documento identidad</f:facet>
+                <h:outputText value="#{_userAccount.documentoIdentidad}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Enabled</f:facet>
+                <h:outputText value="#{_userAccount.enabled}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Foto user</f:facet>
+                <h:outputText value="#{_userAccount.fotoUser}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Grupo curso id grupo</f:facet>
+                <h:outputText value="#{_userAccount.grupoCurso.idGrupo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Password hash</f:facet>
+                <h:outputText value="#{_userAccount.passwordHash}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Primer nombre</f:facet>
+                <h:outputText value="#{_userAccount.primerNombre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Segundo nombre</f:facet>
+                <h:outputText value="#{_userAccount.segundoNombre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo documento</f:facet>
+                <h:outputText value="#{_userAccount.tipoDocumento}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Username</f:facet>
+                <h:outputText value="#{_userAccount.username}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Gestor anuncios id anuncio</f:facet>
+                <h:outputText value="#{_userAccount.gestorAnuncios.idAnuncio}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewuserAccount"
+                     value="View"
+                      view="/UserAccount.xhtml">
+                    <f:param name="userAccountId"
+                           value="#{_userAccount.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

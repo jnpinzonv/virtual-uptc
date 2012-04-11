@@ -1,0 +1,175 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="gestorAnunciosSearch" styleClass="edit">
+
+        <rich:simpleTogglePanel label="GestorAnuncios Search Filter" switchType="ajax">
+
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Descripcion anuncio</ui:define>
+                <h:inputText id="descripcionAnuncio" value="#{gestorAnunciosList.gestorAnuncios.descripcionAnuncio}"/>
+            </s:decorate>
+
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Nombre anuncio</ui:define>
+                <h:inputText id="nombreAnuncio" value="#{gestorAnunciosList.gestorAnuncios.nombreAnuncio}"/>
+            </s:decorate>
+
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Match</ui:define>
+                <h:selectOneRadio id="logic" value="#{gestorAnunciosList.restrictionLogicOperator}" styleClass="radio">
+                    <f:selectItem itemLabel="All" itemValue="and"/>
+                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                </h:selectOneRadio>
+            </s:decorate>
+
+        </rich:simpleTogglePanel>
+
+        <div class="actionButtons">
+            <h:commandButton id="search" value="Search" action="/GestorAnunciosList.xhtml"/>
+            <s:button id="reset" value="Reset" includePageParams="false"/>
+        </div>
+
+    </h:form>
+
+    <rich:panel>
+        <f:facet name="header">GestorAnuncios Search Results (#{empty gestorAnunciosList.resultList ? 0 : (gestorAnunciosList.paginated ? gestorAnunciosList.resultCount : gestorAnunciosList.resultList.size)})</f:facet>
+    <div class="results" id="gestorAnunciosList">
+
+    <h:outputText value="The gestorAnuncios search returned no results."
+               rendered="#{empty gestorAnunciosList.resultList}"/>
+
+    <rich:dataTable id="gestorAnunciosList"
+                var="_gestorAnuncios"
+              value="#{gestorAnunciosList.resultList}"
+           rendered="#{not empty gestorAnunciosList.resultList}">
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{gestorAnunciosList}"/>
+                    <ui:param name="propertyLabel" value="Id anuncio"/>
+                    <ui:param name="propertyPath" value="gestorAnuncios.idAnuncio"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_gestorAnuncios.idAnuncio}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{gestorAnunciosList}"/>
+                    <ui:param name="propertyLabel" value="Descripcion anuncio"/>
+                    <ui:param name="propertyPath" value="gestorAnuncios.descripcionAnuncio"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_gestorAnuncios.descripcionAnuncio}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{gestorAnunciosList}"/>
+                    <ui:param name="propertyLabel" value="Grupo curso anuncio id grupo"/>
+                    <ui:param name="propertyPath" value="gestorAnuncios.grupoCursoAnuncio.idGrupo"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_gestorAnuncios.grupoCursoAnuncio.idGrupo}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{gestorAnunciosList}"/>
+                    <ui:param name="propertyLabel" value="Nombre anuncio"/>
+                    <ui:param name="propertyPath" value="gestorAnuncios.nombreAnuncio"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_gestorAnuncios.nombreAnuncio}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{gestorAnunciosList}"/>
+                    <ui:param name="propertyLabel" value="User account anuncio id"/>
+                    <ui:param name="propertyPath" value="gestorAnuncios.userAccountAnuncio.id"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_gestorAnuncios.userAccountAnuncio.id}"/>
+        </h:column>
+        <rich:column styleClass="action">
+            <f:facet name="header">Action</f:facet>
+            <s:link view="/#{empty from ? 'GestorAnuncios' : from}.xhtml"
+                   value="#{empty from ? 'View' : 'Select'}"
+             propagation="#{empty from ? 'none' : 'default'}"
+                      id="gestorAnunciosViewId">
+                <f:param name="gestorAnunciosIdAnuncio"
+                        value="#{_gestorAnuncios.idAnuncio}"/>
+            </s:link>
+            #{' '}
+            <s:link view="/GestorAnunciosEdit.xhtml"
+                   value="Edit"
+             propagation="none"
+                      id="gestorAnunciosEdit"
+                rendered="#{empty from}">
+                <f:param name="gestorAnunciosIdAnuncio"
+                        value="#{_gestorAnuncios.idAnuncio}"/>
+            </s:link>
+        </rich:column>
+    </rich:dataTable>
+
+    </div>
+    </rich:panel>
+
+    <div class="tableControl">
+
+        <s:link view="/GestorAnunciosList.xhtml"
+            rendered="#{gestorAnunciosList.previousExists}"
+               value="#{messages.left}#{messages.left} First Page"
+                  id="firstPage">
+          <f:param name="firstResult" value="0"/>
+        </s:link>
+
+        <s:link view="/GestorAnunciosList.xhtml"
+            rendered="#{gestorAnunciosList.previousExists}"
+               value="#{messages.left} Previous Page"
+                  id="previousPage">
+            <f:param name="firstResult"
+                    value="#{gestorAnunciosList.previousFirstResult}"/>
+        </s:link>
+
+        <s:link view="/GestorAnunciosList.xhtml"
+            rendered="#{gestorAnunciosList.nextExists}"
+               value="Next Page #{messages.right}"
+                  id="nextPage">
+            <f:param name="firstResult"
+                    value="#{gestorAnunciosList.nextFirstResult}"/>
+        </s:link>
+
+        <s:link view="/GestorAnunciosList.xhtml"
+            rendered="#{gestorAnunciosList.nextExists}"
+               value="Last Page #{messages.right}#{messages.right}"
+                  id="lastPage">
+            <f:param name="firstResult"
+                    value="#{gestorAnunciosList.lastFirstResult}"/>
+        </s:link>
+
+    </div>
+
+    <s:div styleClass="actionButtons" rendered="#{empty from}">
+        <s:button view="/GestorAnunciosEdit.xhtml"
+                    id="create"
+           propagation="none"
+                 value="Create gestorAnuncios">
+            <f:param name="gestorAnunciosIdAnuncio"/>
+        </s:button>
+    </s:div>
+
+</ui:define>
+
+</ui:composition>

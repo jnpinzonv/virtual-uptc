@@ -39,6 +39,10 @@
 
 
 
+
+
+
+
             <s:decorate id="inscritosField" template="layout/edit.xhtml">
                 <ui:define name="label">Inscritos</ui:define>
                 <h:inputText id="inscritos"
@@ -169,6 +173,202 @@
         </div>
 
     </div>
+    </rich:tab>
+
+    <rich:tab label="Enlaces externos">
+        <h:form styleClass="association" id="enlacesExternosChildren">
+
+            <h:outputText value="There are no enlacesExternos associated with this grupoCurso."
+                       rendered="#{empty grupoCursoHome.enlacesExternos}"/>
+
+            <rich:dataTable value="#{grupoCursoHome.enlacesExternos}"
+                           var="_gestorEnlacesExternos"
+                      rendered="#{not empty grupoCursoHome.enlacesExternos}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="enlacesExternosTable">
+                <rich:column sortBy="#{_gestorEnlacesExternos.idEnlace}">
+                    <f:facet name="header">Id enlace</f:facet>
+                    <h:outputText value="#{_gestorEnlacesExternos.idEnlace}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorEnlacesExternos.descripcionEnlace}">
+                    <f:facet name="header">Descripcion enlace</f:facet>
+                    <h:outputText value="#{_gestorEnlacesExternos.descripcionEnlace}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorEnlacesExternos.nombreEnlace}">
+                    <f:facet name="header">Nombre enlace</f:facet>
+                    <h:outputText value="#{_gestorEnlacesExternos.nombreEnlace}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorEnlacesExternos.urlEnlace}">
+                    <f:facet name="header">Url enlace</f:facet>
+                    <h:outputText value="#{_gestorEnlacesExternos.urlEnlace}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{grupoCursoHome.managed}" id="enlacesExternos">
+        <div class="actionButtons">
+            <s:button id="addgestorEnlacesExternos"
+                   value="Add gestorEnlacesExternos"
+                    view="/GestorEnlacesExternosEdit.xhtml"
+             propagation="none">
+                 <f:param name="grupoCursoIdGrupo"
+                         value="#{grupoCursoHome.instance.idGrupo}"/>
+                 <f:param name="gestorEnlacesExternosFrom" value="GrupoCurso"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+
+    <rich:tab label="Gestor anuncios">
+        <h:form styleClass="association" id="gestorAnunciosChildren">
+
+            <h:outputText value="There are no gestorAnuncios associated with this grupoCurso."
+                       rendered="#{empty grupoCursoHome.gestorAnuncios}"/>
+
+            <rich:dataTable value="#{grupoCursoHome.gestorAnuncios}"
+                           var="_gestorAnuncios"
+                      rendered="#{not empty grupoCursoHome.gestorAnuncios}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="gestorAnunciosTable">
+                <rich:column sortBy="#{_gestorAnuncios.idAnuncio}">
+                    <f:facet name="header">Id anuncio</f:facet>
+                    <h:outputText value="#{_gestorAnuncios.idAnuncio}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorAnuncios.descripcionAnuncio}">
+                    <f:facet name="header">Descripcion anuncio</f:facet>
+                    <h:outputText value="#{_gestorAnuncios.descripcionAnuncio}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorAnuncios.nombreAnuncio}">
+                    <f:facet name="header">Nombre anuncio</f:facet>
+                    <h:outputText value="#{_gestorAnuncios.nombreAnuncio}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{grupoCursoHome.managed}" id="gestorAnuncios">
+        <div class="actionButtons">
+            <s:button id="addgestorAnuncios"
+                   value="Add gestorAnuncios"
+                    view="/GestorAnunciosEdit.xhtml"
+             propagation="none">
+                 <f:param name="grupoCursoIdGrupo"
+                         value="#{grupoCursoHome.instance.idGrupo}"/>
+                 <f:param name="gestorAnunciosFrom" value="GrupoCurso"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+
+    <rich:tab label="Gestor audio">
+        <h:form styleClass="association" id="gestorAudioChildren">
+
+            <h:outputText value="There are no gestorAudio associated with this grupoCurso."
+                       rendered="#{empty grupoCursoHome.gestorAudio}"/>
+
+            <rich:dataTable value="#{grupoCursoHome.gestorAudio}"
+                           var="_gestorAudioConferencia"
+                      rendered="#{not empty grupoCursoHome.gestorAudio}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="gestorAudioTable">
+                <rich:column sortBy="#{_gestorAudioConferencia.idAudioConferencia}">
+                    <f:facet name="header">Id audio conferencia</f:facet>
+                    <h:outputText value="#{_gestorAudioConferencia.idAudioConferencia}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorAudioConferencia.descripcionAudioConferencia}">
+                    <f:facet name="header">Descripcion audio conferencia</f:facet>
+                    <h:outputText value="#{_gestorAudioConferencia.descripcionAudioConferencia}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorAudioConferencia.fechaAudioConferencia}">
+                    <f:facet name="header">Fecha audio conferencia</f:facet>
+                    <h:outputText value="#{_gestorAudioConferencia.fechaAudioConferencia}">
+                        <s:convertDateTime type="date" dateStyle="short"/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_gestorAudioConferencia.horaAudioConferencia}">
+                    <f:facet name="header">Hora audio conferencia</f:facet>
+                    <h:outputText value="#{_gestorAudioConferencia.horaAudioConferencia}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorAudioConferencia.tipoAmPm}">
+                    <f:facet name="header">Tipo am pm</f:facet>
+                    <h:outputText value="#{_gestorAudioConferencia.tipoAmPm}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorAudioConferencia.tituloAudioConferencia}">
+                    <f:facet name="header">Titulo audio conferencia</f:facet>
+                    <h:outputText value="#{_gestorAudioConferencia.tituloAudioConferencia}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{grupoCursoHome.managed}" id="gestorAudio">
+        <div class="actionButtons">
+            <s:button id="addgestorAudioConferencia"
+                   value="Add gestorAudioConferencia"
+                    view="/GestorAudioConferenciaEdit.xhtml"
+             propagation="none">
+                 <f:param name="grupoCursoIdGrupo"
+                         value="#{grupoCursoHome.instance.idGrupo}"/>
+                 <f:param name="gestorAudioConferenciaFrom" value="GrupoCurso"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+
+    <rich:tab label="Gestor video">
+        <h:form styleClass="association" id="gestorVideoChildren">
+
+            <h:outputText value="There are no gestorVideo associated with this grupoCurso."
+                       rendered="#{empty grupoCursoHome.gestorVideo}"/>
+
+            <rich:dataTable value="#{grupoCursoHome.gestorVideo}"
+                           var="_gestorVideoConferencia"
+                      rendered="#{not empty grupoCursoHome.gestorVideo}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="gestorVideoTable">
+                <rich:column sortBy="#{_gestorVideoConferencia.idvideoConferencia}">
+                    <f:facet name="header">Idvideo conferencia</f:facet>
+                    <h:outputText value="#{_gestorVideoConferencia.idvideoConferencia}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorVideoConferencia.descripcionVideoConferencia}">
+                    <f:facet name="header">Descripcion video conferencia</f:facet>
+                    <h:outputText value="#{_gestorVideoConferencia.descripcionVideoConferencia}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorVideoConferencia.fechaVideoConferencia}">
+                    <f:facet name="header">Fecha video conferencia</f:facet>
+                    <h:outputText value="#{_gestorVideoConferencia.fechaVideoConferencia}">
+                        <s:convertDateTime type="date" dateStyle="short"/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_gestorVideoConferencia.horaVideoConferencia}">
+                    <f:facet name="header">Hora video conferencia</f:facet>
+                    <h:outputText value="#{_gestorVideoConferencia.horaVideoConferencia}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorVideoConferencia.tipoAmPm}">
+                    <f:facet name="header">Tipo am pm</f:facet>
+                    <h:outputText value="#{_gestorVideoConferencia.tipoAmPm}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorVideoConferencia.tituloVideoConferencia}">
+                    <f:facet name="header">Titulo video conferencia</f:facet>
+                    <h:outputText value="#{_gestorVideoConferencia.tituloVideoConferencia}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{grupoCursoHome.managed}" id="gestorVideo">
+        <div class="actionButtons">
+            <s:button id="addgestorVideoConferencia"
+                   value="Add gestorVideoConferencia"
+                    view="/GestorVideoConferenciaEdit.xhtml"
+             propagation="none">
+                 <f:param name="grupoCursoIdGrupo"
+                         value="#{grupoCursoHome.instance.idGrupo}"/>
+                 <f:param name="gestorVideoConferenciaFrom" value="GrupoCurso"/>
+            </s:button>
+        </div>
+        </f:subview>
     </rich:tab>
 
     <rich:tab label="Lista usuarios">

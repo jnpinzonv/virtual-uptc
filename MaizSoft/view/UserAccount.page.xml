@@ -20,6 +20,9 @@
 
 
 
+   <param name="gestorAnunciosFrom"/>
+   <param name="gestorAnunciosIdAnuncio" value="#{gestorAnunciosHome.gestorAnunciosIdAnuncio}"/>
+
 
 
 </page>

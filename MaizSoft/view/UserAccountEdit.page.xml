@@ -26,12 +26,15 @@
 
 
 
+   <param name="gestorAnunciosFrom"/>
+   <param name="gestorAnunciosIdAnuncio" value="#{gestorAnunciosHome.gestorAnunciosIdAnuncio}"/>
+
 
 
    <navigation from-action="#{userAccountHome.persist}">
       <rule if-outcome="persisted">
          <end-conversation/>
-         <redirect view-id="/useradmin/userdetail.xhtml"/>
+         <redirect view-id="/UserAccount.xhtml"/>
       </rule>
    </navigation>
 

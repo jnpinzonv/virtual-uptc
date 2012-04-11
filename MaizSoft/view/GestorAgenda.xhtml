@@ -1,0 +1,134 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Gestor agenda Details</f:facet>
+
+
+        <s:decorate id="agendaDescripcion" template="layout/display.xhtml">
+            <ui:define name="label">Agenda descripcion</ui:define>
+            <h:outputText value="#{gestorAgendaHome.instance.agendaDescripcion}"/>
+        </s:decorate>
+
+        <s:decorate id="fechaEvento" template="layout/display.xhtml">
+            <ui:define name="label">Fecha evento</ui:define>
+            <h:outputText value="#{gestorAgendaHome.instance.fechaEvento}">
+                <s:convertDateTime type="date" dateStyle="short"/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="horaEvento" template="layout/display.xhtml">
+            <ui:define name="label">Hora evento</ui:define>
+            <h:outputText value="#{gestorAgendaHome.instance.horaEvento}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/GestorAgendaEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty gestorAgendaFrom ? 'GestorAgendaList' : gestorAgendaFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>User account agenda</h:panelGroup>
+        </f:facet>
+    <div class="association" id="userAccountAgendaParent">
+
+        <h:outputText value="There is no userAccountAgenda associated with this gestorAgenda."
+                   rendered="#{gestorAgendaHome.instance.userAccountAgenda == null}"/>
+
+        <rich:dataTable var="_userAccount"
+                   value="#{gestorAgendaHome.instance.userAccountAgenda}"
+                rendered="#{gestorAgendaHome.instance.userAccountAgenda != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="userAccountAgendaTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_userAccount.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Apellidos</f:facet>
+                <h:outputText value="#{_userAccount.apellidos}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Correo electronico</f:facet>
+                <h:outputText value="#{_userAccount.correoElectronico}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Documento identidad</f:facet>
+                <h:outputText value="#{_userAccount.documentoIdentidad}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Enabled</f:facet>
+                <h:outputText value="#{_userAccount.enabled}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Foto user</f:facet>
+                <h:outputText value="#{_userAccount.fotoUser}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Grupo curso id grupo</f:facet>
+                <h:outputText value="#{_userAccount.grupoCurso.idGrupo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Password hash</f:facet>
+                <h:outputText value="#{_userAccount.passwordHash}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Primer nombre</f:facet>
+                <h:outputText value="#{_userAccount.primerNombre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Segundo nombre</f:facet>
+                <h:outputText value="#{_userAccount.segundoNombre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo documento</f:facet>
+                <h:outputText value="#{_userAccount.tipoDocumento}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Username</f:facet>
+                <h:outputText value="#{_userAccount.username}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Gestor anuncios id anuncio</f:facet>
+                <h:outputText value="#{_userAccount.gestorAnuncios.idAnuncio}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewuserAccount"
+                     value="View"
+                      view="/UserAccount.xhtml">
+                    <f:param name="userAccountId"
+                           value="#{_userAccount.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

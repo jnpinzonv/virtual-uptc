@@ -42,6 +42,8 @@ public class EscuelaHome extends EntityHome<Escuela> {
 	}
 
 	public boolean isWired() {
+		if (getInstance().getFacultad() == null)
+			return false;
 		return true;
 	}
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.1.xsd"
+      no-conversation-view-id="/GestorRepositorioOAList.xhtml"
+      login-required="true">
+
+   <begin-conversation join="true" flush-mode="MANUAL"/>
+
+   <action execute="#{gestorRepositorioOAHome.wire}"/>
+
+   <param name="gestorRepositorioOAFrom"/>
+   <param name="gestorRepositorioOAIdRepositorio" value="#{gestorRepositorioOAHome.gestorRepositorioOAIdRepositorio}"/>
+
+
+   <navigation from-action="#{gestorRepositorioOAHome.persist}">
+      <rule if-outcome="persisted">
+         <end-conversation/>
+         <redirect view-id="/GestorRepositorioOA.xhtml"/>
+      </rule>
+   </navigation>
+
+   <navigation from-action="#{gestorRepositorioOAHome.update}">
+      <rule if-outcome="updated">
+         <end-conversation/>
+         <redirect view-id="/GestorRepositorioOA.xhtml"/>
+      </rule>
+   </navigation>
+
+   <navigation from-action="#{gestorRepositorioOAHome.remove}">
+      <rule if-outcome="removed">
+         <end-conversation/>
+         <redirect view-id="/GestorRepositorioOAList.xhtml"/>
+      </rule>
+   </navigation>
+
+</page>

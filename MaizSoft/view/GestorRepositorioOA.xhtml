@@ -1,0 +1,60 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Gestor repositorio o a Details</f:facet>
+
+
+        <s:decorate id="descripcionRepositorio" template="layout/display.xhtml">
+            <ui:define name="label">Descripcion repositorio</ui:define>
+            <h:outputText value="#{gestorRepositorioOAHome.instance.descripcionRepositorio}"/>
+        </s:decorate>
+
+        <s:decorate id="nombreRepositorio" template="layout/display.xhtml">
+            <ui:define name="label">Nombre repositorio</ui:define>
+            <h:outputText value="#{gestorRepositorioOAHome.instance.nombreRepositorio}"/>
+        </s:decorate>
+
+        <s:decorate id="passwordRepositorio" template="layout/display.xhtml">
+            <ui:define name="label">Password repositorio</ui:define>
+            <h:outputText value="#{gestorRepositorioOAHome.instance.passwordRepositorio}"/>
+        </s:decorate>
+
+        <s:decorate id="urlRepositorio" template="layout/display.xhtml">
+            <ui:define name="label">Url repositorio</ui:define>
+            <h:outputText value="#{gestorRepositorioOAHome.instance.urlRepositorio}"/>
+        </s:decorate>
+
+        <s:decorate id="usernameRepositorio" template="layout/display.xhtml">
+            <ui:define name="label">Username repositorio</ui:define>
+            <h:outputText value="#{gestorRepositorioOAHome.instance.usernameRepositorio}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/GestorRepositorioOAEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty gestorRepositorioOAFrom ? 'GestorRepositorioOAList' : gestorRepositorioOAFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+</ui:define>
+
+</ui:composition>

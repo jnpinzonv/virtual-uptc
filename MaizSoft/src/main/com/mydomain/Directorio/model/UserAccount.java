@@ -1,6 +1,7 @@
 package com.mydomain.Directorio.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -14,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -78,8 +81,23 @@ public class UserAccount implements Serializable {
 	 */
 	private Set<UserRole> roles;
 	
-	
+			
 	private GrupoCurso grupoCurso;
+	
+	private Set<GestorAgenda> eventosAgenda;
+	
+	private GestorAnuncios gestorAnuncios;
+	
+	
+	private Set<GestorMensajeria> usuarioEmisor;
+	
+	private Set<GestorMensajeria> usuarioReceptor;
+	
+	private Set<GestorAudioConferencia> audioConferencias;
+	
+	private Set<GestorVideoConferencia> videoConferencias;
+	
+	
 	
 	
 	@Id
@@ -176,11 +194,6 @@ public class UserAccount implements Serializable {
 	}
 
 
-	/**
-	 * Retorna el id del usuario
-	 * 
-	 * @return id
-	 */
 	
 	/**
 	 * Retorna el nombre del usuario
@@ -311,6 +324,111 @@ public class UserAccount implements Serializable {
 	@NotNull
 	public Long getDocumentoIdentidad() {
 		return documentoIdentidad;
+	}
+
+	/**
+	 * @return the eventosAgenda
+	 */
+	@OneToMany(mappedBy="userAccountAgenda")
+	public Set<GestorAgenda> getEventosAgenda() {
+		if(eventosAgenda==null){
+			return new HashSet<GestorAgenda>();
+		}
+		return eventosAgenda;
+	}
+
+	/**
+	 * @param eventosAgenda the eventosAgenda to set
+	 */
+	public void setEventosAgenda(Set<GestorAgenda> eventosAgenda) {
+		this.eventosAgenda = eventosAgenda;
+	}
+
+	/**
+	 * @return the gestorAnuncios
+	 */
+	@OneToOne(mappedBy="userAccountAnuncio")
+	public GestorAnuncios getGestorAnuncios() {
+		return gestorAnuncios;
+	}
+
+	/**
+	 * @param gestorAnuncios the gestorAnuncios to set
+	 */
+	public void setGestorAnuncios(GestorAnuncios gestorAnuncios) {
+		this.gestorAnuncios = gestorAnuncios;
+	}
+
+	/**
+	 * @return the usuarioEmisor
+	 */
+	@OneToMany(mappedBy="deUsuario")
+	public Set<GestorMensajeria> getUsuarioEmisor() {
+		if(usuarioEmisor==null){
+			return new HashSet<GestorMensajeria>();
+		}
+		return usuarioEmisor;
+	}
+
+	/**
+	 * @param usuarioEmisor the usuarioEmisor to set
+	 */
+	public void setUsuarioEmisor(Set<GestorMensajeria> usuarioEmisor) {
+		this.usuarioEmisor = usuarioEmisor;
+	}
+
+	/**
+	 * @return the usuarioReceptor
+	 */
+	@ManyToMany
+	public Set<GestorMensajeria> getUsuarioReceptor() {
+		if(usuarioReceptor==null){
+			return new HashSet<GestorMensajeria>();
+		}
+		return usuarioReceptor;
+	}
+
+	/**
+	 * @param usuarioReceptor the usuarioReceptor to set
+	 */
+	public void setUsuarioReceptor(Set<GestorMensajeria> usuarioReceptor) {
+		this.usuarioReceptor = usuarioReceptor;
+	}
+
+	/**
+	 * @return the audioConferencias
+	 */
+	@OneToMany(mappedBy="usuarioCreador")
+	public Set<GestorAudioConferencia> getAudioConferencias() {
+		if(audioConferencias==null){
+			return new HashSet<GestorAudioConferencia>();
+		}
+		return audioConferencias;
+	}
+
+	/**
+	 * @param audioConferencias the audioConferencias to set
+	 */
+	public void setAudioConferencias(Set<GestorAudioConferencia> audioConferencias) {
+		this.audioConferencias = audioConferencias;
+	}
+
+	/**
+	 * @return the videoConferencias
+	 */
+	@OneToMany(mappedBy="usuarioCreador")
+	public Set<GestorVideoConferencia> getVideoConferencias() {
+		if(videoConferencias==null){
+			return new HashSet<GestorVideoConferencia>();
+		}
+		return videoConferencias;
+	}
+
+	/**
+	 * @param videoConferencias the videoConferencias to set
+	 */
+	public void setVideoConferencias(Set<GestorVideoConferencia> videoConferencias) {
+		this.videoConferencias = videoConferencias;
 	}
 	
 	

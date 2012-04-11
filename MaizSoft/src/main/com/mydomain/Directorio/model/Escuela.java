@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.NotNull;
+
 /**
  * @author Nicolas
  *
@@ -79,6 +81,7 @@ public class Escuela {
 	/**
 	 * @return the facultad
 	 */
+	@NotNull 
 	@ManyToOne
 	public Facultad getFacultad() {
 		return facultad;

@@ -1,0 +1,169 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="gestorAgenda" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{gestorAgendaHome.managed ? 'Edit' : 'Add'} Gestor agenda</f:facet>
+
+
+
+            <s:decorate id="agendaDescripcionField" template="layout/edit.xhtml">
+                <ui:define name="label">Agenda descripcion</ui:define>
+                <h:inputTextarea id="agendaDescripcion"
+                               cols="80"
+                               rows="3"
+                           required="true"
+                              value="#{gestorAgendaHome.instance.agendaDescripcion}"/>
+            </s:decorate>
+
+
+            <s:decorate id="fechaEventoField" template="layout/edit.xhtml">
+                <ui:define name="label">Fecha evento</ui:define>
+                <rich:calendar id="fechaEvento"
+                       required="true"
+                          value="#{gestorAgendaHome.instance.fechaEvento}" datePattern="MM/dd/yyyy" />
+            </s:decorate>
+
+
+            <s:decorate id="horaEventoField" template="layout/edit.xhtml">
+                <ui:define name="label">Hora evento</ui:define>
+                <h:inputText id="horaEvento"
+                       required="true"
+                          value="#{gestorAgendaHome.instance.horaEvento}">
+                    <a:support event="onblur" reRender="horaEventoField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{gestorAgendaHome.persist}"
+                       disabled="#{!gestorAgendaHome.wired}"
+                       rendered="#{!gestorAgendaHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{gestorAgendaHome.update}"
+                       rendered="#{gestorAgendaHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{gestorAgendaHome.remove}"
+                      immediate="true"
+                       rendered="#{gestorAgendaHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/GestorAgenda.xhtml"
+                rendered="#{gestorAgendaHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty gestorAgendaFrom ? 'GestorAgendaList' : gestorAgendaFrom}.xhtml"
+                rendered="#{!gestorAgendaHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="User account agenda">
+    <div class="association" id="userAccountAgendaParent">
+
+        <h:outputText value="There is no userAccountAgenda associated with this gestorAgenda."
+                   rendered="#{gestorAgendaHome.instance.userAccountAgenda == null}"/>
+
+        <rich:dataTable var="_userAccount"
+                   value="#{gestorAgendaHome.instance.userAccountAgenda}"
+                rendered="#{gestorAgendaHome.instance.userAccountAgenda != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="userAccountAgendaTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_userAccount.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Apellidos</f:facet>
+                <h:outputText value="#{_userAccount.apellidos}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Correo electronico</f:facet>
+                <h:outputText value="#{_userAccount.correoElectronico}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Documento identidad</f:facet>
+                <h:outputText value="#{_userAccount.documentoIdentidad}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Enabled</f:facet>
+                <h:outputText value="#{_userAccount.enabled}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Foto user</f:facet>
+                <h:outputText value="#{_userAccount.fotoUser}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Grupo curso id grupo</f:facet>
+                <h:outputText value="#{_userAccount.grupoCurso.idGrupo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Password hash</f:facet>
+                <h:outputText value="#{_userAccount.passwordHash}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Primer nombre</f:facet>
+                <h:outputText value="#{_userAccount.primerNombre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Segundo nombre</f:facet>
+                <h:outputText value="#{_userAccount.segundoNombre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo documento</f:facet>
+                <h:outputText value="#{_userAccount.tipoDocumento}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Username</f:facet>
+                <h:outputText value="#{_userAccount.username}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Gestor anuncios id anuncio</f:facet>
+                <h:outputText value="#{_userAccount.gestorAnuncios.idAnuncio}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{gestorAgendaHome.instance.userAccountAgenda != null ? 'changeParent' : 'selectParent'}" value="#{gestorAgendaHome.instance.userAccountAgenda != null ? 'Change' : 'Select'} userAccountAgenda"
+                       view="/UserAccountList.xhtml">
+                <f:param name="from" value="GestorAgendaEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

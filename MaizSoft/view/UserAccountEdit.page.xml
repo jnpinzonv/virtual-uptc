@@ -34,21 +34,21 @@
    <navigation from-action="#{userAccountHome.persist}">
       <rule if-outcome="persisted">
          <end-conversation/>
-         <redirect view-id="/UserAccount.xhtml"/>
+         <redirect view-id="/userdetail.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{userAccountHome.update}">
       <rule if-outcome="updated">
          <end-conversation/>
-         <redirect view-id="/UserAccount.xhtml"/>
+         <redirect view-id="/usermanager.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{userAccountHome.remove}">
       <rule if-outcome="removed">
          <end-conversation/>
-         <redirect view-id="/UserAccountList.xhtml"/>
+         <redirect view-id="/usermanager.xhtml"/>
       </rule>
    </navigation>
 

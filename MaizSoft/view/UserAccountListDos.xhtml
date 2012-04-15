@@ -32,7 +32,7 @@
    			if (str_hora.length == 1) 
 	      	 	hora = "0" + hora 
 
-   			horaImprimible = "hora: "+hora + " : " + minuto + " : " + segundo 
+   			horaImprimible = "Hora: "+hora + " : " + minuto + " : " + segundo 
 
    			document.form_reloj.reloj.value = horaImprimible 
 
@@ -65,7 +65,7 @@
 		 <div id="topPrincipal">
                      <h:form>
                         <h:outputText id="menuWelcomeId" value="#{credentials.username}" rendered="#{identity.loggedIn}"/>
-                        <s:link id="menuLogoutId" view="/home.xhtml" action="#{identity.logout}" value="Salir" rendered="#{identity.loggedIn}" propagation="none" style="color: white"/>
+                        <s:link id="menuLogoutId" view="/login.xhtml" action="#{identity.logout}" value="Salir" rendered="#{identity.loggedIn}" propagation="none" style="color: white"/>
                     </h:form>
                     
                    	<br />
@@ -262,9 +262,10 @@
     </div>
     
     <div class="left" style="margin-top: -443px; height: 500px">
-                    <rich:panel>
+        <rich:panel>
                       <h:form> 
-                        <h:commandLink value="#{credentials.username}"/>
+                       
+                        <h:commandLink value="#{credentials.username}" action="/MaizSoft/UserAccountEdit.seam"/>
                         <hr />
                         <div class="navigation">
     						<ul class="top-level">
@@ -285,21 +286,64 @@
         						</li>	
         						<li><h:commandLink value="Administrar Curso"/>
         							<ul class="sub-level">
-        								<li><a href="/MaizSoft/UserRoleEdit.seam">Adicionar Curso</a></li>
-                						<li><a href="/MaizSoft/UserRoleList.seam">Editar Curso</a></li>
-                						<li><a href="/MaizSoft/UserRoleEliminar.seam">Eliminar Curso</a></li>
-                						<li><a href="/MaizSoft/UserRoleList.seam">Buscar Curso</a></li>
+        								<li><a href="/MaizSoft/UserRoleEdit.seam">Crear Asignatura</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Editar Asignatura</a></li>
+                						<li><a href="/MaizSoft/UserRoleEliminar.seam">Eliminar Asignatura</a></li>
+                						<li><a href="/MaizSoft/CursoList.seam">Buscar Asignatura</a></li>
         							</ul>
         						</li>
-        						
+        						<h:commandLink value="Administrar OA" action="/GestorRepositorioOAList.seam" />
+        						 							
    		 					</ul>
-						</div>
+   		 					
+   		 					<hr style="margin-left: 30px; width: 162px"/>
+   		 					<div class="navigation">
+    						<ul class="top-level">
+   		 					
+   		 					</ul>
+   		 					</div>
+        					<h:commandLink value="Mensajes" action="/GestorMensajeriaEdit.seam"/>
+        					<hr style="margin-left: 30px; width: 162px"/>
+        					<h:commandLink value="Generar Informe" action="/UserAccountEdit.seam"/>
+							<h:commandLink value="Enlaces Externos" action="/GestorEnlacesExternosList.seam"/>
+							<hr style="margin-left: 30px; width: 162px"/>
+							
+        					<s:link id="menuLogoutId" view="/login.xhtml" action="#{identity.logout}" value="Salir" rendered="#{identity.loggedIn}" propagation="none" style="color: #3B5999"/>						
+        					
+        					</div>
                       </h:form>
                     </rich:panel>
        	     </div>
 
-	      <div class="right" style="margin-top: -443px; height: 500px">
-     		     <ui:insert name="right">Right</ui:insert>
+	       <div class="right" style="height: 500px; margin-top: -443px">
+     		     <ui:insert name="right">
+     		     <h:form>
+     		     	<rich:panel>
+                        		<!--  <rich:calendar popup="false"/>-->
+                        		<rich:calendar  popup = "false"> 
+                        		 <f:facet    name = "weekNumber">
+                        		 	<h:outputText value = ""    style = "color:red" /> 
+       							 </f:facet > 
+                        		</rich:calendar> 
+                    	
+                     <h:commandLink value="Agregar Evento" action="/GestorAgendaEdit.seam"/>
+					<br />
+					<br />
+					
+					<h:commandLink value="Gestionar noticias" action="/GestorAgendaEdit.seam"/>
+					<br />
+					<br />
+					<h:commandLink value="Ver Estadisticas" action="/GestorAgendaEdit.seam"/>
+					<br />
+					<br />
+					<h:commandLink value="Ayuda" action="/GestorAgendaEdit.seam"/>
+					
+												                    	    		
+                    </rich:panel>
+                   
+                   </h:form>    
+                 </ui:insert>
+                 
      		</div>
 
     

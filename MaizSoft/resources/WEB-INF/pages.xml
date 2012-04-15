@@ -7,9 +7,9 @@
        login-view-id="/login.seam">
 
     <page view-id="*">
-        <navigation>
+        <navigation>        	
             <rule if-outcome="home">
-                <redirect view-id="/home.xhtml"/>
+                <redirect view-id="/home.xhtml"/>                
             </rule>
         </navigation>
     </page>

@@ -33,7 +33,7 @@
    			if (str_hora.length == 1) 
 	      	 	hora = "0" + hora 
 
-   			horaImprimible = "hora: "+hora + " : " + minuto + " : " + segundo 
+   			horaImprimible = "Hora: "+hora + " : " + minuto + " : " + segundo 
 
    			document.form_reloj.reloj.value = horaImprimible 
 
@@ -65,7 +65,7 @@
 		 <div id="topPrincipal">
                      <h:form>
                         <h:outputText id="menuWelcomeId" value="#{credentials.username}" rendered="#{identity.loggedIn}"/>
-                        <s:link id="menuLogoutId" view="/home.xhtml" action="#{identity.logout}" value="Salir" rendered="#{identity.loggedIn}" propagation="none" style="color: white"/>
+                        <s:link id="menuLogoutId" view="/login.xhtml" action="#{identity.logout}" value="Salir" rendered="#{identity.loggedIn}" propagation="none" style="color: white"/>
                     </h:form>
                     
                    	<br />
@@ -92,7 +92,7 @@
             <h:form id="userAccount" styleClass="edit">
 
         <rich:panel>
-            <f:facet name="header">#{userAccountHome.managed ? 'Edit' : 'Add'} User account</f:facet>
+            <f:facet name="header">#{userAccountHome.managed ? 'Editar' : 'Adicionar'} usuario</f:facet>
 
 
 <s:decorate id="primerNombreField" template="layout/edit.xhtml">
@@ -213,79 +213,37 @@
                        rendered="#{!userAccountHome.managed}"/>
 
             <h:commandButton id="update"
-                          value="Save"
+                          value="Guardar"
                          action="#{userAccountHome.update}"
                        rendered="#{userAccountHome.managed}"/>
 
             <h:commandButton id="delete"
-                          value="Delete"
+                          value="Eliminar"
                          action="#{userAccountHome.remove}"
                       immediate="true"
                        rendered="#{userAccountHome.managed}"/>
 
             <s:button id="cancelEdit"
-                   value="Cancel"
+                   value="Cancelar"
              propagation="end"
                     view="/UserAccount.xhtml"
                 rendered="#{userAccountHome.managed}"/>
 
             <s:button id="cancelAdd"
-                   value="Cancel"
+                   value="Cancelar"
              propagation="end"
                     view="/#{empty userAccountFrom ? 'UserAccountList' : userAccountFrom}.xhtml"
                 rendered="#{!userAccountHome.managed}"/>
 
         </div>
     </h:form>
-   
-
-<rich:tabPanel switchType="ajax">
-
-    <rich:tab label="Grupo curso">
-    <div class="association" id="grupoCursoParent">
-
-        <h:outputText value="El usuario no tiene asociado ningun curso"
-                   rendered="#{userAccountHome.instance.grupoCurso == null}"/>
-
-        <rich:dataTable var="_grupoCurso"
-                   value="#{userAccountHome.instance.grupoCurso}"
-                rendered="#{userAccountHome.instance.grupoCurso != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="grupoCursoTable">
-            <h:column>
-                <f:facet name="header">Id grupo</f:facet>
-                <h:outputText value="#{_grupoCurso.idGrupo}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Cupos</f:facet>
-                <h:outputText value="#{_grupoCurso.cupos}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Curso grupo codigo</f:facet>
-                <h:outputText value="#{_grupoCurso.cursoGrupo.codigo}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Inscritos</f:facet>
-                <h:outputText value="#{_grupoCurso.inscritos}"/>
-            </h:column>
-        </rich:dataTable>
-
-        <div class="actionButtons">
-            <s:button id="#{userAccountHome.instance.grupoCurso != null ? 'changeParent' : 'selectParent'}" value="#{userAccountHome.instance.grupoCurso != null ? 'Change' : 'Adicionar a'} curso"
-                       view="/GrupoCursoList.xhtml">
-                <f:param name="from" value="UserAccountEdit"/>
-            </s:button>
-        </div>
-
-    </div>
-    </rich:tab>
-</rich:tabPanel>
 </div>
 		
-		<div class="left" style="margin-top: -394px; height: 500px">
-                    <rich:panel>
+		<div class="left" style="margin-top: -312px; height: 343px">
+            <rich:panel>
                       <h:form> 
-                        <h:commandLink value="#{credentials.username}"/>
+                       
+                        <h:commandLink value="#{credentials.username}" action="/MaizSoft/UserAccountEdit.seam"/>
                         <hr />
                         <div class="navigation">
     						<ul class="top-level">
@@ -304,16 +262,67 @@
                 						<li><a href="/MaizSoft/UserRoleList.seam">Buscar Rol</a></li>
         							</ul>
         						</li>	
-        						<li><h:commandLink value="Administrar Curso"/></li>
-        						
+        						<li><h:commandLink value="Administrar Curso"/>
+        							<ul class="sub-level">
+        								<li><a href="/MaizSoft/UserRoleEdit.seam">Crear Asignatura</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Editar Asignatura</a></li>
+                						<li><a href="/MaizSoft/UserRoleEliminar.seam">Eliminar Asignatura</a></li>
+                						<li><a href="/MaizSoft/CursoList.seam">Buscar Asignatura</a></li>
+        							</ul>
+        						</li>
+        						<h:commandLink value="Administrar OA" action="/GestorRepositorioOAList.seam" />
+        						 							
    		 					</ul>
-						</div>
+   		 					
+   		 					<hr style="margin-left: 30px; width: 162px"/>
+   		 					<div class="navigation">
+    						<ul class="top-level">
+   		 					
+   		 					</ul>
+   		 					</div>
+        					<h:commandLink value="Mensajes" action="/GestorMensajeriaEdit.seam"/>
+        					<hr style="margin-left: 30px; width: 162px"/>
+        					<h:commandLink value="Generar Informe" action="/UserAccountEdit.seam"/>
+							<h:commandLink value="Enlaces Externos" action="/GestorEnlacesExternosList.seam"/>
+							<hr style="margin-left: 30px; width: 162px"/>
+							
+        					<s:link id="menuLogoutId" view="/login.xhtml" action="#{identity.logout}" value="Salir" rendered="#{identity.loggedIn}" propagation="none" style="color: #3B5999"/>						
+        					
+        					</div>
                       </h:form>
                     </rich:panel>
+
        	     </div>
 
-	      <div class="right" style="margin-top: -394px; height: 500px">
-     		     <ui:insert name="right">Right</ui:insert>
+	       <div class="right" style="height: 343px; margin-top: -312px">
+     		     <ui:insert name="right">
+     		     <h:form>
+     		     	<rich:panel>
+                        		<!--  <rich:calendar popup="false"/>-->
+                        		<rich:calendar  popup = "false"> 
+                        		 <f:facet    name = "weekNumber">
+                        		 	<h:outputText value = ""    style = "color:red" /> 
+       							 </f:facet > 
+                        		</rich:calendar> 
+                    	
+                     <h:commandLink value="Agregar Evento" action="/GestorAgendaEdit.seam"/>
+					<br />
+					<br />
+					
+					<h:commandLink value="Gestionar noticias" action="/GestorAgendaEdit.seam"/>
+					<br />
+					<br />
+					<h:commandLink value="Ver Estadisticas" action="/GestorAgendaEdit.seam"/>
+					<br />
+					<br />
+					<h:commandLink value="Ayuda" action="/GestorAgendaEdit.seam"/>
+					
+												                    	    		
+                    </rich:panel>
+                   
+                   </h:form>    
+                 </ui:insert>
+                 
      		</div>
 
     

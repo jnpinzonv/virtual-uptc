@@ -7,13 +7,103 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:rich="http://richfaces.org/rich"
     template="layout/template.xhtml">
+	
+	<ui:define name="head">
+		<link href="css/cssLayoutPrincipal.css" rel="stylesheet" type="text/css"/>
+    	<link href="css/default.css" rel="stylesheet" type="text/css" />
+    	
+    	<script language="JavaScript"> 
+
+    	function mueveReloj(){ 
+    	   	momentoActual = new Date()
+    	   	hora = momentoActual.getHours() 
+   			minuto = momentoActual.getMinutes() 
+   			segundo = momentoActual.getSeconds() 
+
+   			str_segundo = new String (segundo) 
+   			if (str_segundo.length == 1) 
+      	 		segundo = "0" + segundo 
+
+   			str_minuto = new String (minuto) 
+   			if (str_minuto.length == 1) 
+      	 		minuto = "0" + minuto 
+
+   			str_hora = new String (hora) 
+   			if (str_hora.length == 1) 
+	      	 	hora = "0" + hora 
+
+   			horaImprimible = "Hora: "+hora + " : " + minuto + " : " + segundo 
+
+   			document.form_reloj.reloj.value = horaImprimible 
+
+   			setTimeout("mueveReloj()",1000) 
+} 
+</script>
+</ui:define>
 
 <ui:define name="body">
+	<body onload="mueveReloj()">
+	
+	<s:div styleClass="top" style="color: white; margin-left: 70px; margin-rigth: 70px;" >
+			<div style="color: #184B96">
+            <ui:insert name="top">.</ui:insert>
+            </div>
+            <div id="topLogo">
+            	
+                <h:outputText value="MaizSoft"></h:outputText>
+                <h:outputText value="..." style="color:#3B5999"></h:outputText>
+                <h:commandButton image="css/images/calendario.png" style="width:30px"/>
+                <h:outputText value=".." style="color:#3B5999"></h:outputText>
+                <h:commandButton image="css/images/mensajes.png" style="width:30px"/>
+                <h:outputText value=".." style="color:#3B5999"></h:outputText>
+                <h:commandButton image="css/images/actualizacion.png" style="width:30px"/>
+                <br/>
+                <br/>
+               
+                <h:outputText value="Navegar"></h:outputText>
+            </div>
+		 <div id="topPrincipal">
+                     <h:form>
+                        <h:outputText id="menuWelcomeId" value="#{credentials.username}" rendered="#{identity.loggedIn}"/>
+                        <s:link id="menuLogoutId" view="/login.xhtml" action="#{identity.logout}" value="Salir" rendered="#{identity.loggedIn}" propagation="none" style="color: white"/>
+                    </h:form>
+                    
+                   	<br />
+                   	<br />
+                    <form name="form_reloj"> 
+                    	
+						<input type="text" name="reloj" size="17" style="color: #FFFFFF; background: #3B5999; text-align : center" onfocus="window.document.form_reloj.reloj.blur()"/> 
+					</form> 
+         </div>
 
+            <div id="topSearch">
+                
+                <form class="searchform">
+                    <input class="searchfield" type="text" value="Buscar..." onFocus="if (this.value == 'Buscar...') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Buscar...';}"/>
+                    
+                    <h:commandButton class="searchbutton" image="css/images/buscar.png"  style="width:24px"/>
+                </form>
+            </div>
+        </s:div>
+	
+
+	<div class="center2" style="height: 500px">
+	
+		<div id="content" class="right_content">
     <h:form id="userAccountSearch" styleClass="edit">
 
-        <rich:simpleTogglePanel label="UserAccount Search Filter" switchType="ajax">
+        <rich:simpleTogglePanel label="Buscar Usuario" switchType="ajax">
+			
+			<s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Primer nombre</ui:define>
+                <h:inputText id="primerNombre" value="#{userAccountList.userAccount.primerNombre}"/>
+            </s:decorate>
 
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Segundo nombre</ui:define>
+                <h:inputText id="segundoNombre" value="#{userAccountList.userAccount.segundoNombre}"/>
+            </s:decorate>
+			
             <s:decorate template="layout/display.xhtml">
                 <ui:define name="label">Apellidos</ui:define>
                 <h:inputText id="apellidos" value="#{userAccountList.userAccount.apellidos}"/>
@@ -25,63 +115,66 @@
             </s:decorate>
 
             <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Password hash</ui:define>
-                <h:inputText id="passwordHash" value="#{userAccountList.userAccount.passwordHash}"/>
-            </s:decorate>
-
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Primer nombre</ui:define>
-                <h:inputText id="primerNombre" value="#{userAccountList.userAccount.primerNombre}"/>
-            </s:decorate>
-
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Segundo nombre</ui:define>
-                <h:inputText id="segundoNombre" value="#{userAccountList.userAccount.segundoNombre}"/>
-            </s:decorate>
-
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Username</ui:define>
+                <ui:define name="label">Nombre de usuario</ui:define>
                 <h:inputText id="username" value="#{userAccountList.userAccount.username}"/>
             </s:decorate>
 
             <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Match</ui:define>
+                <ui:define name="label">Buscar por</ui:define>
                 <h:selectOneRadio id="logic" value="#{userAccountList.restrictionLogicOperator}" styleClass="radio">
-                    <f:selectItem itemLabel="All" itemValue="and"/>
-                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                    <f:selectItem itemLabel="Todos los parametros" itemValue="and"/>
+                    <f:selectItem itemLabel="Alguno de los parametros" itemValue="or"/>
                 </h:selectOneRadio>
             </s:decorate>
 
         </rich:simpleTogglePanel>
 
         <div class="actionButtons">
-            <h:commandButton id="search" value="Search" action="/UserAccountList.xhtml"/>
-            <s:button id="reset" value="Reset" includePageParams="false"/>
+            <h:commandButton id="search" value="Buscar" action="/UserAccountList.xhtml"/>
+            <s:button id="reset" value="Limpiar Campos" includePageParams="false"/>
         </div>
 
     </h:form>
 
     <rich:panel>
-        <f:facet name="header">UserAccount Search Results (#{empty userAccountList.resultList ? 0 : (userAccountList.paginated ? userAccountList.resultCount : userAccountList.resultList.size)})</f:facet>
+        <f:facet name="header">Resultados de la busqueda (#{empty userAccountList.resultList ? 0 : (userAccountList.paginated ? userAccountList.resultCount : userAccountList.resultList.size)})</f:facet>
     <div class="results" id="userAccountList">
 
-    <h:outputText value="The userAccount search returned no results."
+    <h:outputText value="La busqueda no arrojo resultados"
                rendered="#{empty userAccountList.resultList}"/>
-
+	
     <rich:dataTable id="userAccountList"
-                var="_userAccount"
+    			var="_userAccount"
               value="#{userAccountList.resultList}"
-           rendered="#{not empty userAccountList.resultList}">
+           rendered="#{not empty userAccountList.resultList}" 
+ 			style="background: #eeeeee; margin-left:-10px; position:static;
+ 			width: 210px"> 
+        
+        	
+        	<h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{userAccountList}"/>
+                    <ui:param name="propertyLabel" value="Documento identidad"/>
+                    <ui:param name="propertyPath" value="userAccount.documentoIdentidad"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_userAccount.documentoIdentidad}"/>
+        </h:column>
+        
         <h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Id"/>
-                    <ui:param name="propertyPath" value="userAccount.id"/>
+                    <ui:param name="propertyLabel" value="Nombre"/>
+                    <ui:param name="propertyPath" value="userAccount.primerNombre"/>
                 </ui:include>
             </f:facet>
-            <h:outputText value="#{_userAccount.id}"/>
+            <h:outputText value="#{_userAccount.primerNombre} "/>
+            <h:outputText value="&nbsp;"/>
+            <h:outputText value=" #{_userAccount.segundoNombre}"/>
         </h:column>
+        	
         <h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
@@ -92,96 +185,7 @@
             </f:facet>
             <h:outputText value="#{_userAccount.apellidos}"/>
         </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Correo electronico"/>
-                    <ui:param name="propertyPath" value="userAccount.correoElectronico"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.correoElectronico}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Documento identidad"/>
-                    <ui:param name="propertyPath" value="userAccount.documentoIdentidad"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.documentoIdentidad}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Enabled"/>
-                    <ui:param name="propertyPath" value="userAccount.enabled"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.enabled}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Foto user"/>
-                    <ui:param name="propertyPath" value="userAccount.fotoUser"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.fotoUser}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Grupo curso id grupo"/>
-                    <ui:param name="propertyPath" value="userAccount.grupoCurso.idGrupo"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.grupoCurso.idGrupo}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Password hash"/>
-                    <ui:param name="propertyPath" value="userAccount.passwordHash"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.passwordHash}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Primer nombre"/>
-                    <ui:param name="propertyPath" value="userAccount.primerNombre"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.primerNombre}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Segundo nombre"/>
-                    <ui:param name="propertyPath" value="userAccount.segundoNombre"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.segundoNombre}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Tipo documento"/>
-                    <ui:param name="propertyPath" value="userAccount.tipoDocumento"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.tipoDocumento}"/>
-        </h:column>
+        
         <h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
@@ -192,20 +196,22 @@
             </f:facet>
             <h:outputText value="#{_userAccount.username}"/>
         </h:column>
+        
         <h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Gestor anuncios id anuncio"/>
-                    <ui:param name="propertyPath" value="userAccount.gestorAnuncios.idAnuncio"/>
+                    <ui:param name="propertyLabel" value="correoElectronico"/>
+                    <ui:param name="propertyPath" value="userAccount.correoElectronico"/>
                 </ui:include>
             </f:facet>
-            <h:outputText value="#{_userAccount.gestorAnuncios.idAnuncio}"/>
+            <h:outputText value="#{_userAccount.correoElectronico}"/>
         </h:column>
+       
         <rich:column styleClass="action">
-            <f:facet name="header">Action</f:facet>
+            <f:facet name="header">Acci&#243;n</f:facet>
             <s:link view="/#{empty from ? 'UserAccount' : from}.xhtml"
-                   value="#{empty from ? 'View' : 'Select'}"
+                   value="#{empty from ? 'Ver' : 'Select'}"
              propagation="#{empty from ? 'none' : 'default'}"
                       id="userAccountViewId">
                 <f:param name="userAccountId"
@@ -213,7 +219,7 @@
             </s:link>
             #{' '}
             <s:link view="/UserAccountEdit.xhtml"
-                   value="Edit"
+                   value="Editar"
              propagation="none"
                       id="userAccountEdit"
                 rendered="#{empty from}">
@@ -261,15 +267,111 @@
 
     </div>
 
-    <s:div styleClass="actionButtons" rendered="#{empty from}">
-        <s:button view="/UserAccountEdit.xhtml"
-                    id="create"
-           propagation="none"
-                 value="Create userAccount">
-            <f:param name="userAccountId"/>
-        </s:button>
-    </s:div>
+    </div>
+    
+    <div class="left" style="margin-top: -443px; height: 500px">
+             <rich:panel>
+                      <h:form> 
+                       
+                        <h:commandLink value="#{credentials.username}" action="/MaizSoft/UserAccountEdit.seam"/>
+                        <hr />
+                        <div class="navigation">
+    						<ul class="top-level">
+        						<li><h:commandLink value="Administrar Usuarios" style="text-decoration : underline"/>
+            						<ul class="sub-level">
+                						<li><a href="/MaizSoft/UserAccountEdit.seam">Adicionar Usuario</a></li>
+                						<li><a href="/MaizSoft/UserAccountList.seam">Editar/Eliminar</a></li>
+                						<li><a href="/MaizSoft/UserAccountListDos.seam">Buscar Usuario</a></li>
+            						</ul>
+        						</li>
+        						<li><h:commandLink value="Administrar Roles"/>
+        							<ul class="sub-level">
+        								<li><a href="/MaizSoft/UserRoleEdit.seam">Adicionar Rol</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Editar Rol</a></li>
+                						<li><a href="/MaizSoft/UserRoleEliminar.seam">Eliminar Rol</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Buscar Rol</a></li>
+        							</ul>
+        						</li>	
+        						<li><h:commandLink value="Administrar Curso"/>
+        							<ul class="sub-level">
+        								<li><a href="/MaizSoft/UserRoleEdit.seam">Crear Asignatura</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Editar Asignatura</a></li>
+                						<li><a href="/MaizSoft/UserRoleEliminar.seam">Eliminar Asignatura</a></li>
+                						<li><a href="/MaizSoft/CursoList.seam">Buscar Asignatura</a></li>
+        							</ul>
+        						</li>
+        						<h:commandLink value="Administrar OA" action="/GestorRepositorioOAList.seam"/>
+        						 							
+   		 					</ul>
+   		 					
+   		 					<hr style="margin-left: 30px; width: 162px"/>
+   		 					<div class="navigation">
+    						<ul class="top-level">
+   		 					
+   		 					</ul>
+   		 					</div>
+        					<h:commandLink value="Mensajes" action="/GestorMensajeriaEdit.seam"/>
+        					<hr style="margin-left: 30px; width: 162px"/>
+        					<h:commandLink value="Generar Informe" action="/UserAccountEdit.seam"/>
+							<h:commandLink value="Enlaces Externos" action="/GestorEnlacesExternosList.seam"/>
+							<hr style="margin-left: 30px; width: 162px"/>
+							
+        					<s:link id="menuLogoutId" view="/login.xhtml" action="#{identity.logout}" value="Salir" rendered="#{identity.loggedIn}" propagation="none" style="color: #3B5999"/>						
+        					
+        					</div>
+                      </h:form>
+                    </rich:panel>
+       	     </div>
 
-</ui:define>
-
+	       <div class="right" style="height: 500px; margin-top: -443px">
+     		     <ui:insert name="right">Right
+     		     <h:form>
+     		     	<rich:panel>
+                        		<!--  <rich:calendar popup="false"/>-->
+                        		<rich:calendar  popup = "false"> 
+                        		 <f:facet    name = "weekNumber">
+                        		 	<h:outputText value = ""    style = "color:red" /> 
+       							 </f:facet > 
+                        		</rich:calendar> 
+                    	
+                     <h:commandLink value="Agregar Evento" action="/GestorAgendaEdit.seam"/>
+					<br />
+					<br />
+			
+					<h:commandLink value="Gestionar noticias" action="/GestorAgendaEdit.seam"/>
+					<br />
+					<br />
+					<h:commandLink value="Ver Estadisticas" action="/GestorAgendaEdit.seam"/>
+					<br />
+					<br />
+					<h:commandLink value="Ayuda" action="/GestorAgendaEdit.seam"/>
+					
+												                    	    		
+                    </rich:panel>
+                   
+                   </h:form>    
+                 </ui:insert>
+                 
+     		</div>
+    
+		<div class="bottom" align="center">
+       		        		<img src="css/images/uptc.png" style="height: 80px; margin-left: -430px" />
+            
+            <div style="margin-top: -90px">
+            <pre>Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
+            Facultad de Ingenier&#237;a            
+   Ingenier&#237;a de Sistemas y Computaci&#243;n
+Grupo de Investigaci&#243;n en Ingenier&#237;a del Software
+Correo:gis@uptc.edu.co
+</pre>
+				
+			</div>
+        	<div style="margin-top: -88px">
+        		<img src="css/images/gis.png" style="height: 80px; width: 80px; margin-left: 470px" />
+        	</div>		
+        	</div>
+	</div>
+	</body> 
+ </ui:define>
 </ui:composition>
+

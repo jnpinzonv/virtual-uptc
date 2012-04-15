@@ -9,17 +9,96 @@
     xmlns:rich="http://richfaces.org/rich"
     template="layout/template.xhtml">
 
-<ui:define name="body">
+	<ui:define name="head">
+		<link href="css/cssLayoutPrincipal.css" rel="stylesheet" type="text/css"/>
+    	<link href="css/default.css" rel="stylesheet" type="text/css" />
+    	
+    	<script language="JavaScript"> 
 
+    	function mueveReloj(){ 
+    	   	momentoActual = new Date()
+    	   	hora = momentoActual.getHours() 
+   			minuto = momentoActual.getMinutes() 
+   			segundo = momentoActual.getSeconds() 
+
+   			str_segundo = new String (segundo) 
+   			if (str_segundo.length == 1) 
+      	 		segundo = "0" + segundo 
+
+   			str_minuto = new String (minuto) 
+   			if (str_minuto.length == 1) 
+      	 		minuto = "0" + minuto 
+
+   			str_hora = new String (hora) 
+   			if (str_hora.length == 1) 
+	      	 	hora = "0" + hora 
+
+   			horaImprimible = "Hora: "+hora + " : " + minuto + " : " + segundo 
+
+   			document.form_reloj.reloj.value = horaImprimible 
+
+   			setTimeout("mueveReloj()",1000) 
+} 
+</script>
+    	
+	</ui:define>
+	
+<ui:define name="body">
+	<body onload="mueveReloj()">
+	<s:div styleClass="top" style="color: white; margin-left: 70px; margin-rigth: 70px;" >
+			<div style="color: #184B96">
+            <ui:insert name="top">.</ui:insert>
+            </div>
+            <div id="topLogo">
+            	
+                <h:outputText value="MaizSoft"></h:outputText>
+                <h:outputText value="..." style="color:#3B5999"></h:outputText>
+                <h:commandButton image="css/images/calendario.png" style="width:30px"/>
+                <h:outputText value=".." style="color:#3B5999"></h:outputText>
+                <h:commandButton image="css/images/mensajes.png" style="width:30px"/>
+                <h:outputText value=".." style="color:#3B5999"></h:outputText>
+                <h:commandButton image="css/images/actualizacion.png" style="width:30px"/>
+                <br/>
+                <br/>
+               
+                <h:outputText value="Navegar"></h:outputText>
+            </div>
+		 <div id="topPrincipal">
+                     <h:form>
+                        <h:outputText id="menuWelcomeId" value="#{credentials.username}" rendered="#{identity.loggedIn}"/>
+                        <s:link id="menuLogoutId" view="/login.xhtml" action="#{identity.logout}" value="Salir" rendered="#{identity.loggedIn}" propagation="none" style="color: white"/>
+                    </h:form>
+                    <br />
+                   	<br />
+                    <form name="form_reloj"> 
+                    	
+						<input type="text" name="reloj" size="17" style="color: #FFFFFF; background: #3B5999; text-align : center" onfocus="window.document.form_reloj.reloj.blur()"/> 
+					</form> 
+         </div>
+
+            <div id="topSearch">
+                
+                <form class="searchform">
+                    <input class="searchfield" type="text" value="Buscar..." onFocus="if (this.value == 'Buscar...') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Buscar...';}"/>
+                    
+                    <h:commandButton class="searchbutton" image="css/images/buscar.png"  style="width:24px"/>
+                </form>
+            </div>
+        </s:div>
+	
+	<div class="center2" style="height: 500px">
+	
+		    		<div id="content" class="right_content">
+		    		
     <h:form id="userRole" styleClass="edit">
 
         <rich:panel>
-            <f:facet name="header">#{userRoleHome.managed ? 'Edit' : 'Add'} User role</f:facet>
+            <f:facet name="header">#{userRoleHome.managed ? 'Editar' : 'Adicionar'} rol de usuario</f:facet>
 
 
 
             <s:decorate id="conditionalField" template="layout/edit.xhtml">
-                <ui:define name="label">Conditional</ui:define>
+                <ui:define name="label">Condicional</ui:define>
                 <h:selectBooleanCheckbox id="conditional"
                                    required="true"
                                       value="#{userRoleHome.instance.conditional}"/>
@@ -28,7 +107,7 @@
 
 
             <s:decorate id="nameField" template="layout/edit.xhtml">
-                <ui:define name="label">Name</ui:define>
+                <ui:define name="label">Nombre</ui:define>
                 <h:inputTextarea id="name"
                                cols="80"
                                rows="3"
@@ -38,7 +117,7 @@
 
             <div style="clear:both">
                 <span class="required">*</span>
-                required fields
+                campos requeridos
             </div>
 
         </rich:panel>
@@ -46,37 +125,152 @@
         <div class="actionButtons">
 
             <h:commandButton id="save"
-                          value="Save"
+                          value="Guardar"
                          action="#{userRoleHome.persist}"
                        disabled="#{!userRoleHome.wired}"
                        rendered="#{!userRoleHome.managed}"/>
 
             <h:commandButton id="update"
-                          value="Save"
+                          value="Guardar"
                          action="#{userRoleHome.update}"
                        rendered="#{userRoleHome.managed}"/>
 
             <h:commandButton id="delete"
-                          value="Delete"
+                          value="Eliminar"
                          action="#{userRoleHome.remove}"
                       immediate="true"
                        rendered="#{userRoleHome.managed}"/>
 
             <s:button id="cancelEdit"
-                   value="Cancel"
+                   value="Cancelar"
              propagation="end"
                     view="/UserRole.xhtml"
                 rendered="#{userRoleHome.managed}"/>
 
             <s:button id="cancelAdd"
-                   value="Cancel"
+                   value="Cancelar"
              propagation="end"
                     view="/#{empty userRoleFrom ? 'UserRoleList' : userRoleFrom}.xhtml"
                 rendered="#{!userRoleHome.managed}"/>
 
         </div>
     </h:form>
+    
+    </div>
+    
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    
+    <div class="left" style="height: 330px; margin-top: -295px">
+                    <rich:panel>
+                      <h:form> 
+                       
+                        <h:commandLink value="#{credentials.username}" action="/MaizSoft/UserAccountEdit.seam"/>
+                        <hr />
+                        <div class="navigation">
+    						<ul class="top-level">
+        						<li><h:commandLink value="Administrar Usuarios" />
+            						<ul class="sub-level">
+                						<li><a href="/MaizSoft/UserAccountEdit.seam">Adicionar Usuario</a></li>
+                						<li><a href="/MaizSoft/UserAccountList.seam">Editar/Eliminar</a></li>
+                						<li><a href="/MaizSoft/UserAccountListDos.seam">Buscar Usuario</a></li>
+            						</ul>
+        						</li>
+        						<li><h:commandLink value="Administrar Roles" style="text-decoration : underline"/>
+        							<ul class="sub-level">
+        								<li><a href="/MaizSoft/UserRoleEdit.seam">Adicionar Rol</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Editar Rol</a></li>
+                						<li><a href="/MaizSoft/UserRoleEliminar.seam">Eliminar Rol</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Buscar Rol</a></li>
+        							</ul>
+        						</li>	
+        						<li><h:commandLink value="Administrar Curso"/>
+        							<ul class="sub-level">
+        								<li><a href="/MaizSoft/UserRoleEdit.seam">Crear Asignatura</a></li>
+                						<li><a href="/MaizSoft/UserRoleList.seam">Editar Asignatura</a></li>
+                						<li><a href="/MaizSoft/UserRoleEliminar.seam">Eliminar Asignatura</a></li>
+                						<li><a href="/MaizSoft/CursoList.seam">Buscar Asignatura</a></li>
+        							</ul>
+        						</li>
+        						<h:commandLink value="Administrar OA" action="/GestorRepositorioOAList.seam" />
+        						 							
+   		 					</ul>
+   		 					
+   		 					<hr style="margin-left: 30px; width: 162px"/>
+   		 					<div class="navigation">
+    						<ul class="top-level">
+   		 					
+   		 					</ul>
+   		 					</div>
+        					<h:commandLink value="Mensajes" action="/GestorMensajeriaEdit.seam"/>
+        					<hr style="margin-left: 30px; width: 162px"/>
+        					<h:commandLink value="Generar Informe" action="/UserAccountEdit.seam"/>
+							<h:commandLink value="Enlaces Externos" action="/GestorEnlacesExternosList.seam"/>
+							<hr style="margin-left: 30px; width: 162px"/>
+							
+        					<s:link id="menuLogoutId" view="/login.xhtml" action="#{identity.logout}" value="Salir" rendered="#{identity.loggedIn}" propagation="none" style="color: #3B5999"/>						
+        					
+        					</div>
+                      </h:form>
+                    </rich:panel>
+       	     </div>
 
+	      <div class="right" style="height: 330px; margin-top: -295px">
+     		     <ui:insert name="right">
+     		     <h:form>
+     		     	<rich:panel>
+                        		<!--  <rich:calendar popup="false"/>-->
+                        		<rich:calendar  popup = "false"> 
+                        		 <f:facet    name = "weekNumber">
+                        		 	<h:outputText value = ""    style = "color:red" /> 
+       							 </f:facet > 
+                        		</rich:calendar> 
+                    	
+                     <h:commandLink value="Agregar Evento" action="/GestorAgendaEdit.seam"/>
+					<br />
+					<br />					
+					<h:commandLink value="Gestionar noticias" action="/GestorAgendaEdit.seam"/>
+					<br />
+					<br />
+					<h:commandLink value="Ver Estadisticas" action="/GestorAgendaEdit.seam"/>
+					<br />
+					<br />
+					<h:commandLink value="Ayuda" action="/GestorAgendaEdit.seam"/>
+					
+												                    	    		
+                    </rich:panel>
+                   
+                   </h:form>    
+                 </ui:insert>
+                 
+     		</div>
+   
+	<div class="bottom" align="center">
+			
+       		<img src="css/images/uptc.png" style="height: 80px; margin-left: -430px" />
+            
+            <div style="margin-top: -90px">
+            <pre>Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
+            Facultad de Ingenier&#237;a            
+   Ingenier&#237;a de Sistemas y Computaci&#243;n
+Grupo de Investigaci&#243;n en Ingenier&#237;a del Software
+Correo:gis@uptc.edu.co
+</pre>
+				
+			</div>
+        	<div style="margin-top: -88px">
+        		<img src="css/images/gis.png" style="height: 80px; width: 80px; margin-left: 470px" />
+        	</div>		
+        	</div>
+
+    </div>
+	
+	</body>
 </ui:define>
 
 </ui:composition>

@@ -99,6 +99,7 @@ public class GestorEnlacesExternos {
 	/**
 	 * @return the grupoCurso
 	 */
+	@NotNull
 	@ManyToOne
 	public GrupoCurso getGrupoCurso() {
 		return grupoCurso;

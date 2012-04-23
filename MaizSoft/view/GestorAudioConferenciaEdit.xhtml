@@ -30,6 +30,7 @@
             <s:decorate id="fechaAudioConferenciaField" template="layout/edit.xhtml">
                 <ui:define name="label">Fecha audio conferencia</ui:define>
                 <rich:calendar id="fechaAudioConferencia"
+                       required="true"
                           value="#{gestorAudioConferenciaHome.instance.fechaAudioConferencia}" datePattern="MM/dd/yyyy" />
             </s:decorate>
 
@@ -40,6 +41,7 @@
                 <h:inputTextarea id="horaAudioConferencia"
                                cols="80"
                                rows="3"
+                           required="true"
                               value="#{gestorAudioConferenciaHome.instance.horaAudioConferencia}"/>
             </s:decorate>
 
@@ -58,6 +60,7 @@
                 <h:inputTextarea id="tituloAudioConferencia"
                                cols="80"
                                rows="3"
+                           required="true"
                               value="#{gestorAudioConferenciaHome.instance.tituloAudioConferencia}"/>
             </s:decorate>
 
@@ -105,7 +108,7 @@
 
 <rich:tabPanel switchType="ajax">
 
-    <rich:tab label="Grupo curso audio">
+    <rich:tab label="Grupo curso audio *" labelClass="required">
     <div class="association" id="grupoCursoAudioParent">
 
         <h:outputText value="There is no grupoCursoAudio associated with this gestorAudioConferencia."
@@ -135,7 +138,7 @@
         </rich:dataTable>
 
         <div class="actionButtons">
-            <s:button id="#{gestorAudioConferenciaHome.instance.grupoCursoAudio != null ? 'changeParent' : 'selectParent'}" value="#{gestorAudioConferenciaHome.instance.grupoCursoAudio != null ? 'Change' : 'Select'} grupoCursoAudio"
+            <s:button id="#{gestorAudioConferenciaHome.instance.grupoCursoAudio != null ? 'changeParentgrupoCursoAudio' : 'selectParentgrupoCursoAudio'}" value="#{gestorAudioConferenciaHome.instance.grupoCursoAudio != null ? 'Change' : 'Select'} grupoCursoAudio"
                        view="/GrupoCursoList.xhtml">
                 <f:param name="from" value="GestorAudioConferenciaEdit"/>
             </s:button>
@@ -144,7 +147,7 @@
     </div>
     </rich:tab>
 
-    <rich:tab label="Usuario creador">
+    <rich:tab label="Usuario creador *" labelClass="required">
     <div class="association" id="usuarioCreadorParent">
 
         <h:outputText value="There is no usuarioCreador associated with this gestorAudioConferencia."
@@ -210,7 +213,7 @@
         </rich:dataTable>
 
         <div class="actionButtons">
-            <s:button id="#{gestorAudioConferenciaHome.instance.usuarioCreador != null ? 'changeParent' : 'selectParent'}" value="#{gestorAudioConferenciaHome.instance.usuarioCreador != null ? 'Change' : 'Select'} usuarioCreador"
+            <s:button id="#{gestorAudioConferenciaHome.instance.usuarioCreador != null ? 'changeParentusuarioCreador' : 'selectParentusuarioCreador'}" value="#{gestorAudioConferenciaHome.instance.usuarioCreador != null ? 'Change' : 'Select'} usuarioCreador"
                        view="/UserAccountList.xhtml">
                 <f:param name="from" value="GestorAudioConferenciaEdit"/>
             </s:button>

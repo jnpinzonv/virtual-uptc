@@ -42,6 +42,8 @@ public class GestorEnlacesExternosHome
 	}
 
 	public boolean isWired() {
+		if (getInstance().getGrupoCurso() == null)
+			return false;
 		return true;
 	}
 

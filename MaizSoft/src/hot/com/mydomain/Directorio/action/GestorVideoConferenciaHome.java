@@ -48,6 +48,10 @@ public class GestorVideoConferenciaHome
 	}
 
 	public boolean isWired() {
+		if (getInstance().getGrupoCursoVideo() == null)
+			return false;
+		if (getInstance().getUsuarioCreador() == null)
+			return false;
 		return true;
 	}
 

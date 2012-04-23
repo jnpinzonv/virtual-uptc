@@ -48,6 +48,10 @@ public class GestorAudioConferenciaHome
 	}
 
 	public boolean isWired() {
+		if (getInstance().getGrupoCursoAudio() == null)
+			return false;
+		if (getInstance().getUsuarioCreador() == null)
+			return false;
 		return true;
 	}
 

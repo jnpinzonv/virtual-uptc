@@ -89,7 +89,7 @@
 
 <rich:tabPanel switchType="ajax">
 
-    <rich:tab label="User account agenda">
+    <rich:tab label="User account agenda *" labelClass="required">
     <div class="association" id="userAccountAgendaParent">
 
         <h:outputText value="There is no userAccountAgenda associated with this gestorAgenda."
@@ -155,7 +155,7 @@
         </rich:dataTable>
 
         <div class="actionButtons">
-            <s:button id="#{gestorAgendaHome.instance.userAccountAgenda != null ? 'changeParent' : 'selectParent'}" value="#{gestorAgendaHome.instance.userAccountAgenda != null ? 'Change' : 'Select'} userAccountAgenda"
+            <s:button id="#{gestorAgendaHome.instance.userAccountAgenda != null ? 'changeParentuserAccountAgenda' : 'selectParentuserAccountAgenda'}" value="#{gestorAgendaHome.instance.userAccountAgenda != null ? 'Change' : 'Select'} userAccountAgenda"
                        view="/UserAccountList.xhtml">
                 <f:param name="from" value="GestorAgendaEdit"/>
             </s:button>

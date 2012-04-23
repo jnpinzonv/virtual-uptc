@@ -100,6 +100,7 @@ public class GestorAgenda {
 	/**
 	 * @return the userAccountAgenda
 	 */
+	@NotNull
 	@ManyToOne
 	public UserAccount getUserAccountAgenda() {
 		return userAccountAgenda;

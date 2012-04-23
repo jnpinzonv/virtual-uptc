@@ -82,7 +82,7 @@
 
 <rich:tabPanel switchType="ajax">
 
-    <rich:tab label="Escuela curso">
+    <rich:tab label="Escuela curso *" labelClass="required">
     <div class="association" id="escuelaCursoParent">
 
         <h:outputText value="There is no escuelaCurso associated with this curso."
@@ -112,7 +112,7 @@
         </rich:dataTable>
 
         <div class="actionButtons">
-            <s:button id="#{cursoHome.instance.escuelaCurso != null ? 'changeParent' : 'selectParent'}" value="#{cursoHome.instance.escuelaCurso != null ? 'Change' : 'Select'} escuelaCurso"
+            <s:button id="#{cursoHome.instance.escuelaCurso != null ? 'changeParentescuelaCurso' : 'selectParentescuelaCurso'}" value="#{cursoHome.instance.escuelaCurso != null ? 'Change' : 'Select'} escuelaCurso"
                        view="/EscuelaList.xhtml">
                 <f:param name="from" value="CursoEdit"/>
             </s:button>
@@ -162,7 +162,7 @@
         </f:subview>
     </rich:tab>
 
-    <rich:tab label="Semestre curso">
+    <rich:tab label="Semestre curso *" labelClass="required">
     <div class="association" id="semestreCursoParent">
 
         <h:outputText value="There is no semestreCurso associated with this curso."
@@ -188,7 +188,7 @@
         </rich:dataTable>
 
         <div class="actionButtons">
-            <s:button id="#{cursoHome.instance.semestreCurso != null ? 'changeParent' : 'selectParent'}" value="#{cursoHome.instance.semestreCurso != null ? 'Change' : 'Select'} semestreCurso"
+            <s:button id="#{cursoHome.instance.semestreCurso != null ? 'changeParentsemestreCurso' : 'selectParentsemestreCurso'}" value="#{cursoHome.instance.semestreCurso != null ? 'Change' : 'Select'} semestreCurso"
                        view="/SemestreList.xhtml">
                 <f:param name="from" value="CursoEdit"/>
             </s:button>

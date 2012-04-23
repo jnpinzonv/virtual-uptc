@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.NotNull;
+
 /**
  * @author Nicolas
  *
@@ -67,6 +69,7 @@ public class Curso {
 		this.nombreAsignatura = nombreAsignatura;
 	}
 
+	@NotNull
 	@ManyToOne
 	public Escuela getEscuelaCurso() {
 		return escuelaCurso;
@@ -82,6 +85,7 @@ public class Curso {
 	/**
 	 * @return the semestreCurso
 	 */
+	@NotNull
 	@ManyToOne
 	public Semestre getSemestreCurso() {
 		return semestreCurso;

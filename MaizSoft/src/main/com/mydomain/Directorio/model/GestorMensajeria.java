@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.NotNull;
+
 /**
  *@author Josué Nicolás Pinzón Villamil <jnpinzonv@hotmail.com>
  *@Version${date}
@@ -58,6 +60,7 @@ public class GestorMensajeria {
 	/**
 	 * @return the paraUsuario
 	 */
+	@NotNull
 	@ManyToMany(mappedBy="usuarioReceptor")
 	public Set<UserAccount> getParaUsuario() {
 		if(paraUsuario==null){
@@ -76,6 +79,7 @@ public class GestorMensajeria {
 	/**
 	 * @return the deUsuario
 	 */
+	@NotNull
 	@ManyToOne
 	public UserAccount getDeUsuario() {
 		return deUsuario;

@@ -40,6 +40,8 @@ public class GestorAgendaHome extends EntityHome<GestorAgenda> {
 	}
 
 	public boolean isWired() {
+		if (getInstance().getUserAccountAgenda() == null)
+			return false;
 		return true;
 	}
 

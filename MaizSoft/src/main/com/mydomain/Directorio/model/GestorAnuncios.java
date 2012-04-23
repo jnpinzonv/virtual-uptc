@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.NotNull;
+
 /**
  *@author Josué Nicolás Pinzón Villamil <jnpinzonv@hotmail.com>
  *@Version${date}
@@ -94,6 +96,7 @@ public class GestorAnuncios {
 	/**
 	 * @return the grupoCursoAnuncio
 	 */
+	@NotNull
 	@ManyToOne
 	public GrupoCurso getGrupoCursoAnuncio() {
 		return grupoCursoAnuncio;

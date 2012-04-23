@@ -30,6 +30,7 @@
             <s:decorate id="fechaVideoConferenciaField" template="layout/edit.xhtml">
                 <ui:define name="label">Fecha video conferencia</ui:define>
                 <rich:calendar id="fechaVideoConferencia"
+                       required="true"
                           value="#{gestorVideoConferenciaHome.instance.fechaVideoConferencia}" datePattern="MM/dd/yyyy" />
             </s:decorate>
 
@@ -40,6 +41,7 @@
                 <h:inputTextarea id="horaVideoConferencia"
                                cols="80"
                                rows="3"
+                           required="true"
                               value="#{gestorVideoConferenciaHome.instance.horaVideoConferencia}"/>
             </s:decorate>
 
@@ -105,7 +107,7 @@
 
 <rich:tabPanel switchType="ajax">
 
-    <rich:tab label="Grupo curso video">
+    <rich:tab label="Grupo curso video *" labelClass="required">
     <div class="association" id="grupoCursoVideoParent">
 
         <h:outputText value="There is no grupoCursoVideo associated with this gestorVideoConferencia."
@@ -135,7 +137,7 @@
         </rich:dataTable>
 
         <div class="actionButtons">
-            <s:button id="#{gestorVideoConferenciaHome.instance.grupoCursoVideo != null ? 'changeParent' : 'selectParent'}" value="#{gestorVideoConferenciaHome.instance.grupoCursoVideo != null ? 'Change' : 'Select'} grupoCursoVideo"
+            <s:button id="#{gestorVideoConferenciaHome.instance.grupoCursoVideo != null ? 'changeParentgrupoCursoVideo' : 'selectParentgrupoCursoVideo'}" value="#{gestorVideoConferenciaHome.instance.grupoCursoVideo != null ? 'Change' : 'Select'} grupoCursoVideo"
                        view="/GrupoCursoList.xhtml">
                 <f:param name="from" value="GestorVideoConferenciaEdit"/>
             </s:button>
@@ -144,7 +146,7 @@
     </div>
     </rich:tab>
 
-    <rich:tab label="Usuario creador">
+    <rich:tab label="Usuario creador *" labelClass="required">
     <div class="association" id="usuarioCreadorParent">
 
         <h:outputText value="There is no usuarioCreador associated with this gestorVideoConferencia."
@@ -210,7 +212,7 @@
         </rich:dataTable>
 
         <div class="actionButtons">
-            <s:button id="#{gestorVideoConferenciaHome.instance.usuarioCreador != null ? 'changeParent' : 'selectParent'}" value="#{gestorVideoConferenciaHome.instance.usuarioCreador != null ? 'Change' : 'Select'} usuarioCreador"
+            <s:button id="#{gestorVideoConferenciaHome.instance.usuarioCreador != null ? 'changeParentusuarioCreador' : 'selectParentusuarioCreador'}" value="#{gestorVideoConferenciaHome.instance.usuarioCreador != null ? 'Change' : 'Select'} usuarioCreador"
                        view="/UserAccountList.xhtml">
                 <f:param name="from" value="GestorVideoConferenciaEdit"/>
             </s:button>

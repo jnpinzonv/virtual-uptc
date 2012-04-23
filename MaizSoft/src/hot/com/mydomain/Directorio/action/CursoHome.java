@@ -48,6 +48,10 @@ public class CursoHome extends EntityHome<Curso> {
 	}
 
 	public boolean isWired() {
+		if (getInstance().getEscuelaCurso() == null)
+			return false;
+		if (getInstance().getSemestreCurso() == null)
+			return false;
 		return true;
 	}
 

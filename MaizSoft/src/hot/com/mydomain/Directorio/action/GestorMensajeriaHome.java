@@ -40,6 +40,8 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 	}
 
 	public boolean isWired() {
+		if (getInstance().getDeUsuario() == null)
+			return false;
 		return true;
 	}
 

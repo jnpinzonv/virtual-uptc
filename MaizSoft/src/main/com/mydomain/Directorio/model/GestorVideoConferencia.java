@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.NotNull;
+
 /**
  *@author Josué Nicolás Pinzón Villamil <jnpinzonv@hotmail.com>
  *@Version${date}
@@ -59,6 +61,7 @@ public class GestorVideoConferencia {
 	/**
 	 * @return the usuarioCreador
 	 */
+	@NotNull
 	@ManyToOne
 	public UserAccount getUsuarioCreador() {
 		return usuarioCreador;
@@ -102,6 +105,7 @@ public class GestorVideoConferencia {
 	/**
 	 * @return the fechaVideoConferencia
 	 */
+	@NotNull
 	public Date getFechaVideoConferencia() {
 		return fechaVideoConferencia;
 	}
@@ -116,6 +120,7 @@ public class GestorVideoConferencia {
 	/**
 	 * @return the horaVideoConferencia
 	 */
+	@NotNull
 	public String getHoraVideoConferencia() {
 		return horaVideoConferencia;
 	}
@@ -145,6 +150,7 @@ public class GestorVideoConferencia {
 	/**
 	 * @return the grupoCursoVideo
 	 */
+	@NotNull
 	@ManyToOne
 	public GrupoCurso getGrupoCursoVideo() {
 		return grupoCursoVideo;

@@ -46,6 +46,8 @@ public class ActividadHome extends EntityHome<Actividad> {
 	}
 
 	public boolean isWired() {
+		if (getInstance().getActividadGrupoCurso() == null)
+			return false;
 		return true;
 	}
 

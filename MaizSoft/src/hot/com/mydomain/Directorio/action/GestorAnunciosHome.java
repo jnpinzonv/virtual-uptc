@@ -46,6 +46,8 @@ public class GestorAnunciosHome extends EntityHome<GestorAnuncios> {
 	}
 
 	public boolean isWired() {
+		if (getInstance().getGrupoCursoAnuncio() == null)
+			return false;
 		return true;
 	}
 

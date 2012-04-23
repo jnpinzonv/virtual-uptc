@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.NotNull;
+
 /**
  *@author Josué Nicolás Pinzón Villamil <jnpinzonv@hotmail.com>
  *@Version${date}
@@ -57,6 +59,7 @@ public class GestorAudioConferencia {
 	/**
 	 * @return the usuarioCreador
 	 */
+	@NotNull
 	@ManyToOne
 	public UserAccount getUsuarioCreador() {
 		return usuarioCreador;
@@ -72,6 +75,7 @@ public class GestorAudioConferencia {
 	/**
 	 * @return the tituloAudioConferencia
 	 */
+	@NotNull
 	public String getTituloAudioConferencia() {
 		return tituloAudioConferencia;
 	}
@@ -100,6 +104,7 @@ public class GestorAudioConferencia {
 	/**
 	 * @return the fechaAudioConferencia
 	 */
+	@NotNull
 	public Date getFechaAudioConferencia() {
 		return fechaAudioConferencia;
 	}
@@ -114,6 +119,7 @@ public class GestorAudioConferencia {
 	/**
 	 * @return the horaAudioConferencia
 	 */
+	@NotNull
 	public String getHoraAudioConferencia() {
 		return horaAudioConferencia;
 	}
@@ -143,6 +149,7 @@ public class GestorAudioConferencia {
 	/**
 	 * @return the grupoCursoAudio
 	 */
+	@NotNull
 	@ManyToOne
 	public GrupoCurso getGrupoCursoAudio() {
 		return grupoCursoAudio;

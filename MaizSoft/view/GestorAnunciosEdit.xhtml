@@ -80,7 +80,7 @@
 
 <rich:tabPanel switchType="ajax">
 
-    <rich:tab label="Grupo curso anuncio">
+    <rich:tab label="Grupo curso anuncio *" labelClass="required">
     <div class="association" id="grupoCursoAnuncioParent">
 
         <h:outputText value="There is no grupoCursoAnuncio associated with this gestorAnuncios."
@@ -110,7 +110,7 @@
         </rich:dataTable>
 
         <div class="actionButtons">
-            <s:button id="#{gestorAnunciosHome.instance.grupoCursoAnuncio != null ? 'changeParent' : 'selectParent'}" value="#{gestorAnunciosHome.instance.grupoCursoAnuncio != null ? 'Change' : 'Select'} grupoCursoAnuncio"
+            <s:button id="#{gestorAnunciosHome.instance.grupoCursoAnuncio != null ? 'changeParentgrupoCursoAnuncio' : 'selectParentgrupoCursoAnuncio'}" value="#{gestorAnunciosHome.instance.grupoCursoAnuncio != null ? 'Change' : 'Select'} grupoCursoAnuncio"
                        view="/GrupoCursoList.xhtml">
                 <f:param name="from" value="GestorAnunciosEdit"/>
             </s:button>
@@ -185,7 +185,7 @@
         </rich:dataTable>
 
         <div class="actionButtons">
-            <s:button id="#{gestorAnunciosHome.instance.userAccountAnuncio != null ? 'changeParent' : 'selectParent'}" value="#{gestorAnunciosHome.instance.userAccountAnuncio != null ? 'Change' : 'Select'} userAccountAnuncio"
+            <s:button id="#{gestorAnunciosHome.instance.userAccountAnuncio != null ? 'changeParentuserAccountAnuncio' : 'selectParentuserAccountAnuncio'}" value="#{gestorAnunciosHome.instance.userAccountAnuncio != null ? 'Change' : 'Select'} userAccountAnuncio"
                        view="/UserAccountList.xhtml">
                 <f:param name="from" value="GestorAnunciosEdit"/>
             </s:button>

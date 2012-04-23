@@ -89,7 +89,7 @@
 
 <rich:tabPanel switchType="ajax">
 
-    <rich:tab label="Grupo curso">
+    <rich:tab label="Grupo curso *" labelClass="required">
     <div class="association" id="grupoCursoParent">
 
         <h:outputText value="There is no grupoCurso associated with this gestorEnlacesExternos."
@@ -119,7 +119,7 @@
         </rich:dataTable>
 
         <div class="actionButtons">
-            <s:button id="#{gestorEnlacesExternosHome.instance.grupoCurso != null ? 'changeParent' : 'selectParent'}" value="#{gestorEnlacesExternosHome.instance.grupoCurso != null ? 'Change' : 'Select'} grupoCurso"
+            <s:button id="#{gestorEnlacesExternosHome.instance.grupoCurso != null ? 'changeParentgrupoCurso' : 'selectParentgrupoCurso'}" value="#{gestorEnlacesExternosHome.instance.grupoCurso != null ? 'Change' : 'Select'} grupoCurso"
                        view="/GrupoCursoList.xhtml">
                 <f:param name="from" value="GestorEnlacesExternosEdit"/>
             </s:button>

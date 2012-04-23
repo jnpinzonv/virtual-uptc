@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.NotNull;
+
 /**
  * @author Nicolas
  *
@@ -80,6 +82,7 @@ public class Actividad {
 	/**
 	 * @return the actividadGrupoCurso
 	 */
+	@NotNull
 	@ManyToOne
 	public GrupoCurso getActividadGrupoCurso() {
 		return actividadGrupoCurso;

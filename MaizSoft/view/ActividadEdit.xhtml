@@ -78,7 +78,7 @@
 
 <rich:tabPanel switchType="ajax">
 
-    <rich:tab label="Actividad grupo curso">
+    <rich:tab label="Actividad grupo curso *" labelClass="required">
     <div class="association" id="actividadGrupoCursoParent">
 
         <h:outputText value="There is no actividadGrupoCurso associated with this actividad."
@@ -108,7 +108,7 @@
         </rich:dataTable>
 
         <div class="actionButtons">
-            <s:button id="#{actividadHome.instance.actividadGrupoCurso != null ? 'changeParent' : 'selectParent'}" value="#{actividadHome.instance.actividadGrupoCurso != null ? 'Change' : 'Select'} actividadGrupoCurso"
+            <s:button id="#{actividadHome.instance.actividadGrupoCurso != null ? 'changeParentactividadGrupoCurso' : 'selectParentactividadGrupoCurso'}" value="#{actividadHome.instance.actividadGrupoCurso != null ? 'Change' : 'Select'} actividadGrupoCurso"
                        view="/GrupoCursoList.xhtml">
                 <f:param name="from" value="ActividadEdit"/>
             </s:button>
@@ -147,7 +147,7 @@
         </rich:dataTable>
 
         <div class="actionButtons">
-            <s:button id="#{actividadHome.instance.nota != null ? 'changeParent' : 'selectParent'}" value="#{actividadHome.instance.nota != null ? 'Change' : 'Select'} nota"
+            <s:button id="#{actividadHome.instance.nota != null ? 'changeParentnota' : 'selectParentnota'}" value="#{actividadHome.instance.nota != null ? 'Change' : 'Select'} nota"
                        view="/NotaList.xhtml">
                 <f:param name="from" value="ActividadEdit"/>
             </s:button>

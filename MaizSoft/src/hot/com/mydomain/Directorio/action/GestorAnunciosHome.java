@@ -9,15 +9,13 @@ import org.jboss.seam.framework.EntityHome;
 public class GestorAnunciosHome extends EntityHome<GestorAnuncios> {
 
 	@In(create = true)
-	GrupoCursoHome grupoCursoHome;
-	@In(create = true)
-	UserAccountHome userAccountHome;
+	ActividadHome actividadHome;
 
-	public void setGestorAnunciosIdAnuncio(Long id) {
+	public void setGestorAnunciosIdGestorAnuncios(Long id) {
 		setId(id);
 	}
 
-	public Long getGestorAnunciosIdAnuncio() {
+	public Long getGestorAnunciosIdGestorAnuncios() {
 		return (Long) getId();
 	}
 
@@ -35,18 +33,14 @@ public class GestorAnunciosHome extends EntityHome<GestorAnuncios> {
 
 	public void wire() {
 		getInstance();
-		GrupoCurso grupoCursoAnuncio = grupoCursoHome.getDefinedInstance();
-		if (grupoCursoAnuncio != null) {
-			getInstance().setGrupoCursoAnuncio(grupoCursoAnuncio);
-		}
-		UserAccount userAccountAnuncio = userAccountHome.getDefinedInstance();
-		if (userAccountAnuncio != null) {
-			getInstance().setUserAccountAnuncio(userAccountAnuncio);
+		Actividad actividad = actividadHome.getDefinedInstance();
+		if (actividad != null) {
+			getInstance().setActividad(actividad);
 		}
 	}
 
 	public boolean isWired() {
-		if (getInstance().getGrupoCursoAnuncio() == null)
+		if (getInstance().getActividad() == null)
 			return false;
 		return true;
 	}

@@ -30,10 +30,13 @@
 
             <s:decorate id="nombreEnlaceField" template="layout/edit.xhtml">
                 <ui:define name="label">Nombre enlace</ui:define>
-                <h:inputTextarea id="nombreEnlace"
-                               cols="80"
-                               rows="3"
-                              value="#{gestorEnlacesExternosHome.instance.nombreEnlace}"/>
+                <h:inputText id="nombreEnlace"
+                       required="true"
+                           size="100"
+                      maxlength="100"
+                          value="#{gestorEnlacesExternosHome.instance.nombreEnlace}">
+                    <a:support event="onblur" reRender="nombreEnlaceField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
             </s:decorate>
 
 
@@ -115,6 +118,10 @@
             <h:column>
                 <f:facet name="header">Inscritos</f:facet>
                 <h:outputText value="#{_grupoCurso.inscritos}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Semestre</f:facet>
+                <h:outputText value="#{_grupoCurso.semestre}"/>
             </h:column>
         </rich:dataTable>
 

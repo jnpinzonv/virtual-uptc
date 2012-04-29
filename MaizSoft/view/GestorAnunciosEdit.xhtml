@@ -18,24 +18,27 @@
 
 
 
-            <s:decorate id="descripcionAnuncioField" template="layout/edit.xhtml">
-                <ui:define name="label">Descripcion anuncio</ui:define>
-                <h:inputTextarea id="descripcionAnuncio"
+
+            <s:decorate id="descripcionField" template="layout/edit.xhtml">
+                <ui:define name="label">Descripcion</ui:define>
+                <h:inputTextarea id="descripcion"
                                cols="80"
                                rows="3"
-                              value="#{gestorAnunciosHome.instance.descripcionAnuncio}"/>
+                           required="true"
+                              value="#{gestorAnunciosHome.instance.descripcion}"/>
             </s:decorate>
 
 
-
-            <s:decorate id="nombreAnuncioField" template="layout/edit.xhtml">
-                <ui:define name="label">Nombre anuncio</ui:define>
-                <h:inputTextarea id="nombreAnuncio"
-                               cols="80"
-                               rows="3"
-                              value="#{gestorAnunciosHome.instance.nombreAnuncio}"/>
+            <s:decorate id="nombreField" template="layout/edit.xhtml">
+                <ui:define name="label">Nombre</ui:define>
+                <h:inputText id="nombre"
+                       required="true"
+                           size="50"
+                      maxlength="50"
+                          value="#{gestorAnunciosHome.instance.nombre}">
+                    <a:support event="onblur" reRender="nombreField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
             </s:decorate>
-
 
             <div style="clear:both">
                 <span class="required">*</span>
@@ -80,113 +83,38 @@
 
 <rich:tabPanel switchType="ajax">
 
-    <rich:tab label="Grupo curso anuncio *" labelClass="required">
-    <div class="association" id="grupoCursoAnuncioParent">
+    <rich:tab label="Actividad *" labelClass="required">
+    <div class="association" id="actividadParent">
 
-        <h:outputText value="There is no grupoCursoAnuncio associated with this gestorAnuncios."
-                   rendered="#{gestorAnunciosHome.instance.grupoCursoAnuncio == null}"/>
+        <h:outputText value="There is no actividad associated with this gestorAnuncios."
+                   rendered="#{gestorAnunciosHome.instance.actividad == null}"/>
 
-        <rich:dataTable var="_grupoCurso"
-                   value="#{gestorAnunciosHome.instance.grupoCursoAnuncio}"
-                rendered="#{gestorAnunciosHome.instance.grupoCursoAnuncio != null}"
+        <rich:dataTable var="_actividad"
+                   value="#{gestorAnunciosHome.instance.actividad}"
+                rendered="#{gestorAnunciosHome.instance.actividad != null}"
               rowClasses="rvgRowOne,rvgRowTwo"
-                      id="grupoCursoAnuncioTable">
+                      id="actividadTable">
             <h:column>
-                <f:facet name="header">Id grupo</f:facet>
-                <h:outputText value="#{_grupoCurso.idGrupo}"/>
+                <f:facet name="header">Id actividad</f:facet>
+                <h:outputText value="#{_actividad.idActividad}"/>
             </h:column>
             <h:column>
-                <f:facet name="header">Cupos</f:facet>
-                <h:outputText value="#{_grupoCurso.cupos}"/>
+                <f:facet name="header">Descripcion actividad</f:facet>
+                <h:outputText value="#{_actividad.descripcionActividad}"/>
             </h:column>
             <h:column>
-                <f:facet name="header">Curso grupo codigo</f:facet>
-                <h:outputText value="#{_grupoCurso.cursoGrupo.codigo}"/>
+                <f:facet name="header">Evaluable</f:facet>
+                <h:outputText value="#{_actividad.evaluable}"/>
             </h:column>
             <h:column>
-                <f:facet name="header">Inscritos</f:facet>
-                <h:outputText value="#{_grupoCurso.inscritos}"/>
+                <f:facet name="header">Tipo id tipo</f:facet>
+                <h:outputText value="#{_actividad.tipo.idTipo}"/>
             </h:column>
         </rich:dataTable>
 
         <div class="actionButtons">
-            <s:button id="#{gestorAnunciosHome.instance.grupoCursoAnuncio != null ? 'changeParentgrupoCursoAnuncio' : 'selectParentgrupoCursoAnuncio'}" value="#{gestorAnunciosHome.instance.grupoCursoAnuncio != null ? 'Change' : 'Select'} grupoCursoAnuncio"
-                       view="/GrupoCursoList.xhtml">
-                <f:param name="from" value="GestorAnunciosEdit"/>
-            </s:button>
-        </div>
-
-    </div>
-    </rich:tab>
-
-    <rich:tab label="User account anuncio">
-    <div class="association" id="userAccountAnuncioParent">
-
-        <h:outputText value="There is no userAccountAnuncio associated with this gestorAnuncios."
-                   rendered="#{gestorAnunciosHome.instance.userAccountAnuncio == null}"/>
-
-        <rich:dataTable var="_userAccount"
-                   value="#{gestorAnunciosHome.instance.userAccountAnuncio}"
-                rendered="#{gestorAnunciosHome.instance.userAccountAnuncio != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="userAccountAnuncioTable">
-            <h:column>
-                <f:facet name="header">Id</f:facet>
-                <h:outputText value="#{_userAccount.id}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Apellidos</f:facet>
-                <h:outputText value="#{_userAccount.apellidos}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Correo electronico</f:facet>
-                <h:outputText value="#{_userAccount.correoElectronico}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Documento identidad</f:facet>
-                <h:outputText value="#{_userAccount.documentoIdentidad}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Enabled</f:facet>
-                <h:outputText value="#{_userAccount.enabled}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Foto user</f:facet>
-                <h:outputText value="#{_userAccount.fotoUser}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Grupo curso id grupo</f:facet>
-                <h:outputText value="#{_userAccount.grupoCurso.idGrupo}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Password hash</f:facet>
-                <h:outputText value="#{_userAccount.passwordHash}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Primer nombre</f:facet>
-                <h:outputText value="#{_userAccount.primerNombre}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Segundo nombre</f:facet>
-                <h:outputText value="#{_userAccount.segundoNombre}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo documento</f:facet>
-                <h:outputText value="#{_userAccount.tipoDocumento}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Username</f:facet>
-                <h:outputText value="#{_userAccount.username}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Gestor anuncios id anuncio</f:facet>
-                <h:outputText value="#{_userAccount.gestorAnuncios.idAnuncio}"/>
-            </h:column>
-        </rich:dataTable>
-
-        <div class="actionButtons">
-            <s:button id="#{gestorAnunciosHome.instance.userAccountAnuncio != null ? 'changeParentuserAccountAnuncio' : 'selectParentuserAccountAnuncio'}" value="#{gestorAnunciosHome.instance.userAccountAnuncio != null ? 'Change' : 'Select'} userAccountAnuncio"
-                       view="/UserAccountList.xhtml">
+            <s:button id="#{gestorAnunciosHome.instance.actividad != null ? 'changeParentactividad' : 'selectParentactividad'}" value="#{gestorAnunciosHome.instance.actividad != null ? 'Change' : 'Select'} actividad"
+                       view="/ActividadList.xhtml">
                 <f:param name="from" value="GestorAnunciosEdit"/>
             </s:button>
         </div>

@@ -9,5 +9,6 @@
    <param name="logic" value="#{grupoCursoList.restrictionLogicOperator}"/>
 
    <param name="from"/>
+   <param name="semestre" value="#{grupoCursoList.grupoCurso.semestre}"/>
 
 </page>

@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.Length;
+import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 
 /**
@@ -52,7 +54,7 @@ public class GestorEnlacesExternos {
 	/**
 	 * @return the urlEnlace
 	 */
-	@NotNull
+	@NotEmpty
 	@Column(name= "url_enlace")
 	public String getUrlEnlace() {
 		return urlEnlace;
@@ -69,6 +71,8 @@ public class GestorEnlacesExternos {
 	 * @return the nombreEnlace
 	 */
 	@Column(name= "nombre_enlace")
+	@NotEmpty
+	@Length(max=100)
 	public String getNombreEnlace() {
 		return nombreEnlace;
 	}
@@ -84,6 +88,7 @@ public class GestorEnlacesExternos {
 	 * @return the descripcionEnlace
 	 */
 	@Column(name= "descripcion_enlace")
+	@Length(max=300)
 	public String getDescripcionEnlace() {
 		return descripcionEnlace;
 	}

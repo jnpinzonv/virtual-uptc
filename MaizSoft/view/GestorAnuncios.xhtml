@@ -14,14 +14,14 @@
         <f:facet name="header">Gestor anuncios Details</f:facet>
 
 
-        <s:decorate id="descripcionAnuncio" template="layout/display.xhtml">
-            <ui:define name="label">Descripcion anuncio</ui:define>
-            <h:outputText value="#{gestorAnunciosHome.instance.descripcionAnuncio}"/>
+        <s:decorate id="descripcion" template="layout/display.xhtml">
+            <ui:define name="label">Descripcion</ui:define>
+            <h:outputText value="#{gestorAnunciosHome.instance.descripcion}"/>
         </s:decorate>
 
-        <s:decorate id="nombreAnuncio" template="layout/display.xhtml">
-            <ui:define name="label">Nombre anuncio</ui:define>
-            <h:outputText value="#{gestorAnunciosHome.instance.nombreAnuncio}"/>
+        <s:decorate id="nombre" template="layout/display.xhtml">
+            <ui:define name="label">Nombre</ui:define>
+            <h:outputText value="#{gestorAnunciosHome.instance.nombre}"/>
         </s:decorate>
 
         <div style="clear:both"/>
@@ -44,121 +44,41 @@
 
     <rich:tab>
         <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Grupo curso anuncio</h:panelGroup>
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Actividad</h:panelGroup>
         </f:facet>
-    <div class="association" id="grupoCursoAnuncioParent">
+    <div class="association" id="actividadParent">
 
-        <h:outputText value="There is no grupoCursoAnuncio associated with this gestorAnuncios."
-                   rendered="#{gestorAnunciosHome.instance.grupoCursoAnuncio == null}"/>
+        <h:outputText value="There is no actividad associated with this gestorAnuncios."
+                   rendered="#{gestorAnunciosHome.instance.actividad == null}"/>
 
-        <rich:dataTable var="_grupoCurso"
-                   value="#{gestorAnunciosHome.instance.grupoCursoAnuncio}"
-                rendered="#{gestorAnunciosHome.instance.grupoCursoAnuncio != null}"
+        <rich:dataTable var="_actividad"
+                   value="#{gestorAnunciosHome.instance.actividad}"
+                rendered="#{gestorAnunciosHome.instance.actividad != null}"
               rowClasses="rvgRowOne,rvgRowTwo"
-                      id="grupoCursoAnuncioTable">
+                      id="actividadTable">
             <h:column>
-                <f:facet name="header">Id grupo</f:facet>
-                <h:outputText value="#{_grupoCurso.idGrupo}"/>
+                <f:facet name="header">Id actividad</f:facet>
+                <h:outputText value="#{_actividad.idActividad}"/>
             </h:column>
             <h:column>
-                <f:facet name="header">Cupos</f:facet>
-                <h:outputText value="#{_grupoCurso.cupos}"/>
+                <f:facet name="header">Descripcion actividad</f:facet>
+                <h:outputText value="#{_actividad.descripcionActividad}"/>
             </h:column>
             <h:column>
-                <f:facet name="header">Curso grupo codigo</f:facet>
-                <h:outputText value="#{_grupoCurso.cursoGrupo.codigo}"/>
+                <f:facet name="header">Evaluable</f:facet>
+                <h:outputText value="#{_actividad.evaluable}"/>
             </h:column>
             <h:column>
-                <f:facet name="header">Inscritos</f:facet>
-                <h:outputText value="#{_grupoCurso.inscritos}"/>
+                <f:facet name="header">Tipo id tipo</f:facet>
+                <h:outputText value="#{_actividad.tipo.idTipo}"/>
             </h:column>
             <h:column styleClass="action">
                 <f:facet name="header">Action</f:facet>
-                <s:link id="viewgrupoCurso"
+                <s:link id="viewactividad"
                      value="View"
-                      view="/GrupoCurso.xhtml">
-                    <f:param name="grupoCursoIdGrupo"
-                           value="#{_grupoCurso.idGrupo}"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
-    </div>
-    </rich:tab>
-
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>User account anuncio</h:panelGroup>
-        </f:facet>
-    <div class="association" id="userAccountAnuncioParent">
-
-        <h:outputText value="There is no userAccountAnuncio associated with this gestorAnuncios."
-                   rendered="#{gestorAnunciosHome.instance.userAccountAnuncio == null}"/>
-
-        <rich:dataTable var="_userAccount"
-                   value="#{gestorAnunciosHome.instance.userAccountAnuncio}"
-                rendered="#{gestorAnunciosHome.instance.userAccountAnuncio != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="userAccountAnuncioTable">
-            <h:column>
-                <f:facet name="header">Id</f:facet>
-                <h:outputText value="#{_userAccount.id}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Apellidos</f:facet>
-                <h:outputText value="#{_userAccount.apellidos}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Correo electronico</f:facet>
-                <h:outputText value="#{_userAccount.correoElectronico}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Documento identidad</f:facet>
-                <h:outputText value="#{_userAccount.documentoIdentidad}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Enabled</f:facet>
-                <h:outputText value="#{_userAccount.enabled}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Foto user</f:facet>
-                <h:outputText value="#{_userAccount.fotoUser}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Grupo curso id grupo</f:facet>
-                <h:outputText value="#{_userAccount.grupoCurso.idGrupo}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Password hash</f:facet>
-                <h:outputText value="#{_userAccount.passwordHash}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Primer nombre</f:facet>
-                <h:outputText value="#{_userAccount.primerNombre}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Segundo nombre</f:facet>
-                <h:outputText value="#{_userAccount.segundoNombre}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo documento</f:facet>
-                <h:outputText value="#{_userAccount.tipoDocumento}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Username</f:facet>
-                <h:outputText value="#{_userAccount.username}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Gestor anuncios id anuncio</f:facet>
-                <h:outputText value="#{_userAccount.gestorAnuncios.idAnuncio}"/>
-            </h:column>
-            <h:column styleClass="action">
-                <f:facet name="header">Action</f:facet>
-                <s:link id="viewuserAccount"
-                     value="View"
-                      view="/UserAccount.xhtml">
-                    <f:param name="userAccountId"
-                           value="#{_userAccount.id}"/>
+                      view="/Actividad.xhtml">
+                    <f:param name="actividadIdActividad"
+                           value="#{_actividad.idActividad}"/>
                 </s:link>
             </h:column>
         </rich:dataTable>

@@ -11,44 +11,32 @@
 
    <param name="userAccountFrom"/>
    <param name="userAccountId" value="#{userAccountHome.userAccountId}"/>
-   <param name="grupoCursoFrom"/>
-   <param name="grupoCursoIdGrupo" value="#{grupoCursoHome.grupoCursoIdGrupo}"/>
-   <param name="cursoFrom"/>
-   <param name="cursoCodigo" value="#{cursoHome.cursoCodigo}"/>
-   <param name="escuelaFrom"/>
-   <param name="escuelaIdEscuela" value="#{escuelaHome.escuelaIdEscuela}"/>
-   <param name="facultadFrom"/>
-   <param name="facultadIdFacultad" value="#{facultadHome.facultadIdFacultad}"/>
+   <param name="enteUniversitarioFrom"/>
+   <param name="enteUniversitarioIdEnteUniversitario" value="#{enteUniversitarioHome.enteUniversitarioIdEnteUniversitario}"/>
+   <param name="tipoFrom"/>
+   <param name="tipoIdTipo" value="#{tipoHome.tipoIdTipo}"/>
 
-
-   <param name="semestreFrom"/>
-   <param name="semestreIdSemestre" value="#{semestreHome.semestreIdSemestre}"/>
-
-
-
-   <param name="gestorAnunciosFrom"/>
-   <param name="gestorAnunciosIdAnuncio" value="#{gestorAnunciosHome.gestorAnunciosIdAnuncio}"/>
 
 
 
    <navigation from-action="#{userAccountHome.persist}">
       <rule if-outcome="persisted">
          <end-conversation/>
-         <redirect view-id="/userdetail.xhtml"/>
+         <redirect view-id="/UserAccount.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{userAccountHome.update}">
       <rule if-outcome="updated">
          <end-conversation/>
-         <redirect view-id="/usermanager.xhtml"/>
+         <redirect view-id="/UserAccount.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{userAccountHome.remove}">
       <rule if-outcome="removed">
          <end-conversation/>
-         <redirect view-id="/usermanager.xhtml"/>
+         <redirect view-id="/UserAccountList.xhtml"/>
       </rule>
    </navigation>
 

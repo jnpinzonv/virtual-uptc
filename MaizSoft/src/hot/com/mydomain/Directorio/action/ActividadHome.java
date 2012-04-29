@@ -1,6 +1,8 @@
 package com.mydomain.Directorio.action;
 
 import com.mydomain.Directorio.model.*;
+import java.util.ArrayList;
+import java.util.List;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
@@ -9,9 +11,7 @@ import org.jboss.seam.framework.EntityHome;
 public class ActividadHome extends EntityHome<Actividad> {
 
 	@In(create = true)
-	GrupoCursoHome grupoCursoHome;
-	@In(create = true)
-	NotaHome notaHome;
+	TipoHome tipoHome;
 
 	public void setActividadIdActividad(Long id) {
 		setId(id);
@@ -35,24 +35,29 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 	public void wire() {
 		getInstance();
-		GrupoCurso actividadGrupoCurso = grupoCursoHome.getDefinedInstance();
-		if (actividadGrupoCurso != null) {
-			getInstance().setActividadGrupoCurso(actividadGrupoCurso);
-		}
-		Nota nota = notaHome.getDefinedInstance();
-		if (nota != null) {
-			getInstance().setNota(nota);
+		Tipo tipo = tipoHome.getDefinedInstance();
+		if (tipo != null) {
+			getInstance().setTipo(tipo);
 		}
 	}
 
 	public boolean isWired() {
-		if (getInstance().getActividadGrupoCurso() == null)
+		if (getInstance().getTipo() == null)
 			return false;
 		return true;
 	}
 
 	public Actividad getDefinedInstance() {
 		return isIdDefined() ? getInstance() : null;
+	}
+
+	public List<GestorAnuncios> getGestorAnuncios() {
+		return getInstance() == null ? null : new ArrayList<GestorAnuncios>(
+				getInstance().getGestorAnuncios());
+	}
+	public List<NotaActividad> getListaNotaActividades() {
+		return getInstance() == null ? null : new ArrayList<NotaActividad>(
+				getInstance().getListaNotaActividades());
 	}
 
 }

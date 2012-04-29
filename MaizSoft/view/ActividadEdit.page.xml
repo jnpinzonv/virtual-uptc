@@ -11,23 +11,8 @@
 
    <param name="actividadFrom"/>
    <param name="actividadIdActividad" value="#{actividadHome.actividadIdActividad}"/>
-   <param name="grupoCursoFrom"/>
-   <param name="grupoCursoIdGrupo" value="#{grupoCursoHome.grupoCursoIdGrupo}"/>
-   <param name="cursoFrom"/>
-   <param name="cursoCodigo" value="#{cursoHome.cursoCodigo}"/>
-   <param name="escuelaFrom"/>
-   <param name="escuelaIdEscuela" value="#{escuelaHome.escuelaIdEscuela}"/>
-   <param name="facultadFrom"/>
-   <param name="facultadIdFacultad" value="#{facultadHome.facultadIdFacultad}"/>
-
-
-   <param name="semestreFrom"/>
-   <param name="semestreIdSemestre" value="#{semestreHome.semestreIdSemestre}"/>
-
-
-
-   <param name="notaFrom"/>
-   <param name="notaIdNota" value="#{notaHome.notaIdNota}"/>
+   <param name="tipoFrom"/>
+   <param name="tipoIdTipo" value="#{tipoHome.tipoIdTipo}"/>
 
 
 

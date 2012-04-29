@@ -1,0 +1,266 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="notaActividad" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{notaActividadHome.managed ? 'Edit' : 'Add'} Nota actividad</f:facet>
+
+
+
+
+            <s:decorate id="estadoPendienteField" template="layout/edit.xhtml">
+                <ui:define name="label">Estado pendiente</ui:define>
+                <h:selectBooleanCheckbox id="estadoPendiente"
+                                   required="true"
+                                      value="#{notaActividadHome.instance.estadoPendiente}"/>
+            </s:decorate>
+
+
+
+
+
+            <s:decorate id="justificacionField" template="layout/edit.xhtml">
+                <ui:define name="label">Justificacion</ui:define>
+                <h:inputTextarea id="justificacion"
+                               cols="80"
+                               rows="3"
+                              value="#{notaActividadHome.instance.justificacion}"/>
+            </s:decorate>
+
+
+            <s:decorate id="notaField" template="layout/edit.xhtml">
+                <ui:define name="label">Nota</ui:define>
+                <h:inputText id="nota"
+                       required="true"
+                          value="#{notaActividadHome.instance.nota}">
+                    <a:support event="onblur" reRender="notaField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{notaActividadHome.persist}"
+                       disabled="#{!notaActividadHome.wired}"
+                       rendered="#{!notaActividadHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{notaActividadHome.update}"
+                       rendered="#{notaActividadHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{notaActividadHome.remove}"
+                      immediate="true"
+                       rendered="#{notaActividadHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/NotaActividad.xhtml"
+                rendered="#{notaActividadHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty notaActividadFrom ? 'NotaActividadList' : notaActividadFrom}.xhtml"
+                rendered="#{!notaActividadHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Actividad *" labelClass="required">
+    <div class="association" id="actividadParent">
+
+        <h:outputText value="There is no actividad associated with this notaActividad."
+                   rendered="#{notaActividadHome.instance.actividad == null}"/>
+
+        <rich:dataTable var="_actividad"
+                   value="#{notaActividadHome.instance.actividad}"
+                rendered="#{notaActividadHome.instance.actividad != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="actividadTable">
+            <h:column>
+                <f:facet name="header">Id actividad</f:facet>
+                <h:outputText value="#{_actividad.idActividad}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Descripcion actividad</f:facet>
+                <h:outputText value="#{_actividad.descripcionActividad}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Evaluable</f:facet>
+                <h:outputText value="#{_actividad.evaluable}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo id tipo</f:facet>
+                <h:outputText value="#{_actividad.tipo.idTipo}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{notaActividadHome.instance.actividad != null ? 'changeParentactividad' : 'selectParentactividad'}" value="#{notaActividadHome.instance.actividad != null ? 'Change' : 'Select'} actividad"
+                       view="/ActividadList.xhtml">
+                <f:param name="from" value="NotaActividadEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab label="Gestor carga archivos">
+    <div class="association" id="gestorCargaArchivosParent">
+
+        <h:outputText value="There is no gestorCargaArchivos associated with this notaActividad."
+                   rendered="#{notaActividadHome.instance.gestorCargaArchivos == null}"/>
+
+        <rich:dataTable var="_gestorCargaArchivos"
+                   value="#{notaActividadHome.instance.gestorCargaArchivos}"
+                rendered="#{notaActividadHome.instance.gestorCargaArchivos != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="gestorCargaArchivosTable">
+            <h:column>
+                <f:facet name="header">Id gestor carga archivos</f:facet>
+                <h:outputText value="#{_gestorCargaArchivos.idGestorCargaArchivos}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Descripcion</f:facet>
+                <h:outputText value="#{_gestorCargaArchivos.descripcion}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nombre</f:facet>
+                <h:outputText value="#{_gestorCargaArchivos.nombre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Ruta</f:facet>
+                <h:outputText value="#{_gestorCargaArchivos.ruta}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo id tipo</f:facet>
+                <h:outputText value="#{_gestorCargaArchivos.tipo.idTipo}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{notaActividadHome.instance.gestorCargaArchivos != null ? 'changeParentgestorCargaArchivos' : 'selectParentgestorCargaArchivos'}" value="#{notaActividadHome.instance.gestorCargaArchivos != null ? 'Change' : 'Select'} gestorCargaArchivos"
+                       view="/GestorCargaArchivosList.xhtml">
+                <f:param name="from" value="NotaActividadEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab label="Gestor mensajeria">
+    <div class="association" id="gestorMensajeriaParent">
+
+        <h:outputText value="There is no gestorMensajeria associated with this notaActividad."
+                   rendered="#{notaActividadHome.instance.gestorMensajeria == null}"/>
+
+        <rich:dataTable var="_gestorMensajeria"
+                   value="#{notaActividadHome.instance.gestorMensajeria}"
+                rendered="#{notaActividadHome.instance.gestorMensajeria != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="gestorMensajeriaTable">
+            <h:column>
+                <f:facet name="header">Id mensaje</f:facet>
+                <h:outputText value="#{_gestorMensajeria.idMensaje}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Asunto</f:facet>
+                <h:outputText value="#{_gestorMensajeria.asunto}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">De usuario id</f:facet>
+                <h:outputText value="#{_gestorMensajeria.deUsuario.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Fecha envio</f:facet>
+                <h:outputText value="#{_gestorMensajeria.fechaEnvio}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Gestor mensajeria id mensaje</f:facet>
+                <h:outputText value="#{_gestorMensajeria.gestorMensajeria.idMensaje}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Mensaje</f:facet>
+                <h:outputText value="#{_gestorMensajeria.mensaje}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo id tipo</f:facet>
+                <h:outputText value="#{_gestorMensajeria.tipo.idTipo}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{notaActividadHome.instance.gestorMensajeria != null ? 'changeParentgestorMensajeria' : 'selectParentgestorMensajeria'}" value="#{notaActividadHome.instance.gestorMensajeria != null ? 'Change' : 'Select'} gestorMensajeria"
+                       view="/GestorMensajeriaList.xhtml">
+                <f:param name="from" value="NotaActividadEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab label="Grupo curso *" labelClass="required">
+    <div class="association" id="grupoCursoParent">
+
+        <h:outputText value="There is no grupoCurso associated with this notaActividad."
+                   rendered="#{notaActividadHome.instance.grupoCurso == null}"/>
+
+        <rich:dataTable var="_grupoUsuarios"
+                   value="#{notaActividadHome.instance.grupoCurso}"
+                rendered="#{notaActividadHome.instance.grupoCurso != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="grupoCursoTable">
+            <h:column>
+                <f:facet name="header">Id grupo usuarios</f:facet>
+                <h:outputText value="#{_grupoUsuarios.idGrupoUsuarios}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Grupo curso id grupo</f:facet>
+                <h:outputText value="#{_grupoUsuarios.grupoCurso.idGrupo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">User grupo curso id</f:facet>
+                <h:outputText value="#{_grupoUsuarios.userGrupoCurso.id}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{notaActividadHome.instance.grupoCurso != null ? 'changeParentgrupoCurso' : 'selectParentgrupoCurso'}" value="#{notaActividadHome.instance.grupoCurso != null ? 'Change' : 'Select'} grupoCurso"
+                       view="/GrupoUsuariosList.xhtml">
+                <f:param name="from" value="NotaActividadEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

@@ -61,16 +61,6 @@
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{actividadList}"/>
-                    <ui:param name="propertyLabel" value="Actividad grupo curso id grupo"/>
-                    <ui:param name="propertyPath" value="actividad.actividadGrupoCurso.idGrupo"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_actividad.actividadGrupoCurso.idGrupo}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{actividadList}"/>
                     <ui:param name="propertyLabel" value="Descripcion actividad"/>
                     <ui:param name="propertyPath" value="actividad.descripcionActividad"/>
                 </ui:include>
@@ -91,11 +81,11 @@
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{actividadList}"/>
-                    <ui:param name="propertyLabel" value="Nota id nota"/>
-                    <ui:param name="propertyPath" value="actividad.nota.idNota"/>
+                    <ui:param name="propertyLabel" value="Tipo id tipo"/>
+                    <ui:param name="propertyPath" value="actividad.tipo.idTipo"/>
                 </ui:include>
             </f:facet>
-            <h:outputText value="#{_actividad.nota.idNota}"/>
+            <h:outputText value="#{_actividad.tipo.idTipo}"/>
         </h:column>
         <rich:column styleClass="action">
             <f:facet name="header">Action</f:facet>

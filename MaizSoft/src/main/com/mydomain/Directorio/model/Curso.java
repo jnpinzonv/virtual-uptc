@@ -3,11 +3,11 @@
  */
 package com.mydomain.Directorio.model;
 
-import java.util.ArrayList;
+
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,7 +15,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.Length;
+import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
+import org.hibernate.validator.Size;
 
 /**
  * @author Nicolas
@@ -27,20 +30,18 @@ public class Curso {
 
 	private Long codigo;
 	
-	private String nombreAsignatura;
-	
-	private Escuela escuelaCurso;
-	
-	private Semestre semestreCurso;
+	private String nombreAsignatura;	
 	
 	private Set<GrupoCurso> grupoCursos;
 	
-	
+	private EnteUniversitario enteUniversitario;
 	
 	/**
 	 * @return the codigo
 	 */
 	@Id
+	@NotNull
+	@Size(max=20)
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -57,7 +58,9 @@ public class Curso {
 	/**
 	 * @return the nombreAsignatura
 	 */
+	@NotEmpty
 	@Column(name="nombre_asignatura")
+	@Length(max=200)
 	public String getNombreAsignatura() {
 		return nombreAsignatura;
 	}
@@ -69,39 +72,12 @@ public class Curso {
 		this.nombreAsignatura = nombreAsignatura;
 	}
 
-	@NotNull
-	@ManyToOne
-	public Escuela getEscuelaCurso() {
-		return escuelaCurso;
-	}
-
-	/**
-	 * @param escuelaCurso the escuelaCurso to set
-	 */
-	public void setEscuelaCurso(Escuela escuelaCurso) {
-		this.escuelaCurso = escuelaCurso;
-	}
-
-	/**
-	 * @return the semestreCurso
-	 */
-	@NotNull
-	@ManyToOne
-	public Semestre getSemestreCurso() {
-		return semestreCurso;
-	}
-
-	/**
-	 * @param semestreCurso the semestreCurso to set
-	 */
-	public void setSemestreCurso(Semestre semestreCurso) {
-		this.semestreCurso = semestreCurso;
-	}
+	
 
 	/**
 	 * @return the grupoCursos
 	 */
-	@OneToMany(mappedBy="cursoGrupo")
+	@OneToMany(mappedBy="cursoGrupo", cascade=CascadeType.ALL)
 	public Set<GrupoCurso> getGrupoCursos() {
 		if(grupoCursos==null){
 			return new HashSet<GrupoCurso>();
@@ -114,6 +90,22 @@ public class Curso {
 	 */
 	public void setGrupoCursos(Set<GrupoCurso> grupoCursos) {
 		this.grupoCursos = grupoCursos;
+	}
+
+	/**
+	 * @return the enteUniversitario
+	 */
+	@NotNull
+	@ManyToOne
+	public EnteUniversitario getEnteUniversitario() {
+		return enteUniversitario;
+	}
+
+	/**
+	 * @param enteUniversitario the enteUniversitario to set
+	 */
+	public void setEnteUniversitario(EnteUniversitario enteUniversitario) {
+		this.enteUniversitario = enteUniversitario;
 	}
 
 	

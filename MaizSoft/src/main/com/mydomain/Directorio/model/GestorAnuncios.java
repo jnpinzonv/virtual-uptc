@@ -3,112 +3,95 @@
  */
 package com.mydomain.Directorio.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.Length;
+import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 
 /**
  *@author Josué Nicolás Pinzón Villamil <jnpinzonv@hotmail.com>
  *@Version${date}
  */
-@Entity
-@Table(name="gestor_anuncios")
+ @Entity
+ @Table(name="gestor_anuncios")
 public class GestorAnuncios {
-	
-	private Long idAnuncio;
-	
-	private String nombreAnuncio;
-	
-	private String descripcionAnuncio;
-	
-	private UserAccount userAccountAnuncio;
-	
-	private GrupoCurso grupoCursoAnuncio;
 
+	 private Long idGestorAnuncios;
+	 
+	 private String nombre;
+	 
+	 private String descripcion;
+
+	 private Actividad actividad;
 	/**
-	 * @return the idAnuncio
+	 * @return the idGestorAnuncios
 	 */
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)	
-	public Long getIdAnuncio() {
-		return idAnuncio;
+	 @Id
+	 @GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getIdGestorAnuncios() {
+		return idGestorAnuncios;
 	}
 
 	/**
-	 * @param idAnuncio the idAnuncio to set
+	 * @param idGestorAnuncios the idGestorAnuncios to set
 	 */
-	public void setIdAnuncio(Long idAnuncio) {
-		this.idAnuncio = idAnuncio;
+	public void setIdGestorAnuncios(Long idGestorAnuncios) {
+		this.idGestorAnuncios = idGestorAnuncios;
 	}
 
 	/**
-	 * @return the nombreAnuncio
+	 * @return the nombre
 	 */
-	@Column(name= "nombre_anuncio")
-	public String getNombreAnuncio() {
-		return nombreAnuncio;
+	@NotEmpty
+	@Length(max=50)
+	public String getNombre() {
+		return nombre;
 	}
 
 	/**
-	 * @param nombreAnuncio the nombreAnuncio to set
+	 * @param nombre the nombre to set
 	 */
-	public void setNombreAnuncio(String nombreAnuncio) {
-		this.nombreAnuncio = nombreAnuncio;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	/**
-	 * @return the descripcionAnuncio
+	 * @return the descripcion
 	 */
-	@Column(name= "descripcion_anuncio")
-	public String getDescripcionAnuncio() {
-		return descripcionAnuncio;
+	@NotEmpty
+	@Length(max=300)
+	public String getDescripcion() {
+		return descripcion;
 	}
 
 	/**
-	 * @param descripcionAnuncio the descripcionAnuncio to set
+	 * @param descripcion the descripcion to set
 	 */
-	public void setDescripcionAnuncio(String descripcionAnuncio) {
-		this.descripcionAnuncio = descripcionAnuncio;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	/**
-	 * @return the userAccountAnuncio
+	 * @return the actividad
 	 */
-	@OneToOne
-	public UserAccount getUserAccountAnuncio() {
-		return userAccountAnuncio;
-	}
-
-	/**
-	 * @param userAccountAnuncio the userAccountAnuncio to set
-	 */
-	public void setUserAccountAnuncio(UserAccount userAccountAnuncio) {
-		this.userAccountAnuncio = userAccountAnuncio;
-	}
-
-	/**
-	 * @return the grupoCursoAnuncio
-	 */
-	@NotNull
 	@ManyToOne
-	public GrupoCurso getGrupoCursoAnuncio() {
-		return grupoCursoAnuncio;
+	@NotNull
+	public Actividad getActividad() {
+		return actividad;
 	}
 
 	/**
-	 * @param grupoCursoAnuncio the grupoCursoAnuncio to set
+	 * @param actividad the actividad to set
 	 */
-	public void setGrupoCursoAnuncio(GrupoCurso grupoCursoAnuncio) {
-		this.grupoCursoAnuncio = grupoCursoAnuncio;
+	public void setActividad(Actividad actividad) {
+		this.actividad = actividad;
 	}
-
-	
-	
+	 
+	 
 }

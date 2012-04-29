@@ -10,7 +10,7 @@ public class GrupoCursoList extends EntityQuery<GrupoCurso> {
 
 	private static final String EJBQL = "select grupoCurso from GrupoCurso grupoCurso";
 
-	private static final String[] RESTRICTIONS = {};
+	private static final String[] RESTRICTIONS = {"lower(grupoCurso.semestre) like lower(concat(#{grupoCursoList.grupoCurso.semestre},'%'))",};
 
 	private GrupoCurso grupoCurso = new GrupoCurso();
 

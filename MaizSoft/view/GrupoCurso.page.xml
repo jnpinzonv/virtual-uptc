@@ -7,14 +7,11 @@
    <param name="grupoCursoIdGrupo" value="#{grupoCursoHome.grupoCursoIdGrupo}"/>
    <param name="cursoFrom"/>
    <param name="cursoCodigo" value="#{cursoHome.cursoCodigo}"/>
-   <param name="escuelaFrom"/>
-   <param name="escuelaIdEscuela" value="#{escuelaHome.escuelaIdEscuela}"/>
-   <param name="facultadFrom"/>
-   <param name="facultadIdFacultad" value="#{facultadHome.facultadIdFacultad}"/>
+   <param name="enteUniversitarioFrom"/>
+   <param name="enteUniversitarioIdEnteUniversitario" value="#{enteUniversitarioHome.enteUniversitarioIdEnteUniversitario}"/>
+   <param name="tipoFrom"/>
+   <param name="tipoIdTipo" value="#{tipoHome.tipoIdTipo}"/>
 
-
-   <param name="semestreFrom"/>
-   <param name="semestreIdSemestre" value="#{semestreHome.semestreIdSemestre}"/>
 
 
 

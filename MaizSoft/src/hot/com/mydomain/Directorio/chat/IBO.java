@@ -15,5 +15,5 @@ import java.util.Vector;
  * 2010
  */
 public interface IBO {
-    public Vector<ChatUser> loadUsers();
+	public Vector<ChatUser> loadUsers();
 }

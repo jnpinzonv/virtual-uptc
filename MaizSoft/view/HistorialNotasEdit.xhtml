@@ -1,0 +1,191 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="historialNotas" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{historialNotasHome.managed ? 'Edit' : 'Add'} Historial notas</f:facet>
+
+
+
+
+            <s:decorate id="notaField" template="layout/edit.xhtml">
+                <ui:define name="label">Nota</ui:define>
+                <h:inputText id="nota"
+                       required="true"
+                          value="#{historialNotasHome.instance.nota}">
+                    <a:support event="onblur" reRender="notaField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{historialNotasHome.persist}"
+                       disabled="#{!historialNotasHome.wired}"
+                       rendered="#{!historialNotasHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{historialNotasHome.update}"
+                       rendered="#{historialNotasHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{historialNotasHome.remove}"
+                      immediate="true"
+                       rendered="#{historialNotasHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/HistorialNotas.xhtml"
+                rendered="#{historialNotasHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty historialNotasFrom ? 'HistorialNotasList' : historialNotasFrom}.xhtml"
+                rendered="#{!historialNotasHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Grupo curso *" labelClass="required">
+    <div class="association" id="grupoCursoParent">
+
+        <h:outputText value="There is no grupoCurso associated with this historialNotas."
+                   rendered="#{historialNotasHome.instance.grupoCurso == null}"/>
+
+        <rich:dataTable var="_grupoCurso"
+                   value="#{historialNotasHome.instance.grupoCurso}"
+                rendered="#{historialNotasHome.instance.grupoCurso != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="grupoCursoTable">
+            <h:column>
+                <f:facet name="header">Id grupo</f:facet>
+                <h:outputText value="#{_grupoCurso.idGrupo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Cupos</f:facet>
+                <h:outputText value="#{_grupoCurso.cupos}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Curso grupo codigo</f:facet>
+                <h:outputText value="#{_grupoCurso.cursoGrupo.codigo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Inscritos</f:facet>
+                <h:outputText value="#{_grupoCurso.inscritos}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Semestre</f:facet>
+                <h:outputText value="#{_grupoCurso.semestre}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{historialNotasHome.instance.grupoCurso != null ? 'changeParentgrupoCurso' : 'selectParentgrupoCurso'}" value="#{historialNotasHome.instance.grupoCurso != null ? 'Change' : 'Select'} grupoCurso"
+                       view="/GrupoCursoList.xhtml">
+                <f:param name="from" value="HistorialNotasEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab label="User account *" labelClass="required">
+    <div class="association" id="userAccountParent">
+
+        <h:outputText value="There is no userAccount associated with this historialNotas."
+                   rendered="#{historialNotasHome.instance.userAccount == null}"/>
+
+        <rich:dataTable var="_userAccount"
+                   value="#{historialNotasHome.instance.userAccount}"
+                rendered="#{historialNotasHome.instance.userAccount != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="userAccountTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_userAccount.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Apellidos</f:facet>
+                <h:outputText value="#{_userAccount.apellidos}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Correo electronico</f:facet>
+                <h:outputText value="#{_userAccount.correoElectronico}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Documento identidad</f:facet>
+                <h:outputText value="#{_userAccount.documentoIdentidad}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Enabled</f:facet>
+                <h:outputText value="#{_userAccount.enabled}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Ente universitarios id ente universitario</f:facet>
+                <h:outputText value="#{_userAccount.enteUniversitarios.idEnteUniversitario}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Foto user</f:facet>
+                <h:outputText value="#{_userAccount.fotoUser}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Password hash</f:facet>
+                <h:outputText value="#{_userAccount.passwordHash}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Primer nombre</f:facet>
+                <h:outputText value="#{_userAccount.primerNombre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Segundo nombre</f:facet>
+                <h:outputText value="#{_userAccount.segundoNombre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo id tipo</f:facet>
+                <h:outputText value="#{_userAccount.tipo.idTipo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Username</f:facet>
+                <h:outputText value="#{_userAccount.username}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{historialNotasHome.instance.userAccount != null ? 'changeParentuserAccount' : 'selectParentuserAccount'}" value="#{historialNotasHome.instance.userAccount != null ? 'Change' : 'Select'} userAccount"
+                       view="/UserAccountList.xhtml">
+                <f:param name="from" value="HistorialNotasEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

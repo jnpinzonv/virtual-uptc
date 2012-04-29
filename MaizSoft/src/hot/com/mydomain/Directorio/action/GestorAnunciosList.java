@@ -11,8 +11,8 @@ public class GestorAnunciosList extends EntityQuery<GestorAnuncios> {
 	private static final String EJBQL = "select gestorAnuncios from GestorAnuncios gestorAnuncios";
 
 	private static final String[] RESTRICTIONS = {
-			"lower(gestorAnuncios.descripcionAnuncio) like lower(concat(#{gestorAnunciosList.gestorAnuncios.descripcionAnuncio},'%'))",
-			"lower(gestorAnuncios.nombreAnuncio) like lower(concat(#{gestorAnunciosList.gestorAnuncios.nombreAnuncio},'%'))",};
+			"lower(gestorAnuncios.descripcion) like lower(concat(#{gestorAnunciosList.gestorAnuncios.descripcion},'%'))",
+			"lower(gestorAnuncios.nombre) like lower(concat(#{gestorAnunciosList.gestorAnuncios.nombre},'%'))",};
 
 	private GestorAnuncios gestorAnuncios = new GestorAnuncios();
 

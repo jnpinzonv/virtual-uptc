@@ -15,6 +15,11 @@
         <rich:simpleTogglePanel label="GrupoCurso Search Filter" switchType="ajax">
 
             <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Semestre</ui:define>
+                <h:inputText id="semestre" value="#{grupoCursoList.grupoCurso.semestre}"/>
+            </s:decorate>
+
+            <s:decorate template="layout/display.xhtml">
                 <ui:define name="label">Match</ui:define>
                 <h:selectOneRadio id="logic" value="#{grupoCursoList.restrictionLogicOperator}" styleClass="radio">
                     <f:selectItem itemLabel="All" itemValue="and"/>
@@ -81,6 +86,16 @@
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_grupoCurso.inscritos}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{grupoCursoList}"/>
+                    <ui:param name="propertyLabel" value="Semestre"/>
+                    <ui:param name="propertyPath" value="grupoCurso.semestre"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_grupoCurso.semestre}"/>
         </h:column>
         <rich:column styleClass="action">
             <f:facet name="header">Action</f:facet>

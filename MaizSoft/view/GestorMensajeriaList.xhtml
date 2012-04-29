@@ -20,11 +20,6 @@
             </s:decorate>
 
             <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Mensaje</ui:define>
-                <h:inputText id="mensaje" value="#{gestorMensajeriaList.gestorMensajeria.mensaje}"/>
-            </s:decorate>
-
-            <s:decorate template="layout/display.xhtml">
                 <ui:define name="label">Match</ui:define>
                 <h:selectOneRadio id="logic" value="#{gestorMensajeriaList.restrictionLogicOperator}" styleClass="radio">
                     <f:selectItem itemLabel="All" itemValue="and"/>
@@ -98,11 +93,31 @@
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{gestorMensajeriaList}"/>
+                    <ui:param name="propertyLabel" value="Gestor mensajeria id mensaje"/>
+                    <ui:param name="propertyPath" value="gestorMensajeria.gestorMensajeria.idMensaje"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_gestorMensajeria.gestorMensajeria.idMensaje}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{gestorMensajeriaList}"/>
                     <ui:param name="propertyLabel" value="Mensaje"/>
                     <ui:param name="propertyPath" value="gestorMensajeria.mensaje"/>
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_gestorMensajeria.mensaje}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{gestorMensajeriaList}"/>
+                    <ui:param name="propertyLabel" value="Tipo id tipo"/>
+                    <ui:param name="propertyPath" value="gestorMensajeria.tipo.idTipo"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_gestorMensajeria.tipo.idTipo}"/>
         </h:column>
         <rich:column styleClass="action">
             <f:facet name="header">Action</f:facet>

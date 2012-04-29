@@ -34,10 +34,10 @@
                 <ui:define name="label">Nombre asignatura</ui:define>
                 <h:inputTextarea id="nombreAsignatura"
                                cols="80"
-                               rows="3"
+                               rows="2"
+                           required="true"
                               value="#{cursoHome.instance.nombreAsignatura}"/>
             </s:decorate>
-
 
             <div style="clear:both">
                 <span class="required">*</span>
@@ -82,38 +82,42 @@
 
 <rich:tabPanel switchType="ajax">
 
-    <rich:tab label="Escuela curso *" labelClass="required">
-    <div class="association" id="escuelaCursoParent">
+    <rich:tab label="Ente universitario *" labelClass="required">
+    <div class="association" id="enteUniversitarioParent">
 
-        <h:outputText value="There is no escuelaCurso associated with this curso."
-                   rendered="#{cursoHome.instance.escuelaCurso == null}"/>
+        <h:outputText value="There is no enteUniversitario associated with this curso."
+                   rendered="#{cursoHome.instance.enteUniversitario == null}"/>
 
-        <rich:dataTable var="_escuela"
-                   value="#{cursoHome.instance.escuelaCurso}"
-                rendered="#{cursoHome.instance.escuelaCurso != null}"
+        <rich:dataTable var="_enteUniversitario"
+                   value="#{cursoHome.instance.enteUniversitario}"
+                rendered="#{cursoHome.instance.enteUniversitario != null}"
               rowClasses="rvgRowOne,rvgRowTwo"
-                      id="escuelaCursoTable">
+                      id="enteUniversitarioTable">
             <h:column>
-                <f:facet name="header">Id escuela</f:facet>
-                <h:outputText value="#{_escuela.idEscuela}"/>
+                <f:facet name="header">Id ente universitario</f:facet>
+                <h:outputText value="#{_enteUniversitario.idEnteUniversitario}"/>
             </h:column>
             <h:column>
-                <f:facet name="header">Descripcion escuela</f:facet>
-                <h:outputText value="#{_escuela.descripcionEscuela}"/>
+                <f:facet name="header">Descripcion ente universitario</f:facet>
+                <h:outputText value="#{_enteUniversitario.descripcionEnteUniversitario}"/>
             </h:column>
             <h:column>
-                <f:facet name="header">Facultad id facultad</f:facet>
-                <h:outputText value="#{_escuela.facultad.idFacultad}"/>
+                <f:facet name="header">Ente universitario id ente universitario</f:facet>
+                <h:outputText value="#{_enteUniversitario.enteUniversitario.idEnteUniversitario}"/>
             </h:column>
             <h:column>
-                <f:facet name="header">Nombre escuela</f:facet>
-                <h:outputText value="#{_escuela.nombreEscuela}"/>
+                <f:facet name="header">Nombre ente universitario</f:facet>
+                <h:outputText value="#{_enteUniversitario.nombreEnteUniversitario}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo ente universitario id tipo</f:facet>
+                <h:outputText value="#{_enteUniversitario.tipoEnteUniversitario.idTipo}"/>
             </h:column>
         </rich:dataTable>
 
         <div class="actionButtons">
-            <s:button id="#{cursoHome.instance.escuelaCurso != null ? 'changeParentescuelaCurso' : 'selectParentescuelaCurso'}" value="#{cursoHome.instance.escuelaCurso != null ? 'Change' : 'Select'} escuelaCurso"
-                       view="/EscuelaList.xhtml">
+            <s:button id="#{cursoHome.instance.enteUniversitario != null ? 'changeParententeUniversitario' : 'selectParententeUniversitario'}" value="#{cursoHome.instance.enteUniversitario != null ? 'Change' : 'Select'} enteUniversitario"
+                       view="/EnteUniversitarioList.xhtml">
                 <f:param name="from" value="CursoEdit"/>
             </s:button>
         </div>
@@ -144,6 +148,10 @@
                     <f:facet name="header">Inscritos</f:facet>
                     <h:outputText value="#{_grupoCurso.inscritos}"/>
                 </rich:column>
+                <rich:column sortBy="#{_grupoCurso.semestre}">
+                    <f:facet name="header">Semestre</f:facet>
+                    <h:outputText value="#{_grupoCurso.semestre}"/>
+                </rich:column>
             </rich:dataTable>
 
         </h:form>
@@ -160,41 +168,6 @@
             </s:button>
         </div>
         </f:subview>
-    </rich:tab>
-
-    <rich:tab label="Semestre curso *" labelClass="required">
-    <div class="association" id="semestreCursoParent">
-
-        <h:outputText value="There is no semestreCurso associated with this curso."
-                   rendered="#{cursoHome.instance.semestreCurso == null}"/>
-
-        <rich:dataTable var="_semestre"
-                   value="#{cursoHome.instance.semestreCurso}"
-                rendered="#{cursoHome.instance.semestreCurso != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="semestreCursoTable">
-            <h:column>
-                <f:facet name="header">Id semestre</f:facet>
-                <h:outputText value="#{_semestre.idSemestre}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Anio academico</f:facet>
-                <h:outputText value="#{_semestre.anioAcademico}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Semestre academico</f:facet>
-                <h:outputText value="#{_semestre.semestreAcademico}"/>
-            </h:column>
-        </rich:dataTable>
-
-        <div class="actionButtons">
-            <s:button id="#{cursoHome.instance.semestreCurso != null ? 'changeParentsemestreCurso' : 'selectParentsemestreCurso'}" value="#{cursoHome.instance.semestreCurso != null ? 'Change' : 'Select'} semestreCurso"
-                       view="/SemestreList.xhtml">
-                <f:param name="from" value="CursoEdit"/>
-            </s:button>
-        </div>
-
-    </div>
     </rich:tab>
 </rich:tabPanel>
 </ui:define>

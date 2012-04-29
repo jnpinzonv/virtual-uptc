@@ -6,13 +6,17 @@ package com.mydomain.Directorio.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.validator.Length;
+import org.hibernate.validator.NotNull;
+import org.hibernate.validator.Size;
 
 /**
  * @author Nicolas
@@ -30,21 +34,18 @@ public class GrupoCurso {
 	
 	private Curso cursoGrupo;
 	
-	private Set<UserAccount> listaUsuarios;
-
-	private Set< Actividad> actividades;
+	private String semestre;
 	
 	private Set<GestorEnlacesExternos> enlacesExternos;
+
+	private Set<GrupoUsuarios> grupoUsuarios;
 	
-	private Set<GestorAnuncios> gestorAnuncios;
-	
-	private Set<GestorAudioConferencia> gestorAudio;
-	
-	private Set<GestorVideoConferencia> gestorVideo;
+	private Set<HistorialNotas> listaHistorialNotas;
 	/**
 	 * @return the idGrupo
 	 */
 	@Id
+	@NotNull
 	public Long getIdGrupo() {
 		return idGrupo;
 	}
@@ -53,7 +54,7 @@ public class GrupoCurso {
 	 * @param idGrupo the idGrupo to set
 	 */
 	public void setIdGrupo(Long idGrupo) {
-		idGrupo = idGrupo;
+		this.idGrupo = idGrupo;
 	}
 
 	
@@ -61,6 +62,7 @@ public class GrupoCurso {
 	 * @return the cupos
 	 */
 	@Column(name="cupos")
+	@NotNull
 	public Integer getCupos() {
 		return cupos;
 	}
@@ -76,6 +78,7 @@ public class GrupoCurso {
 	 * @return the inscritos
 	 */
 	@Column(name="inscritos")
+	@NotNull
 	public Integer getInscritos() {
 		return inscritos;
 	}
@@ -90,6 +93,7 @@ public class GrupoCurso {
 	/**
 	 * @return the cursoGrupo
 	 */
+	@NotNull
 	@ManyToOne
 	public Curso getCursoGrupo() {
 		return cursoGrupo;
@@ -102,46 +106,14 @@ public class GrupoCurso {
 		this.cursoGrupo = cursoGrupo;
 	}
 
-	/**
-	 * @return the listaUsuarios
-	 */
-	@OneToMany(mappedBy="grupoCurso")
-	public Set<UserAccount> getListaUsuarios() {
-		if(listaUsuarios==null){
-			return new HashSet<UserAccount>();
-		}
-		return listaUsuarios;
-	}
+	
 
-	/**
-	 * @param listaUsuarios the listaUsuarios to set
-	 */
-	public void setListaUsuarios(Set<UserAccount> listaUsuarios) {
-		this.listaUsuarios = listaUsuarios;
-	}
-
-	/**
-	 * @return the actividades
-	 */
-	@OneToMany(mappedBy="actividadGrupoCurso")
-	public Set<Actividad> getActividades() {
-		if(actividades==null){
-			return new HashSet<Actividad>();
-		}
-		return actividades;
-	}
-
-	/**
-	 * @param actividades the actividades to set
-	 */
-	public void setActividades(Set<Actividad> actividades) {
-		this.actividades = actividades;
-	}
+	
 
 	/**
 	 * @return the enlacesExternos
 	 */
-	@OneToMany(mappedBy="grupoCurso")
+	@OneToMany(mappedBy="grupoCurso",cascade=CascadeType.ALL)
 	public Set<GestorEnlacesExternos> getEnlacesExternos() {
 		if(enlacesExternos==null){
 			return new HashSet<GestorEnlacesExternos>();
@@ -157,58 +129,52 @@ public class GrupoCurso {
 	}
 
 	/**
-	 * @return the gestorAnuncios
+	 * @return the listaHistorialNotas
 	 */
-	@OneToMany(mappedBy="grupoCursoAnuncio")
-	public Set<GestorAnuncios> getGestorAnuncios() {
-		if(gestorAnuncios==null){
-			return new HashSet<GestorAnuncios>();
+	@OneToMany(mappedBy="grupoCurso",cascade=CascadeType.ALL)
+	public Set<HistorialNotas> getListaHistorialNotas() {
+		if(listaHistorialNotas==null){
+			return new HashSet<HistorialNotas>();
 		}
-		return gestorAnuncios;
+		return listaHistorialNotas;
 	}
 
 	/**
-	 * @param gestorAnuncios the gestorAnuncios to set
+	 * @param listaHistorialNotas the listaHistorialNotas to set
 	 */
-	public void setGestorAnuncios(Set<GestorAnuncios> gestorAnuncios) {
-		this.gestorAnuncios = gestorAnuncios;
+	public void setListaHistorialNotas(Set<HistorialNotas> listaHistorialNotas) {
+		this.listaHistorialNotas = listaHistorialNotas;
 	}
 
 	/**
-	 * @return the gestorAudio
+	 * @return the grupoUsuarios
 	 */
-	@OneToMany(mappedBy="grupoCursoAudio")
-	public Set<GestorAudioConferencia> getGestorAudio() {
-		if(gestorAudio==null){
-			return new HashSet<GestorAudioConferencia>();
-		}
-		return gestorAudio;
+	@OneToMany(mappedBy="grupoCurso",cascade=CascadeType.ALL)
+	public Set<GrupoUsuarios> getGrupoUsuarios() {
+		return grupoUsuarios;
 	}
 
 	/**
-	 * @param gestorAudio the gestorAudio to set
+	 * @param grupoUsuarios the grupoUsuarios to set
 	 */
-	
-	public void setGestorAudio(Set<GestorAudioConferencia> gestorAudio) {
-		this.gestorAudio = gestorAudio;
+	public void setGrupoUsuarios(Set<GrupoUsuarios> grupoUsuarios) {
+		this.grupoUsuarios = grupoUsuarios;
 	}
 
 	/**
-	 * @return the gestorVideo
+	 * @return the semestre
 	 */
-	@OneToMany(mappedBy="grupoCursoVideo")
-	public Set<GestorVideoConferencia> getGestorVideo() {
-		if(gestorVideo==null){
-			return new HashSet<GestorVideoConferencia>();
-		}
-		return gestorVideo;
+	@NotNull
+	@Length(max=20)
+	public String getSemestre() {
+		return semestre;
 	}
 
 	/**
-	 * @param gestorVideo the gestorVideo to set
+	 * @param semestre the semestre to set
 	 */
-	public void setGestorVideo(Set<GestorVideoConferencia> gestorVideo) {
-		this.gestorVideo = gestorVideo;
+	public void setSemestre(String semestre) {
+		this.semestre = semestre;
 	}
 
 	

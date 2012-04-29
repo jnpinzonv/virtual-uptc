@@ -3,15 +3,20 @@
  */
 package com.mydomain.Directorio.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
 
 /**
@@ -28,10 +33,27 @@ public class Actividad {
 	
 	private boolean evaluable;
 	
-	private Nota nota;
+	private Set<NotaActividad> listaNotaActividades;
 	
+	private Tipo tipo;
 	
-	private GrupoCurso actividadGrupoCurso;
+	private Set<GestorAnuncios> gestorAnuncios;
+	
+	/**
+	 * @return the tipo
+	 */
+	@NotNull
+	@ManyToOne
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * @param tipo the tipo to set
+	 */
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
+	}
 
 	/**
 	 * @return the idActividad
@@ -53,6 +75,7 @@ public class Actividad {
 	 * @return the descripcionActividad
 	 */
 	@Column(name="descripcion_actividad")
+	@Length(max=300)
 	public String getDescripcionActividad() {
 		return descripcionActividad;
 	}
@@ -80,37 +103,37 @@ public class Actividad {
 	}
 
 	/**
-	 * @return the actividadGrupoCurso
+	 * @return the listaNotaActividades
 	 */
-	@NotNull
-	@ManyToOne
-	public GrupoCurso getActividadGrupoCurso() {
-		return actividadGrupoCurso;
+	@OneToMany(mappedBy="actividad", cascade=CascadeType.ALL)
+	public Set<NotaActividad> getListaNotaActividades() {
+		if(listaNotaActividades==null){
+			return new HashSet<NotaActividad>();
+		}
+		return listaNotaActividades;
 	}
 
 	/**
-	 * @param actividadGrupoCurso the actividadGrupoCurso to set
+	 * @param listaNotaActividades the listaNotaActividades to set
 	 */
-	public void setActividadGrupoCurso(GrupoCurso actividadGrupoCurso) {
-		this.actividadGrupoCurso = actividadGrupoCurso;
+	public void setListaNotaActividades(Set<NotaActividad> listaNotaActividades) {
+		this.listaNotaActividades = listaNotaActividades;
 	}
 
 	/**
-	 * @return the nota
+	 * @return the gestorAnuncios
 	 */
-	@OneToOne(mappedBy="actividad")
-	public Nota getNota() {
-		return nota;
+	@OneToMany(mappedBy="actividad",cascade=CascadeType.ALL)
+	public Set<GestorAnuncios> getGestorAnuncios() {
+		return gestorAnuncios;
 	}
 
 	/**
-	 * @param nota the nota to set
+	 * @param gestorAnuncios the gestorAnuncios to set
 	 */
-	public void setNota(Nota nota) {
-		this.nota = nota;
+	public void setGestorAnuncios(Set<GestorAnuncios> gestorAnuncios) {
+		this.gestorAnuncios = gestorAnuncios;
 	}
-	
-	
-	
 
+	
 }

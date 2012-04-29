@@ -10,24 +10,12 @@
    <action execute="#{gestorAnunciosHome.wire}"/>
 
    <param name="gestorAnunciosFrom"/>
-   <param name="gestorAnunciosIdAnuncio" value="#{gestorAnunciosHome.gestorAnunciosIdAnuncio}"/>
-   <param name="grupoCursoFrom"/>
-   <param name="grupoCursoIdGrupo" value="#{grupoCursoHome.grupoCursoIdGrupo}"/>
-   <param name="cursoFrom"/>
-   <param name="cursoCodigo" value="#{cursoHome.cursoCodigo}"/>
-   <param name="escuelaFrom"/>
-   <param name="escuelaIdEscuela" value="#{escuelaHome.escuelaIdEscuela}"/>
-   <param name="facultadFrom"/>
-   <param name="facultadIdFacultad" value="#{facultadHome.facultadIdFacultad}"/>
+   <param name="gestorAnunciosIdGestorAnuncios" value="#{gestorAnunciosHome.gestorAnunciosIdGestorAnuncios}"/>
+   <param name="actividadFrom"/>
+   <param name="actividadIdActividad" value="#{actividadHome.actividadIdActividad}"/>
+   <param name="tipoFrom"/>
+   <param name="tipoIdTipo" value="#{tipoHome.tipoIdTipo}"/>
 
-
-   <param name="semestreFrom"/>
-   <param name="semestreIdSemestre" value="#{semestreHome.semestreIdSemestre}"/>
-
-
-
-   <param name="userAccountFrom"/>
-   <param name="userAccountId" value="#{userAccountHome.userAccountId}"/>
 
 
 

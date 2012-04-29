@@ -43,41 +43,45 @@
 
     <rich:tab>
         <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Escuela curso</h:panelGroup>
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Ente universitario</h:panelGroup>
         </f:facet>
-    <div class="association" id="escuelaCursoParent">
+    <div class="association" id="enteUniversitarioParent">
 
-        <h:outputText value="There is no escuelaCurso associated with this curso."
-                   rendered="#{cursoHome.instance.escuelaCurso == null}"/>
+        <h:outputText value="There is no enteUniversitario associated with this curso."
+                   rendered="#{cursoHome.instance.enteUniversitario == null}"/>
 
-        <rich:dataTable var="_escuela"
-                   value="#{cursoHome.instance.escuelaCurso}"
-                rendered="#{cursoHome.instance.escuelaCurso != null}"
+        <rich:dataTable var="_enteUniversitario"
+                   value="#{cursoHome.instance.enteUniversitario}"
+                rendered="#{cursoHome.instance.enteUniversitario != null}"
               rowClasses="rvgRowOne,rvgRowTwo"
-                      id="escuelaCursoTable">
+                      id="enteUniversitarioTable">
             <h:column>
-                <f:facet name="header">Id escuela</f:facet>
-                <h:outputText value="#{_escuela.idEscuela}"/>
+                <f:facet name="header">Id ente universitario</f:facet>
+                <h:outputText value="#{_enteUniversitario.idEnteUniversitario}"/>
             </h:column>
             <h:column>
-                <f:facet name="header">Descripcion escuela</f:facet>
-                <h:outputText value="#{_escuela.descripcionEscuela}"/>
+                <f:facet name="header">Descripcion ente universitario</f:facet>
+                <h:outputText value="#{_enteUniversitario.descripcionEnteUniversitario}"/>
             </h:column>
             <h:column>
-                <f:facet name="header">Facultad id facultad</f:facet>
-                <h:outputText value="#{_escuela.facultad.idFacultad}"/>
+                <f:facet name="header">Ente universitario id ente universitario</f:facet>
+                <h:outputText value="#{_enteUniversitario.enteUniversitario.idEnteUniversitario}"/>
             </h:column>
             <h:column>
-                <f:facet name="header">Nombre escuela</f:facet>
-                <h:outputText value="#{_escuela.nombreEscuela}"/>
+                <f:facet name="header">Nombre ente universitario</f:facet>
+                <h:outputText value="#{_enteUniversitario.nombreEnteUniversitario}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo ente universitario id tipo</f:facet>
+                <h:outputText value="#{_enteUniversitario.tipoEnteUniversitario.idTipo}"/>
             </h:column>
             <h:column styleClass="action">
                 <f:facet name="header">Action</f:facet>
-                <s:link id="viewescuela"
+                <s:link id="viewenteUniversitario"
                      value="View"
-                      view="/Escuela.xhtml">
-                    <f:param name="escuelaIdEscuela"
-                           value="#{_escuela.idEscuela}"/>
+                      view="/EnteUniversitario.xhtml">
+                    <f:param name="enteUniversitarioIdEnteUniversitario"
+                           value="#{_enteUniversitario.idEnteUniversitario}"/>
                 </s:link>
             </h:column>
         </rich:dataTable>
@@ -111,6 +115,10 @@
                 <f:facet name="header">Inscritos</f:facet>
                 <h:outputText value="#{_grupoCurso.inscritos}"/>
             </rich:column>
+            <rich:column sortBy="#{_grupoCurso.semestre}">
+                <f:facet name="header">Semestre</f:facet>
+                <h:outputText value="#{_grupoCurso.semestre}"/>
+            </rich:column>
             <h:column>
                 <f:facet name="header">Action</f:facet>
                 <s:link id="selectgrupoCurso"
@@ -133,46 +141,6 @@
                     value="#{cursoHome.instance.codigo}"/>
             <f:param name="grupoCursoFrom" value="Curso"/>
         </s:button>
-    </div>
-    </rich:tab>
-
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Semestre curso</h:panelGroup>
-        </f:facet>
-    <div class="association" id="semestreCursoParent">
-
-        <h:outputText value="There is no semestreCurso associated with this curso."
-                   rendered="#{cursoHome.instance.semestreCurso == null}"/>
-
-        <rich:dataTable var="_semestre"
-                   value="#{cursoHome.instance.semestreCurso}"
-                rendered="#{cursoHome.instance.semestreCurso != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="semestreCursoTable">
-            <h:column>
-                <f:facet name="header">Id semestre</f:facet>
-                <h:outputText value="#{_semestre.idSemestre}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Anio academico</f:facet>
-                <h:outputText value="#{_semestre.anioAcademico}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Semestre academico</f:facet>
-                <h:outputText value="#{_semestre.semestreAcademico}"/>
-            </h:column>
-            <h:column styleClass="action">
-                <f:facet name="header">Action</f:facet>
-                <s:link id="viewsemestre"
-                     value="View"
-                      view="/Semestre.xhtml">
-                    <f:param name="semestreIdSemestre"
-                           value="#{_semestre.idSemestre}"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
     </div>
     </rich:tab>
 </rich:tabPanel>

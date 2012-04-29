@@ -11,9 +11,9 @@ import org.jboss.seam.framework.EntityHome;
 public class UserAccountHome extends EntityHome<UserAccount> {
 
 	@In(create = true)
-	GrupoCursoHome grupoCursoHome;
+	EnteUniversitarioHome enteUniversitarioHome;
 	@In(create = true)
-	GestorAnunciosHome gestorAnunciosHome;
+	TipoHome tipoHome;
 
 	public void setUserAccountId(Long id) {
 		setId(id);
@@ -37,17 +37,22 @@ public class UserAccountHome extends EntityHome<UserAccount> {
 
 	public void wire() {
 		getInstance();
-		GrupoCurso grupoCurso = grupoCursoHome.getDefinedInstance();
-		if (grupoCurso != null) {
-			getInstance().setGrupoCurso(grupoCurso);
+		EnteUniversitario enteUniversitarios = enteUniversitarioHome
+				.getDefinedInstance();
+		if (enteUniversitarios != null) {
+			getInstance().setEnteUniversitarios(enteUniversitarios);
 		}
-		GestorAnuncios gestorAnuncios = gestorAnunciosHome.getDefinedInstance();
-		if (gestorAnuncios != null) {
-			getInstance().setGestorAnuncios(gestorAnuncios);
+		Tipo tipo = tipoHome.getDefinedInstance();
+		if (tipo != null) {
+			getInstance().setTipo(tipo);
 		}
 	}
 
 	public boolean isWired() {
+		if (getInstance().getEnteUniversitarios() == null)
+			return false;
+		if (getInstance().getTipo() == null)
+			return false;
 		return true;
 	}
 
@@ -55,30 +60,21 @@ public class UserAccountHome extends EntityHome<UserAccount> {
 		return isIdDefined() ? getInstance() : null;
 	}
 
-	public List<GestorAudioConferencia> getAudioConferencias() {
-		return getInstance() == null
-				? null
-				: new ArrayList<GestorAudioConferencia>(getInstance()
-						.getAudioConferencias());
+	public List<GrupoUsuarios> getGrupoUsuarios() {
+		return getInstance() == null ? null : new ArrayList<GrupoUsuarios>(
+				getInstance().getGrupoUsuarios());
 	}
-	public List<GestorAgenda> getEventosAgenda() {
-		return getInstance() == null ? null : new ArrayList<GestorAgenda>(
-				getInstance().getEventosAgenda());
+	public List<HistorialNotas> getHistorialNotas() {
+		return getInstance() == null ? null : new ArrayList<HistorialNotas>(
+				getInstance().getHistorialNotas());
+	}
+	public List<ReceptorMensajes> getMensajes() {
+		return getInstance() == null ? null : new ArrayList<ReceptorMensajes>(
+				getInstance().getMensajes());
 	}
 	public List<GestorMensajeria> getUsuarioEmisor() {
 		return getInstance() == null ? null : new ArrayList<GestorMensajeria>(
 				getInstance().getUsuarioEmisor());
-	}
-	public List<GestorVideoConferencia> getVideoConferencias() {
-		return getInstance() == null
-				? null
-				: new ArrayList<GestorVideoConferencia>(getInstance()
-						.getVideoConferencias());
-	}
-	
-	@org.jboss.seam.annotations.Factory ("listaTipoDocumento")	
-	public TipoDocumento[] getListaTipoDocumento(){		
-			return TipoDocumento.values();
 	}
 
 }

@@ -10,6 +10,5 @@
 
    <param name="from"/>
    <param name="asunto" value="#{gestorMensajeriaList.gestorMensajeria.asunto}"/>
-   <param name="mensaje" value="#{gestorMensajeriaList.gestorMensajeria.mensaje}"/>
 
 </page>

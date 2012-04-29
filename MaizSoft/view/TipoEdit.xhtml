@@ -1,0 +1,461 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="tipo" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{tipoHome.managed ? 'Edit' : 'Add'} Tipo</f:facet>
+
+
+
+
+            <s:decorate id="descripcionField" template="layout/edit.xhtml">
+                <ui:define name="label">Descripcion</ui:define>
+                <h:inputTextarea id="descripcion"
+                               cols="80"
+                               rows="3"
+                              value="#{tipoHome.instance.descripcion}"/>
+            </s:decorate>
+
+
+
+
+
+
+
+            <s:decorate id="nombreField" template="layout/edit.xhtml">
+                <ui:define name="label">Nombre</ui:define>
+                <h:inputTextarea id="nombre"
+                               cols="80"
+                               rows="3"
+                           required="true"
+                              value="#{tipoHome.instance.nombre}"/>
+            </s:decorate>
+
+
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{tipoHome.persist}"
+                       disabled="#{!tipoHome.wired}"
+                       rendered="#{!tipoHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{tipoHome.update}"
+                       rendered="#{tipoHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{tipoHome.remove}"
+                      immediate="true"
+                       rendered="#{tipoHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/Tipo.xhtml"
+                rendered="#{tipoHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty tipoFrom ? 'TipoList' : tipoFrom}.xhtml"
+                rendered="#{!tipoHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Actividad">
+        <h:form styleClass="association" id="actividadChildren">
+
+            <h:outputText value="There are no actividad associated with this tipo."
+                       rendered="#{empty tipoHome.actividad}"/>
+
+            <rich:dataTable value="#{tipoHome.actividad}"
+                           var="_actividad"
+                      rendered="#{not empty tipoHome.actividad}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="actividadTable">
+                <rich:column sortBy="#{_actividad.idActividad}">
+                    <f:facet name="header">Id actividad</f:facet>
+                    <h:outputText value="#{_actividad.idActividad}"/>
+                </rich:column>
+                <rich:column sortBy="#{_actividad.descripcionActividad}">
+                    <f:facet name="header">Descripcion actividad</f:facet>
+                    <h:outputText value="#{_actividad.descripcionActividad}"/>
+                </rich:column>
+                <rich:column sortBy="#{_actividad.evaluable}">
+                    <f:facet name="header">Evaluable</f:facet>
+                    <h:outputText value="#{_actividad.evaluable}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{tipoHome.managed}" id="actividad">
+        <div class="actionButtons">
+            <s:button id="addactividad"
+                   value="Add actividad"
+                    view="/ActividadEdit.xhtml"
+             propagation="none">
+                 <f:param name="tipoIdTipo"
+                         value="#{tipoHome.instance.idTipo}"/>
+                 <f:param name="actividadFrom" value="Tipo"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+
+    <rich:tab label="Ente universitarios">
+        <h:form styleClass="association" id="enteUniversitariosChildren">
+
+            <h:outputText value="There are no enteUniversitarios associated with this tipo."
+                       rendered="#{empty tipoHome.enteUniversitarios}"/>
+
+            <rich:dataTable value="#{tipoHome.enteUniversitarios}"
+                           var="_enteUniversitario"
+                      rendered="#{not empty tipoHome.enteUniversitarios}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="enteUniversitariosTable">
+                <rich:column sortBy="#{_enteUniversitario.idEnteUniversitario}">
+                    <f:facet name="header">Id ente universitario</f:facet>
+                    <h:outputText value="#{_enteUniversitario.idEnteUniversitario}"/>
+                </rich:column>
+                <rich:column sortBy="#{_enteUniversitario.descripcionEnteUniversitario}">
+                    <f:facet name="header">Descripcion ente universitario</f:facet>
+                    <h:outputText value="#{_enteUniversitario.descripcionEnteUniversitario}"/>
+                </rich:column>
+                <rich:column sortBy="#{_enteUniversitario.nombreEnteUniversitario}">
+                    <f:facet name="header">Nombre ente universitario</f:facet>
+                    <h:outputText value="#{_enteUniversitario.nombreEnteUniversitario}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{tipoHome.managed}" id="enteUniversitarios">
+        <div class="actionButtons">
+            <s:button id="addenteUniversitario"
+                   value="Add enteUniversitario"
+                    view="/EnteUniversitarioEdit.xhtml"
+             propagation="none">
+                 <f:param name="tipoIdTipo"
+                         value="#{tipoHome.instance.idTipo}"/>
+                 <f:param name="enteUniversitarioFrom" value="Tipo"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+
+    <rich:tab label="Gestor carga archivos">
+        <h:form styleClass="association" id="gestorCargaArchivosChildren">
+
+            <h:outputText value="There are no gestorCargaArchivos associated with this tipo."
+                       rendered="#{empty tipoHome.gestorCargaArchivos}"/>
+
+            <rich:dataTable value="#{tipoHome.gestorCargaArchivos}"
+                           var="_gestorCargaArchivos"
+                      rendered="#{not empty tipoHome.gestorCargaArchivos}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="gestorCargaArchivosTable">
+                <rich:column sortBy="#{_gestorCargaArchivos.idGestorCargaArchivos}">
+                    <f:facet name="header">Id gestor carga archivos</f:facet>
+                    <h:outputText value="#{_gestorCargaArchivos.idGestorCargaArchivos}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorCargaArchivos.descripcion}">
+                    <f:facet name="header">Descripcion</f:facet>
+                    <h:outputText value="#{_gestorCargaArchivos.descripcion}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorCargaArchivos.nombre}">
+                    <f:facet name="header">Nombre</f:facet>
+                    <h:outputText value="#{_gestorCargaArchivos.nombre}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorCargaArchivos.ruta}">
+                    <f:facet name="header">Ruta</f:facet>
+                    <h:outputText value="#{_gestorCargaArchivos.ruta}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{tipoHome.managed}" id="gestorCargaArchivos">
+        <div class="actionButtons">
+            <s:button id="addgestorCargaArchivos"
+                   value="Add gestorCargaArchivos"
+                    view="/GestorCargaArchivosEdit.xhtml"
+             propagation="none">
+                 <f:param name="tipoIdTipo"
+                         value="#{tipoHome.instance.idTipo}"/>
+                 <f:param name="gestorCargaArchivosFrom" value="Tipo"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+
+    <rich:tab label="Gestor repositorios virtuales">
+        <h:form styleClass="association" id="gestorRepositoriosVirtualesChildren">
+
+            <h:outputText value="There are no gestorRepositoriosVirtuales associated with this tipo."
+                       rendered="#{empty tipoHome.gestorRepositoriosVirtuales}"/>
+
+            <rich:dataTable value="#{tipoHome.gestorRepositoriosVirtuales}"
+                           var="_gestorRepositoriosVirtuales"
+                      rendered="#{not empty tipoHome.gestorRepositoriosVirtuales}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="gestorRepositoriosVirtualesTable">
+                <rich:column sortBy="#{_gestorRepositoriosVirtuales.idRepositorio}">
+                    <f:facet name="header">Id repositorio</f:facet>
+                    <h:outputText value="#{_gestorRepositoriosVirtuales.idRepositorio}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorRepositoriosVirtuales.descripcionRepositorio}">
+                    <f:facet name="header">Descripcion repositorio</f:facet>
+                    <h:outputText value="#{_gestorRepositoriosVirtuales.descripcionRepositorio}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorRepositoriosVirtuales.nombreRepositorio}">
+                    <f:facet name="header">Nombre repositorio</f:facet>
+                    <h:outputText value="#{_gestorRepositoriosVirtuales.nombreRepositorio}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorRepositoriosVirtuales.passwordRepositorio}">
+                    <f:facet name="header">Password repositorio</f:facet>
+                    <h:outputText value="#{_gestorRepositoriosVirtuales.passwordRepositorio}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorRepositoriosVirtuales.urlRepositorio}">
+                    <f:facet name="header">Url repositorio</f:facet>
+                    <h:outputText value="#{_gestorRepositoriosVirtuales.urlRepositorio}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorRepositoriosVirtuales.usernameRepositorio}">
+                    <f:facet name="header">Username repositorio</f:facet>
+                    <h:outputText value="#{_gestorRepositoriosVirtuales.usernameRepositorio}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{tipoHome.managed}" id="gestorRepositoriosVirtuales">
+        <div class="actionButtons">
+            <s:button id="addgestorRepositoriosVirtuales"
+                   value="Add gestorRepositoriosVirtuales"
+                    view="/GestorRepositoriosVirtualesEdit.xhtml"
+             propagation="none">
+                 <f:param name="tipoIdTipo"
+                         value="#{tipoHome.instance.idTipo}"/>
+                 <f:param name="gestorRepositoriosVirtualesFrom" value="Tipo"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+
+    <rich:tab label="Lista gestor mensajeria">
+        <h:form styleClass="association" id="listaGestorMensajeriaChildren">
+
+            <h:outputText value="There are no listaGestorMensajeria associated with this tipo."
+                       rendered="#{empty tipoHome.listaGestorMensajeria}"/>
+
+            <rich:dataTable value="#{tipoHome.listaGestorMensajeria}"
+                           var="_gestorMensajeria"
+                      rendered="#{not empty tipoHome.listaGestorMensajeria}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="listaGestorMensajeriaTable">
+                <rich:column sortBy="#{_gestorMensajeria.idMensaje}">
+                    <f:facet name="header">Id mensaje</f:facet>
+                    <h:outputText value="#{_gestorMensajeria.idMensaje}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorMensajeria.asunto}">
+                    <f:facet name="header">Asunto</f:facet>
+                    <h:outputText value="#{_gestorMensajeria.asunto}"/>
+                </rich:column>
+                <rich:column sortBy="#{_gestorMensajeria.fechaEnvio}">
+                    <f:facet name="header">Fecha envio</f:facet>
+                    <h:outputText value="#{_gestorMensajeria.fechaEnvio}">
+                        <s:convertDateTime type="date" dateStyle="short"/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_gestorMensajeria.mensaje}">
+                    <f:facet name="header">Mensaje</f:facet>
+                    <h:outputText value="#{_gestorMensajeria.mensaje}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{tipoHome.managed}" id="listaGestorMensajeria">
+        <div class="actionButtons">
+            <s:button id="addgestorMensajeria"
+                   value="Add gestorMensajeria"
+                    view="/GestorMensajeriaEdit.xhtml"
+             propagation="none">
+                 <f:param name="tipoIdTipo"
+                         value="#{tipoHome.instance.idTipo}"/>
+                 <f:param name="gestorMensajeriaFrom" value="Tipo"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+
+    <rich:tab label="Lista tipo">
+        <h:form styleClass="association" id="listaTipoChildren">
+
+            <h:outputText value="There are no listaTipo associated with this tipo."
+                       rendered="#{empty tipoHome.listaTipo}"/>
+
+            <rich:dataTable value="#{tipoHome.listaTipo}"
+                           var="_tipo"
+                      rendered="#{not empty tipoHome.listaTipo}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="listaTipoTable">
+                <rich:column sortBy="#{_tipo.idTipo}">
+                    <f:facet name="header">Id tipo</f:facet>
+                    <h:outputText value="#{_tipo.idTipo}"/>
+                </rich:column>
+                <rich:column sortBy="#{_tipo.descripcion}">
+                    <f:facet name="header">Descripcion</f:facet>
+                    <h:outputText value="#{_tipo.descripcion}"/>
+                </rich:column>
+                <rich:column sortBy="#{_tipo.nombre}">
+                    <f:facet name="header">Nombre</f:facet>
+                    <h:outputText value="#{_tipo.nombre}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{tipoHome.managed}" id="listaTipo">
+        <div class="actionButtons">
+            <s:button id="addtipo"
+                   value="Add tipo"
+                    view="/TipoEdit.xhtml"
+             propagation="none">
+                 <f:param name="tipoIdTipo"
+                         value="#{tipoHome.instance.idTipo}"/>
+                 <f:param name="tipoFrom" value="Tipo"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+
+    <rich:tab label="Tipo">
+    <div class="association" id="tipoParent">
+
+        <h:outputText value="There is no tipo associated with this tipo."
+                   rendered="#{tipoHome.instance.tipo == null}"/>
+
+        <rich:dataTable var="_tipo"
+                   value="#{tipoHome.instance.tipo}"
+                rendered="#{tipoHome.instance.tipo != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="tipoTable">
+            <h:column>
+                <f:facet name="header">Id tipo</f:facet>
+                <h:outputText value="#{_tipo.idTipo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Descripcion</f:facet>
+                <h:outputText value="#{_tipo.descripcion}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nombre</f:facet>
+                <h:outputText value="#{_tipo.nombre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo id tipo</f:facet>
+                <h:outputText value="#{_tipo.tipo.idTipo}"/>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab label="User account">
+        <h:form styleClass="association" id="userAccountChildren">
+
+            <h:outputText value="There are no userAccount associated with this tipo."
+                       rendered="#{empty tipoHome.userAccount}"/>
+
+            <rich:dataTable value="#{tipoHome.userAccount}"
+                           var="_userAccount"
+                      rendered="#{not empty tipoHome.userAccount}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="userAccountTable">
+                <rich:column sortBy="#{_userAccount.id}">
+                    <f:facet name="header">Id</f:facet>
+                    <h:outputText value="#{_userAccount.id}"/>
+                </rich:column>
+                <rich:column sortBy="#{_userAccount.apellidos}">
+                    <f:facet name="header">Apellidos</f:facet>
+                    <h:outputText value="#{_userAccount.apellidos}"/>
+                </rich:column>
+                <rich:column sortBy="#{_userAccount.correoElectronico}">
+                    <f:facet name="header">Correo electronico</f:facet>
+                    <h:outputText value="#{_userAccount.correoElectronico}"/>
+                </rich:column>
+                <rich:column sortBy="#{_userAccount.documentoIdentidad}">
+                    <f:facet name="header">Documento identidad</f:facet>
+                    <h:outputText value="#{_userAccount.documentoIdentidad}"/>
+                </rich:column>
+                <rich:column sortBy="#{_userAccount.enabled}">
+                    <f:facet name="header">Enabled</f:facet>
+                    <h:outputText value="#{_userAccount.enabled}"/>
+                </rich:column>
+                <rich:column sortBy="#{_userAccount.fotoUser}">
+                    <f:facet name="header">Foto user</f:facet>
+                    <h:outputText value="#{_userAccount.fotoUser}"/>
+                </rich:column>
+                <rich:column sortBy="#{_userAccount.passwordHash}">
+                    <f:facet name="header">Password hash</f:facet>
+                    <h:outputText value="#{_userAccount.passwordHash}"/>
+                </rich:column>
+                <rich:column sortBy="#{_userAccount.primerNombre}">
+                    <f:facet name="header">Primer nombre</f:facet>
+                    <h:outputText value="#{_userAccount.primerNombre}"/>
+                </rich:column>
+                <rich:column sortBy="#{_userAccount.segundoNombre}">
+                    <f:facet name="header">Segundo nombre</f:facet>
+                    <h:outputText value="#{_userAccount.segundoNombre}"/>
+                </rich:column>
+                <rich:column sortBy="#{_userAccount.username}">
+                    <f:facet name="header">Username</f:facet>
+                    <h:outputText value="#{_userAccount.username}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{tipoHome.managed}" id="userAccount">
+        <div class="actionButtons">
+            <s:button id="adduserAccount"
+                   value="Add userAccount"
+                    view="/UserAccountEdit.xhtml"
+             propagation="none">
+                 <f:param name="tipoIdTipo"
+                         value="#{tipoHome.instance.idTipo}"/>
+                 <f:param name="userAccountFrom" value="Tipo"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

@@ -4,10 +4,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -16,12 +15,12 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.validator.Email;
 import org.hibernate.validator.Length;
+import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 import org.hibernate.validator.Pattern;
 import org.jboss.seam.ScopeType;
@@ -48,7 +47,7 @@ public class UserAccount implements Serializable {
 
 	private Long documentoIdentidad;
 	
-	private TipoDocumento tipoDocumento;
+	
 	
 	private String primerNombre;
 	
@@ -82,24 +81,36 @@ public class UserAccount implements Serializable {
 	private Set<UserRole> roles;
 	
 			
-	private GrupoCurso grupoCurso;
-	
-	private Set<GestorAgenda> eventosAgenda;
-	
-	private GestorAnuncios gestorAnuncios;
+	private Set<GrupoUsuarios> grupoUsuarios;
 	
 	
 	private Set<GestorMensajeria> usuarioEmisor;
 	
-	private Set<GestorMensajeria> usuarioReceptor;
-	
-	private Set<GestorAudioConferencia> audioConferencias;
-	
-	private Set<GestorVideoConferencia> videoConferencias;
+	private Set< ReceptorMensajes> mensajes;
 	
 	
+	private Set<HistorialNotas> historialNotas;
 	
+	private EnteUniversitario enteUniversitarios;
 	
+	private Tipo tipo;
+	
+	/**
+	 * @return the tipo
+	 */
+	@NotNull
+	@ManyToOne
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * @param tipo the tipo to set
+	 */
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
+	}
+
 	@Id
 	@GeneratedValue
 	public Long getId() {
@@ -111,27 +122,13 @@ public class UserAccount implements Serializable {
 	}
 
 
-	/**
-	 * @return the tipoDocumento
-	 */
-	@Enumerated(EnumType.STRING)
-	public TipoDocumento getTipoDocumento() {
-		return tipoDocumento;
-	}
-
-	/**
-	 * @param tipoDocumento the tipoDocumento to set
-	 */
-	public void setTipoDocumento(TipoDocumento tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
-	}
-
+	
 	/**
 	 * @return the primerNombre
 	 */
 	@NotNull
 	@Length(max=50)
-	@Pattern(regex="^\\w*$", message="Nombre de la persona no valido")
+	@Pattern(regex="^\\w*$")
 	public String getPrimerNombre() {
 		return primerNombre;
 	}
@@ -148,7 +145,7 @@ public class UserAccount implements Serializable {
 	 */
 
 	@Length(max=50)
-	@Pattern(regex="^\\w*$", message="Nombre de la persona no valido")
+	@Pattern(regex="^\\w*$")
 	public String getSegundoNombre() {
 		return segundoNombre;
 	}
@@ -165,7 +162,7 @@ public class UserAccount implements Serializable {
 	 */
 	@NotNull
 	@Length(max=15)
-	@Pattern(regex="^\\w*$", message="Apellidos no validos")
+	@Pattern(regex="^\\w*$")
 	public String getApellidos() {
 		return apellidos;
 	}
@@ -180,8 +177,9 @@ public class UserAccount implements Serializable {
 	/**
 	 * @return the correoElectronico
 	 */
-	@NotNull
+	@NotEmpty
 	@Email
+	@Length(max=60)
 	public String getCorreoElectronico() {
 		return correoElectronico;
 	}
@@ -280,19 +278,20 @@ public class UserAccount implements Serializable {
 		this.roles = roles;
 	}
 
+	
 	/**
-	 * @return the grupoCurso
+	 * @return the grupoUsuarios
 	 */
-	@ManyToOne
-	public GrupoCurso getGrupoCurso() {
-		return grupoCurso;
+	@OneToMany(mappedBy="userGrupoCurso",cascade=CascadeType.ALL)
+	public Set<GrupoUsuarios> getGrupoUsuarios() {
+		return grupoUsuarios;
 	}
 
 	/**
-	 * @param grupoCurso the grupoCurso to set
+	 * @param grupoUsuarios the grupoUsuarios to set
 	 */
-	public void setGrupoCurso(GrupoCurso grupoCurso) {
-		this.grupoCurso = grupoCurso;
+	public void setGrupoUsuarios(Set<GrupoUsuarios> grupoUsuarios) {
+		this.grupoUsuarios = grupoUsuarios;
 	}
 
 	/**
@@ -326,43 +325,12 @@ public class UserAccount implements Serializable {
 		return documentoIdentidad;
 	}
 
-	/**
-	 * @return the eventosAgenda
-	 */
-	@OneToMany(mappedBy="userAccountAgenda")
-	public Set<GestorAgenda> getEventosAgenda() {
-		if(eventosAgenda==null){
-			return new HashSet<GestorAgenda>();
-		}
-		return eventosAgenda;
-	}
-
-	/**
-	 * @param eventosAgenda the eventosAgenda to set
-	 */
-	public void setEventosAgenda(Set<GestorAgenda> eventosAgenda) {
-		this.eventosAgenda = eventosAgenda;
-	}
-
-	/**
-	 * @return the gestorAnuncios
-	 */
-	@OneToOne(mappedBy="userAccountAnuncio")
-	public GestorAnuncios getGestorAnuncios() {
-		return gestorAnuncios;
-	}
-
-	/**
-	 * @param gestorAnuncios the gestorAnuncios to set
-	 */
-	public void setGestorAnuncios(GestorAnuncios gestorAnuncios) {
-		this.gestorAnuncios = gestorAnuncios;
-	}
-
+	
+	
 	/**
 	 * @return the usuarioEmisor
 	 */
-	@OneToMany(mappedBy="deUsuario")
+	@OneToMany(mappedBy="deUsuario",cascade=CascadeType.ALL)
 	public Set<GestorMensajeria> getUsuarioEmisor() {
 		if(usuarioEmisor==null){
 			return new HashSet<GestorMensajeria>();
@@ -377,61 +345,55 @@ public class UserAccount implements Serializable {
 		this.usuarioEmisor = usuarioEmisor;
 	}
 
+	
+	
+
 	/**
-	 * @return the usuarioReceptor
+	 * @return the enteUniversitarios
 	 */
-	@ManyToMany
-	public Set<GestorMensajeria> getUsuarioReceptor() {
-		if(usuarioReceptor==null){
-			return new HashSet<GestorMensajeria>();
-		}
-		return usuarioReceptor;
+	@NotNull
+	@ManyToOne
+	public EnteUniversitario getEnteUniversitarios() {
+		return enteUniversitarios;
 	}
 
 	/**
-	 * @param usuarioReceptor the usuarioReceptor to set
+	 * @param enteUniversitarios the enteUniversitarios to set
 	 */
-	public void setUsuarioReceptor(Set<GestorMensajeria> usuarioReceptor) {
-		this.usuarioReceptor = usuarioReceptor;
+	public void setEnteUniversitarios(EnteUniversitario enteUniversitarios) {
+		this.enteUniversitarios = enteUniversitarios;
 	}
 
 	/**
-	 * @return the audioConferencias
+	 * @return the historialNotas
 	 */
-	@OneToMany(mappedBy="usuarioCreador")
-	public Set<GestorAudioConferencia> getAudioConferencias() {
-		if(audioConferencias==null){
-			return new HashSet<GestorAudioConferencia>();
-		}
-		return audioConferencias;
+	@OneToMany(mappedBy="userAccount",cascade=CascadeType.ALL)
+	public Set<HistorialNotas> getHistorialNotas() {
+		return historialNotas;
 	}
 
 	/**
-	 * @param audioConferencias the audioConferencias to set
+	 * @param historialNotas the historialNotas to set
 	 */
-	public void setAudioConferencias(Set<GestorAudioConferencia> audioConferencias) {
-		this.audioConferencias = audioConferencias;
+	public void setHistorialNotas(Set<HistorialNotas> historialNotas) {
+		this.historialNotas = historialNotas;
 	}
 
 	/**
-	 * @return the videoConferencias
+	 * @return the mensajes
 	 */
-	@OneToMany(mappedBy="usuarioCreador")
-	public Set<GestorVideoConferencia> getVideoConferencias() {
-		if(videoConferencias==null){
-			return new HashSet<GestorVideoConferencia>();
-		}
-		return videoConferencias;
+	@OneToMany(mappedBy="userAccount",cascade=CascadeType.ALL)
+	public Set<ReceptorMensajes> getMensajes() {
+		return mensajes;
 	}
 
 	/**
-	 * @param videoConferencias the videoConferencias to set
+	 * @param mensajes the mensajes to set
 	 */
-	public void setVideoConferencias(Set<GestorVideoConferencia> videoConferencias) {
-		this.videoConferencias = videoConferencias;
+	public void setMensajes(Set<ReceptorMensajes> mensajes) {
+		this.mensajes = mensajes;
 	}
 	
 	
-	
-	
+		
 }

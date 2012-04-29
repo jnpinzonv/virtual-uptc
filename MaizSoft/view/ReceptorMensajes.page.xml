@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.1.xsd">
+
+   <param name="receptorMensajesFrom"/>
+   <param name="receptorMensajesIdReceptormenajes" value="#{receptorMensajesHome.receptorMensajesIdReceptormenajes}"/>
+   <param name="gestorMensajeriaFrom"/>
+   <param name="gestorMensajeriaIdMensaje" value="#{gestorMensajeriaHome.gestorMensajeriaIdMensaje}"/>
+   <param name="userAccountFrom"/>
+   <param name="userAccountId" value="#{userAccountHome.userAccountId}"/>
+   <param name="enteUniversitarioFrom"/>
+   <param name="enteUniversitarioIdEnteUniversitario" value="#{enteUniversitarioHome.enteUniversitarioIdEnteUniversitario}"/>
+   <param name="tipoFrom"/>
+   <param name="tipoIdTipo" value="#{tipoHome.tipoIdTipo}"/>
+
+
+
+
+
+
+</page>

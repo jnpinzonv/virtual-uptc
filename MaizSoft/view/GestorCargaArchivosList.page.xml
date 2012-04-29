@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.1.xsd">
+
+   <param name="firstResult" value="#{gestorCargaArchivosList.firstResult}"/>
+   <param name="sort" value="#{gestorCargaArchivosList.orderColumn}"/>
+   <param name="dir" value="#{gestorCargaArchivosList.orderDirection}"/>
+   <param name="logic" value="#{gestorCargaArchivosList.restrictionLogicOperator}"/>
+
+   <param name="from"/>
+   <param name="descripcion" value="#{gestorCargaArchivosList.gestorCargaArchivos.descripcion}"/>
+   <param name="nombre" value="#{gestorCargaArchivosList.gestorCargaArchivos.nombre}"/>
+   <param name="ruta" value="#{gestorCargaArchivosList.gestorCargaArchivos.ruta}"/>
+
+</page>

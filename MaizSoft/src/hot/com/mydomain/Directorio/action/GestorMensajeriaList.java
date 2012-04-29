@@ -10,9 +10,7 @@ public class GestorMensajeriaList extends EntityQuery<GestorMensajeria> {
 
 	private static final String EJBQL = "select gestorMensajeria from GestorMensajeria gestorMensajeria";
 
-	private static final String[] RESTRICTIONS = {
-			"lower(gestorMensajeria.asunto) like lower(concat(#{gestorMensajeriaList.gestorMensajeria.asunto},'%'))",
-			"lower(gestorMensajeria.mensaje) like lower(concat(#{gestorMensajeriaList.gestorMensajeria.mensaje},'%'))",};
+	private static final String[] RESTRICTIONS = {"lower(gestorMensajeria.asunto) like lower(concat(#{gestorMensajeriaList.gestorMensajeria.asunto},'%'))",};
 
 	private GestorMensajeria gestorMensajeria = new GestorMensajeria();
 

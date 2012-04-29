@@ -1,0 +1,151 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Gestor carga archivos Details</f:facet>
+
+
+        <s:decorate id="descripcion" template="layout/display.xhtml">
+            <ui:define name="label">Descripcion</ui:define>
+            <h:outputText value="#{gestorCargaArchivosHome.instance.descripcion}"/>
+        </s:decorate>
+
+        <s:decorate id="nombre" template="layout/display.xhtml">
+            <ui:define name="label">Nombre</ui:define>
+            <h:outputText value="#{gestorCargaArchivosHome.instance.nombre}"/>
+        </s:decorate>
+
+        <s:decorate id="ruta" template="layout/display.xhtml">
+            <ui:define name="label">Ruta</ui:define>
+            <h:outputText value="#{gestorCargaArchivosHome.instance.ruta}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/GestorCargaArchivosEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty gestorCargaArchivosFrom ? 'GestorCargaArchivosList' : gestorCargaArchivosFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Nota actividad</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="notaActividadChildren">
+
+        <h:outputText value="There are no notaActividad associated with this gestorCargaArchivos."
+                   rendered="#{empty gestorCargaArchivosHome.notaActividad}"/>
+
+        <rich:dataTable value="#{gestorCargaArchivosHome.notaActividad}"
+                       var="_notaActividad"
+                  rendered="#{not empty gestorCargaArchivosHome.notaActividad}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="notaActividadTable">
+            <rich:column sortBy="#{_notaActividad.idNotaActividad}">
+                <f:facet name="header">Id nota actividad</f:facet>
+                <h:outputText value="#{_notaActividad.idNotaActividad}"/>
+            </rich:column>
+            <rich:column sortBy="#{_notaActividad.estadoPendiente}">
+                <f:facet name="header">Estado pendiente</f:facet>
+                <h:outputText value="#{_notaActividad.estadoPendiente}"/>
+            </rich:column>
+            <rich:column sortBy="#{_notaActividad.justificacion}">
+                <f:facet name="header">Justificacion</f:facet>
+                <h:outputText value="#{_notaActividad.justificacion}"/>
+            </rich:column>
+            <rich:column sortBy="#{_notaActividad.nota}">
+                <f:facet name="header">Nota</f:facet>
+                <h:outputText value="#{_notaActividad.nota}"/>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selectnotaActividad"
+                     value="Select"
+                      view="/NotaActividad.xhtml">
+                    <f:param name="notaActividadIdNotaActividad"
+                            value="#{_notaActividad.idNotaActividad}"/>
+                    <f:param name="notaActividadFrom" value="GestorCargaArchivos"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add notaActividad"
+                view="/NotaActividadEdit.xhtml">
+            <f:param name="gestorCargaArchivosIdGestorCargaArchivos"
+                    value="#{gestorCargaArchivosHome.instance.idGestorCargaArchivos}"/>
+            <f:param name="notaActividadFrom" value="GestorCargaArchivos"/>
+        </s:button>
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Tipo</h:panelGroup>
+        </f:facet>
+    <div class="association" id="tipoParent">
+
+        <h:outputText value="There is no tipo associated with this gestorCargaArchivos."
+                   rendered="#{gestorCargaArchivosHome.instance.tipo == null}"/>
+
+        <rich:dataTable var="_tipo"
+                   value="#{gestorCargaArchivosHome.instance.tipo}"
+                rendered="#{gestorCargaArchivosHome.instance.tipo != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="tipoTable">
+            <h:column>
+                <f:facet name="header">Id tipo</f:facet>
+                <h:outputText value="#{_tipo.idTipo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Descripcion</f:facet>
+                <h:outputText value="#{_tipo.descripcion}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nombre</f:facet>
+                <h:outputText value="#{_tipo.nombre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo id tipo</f:facet>
+                <h:outputText value="#{_tipo.tipo.idTipo}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewtipo"
+                     value="View"
+                      view="/Tipo.xhtml">
+                    <f:param name="tipoIdTipo"
+                           value="#{_tipo.idTipo}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

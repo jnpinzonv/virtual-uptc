@@ -1,0 +1,83 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="gestorNoticias" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{gestorNoticiasHome.managed ? 'Edit' : 'Add'} Gestor noticias</f:facet>
+
+
+
+            <s:decorate id="descripcionField" template="layout/edit.xhtml">
+                <ui:define name="label">Descripcion</ui:define>
+                <h:inputText id="descripcion"
+                       required="true"
+                          value="#{gestorNoticiasHome.instance.descripcion}">
+                    <a:support event="onblur" reRender="descripcionField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="nombreNoticiaField" template="layout/edit.xhtml">
+                <ui:define name="label">Nombre noticia</ui:define>
+                <h:inputTextarea id="nombreNoticia"
+                               cols="80"
+                               rows="3"
+                           required="true"
+                              value="#{gestorNoticiasHome.instance.nombreNoticia}"/>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{gestorNoticiasHome.persist}"
+                       disabled="#{!gestorNoticiasHome.wired}"
+                       rendered="#{!gestorNoticiasHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{gestorNoticiasHome.update}"
+                       rendered="#{gestorNoticiasHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{gestorNoticiasHome.remove}"
+                      immediate="true"
+                       rendered="#{gestorNoticiasHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/GestorNoticias.xhtml"
+                rendered="#{gestorNoticiasHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty gestorNoticiasFrom ? 'GestorNoticiasList' : gestorNoticiasFrom}.xhtml"
+                rendered="#{!gestorNoticiasHome.managed}"/>
+
+        </div>
+    </h:form>
+
+</ui:define>
+
+</ui:composition>

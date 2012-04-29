@@ -11,9 +11,7 @@ import org.jboss.seam.framework.EntityHome;
 public class CursoHome extends EntityHome<Curso> {
 
 	@In(create = true)
-	EscuelaHome escuelaHome;
-	@In(create = true)
-	SemestreHome semestreHome;
+	EnteUniversitarioHome enteUniversitarioHome;
 
 	public void setCursoCodigo(Long id) {
 		setId(id);
@@ -37,20 +35,15 @@ public class CursoHome extends EntityHome<Curso> {
 
 	public void wire() {
 		getInstance();
-		Escuela escuelaCurso = escuelaHome.getDefinedInstance();
-		if (escuelaCurso != null) {
-			getInstance().setEscuelaCurso(escuelaCurso);
-		}
-		Semestre semestreCurso = semestreHome.getDefinedInstance();
-		if (semestreCurso != null) {
-			getInstance().setSemestreCurso(semestreCurso);
+		EnteUniversitario enteUniversitario = enteUniversitarioHome
+				.getDefinedInstance();
+		if (enteUniversitario != null) {
+			getInstance().setEnteUniversitario(enteUniversitario);
 		}
 	}
 
 	public boolean isWired() {
-		if (getInstance().getEscuelaCurso() == null)
-			return false;
-		if (getInstance().getSemestreCurso() == null)
+		if (getInstance().getEnteUniversitario() == null)
 			return false;
 		return true;
 	}

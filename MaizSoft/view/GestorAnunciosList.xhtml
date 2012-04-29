@@ -15,13 +15,13 @@
         <rich:simpleTogglePanel label="GestorAnuncios Search Filter" switchType="ajax">
 
             <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Descripcion anuncio</ui:define>
-                <h:inputText id="descripcionAnuncio" value="#{gestorAnunciosList.gestorAnuncios.descripcionAnuncio}"/>
+                <ui:define name="label">Descripcion</ui:define>
+                <h:inputText id="descripcion" value="#{gestorAnunciosList.gestorAnuncios.descripcion}"/>
             </s:decorate>
 
             <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Nombre anuncio</ui:define>
-                <h:inputText id="nombreAnuncio" value="#{gestorAnunciosList.gestorAnuncios.nombreAnuncio}"/>
+                <ui:define name="label">Nombre</ui:define>
+                <h:inputText id="nombre" value="#{gestorAnunciosList.gestorAnuncios.nombre}"/>
             </s:decorate>
 
             <s:decorate template="layout/display.xhtml">
@@ -56,51 +56,41 @@
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{gestorAnunciosList}"/>
-                    <ui:param name="propertyLabel" value="Id anuncio"/>
-                    <ui:param name="propertyPath" value="gestorAnuncios.idAnuncio"/>
+                    <ui:param name="propertyLabel" value="Id gestor anuncios"/>
+                    <ui:param name="propertyPath" value="gestorAnuncios.idGestorAnuncios"/>
                 </ui:include>
             </f:facet>
-            <h:outputText value="#{_gestorAnuncios.idAnuncio}"/>
+            <h:outputText value="#{_gestorAnuncios.idGestorAnuncios}"/>
         </h:column>
         <h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{gestorAnunciosList}"/>
-                    <ui:param name="propertyLabel" value="Descripcion anuncio"/>
-                    <ui:param name="propertyPath" value="gestorAnuncios.descripcionAnuncio"/>
+                    <ui:param name="propertyLabel" value="Actividad id actividad"/>
+                    <ui:param name="propertyPath" value="gestorAnuncios.actividad.idActividad"/>
                 </ui:include>
             </f:facet>
-            <h:outputText value="#{_gestorAnuncios.descripcionAnuncio}"/>
+            <h:outputText value="#{_gestorAnuncios.actividad.idActividad}"/>
         </h:column>
         <h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{gestorAnunciosList}"/>
-                    <ui:param name="propertyLabel" value="Grupo curso anuncio id grupo"/>
-                    <ui:param name="propertyPath" value="gestorAnuncios.grupoCursoAnuncio.idGrupo"/>
+                    <ui:param name="propertyLabel" value="Descripcion"/>
+                    <ui:param name="propertyPath" value="gestorAnuncios.descripcion"/>
                 </ui:include>
             </f:facet>
-            <h:outputText value="#{_gestorAnuncios.grupoCursoAnuncio.idGrupo}"/>
+            <h:outputText value="#{_gestorAnuncios.descripcion}"/>
         </h:column>
         <h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{gestorAnunciosList}"/>
-                    <ui:param name="propertyLabel" value="Nombre anuncio"/>
-                    <ui:param name="propertyPath" value="gestorAnuncios.nombreAnuncio"/>
+                    <ui:param name="propertyLabel" value="Nombre"/>
+                    <ui:param name="propertyPath" value="gestorAnuncios.nombre"/>
                 </ui:include>
             </f:facet>
-            <h:outputText value="#{_gestorAnuncios.nombreAnuncio}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{gestorAnunciosList}"/>
-                    <ui:param name="propertyLabel" value="User account anuncio id"/>
-                    <ui:param name="propertyPath" value="gestorAnuncios.userAccountAnuncio.id"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_gestorAnuncios.userAccountAnuncio.id}"/>
+            <h:outputText value="#{_gestorAnuncios.nombre}"/>
         </h:column>
         <rich:column styleClass="action">
             <f:facet name="header">Action</f:facet>
@@ -108,8 +98,8 @@
                    value="#{empty from ? 'View' : 'Select'}"
              propagation="#{empty from ? 'none' : 'default'}"
                       id="gestorAnunciosViewId">
-                <f:param name="gestorAnunciosIdAnuncio"
-                        value="#{_gestorAnuncios.idAnuncio}"/>
+                <f:param name="gestorAnunciosIdGestorAnuncios"
+                        value="#{_gestorAnuncios.idGestorAnuncios}"/>
             </s:link>
             #{' '}
             <s:link view="/GestorAnunciosEdit.xhtml"
@@ -117,8 +107,8 @@
              propagation="none"
                       id="gestorAnunciosEdit"
                 rendered="#{empty from}">
-                <f:param name="gestorAnunciosIdAnuncio"
-                        value="#{_gestorAnuncios.idAnuncio}"/>
+                <f:param name="gestorAnunciosIdGestorAnuncios"
+                        value="#{_gestorAnuncios.idGestorAnuncios}"/>
             </s:link>
         </rich:column>
     </rich:dataTable>
@@ -166,7 +156,7 @@
                     id="create"
            propagation="none"
                  value="Create gestorAnuncios">
-            <f:param name="gestorAnunciosIdAnuncio"/>
+            <f:param name="gestorAnunciosIdGestorAnuncios"/>
         </s:button>
     </s:div>
 

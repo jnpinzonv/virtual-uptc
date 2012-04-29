@@ -1,0 +1,242 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Nota actividad Details</f:facet>
+
+
+        <s:decorate id="estadoPendiente" template="layout/display.xhtml">
+            <ui:define name="label">Estado pendiente</ui:define>
+            <h:outputText value="#{notaActividadHome.instance.estadoPendiente}"/>
+        </s:decorate>
+
+        <s:decorate id="justificacion" template="layout/display.xhtml">
+            <ui:define name="label">Justificacion</ui:define>
+            <h:outputText value="#{notaActividadHome.instance.justificacion}"/>
+        </s:decorate>
+
+        <s:decorate id="nota" template="layout/display.xhtml">
+            <ui:define name="label">Nota</ui:define>
+            <h:outputText value="#{notaActividadHome.instance.nota}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/NotaActividadEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty notaActividadFrom ? 'NotaActividadList' : notaActividadFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Actividad</h:panelGroup>
+        </f:facet>
+    <div class="association" id="actividadParent">
+
+        <h:outputText value="There is no actividad associated with this notaActividad."
+                   rendered="#{notaActividadHome.instance.actividad == null}"/>
+
+        <rich:dataTable var="_actividad"
+                   value="#{notaActividadHome.instance.actividad}"
+                rendered="#{notaActividadHome.instance.actividad != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="actividadTable">
+            <h:column>
+                <f:facet name="header">Id actividad</f:facet>
+                <h:outputText value="#{_actividad.idActividad}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Descripcion actividad</f:facet>
+                <h:outputText value="#{_actividad.descripcionActividad}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Evaluable</f:facet>
+                <h:outputText value="#{_actividad.evaluable}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo id tipo</f:facet>
+                <h:outputText value="#{_actividad.tipo.idTipo}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewactividad"
+                     value="View"
+                      view="/Actividad.xhtml">
+                    <f:param name="actividadIdActividad"
+                           value="#{_actividad.idActividad}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Gestor carga archivos</h:panelGroup>
+        </f:facet>
+    <div class="association" id="gestorCargaArchivosParent">
+
+        <h:outputText value="There is no gestorCargaArchivos associated with this notaActividad."
+                   rendered="#{notaActividadHome.instance.gestorCargaArchivos == null}"/>
+
+        <rich:dataTable var="_gestorCargaArchivos"
+                   value="#{notaActividadHome.instance.gestorCargaArchivos}"
+                rendered="#{notaActividadHome.instance.gestorCargaArchivos != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="gestorCargaArchivosTable">
+            <h:column>
+                <f:facet name="header">Id gestor carga archivos</f:facet>
+                <h:outputText value="#{_gestorCargaArchivos.idGestorCargaArchivos}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Descripcion</f:facet>
+                <h:outputText value="#{_gestorCargaArchivos.descripcion}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nombre</f:facet>
+                <h:outputText value="#{_gestorCargaArchivos.nombre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Ruta</f:facet>
+                <h:outputText value="#{_gestorCargaArchivos.ruta}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo id tipo</f:facet>
+                <h:outputText value="#{_gestorCargaArchivos.tipo.idTipo}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewgestorCargaArchivos"
+                     value="View"
+                      view="/GestorCargaArchivos.xhtml">
+                    <f:param name="gestorCargaArchivosIdGestorCargaArchivos"
+                           value="#{_gestorCargaArchivos.idGestorCargaArchivos}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Gestor mensajeria</h:panelGroup>
+        </f:facet>
+    <div class="association" id="gestorMensajeriaParent">
+
+        <h:outputText value="There is no gestorMensajeria associated with this notaActividad."
+                   rendered="#{notaActividadHome.instance.gestorMensajeria == null}"/>
+
+        <rich:dataTable var="_gestorMensajeria"
+                   value="#{notaActividadHome.instance.gestorMensajeria}"
+                rendered="#{notaActividadHome.instance.gestorMensajeria != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="gestorMensajeriaTable">
+            <h:column>
+                <f:facet name="header">Id mensaje</f:facet>
+                <h:outputText value="#{_gestorMensajeria.idMensaje}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Asunto</f:facet>
+                <h:outputText value="#{_gestorMensajeria.asunto}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">De usuario id</f:facet>
+                <h:outputText value="#{_gestorMensajeria.deUsuario.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Fecha envio</f:facet>
+                <h:outputText value="#{_gestorMensajeria.fechaEnvio}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Gestor mensajeria id mensaje</f:facet>
+                <h:outputText value="#{_gestorMensajeria.gestorMensajeria.idMensaje}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Mensaje</f:facet>
+                <h:outputText value="#{_gestorMensajeria.mensaje}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo id tipo</f:facet>
+                <h:outputText value="#{_gestorMensajeria.tipo.idTipo}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewgestorMensajeria"
+                     value="View"
+                      view="/GestorMensajeria.xhtml">
+                    <f:param name="gestorMensajeriaIdMensaje"
+                           value="#{_gestorMensajeria.idMensaje}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Grupo curso</h:panelGroup>
+        </f:facet>
+    <div class="association" id="grupoCursoParent">
+
+        <h:outputText value="There is no grupoCurso associated with this notaActividad."
+                   rendered="#{notaActividadHome.instance.grupoCurso == null}"/>
+
+        <rich:dataTable var="_grupoUsuarios"
+                   value="#{notaActividadHome.instance.grupoCurso}"
+                rendered="#{notaActividadHome.instance.grupoCurso != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="grupoCursoTable">
+            <h:column>
+                <f:facet name="header">Id grupo usuarios</f:facet>
+                <h:outputText value="#{_grupoUsuarios.idGrupoUsuarios}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Grupo curso id grupo</f:facet>
+                <h:outputText value="#{_grupoUsuarios.grupoCurso.idGrupo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">User grupo curso id</f:facet>
+                <h:outputText value="#{_grupoUsuarios.userGrupoCurso.id}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewgrupoUsuarios"
+                     value="View"
+                      view="/GrupoUsuarios.xhtml">
+                    <f:param name="grupoUsuariosIdGrupoUsuarios"
+                           value="#{_grupoUsuarios.idGrupoUsuarios}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

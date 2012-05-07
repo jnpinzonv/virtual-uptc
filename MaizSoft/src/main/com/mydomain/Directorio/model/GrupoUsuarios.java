@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.NotNull;
@@ -27,11 +28,15 @@ public class GrupoUsuarios {
 
 	private Long idGrupoUsuarios;
 	
-	private UserAccount userGrupoCurso;
+	private Usuario userGrupoCurso;
 	
 	private GrupoCurso grupoCurso;
 
 	private Set<NotaActividad> notaActividades;
+	
+	private CuentasUsuario userRole;
+	
+	
 	
 	
 	
@@ -44,7 +49,7 @@ public class GrupoUsuarios {
 	 */
 
 	@ManyToOne
-	public UserAccount getUserGrupoCurso() {
+	public Usuario getUserGrupoCurso() {
 		return userGrupoCurso;
 	}
 
@@ -67,7 +72,7 @@ public class GrupoUsuarios {
 	/**
 	 * @param userGrupoCurso the userGrupoCurso to set
 	 */
-	public void setUserGrupoCurso(UserAccount userGrupoCurso) {
+	public void setUserGrupoCurso(Usuario userGrupoCurso) {
 		this.userGrupoCurso = userGrupoCurso;
 	}
 
@@ -104,6 +109,24 @@ public class GrupoUsuarios {
 	public void setNotaActividades(Set<NotaActividad> notaActividades) {
 		this.notaActividades = notaActividades;
 	}
+
+	/**
+	 * @return the userRole
+	 */
+	@NotNull
+	@OneToOne(mappedBy="grupoUsuarios")
+	public CuentasUsuario getUserRole() {
+		return userRole;
+	}
+
+	/**
+	 * @param userRole the userRole to set
+	 */
+	public void setUserRole(CuentasUsuario userRole) {
+		this.userRole = userRole;
+	}
+	
+	
 	
 	
 	

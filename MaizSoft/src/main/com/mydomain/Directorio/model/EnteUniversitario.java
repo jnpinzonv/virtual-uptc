@@ -42,7 +42,7 @@ public class EnteUniversitario {
 	
 	private Set<Curso> listaCursosOfrecidos;
 	
-	private Set<UserAccount> listaUserAccounts;
+	private Set<Usuario> listaUserAccounts;
 
 	/**
 	 * @return the idEnteUniversitario
@@ -169,9 +169,9 @@ public class EnteUniversitario {
 	 * @return the listaUserAccounts
 	 */
 	@OneToMany(mappedBy="enteUniversitarios",cascade=CascadeType.ALL)
-	public Set<UserAccount> getListaUserAccounts() {
+	public Set<Usuario> getListaUserAccounts() {
 		if(listaUserAccounts==null){
-			return new HashSet<UserAccount>();
+			return new HashSet<Usuario>();
 		}
 		return listaUserAccounts;
 	}
@@ -179,7 +179,7 @@ public class EnteUniversitario {
 	/**
 	 * @param listaUserAccounts the listaUserAccounts to set
 	 */
-	public void setListaUserAccounts(Set<UserAccount> listaUserAccounts) {
+	public void setListaUserAccounts(Set<Usuario> listaUserAccounts) {
 		
 		this.listaUserAccounts = listaUserAccounts;
 	}

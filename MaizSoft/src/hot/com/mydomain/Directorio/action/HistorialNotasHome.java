@@ -11,7 +11,7 @@ public class HistorialNotasHome extends EntityHome<HistorialNotas> {
 	@In(create = true)
 	GrupoCursoHome grupoCursoHome;
 	@In(create = true)
-	UserAccountHome userAccountHome;
+	UsuarioHome usuarioHome;
 
 	public void setHistorialNotasIdHistorialNotas(Long id) {
 		setId(id);
@@ -39,7 +39,7 @@ public class HistorialNotasHome extends EntityHome<HistorialNotas> {
 		if (grupoCurso != null) {
 			getInstance().setGrupoCurso(grupoCurso);
 		}
-		UserAccount userAccount = userAccountHome.getDefinedInstance();
+		Usuario userAccount = usuarioHome.getDefinedInstance();
 		if (userAccount != null) {
 			getInstance().setUserAccount(userAccount);
 		}

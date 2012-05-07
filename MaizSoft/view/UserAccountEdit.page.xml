@@ -11,12 +11,6 @@
 
    <param name="userAccountFrom"/>
    <param name="userAccountId" value="#{userAccountHome.userAccountId}"/>
-   <param name="enteUniversitarioFrom"/>
-   <param name="enteUniversitarioIdEnteUniversitario" value="#{enteUniversitarioHome.enteUniversitarioIdEnteUniversitario}"/>
-   <param name="tipoFrom"/>
-   <param name="tipoIdTipo" value="#{tipoHome.tipoIdTipo}"/>
-
-
 
 
    <navigation from-action="#{userAccountHome.persist}">

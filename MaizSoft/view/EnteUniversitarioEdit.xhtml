@@ -1,311 +1,276 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:s="http://jboss.com/products/seam/taglib"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:a="http://richfaces.org/a4j"
-    xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
 
-<ui:define name="body">
+	<ui:define name="body">
 
-    <h:form id="enteUniversitario" styleClass="edit">
+		<h:form id="enteUniversitario" styleClass="edit">
 
-        <rich:panel>
-            <f:facet name="header">#{enteUniversitarioHome.managed ? 'Edit' : 'Add'} Ente universitario</f:facet>
-
-
-
-            <s:decorate id="descripcionEnteUniversitarioField" template="layout/edit.xhtml">
-                <ui:define name="label">Descripcion ente universitario</ui:define>
-                <h:inputTextarea id="descripcionEnteUniversitario"
-                               cols="80"
-                               rows="3"
-                              value="#{enteUniversitarioHome.instance.descripcionEnteUniversitario}"/>
-            </s:decorate>
+			<rich:panel>
+				<f:facet name="header">#{enteUniversitarioHome.managed ? 'Edit' : 'Add'} Ente universitario</f:facet>
 
 
+
+				<s:decorate id="descripcionEnteUniversitarioField"
+					template="layout/edit.xhtml">
+					<ui:define name="label">Descripcion ente universitario</ui:define>
+					<h:inputTextarea id="descripcionEnteUniversitario" cols="80"
+						rows="3"
+						value="#{enteUniversitarioHome.instance.descripcionEnteUniversitario}" />
+				</s:decorate>
 
 
 
 
-            <s:decorate id="nombreEnteUniversitarioField" template="layout/edit.xhtml">
-                <ui:define name="label">Nombre ente universitario</ui:define>
-                <h:inputTextarea id="nombreEnteUniversitario"
-                               cols="80"
-                               rows="2"
-                           required="true"
-                              value="#{enteUniversitarioHome.instance.nombreEnteUniversitario}"/>
-            </s:decorate>
 
 
-            <div style="clear:both">
-                <span class="required">*</span>
-                required fields
-            </div>
+				<s:decorate id="nombreEnteUniversitarioField"
+					template="layout/edit.xhtml">
+					<ui:define name="label">Nombre ente universitario</ui:define>
+					<h:inputTextarea id="nombreEnteUniversitario" cols="80" rows="2"
+						required="true"
+						value="#{enteUniversitarioHome.instance.nombreEnteUniversitario}" />
+				</s:decorate>
 
-        </rich:panel>
 
-        <div class="actionButtons">
+				<h:selectOneMenu
+					value="#{enteUniversitarioHome.instance.tipoEnteUniversitario}"
+					id="sobrenombre" required="true" rendered="true">
+					<s:selectItems value="#{listaTiposEnteUniversitarios}" var="lista"
+						label="#{lista.nombre}" noSelectionLabel="SELECCIONE..." />
+					<a4j:support event="onchange" reRender="dos" />
+					<s:convertEntity />
+				</h:selectOneMenu>
 
-            <h:commandButton id="save"
-                          value="Save"
-                         action="#{enteUniversitarioHome.persist}"
-                       disabled="#{!enteUniversitarioHome.wired}"
-                       rendered="#{!enteUniversitarioHome.managed}"/>
+				<h:selectOneMenu
+					value="#{enteUniversitarioHome.instance.enteUniversitario}"
+					id="enteUniveristario" rendered="true">
+					<s:selectItems value="#{listaEnteUniversitarios}" var="listaE"
+						label="#{listaE.nombreEnteUniversitario}"
+						noSelectionLabel="SELECCIONE..." />
+					<s:convertEntity />
+				</h:selectOneMenu>
+				<div style="clear: both">
+					<span class="required">*</span> required fields
+				</div>
 
-            <h:commandButton id="update"
-                          value="Save"
-                         action="#{enteUniversitarioHome.update}"
-                       rendered="#{enteUniversitarioHome.managed}"/>
+			</rich:panel>
 
-            <h:commandButton id="delete"
-                          value="Delete"
-                         action="#{enteUniversitarioHome.remove}"
-                      immediate="true"
-                       rendered="#{enteUniversitarioHome.managed}"/>
+			<div class="actionButtons">
+				<a4j:outputPanel id="dos">
+					<h:commandButton id="save" value="Save"
+						action="#{enteUniversitarioHome.persist}"
+						disabled="#{!enteUniversitarioHome.wired}"
+						rendered="#{!enteUniversitarioHome.managed}" />
 
-            <s:button id="cancelEdit"
-                   value="Cancel"
-             propagation="end"
-                    view="/EnteUniversitario.xhtml"
-                rendered="#{enteUniversitarioHome.managed}"/>
+					<h:commandButton id="update" value="Save"
+						action="#{enteUniversitarioHome.update}"
+						rendered="#{enteUniversitarioHome.managed}" />
 
-            <s:button id="cancelAdd"
-                   value="Cancel"
-             propagation="end"
-                    view="/#{empty enteUniversitarioFrom ? 'EnteUniversitarioList' : enteUniversitarioFrom}.xhtml"
-                rendered="#{!enteUniversitarioHome.managed}"/>
+					<h:commandButton id="delete" value="Delete"
+						action="#{enteUniversitarioHome.remove}" immediate="true"
+						rendered="#{enteUniversitarioHome.managed}" />
 
-        </div>
-    </h:form>
+					<s:button id="cancelEdit" value="Cancel" propagation="end"
+						view="/EnteUniversitario.xhtml"
+						rendered="#{enteUniversitarioHome.managed}" />
 
-<rich:tabPanel switchType="ajax">
+					<s:button id="cancelAdd" value="Cancel" propagation="end"
+						view="/#{empty enteUniversitarioFrom ? 'EnteUniversitarioList' : enteUniversitarioFrom}.xhtml"
+						rendered="#{!enteUniversitarioHome.managed}" />
+				</a4j:outputPanel>
+			</div>
+		</h:form>
 
-    <rich:tab label="Ente universitario">
-    <div class="association" id="enteUniversitarioParent">
+		<rich:tabPanel switchType="ajax">
 
-        <h:outputText value="There is no enteUniversitario associated with this enteUniversitario."
-                   rendered="#{enteUniversitarioHome.instance.enteUniversitario == null}"/>
+			<rich:tab label="Ente universitario">
+				<div class="association" id="enteUniversitarioParent">
 
-        <rich:dataTable var="_enteUniversitario"
-                   value="#{enteUniversitarioHome.instance.enteUniversitario}"
-                rendered="#{enteUniversitarioHome.instance.enteUniversitario != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="enteUniversitarioTable">
-            <h:column>
-                <f:facet name="header">Id ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.idEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Descripcion ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.descripcionEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Ente universitario id ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.enteUniversitario.idEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nombre ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.nombreEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo ente universitario id tipo</f:facet>
-                <h:outputText value="#{_enteUniversitario.tipoEnteUniversitario.idTipo}"/>
-            </h:column>
-        </rich:dataTable>
+					<h:outputText
+						value="There is no enteUniversitario associated with this enteUniversitario."
+						rendered="#{enteUniversitarioHome.instance.enteUniversitario == null}" />
 
-    </div>
-    </rich:tab>
+					<rich:dataTable var="_enteUniversitario"
+						value="#{enteUniversitarioHome.instance.enteUniversitario}"
+						rendered="#{enteUniversitarioHome.instance.enteUniversitario != null}"
+						rowClasses="rvgRowOne,rvgRowTwo" id="enteUniversitarioTable">
+						<h:column>
+							<f:facet name="header">Id ente universitario</f:facet>
+							<h:outputText value="#{_enteUniversitario.idEnteUniversitario}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Descripcion ente universitario</f:facet>
+							<h:outputText
+								value="#{_enteUniversitario.descripcionEnteUniversitario}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Ente universitario id ente universitario</f:facet>
+							<h:outputText
+								value="#{_enteUniversitario.enteUniversitario.idEnteUniversitario}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nombre ente universitario</f:facet>
+							<h:outputText
+								value="#{_enteUniversitario.nombreEnteUniversitario}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Tipo ente universitario id tipo</f:facet>
+							<h:outputText
+								value="#{_enteUniversitario.tipoEnteUniversitario.idTipo}" />
+						</h:column>
+					</rich:dataTable>
 
-    <rich:tab label="Lista cursos ofrecidos">
-        <h:form styleClass="association" id="listaCursosOfrecidosChildren">
+				</div>
+			</rich:tab>
 
-            <h:outputText value="There are no listaCursosOfrecidos associated with this enteUniversitario."
-                       rendered="#{empty enteUniversitarioHome.listaCursosOfrecidos}"/>
+			<rich:tab label="Lista cursos ofrecidos">
+				<h:form styleClass="association" id="listaCursosOfrecidosChildren">
 
-            <rich:dataTable value="#{enteUniversitarioHome.listaCursosOfrecidos}"
-                           var="_curso"
-                      rendered="#{not empty enteUniversitarioHome.listaCursosOfrecidos}"
-                    rowClasses="rvgRowOne,rvgRowTwo"
-                            id="listaCursosOfrecidosTable">
-                <rich:column sortBy="#{_curso.codigo}">
-                    <f:facet name="header">Codigo</f:facet>
-                    <h:outputText value="#{_curso.codigo}"/>
-                </rich:column>
-                <rich:column sortBy="#{_curso.nombreAsignatura}">
-                    <f:facet name="header">Nombre asignatura</f:facet>
-                    <h:outputText value="#{_curso.nombreAsignatura}"/>
-                </rich:column>
-            </rich:dataTable>
+					<h:outputText
+						value="There are no listaCursosOfrecidos associated with this enteUniversitario."
+						rendered="#{empty enteUniversitarioHome.listaCursosOfrecidos}" />
 
-        </h:form>
+					<rich:dataTable
+						value="#{enteUniversitarioHome.listaCursosOfrecidos}" var="_curso"
+						rendered="#{not empty enteUniversitarioHome.listaCursosOfrecidos}"
+						rowClasses="rvgRowOne,rvgRowTwo" id="listaCursosOfrecidosTable">
+						<rich:column sortBy="#{_curso.codigo}">
+							<f:facet name="header">Codigo</f:facet>
+							<h:outputText value="#{_curso.codigo}" />
+						</rich:column>
+						<rich:column sortBy="#{_curso.nombreAsignatura}">
+							<f:facet name="header">Nombre asignatura</f:facet>
+							<h:outputText value="#{_curso.nombreAsignatura}" />
+						</rich:column>
+					</rich:dataTable>
 
-        <f:subview rendered="#{enteUniversitarioHome.managed}" id="listaCursosOfrecidos">
-        <div class="actionButtons">
-            <s:button id="addcurso"
-                   value="Add curso"
-                    view="/CursoEdit.xhtml"
-             propagation="none">
-                 <f:param name="enteUniversitarioIdEnteUniversitario"
-                         value="#{enteUniversitarioHome.instance.idEnteUniversitario}"/>
-                 <f:param name="cursoFrom" value="EnteUniversitario"/>
-            </s:button>
-        </div>
-        </f:subview>
-    </rich:tab>
+				</h:form>
 
-    <rich:tab label="Lista ente universitarios">
-        <h:form styleClass="association" id="listaEnteUniversitariosChildren">
+				<f:subview rendered="#{enteUniversitarioHome.managed}"
+					id="listaCursosOfrecidos">
+					<div class="actionButtons">
+						<s:button id="addcurso" value="Add curso" view="/CursoEdit.xhtml"
+							propagation="none">
+							<f:param name="enteUniversitarioIdEnteUniversitario"
+								value="#{enteUniversitarioHome.instance.idEnteUniversitario}" />
+							<f:param name="cursoFrom" value="EnteUniversitario" />
+						</s:button>
+					</div>
+				</f:subview>
+			</rich:tab>
 
-            <h:outputText value="There are no listaEnteUniversitarios associated with this enteUniversitario."
-                       rendered="#{empty enteUniversitarioHome.listaEnteUniversitarios}"/>
+			<rich:tab label="Lista ente universitarios">
+				<h:form styleClass="association"
+					id="listaEnteUniversitariosChildren">
 
-            <rich:dataTable value="#{enteUniversitarioHome.listaEnteUniversitarios}"
-                           var="_enteUniversitario"
-                      rendered="#{not empty enteUniversitarioHome.listaEnteUniversitarios}"
-                    rowClasses="rvgRowOne,rvgRowTwo"
-                            id="listaEnteUniversitariosTable">
-                <rich:column sortBy="#{_enteUniversitario.idEnteUniversitario}">
-                    <f:facet name="header">Id ente universitario</f:facet>
-                    <h:outputText value="#{_enteUniversitario.idEnteUniversitario}"/>
-                </rich:column>
-                <rich:column sortBy="#{_enteUniversitario.descripcionEnteUniversitario}">
-                    <f:facet name="header">Descripcion ente universitario</f:facet>
-                    <h:outputText value="#{_enteUniversitario.descripcionEnteUniversitario}"/>
-                </rich:column>
-                <rich:column sortBy="#{_enteUniversitario.nombreEnteUniversitario}">
-                    <f:facet name="header">Nombre ente universitario</f:facet>
-                    <h:outputText value="#{_enteUniversitario.nombreEnteUniversitario}"/>
-                </rich:column>
-            </rich:dataTable>
+					<h:outputText
+						value="There are no listaEnteUniversitarios associated with this enteUniversitario."
+						rendered="#{empty enteUniversitarioHome.listaEnteUniversitarios}" />
 
-        </h:form>
+					<rich:dataTable
+						value="#{enteUniversitarioHome.listaEnteUniversitarios}"
+						var="_enteUniversitario"
+						rendered="#{not empty enteUniversitarioHome.listaEnteUniversitarios}"
+						rowClasses="rvgRowOne,rvgRowTwo" id="listaEnteUniversitariosTable">
+						<rich:column sortBy="#{_enteUniversitario.idEnteUniversitario}">
+							<f:facet name="header">Id ente universitario</f:facet>
+							<h:outputText value="#{_enteUniversitario.idEnteUniversitario}" />
+						</rich:column>
+						<rich:column
+							sortBy="#{_enteUniversitario.descripcionEnteUniversitario}">
+							<f:facet name="header">Descripcion ente universitario</f:facet>
+							<h:outputText
+								value="#{_enteUniversitario.descripcionEnteUniversitario}" />
+						</rich:column>
+						<rich:column
+							sortBy="#{_enteUniversitario.nombreEnteUniversitario}">
+							<f:facet name="header">Nombre ente universitario</f:facet>
+							<h:outputText
+								value="#{_enteUniversitario.nombreEnteUniversitario}" />
+						</rich:column>
+					</rich:dataTable>
 
-        <f:subview rendered="#{enteUniversitarioHome.managed}" id="listaEnteUniversitarios">
-        <div class="actionButtons">
-            <s:button id="addenteUniversitario"
-                   value="Add enteUniversitario"
-                    view="/EnteUniversitarioEdit.xhtml"
-             propagation="none">
-                 <f:param name="enteUniversitarioIdEnteUniversitario"
-                         value="#{enteUniversitarioHome.instance.idEnteUniversitario}"/>
-                 <f:param name="enteUniversitarioFrom" value="EnteUniversitario"/>
-            </s:button>
-        </div>
-        </f:subview>
-    </rich:tab>
+				</h:form>
 
-    <rich:tab label="Lista user accounts">
-        <h:form styleClass="association" id="listaUserAccountsChildren">
+				<f:subview rendered="#{enteUniversitarioHome.managed}"
+					id="listaEnteUniversitarios">
+					<div class="actionButtons">
+						<s:button id="addenteUniversitario" value="Add enteUniversitario"
+							view="/EnteUniversitarioEdit.xhtml" propagation="none">
+							<f:param name="enteUniversitarioIdEnteUniversitario"
+								value="#{enteUniversitarioHome.instance.idEnteUniversitario}" />
+							<f:param name="enteUniversitarioFrom" value="EnteUniversitario" />
+						</s:button>
+					</div>
+				</f:subview>
+			</rich:tab>
 
-            <h:outputText value="There are no listaUserAccounts associated with this enteUniversitario."
-                       rendered="#{empty enteUniversitarioHome.listaUserAccounts}"/>
+			<rich:tab label="Lista user accounts">
+				<h:form styleClass="association" id="listaUserAccountsChildren">
 
-            <rich:dataTable value="#{enteUniversitarioHome.listaUserAccounts}"
-                           var="_userAccount"
-                      rendered="#{not empty enteUniversitarioHome.listaUserAccounts}"
-                    rowClasses="rvgRowOne,rvgRowTwo"
-                            id="listaUserAccountsTable">
-                <rich:column sortBy="#{_userAccount.id}">
-                    <f:facet name="header">Id</f:facet>
-                    <h:outputText value="#{_userAccount.id}"/>
-                </rich:column>
-                <rich:column sortBy="#{_userAccount.apellidos}">
-                    <f:facet name="header">Apellidos</f:facet>
-                    <h:outputText value="#{_userAccount.apellidos}"/>
-                </rich:column>
-                <rich:column sortBy="#{_userAccount.correoElectronico}">
-                    <f:facet name="header">Correo electronico</f:facet>
-                    <h:outputText value="#{_userAccount.correoElectronico}"/>
-                </rich:column>
-                <rich:column sortBy="#{_userAccount.documentoIdentidad}">
-                    <f:facet name="header">Documento identidad</f:facet>
-                    <h:outputText value="#{_userAccount.documentoIdentidad}"/>
-                </rich:column>
-                <rich:column sortBy="#{_userAccount.enabled}">
-                    <f:facet name="header">Enabled</f:facet>
-                    <h:outputText value="#{_userAccount.enabled}"/>
-                </rich:column>
-                <rich:column sortBy="#{_userAccount.fotoUser}">
-                    <f:facet name="header">Foto user</f:facet>
-                    <h:outputText value="#{_userAccount.fotoUser}"/>
-                </rich:column>
-                <rich:column sortBy="#{_userAccount.passwordHash}">
-                    <f:facet name="header">Password hash</f:facet>
-                    <h:outputText value="#{_userAccount.passwordHash}"/>
-                </rich:column>
-                <rich:column sortBy="#{_userAccount.primerNombre}">
-                    <f:facet name="header">Primer nombre</f:facet>
-                    <h:outputText value="#{_userAccount.primerNombre}"/>
-                </rich:column>
-                <rich:column sortBy="#{_userAccount.segundoNombre}">
-                    <f:facet name="header">Segundo nombre</f:facet>
-                    <h:outputText value="#{_userAccount.segundoNombre}"/>
-                </rich:column>
-                <rich:column sortBy="#{_userAccount.username}">
-                    <f:facet name="header">Username</f:facet>
-                    <h:outputText value="#{_userAccount.username}"/>
-                </rich:column>
-            </rich:dataTable>
+					<h:outputText
+						value="There are no listaUserAccounts associated with this enteUniversitario."
+						rendered="#{empty enteUniversitarioHome.listaUserAccounts}" />
 
-        </h:form>
+					<rich:dataTable value="#{enteUniversitarioHome.listaUserAccounts}"
+						var="_usuario"
+						rendered="#{not empty enteUniversitarioHome.listaUserAccounts}"
+						rowClasses="rvgRowOne,rvgRowTwo" id="listaUserAccountsTable">
+						<rich:column sortBy="#{_usuario.id}">
+							<f:facet name="header">Id</f:facet>
+							<h:outputText value="#{_usuario.id}" />
+						</rich:column>
+						<rich:column sortBy="#{_usuario.apellidos}">
+							<f:facet name="header">Apellidos</f:facet>
+							<h:outputText value="#{_usuario.apellidos}" />
+						</rich:column>
+						<rich:column sortBy="#{_usuario.correoElectronico}">
+							<f:facet name="header">Correo electronico</f:facet>
+							<h:outputText value="#{_usuario.correoElectronico}" />
+						</rich:column>
+						<rich:column sortBy="#{_usuario.documentoIdentidad}">
+							<f:facet name="header">Documento identidad</f:facet>
+							<h:outputText value="#{_usuario.documentoIdentidad}" />
+						</rich:column>
+						<rich:column sortBy="#{_usuario.fotoUser}">
+							<f:facet name="header">Foto user</f:facet>
+							<h:outputText value="#{_usuario.fotoUser}" />
+						</rich:column>
+						<rich:column sortBy="#{_usuario.primerNombre}">
+							<f:facet name="header">Primer nombre</f:facet>
+							<h:outputText value="#{_usuario.primerNombre}" />
+						</rich:column>
+						<rich:column sortBy="#{_usuario.segundoNombre}">
+							<f:facet name="header">Segundo nombre</f:facet>
+							<h:outputText value="#{_usuario.segundoNombre}" />
+						</rich:column>
+					</rich:dataTable>
 
-        <f:subview rendered="#{enteUniversitarioHome.managed}" id="listaUserAccounts">
-        <div class="actionButtons">
-            <s:button id="adduserAccount"
-                   value="Add userAccount"
-                    view="/UserAccountEdit.xhtml"
-             propagation="none">
-                 <f:param name="enteUniversitarioIdEnteUniversitario"
-                         value="#{enteUniversitarioHome.instance.idEnteUniversitario}"/>
-                 <f:param name="userAccountFrom" value="EnteUniversitario"/>
-            </s:button>
-        </div>
-        </f:subview>
-    </rich:tab>
+				</h:form>
 
-    <rich:tab label="Tipo ente universitario *" labelClass="required">
-    <div class="association" id="tipoEnteUniversitarioParent">
+				<f:subview rendered="#{enteUniversitarioHome.managed}"
+					id="listaUserAccounts">
+					<div class="actionButtons">
+						<s:button id="addusuario" value="Add usuario"
+							view="/UsuarioEdit.xhtml" propagation="none">
+							<f:param name="enteUniversitarioIdEnteUniversitario"
+								value="#{enteUniversitarioHome.instance.idEnteUniversitario}" />
+							<f:param name="usuarioFrom" value="EnteUniversitario" />
+						</s:button>
+					</div>
+				</f:subview>
+			</rich:tab>
 
-        <h:outputText value="There is no tipoEnteUniversitario associated with this enteUniversitario."
-                   rendered="#{enteUniversitarioHome.instance.tipoEnteUniversitario == null}"/>
-
-        <rich:dataTable var="_tipo"
-                   value="#{enteUniversitarioHome.instance.tipoEnteUniversitario}"
-                rendered="#{enteUniversitarioHome.instance.tipoEnteUniversitario != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="tipoEnteUniversitarioTable">
-            <h:column>
-                <f:facet name="header">Id tipo</f:facet>
-                <h:outputText value="#{_tipo.idTipo}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Descripcion</f:facet>
-                <h:outputText value="#{_tipo.descripcion}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nombre</f:facet>
-                <h:outputText value="#{_tipo.nombre}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo id tipo</f:facet>
-                <h:outputText value="#{_tipo.tipo.idTipo}"/>
-            </h:column>
-        </rich:dataTable>
-
-        <div class="actionButtons">
-            <s:button id="#{enteUniversitarioHome.instance.tipoEnteUniversitario != null ? 'changeParenttipoEnteUniversitario' : 'selectParenttipoEnteUniversitario'}" value="#{enteUniversitarioHome.instance.tipoEnteUniversitario != null ? 'Change' : 'Select'} tipoEnteUniversitario"
-                       view="/TipoList.xhtml">
-                <f:param name="from" value="EnteUniversitarioEdit"/>
-            </s:button>
-        </div>
-
-    </div>
-    </rich:tab>
-</rich:tabPanel>
-</ui:define>
+			
+		</rich:tabPanel>
+	</ui:define>
 
 </ui:composition>

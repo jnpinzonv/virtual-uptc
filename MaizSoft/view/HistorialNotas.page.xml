@@ -17,8 +17,8 @@
 
 
 
-   <param name="userAccountFrom"/>
-   <param name="userAccountId" value="#{userAccountHome.userAccountId}"/>
+   <param name="usuarioFrom"/>
+   <param name="usuarioId" value="#{usuarioHome.usuarioId}"/>
 
 
 

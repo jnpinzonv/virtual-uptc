@@ -17,8 +17,14 @@
 
 
 
+   <param name="usuarioFrom"/>
+   <param name="usuarioId" value="#{usuarioHome.usuarioId}"/>
+
+   <param name="cuentasUsuarioFrom"/>
+   <param name="cuentasUsuarioId" value="#{cuentasUsuarioHome.cuentasUsuarioId}"/>
    <param name="userAccountFrom"/>
    <param name="userAccountId" value="#{userAccountHome.userAccountId}"/>
+
 
 
 

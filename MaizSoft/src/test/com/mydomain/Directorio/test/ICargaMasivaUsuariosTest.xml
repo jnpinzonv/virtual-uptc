@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+
+<suite name="ICargaMasivaUsuarios Tests" verbose="2" parallel="false">
+   <test name="ICargaMasivaUsuarios Test">
+     <classes>
+       <class name="com.mydomain.Directorio.test.ICargaMasivaUsuariosTest"/>       
+     </classes>
+   </test>	
+</suite>

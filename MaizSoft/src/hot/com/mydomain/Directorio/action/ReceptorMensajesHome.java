@@ -11,7 +11,7 @@ public class ReceptorMensajesHome extends EntityHome<ReceptorMensajes> {
 	@In(create = true)
 	GestorMensajeriaHome gestorMensajeriaHome;
 	@In(create = true)
-	UserAccountHome userAccountHome;
+	UsuarioHome usuarioHome;
 
 	public void setReceptorMensajesIdReceptormenajes(Long id) {
 		setId(id);
@@ -40,7 +40,7 @@ public class ReceptorMensajesHome extends EntityHome<ReceptorMensajes> {
 		if (gestorMensajeria != null) {
 			getInstance().setGestorMensajeria(gestorMensajeria);
 		}
-		UserAccount userAccount = userAccountHome.getDefinedInstance();
+		Usuario userAccount = usuarioHome.getDefinedInstance();
 		if (userAccount != null) {
 			getInstance().setUserAccount(userAccount);
 		}

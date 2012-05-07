@@ -1,0 +1,189 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Cuentas usuario Details</f:facet>
+
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/CuentasUsuarioEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty cuentasUsuarioFrom ? 'CuentasUsuarioList' : cuentasUsuarioFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Grupo usuarios</h:panelGroup>
+        </f:facet>
+    <div class="association" id="grupoUsuariosParent">
+
+        <h:outputText value="There is no grupoUsuarios associated with this cuentasUsuario."
+                   rendered="#{cuentasUsuarioHome.instance.grupoUsuarios == null}"/>
+
+        <rich:dataTable var="_grupoUsuarios"
+                   value="#{cuentasUsuarioHome.instance.grupoUsuarios}"
+                rendered="#{cuentasUsuarioHome.instance.grupoUsuarios != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="grupoUsuariosTable">
+            <h:column>
+                <f:facet name="header">Id grupo usuarios</f:facet>
+                <h:outputText value="#{_grupoUsuarios.idGrupoUsuarios}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Grupo curso id grupo</f:facet>
+                <h:outputText value="#{_grupoUsuarios.grupoCurso.idGrupo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">User grupo curso id</f:facet>
+                <h:outputText value="#{_grupoUsuarios.userGrupoCurso.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">User role id</f:facet>
+                <h:outputText value="#{_grupoUsuarios.userRole.id}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewgrupoUsuarios"
+                     value="View"
+                      view="/GrupoUsuarios.xhtml">
+                    <f:param name="grupoUsuariosIdGrupoUsuarios"
+                           value="#{_grupoUsuarios.idGrupoUsuarios}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>User accounts</h:panelGroup>
+        </f:facet>
+    <div class="association" id="userAccountsParent">
+
+        <h:outputText value="There is no userAccounts associated with this cuentasUsuario."
+                   rendered="#{cuentasUsuarioHome.instance.userAccounts == null}"/>
+
+        <rich:dataTable var="_userAccount"
+                   value="#{cuentasUsuarioHome.instance.userAccounts}"
+                rendered="#{cuentasUsuarioHome.instance.userAccounts != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="userAccountsTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_userAccount.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Enabled</f:facet>
+                <h:outputText value="#{_userAccount.enabled}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Password hash</f:facet>
+                <h:outputText value="#{_userAccount.passwordHash}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Username</f:facet>
+                <h:outputText value="#{_userAccount.username}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewuserAccount"
+                     value="View"
+                      view="/UserAccount.xhtml">
+                    <f:param name="userAccountId"
+                           value="#{_userAccount.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Usuarios</h:panelGroup>
+        </f:facet>
+    <div class="association" id="usuariosParent">
+
+        <h:outputText value="There is no usuarios associated with this cuentasUsuario."
+                   rendered="#{cuentasUsuarioHome.instance.usuarios == null}"/>
+
+        <rich:dataTable var="_usuario"
+                   value="#{cuentasUsuarioHome.instance.usuarios}"
+                rendered="#{cuentasUsuarioHome.instance.usuarios != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="usuariosTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_usuario.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Apellidos</f:facet>
+                <h:outputText value="#{_usuario.apellidos}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Correo electronico</f:facet>
+                <h:outputText value="#{_usuario.correoElectronico}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Documento identidad</f:facet>
+                <h:outputText value="#{_usuario.documentoIdentidad}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Ente universitarios id ente universitario</f:facet>
+                <h:outputText value="#{_usuario.enteUniversitarios.idEnteUniversitario}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Foto user</f:facet>
+                <h:outputText value="#{_usuario.fotoUser}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Primer nombre</f:facet>
+                <h:outputText value="#{_usuario.primerNombre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Segundo nombre</f:facet>
+                <h:outputText value="#{_usuario.segundoNombre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tipo id tipo</f:facet>
+                <h:outputText value="#{_usuario.tipo.idTipo}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewusuario"
+                     value="View"
+                      view="/Usuario.xhtml">
+                    <f:param name="usuarioId"
+                           value="#{_usuario.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

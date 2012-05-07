@@ -9,11 +9,7 @@
    <param name="logic" value="#{userAccountList.restrictionLogicOperator}"/>
 
    <param name="from"/>
-   <param name="apellidos" value="#{userAccountList.userAccount.apellidos}"/>
-   <param name="correoElectronico" value="#{userAccountList.userAccount.correoElectronico}"/>
    <param name="passwordHash" value="#{userAccountList.userAccount.passwordHash}"/>
-   <param name="primerNombre" value="#{userAccountList.userAccount.primerNombre}"/>
-   <param name="segundoNombre" value="#{userAccountList.userAccount.segundoNombre}"/>
    <param name="username" value="#{userAccountList.userAccount.username}"/>
 
 </page>

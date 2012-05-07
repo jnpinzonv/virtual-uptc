@@ -40,8 +40,7 @@ public class Curso {
 	 * @return the codigo
 	 */
 	@Id
-	@NotNull
-	@Size(max=20)
+	@NotNull	
 	public Long getCodigo() {
 		return codigo;
 	}

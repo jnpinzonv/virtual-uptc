@@ -45,7 +45,7 @@ public class Tipo {
 	
 	private Set<GestorRepositoriosVirtuales> gestorRepositoriosVirtuales;
 	
-	private Set<UserAccount> userAccount;
+	private Set<Usuario> userAccount;
 
 	private Set<GestorCargaArchivos> gestorCargaArchivos;
 	/**
@@ -184,9 +184,9 @@ public class Tipo {
 	 * @return the userAccount
 	 */
 	@OneToMany(mappedBy="tipo",cascade=CascadeType.ALL)
-	public Set<UserAccount> getUserAccount() {
+	public Set<Usuario> getUserAccount() {
 		if(userAccount==null){
-			return new HashSet<UserAccount>();
+			return new HashSet<Usuario>();
 		}
 		return userAccount;
 	}
@@ -194,7 +194,7 @@ public class Tipo {
 	/**
 	 * @param userAccount the userAccount to set
 	 */
-	public void setUserAccount(Set<UserAccount> userAccount) {
+	public void setUserAccount(Set<Usuario> userAccount) {
 		this.userAccount = userAccount;
 	}
 

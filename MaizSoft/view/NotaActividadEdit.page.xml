@@ -22,8 +22,8 @@
 
    <param name="gestorMensajeriaFrom"/>
    <param name="gestorMensajeriaIdMensaje" value="#{gestorMensajeriaHome.gestorMensajeriaIdMensaje}"/>
-   <param name="userAccountFrom"/>
-   <param name="userAccountId" value="#{userAccountHome.userAccountId}"/>
+   <param name="usuarioFrom"/>
+   <param name="usuarioId" value="#{usuarioHome.usuarioId}"/>
    <param name="enteUniversitarioFrom"/>
    <param name="enteUniversitarioIdEnteUniversitario" value="#{enteUniversitarioHome.enteUniversitarioIdEnteUniversitario}"/>
 
@@ -35,6 +35,12 @@
    <param name="grupoCursoIdGrupo" value="#{grupoCursoHome.grupoCursoIdGrupo}"/>
    <param name="cursoFrom"/>
    <param name="cursoCodigo" value="#{cursoHome.cursoCodigo}"/>
+
+
+   <param name="cuentasUsuarioFrom"/>
+   <param name="cuentasUsuarioId" value="#{cuentasUsuarioHome.cuentasUsuarioId}"/>
+   <param name="userAccountFrom"/>
+   <param name="userAccountId" value="#{userAccountHome.userAccountId}"/>
 
 
 

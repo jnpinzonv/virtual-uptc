@@ -1,0 +1,339 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
+
+	<ui:define name="body">
+
+		<h:form id="usuario" styleClass="edit">
+
+			<rich:panel>
+				<f:facet name="header">#{usuarioHome.managed ? 'Edit' : 'Add'} Usuario</f:facet>
+
+
+
+				<s:decorate id="apellidosField" template="layout/edit.xhtml">
+					<ui:define name="label">Apellidos</ui:define>
+					<h:inputText id="apellidos" required="true" size="15"
+						maxlength="15" value="#{usuarioHome.instance.apellidos}">
+						<a:support event="onblur" reRender="apellidosField"
+							bypassUpdates="true" ajaxSingle="true" />
+					</h:inputText>
+				</s:decorate>
+
+
+				<s:decorate id="correoElectronicoField" template="layout/edit.xhtml">
+					<ui:define name="label">Correo electronico</ui:define>
+					<h:inputText id="correoElectronico" required="true" size="60"
+						maxlength="60" value="#{usuarioHome.instance.correoElectronico}">
+						<a:support event="onblur" reRender="correoElectronicoField"
+							bypassUpdates="true" ajaxSingle="true" />
+					</h:inputText>
+				</s:decorate>
+
+
+
+				<s:decorate id="documentoIdentidadField"
+					template="layout/edit.xhtml">
+					<ui:define name="label">Documento identidad</ui:define>
+					<h:inputText id="documentoIdentidad" required="true"
+						value="#{usuarioHome.instance.documentoIdentidad}">
+						<a:support event="onblur" reRender="documentoIdentidadField"
+							bypassUpdates="true" ajaxSingle="true" />
+					</h:inputText>
+				</s:decorate>
+
+
+
+				<s:decorate id="fotoUserField" template="layout/edit.xhtml">
+					<ui:define name="label">Foto user</ui:define>
+					<h:inputText id="fotoUser" value="#{usuarioHome.instance.fotoUser}">
+						<a:support event="onblur" reRender="fotoUserField"
+							bypassUpdates="true" ajaxSingle="true" />
+					</h:inputText>
+				</s:decorate>
+
+
+
+
+
+				<s:decorate id="primerNombreField" template="layout/edit.xhtml">
+					<ui:define name="label">Primer nombre</ui:define>
+					<h:inputText id="primerNombre" required="true" size="50"
+						maxlength="50" value="#{usuarioHome.instance.primerNombre}">
+						<a:support event="onblur" reRender="primerNombreField"
+							bypassUpdates="true" ajaxSingle="true" />
+					</h:inputText>
+				</s:decorate>
+
+
+				<s:decorate id="segundoNombreField" template="layout/edit.xhtml">
+					<ui:define name="label">Segundo nombre</ui:define>
+					<h:inputText id="segundoNombre" size="50" maxlength="50"
+						value="#{usuarioHome.instance.segundoNombre}">
+						<a:support event="onblur" reRender="segundoNombreField"
+							bypassUpdates="true" ajaxSingle="true" />
+					</h:inputText>
+				</s:decorate>
+
+				<s:decorate id="usernameField" template="/layout/edit.xhtml">
+					<ui:define name="label">Username</ui:define>
+					<h:inputText id="username" value="#{userAction.username}" />
+				</s:decorate>
+
+				<s:decorate id="passwordField" template="/layout/edit.xhtml">
+					<ui:define name="label">Password</ui:define>
+					<h:inputSecret id="password" value="#{userAction.password}" />
+				</s:decorate>
+
+				<s:decorate id="confirmField" template="/layout/edit.xhtml">
+					<ui:define name="label">Confirm password</ui:define>
+					<h:inputSecret id="confirm" value="#{userAction.confirm}" />
+				</s:decorate>
+
+				<s:decorate id="rolesField" template="/layout/edit.xhtml">
+					<ui:define name="label">Member of roles</ui:define>
+					<div class="selectMany">
+						<h:selectManyCheckbox id="roles" value="#{userAction.roles}"
+							layout="pageDirection" styleClass="roles">
+							<s:selectItems value="#{identityManager.listGrantableRoles()}"
+								var="_role" label="#{_role}" />
+						</h:selectManyCheckbox>
+					</div>
+				</s:decorate>
+				
+				<h:selectOneMenu
+					value="#{usuarioHome.instance.enteUniversitarios}"
+					id="enteUniversitario" required="true" rendered="true">
+					<s:selectItems value="#{listaEscuelasCurso}" var="lista"
+						label="#{lista.nombreEnteUniversitario}" noSelectionLabel="SELECCIONE..." />
+					<a4j:support event="onchange" reRender="dos" />
+					<s:convertEntity />
+				</h:selectOneMenu>
+
+				<h:selectOneMenu
+					value="#{usuarioHome.instance.tipo}"
+					id="tipoDocumento" rendered="true">
+					<s:selectItems value="#{listaTiposDocumento}" var="listaE"
+						label="#{listaE.nombre}"
+						noSelectionLabel="SELECCIONE..." />
+					<s:convertEntity />
+				<a4j:support event="onchange" reRender="dos" />
+				</h:selectOneMenu>
+				<div style="clear: both">
+					<span class="required">*</span> required fields
+				</div>
+			</rich:panel>
+
+			<a4j:outputPanel id="dos">
+			<div class="actionButtons">
+			
+				<h:commandButton id="save" value="Save"
+					action="#{usuarioHome.saveUsuario()}" disabled="#{!usuarioHome.wired}"
+					rendered="#{!usuarioHome.managed}" />
+
+				<h:commandButton id="update" value="Save"
+					action="#{usuarioHome.update}" rendered="#{usuarioHome.managed}" />
+
+				<h:commandButton id="delete" value="Delete"
+					action="#{usuarioHome.remove}" immediate="true"
+					rendered="#{usuarioHome.managed}" />
+
+				<s:button id="cancelEdit" value="Cancel" propagation="end"
+					view="/Usuario.xhtml" rendered="#{usuarioHome.managed}" />
+
+				<s:button id="cancelAdd" value="Cancel" propagation="end"
+					view="/#{empty usuarioFrom ? 'UsuarioList' : usuarioFrom}.xhtml"
+					rendered="#{!usuarioHome.managed}" />
+
+			</div>
+			
+			</a4j:outputPanel>
+		</h:form>
+
+		<rich:tabPanel switchType="ajax">
+
+			<rich:tab label="Cuentas usuario">
+				<h:form styleClass="association" id="cuentasUsuarioChildren">
+
+					<h:outputText
+						value="There are no cuentasUsuario associated with this usuario."
+						rendered="#{empty usuarioHome.cuentasUsuario}" />
+
+					<rich:dataTable value="#{usuarioHome.cuentasUsuario}"
+						var="_cuentasUsuario"
+						rendered="#{not empty usuarioHome.cuentasUsuario}"
+						rowClasses="rvgRowOne,rvgRowTwo" id="cuentasUsuarioTable">
+						<rich:column sortBy="#{_cuentasUsuario.id}">
+							<f:facet name="header">Id</f:facet>
+							<h:outputText value="#{_cuentasUsuario.id}" />
+						</rich:column>
+					</rich:dataTable>
+
+				</h:form>
+
+				<f:subview rendered="#{usuarioHome.managed}" id="cuentasUsuario">
+					<div class="actionButtons">
+					
+						<s:button id="addcuentasUsuario" value="Add cuentasUsuario"
+							view="/CuentasUsuarioEdit.xhtml" propagation="none">
+							<f:param name="usuarioId" value="#{usuarioHome.instance.id}" />
+							<f:param name="cuentasUsuarioFrom" value="Usuario" />
+						</s:button>
+					</div>
+				</f:subview>
+			</rich:tab>
+
+			
+
+					
+
+			<rich:tab label="Grupo usuarios">
+				<h:form styleClass="association" id="grupoUsuariosChildren">
+
+					<h:outputText
+						value="There are no grupoUsuarios associated with this usuario."
+						rendered="#{empty usuarioHome.grupoUsuarios}" />
+
+					<rich:dataTable value="#{usuarioHome.grupoUsuarios}"
+						var="_grupoUsuarios"
+						rendered="#{not empty usuarioHome.grupoUsuarios}"
+						rowClasses="rvgRowOne,rvgRowTwo" id="grupoUsuariosTable">
+						<rich:column sortBy="#{_grupoUsuarios.idGrupoUsuarios}">
+							<f:facet name="header">Id grupo usuarios</f:facet>
+							<h:outputText value="#{_grupoUsuarios.idGrupoUsuarios}" />
+						</rich:column>
+					</rich:dataTable>
+
+				</h:form>
+
+				<f:subview rendered="#{usuarioHome.managed}" id="grupoUsuarios">
+					<div class="actionButtons">
+						<s:button id="addgrupoUsuarios" value="Add grupoUsuarios"
+							view="/GrupoUsuariosEdit.xhtml" propagation="none">
+							<f:param name="usuarioId" value="#{usuarioHome.instance.id}" />
+							<f:param name="grupoUsuariosFrom" value="Usuario" />
+						</s:button>
+					</div>
+				</f:subview>
+			</rich:tab>
+
+			<rich:tab label="Historial notas">
+				<h:form styleClass="association" id="historialNotasChildren">
+
+					<h:outputText
+						value="There are no historialNotas associated with this usuario."
+						rendered="#{empty usuarioHome.historialNotas}" />
+
+					<rich:dataTable value="#{usuarioHome.historialNotas}"
+						var="_historialNotas"
+						rendered="#{not empty usuarioHome.historialNotas}"
+						rowClasses="rvgRowOne,rvgRowTwo" id="historialNotasTable">
+						<rich:column sortBy="#{_historialNotas.idHistorialNotas}">
+							<f:facet name="header">Id historial notas</f:facet>
+							<h:outputText value="#{_historialNotas.idHistorialNotas}" />
+						</rich:column>
+						<rich:column sortBy="#{_historialNotas.nota}">
+							<f:facet name="header">Nota</f:facet>
+							<h:outputText value="#{_historialNotas.nota}" />
+						</rich:column>
+					</rich:dataTable>
+
+				</h:form>
+
+				<f:subview rendered="#{usuarioHome.managed}" id="historialNotas">
+					<div class="actionButtons">
+						<s:button id="addhistorialNotas" value="Add historialNotas"
+							view="/HistorialNotasEdit.xhtml" propagation="none">
+							<f:param name="usuarioId" value="#{usuarioHome.instance.id}" />
+							<f:param name="historialNotasFrom" value="Usuario" />
+						</s:button>
+					</div>
+				</f:subview>
+			</rich:tab>
+
+			<rich:tab label="Mensajes">
+				<h:form styleClass="association" id="mensajesChildren">
+
+					<h:outputText
+						value="There are no mensajes associated with this usuario."
+						rendered="#{empty usuarioHome.mensajes}" />
+
+					<rich:dataTable value="#{usuarioHome.mensajes}"
+						var="_receptorMensajes"
+						rendered="#{not empty usuarioHome.mensajes}"
+						rowClasses="rvgRowOne,rvgRowTwo" id="mensajesTable">
+						<rich:column sortBy="#{_receptorMensajes.idReceptormenajes}">
+							<f:facet name="header">Id receptormenajes</f:facet>
+							<h:outputText value="#{_receptorMensajes.idReceptormenajes}" />
+						</rich:column>
+					</rich:dataTable>
+
+				</h:form>
+
+				<f:subview rendered="#{usuarioHome.managed}" id="mensajes">
+					<div class="actionButtons">
+						<s:button id="addreceptorMensajes" value="Add receptorMensajes"
+							view="/ReceptorMensajesEdit.xhtml" propagation="none">
+							<f:param name="usuarioId" value="#{usuarioHome.instance.id}" />
+							<f:param name="receptorMensajesFrom" value="Usuario" />
+						</s:button>
+					</div>
+				</f:subview>
+			</rich:tab>
+
+			
+
+			<rich:tab label="Usuario emisor">
+				<h:form styleClass="association" id="usuarioEmisorChildren">
+
+					<h:outputText
+						value="There are no usuarioEmisor associated with this usuario."
+						rendered="#{empty usuarioHome.usuarioEmisor}" />
+
+					<rich:dataTable value="#{usuarioHome.usuarioEmisor}"
+						var="_gestorMensajeria"
+						rendered="#{not empty usuarioHome.usuarioEmisor}"
+						rowClasses="rvgRowOne,rvgRowTwo" id="usuarioEmisorTable">
+						<rich:column sortBy="#{_gestorMensajeria.idMensaje}">
+							<f:facet name="header">Id mensaje</f:facet>
+							<h:outputText value="#{_gestorMensajeria.idMensaje}" />
+						</rich:column>
+						<rich:column sortBy="#{_gestorMensajeria.asunto}">
+							<f:facet name="header">Asunto</f:facet>
+							<h:outputText value="#{_gestorMensajeria.asunto}" />
+						</rich:column>
+						<rich:column sortBy="#{_gestorMensajeria.fechaEnvio}">
+							<f:facet name="header">Fecha envio</f:facet>
+							<h:outputText value="#{_gestorMensajeria.fechaEnvio}">
+								<s:convertDateTime type="date" dateStyle="short" />
+							</h:outputText>
+						</rich:column>
+						<rich:column sortBy="#{_gestorMensajeria.mensaje}">
+							<f:facet name="header">Mensaje</f:facet>
+							<h:outputText value="#{_gestorMensajeria.mensaje}" />
+						</rich:column>
+					</rich:dataTable>
+
+				</h:form>
+
+				<f:subview rendered="#{usuarioHome.managed}" id="usuarioEmisor">
+					<div class="actionButtons">
+						<s:button id="addgestorMensajeria" value="Add gestorMensajeria"
+							view="/GestorMensajeriaEdit.xhtml" propagation="none">
+							<f:param name="usuarioId" value="#{usuarioHome.instance.id}" />
+							<f:param name="gestorMensajeriaFrom" value="Usuario" />
+						</s:button>
+					</div>
+				</f:subview>
+			</rich:tab>
+		</rich:tabPanel>
+	</ui:define>
+
+</ui:composition>

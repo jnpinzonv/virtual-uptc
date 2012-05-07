@@ -14,44 +14,14 @@
         <f:facet name="header">User account Details</f:facet>
 
 
-        <s:decorate id="apellidos" template="layout/display.xhtml">
-            <ui:define name="label">Apellidos</ui:define>
-            <h:outputText value="#{userAccountHome.instance.apellidos}"/>
-        </s:decorate>
-
-        <s:decorate id="correoElectronico" template="layout/display.xhtml">
-            <ui:define name="label">Correo electronico</ui:define>
-            <h:outputText value="#{userAccountHome.instance.correoElectronico}"/>
-        </s:decorate>
-
-        <s:decorate id="documentoIdentidad" template="layout/display.xhtml">
-            <ui:define name="label">Documento identidad</ui:define>
-            <h:outputText value="#{userAccountHome.instance.documentoIdentidad}"/>
-        </s:decorate>
-
         <s:decorate id="enabled" template="layout/display.xhtml">
             <ui:define name="label">Enabled</ui:define>
             <h:outputText value="#{userAccountHome.instance.enabled}"/>
         </s:decorate>
 
-        <s:decorate id="fotoUser" template="layout/display.xhtml">
-            <ui:define name="label">Foto user</ui:define>
-            <h:outputText value="#{userAccountHome.instance.fotoUser}"/>
-        </s:decorate>
-
         <s:decorate id="passwordHash" template="layout/display.xhtml">
             <ui:define name="label">Password hash</ui:define>
             <h:outputText value="#{userAccountHome.instance.passwordHash}"/>
-        </s:decorate>
-
-        <s:decorate id="primerNombre" template="layout/display.xhtml">
-            <ui:define name="label">Primer nombre</ui:define>
-            <h:outputText value="#{userAccountHome.instance.primerNombre}"/>
-        </s:decorate>
-
-        <s:decorate id="segundoNombre" template="layout/display.xhtml">
-            <ui:define name="label">Segundo nombre</ui:define>
-            <h:outputText value="#{userAccountHome.instance.segundoNombre}"/>
         </s:decorate>
 
         <s:decorate id="username" template="layout/display.xhtml">
@@ -79,78 +49,30 @@
 
     <rich:tab>
         <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Ente universitarios</h:panelGroup>
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Cuentas usuarios</h:panelGroup>
         </f:facet>
-    <div class="association" id="enteUniversitariosParent">
+    <h:form styleClass="association" id="cuentasUsuariosChildren">
 
-        <h:outputText value="There is no enteUniversitarios associated with this userAccount."
-                   rendered="#{userAccountHome.instance.enteUniversitarios == null}"/>
+        <h:outputText value="There are no cuentasUsuarios associated with this userAccount."
+                   rendered="#{empty userAccountHome.cuentasUsuarios}"/>
 
-        <rich:dataTable var="_enteUniversitario"
-                   value="#{userAccountHome.instance.enteUniversitarios}"
-                rendered="#{userAccountHome.instance.enteUniversitarios != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="enteUniversitariosTable">
-            <h:column>
-                <f:facet name="header">Id ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.idEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Descripcion ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.descripcionEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Ente universitario id ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.enteUniversitario.idEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nombre ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.nombreEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo ente universitario id tipo</f:facet>
-                <h:outputText value="#{_enteUniversitario.tipoEnteUniversitario.idTipo}"/>
-            </h:column>
-            <h:column styleClass="action">
-                <f:facet name="header">Action</f:facet>
-                <s:link id="viewenteUniversitario"
-                     value="View"
-                      view="/EnteUniversitario.xhtml">
-                    <f:param name="enteUniversitarioIdEnteUniversitario"
-                           value="#{_enteUniversitario.idEnteUniversitario}"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
-    </div>
-    </rich:tab>
-
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Grupo usuarios</h:panelGroup>
-        </f:facet>
-    <h:form styleClass="association" id="grupoUsuariosChildren">
-
-        <h:outputText value="There are no grupoUsuarios associated with this userAccount."
-                   rendered="#{empty userAccountHome.grupoUsuarios}"/>
-
-        <rich:dataTable value="#{userAccountHome.grupoUsuarios}"
-                       var="_grupoUsuarios"
-                  rendered="#{not empty userAccountHome.grupoUsuarios}"
+        <rich:dataTable value="#{userAccountHome.cuentasUsuarios}"
+                       var="_cuentasUsuario"
+                  rendered="#{not empty userAccountHome.cuentasUsuarios}"
                 rowClasses="rvgRowOne,rvgRowTwo"
-                        id="grupoUsuariosTable">
-            <rich:column sortBy="#{_grupoUsuarios.idGrupoUsuarios}">
-                <f:facet name="header">Id grupo usuarios</f:facet>
-                <h:outputText value="#{_grupoUsuarios.idGrupoUsuarios}"/>
+                        id="cuentasUsuariosTable">
+            <rich:column sortBy="#{_cuentasUsuario.id}">
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_cuentasUsuario.id}"/>
             </rich:column>
             <h:column>
                 <f:facet name="header">Action</f:facet>
-                <s:link id="selectgrupoUsuarios"
+                <s:link id="selectcuentasUsuario"
                      value="Select"
-                      view="/GrupoUsuarios.xhtml">
-                    <f:param name="grupoUsuariosIdGrupoUsuarios"
-                            value="#{_grupoUsuarios.idGrupoUsuarios}"/>
-                    <f:param name="grupoUsuariosFrom" value="UserAccount"/>
+                      view="/CuentasUsuario.xhtml">
+                    <f:param name="cuentasUsuarioId"
+                            value="#{_cuentasUsuario.id}"/>
+                    <f:param name="cuentasUsuarioFrom" value="UserAccount"/>
                 </s:link>
             </h:column>
         </rich:dataTable>
@@ -159,202 +81,11 @@
 
     <div class="actionButtons">
         <s:button
-               value="Add grupoUsuarios"
-                view="/GrupoUsuariosEdit.xhtml">
+               value="Add cuentasUsuario"
+                view="/CuentasUsuarioEdit.xhtml">
             <f:param name="userAccountId"
                     value="#{userAccountHome.instance.id}"/>
-            <f:param name="grupoUsuariosFrom" value="UserAccount"/>
-        </s:button>
-    </div>
-    </rich:tab>
-
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Historial notas</h:panelGroup>
-        </f:facet>
-    <h:form styleClass="association" id="historialNotasChildren">
-
-        <h:outputText value="There are no historialNotas associated with this userAccount."
-                   rendered="#{empty userAccountHome.historialNotas}"/>
-
-        <rich:dataTable value="#{userAccountHome.historialNotas}"
-                       var="_historialNotas"
-                  rendered="#{not empty userAccountHome.historialNotas}"
-                rowClasses="rvgRowOne,rvgRowTwo"
-                        id="historialNotasTable">
-            <rich:column sortBy="#{_historialNotas.idHistorialNotas}">
-                <f:facet name="header">Id historial notas</f:facet>
-                <h:outputText value="#{_historialNotas.idHistorialNotas}"/>
-            </rich:column>
-            <rich:column sortBy="#{_historialNotas.nota}">
-                <f:facet name="header">Nota</f:facet>
-                <h:outputText value="#{_historialNotas.nota}"/>
-            </rich:column>
-            <h:column>
-                <f:facet name="header">Action</f:facet>
-                <s:link id="selecthistorialNotas"
-                     value="Select"
-                      view="/HistorialNotas.xhtml">
-                    <f:param name="historialNotasIdHistorialNotas"
-                            value="#{_historialNotas.idHistorialNotas}"/>
-                    <f:param name="historialNotasFrom" value="UserAccount"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
-    </h:form>
-
-    <div class="actionButtons">
-        <s:button
-               value="Add historialNotas"
-                view="/HistorialNotasEdit.xhtml">
-            <f:param name="userAccountId"
-                    value="#{userAccountHome.instance.id}"/>
-            <f:param name="historialNotasFrom" value="UserAccount"/>
-        </s:button>
-    </div>
-    </rich:tab>
-
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Mensajes</h:panelGroup>
-        </f:facet>
-    <h:form styleClass="association" id="mensajesChildren">
-
-        <h:outputText value="There are no mensajes associated with this userAccount."
-                   rendered="#{empty userAccountHome.mensajes}"/>
-
-        <rich:dataTable value="#{userAccountHome.mensajes}"
-                       var="_receptorMensajes"
-                  rendered="#{not empty userAccountHome.mensajes}"
-                rowClasses="rvgRowOne,rvgRowTwo"
-                        id="mensajesTable">
-            <rich:column sortBy="#{_receptorMensajes.idReceptormenajes}">
-                <f:facet name="header">Id receptormenajes</f:facet>
-                <h:outputText value="#{_receptorMensajes.idReceptormenajes}"/>
-            </rich:column>
-            <h:column>
-                <f:facet name="header">Action</f:facet>
-                <s:link id="selectreceptorMensajes"
-                     value="Select"
-                      view="/ReceptorMensajes.xhtml">
-                    <f:param name="receptorMensajesIdReceptormenajes"
-                            value="#{_receptorMensajes.idReceptormenajes}"/>
-                    <f:param name="receptorMensajesFrom" value="UserAccount"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
-    </h:form>
-
-    <div class="actionButtons">
-        <s:button
-               value="Add receptorMensajes"
-                view="/ReceptorMensajesEdit.xhtml">
-            <f:param name="userAccountId"
-                    value="#{userAccountHome.instance.id}"/>
-            <f:param name="receptorMensajesFrom" value="UserAccount"/>
-        </s:button>
-    </div>
-    </rich:tab>
-
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Tipo</h:panelGroup>
-        </f:facet>
-    <div class="association" id="tipoParent">
-
-        <h:outputText value="There is no tipo associated with this userAccount."
-                   rendered="#{userAccountHome.instance.tipo == null}"/>
-
-        <rich:dataTable var="_tipo"
-                   value="#{userAccountHome.instance.tipo}"
-                rendered="#{userAccountHome.instance.tipo != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="tipoTable">
-            <h:column>
-                <f:facet name="header">Id tipo</f:facet>
-                <h:outputText value="#{_tipo.idTipo}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Descripcion</f:facet>
-                <h:outputText value="#{_tipo.descripcion}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nombre</f:facet>
-                <h:outputText value="#{_tipo.nombre}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo id tipo</f:facet>
-                <h:outputText value="#{_tipo.tipo.idTipo}"/>
-            </h:column>
-            <h:column styleClass="action">
-                <f:facet name="header">Action</f:facet>
-                <s:link id="viewtipo"
-                     value="View"
-                      view="/Tipo.xhtml">
-                    <f:param name="tipoIdTipo"
-                           value="#{_tipo.idTipo}"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
-    </div>
-    </rich:tab>
-
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Usuario emisor</h:panelGroup>
-        </f:facet>
-    <h:form styleClass="association" id="usuarioEmisorChildren">
-
-        <h:outputText value="There are no usuarioEmisor associated with this userAccount."
-                   rendered="#{empty userAccountHome.usuarioEmisor}"/>
-
-        <rich:dataTable value="#{userAccountHome.usuarioEmisor}"
-                       var="_gestorMensajeria"
-                  rendered="#{not empty userAccountHome.usuarioEmisor}"
-                rowClasses="rvgRowOne,rvgRowTwo"
-                        id="usuarioEmisorTable">
-            <rich:column sortBy="#{_gestorMensajeria.idMensaje}">
-                <f:facet name="header">Id mensaje</f:facet>
-                <h:outputText value="#{_gestorMensajeria.idMensaje}"/>
-            </rich:column>
-            <rich:column sortBy="#{_gestorMensajeria.asunto}">
-                <f:facet name="header">Asunto</f:facet>
-                <h:outputText value="#{_gestorMensajeria.asunto}"/>
-            </rich:column>
-            <rich:column sortBy="#{_gestorMensajeria.fechaEnvio}">
-                <f:facet name="header">Fecha envio</f:facet>
-                <h:outputText value="#{_gestorMensajeria.fechaEnvio}">
-                    <s:convertDateTime type="date" dateStyle="short"/>
-                </h:outputText>
-            </rich:column>
-            <rich:column sortBy="#{_gestorMensajeria.mensaje}">
-                <f:facet name="header">Mensaje</f:facet>
-                <h:outputText value="#{_gestorMensajeria.mensaje}"/>
-            </rich:column>
-            <h:column>
-                <f:facet name="header">Action</f:facet>
-                <s:link id="selectgestorMensajeria"
-                     value="Select"
-                      view="/GestorMensajeria.xhtml">
-                    <f:param name="gestorMensajeriaIdMensaje"
-                            value="#{_gestorMensajeria.idMensaje}"/>
-                    <f:param name="gestorMensajeriaFrom" value="UserAccount"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
-    </h:form>
-
-    <div class="actionButtons">
-        <s:button
-               value="Add gestorMensajeria"
-                view="/GestorMensajeriaEdit.xhtml">
-            <f:param name="userAccountId"
-                    value="#{userAccountHome.instance.id}"/>
-            <f:param name="gestorMensajeriaFrom" value="UserAccount"/>
+            <f:param name="cuentasUsuarioFrom" value="UserAccount"/>
         </s:button>
     </div>
     </rich:tab>

@@ -22,7 +22,7 @@ import org.hibernate.validator.NotNull;
 public class ReceptorMensajes {
 	
 	private Long idReceptormenajes;
-	private UserAccount userAccount;
+	private Usuario userAccount;
 	private GestorMensajeria gestorMensajeria;
 	
 	/**
@@ -45,13 +45,13 @@ public class ReceptorMensajes {
 	 */
 	@NotNull
 	@ManyToOne
-	public UserAccount getUserAccount() {
+	public Usuario getUserAccount() {
 		return userAccount;
 	}
 	/**
 	 * @param userAccount the userAccount to set
 	 */
-	public void setUserAccount(UserAccount userAccount) {
+	public void setUserAccount(Usuario userAccount) {
 		this.userAccount = userAccount;
 	}
 	/**

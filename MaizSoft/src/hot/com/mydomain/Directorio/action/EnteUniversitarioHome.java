@@ -1,8 +1,16 @@
 package com.mydomain.Directorio.action;
 
 import com.mydomain.Directorio.model.*;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import org.hibernate.persister.entity.EntityPersister;
+import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
@@ -14,7 +22,10 @@ public class EnteUniversitarioHome extends EntityHome<EnteUniversitario> {
 	EnteUniversitarioHome enteUniversitarioHome;
 	@In(create = true)
 	TipoHome tipoHome;
+	
+	
 
+	
 	public void setEnteUniversitarioIdEnteUniversitario(Long id) {
 		setId(id);
 	}
@@ -61,9 +72,33 @@ public class EnteUniversitarioHome extends EntityHome<EnteUniversitario> {
 		return getInstance() == null ? null : new ArrayList<EnteUniversitario>(
 				getInstance().getListaEnteUniversitarios());
 	}
-	public List<UserAccount> getListaUserAccounts() {
-		return getInstance() == null ? null : new ArrayList<UserAccount>(
+	public List<Usuario> getListaUserAccounts() {
+		return getInstance() == null ? null : new ArrayList<Usuario>(
 				getInstance().getListaUserAccounts());
 	}
+	
+	@Factory("listaTiposEnteUniversitarios")
+	public List<Tipo> listaTiposEntesUniversitarios() {
+
+		Query q = getEntityManager()
+				.createQuery("select t from Tipo t where t.tipo=1");
+		List<Tipo> listaTiposEnteUniversitarios = (List<Tipo>)q.getResultList();
+	
+		return listaTiposEnteUniversitarios;
+	}
+	
+	
+	@Factory("listaEnteUniversitarios")
+	public List<EnteUniversitario> listaEntesUniversitarios() {
+
+		Query q = getEntityManager()
+				.createQuery("select t from EnteUniversitario t where t.tipoEnteUniversitario=19");
+		List<EnteUniversitario> listaEntesUniversitarios = (List<EnteUniversitario>)q.getResultList();
+	
+	
+		return listaEntesUniversitarios;
+	
+	}
+
 
 }

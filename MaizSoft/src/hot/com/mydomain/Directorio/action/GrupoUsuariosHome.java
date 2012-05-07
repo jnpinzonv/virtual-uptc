@@ -13,7 +13,9 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 	@In(create = true)
 	GrupoCursoHome grupoCursoHome;
 	@In(create = true)
-	UserAccountHome userAccountHome;
+	UsuarioHome usuarioHome;
+	@In(create = true)
+	CuentasUsuarioHome cuentasUsuarioHome;
 
 	public void setGrupoUsuariosIdGrupoUsuarios(Long id) {
 		setId(id);
@@ -41,9 +43,13 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 		if (grupoCurso != null) {
 			getInstance().setGrupoCurso(grupoCurso);
 		}
-		UserAccount userGrupoCurso = userAccountHome.getDefinedInstance();
+		Usuario userGrupoCurso = usuarioHome.getDefinedInstance();
 		if (userGrupoCurso != null) {
 			getInstance().setUserGrupoCurso(userGrupoCurso);
+		}
+		CuentasUsuario userRole = cuentasUsuarioHome.getDefinedInstance();
+		if (userRole != null) {
+			getInstance().setUserRole(userRole);
 		}
 	}
 

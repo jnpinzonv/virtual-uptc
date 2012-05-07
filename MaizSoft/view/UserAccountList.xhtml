@@ -15,28 +15,8 @@
         <rich:simpleTogglePanel label="UserAccount Search Filter" switchType="ajax">
 
             <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Apellidos</ui:define>
-                <h:inputText id="apellidos" value="#{userAccountList.userAccount.apellidos}"/>
-            </s:decorate>
-
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Correo electronico</ui:define>
-                <h:inputText id="correoElectronico" value="#{userAccountList.userAccount.correoElectronico}"/>
-            </s:decorate>
-
-            <s:decorate template="layout/display.xhtml">
                 <ui:define name="label">Password hash</ui:define>
                 <h:inputText id="passwordHash" value="#{userAccountList.userAccount.passwordHash}"/>
-            </s:decorate>
-
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Primer nombre</ui:define>
-                <h:inputText id="primerNombre" value="#{userAccountList.userAccount.primerNombre}"/>
-            </s:decorate>
-
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Segundo nombre</ui:define>
-                <h:inputText id="segundoNombre" value="#{userAccountList.userAccount.segundoNombre}"/>
             </s:decorate>
 
             <s:decorate template="layout/display.xhtml">
@@ -86,36 +66,6 @@
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Apellidos"/>
-                    <ui:param name="propertyPath" value="userAccount.apellidos"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.apellidos}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Correo electronico"/>
-                    <ui:param name="propertyPath" value="userAccount.correoElectronico"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.correoElectronico}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Documento identidad"/>
-                    <ui:param name="propertyPath" value="userAccount.documentoIdentidad"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.documentoIdentidad}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
                     <ui:param name="propertyLabel" value="Enabled"/>
                     <ui:param name="propertyPath" value="userAccount.enabled"/>
                 </ui:include>
@@ -126,61 +76,11 @@
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Ente universitarios id ente universitario"/>
-                    <ui:param name="propertyPath" value="userAccount.enteUniversitarios.idEnteUniversitario"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.enteUniversitarios.idEnteUniversitario}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Foto user"/>
-                    <ui:param name="propertyPath" value="userAccount.fotoUser"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.fotoUser}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
                     <ui:param name="propertyLabel" value="Password hash"/>
                     <ui:param name="propertyPath" value="userAccount.passwordHash"/>
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_userAccount.passwordHash}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Primer nombre"/>
-                    <ui:param name="propertyPath" value="userAccount.primerNombre"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.primerNombre}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Segundo nombre"/>
-                    <ui:param name="propertyPath" value="userAccount.segundoNombre"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.segundoNombre}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{userAccountList}"/>
-                    <ui:param name="propertyLabel" value="Tipo id tipo"/>
-                    <ui:param name="propertyPath" value="userAccount.tipo.idTipo"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_userAccount.tipo.idTipo}"/>
         </h:column>
         <h:column>
             <f:facet name="header">

@@ -32,7 +32,7 @@ public class GestorMensajeria {
 	
 
 	
-	private UserAccount deUsuario;
+	private Usuario deUsuario;
 	
 	private String mensaje;
 	
@@ -88,14 +88,14 @@ public class GestorMensajeria {
 	 */
 	@NotNull
 	@ManyToOne
-	public UserAccount getDeUsuario() {
+	public Usuario getDeUsuario() {
 		return deUsuario;
 	}
 
 	/**
 	 * @param deUsuario the deUsuario to set
 	 */
-	public void setDeUsuario(UserAccount deUsuario) {
+	public void setDeUsuario(Usuario deUsuario) {
 		this.deUsuario = deUsuario;
 	}
 

@@ -11,7 +11,7 @@ import org.jboss.seam.framework.EntityHome;
 public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 
 	@In(create = true)
-	UserAccountHome userAccountHome;
+	UsuarioHome usuarioHome;
 	@In(create = true)
 	GestorMensajeriaHome gestorMensajeriaHome;
 	@In(create = true)
@@ -39,7 +39,7 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 
 	public void wire() {
 		getInstance();
-		UserAccount deUsuario = userAccountHome.getDefinedInstance();
+		Usuario deUsuario = usuarioHome.getDefinedInstance();
 		if (deUsuario != null) {
 			getInstance().setDeUsuario(deUsuario);
 		}

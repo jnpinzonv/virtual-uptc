@@ -10,3 +10,4 @@ jboss-seam-remoting.jar
 jbpm-jpdl.jar
 mvel14.jar
 richfaces-api.jar
+jxl.jar

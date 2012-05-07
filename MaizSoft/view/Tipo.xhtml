@@ -424,58 +424,46 @@
                    rendered="#{empty tipoHome.userAccount}"/>
 
         <rich:dataTable value="#{tipoHome.userAccount}"
-                       var="_userAccount"
+                       var="_usuario"
                   rendered="#{not empty tipoHome.userAccount}"
                 rowClasses="rvgRowOne,rvgRowTwo"
                         id="userAccountTable">
-            <rich:column sortBy="#{_userAccount.id}">
+            <rich:column sortBy="#{_usuario.id}">
                 <f:facet name="header">Id</f:facet>
-                <h:outputText value="#{_userAccount.id}"/>
+                <h:outputText value="#{_usuario.id}"/>
             </rich:column>
-            <rich:column sortBy="#{_userAccount.apellidos}">
+            <rich:column sortBy="#{_usuario.apellidos}">
                 <f:facet name="header">Apellidos</f:facet>
-                <h:outputText value="#{_userAccount.apellidos}"/>
+                <h:outputText value="#{_usuario.apellidos}"/>
             </rich:column>
-            <rich:column sortBy="#{_userAccount.correoElectronico}">
+            <rich:column sortBy="#{_usuario.correoElectronico}">
                 <f:facet name="header">Correo electronico</f:facet>
-                <h:outputText value="#{_userAccount.correoElectronico}"/>
+                <h:outputText value="#{_usuario.correoElectronico}"/>
             </rich:column>
-            <rich:column sortBy="#{_userAccount.documentoIdentidad}">
+            <rich:column sortBy="#{_usuario.documentoIdentidad}">
                 <f:facet name="header">Documento identidad</f:facet>
-                <h:outputText value="#{_userAccount.documentoIdentidad}"/>
+                <h:outputText value="#{_usuario.documentoIdentidad}"/>
             </rich:column>
-            <rich:column sortBy="#{_userAccount.enabled}">
-                <f:facet name="header">Enabled</f:facet>
-                <h:outputText value="#{_userAccount.enabled}"/>
-            </rich:column>
-            <rich:column sortBy="#{_userAccount.fotoUser}">
+            <rich:column sortBy="#{_usuario.fotoUser}">
                 <f:facet name="header">Foto user</f:facet>
-                <h:outputText value="#{_userAccount.fotoUser}"/>
+                <h:outputText value="#{_usuario.fotoUser}"/>
             </rich:column>
-            <rich:column sortBy="#{_userAccount.passwordHash}">
-                <f:facet name="header">Password hash</f:facet>
-                <h:outputText value="#{_userAccount.passwordHash}"/>
-            </rich:column>
-            <rich:column sortBy="#{_userAccount.primerNombre}">
+            <rich:column sortBy="#{_usuario.primerNombre}">
                 <f:facet name="header">Primer nombre</f:facet>
-                <h:outputText value="#{_userAccount.primerNombre}"/>
+                <h:outputText value="#{_usuario.primerNombre}"/>
             </rich:column>
-            <rich:column sortBy="#{_userAccount.segundoNombre}">
+            <rich:column sortBy="#{_usuario.segundoNombre}">
                 <f:facet name="header">Segundo nombre</f:facet>
-                <h:outputText value="#{_userAccount.segundoNombre}"/>
-            </rich:column>
-            <rich:column sortBy="#{_userAccount.username}">
-                <f:facet name="header">Username</f:facet>
-                <h:outputText value="#{_userAccount.username}"/>
+                <h:outputText value="#{_usuario.segundoNombre}"/>
             </rich:column>
             <h:column>
                 <f:facet name="header">Action</f:facet>
-                <s:link id="selectuserAccount"
+                <s:link id="selectusuario"
                      value="Select"
-                      view="/UserAccount.xhtml">
-                    <f:param name="userAccountId"
-                            value="#{_userAccount.id}"/>
-                    <f:param name="userAccountFrom" value="Tipo"/>
+                      view="/Usuario.xhtml">
+                    <f:param name="usuarioId"
+                            value="#{_usuario.id}"/>
+                    <f:param name="usuarioFrom" value="Tipo"/>
                 </s:link>
             </h:column>
         </rich:dataTable>
@@ -484,11 +472,11 @@
 
     <div class="actionButtons">
         <s:button
-               value="Add userAccount"
-                view="/UserAccountEdit.xhtml">
+               value="Add usuario"
+                view="/UsuarioEdit.xhtml">
             <f:param name="tipoIdTipo"
                     value="#{tipoHome.instance.idTipo}"/>
-            <f:param name="userAccountFrom" value="Tipo"/>
+            <f:param name="usuarioFrom" value="Tipo"/>
         </s:button>
     </div>
     </rich:tab>

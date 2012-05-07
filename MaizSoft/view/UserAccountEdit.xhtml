@@ -18,39 +18,6 @@
 
 
 
-            <s:decorate id="apellidosField" template="layout/edit.xhtml">
-                <ui:define name="label">Apellidos</ui:define>
-                <h:inputText id="apellidos"
-                       required="true"
-                           size="15"
-                      maxlength="15"
-                          value="#{userAccountHome.instance.apellidos}">
-                    <a:support event="onblur" reRender="apellidosField" bypassUpdates="true" ajaxSingle="true"/>
-                </h:inputText>
-            </s:decorate>
-
-
-            <s:decorate id="correoElectronicoField" template="layout/edit.xhtml">
-                <ui:define name="label">Correo electronico</ui:define>
-                <h:inputText id="correoElectronico"
-                       required="true"
-                           size="60"
-                      maxlength="60"
-                          value="#{userAccountHome.instance.correoElectronico}">
-                    <a:support event="onblur" reRender="correoElectronicoField" bypassUpdates="true" ajaxSingle="true"/>
-                </h:inputText>
-            </s:decorate>
-
-
-            <s:decorate id="documentoIdentidadField" template="layout/edit.xhtml">
-                <ui:define name="label">Documento identidad</ui:define>
-                <h:inputText id="documentoIdentidad"
-                       required="true"
-                          value="#{userAccountHome.instance.documentoIdentidad}">
-                    <a:support event="onblur" reRender="documentoIdentidadField" bypassUpdates="true" ajaxSingle="true"/>
-                </h:inputText>
-            </s:decorate>
-
 
             <s:decorate id="enabledField" template="layout/edit.xhtml">
                 <ui:define name="label">Enabled</ui:define>
@@ -60,49 +27,12 @@
             </s:decorate>
 
 
-
-            <s:decorate id="fotoUserField" template="layout/edit.xhtml">
-                <ui:define name="label">Foto user</ui:define>
-                <h:inputText id="fotoUser"
-                          value="#{userAccountHome.instance.fotoUser}">
-                    <a:support event="onblur" reRender="fotoUserField" bypassUpdates="true" ajaxSingle="true"/>
-                </h:inputText>
-            </s:decorate>
-
-
-
-
-
             <s:decorate id="passwordHashField" template="layout/edit.xhtml">
                 <ui:define name="label">Password hash</ui:define>
                 <h:inputTextarea id="passwordHash"
                                cols="80"
                                rows="3"
                               value="#{userAccountHome.instance.passwordHash}"/>
-            </s:decorate>
-
-
-            <s:decorate id="primerNombreField" template="layout/edit.xhtml">
-                <ui:define name="label">Primer nombre</ui:define>
-                <h:inputText id="primerNombre"
-                       required="true"
-                           size="50"
-                      maxlength="50"
-                          value="#{userAccountHome.instance.primerNombre}">
-                    <a:support event="onblur" reRender="primerNombreField" bypassUpdates="true" ajaxSingle="true"/>
-                </h:inputText>
-            </s:decorate>
-
-
-
-            <s:decorate id="segundoNombreField" template="layout/edit.xhtml">
-                <ui:define name="label">Segundo nombre</ui:define>
-                <h:inputText id="segundoNombre"
-                           size="50"
-                      maxlength="50"
-                          value="#{userAccountHome.instance.segundoNombre}">
-                    <a:support event="onblur" reRender="segundoNombreField" bypassUpdates="true" ajaxSingle="true"/>
-                </h:inputText>
             </s:decorate>
 
 
@@ -115,7 +45,6 @@
                            required="true"
                               value="#{userAccountHome.instance.username}"/>
             </s:decorate>
-
 
             <div style="clear:both">
                 <span class="required">*</span>
@@ -160,233 +89,34 @@
 
 <rich:tabPanel switchType="ajax">
 
-    <rich:tab label="Ente universitarios *" labelClass="required">
-    <div class="association" id="enteUniversitariosParent">
+    <rich:tab label="Cuentas usuarios">
+        <h:form styleClass="association" id="cuentasUsuariosChildren">
 
-        <h:outputText value="There is no enteUniversitarios associated with this userAccount."
-                   rendered="#{userAccountHome.instance.enteUniversitarios == null}"/>
+            <h:outputText value="There are no cuentasUsuarios associated with this userAccount."
+                       rendered="#{empty userAccountHome.cuentasUsuarios}"/>
 
-        <rich:dataTable var="_enteUniversitario"
-                   value="#{userAccountHome.instance.enteUniversitarios}"
-                rendered="#{userAccountHome.instance.enteUniversitarios != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="enteUniversitariosTable">
-            <h:column>
-                <f:facet name="header">Id ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.idEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Descripcion ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.descripcionEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Ente universitario id ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.enteUniversitario.idEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nombre ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.nombreEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo ente universitario id tipo</f:facet>
-                <h:outputText value="#{_enteUniversitario.tipoEnteUniversitario.idTipo}"/>
-            </h:column>
-        </rich:dataTable>
-
-        <div class="actionButtons">
-            <s:button id="#{userAccountHome.instance.enteUniversitarios != null ? 'changeParententeUniversitarios' : 'selectParententeUniversitarios'}" value="#{userAccountHome.instance.enteUniversitarios != null ? 'Change' : 'Select'} enteUniversitarios"
-                       view="/EnteUniversitarioList.xhtml">
-                <f:param name="from" value="UserAccountEdit"/>
-            </s:button>
-        </div>
-
-    </div>
-    </rich:tab>
-
-    <rich:tab label="Grupo usuarios">
-        <h:form styleClass="association" id="grupoUsuariosChildren">
-
-            <h:outputText value="There are no grupoUsuarios associated with this userAccount."
-                       rendered="#{empty userAccountHome.grupoUsuarios}"/>
-
-            <rich:dataTable value="#{userAccountHome.grupoUsuarios}"
-                           var="_grupoUsuarios"
-                      rendered="#{not empty userAccountHome.grupoUsuarios}"
+            <rich:dataTable value="#{userAccountHome.cuentasUsuarios}"
+                           var="_cuentasUsuario"
+                      rendered="#{not empty userAccountHome.cuentasUsuarios}"
                     rowClasses="rvgRowOne,rvgRowTwo"
-                            id="grupoUsuariosTable">
-                <rich:column sortBy="#{_grupoUsuarios.idGrupoUsuarios}">
-                    <f:facet name="header">Id grupo usuarios</f:facet>
-                    <h:outputText value="#{_grupoUsuarios.idGrupoUsuarios}"/>
+                            id="cuentasUsuariosTable">
+                <rich:column sortBy="#{_cuentasUsuario.id}">
+                    <f:facet name="header">Id</f:facet>
+                    <h:outputText value="#{_cuentasUsuario.id}"/>
                 </rich:column>
             </rich:dataTable>
 
         </h:form>
 
-        <f:subview rendered="#{userAccountHome.managed}" id="grupoUsuarios">
+        <f:subview rendered="#{userAccountHome.managed}" id="cuentasUsuarios">
         <div class="actionButtons">
-            <s:button id="addgrupoUsuarios"
-                   value="Add grupoUsuarios"
-                    view="/GrupoUsuariosEdit.xhtml"
+            <s:button id="addcuentasUsuario"
+                   value="Add cuentasUsuario"
+                    view="/CuentasUsuarioEdit.xhtml"
              propagation="none">
                  <f:param name="userAccountId"
                          value="#{userAccountHome.instance.id}"/>
-                 <f:param name="grupoUsuariosFrom" value="UserAccount"/>
-            </s:button>
-        </div>
-        </f:subview>
-    </rich:tab>
-
-    <rich:tab label="Historial notas">
-        <h:form styleClass="association" id="historialNotasChildren">
-
-            <h:outputText value="There are no historialNotas associated with this userAccount."
-                       rendered="#{empty userAccountHome.historialNotas}"/>
-
-            <rich:dataTable value="#{userAccountHome.historialNotas}"
-                           var="_historialNotas"
-                      rendered="#{not empty userAccountHome.historialNotas}"
-                    rowClasses="rvgRowOne,rvgRowTwo"
-                            id="historialNotasTable">
-                <rich:column sortBy="#{_historialNotas.idHistorialNotas}">
-                    <f:facet name="header">Id historial notas</f:facet>
-                    <h:outputText value="#{_historialNotas.idHistorialNotas}"/>
-                </rich:column>
-                <rich:column sortBy="#{_historialNotas.nota}">
-                    <f:facet name="header">Nota</f:facet>
-                    <h:outputText value="#{_historialNotas.nota}"/>
-                </rich:column>
-            </rich:dataTable>
-
-        </h:form>
-
-        <f:subview rendered="#{userAccountHome.managed}" id="historialNotas">
-        <div class="actionButtons">
-            <s:button id="addhistorialNotas"
-                   value="Add historialNotas"
-                    view="/HistorialNotasEdit.xhtml"
-             propagation="none">
-                 <f:param name="userAccountId"
-                         value="#{userAccountHome.instance.id}"/>
-                 <f:param name="historialNotasFrom" value="UserAccount"/>
-            </s:button>
-        </div>
-        </f:subview>
-    </rich:tab>
-
-    <rich:tab label="Mensajes">
-        <h:form styleClass="association" id="mensajesChildren">
-
-            <h:outputText value="There are no mensajes associated with this userAccount."
-                       rendered="#{empty userAccountHome.mensajes}"/>
-
-            <rich:dataTable value="#{userAccountHome.mensajes}"
-                           var="_receptorMensajes"
-                      rendered="#{not empty userAccountHome.mensajes}"
-                    rowClasses="rvgRowOne,rvgRowTwo"
-                            id="mensajesTable">
-                <rich:column sortBy="#{_receptorMensajes.idReceptormenajes}">
-                    <f:facet name="header">Id receptormenajes</f:facet>
-                    <h:outputText value="#{_receptorMensajes.idReceptormenajes}"/>
-                </rich:column>
-            </rich:dataTable>
-
-        </h:form>
-
-        <f:subview rendered="#{userAccountHome.managed}" id="mensajes">
-        <div class="actionButtons">
-            <s:button id="addreceptorMensajes"
-                   value="Add receptorMensajes"
-                    view="/ReceptorMensajesEdit.xhtml"
-             propagation="none">
-                 <f:param name="userAccountId"
-                         value="#{userAccountHome.instance.id}"/>
-                 <f:param name="receptorMensajesFrom" value="UserAccount"/>
-            </s:button>
-        </div>
-        </f:subview>
-    </rich:tab>
-
-    <rich:tab label="Tipo *" labelClass="required">
-    <div class="association" id="tipoParent">
-
-        <h:outputText value="There is no tipo associated with this userAccount."
-                   rendered="#{userAccountHome.instance.tipo == null}"/>
-
-        <rich:dataTable var="_tipo"
-                   value="#{userAccountHome.instance.tipo}"
-                rendered="#{userAccountHome.instance.tipo != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="tipoTable">
-            <h:column>
-                <f:facet name="header">Id tipo</f:facet>
-                <h:outputText value="#{_tipo.idTipo}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Descripcion</f:facet>
-                <h:outputText value="#{_tipo.descripcion}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nombre</f:facet>
-                <h:outputText value="#{_tipo.nombre}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo id tipo</f:facet>
-                <h:outputText value="#{_tipo.tipo.idTipo}"/>
-            </h:column>
-        </rich:dataTable>
-
-        <div class="actionButtons">
-            <s:button id="#{userAccountHome.instance.tipo != null ? 'changeParenttipo' : 'selectParenttipo'}" value="#{userAccountHome.instance.tipo != null ? 'Change' : 'Select'} tipo"
-                       view="/TipoList.xhtml">
-                <f:param name="from" value="UserAccountEdit"/>
-            </s:button>
-        </div>
-
-    </div>
-    </rich:tab>
-
-    <rich:tab label="Usuario emisor">
-        <h:form styleClass="association" id="usuarioEmisorChildren">
-
-            <h:outputText value="There are no usuarioEmisor associated with this userAccount."
-                       rendered="#{empty userAccountHome.usuarioEmisor}"/>
-
-            <rich:dataTable value="#{userAccountHome.usuarioEmisor}"
-                           var="_gestorMensajeria"
-                      rendered="#{not empty userAccountHome.usuarioEmisor}"
-                    rowClasses="rvgRowOne,rvgRowTwo"
-                            id="usuarioEmisorTable">
-                <rich:column sortBy="#{_gestorMensajeria.idMensaje}">
-                    <f:facet name="header">Id mensaje</f:facet>
-                    <h:outputText value="#{_gestorMensajeria.idMensaje}"/>
-                </rich:column>
-                <rich:column sortBy="#{_gestorMensajeria.asunto}">
-                    <f:facet name="header">Asunto</f:facet>
-                    <h:outputText value="#{_gestorMensajeria.asunto}"/>
-                </rich:column>
-                <rich:column sortBy="#{_gestorMensajeria.fechaEnvio}">
-                    <f:facet name="header">Fecha envio</f:facet>
-                    <h:outputText value="#{_gestorMensajeria.fechaEnvio}">
-                        <s:convertDateTime type="date" dateStyle="short"/>
-                    </h:outputText>
-                </rich:column>
-                <rich:column sortBy="#{_gestorMensajeria.mensaje}">
-                    <f:facet name="header">Mensaje</f:facet>
-                    <h:outputText value="#{_gestorMensajeria.mensaje}"/>
-                </rich:column>
-            </rich:dataTable>
-
-        </h:form>
-
-        <f:subview rendered="#{userAccountHome.managed}" id="usuarioEmisor">
-        <div class="actionButtons">
-            <s:button id="addgestorMensajeria"
-                   value="Add gestorMensajeria"
-                    view="/GestorMensajeriaEdit.xhtml"
-             propagation="none">
-                 <f:param name="userAccountId"
-                         value="#{userAccountHome.instance.id}"/>
-                 <f:param name="gestorMensajeriaFrom" value="UserAccount"/>
+                 <f:param name="cuentasUsuarioFrom" value="UserAccount"/>
             </s:button>
         </div>
         </f:subview>

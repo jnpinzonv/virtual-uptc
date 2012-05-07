@@ -11,8 +11,8 @@
 
    <param name="gestorMensajeriaFrom"/>
    <param name="gestorMensajeriaIdMensaje" value="#{gestorMensajeriaHome.gestorMensajeriaIdMensaje}"/>
-   <param name="userAccountFrom"/>
-   <param name="userAccountId" value="#{userAccountHome.userAccountId}"/>
+   <param name="usuarioFrom"/>
+   <param name="usuarioId" value="#{usuarioHome.usuarioId}"/>
    <param name="enteUniversitarioFrom"/>
    <param name="enteUniversitarioIdEnteUniversitario" value="#{enteUniversitarioHome.enteUniversitarioIdEnteUniversitario}"/>
    <param name="tipoFrom"/>

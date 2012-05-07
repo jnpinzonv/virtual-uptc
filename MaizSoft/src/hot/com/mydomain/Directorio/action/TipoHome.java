@@ -73,8 +73,8 @@ public class TipoHome extends EntityHome<Tipo> {
 		return getInstance() == null ? null : new ArrayList<Tipo>(getInstance()
 				.getListaTipo());
 	}
-	public List<UserAccount> getUserAccount() {
-		return getInstance() == null ? null : new ArrayList<UserAccount>(
+	public List<Usuario> getUserAccount() {
+		return getInstance() == null ? null : new ArrayList<Usuario>(
 				getInstance().getUserAccount());
 	}
 

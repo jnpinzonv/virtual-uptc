@@ -24,7 +24,7 @@ public class HistorialNotas {
 	
 	private Long nota;
 	
-	private UserAccount userAccount;
+	private Usuario userAccount;
 	
 	private GrupoCurso grupoCurso;
 
@@ -64,14 +64,14 @@ public class HistorialNotas {
 	 */
 	@NotNull
 	@ManyToOne
-	public UserAccount getUserAccount() {
+	public Usuario getUserAccount() {
 		return userAccount;
 	}
 
 	/**
 	 * @param userAccount the userAccount to set
 	 */
-	public void setUserAccount(UserAccount userAccount) {
+	public void setUserAccount(Usuario userAccount) {
 		this.userAccount = userAccount;
 	}
 

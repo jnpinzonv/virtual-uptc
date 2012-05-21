@@ -142,7 +142,7 @@ public class Usuario{
 	 * @return the apellidos
 	 */
 	@NotNull
-	@Length(max=15)
+	@Length(max=30)
 	@Pattern(regex="^\\w*$")
 	public String getApellidos() {
 		return apellidos;
@@ -158,7 +158,7 @@ public class Usuario{
 	/**
 	 * @return the correoElectronico
 	 */
-	@NotEmpty
+	@NotNull
 	@Email
 	@Length(max=60)
 	public String getCorreoElectronico() {

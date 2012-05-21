@@ -68,8 +68,7 @@ public class CursoHome extends EntityHome<Curso> {
 		Query q = getEntityManager()
 				.createQuery("select t from EnteUniversitario t where t.tipoEnteUniversitario=20");
 		List<EnteUniversitario> listaEntesUniversitarios = (List<EnteUniversitario>)q.getResultList();
-	
-	
+		
 		return listaEntesUniversitarios;
 	
 	}

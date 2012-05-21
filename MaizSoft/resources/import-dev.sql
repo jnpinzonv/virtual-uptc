@@ -25,6 +25,10 @@ insert into `tipo` (`idTipo`,`descripcion`,`nombre`,`tipo_idTipo`) values (18,'O
 insert into `tipo` (`idTipo`,`descripcion`,`nombre`,`tipo_idTipo`) values (19,'Tipo Facultad Universitaria' ,'Facultad',1);
 insert into `tipo` (`idTipo`,`descripcion`,`nombre`,`tipo_idTipo`) values (20,'Tipo Escuela Universitaria' ,'Escuela',1);
 
+insert into `tipo` (`idTipo`,`descripcion`,`nombre`,`tipo_idTipo`) values (21,'Tipo Repositorio Virtual' ,'Repositorio Virtual',null);
+insert into `tipo` (`idTipo`,`descripcion`,`nombre`,`tipo_idTipo`) values (22,'Tipo Repositorio de Objetos de Aprendizaje' ,'Objeto de Aprendizaje',21);
+insert into `tipo` (`idTipo`,`descripcion`,`nombre`,`tipo_idTipo`) values (23,'Tipo Repositorio de Bibliotecas Virtuales' ,'Biblioteca Virtual',21);
+
 insert into user_account (id, username, password_hash, enabled) values (1, 'admin', 'Ss/jICpf9c9GeJj8WKqx1hUClEE=', 1);
 insert into user_role (id, name, conditional) values (1, 'admin', false);
 insert into user_role (id, name, conditional) values (2, 'docente', false);

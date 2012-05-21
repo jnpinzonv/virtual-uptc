@@ -2,8 +2,7 @@
 #topPrincipal {
     position: relative;
     float: right;
-    background-color: #3B5999;
-    width: 180px;
+    background-color: #315E9F;
     height: 30px;
     margin-top: 4px;
 }
@@ -11,15 +10,13 @@
 #topLogo {
     position: relative;
     float: left;
-    background-color: #3B5999;
-    width: 280px;
+    background-color: #315E9F;
     height: 30px;
     margin-top: 4px;
 }
 
 #topSearch {
     position: relative;
-    width: 300px;
     height: 30px;
     float: inherit;
     margin-top: 37px;
@@ -29,7 +26,7 @@
 
 #top {
     position: relative;
-    background-color: #3B5999;
+    background-color: #315E9F;
     color: white;   
     height: 80px;    
 }
@@ -51,17 +48,17 @@
 }
 
 .bottom {
-    position: relative;
-    background-image:url(images/MenuMiddle3.jpg);
+    position: relative;    
     padding: 5px;
     margin-top: 40px;
+    height: 80px;
 }
 
 .left {
     float: left;
     background-image:url(images/MenuMiddle2.jpg);
     padding: 5px;
-    width: 189px;
+    width: 190px;
     height: 350px;
 }
 
@@ -94,8 +91,7 @@
 
 #menucontentt{
 	width:300px;
-    background-image:url(images/MenuMiddle3.jpg);
-	padding-top:10px;
+    padding-top:10px;
 	background-repeat: no-repeat;
 }
 

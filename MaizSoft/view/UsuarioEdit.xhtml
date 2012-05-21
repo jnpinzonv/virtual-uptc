@@ -9,105 +9,410 @@
 	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
 	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
 
+	<ui:define name="head">
+		<link href="css/cssLayoutPrincipal.css" rel="stylesheet"
+			type="text/css" />
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
+
+		<script language="JavaScript"> 
+
+    	function mueveReloj(){ 
+    	   	momentoActual = new Date()
+    	   	hora = momentoActual.getHours() 
+   			minuto = momentoActual.getMinutes() 
+   			segundo = momentoActual.getSeconds() 
+
+   			str_segundo = new String (segundo) 
+   			if (str_segundo.length == 1) 
+      	 		segundo = "0" + segundo 
+
+   			str_minuto = new String (minuto) 
+   			if (str_minuto.length == 1) 
+      	 		minuto = "0" + minuto 
+
+   			str_hora = new String (hora) 
+   			if (str_hora.length == 1) 
+	      	 	hora = "0" + hora 
+
+   			horaImprimible = "Hora: "+hora + " : " + minuto + " : " + segundo 
+
+   			document.form_reloj.reloj.value = horaImprimible 
+
+   			setTimeout("mueveReloj()",1000) 
+} 
+</script>
+
+	</ui:define>
+
+
 	<ui:define name="body">
+		<body onload="mueveReloj()">
 
-		<h:form id="usuario" styleClass="edit">
-
-			<rich:panel>
-				<f:facet name="header">#{usuarioHome.managed ? 'Edit' : 'Add'} Usuario</f:facet>
-
+			<s:div
+				style="color: white; height: 100px;margin-left: 70px; margin-right: 70px; background-color: #315E9F;">
 
 
-				<s:decorate id="apellidosField" template="layout/edit.xhtml">
-					<ui:define name="label">Apellidos</ui:define>
-					<h:inputText id="apellidos" required="true" size="15"
-						maxlength="15" value="#{usuarioHome.instance.apellidos}">
-						<a:support event="onblur" reRender="apellidosField"
-							bypassUpdates="true" ajaxSingle="true" />
-					</h:inputText>
-				</s:decorate>
+				<div id="topLogo">
+					<h:form>
+						<h:outputText value="MaizSoft"></h:outputText>
+						<h:outputText value="..." style="color:#315E9F"></h:outputText>
+						<h:commandButton image="css/images/calendario.png"
+							style="width:30px" />
+						<h:outputText value=".." style="color:#315E9F"></h:outputText>
+						<h:commandButton action="/GestorMensajeriaEdit.xhtml"
+							image="css/images/mensajes.png" style="width:30px" />
+						<h:outputText value=".." style="color:#315E9F"></h:outputText>
+						<h:commandButton image="css/images/actualizacion.png"
+							style="width:30px" />
+						<br />
+						<br />
+
+						<h:outputText value="Navegar"></h:outputText>
+					</h:form>
+				</div>
 
 
-				<s:decorate id="correoElectronicoField" template="layout/edit.xhtml">
-					<ui:define name="label">Correo electronico</ui:define>
-					<h:inputText id="correoElectronico" required="true" size="60"
-						maxlength="60" value="#{usuarioHome.instance.correoElectronico}">
-						<a:support event="onblur" reRender="correoElectronicoField"
-							bypassUpdates="true" ajaxSingle="true" />
-					</h:inputText>
-				</s:decorate>
+				<div id="topPrincipal">
+					<div style="margin-right: 10px">
+						<h:form>
+							<h:outputText id="menuWelcomeId" value="#{credentials.username}"
+								rendered="#{identity.loggedIn}" />
+							<s:link id="menuLogoutId" view="/login.xhtml"
+								action="#{identity.logout}" value="Salir"
+								rendered="#{identity.loggedIn}" propagation="none"
+								style="color: white" />
+						</h:form>
+						<br /> <br />
+						<form name="form_reloj">
 
-
-
-				<s:decorate id="documentoIdentidadField"
-					template="layout/edit.xhtml">
-					<ui:define name="label">Documento identidad</ui:define>
-					<h:inputText id="documentoIdentidad" required="true"
-						value="#{usuarioHome.instance.documentoIdentidad}">
-						<a:support event="onblur" reRender="documentoIdentidadField"
-							bypassUpdates="true" ajaxSingle="true" />
-					</h:inputText>
-				</s:decorate>
-
-
-
-				<s:decorate id="fotoUserField" template="layout/edit.xhtml">
-					<ui:define name="label">Foto user</ui:define>
-					<h:inputText id="fotoUser" value="#{usuarioHome.instance.fotoUser}">
-						<a:support event="onblur" reRender="fotoUserField"
-							bypassUpdates="true" ajaxSingle="true" />
-					</h:inputText>
-				</s:decorate>
-
-
-
-
-
-				<s:decorate id="primerNombreField" template="layout/edit.xhtml">
-					<ui:define name="label">Primer nombre</ui:define>
-					<h:inputText id="primerNombre" required="true" size="50"
-						maxlength="50" value="#{usuarioHome.instance.primerNombre}">
-						<a:support event="onblur" reRender="primerNombreField"
-							bypassUpdates="true" ajaxSingle="true" />
-					</h:inputText>
-				</s:decorate>
-
-
-				<s:decorate id="segundoNombreField" template="layout/edit.xhtml">
-					<ui:define name="label">Segundo nombre</ui:define>
-					<h:inputText id="segundoNombre" size="50" maxlength="50"
-						value="#{usuarioHome.instance.segundoNombre}">
-						<a:support event="onblur" reRender="segundoNombreField"
-							bypassUpdates="true" ajaxSingle="true" />
-					</h:inputText>
-				</s:decorate>
-
-				<s:decorate id="usernameField" template="/layout/edit.xhtml">
-					<ui:define name="label">Username</ui:define>
-					<h:inputText id="username" value="#{userAction.username}" />
-				</s:decorate>
-
-				<s:decorate id="passwordField" template="/layout/edit.xhtml">
-					<ui:define name="label">Password</ui:define>
-					<h:inputSecret id="password" value="#{userAction.password}" />
-				</s:decorate>
-
-				<s:decorate id="confirmField" template="/layout/edit.xhtml">
-					<ui:define name="label">Confirm password</ui:define>
-					<h:inputSecret id="confirm" value="#{userAction.confirm}" />
-				</s:decorate>
-
-				<s:decorate id="rolesField" template="/layout/edit.xhtml">
-					<ui:define name="label">Member of roles</ui:define>
-					<div class="selectMany">
-						<h:selectManyCheckbox id="roles" value="#{userAction.roles}"
-							layout="pageDirection" styleClass="roles">
-							<s:selectItems value="#{identityManager.listGrantableRoles()}"
-								var="_role" label="#{_role}" />
-						</h:selectManyCheckbox>
+							<input type="text" name="reloj" size="17"
+								style="color: #FFFFFF; background: #315E9F; text-align: center"
+								onfocus="window.document.form_reloj.reloj.blur()" />
+						</form>
 					</div>
-				</s:decorate>
-				
+				</div>
+
+				<div id="topSearch">
+
+					<form class="searchform">
+						<input class="searchfield" type="text" value="Buscar..."
+							onFocus="if (this.value == 'Buscar...') {this.value = '';}"
+							onBlur="if (this.value == '') {this.value = 'Buscar...';}" />
+
+						<h:commandButton class="searchbutton"
+							image="css/images/buscar.png" style="width:24px" />
+					</form>
+				</div>
+
+			</s:div>
+
+
+			<div class="center2" style="margin-top: -20px; height: 930px">
+
+				<div class="right" style="height: 832px">
+					<ui:insert name="right">
+						<h:form>
+
+							<rich:panel>
+								<!--  <rich:calendar popup="false"/>-->
+
+								<rich:calendar popup="false">
+									<f:facet name="weekNumber">
+										<h:outputText value="" style="color:red" />
+									</f:facet>
+								</rich:calendar>
+								<h:commandLink value="Agregar Evento"
+									action="/GestorAgendaEdit.seam"
+									rendered="#{s:hasRole('admin') || s:hasRole('docente')}" />
+								<br />
+								<br />
+								<h:commandLink value="Ayuda" action="/GestorAgendaEdit.seam" />
+								<br />
+								<br />
+								<h:commandLink value="Gestionar noticias"
+									action="/GestorAgendaEdit.seam"
+									rendered="#{s:hasRole('admin')}" />
+								<br />
+							</rich:panel>
+
+						</h:form>
+					</ui:insert>
+				</div>
+
+
+				<div class="left" style="height: 832px">
+					<rich:panel>
+						<h:form id="form">
+
+							<img src="css/images/gis.png"
+								style="height: 80px; width: 80px; margin-left: 45px" />
+							<br />
+							<h:commandLink value="#{credentials.username}"
+								action="/UserAccountEdit.seam" />
+							<br />
+							<br />
+							<rich:separator height="2" lineType="dotted" />
+							<br />
+
+							<h:panelGrid columns="2" columnClasses="cols,cols" width="400">
+								<rich:panelMenu style="width:150px;" itemMode="ajax"
+									groupMode="ajax" groupExpandedLeftIcon="triangleUp"
+									groupCollapsedLeftIcon="triangleDown"
+									topGroupExpandedRightIcon="chevronUp"
+									topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc"
+									itemChangeListener="#{panelMenuBean.updateCurrent}"
+									expandSingle="true" showDelay="250" hideDelay="0"
+									submitMode="none">
+									<rich:panelMenuGroup label="Mensajes" style="color: #FFFFFF;">
+										<rich:panelMenuItem label="Crear" style="color: #045491;"
+											icon="disc" />
+										<rich:panelMenuItem label="Ver" style="color: #045491;"
+											icon="disc" />
+									</rich:panelMenuGroup>
+									<rich:panelMenuGroup label="Administrar Usuarios"
+										style="color: #FFFFFF;">
+										<rich:panelMenuItem label="Adicionar Usuario"
+											style="color: #045491;" icon="disc"
+											action="/UsuarioEdit.seam" />
+										<rich:panelMenuItem label="Eliminar / Editar Usuario"
+											style="color: #045491;" icon="disc"
+											action="/UsuarioList.seam" />
+										<rich:panelMenuItem label="Buscar Usuario"
+											style="color: #045491;" icon="disc"
+											action="/UsuarioList.seam" />
+									</rich:panelMenuGroup>
+									<rich:panelMenuGroup label="Administrar Curso"
+										style="color: #FFFFFF;">
+										<rich:panelMenuItem label="Crear Asignatura"
+											style="color: #045491;" icon="disc" />
+										<rich:panelMenuItem label="Editar Asignatura"
+											style="color: #045491;" icon="disc" />
+										<rich:panelMenuItem label="Eliminar Asignatura"
+											style="color: #045491;" icon="disc" />
+										<rich:panelMenuItem label="Buscar Asignatura"
+											style="color: #045491;" icon="disc" />
+									</rich:panelMenuGroup>
+									<rich:panelMenuGroup label="Generar Informe"
+										style="color: #FFFFFF;">
+										<rich:panelMenuItem label="Generar" style="color: #045491;"
+											icon="disc" />
+										<rich:panelMenuItem label="Ver" style="color: #045491;"
+											icon="disc" />
+									</rich:panelMenuGroup>
+									<rich:panelMenuGroup label="Chat" style="color: #FFFFFF;">
+										<rich:panelMenuItem label="Chat" style="color: #045491;"
+											icon="disc" />
+									</rich:panelMenuGroup>
+								</rich:panelMenu>
+								<a4j:outputPanel ajaxRendered="true">
+									<rich:panel rendered="#{not empty panelMenuBean.current}">
+										<h:outputText value="#{panelMenuBean.current} selected"
+											id="current" />
+									</rich:panel>
+								</a4j:outputPanel>
+							</h:panelGrid>
+							<rich:separator height="2" lineType="dotted" />
+							<br />
+							<s:link id="menuLogoutId" action="#{identity.logout}"
+								view="/login.seam" value="Salir" rendered="#{identity.loggedIn}"
+								propagation="none" style="color: #3B5999" />
+						</h:form>
+
+					</rich:panel>
+				</div>
+
+				<div id="content" class="right_content">
+
+
+					<h:form id="usuario" styleClass="edit">
+
+						<rich:panel>
+							<f:facet name="header">#{usuarioHome.managed ? 'Editar' : 'Adicionar'} Usuario</f:facet>
+
+							<s:decorate id="primerNombreField" template="layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Primer nombre</ui:define>
+								<h:inputText id="primerNombre" required="true" size="30"
+									maxlength="35" value="#{usuarioHome.instance.primerNombre}">
+									<a:support event="onblur" reRender="primerNombreField"
+										bypassUpdates="true" ajaxSingle="true" />
+								</h:inputText>
+							</s:decorate>
+
+							<br />
+							<br />
+							<s:decorate id="segundoNombreField" template="layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Segundo nombre</ui:define>
+								<h:inputText id="segundoNombre" size="30" maxlength="35"
+									value="#{usuarioHome.instance.segundoNombre}">
+									<a:support event="onblur" reRender="segundoNombreField"
+										bypassUpdates="true" ajaxSingle="true" />
+								</h:inputText>
+							</s:decorate>
+							<br />
+							<br />
+
+
+							<s:decorate id="apellidosField" template="layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Apellidos</ui:define>
+								<h:inputText id="apellidos" required="true" size="30"
+									maxlength="35" value="#{usuarioHome.instance.apellidos}">
+									<a:support event="onblur" reRender="apellidosField"
+										bypassUpdates="true" ajaxSingle="true" />
+								</h:inputText>
+							</s:decorate>
+
+							<br />
+							<br />
+							<s:decorate id="tipoDocumento" template="layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Tipo Documento identidad</ui:define>
+								<h:selectOneMenu value="#{usuarioHome.instance.tipo}"
+									id="tipoDocumento" rendered="true">
+									<s:selectItems value="#{listaTiposDocumento}" var="listaE"
+										label="#{listaE.nombre}" noSelectionLabel="SELECCIONE..." />
+									<s:convertEntity />
+									<a4j:support event="onchange" reRender="dos" />
+								</h:selectOneMenu>
+							</s:decorate>
+
+
+							<br />
+							<br />
+
+							<s:decorate id="documentoIdentidadField"
+								template="layout/edit.xhtml" style="position:absolute;">
+								<ui:define name="label">Documento identidad</ui:define>
+								<h:inputText id="documentoIdentidad" required="true" size="30"
+									maxlength="35"
+									value="#{usuarioHome.instance.documentoIdentidad}">
+									<a:support event="onblur" reRender="documentoIdentidadField"
+										bypassUpdates="true" ajaxSingle="true" />
+								</h:inputText>
+							</s:decorate>
+
+
+							<br />
+							<br />
+
+							<s:decorate id="correoElectronicoField"
+								template="layout/edit.xhtml" style="position:absolute;">
+								<ui:define name="label">Correo electronico</ui:define>
+								<h:inputText id="correoElectronico" required="true" size="30"
+									maxlength="35"
+									value="#{usuarioHome.instance.correoElectronico}">
+									<a:support event="onblur" reRender="correoElectronicoField"
+										bypassUpdates="true" ajaxSingle="true" />
+								</h:inputText>
+							</s:decorate>
+
+
+							<br />
+							<br />
+							<s:decorate id="facultad" template="layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Escuela</ui:define>
+								<h:selectOneMenu
+									value="#{usuarioHome.instance.enteUniversitarios}"
+									id="enteUniversitario" required="true" rendered="true">
+									<s:selectItems value="#{listaEscuelasCurso}" var="lista"
+										label="#{lista.nombreEnteUniversitario}"
+										noSelectionLabel="SELECCIONE..." />
+									<a4j:support event="onchange" reRender="dos" />
+									<s:convertEntity />
+								</h:selectOneMenu>
+							</s:decorate>
+
+							<br />
+							<br />
+							<s:decorate id="usernameField" template="/layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Username</ui:define>
+								<h:inputText id="username" value="#{userAction.username}"
+									required="true" size="30" maxlength="35" />
+							</s:decorate>
+							<br />
+							<br />
+							<s:decorate id="passwordField" template="/layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Password</ui:define>
+								<h:inputSecret id="password" value="#{userAction.password}"
+									required="true" size="30" maxlength="35" />
+							</s:decorate>
+							<br />
+							<br />
+							<s:decorate id="confirmField" template="/layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Confirmar password</ui:define>
+								<h:inputSecret id="confirm" value="#{userAction.confirm}"
+									required="true" size="30" maxlength="35" />
+							</s:decorate>
+							<br />
+							<br />
+							<s:decorate id="rolesField" template="/layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Roles</ui:define>
+								<div class="selectMany">
+									<h:selectManyCheckbox id="roles" value="#{userAction.roles}"
+										layout="pageDirection" styleClass="roles">
+										<s:selectItems value="#{identityManager.listGrantableRoles()}"
+											var="_role" label="#{_role}" />
+									</h:selectManyCheckbox>
+								</div>
+							</s:decorate>
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<s:decorate id="fotoUserField" template="layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Foto:</ui:define>
+								<br />
+
+							</s:decorate>
+							<br />
+							<br />
+							<h:form>
+								<h:panelGrid columns="1" columnClasses="top">
+									<rich:fileUpload
+										fileUploadListener="#{fileUploadBean.listener}" id="upload"
+										acceptedTypes="jpg, gif, png, bmp"
+										ontyperejected="alert('Only JPG, GIF, PNG and BMP files are accepted');"
+										maxFilesQuantity="1">
+									</rich:fileUpload>
+									<h:panelGroup id="info" layout="block">
+										<rich:panel bodyClass="info">
+
+											<h:outputText value="No files currently uploaded"
+												rendered="#{fileUploadBean.size==0}" />
+											<rich:dataGrid columns="1" value="#{fileUploadBean.files}"
+												var="file" rowKeyVar="row">
+												<rich:panel bodyClass="rich-laguna-panel-no-header">
+													<h:panelGrid columns="1">
+														<a4j:mediaOutput element="img" mimeType="image/jpeg"
+															createContent="#{fileUploadBean.paint}" value="#{row}"
+															style="width:10px; height:10px;" cacheable="false">
+															<f:param value="#{fileUploadBean.timeStamp}" name="time" />
+														</a4j:mediaOutput>
+
+													</h:panelGrid>
+												</rich:panel>
+											</rich:dataGrid>
+										</rich:panel>
+										<br />
+
+									</h:panelGroup>
+								</h:panelGrid>
+							</h:form>
+
+
+
+
+							<!--  
 				<h:selectOneMenu
 					value="#{usuarioHome.instance.enteUniversitarios}"
 					id="enteUniversitario" required="true" rendered="true">
@@ -126,37 +431,46 @@
 					<s:convertEntity />
 				<a4j:support event="onchange" reRender="dos" />
 				</h:selectOneMenu>
-				<div style="clear: both">
-					<span class="required">*</span> required fields
-				</div>
-			</rich:panel>
+				-->
 
-			<a4j:outputPanel id="dos">
-			<div class="actionButtons">
-			
-				<h:commandButton id="save" value="Save"
-					action="#{usuarioHome.saveUsuario()}" disabled="#{!usuarioHome.wired}"
-					rendered="#{!usuarioHome.managed}" />
 
-				<h:commandButton id="update" value="Save"
-					action="#{usuarioHome.update}" rendered="#{usuarioHome.managed}" />
 
-				<h:commandButton id="delete" value="Delete"
-					action="#{usuarioHome.remove}" immediate="true"
-					rendered="#{usuarioHome.managed}" />
+							<div style="clear: both; position: absolute;">
+								<span class="required">*</span> Campos Obligatorios
+							</div>
+							<br />
+							<br />
+						</rich:panel>
 
-				<s:button id="cancelEdit" value="Cancel" propagation="end"
-					view="/Usuario.xhtml" rendered="#{usuarioHome.managed}" />
+						<a4j:outputPanel id="dos">
+							<div class="actionButtons">
 
-				<s:button id="cancelAdd" value="Cancel" propagation="end"
-					view="/#{empty usuarioFrom ? 'UsuarioList' : usuarioFrom}.xhtml"
-					rendered="#{!usuarioHome.managed}" />
+								<h:commandButton id="save" value="Guardarr"
+									action="#{usuarioHome.saveUsuario()}"
+									disabled="#{!usuarioHome.wired}"
+									rendered="#{!usuarioHome.managed}" />
 
-			</div>
-			
-			</a4j:outputPanel>
-		</h:form>
+								<h:commandButton id="update" value="Guardar"
+									action="#{usuarioHome.update}"
+									rendered="#{usuarioHome.managed}" />
 
+								<h:commandButton id="delete" value="Borrar"
+									action="#{usuarioHome.remove}" immediate="true"
+									rendered="#{usuarioHome.managed}" />
+
+								<s:button id="cancelEdit" value="Cancelar" propagation="end"
+									view="/Usuario.xhtml" rendered="#{usuarioHome.managed}" />
+
+								<s:button id="cancelAdd" value="Cancelar" propagation="end"
+									view="/#{empty usuarioFrom ? 'UsuarioList' : usuarioFrom}.xhtml"
+									rendered="#{!usuarioHome.managed}" />
+
+							</div>
+
+						</a4j:outputPanel>
+					</h:form>
+
+					<!--
 		<rich:tabPanel switchType="ajax">
 
 			<rich:tab label="Cuentas usuario">
@@ -193,7 +507,7 @@
 			
 
 					
-
+			
 			<rich:tab label="Grupo usuarios">
 				<h:form styleClass="association" id="grupoUsuariosChildren">
 
@@ -246,7 +560,7 @@
 					</rich:dataTable>
 
 				</h:form>
-
+				
 				<f:subview rendered="#{usuarioHome.managed}" id="historialNotas">
 					<div class="actionButtons">
 						<s:button id="addhistorialNotas" value="Add historialNotas"
@@ -334,6 +648,40 @@
 				</f:subview>
 			</rich:tab>
 		</rich:tabPanel>
+		-->
+
+				</div>
+
+				<div class="bottom" align="center" style="margin-top: -10px">
+					<rich:separator height="4" />
+					<img src="css/images/uptc.png"
+						style="height: 80px; margin-left: -430px" />
+
+					<div style="margin-top: -90px; height: 100px;">
+						<!--  
+						<pre>Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
+            Facultad de Ingenier&#237;a            
+   Ingenier&#237;a de Sistemas y Computaci&#243;n
+Grupo de Investigaci&#243;n en Ingenier&#237;a del Software
+Correo:gis@uptc.edu.co
+</pre>
+-->
+						<p>
+							Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
+							<br /> Facultad de Ingenier&#237;a <br /> Ingenier&#237;a de
+							Sistemas y Computaci&#243;n <br /> Grupo de Investigaci&#243;n
+							en Ingenier&#237;a del Software <br /> Correo:gis@uptc.edu.co
+						</p>
+					</div>
+					<div style="margin-top: -95px">
+						<img src="css/images/gis.png"
+							style="height: 80px; width: 80px; margin-left: 470px" />
+					</div>
+				</div>
+			</div>
+
+
+		</body>
 	</ui:define>
 
 </ui:composition>

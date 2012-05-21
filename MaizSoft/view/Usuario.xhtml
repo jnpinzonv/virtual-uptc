@@ -1,392 +1,326 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:s="http://jboss.com/products/seam/taglib"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
+	<ui:define name="head">
+		<link href="css/cssLayoutPrincipal.css" rel="stylesheet"
+			type="text/css" />
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
 
-<ui:define name="body">
+		<script language="JavaScript"> 
 
-    <rich:panel>
-        <f:facet name="header">Usuario Details</f:facet>
+    	function mueveReloj(){ 
+    	   	momentoActual = new Date()
+    	   	hora = momentoActual.getHours() 
+   			minuto = momentoActual.getMinutes() 
+   			segundo = momentoActual.getSeconds() 
+
+   			str_segundo = new String (segundo) 
+   			if (str_segundo.length == 1) 
+      	 		segundo = "0" + segundo 
+
+   			str_minuto = new String (minuto) 
+   			if (str_minuto.length == 1) 
+      	 		minuto = "0" + minuto 
+
+   			str_hora = new String (hora) 
+   			if (str_hora.length == 1) 
+	      	 	hora = "0" + hora 
+
+   			horaImprimible = "Hora: "+hora + " : " + minuto + " : " + segundo 
+
+   			document.form_reloj.reloj.value = horaImprimible 
+
+   			setTimeout("mueveReloj()",1000) 
+} 
+</script>
+
+	</ui:define>
 
 
-        <s:decorate id="apellidos" template="layout/display.xhtml">
-            <ui:define name="label">Apellidos</ui:define>
-            <h:outputText value="#{usuarioHome.instance.apellidos}"/>
-        </s:decorate>
+	<ui:define name="body">
+		<body onload="mueveReloj()">
 
-        <s:decorate id="correoElectronico" template="layout/display.xhtml">
-            <ui:define name="label">Correo electronico</ui:define>
-            <h:outputText value="#{usuarioHome.instance.correoElectronico}"/>
-        </s:decorate>
+			<s:div
+				style="color: white; height: 100px;margin-left: 70px; margin-right: 70px; background-color: #315E9F;">
 
-        <s:decorate id="documentoIdentidad" template="layout/display.xhtml">
-            <ui:define name="label">Documento identidad</ui:define>
-            <h:outputText value="#{usuarioHome.instance.documentoIdentidad}"/>
-        </s:decorate>
 
-        <s:decorate id="fotoUser" template="layout/display.xhtml">
-            <ui:define name="label">Foto user</ui:define>
-            <h:outputText value="#{usuarioHome.instance.fotoUser}"/>
-        </s:decorate>
+				<div id="topLogo">
+					<h:form>
+						<h:outputText value="MaizSoft"></h:outputText>
+						<h:outputText value="..." style="color:#315E9F"></h:outputText>
+						<h:commandButton image="css/images/calendario.png"
+							style="width:30px" />
+						<h:outputText value=".." style="color:#315E9F"></h:outputText>
+						<h:commandButton action="/GestorMensajeriaEdit.xhtml"
+							image="css/images/mensajes.png" style="width:30px" />
+						<h:outputText value=".." style="color:#315E9F"></h:outputText>
+						<h:commandButton image="css/images/actualizacion.png"
+							style="width:30px" />
+						<br />
+						<br />
 
-        <s:decorate id="primerNombre" template="layout/display.xhtml">
-            <ui:define name="label">Primer nombre</ui:define>
-            <h:outputText value="#{usuarioHome.instance.primerNombre}"/>
-        </s:decorate>
+						<h:outputText value="Navegar"></h:outputText>
+					</h:form>
+				</div>
 
-        <s:decorate id="segundoNombre" template="layout/display.xhtml">
-            <ui:define name="label">Segundo nombre</ui:define>
-            <h:outputText value="#{usuarioHome.instance.segundoNombre}"/>
-        </s:decorate>
 
-        <div style="clear:both"/>
+				<div id="topPrincipal">
+					<div style="margin-right: 10px">
+						<h:form>
+							<h:outputText id="menuWelcomeId" value="#{credentials.username}"
+								rendered="#{identity.loggedIn}" />
+							<s:link id="menuLogoutId" view="/login.xhtml"
+								action="#{identity.logout}" value="Salir"
+								rendered="#{identity.loggedIn}" propagation="none"
+								style="color: white" />
+						</h:form>
+						<br /> <br />
+						<form name="form_reloj">
 
-    </rich:panel>
+							<input type="text" name="reloj" size="17"
+								style="color: #FFFFFF; background: #315E9F; text-align: center"
+								onfocus="window.document.form_reloj.reloj.blur()" />
+						</form>
+					</div>
+				</div>
 
-    <div class="actionButtons">
+				<div id="topSearch">
 
-        <s:button view="/UsuarioEdit.xhtml"
-                    id="edit"
-                 value="Edit"/>
+					<form class="searchform">
+						<input class="searchfield" type="text" value="Buscar..."
+							onFocus="if (this.value == 'Buscar...') {this.value = '';}"
+							onBlur="if (this.value == '') {this.value = 'Buscar...';}" />
 
-        <s:button view="/#{empty usuarioFrom ? 'UsuarioList' : usuarioFrom}.xhtml"
-                    id="done"
-                 value="Done"/>
+						<h:commandButton class="searchbutton"
+							image="css/images/buscar.png" style="width:24px" />
+					</form>
+				</div>
 
-    </div>
+			</s:div>
 
-    <rich:tabPanel switchType="ajax">
 
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Cuentas usuario</h:panelGroup>
-        </f:facet>
-    <h:form styleClass="association" id="cuentasUsuarioChildren">
+			<div class="center2" style="margin-top: -20px; height: 470px">
 
-        <h:outputText value="There are no cuentasUsuario associated with this usuario."
-                   rendered="#{empty usuarioHome.cuentasUsuario}"/>
+				<div class="right" style="height: 360px">
+					<ui:insert name="right">
+						<h:form>
 
-        <rich:dataTable value="#{usuarioHome.cuentasUsuario}"
-                       var="_cuentasUsuario"
-                  rendered="#{not empty usuarioHome.cuentasUsuario}"
-                rowClasses="rvgRowOne,rvgRowTwo"
-                        id="cuentasUsuarioTable">
-            <rich:column sortBy="#{_cuentasUsuario.id}">
-                <f:facet name="header">Id</f:facet>
-                <h:outputText value="#{_cuentasUsuario.id}"/>
-            </rich:column>
-            <h:column>
-                <f:facet name="header">Action</f:facet>
-                <s:link id="selectcuentasUsuario"
-                     value="Select"
-                      view="/CuentasUsuario.xhtml">
-                    <f:param name="cuentasUsuarioId"
-                            value="#{_cuentasUsuario.id}"/>
-                    <f:param name="cuentasUsuarioFrom" value="Usuario"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
+							<rich:panel>
 
-    </h:form>
 
-    <div class="actionButtons">
-        <s:button
-               value="Add cuentasUsuario"
-                view="/CuentasUsuarioEdit.xhtml">
-            <f:param name="usuarioId"
-                    value="#{usuarioHome.instance.id}"/>
-            <f:param name="cuentasUsuarioFrom" value="Usuario"/>
-        </s:button>
-    </div>
-    </rich:tab>
+								<rich:calendar popup="false">
+									<f:facet name="weekNumber">
+										<h:outputText value="" style="color:red" />
+									</f:facet>
+								</rich:calendar>
+								<h:commandLink value="Agregar Evento"
+									action="/GestorAgendaEdit.seam"
+									rendered="#{s:hasRole('admin') || s:hasRole('docente')}" />
+								<br />
+								<br />
+								<h:commandLink value="Ayuda" action="/GestorAgendaEdit.seam" />
+								<br />
+								<br />
+								<h:commandLink value="Gestionar noticias"
+									action="/GestorAgendaEdit.seam"
+									rendered="#{s:hasRole('admin')}" />
+								<br />
+							</rich:panel>
 
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Ente universitarios</h:panelGroup>
-        </f:facet>
-    <div class="association" id="enteUniversitariosParent">
+						</h:form>
+					</ui:insert>
+				</div>
 
-        <h:outputText value="There is no enteUniversitarios associated with this usuario."
-                   rendered="#{usuarioHome.instance.enteUniversitarios == null}"/>
 
-        <rich:dataTable var="_enteUniversitario"
-                   value="#{usuarioHome.instance.enteUniversitarios}"
-                rendered="#{usuarioHome.instance.enteUniversitarios != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="enteUniversitariosTable">
-            <h:column>
-                <f:facet name="header">Id ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.idEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Descripcion ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.descripcionEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Ente universitario id ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.enteUniversitario.idEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nombre ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.nombreEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo ente universitario id tipo</f:facet>
-                <h:outputText value="#{_enteUniversitario.tipoEnteUniversitario.idTipo}"/>
-            </h:column>
-            <h:column styleClass="action">
-                <f:facet name="header">Action</f:facet>
-                <s:link id="viewenteUniversitario"
-                     value="View"
-                      view="/EnteUniversitario.xhtml">
-                    <f:param name="enteUniversitarioIdEnteUniversitario"
-                           value="#{_enteUniversitario.idEnteUniversitario}"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
+				<div class="left" style="height: 360px">
+					<rich:panel>
+						<h:form id="form">
 
-    </div>
-    </rich:tab>
+							<img src="css/images/gis.png"
+								style="height: 80px; width: 80px; margin-left: 45px" />
+							<br />
+							<h:commandLink value="#{credentials.username}"
+								action="/UserAccountEdit.seam" />
+							<br />
+							<br />
+							<rich:separator height="2" lineType="dotted" />
+							<br />
 
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Grupo usuarios</h:panelGroup>
-        </f:facet>
-    <h:form styleClass="association" id="grupoUsuariosChildren">
+							<h:panelGrid columns="2" columnClasses="cols,cols" width="400">
+								<rich:panelMenu style="width:150px;" itemMode="ajax"
+									groupMode="ajax" groupExpandedLeftIcon="triangleUp"
+									groupCollapsedLeftIcon="triangleDown"
+									topGroupExpandedRightIcon="chevronUp"
+									topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc"
+									itemChangeListener="#{panelMenuBean.updateCurrent}"
+									expandSingle="true" showDelay="250" hideDelay="0"
+									submitMode="none">
+									<rich:panelMenuGroup label="Mensajes" style="color: #FFFFFF;">
+										<rich:panelMenuItem label="Crear" style="color: #045491;"
+											icon="disc" />
+										<rich:panelMenuItem label="Ver" style="color: #045491;"
+											icon="disc" />
+									</rich:panelMenuGroup>
+									<rich:panelMenuGroup label="Administrar Usuarios"
+										style="color: #FFFFFF;">
+										<rich:panelMenuItem label="Adicionar Usuario"
+											style="color: #045491;" icon="disc"
+											action="/UsuarioEdit.seam" />
+										<rich:panelMenuItem label="Eliminar / Editar Usuario"
+											style="color: #045491;" icon="disc"
+											action="/UsuarioList.seam" />
+										<rich:panelMenuItem label="Buscar Usuario"
+											style="color: #045491;" icon="disc"
+											action="/UsuarioList.seam" />
+									</rich:panelMenuGroup>
+									<rich:panelMenuGroup label="Administrar Curso"
+										style="color: #FFFFFF;">
+										<rich:panelMenuItem label="Crear Asignatura"
+											style="color: #045491;" icon="disc" />
+										<rich:panelMenuItem label="Editar Asignatura"
+											style="color: #045491;" icon="disc" />
+										<rich:panelMenuItem label="Eliminar Asignatura"
+											style="color: #045491;" icon="disc" />
+										<rich:panelMenuItem label="Buscar Asignatura"
+											style="color: #045491;" icon="disc" />
+									</rich:panelMenuGroup>
+									<rich:panelMenuGroup label="Generar Informe"
+										style="color: #FFFFFF;">
+										<rich:panelMenuItem label="Generar" style="color: #045491;"
+											icon="disc" />
+										<rich:panelMenuItem label="Ver" style="color: #045491;"
+											icon="disc" />
+									</rich:panelMenuGroup>
+									<rich:panelMenuGroup label="Chat" style="color: #FFFFFF;">
+										<rich:panelMenuItem label="Chat" style="color: #045491;"
+											icon="disc" />
+									</rich:panelMenuGroup>
+								</rich:panelMenu>
+								<a4j:outputPanel ajaxRendered="true">
+									<rich:panel rendered="#{not empty panelMenuBean.current}">
+										<h:outputText value="#{panelMenuBean.current} selected"
+											id="current" />
+									</rich:panel>
+								</a4j:outputPanel>
+							</h:panelGrid>
+							<rich:separator height="2" lineType="dotted" />
+							<br />
+							<s:link id="menuLogoutId" action="#{identity.logout}"
+								view="/login.seam" value="Salir" rendered="#{identity.loggedIn}"
+								propagation="none" style="color: #3B5999" />
+						</h:form>
 
-        <h:outputText value="There are no grupoUsuarios associated with this usuario."
-                   rendered="#{empty usuarioHome.grupoUsuarios}"/>
+					</rich:panel>
+				</div>
 
-        <rich:dataTable value="#{usuarioHome.grupoUsuarios}"
-                       var="_grupoUsuarios"
-                  rendered="#{not empty usuarioHome.grupoUsuarios}"
-                rowClasses="rvgRowOne,rvgRowTwo"
-                        id="grupoUsuariosTable">
-            <rich:column sortBy="#{_grupoUsuarios.idGrupoUsuarios}">
-                <f:facet name="header">Id grupo usuarios</f:facet>
-                <h:outputText value="#{_grupoUsuarios.idGrupoUsuarios}"/>
-            </rich:column>
-            <h:column>
-                <f:facet name="header">Action</f:facet>
-                <s:link id="selectgrupoUsuarios"
-                     value="Select"
-                      view="/GrupoUsuarios.xhtml">
-                    <f:param name="grupoUsuariosIdGrupoUsuarios"
-                            value="#{_grupoUsuarios.idGrupoUsuarios}"/>
-                    <f:param name="grupoUsuariosFrom" value="Usuario"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
+				<div id="content" class="right_content">
+					<rich:panel>
+						<f:facet name="header">Detalles de Usuario</f:facet>
+						
+						<s:decorate id="primerNombre" template="layout/display.xhtml" style="position:absolute;">
+							<ui:define name="label">Primer nombre</ui:define>
+							<h:outputText value="#{usuarioHome.instance.primerNombre}"/>
+						</s:decorate>
+						
+						<br />
+						<br />
+						<s:decorate id="segundoNombre" template="layout/display.xhtml" style="position:absolute;">
+							<ui:define name="label">Segundo nombre</ui:define>
+							<h:outputText value="#{usuarioHome.instance.segundoNombre}" />
+						</s:decorate>
+						
+						<br />
+						<br />
 
-    </h:form>
+						<s:decorate id="apellidos" template="layout/display.xhtml" style="position:absolute;">
+							<ui:define name="label">Apellidos</ui:define>
+							<h:outputText value="#{usuarioHome.instance.apellidos}" />
+						</s:decorate>
+						
+						<br />
+						<br />
+						<s:decorate id="tipoDocumentoIdentidad"
+							template="layout/display.xhtml" style="position:absolute;">
+							<ui:define name="label">TipoDocumento</ui:define>
+							<h:outputText value="#{usuarioHome.instance.tipo}" />
+						</s:decorate>
+						<br />
+						<br />
+						<s:decorate id="documentoIdentidad"
+							template="layout/display.xhtml" style="position:absolute;">
+							<ui:define name="label">Documento identidad</ui:define>
+							<h:outputText value="#{usuarioHome.instance.documentoIdentidad}" />
+						</s:decorate>
+						<br />
+						<br />
+						<s:decorate id="correoElectronico" template="layout/display.xhtml" style="position:absolute;">
+							<ui:define name="label">Correo electronico</ui:define>
+							<h:outputText value="#{usuarioHome.instance.correoElectronico}" />
+						</s:decorate>
+						<br />
+						<br />
+						<s:decorate id="facultad" template="layout/display.xhtml" style="position:absolute;">
+							<ui:define name="label">Facultad</ui:define>
+							<h:outputText value="#{usuarioHome.instance.enteUniversitarios}" />
+						</s:decorate>
+						<br />
+						<br />
+						<s:decorate id="fotoUser" template="layout/display.xhtml" style="position:absolute;">
+							<ui:define name="label">Foto</ui:define>
+							<h:outputText value="#{usuarioHome.instance.fotoUser}" />
+						</s:decorate>
+						<br />
+						<br />
+						
 
-    <div class="actionButtons">
-        <s:button
-               value="Add grupoUsuarios"
-                view="/GrupoUsuariosEdit.xhtml">
-            <f:param name="usuarioId"
-                    value="#{usuarioHome.instance.id}"/>
-            <f:param name="grupoUsuariosFrom" value="Usuario"/>
-        </s:button>
-    </div>
-    </rich:tab>
+						
 
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Historial notas</h:panelGroup>
-        </f:facet>
-    <h:form styleClass="association" id="historialNotasChildren">
+						<div style="clear: both" />
 
-        <h:outputText value="There are no historialNotas associated with this usuario."
-                   rendered="#{empty usuarioHome.historialNotas}"/>
+					</rich:panel>
 
-        <rich:dataTable value="#{usuarioHome.historialNotas}"
-                       var="_historialNotas"
-                  rendered="#{not empty usuarioHome.historialNotas}"
-                rowClasses="rvgRowOne,rvgRowTwo"
-                        id="historialNotasTable">
-            <rich:column sortBy="#{_historialNotas.idHistorialNotas}">
-                <f:facet name="header">Id historial notas</f:facet>
-                <h:outputText value="#{_historialNotas.idHistorialNotas}"/>
-            </rich:column>
-            <rich:column sortBy="#{_historialNotas.nota}">
-                <f:facet name="header">Nota</f:facet>
-                <h:outputText value="#{_historialNotas.nota}"/>
-            </rich:column>
-            <h:column>
-                <f:facet name="header">Action</f:facet>
-                <s:link id="selecthistorialNotas"
-                     value="Select"
-                      view="/HistorialNotas.xhtml">
-                    <f:param name="historialNotasIdHistorialNotas"
-                            value="#{_historialNotas.idHistorialNotas}"/>
-                    <f:param name="historialNotasFrom" value="Usuario"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
+					<div class="actionButtons">
 
-    </h:form>
+						<s:button view="/UsuarioEdit.xhtml" id="edit" value="Editar" />
 
-    <div class="actionButtons">
-        <s:button
-               value="Add historialNotas"
-                view="/HistorialNotasEdit.xhtml">
-            <f:param name="usuarioId"
-                    value="#{usuarioHome.instance.id}"/>
-            <f:param name="historialNotasFrom" value="Usuario"/>
-        </s:button>
-    </div>
-    </rich:tab>
+						<s:button
+							view="/#{empty usuarioFrom ? 'UsuarioList' : usuarioFrom}.xhtml"
+							id="done" value="Done" />
 
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Mensajes</h:panelGroup>
-        </f:facet>
-    <h:form styleClass="association" id="mensajesChildren">
+					</div>				
 
-        <h:outputText value="There are no mensajes associated with this usuario."
-                   rendered="#{empty usuarioHome.mensajes}"/>
+				</div>
 
-        <rich:dataTable value="#{usuarioHome.mensajes}"
-                       var="_receptorMensajes"
-                  rendered="#{not empty usuarioHome.mensajes}"
-                rowClasses="rvgRowOne,rvgRowTwo"
-                        id="mensajesTable">
-            <rich:column sortBy="#{_receptorMensajes.idReceptormenajes}">
-                <f:facet name="header">Id receptormenajes</f:facet>
-                <h:outputText value="#{_receptorMensajes.idReceptormenajes}"/>
-            </rich:column>
-            <h:column>
-                <f:facet name="header">Action</f:facet>
-                <s:link id="selectreceptorMensajes"
-                     value="Select"
-                      view="/ReceptorMensajes.xhtml">
-                    <f:param name="receptorMensajesIdReceptormenajes"
-                            value="#{_receptorMensajes.idReceptormenajes}"/>
-                    <f:param name="receptorMensajesFrom" value="Usuario"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
+				<div class="bottom" align="center" style="margin-top: -10px">
+					<rich:separator height="4" />
+					<img src="css/images/uptc.png"
+						style="height: 80px; margin-left: -430px" />
 
-    </h:form>
+					<div style="margin-top: -90px; height: 100px;">
 
-    <div class="actionButtons">
-        <s:button
-               value="Add receptorMensajes"
-                view="/ReceptorMensajesEdit.xhtml">
-            <f:param name="usuarioId"
-                    value="#{usuarioHome.instance.id}"/>
-            <f:param name="receptorMensajesFrom" value="Usuario"/>
-        </s:button>
-    </div>
-    </rich:tab>
+						<p>
+							Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
+							<br /> Facultad de Ingenier&#237;a <br /> Ingenier&#237;a de
+							Sistemas y Computaci&#243;n <br /> Grupo de Investigaci&#243;n
+							en Ingenier&#237;a del Software <br /> Correo:gis@uptc.edu.co
+						</p>
+					</div>
+					<div style="margin-top: -95px">
+						<img src="css/images/gis.png"
+							style="height: 80px; width: 80px; margin-left: 470px" />
+					</div>
+				</div>
+			</div>
 
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Tipo</h:panelGroup>
-        </f:facet>
-    <div class="association" id="tipoParent">
 
-        <h:outputText value="There is no tipo associated with this usuario."
-                   rendered="#{usuarioHome.instance.tipo == null}"/>
-
-        <rich:dataTable var="_tipo"
-                   value="#{usuarioHome.instance.tipo}"
-                rendered="#{usuarioHome.instance.tipo != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="tipoTable">
-            <h:column>
-                <f:facet name="header">Id tipo</f:facet>
-                <h:outputText value="#{_tipo.idTipo}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Descripcion</f:facet>
-                <h:outputText value="#{_tipo.descripcion}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nombre</f:facet>
-                <h:outputText value="#{_tipo.nombre}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo id tipo</f:facet>
-                <h:outputText value="#{_tipo.tipo.idTipo}"/>
-            </h:column>
-            <h:column styleClass="action">
-                <f:facet name="header">Action</f:facet>
-                <s:link id="viewtipo"
-                     value="View"
-                      view="/Tipo.xhtml">
-                    <f:param name="tipoIdTipo"
-                           value="#{_tipo.idTipo}"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
-    </div>
-    </rich:tab>
-
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Usuario emisor</h:panelGroup>
-        </f:facet>
-    <h:form styleClass="association" id="usuarioEmisorChildren">
-
-        <h:outputText value="There are no usuarioEmisor associated with this usuario."
-                   rendered="#{empty usuarioHome.usuarioEmisor}"/>
-
-        <rich:dataTable value="#{usuarioHome.usuarioEmisor}"
-                       var="_gestorMensajeria"
-                  rendered="#{not empty usuarioHome.usuarioEmisor}"
-                rowClasses="rvgRowOne,rvgRowTwo"
-                        id="usuarioEmisorTable">
-            <rich:column sortBy="#{_gestorMensajeria.idMensaje}">
-                <f:facet name="header">Id mensaje</f:facet>
-                <h:outputText value="#{_gestorMensajeria.idMensaje}"/>
-            </rich:column>
-            <rich:column sortBy="#{_gestorMensajeria.asunto}">
-                <f:facet name="header">Asunto</f:facet>
-                <h:outputText value="#{_gestorMensajeria.asunto}"/>
-            </rich:column>
-            <rich:column sortBy="#{_gestorMensajeria.fechaEnvio}">
-                <f:facet name="header">Fecha envio</f:facet>
-                <h:outputText value="#{_gestorMensajeria.fechaEnvio}">
-                    <s:convertDateTime type="date" dateStyle="short"/>
-                </h:outputText>
-            </rich:column>
-            <rich:column sortBy="#{_gestorMensajeria.mensaje}">
-                <f:facet name="header">Mensaje</f:facet>
-                <h:outputText value="#{_gestorMensajeria.mensaje}"/>
-            </rich:column>
-            <h:column>
-                <f:facet name="header">Action</f:facet>
-                <s:link id="selectgestorMensajeria"
-                     value="Select"
-                      view="/GestorMensajeria.xhtml">
-                    <f:param name="gestorMensajeriaIdMensaje"
-                            value="#{_gestorMensajeria.idMensaje}"/>
-                    <f:param name="gestorMensajeriaFrom" value="Usuario"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
-    </h:form>
-
-    <div class="actionButtons">
-        <s:button
-               value="Add gestorMensajeria"
-                view="/GestorMensajeriaEdit.xhtml">
-            <f:param name="usuarioId"
-                    value="#{usuarioHome.instance.id}"/>
-            <f:param name="gestorMensajeriaFrom" value="Usuario"/>
-        </s:button>
-    </div>
-    </rich:tab>
-</rich:tabPanel>
-</ui:define>
+		</body>
+	</ui:define>
 
 </ui:composition>

@@ -1,8 +1,13 @@
 package com.mydomain.Directorio.action;
 
 import com.mydomain.Directorio.model.*;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Query;
+
+import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
@@ -59,5 +64,16 @@ public class ActividadHome extends EntityHome<Actividad> {
 		return getInstance() == null ? null : new ArrayList<NotaActividad>(
 				getInstance().getListaNotaActividades());
 	}
+	
+	@Factory("listaTiposActividades")
+	public List<Tipo> listaTiposEntesUniversitarios() {
+
+		Query q = getEntityManager()
+				.createQuery("select t from Tipo t where t.tipo=10");
+		List<Tipo> listaTiposEnteUniversitarios = (List<Tipo>)q.getResultList();
+	
+		return listaTiposEnteUniversitarios;
+	}
+	
 
 }

@@ -125,6 +125,9 @@ public class Actividad {
 	 */
 	@OneToMany(mappedBy="actividad",cascade=CascadeType.ALL)
 	public Set<GestorAnuncios> getGestorAnuncios() {
+		if(gestorAnuncios==null){
+			return new HashSet<GestorAnuncios>();
+		}
 		return gestorAnuncios;
 	}
 

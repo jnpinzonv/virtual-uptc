@@ -173,11 +173,9 @@
 										style="color: #FFFFFF;">
 										<rich:panelMenuItem label="Adicionar Usuario"
 											style="color: #045491;" icon="disc"
-											view="/UsuarioEdit.xhtml"
-											 
+											view="/UsuarioEdit.xhtml"											 
 											action="#{userAction.createUser}"
-							rendered="#{s:hasPermission('seam.user', 'create')}"/>
-											
+											rendered="#{s:hasPermission('seam.user', 'create')}"/>											
 									
 										<rich:panelMenuItem label="Eliminar / Editar Usuario"
 											style="color: #045491;" icon="disc"
@@ -423,7 +421,7 @@
 						<a4j:outputPanel id="dos">
 							<div class="actionButtons">
 
-								<h:commandButton id="save" value="Guardarr"
+								<h:commandButton id="save" value="Guardar"
 									action="#{usuarioHome.saveUsuario()}"
 									disabled="#{!usuarioHome.wired}"
 									rendered="#{!usuarioHome.managed}" />

@@ -108,9 +108,9 @@
 			</s:div>
 
 
-			<div class="center2" style="margin-top: -20px; height: 590px">
+			<div class="center2" style="margin-top: -20px; height: 450px">
 
-				<div class="right" style="height: 480px">
+				<div class="right" style="height: 340px">
 					<ui:insert name="right">
 						<h:form>
 
@@ -141,7 +141,7 @@
 				</div>
 
 
-				<div class="left" style="height: 480px">
+				<div class="left" style="height: 340px">
 					<rich:panel>
 						<h:form id="form">
 
@@ -224,35 +224,41 @@
 
 				<div id="content" class="right_content">
 					<rich:panel>
-        <f:facet name="header">Detalles de noticias</f:facet>
-		
-		<s:decorate id="nombreNoticia" template="layout/display.xhtml">
-            <ui:define name="label">Titulo noticia</ui:define>
-            <h:outputText value="#{gestorNoticiasHome.instance.nombreNoticia}"/>
-        </s:decorate>
+						<f:facet name="header">Detalles de noticias</f:facet>
+						
+												
+							<rich:scrollableDataTable value="fofo"
+								var="issues" frozenColCount="1" first="0" rows="1"
+								width="656px" height="80px">
+								<rich:column width="200px">
+									<f:facet name="header">
+										<h:outputText value="Titulo" />
+									</f:facet>
+									<h:outputText value="#{gestorNoticiasHome.instance.nombreNoticia}" />									
+								</rich:column>
+								<rich:column width="450px" >
+									<f:facet name="header">
+										<h:outputText value="Descripción" />
+									</f:facet>
+									<h:outputText value="#{gestorNoticiasHome.instance.descripcion}" />									
+								</rich:column>
+							</rich:scrollableDataTable>
 
-        <s:decorate id="descripcion" template="layout/display.xhtml">
-            <ui:define name="label">Descripcion</ui:define>
-            <h:outputText value="#{gestorNoticiasHome.instance.descripcion}"/>
-        </s:decorate>
 
-        
 
-        <div style="clear:both"/>
 
-    </rich:panel>
+					</rich:panel>
 
-    <div class="actionButtons">
+					<div class="actionButtons">
 
-        <s:button view="/GestorNoticiasEdit.xhtml"
-                    id="edit"
-                 value="Editar"/>
+						<s:button view="/GestorNoticiasEdit.xhtml" id="edit"
+							value="Editar" />
 
-        <s:button view="/#{empty gestorNoticiasFrom ? 'GestorNoticiasList' : gestorNoticiasFrom}.xhtml"
-                    id="done"
-                 value="Aceptar"/>
+						<s:button
+							view="/#{empty gestorNoticiasFrom ? 'GestorNoticiasList' : gestorNoticiasFrom}.xhtml"
+							id="done" value="Aceptar" />
 
-    </div>
+					</div>
 
 					<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 					<br /> <br /> <br /> <br />

@@ -185,9 +185,9 @@
 									<rich:panelMenuGroup label="Administrar Curso"
 										style="color: #FFFFFF;">
 										<rich:panelMenuItem label="Crear Asignatura"
-											style="color: #045491;" icon="disc" action="/CursoEdit.seam"/>
+											style="color: #045491;" icon="disc" action="/CursoEdit.seam" />
 										<rich:panelMenuItem label="Editar Asignatura"
-											style="color: #045491;" icon="disc" action="/CursoList.seam"/>
+											style="color: #045491;" icon="disc" action="/CursoList.seam" />
 										<rich:panelMenuItem label="Crear Grupo"
 											style="color: #045491;" icon="disc" />
 										<rich:panelMenuItem label="Editar Grupo"
@@ -195,10 +195,10 @@
 									</rich:panelMenuGroup>
 									<rich:panelMenuGroup label="Administrar Facultad/Escuela"
 										style="color: #FFFFFF;">
-										<rich:panelMenuItem label="Crear"
-											style="color: #045491;" icon="disc" action="/UsuarioList.seam"/>
-										<rich:panelMenuItem label="Editar"
-											style="color: #045491;" icon="disc" />										
+										<rich:panelMenuItem label="Crear" style="color: #045491;"
+											icon="disc" action="/UsuarioList.seam" />
+										<rich:panelMenuItem label="Editar" style="color: #045491;"
+											icon="disc" />
 									</rich:panelMenuGroup>
 									<rich:panelMenuGroup label="Generar Informe"
 										style="color: #FFFFFF;">
@@ -232,8 +232,7 @@
 				<div id="content" class="right_content">
 					<h:form id="usuarioSearch" styleClass="edit">
 
-						<rich:simpleTogglePanel label="Buscar Usuario"
-							switchType="ajax">
+						<rich:simpleTogglePanel label="Buscar Usuario" switchType="ajax">
 
 							<s:decorate template="layout/display.xhtml">
 								<ui:define name="label">Apellidos</ui:define>
@@ -279,6 +278,16 @@
 						</div>
 
 					</h:form>
+
+					<s:div styleClass="actionButtons" rendered="#{empty from}">
+						<s:button view="/UsuarioEdit.xhtml" id="create" propagation="none"
+							value="Create usuario" action="#{userAction.createUser}"
+							rendered="#{s:hasPermission('seam.user', 'create')}">
+							<f:param name="usuarioId" />
+						</s:button>
+
+					</s:div>
+
 
 					<rich:panel>
 						<f:facet name="header">Resultados de busqueda de usuario (#{empty usuarioList.resultList ? 0 : (usuarioList.paginated ? usuarioList.resultCount : usuarioList.resultList.size)})</f:facet>
@@ -424,7 +433,7 @@
 						<s:link view="/UsuarioList.xhtml"
 							rendered="#{usuarioList.nextExists}"
 							value="Next Page #{messages.right}" id="nextPage">
-							<f:param name="firstResult"
+							<f:param name="firstResult1"
 								value="#{usuarioList.nextFirstResult}" />
 						</s:link>
 
@@ -442,26 +451,30 @@
 
 				</div>
 
-				<div class="bottom" align="center" style="margin-top: -10px">
-					<rich:separator height="4" />
-					<img src="css/images/uptc.png"
-						style="height: 80px; margin-left: -430px" />
+			</div>
 
-					<div style="margin-top: -90px; height: 100px;">
 
-						<p>
-							Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
-							<br /> Facultad de Ingenier&#237;a <br /> Ingenier&#237;a de
-							Sistemas y Computaci&#243;n <br /> Grupo de Investigaci&#243;n
-							en Ingenier&#237;a del Software <br /> Correo:gis@uptc.edu.co
-						</p>
-					</div>
-					<div style="margin-top: -95px">
-						<img src="css/images/gis.png"
-							style="height: 80px; width: 80px; margin-left: 470px" />
-					</div>
+
+			<div class="bottom" align="center" style="margin-top: -10px">
+				<rich:separator height="4" />
+				<img src="css/images/uptc.png"
+					style="height: 80px; margin-left: -430px" />
+
+				<div style="margin-top: -90px; height: 100px;">
+
+					<p>
+						Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
+						<br /> Facultad de Ingenier&#237;a <br /> Ingenier&#237;a de
+						Sistemas y Computaci&#243;n <br /> Grupo de Investigaci&#243;n en
+						Ingenier&#237;a del Software <br /> Correo:gis@uptc.edu.co
+					</p>
+				</div>
+				<div style="margin-top: -95px">
+					<img src="css/images/gis.png"
+						style="height: 80px; width: 80px; margin-left: 470px" />
 				</div>
 			</div>
+			
 
 
 		</body>

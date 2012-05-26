@@ -173,7 +173,12 @@
 										style="color: #FFFFFF;">
 										<rich:panelMenuItem label="Adicionar Usuario"
 											style="color: #045491;" icon="disc"
-											action="/UsuarioEdit.seam" />
+											view="/UsuarioEdit.xhtml"
+											 
+											action="#{userAction.createUser}"
+							rendered="#{s:hasPermission('seam.user', 'create')}"/>
+											
+									
 										<rich:panelMenuItem label="Eliminar / Editar Usuario"
 											style="color: #045491;" icon="disc"
 											action="/UsuarioList.seam" />
@@ -376,7 +381,7 @@
 							</s:decorate>
 							<br />
 							<br />
-							<h:form>
+							
 								<h:panelGrid columns="1" columnClasses="top">
 									<rich:fileUpload
 										fileUploadListener="#{fileUploadBean.listener}" id="upload"
@@ -406,34 +411,7 @@
 										<br />
 
 									</h:panelGroup>
-								</h:panelGrid>
-							</h:form>
-
-
-
-
-							<!--  
-				<h:selectOneMenu
-					value="#{usuarioHome.instance.enteUniversitarios}"
-					id="enteUniversitario" required="true" rendered="true">
-					<s:selectItems value="#{listaEscuelasCurso}" var="lista"
-						label="#{lista.nombreEnteUniversitario}" noSelectionLabel="SELECCIONE..." />
-					<a4j:support event="onchange" reRender="dos" />
-					<s:convertEntity />
-				</h:selectOneMenu>
-
-				<h:selectOneMenu
-					value="#{usuarioHome.instance.tipo}"
-					id="tipoDocumento" rendered="true">
-					<s:selectItems value="#{listaTiposDocumento}" var="listaE"
-						label="#{listaE.nombre}"
-						noSelectionLabel="SELECCIONE..." />
-					<s:convertEntity />
-				<a4j:support event="onchange" reRender="dos" />
-				</h:selectOneMenu>
-				-->
-
-
+							</h:panelGrid>
 
 							<div style="clear: both; position: absolute;">
 								<span class="required">*</span> Campos Obligatorios
@@ -470,186 +448,7 @@
 						</a4j:outputPanel>
 					</h:form>
 
-					<!--
-		<rich:tabPanel switchType="ajax">
-
-			<rich:tab label="Cuentas usuario">
-				<h:form styleClass="association" id="cuentasUsuarioChildren">
-
-					<h:outputText
-						value="There are no cuentasUsuario associated with this usuario."
-						rendered="#{empty usuarioHome.cuentasUsuario}" />
-
-					<rich:dataTable value="#{usuarioHome.cuentasUsuario}"
-						var="_cuentasUsuario"
-						rendered="#{not empty usuarioHome.cuentasUsuario}"
-						rowClasses="rvgRowOne,rvgRowTwo" id="cuentasUsuarioTable">
-						<rich:column sortBy="#{_cuentasUsuario.id}">
-							<f:facet name="header">Id</f:facet>
-							<h:outputText value="#{_cuentasUsuario.id}" />
-						</rich:column>
-					</rich:dataTable>
-
-				</h:form>
-
-				<f:subview rendered="#{usuarioHome.managed}" id="cuentasUsuario">
-					<div class="actionButtons">
 					
-						<s:button id="addcuentasUsuario" value="Add cuentasUsuario"
-							view="/CuentasUsuarioEdit.xhtml" propagation="none">
-							<f:param name="usuarioId" value="#{usuarioHome.instance.id}" />
-							<f:param name="cuentasUsuarioFrom" value="Usuario" />
-						</s:button>
-					</div>
-				</f:subview>
-			</rich:tab>
-
-			
-
-					
-			
-			<rich:tab label="Grupo usuarios">
-				<h:form styleClass="association" id="grupoUsuariosChildren">
-
-					<h:outputText
-						value="There are no grupoUsuarios associated with this usuario."
-						rendered="#{empty usuarioHome.grupoUsuarios}" />
-
-					<rich:dataTable value="#{usuarioHome.grupoUsuarios}"
-						var="_grupoUsuarios"
-						rendered="#{not empty usuarioHome.grupoUsuarios}"
-						rowClasses="rvgRowOne,rvgRowTwo" id="grupoUsuariosTable">
-						<rich:column sortBy="#{_grupoUsuarios.idGrupoUsuarios}">
-							<f:facet name="header">Id grupo usuarios</f:facet>
-							<h:outputText value="#{_grupoUsuarios.idGrupoUsuarios}" />
-						</rich:column>
-					</rich:dataTable>
-
-				</h:form>
-
-				<f:subview rendered="#{usuarioHome.managed}" id="grupoUsuarios">
-					<div class="actionButtons">
-						<s:button id="addgrupoUsuarios" value="Add grupoUsuarios"
-							view="/GrupoUsuariosEdit.xhtml" propagation="none">
-							<f:param name="usuarioId" value="#{usuarioHome.instance.id}" />
-							<f:param name="grupoUsuariosFrom" value="Usuario" />
-						</s:button>
-					</div>
-				</f:subview>
-			</rich:tab>
-
-			<rich:tab label="Historial notas">
-				<h:form styleClass="association" id="historialNotasChildren">
-
-					<h:outputText
-						value="There are no historialNotas associated with this usuario."
-						rendered="#{empty usuarioHome.historialNotas}" />
-
-					<rich:dataTable value="#{usuarioHome.historialNotas}"
-						var="_historialNotas"
-						rendered="#{not empty usuarioHome.historialNotas}"
-						rowClasses="rvgRowOne,rvgRowTwo" id="historialNotasTable">
-						<rich:column sortBy="#{_historialNotas.idHistorialNotas}">
-							<f:facet name="header">Id historial notas</f:facet>
-							<h:outputText value="#{_historialNotas.idHistorialNotas}" />
-						</rich:column>
-						<rich:column sortBy="#{_historialNotas.nota}">
-							<f:facet name="header">Nota</f:facet>
-							<h:outputText value="#{_historialNotas.nota}" />
-						</rich:column>
-					</rich:dataTable>
-
-				</h:form>
-				
-				<f:subview rendered="#{usuarioHome.managed}" id="historialNotas">
-					<div class="actionButtons">
-						<s:button id="addhistorialNotas" value="Add historialNotas"
-							view="/HistorialNotasEdit.xhtml" propagation="none">
-							<f:param name="usuarioId" value="#{usuarioHome.instance.id}" />
-							<f:param name="historialNotasFrom" value="Usuario" />
-						</s:button>
-					</div>
-				</f:subview>
-			</rich:tab>
-
-			<rich:tab label="Mensajes">
-				<h:form styleClass="association" id="mensajesChildren">
-
-					<h:outputText
-						value="There are no mensajes associated with this usuario."
-						rendered="#{empty usuarioHome.mensajes}" />
-
-					<rich:dataTable value="#{usuarioHome.mensajes}"
-						var="_receptorMensajes"
-						rendered="#{not empty usuarioHome.mensajes}"
-						rowClasses="rvgRowOne,rvgRowTwo" id="mensajesTable">
-						<rich:column sortBy="#{_receptorMensajes.idReceptormenajes}">
-							<f:facet name="header">Id receptormenajes</f:facet>
-							<h:outputText value="#{_receptorMensajes.idReceptormenajes}" />
-						</rich:column>
-					</rich:dataTable>
-
-				</h:form>
-
-				<f:subview rendered="#{usuarioHome.managed}" id="mensajes">
-					<div class="actionButtons">
-						<s:button id="addreceptorMensajes" value="Add receptorMensajes"
-							view="/ReceptorMensajesEdit.xhtml" propagation="none">
-							<f:param name="usuarioId" value="#{usuarioHome.instance.id}" />
-							<f:param name="receptorMensajesFrom" value="Usuario" />
-						</s:button>
-					</div>
-				</f:subview>
-			</rich:tab>
-
-			
-
-			<rich:tab label="Usuario emisor">
-				<h:form styleClass="association" id="usuarioEmisorChildren">
-
-					<h:outputText
-						value="There are no usuarioEmisor associated with this usuario."
-						rendered="#{empty usuarioHome.usuarioEmisor}" />
-
-					<rich:dataTable value="#{usuarioHome.usuarioEmisor}"
-						var="_gestorMensajeria"
-						rendered="#{not empty usuarioHome.usuarioEmisor}"
-						rowClasses="rvgRowOne,rvgRowTwo" id="usuarioEmisorTable">
-						<rich:column sortBy="#{_gestorMensajeria.idMensaje}">
-							<f:facet name="header">Id mensaje</f:facet>
-							<h:outputText value="#{_gestorMensajeria.idMensaje}" />
-						</rich:column>
-						<rich:column sortBy="#{_gestorMensajeria.asunto}">
-							<f:facet name="header">Asunto</f:facet>
-							<h:outputText value="#{_gestorMensajeria.asunto}" />
-						</rich:column>
-						<rich:column sortBy="#{_gestorMensajeria.fechaEnvio}">
-							<f:facet name="header">Fecha envio</f:facet>
-							<h:outputText value="#{_gestorMensajeria.fechaEnvio}">
-								<s:convertDateTime type="date" dateStyle="short" />
-							</h:outputText>
-						</rich:column>
-						<rich:column sortBy="#{_gestorMensajeria.mensaje}">
-							<f:facet name="header">Mensaje</f:facet>
-							<h:outputText value="#{_gestorMensajeria.mensaje}" />
-						</rich:column>
-					</rich:dataTable>
-
-				</h:form>
-
-				<f:subview rendered="#{usuarioHome.managed}" id="usuarioEmisor">
-					<div class="actionButtons">
-						<s:button id="addgestorMensajeria" value="Add gestorMensajeria"
-							view="/GestorMensajeriaEdit.xhtml" propagation="none">
-							<f:param name="usuarioId" value="#{usuarioHome.instance.id}" />
-							<f:param name="gestorMensajeriaFrom" value="Usuario" />
-						</s:button>
-					</div>
-				</f:subview>
-			</rich:tab>
-		</rich:tabPanel>
-		-->
-
 				</div>
 
 				<div class="bottom" align="center" style="margin-top: -10px">

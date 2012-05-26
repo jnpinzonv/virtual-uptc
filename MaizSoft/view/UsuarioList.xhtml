@@ -196,9 +196,9 @@
 									<rich:panelMenuGroup label="Administrar Facultad/Escuela"
 										style="color: #FFFFFF;">
 										<rich:panelMenuItem label="Crear" style="color: #045491;"
-											icon="disc" action="/UsuarioList.seam" />
+											icon="disc" action="/EnteUniversitarioEdit.seam" />
 										<rich:panelMenuItem label="Editar" style="color: #045491;"
-											icon="disc" />
+											icon="disc" action="/EnteUniversitarioList.seam"/>
 									</rich:panelMenuGroup>
 									<rich:panelMenuGroup label="Generar Informe"
 										style="color: #FFFFFF;">
@@ -281,7 +281,7 @@
 
 					<s:div styleClass="actionButtons" rendered="#{empty from}">
 						<s:button view="/UsuarioEdit.xhtml" id="create" propagation="none"
-							value="Create usuario" action="#{userAction.createUser}"
+							value="Crear usuario" action="#{userAction.createUser}"
 							rendered="#{s:hasPermission('seam.user', 'create')}">
 							<f:param name="usuarioId" />
 						</s:button>

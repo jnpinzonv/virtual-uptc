@@ -39,5 +39,7 @@
          <redirect view-id="/UsuarioList.xhtml"/>
       </rule>
    </navigation>
+   
+   
 
 </page>

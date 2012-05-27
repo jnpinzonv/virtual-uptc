@@ -67,4 +67,9 @@
   TYPE="page" model-entity="SeamPagesDiagramItem"/>
  <item NAME="#xhome.xhtml" PATH="/home.xhtml" SHAPE="344,17,0,0"
   TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#UsuarioEdit.xhtml" NAME="#xUsuarioEdit.xhtml"
+  PATH="/UsuarioEdit.xhtml" SHAPE="344,953,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/UsuarioEdit.xhtml" NAME="output"
+   PATH="/UsuarioEdit.xhtml" TARGET="#xUsuarioEdit.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
 </diagram>

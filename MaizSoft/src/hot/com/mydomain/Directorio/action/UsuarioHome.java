@@ -20,9 +20,11 @@ public class UsuarioHome extends EntityHome<Usuario> {
 	EnteUniversitarioHome enteUniversitarioHome;
 	@In(create = true)
 	TipoHome tipoHome;
+	
 	@In(create = true)
 	UserAction userAction;
-
+	
+	
 	public void setUsuarioId(Long id) {
 		setId(id);
 	}
@@ -94,6 +96,7 @@ public class UsuarioHome extends EntityHome<Usuario> {
 	}
 
 	public void saveUsuario() {
+		
 		userAction.save();
 		persist();
 		CuentasUsuario nuevoCuenta = new CuentasUsuario();
@@ -103,6 +106,11 @@ public class UsuarioHome extends EntityHome<Usuario> {
 						"select u from UserAccount u where u.username=#{userAction.username}");
 		nuevoCuenta.setUserAccounts((UserAccount) q.getSingleResult());
 		getEntityManager().persist(nuevoCuenta);
+	}
+	
+	public String crearUsuario(){
+		userAction.createUser();
+		return "/UsuarioEdit.xhtml";
 	}
 
 	@Factory("listaEscuelasCurso")
@@ -126,5 +134,7 @@ public class UsuarioHome extends EntityHome<Usuario> {
 	
 		return listaTiposEnteUniversitarios;
 	}
+	
+	
 
 }

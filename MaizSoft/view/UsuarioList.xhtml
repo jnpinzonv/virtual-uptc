@@ -172,9 +172,11 @@
 									</rich:panelMenuGroup>
 									<rich:panelMenuGroup label="Administrar Usuarios"
 										style="color: #FFFFFF;">
-										<rich:panelMenuItem label="Adicionar Usuario"
+										<rich:panelMenuItem label="Adicionar Usuariossss"
 											style="color: #045491;" icon="disc"
-											action="/UsuarioEdit.seam" />
+																					 
+											action="#{usuarioHome.crearUsuario()}"
+											rendered="#{s:hasPermission('seam.user', 'create')}"/>	
 										<rich:panelMenuItem label="Eliminar / Editar Usuario"
 											style="color: #045491;" icon="disc"
 											action="/UsuarioList.seam" />

@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich" template="template.xhtml">
+
+
+	<ui:define name="head">
+
+	</ui:define>
+
+	<ui:define name="body">
+		<div
+			>
+			<ui:insert name="cabezoteT">
+				<div id="cabezote"
+					style="position: relative; background-color: #315E9F; color: white; height: 80px; margin-left: 70px; margin-right: 70px;">
+
+					<div id="topLogo"
+						style="position: relative; float: left; background-color: #315E9F; height: 30px; margin-top: 4px;">
+						<h:form>
+							<h:outputText value="MaizSoft"></h:outputText>
+							<h:outputText value="..." style="color:#315E9F"></h:outputText>
+							<h:commandButton image="css/images/calendario.png"
+								style="width:30px" />
+							<h:outputText value=".." style="color:#315E9F"></h:outputText>
+							<h:commandButton action="/GestorMensajeriaEdit.xhtml"
+								image="css/images/mensajes.png" style="width:30px" />
+							<h:outputText value=".." style="color:#315E9F"></h:outputText>
+							<h:commandButton image="css/images/actualizacion.png"
+								style="width:30px" />
+							<br />
+							<br />
+							<h:outputText value="Navegar"></h:outputText>
+						</h:form>
+					</div>
+
+
+					<div id="topPrincipal"
+						style="position: relative; float: right; background-color: #315E9F; height: 30px; margin-top: 4px;">
+						<div style="margin-right: 10px">
+							<h:form>
+								<h:outputText id="menuWelcomeId" value="#{credentials.username}"
+									rendered="#{identity.loggedIn}" />
+								<s:link id="menuLogoutId" view="/login.xhtml"
+									action="#{identity.logout}" value="Salir"
+									rendered="#{identity.loggedIn}" propagation="none"
+									style="color: white" />
+							</h:form>
+							<br /> <br />
+							<form name="form_reloj">
+
+								<input type="text" name="reloj" size="17"
+									style="color: #FFFFFF; background: #315E9F; text-align: center"
+									onfocus="window.document.form_reloj.reloj.blur()" />
+							</form>
+						</div>
+					</div>
+
+					<div id="topSearch"
+						style="position: relative; height: 30px; float: inherit; margin-top: 37px; margin-left: 350px; vertical-align: middle;">
+
+						<form class="searchform">
+							<input class="searchfield" type="text" value="Buscar..."
+								onFocus="if (this.value == 'Buscar...') {this.value = '';}"
+								onBlur="if (this.value == '') {this.value = 'Buscar...';}" />
+
+							<h:commandButton class="searchbutton"
+								image="css/images/buscar.png" style="width:24px" />
+						</form>
+					</div>
+
+				</div>
+			</ui:insert>
+
+			<div id="medio"
+				style="position: static; background-color: #FFFFFF; margin-left: 70px; margin-right: 70px; color: #000000;">
+				<ui:insert name="izquierdaT">
+					<div id="izquierda"
+						style="float: left; background-image: url(images/MenuMiddle2.jpg); padding: 5px; width: 190px;">
+						<rich:panel>
+							<h:form id="form">
+
+								<img src="css/images/gis.png"
+									style="height: 80px; width: 80px; margin-left: 45px" />
+								<br />
+								<h:commandLink value="#{credentials.username}"
+									action="/UserAccountEdit.seam" />
+								<br />
+								<br />
+								<rich:separator height="2" lineType="dotted" />
+								<br />
+
+								<h:panelGrid columns="2" columnClasses="cols,cols" width="400">
+									<rich:panelMenu style="width:150px;" itemMode="ajax"
+										groupMode="ajax" groupExpandedLeftIcon="triangleUp"
+										groupCollapsedLeftIcon="triangleDown"
+										topGroupExpandedRightIcon="chevronUp"
+										topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc"
+										itemChangeListener="#{panelMenuBean.updateCurrent}"
+										expandSingle="true" showDelay="250" hideDelay="0"
+										submitMode="none">
+										<rich:panelMenuGroup label="Mensajes" style="color: #FFFFFF;">
+											<rich:panelMenuItem label="Crear" style="color: #045491;"
+												icon="disc" />
+											<rich:panelMenuItem label="Ver" style="color: #045491;"
+												icon="disc" />
+										</rich:panelMenuGroup>
+										<rich:panelMenuGroup label="Administrar Usuarios"
+											style="color: #FFFFFF;">
+											<rich:panelMenuItem label="Adicionar Usuariossss"
+												style="color: #045491;" icon="disc"
+												action="#{usuarioHome.crearUsuario()}"
+												rendered="#{s:hasPermission('seam.user', 'create')}" />
+											<rich:panelMenuItem label="Eliminar / Editar Usuario"
+												style="color: #045491;" icon="disc"
+												action="/UsuarioListEdit.seam" />
+											<rich:panelMenuItem label="Buscar Usuario"
+												style="color: #045491;" icon="disc"
+												action="/UsuarioList.seam" />
+										</rich:panelMenuGroup>
+										<rich:panelMenuGroup label="Administrar Curso"
+											style="color: #FFFFFF;">
+											<rich:panelMenuItem label="Crear Asignatura"
+												style="color: #045491;" icon="disc" action="/CursoEdit.seam" />
+											<rich:panelMenuItem label="Editar Asignatura"
+												style="color: #045491;" icon="disc" action="/CursoList.seam" />
+											<rich:panelMenuItem label="Crear Grupo"
+												style="color: #045491;" icon="disc" />
+											<rich:panelMenuItem label="Editar Grupo"
+												style="color: #045491;" icon="disc" />
+										</rich:panelMenuGroup>
+										<rich:panelMenuGroup label="Administrar Facultad/Escuela"
+											style="color: #FFFFFF;">
+											<rich:panelMenuItem label="Crear" style="color: #045491;"
+												icon="disc" action="/EnteUniversitarioEdit.seam" />
+											<rich:panelMenuItem label="Editar" style="color: #045491;"
+												icon="disc" action="/EnteUniversitarioList.seam" />
+										</rich:panelMenuGroup>
+										<rich:panelMenuGroup label="Generar Informe"
+											style="color: #FFFFFF;">
+											<rich:panelMenuItem label="Generar" style="color: #045491;"
+												icon="disc" />
+											<rich:panelMenuItem label="Ver" style="color: #045491;"
+												icon="disc" />
+										</rich:panelMenuGroup>
+										<rich:panelMenuGroup label="Chat" style="color: #FFFFFF;">
+											<rich:panelMenuItem label="Chat" style="color: #045491;"
+												icon="disc" />
+										</rich:panelMenuGroup>
+									</rich:panelMenu>
+									<a4j:outputPanel ajaxRendered="true">
+										<rich:panel rendered="#{not empty panelMenuBean.current}">
+											<h:outputText value="#{panelMenuBean.current} selected"
+												id="current" />
+										</rich:panel>
+									</a4j:outputPanel>
+								</h:panelGrid>
+								<rich:separator height="2" lineType="dotted" />
+								<br />
+								<s:link id="menuLogoutId" action="#{identity.logout}"
+									view="/login.seam" value="Salir"
+									rendered="#{identity.loggedIn}" propagation="none"
+									style="color: #3B5999" />
+							</h:form>
+
+						</rich:panel>
+
+					</div>
+				</ui:insert>
+				<ui:insert name="derechaT">
+					<div id="derecha"
+						style="float: right; background-image: url(images/MenuMiddle2_1.jpg); padding: 5px; width: 190px;">
+						<h:form>
+
+							<rich:panel>
+
+
+								<rich:calendar popup="false">
+									<f:facet name="weekNumber">
+										<h:outputText value="" style="color:red" />
+									</f:facet>
+								</rich:calendar>
+								<h:commandLink value="Agregar Evento"
+									action="/GestorAgendaEdit.seam"
+									rendered="#{s:hasRole('admin') || s:hasRole('docente')}" />
+								<br />
+								<br />
+								<h:commandLink value="Ayuda" action="/GestorAgendaEdit.seam" />
+								<br />
+								<br />
+								<h:commandLink value="Gestionar noticias"
+									action="/GestorNoticiasList.seam"
+									rendered="#{s:hasRole('admin')}" />
+								<br />
+							</rich:panel>
+
+						</h:form>
+
+					</div>
+				</ui:insert>
+
+				<div id="centro"
+					style="position: static; float: inherit; margin-left: 210px; margin-right: 210px;">
+					<ui:insert name="centroT">
+						<h1>CENTRO</h1>
+					</ui:insert>
+				</div>
+
+			</div>
+			<ui:insert name="footerT">
+				<div id="footer" align="center"
+					style="position: relative; padding: 5px; margin-left: 70px; margin-right: 70px; width: 100%;">
+					<rich:separator height="4" />
+					<div style="float: left;">
+						<img src="/css/images/uptc.png" style="height: 80px" />
+					</div>
+					<div style="position: relative;">
+						<p>
+							Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
+							<br /> Facultad de Ingenier&#237;a <br /> Ingenier&#237;a de
+							Sistemas y Computaci&#243;n <br /> Grupo de Investigaci&#243;n
+							en Ingenier&#237;a del Software <br /> Correo:gis@uptc.edu.co
+						</p>
+					</div>
+					<div style="float: right:;">
+						<img src="///css/images/gis.png" style="height: 80px" />
+					</div>
+
+				</div>
+			</ui:insert>
+		</div>
+	</ui:define>
+
+</ui:composition>

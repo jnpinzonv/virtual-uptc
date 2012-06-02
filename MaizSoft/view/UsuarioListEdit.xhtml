@@ -7,8 +7,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://richfaces.org/a4j"
 	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-	xmlns:rich="http://richfaces.org/rich" 
-	template="layout/template.xhtml">
+	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
 
 
 	<ui:define name="head">
@@ -46,13 +45,12 @@
 
 	</ui:define>
 
-
 	<ui:define name="body">
 		<body onload="mueveReloj()">
-
+			
+	
 			<s:div
 				style="color: white; height: 100px;margin-left: 70px; margin-right: 70px; background-color: #315E9F;">
-
 
 				<div id="topLogo">
 					<h:form>
@@ -280,7 +278,10 @@
 								includePageParams="false" />
 						</div>
 
-	
+					
+
+					
+
 
 					<rich:panel>
 						<f:facet name="header">Resultados de busqueda de usuario (#{empty usuarioList.resultList ? 0 : (usuarioList.paginated ? usuarioList.resultCount : usuarioList.resultList.size)})</f:facet>
@@ -350,14 +351,11 @@
 									<h:outputText
 										value="#{_usuario.enteUniversitarios.nombreEnteUniversitario}" />
 								</h:column>
-								
-								
-								
-								
+									
 								<rich:column styleClass="action">
 									<f:facet name="header">Acción</f:facet>
 									<s:link view="/#{empty from ? 'Usuario' : from}.xhtml"
-										value="#{empty from ? 'Ver' : 'Seleccionar'}"
+										value="#{empty from ? 'Editar' : 'Seleccionar'}"
 										propagation="#{empty from ? 'none' : 'default'}"
 										id="usuarioViewId">
 										<f:param name="usuarioId" value="#{_usuario.id}" />
@@ -403,7 +401,15 @@
 							<f:param name="firstResult"
 								value="#{usuarioList.lastFirstResult}" />
 						</s:link>
-						<br /> <br /> <br /><br /> <br /> 
+						<br /> <br /> <br /> 
+						<s:div styleClass="actionButtons" rendered="#{empty from}">
+						<s:button view="/UsuarioEdit.xhtml" id="create" propagation="none"
+							value="Crear usuario" action="#{userAction.createUser}"
+							rendered="#{s:hasPermission('seam.user', 'create')}">
+							<f:param name="usuarioId" />
+						</s:button>
+
+					</s:div>
 					</div>
 					</h:form>
 				</div>

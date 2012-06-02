@@ -175,7 +175,7 @@
 											style="color: #045491;" icon="disc"
 											view="/UsuarioEdit.xhtml"											 
 											action="#{userAction.createUser}"
-											rendered="#{s:hasPermission('seam.user', 'create')}"/>											
+											rendered="#{s:hasPermission('seam.user', 'create')}"/>	
 									
 										<rich:panelMenuItem label="Eliminar / Editar Usuario"
 											style="color: #045491;" icon="disc"
@@ -275,7 +275,7 @@
 								<h:selectOneMenu value="#{usuarioHome.instance.tipo}"
 									id="tipoDocumento" rendered="true">
 									<s:selectItems value="#{listaTiposDocumento}" var="listaE"
-										label="#{listaE.nombre}" noSelectionLabel="SELECCIONE..." />
+										label="#{listaE.nombre}"/>
 									<s:convertEntity />
 									<a4j:support event="onchange" reRender="dos" />
 								</h:selectOneMenu>
@@ -321,8 +321,7 @@
 									value="#{usuarioHome.instance.enteUniversitarios}"
 									id="enteUniversitario" required="true" rendered="true">
 									<s:selectItems value="#{listaEscuelasCurso}" var="lista"
-										label="#{lista.nombreEnteUniversitario}"
-										noSelectionLabel="SELECCIONE..." />
+										label="#{lista.nombreEnteUniversitario}"/>
 									<a4j:support event="onchange" reRender="dos" />
 									<s:convertEntity />
 								</h:selectOneMenu>
@@ -354,14 +353,17 @@
 							</s:decorate>
 							<br />
 							<br />
+							<br />
+							<br />
 							<s:decorate id="rolesField" template="/layout/edit.xhtml"
 								style="position:absolute;">
 								<ui:define name="label">Roles</ui:define>
-								<div class="selectMany">
+								<div class="selectOne">
 									<h:selectManyCheckbox id="roles" value="#{userAction.roles}"
-										layout="pageDirection" styleClass="roles">
+										layout="pageDirection" styleClass="roles" >
 										<s:selectItems value="#{identityManager.listGrantableRoles()}"
 											var="_role" label="#{_role}" />
+											
 									</h:selectManyCheckbox>
 								</div>
 							</s:decorate>
@@ -423,7 +425,6 @@
 
 								<h:commandButton id="save" value="Guardar"
 									action="#{usuarioHome.saveUsuario()}"
-									disabled="#{!usuarioHome.wired}"
 									rendered="#{!usuarioHome.managed}" />
 
 								<h:commandButton id="update" value="Guardar"

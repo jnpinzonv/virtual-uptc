@@ -6,37 +6,47 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
+    template="layout/template2.xhtml">
+    
+    <ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	</ui:define>
 
-<ui:define name="body">
+<ui:define name="centroT">
 
     <h:form id="enteUniversitarioSearch" styleClass="edit">
 
-        <rich:simpleTogglePanel label="EnteUniversitario Search Filter" switchType="ajax">
+        <rich:simpleTogglePanel label="Buscar Ente Universitario" switchType="ajax">
 
-            <s:decorate template="layout/display.xhtml">
+            <s:decorate template="layout/display.xhtml" style="position:absolute;">
                 <ui:define name="label">Descripcion ente universitario</ui:define>
                 <h:inputText id="descripcionEnteUniversitario" value="#{enteUniversitarioList.enteUniversitario.descripcionEnteUniversitario}"/>
             </s:decorate>
+            
+            <br/> <br/>	
 
-            <s:decorate template="layout/display.xhtml">
+            <s:decorate template="layout/display.xhtml" style="position:absolute;">
                 <ui:define name="label">Nombre ente universitario</ui:define>
                 <h:inputText id="nombreEnteUniversitario" value="#{enteUniversitarioList.enteUniversitario.nombreEnteUniversitario}"/>
             </s:decorate>
-
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Match</ui:define>
+			
+			<br/> <br/>
+			
+            <s:decorate template="layout/display.xhtml" style="position:absolute;">
+                <ui:define name="label">Buscar por campos:</ui:define>
                 <h:selectOneRadio id="logic" value="#{enteUniversitarioList.restrictionLogicOperator}" styleClass="radio">
-                    <f:selectItem itemLabel="All" itemValue="and"/>
-                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                    <f:selectItem itemLabel="Todos" itemValue="and"/>
+                    <f:selectItem itemLabel="Alguno" itemValue="or"/>
                 </h:selectOneRadio>
             </s:decorate>
-
+			
+			<br/> <br/>
+			
         </rich:simpleTogglePanel>
 
         <div class="actionButtons">
-            <h:commandButton id="search" value="Search" action="/EnteUniversitarioList.xhtml"/>
-            <s:button id="reset" value="Reset" includePageParams="false"/>
+            <h:commandButton id="search" value="Buscar" action="/EnteUniversitarioList.xhtml"/>
+            <s:button id="reset" value="Limpiar Campos" includePageParams="false"/>
         </div>
 
     </h:form>
@@ -165,7 +175,7 @@
         <s:button view="/EnteUniversitarioEdit.xhtml"
                     id="create"
            propagation="none"
-                 value="Create enteUniversitario">
+                 value="Crear enteUniversitario">
             <f:param name="enteUniversitarioIdEnteUniversitario"/>
         </s:button>
     </s:div>

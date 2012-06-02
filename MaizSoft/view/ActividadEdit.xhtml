@@ -8,18 +8,20 @@
     xmlns:a="http://richfaces.org/a4j"
     xmlns:rich="http://richfaces.org/rich"
     xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-    template="layout/template.xhtml">
+    template="layout/template2.xhtml">
 
-<ui:define name="body">
+	<ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	</ui:define>
+	
+<ui:define name="centroT">
 
     <h:form id="actividad" styleClass="edit">
 
         <rich:panel>
-            <f:facet name="header">#{actividadHome.managed ? 'Edit' : 'Add'} Actividad</f:facet>
+            <f:facet name="header">#{actividadHome.managed ? 'Editar' : 'Adicionar'} Actividad</f:facet>
 
-
-
-            <s:decorate id="descripcionActividadField" template="layout/edit.xhtml">
+            <s:decorate id="descripcionActividadField" template="layout/edit.xhtml" style="position:absolute;">
                 <ui:define name="label">Descripcion actividad</ui:define>
                 <h:inputTextarea id="descripcionActividad"
                                cols="80"
@@ -27,14 +29,16 @@
                               value="#{actividadHome.instance.descripcionActividad}"/>
             </s:decorate>
 
-
-            <s:decorate id="evaluableField" template="layout/edit.xhtml">
+			<br/><br />
+			
+			
+            <s:decorate id="evaluableField" template="layout/edit.xhtml" style="position:absolute;">
                 <ui:define name="label">Evaluable</ui:define>
                 <h:selectBooleanCheckbox id="evaluable"
                                       value="#{actividadHome.instance.evaluable}"/>
             </s:decorate>
 
-
+			<br /> <br />
 
 			<h:selectOneMenu
 					value="#{actividadHome.instance.tipo}"
@@ -46,7 +50,7 @@
 				</h:selectOneMenu>
             <div style="clear:both">
                 <span class="required">*</span>
-                required fields
+                Campos Obligatorios
             </div>
 
         </rich:panel>
@@ -54,30 +58,30 @@
         <div class="actionButtons">
 
             <h:commandButton id="save"
-                          value="Save"
+                          value="Guardar"
                          action="#{actividadHome.persist}"
                        disabled="#{!actividadHome.wired}"
                        rendered="#{!actividadHome.managed}"/>
 
             <h:commandButton id="update"
-                          value="Save"
+                          value="Guardar"
                          action="#{actividadHome.update}"
                        rendered="#{actividadHome.managed}"/>
 
             <h:commandButton id="delete"
-                          value="Delete"
+                          value="Eliminar"
                          action="#{actividadHome.remove}"
                       immediate="true"
                        rendered="#{actividadHome.managed}"/>
 
             <s:button id="cancelEdit"
-                   value="Cancel"
+                   value="Cancelar"
              propagation="end"
                     view="/Actividad.xhtml"
                 rendered="#{actividadHome.managed}"/>
 
             <s:button id="cancelAdd"
-                   value="Cancel"
+                   value="Cancelar"
              propagation="end"
                     view="/#{empty actividadFrom ? 'ActividadList' : actividadFrom}.xhtml"
                 rendered="#{!actividadHome.managed}"/>

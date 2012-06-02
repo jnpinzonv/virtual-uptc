@@ -7,6 +7,10 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:rich="http://richfaces.org/rich"
     template="layout/template2.xhtml">
+    
+    <ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	</ui:define>
 
 	<ui:define name="centroT">	
 	
@@ -14,30 +18,32 @@
 
         <rich:simpleTogglePanel label="Curso Search Filter" switchType="ajax">
 
-            <s:decorate template="layout/display.xhtml">
+            <s:decorate template="layout/display.xhtml" style="position:absolute;">
                 <ui:define name="label">Nombre asignatura</ui:define>
                 <h:inputText id="nombreAsignatura" value="#{cursoList.curso.nombreAsignatura}"/>
             </s:decorate>
-
+			
+			<br/> <br/>
+			
             <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Match</ui:define>
+                <ui:define name="label">Buscar por campos:</ui:define>
                 <h:selectOneRadio id="logic" value="#{cursoList.restrictionLogicOperator}" styleClass="radio">
-                    <f:selectItem itemLabel="All" itemValue="and"/>
-                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                    <f:selectItem itemLabel="Todos" itemValue="and"/>
+                    <f:selectItem itemLabel="Alguno" itemValue="or"/>
                 </h:selectOneRadio>
             </s:decorate>
 
         </rich:simpleTogglePanel>
 
         <div class="actionButtons">
-            <h:commandButton id="search" value="Search" action="/CursoList.xhtml"/>
+            <h:commandButton id="search" value="Buscar" action="/CursoList.xhtml"/>
             <s:button id="reset" value="Reset" includePageParams="false"/>
         </div>
 
     </h:form>
 
     <rich:panel>
-        <f:facet name="header">Curso Search Results (#{empty cursoList.resultList ? 0 : (cursoList.paginated ? cursoList.resultCount : cursoList.resultList.size)})</f:facet>
+        <f:facet name="header">Resultados de la busqueda cusro (#{empty cursoList.resultList ? 0 : (cursoList.paginated ? cursoList.resultCount : cursoList.resultList.size)})</f:facet>
     <div class="results" id="cursoList">
 
     <h:outputText value="The curso search returned no results."
@@ -78,7 +84,7 @@
             <h:outputText value="#{_curso.nombreAsignatura}"/>
         </h:column>
         <rich:column styleClass="action">
-            <f:facet name="header">Action</f:facet>
+            <f:facet name="header">Acción</f:facet>
             <s:link view="/#{empty from ? 'Curso' : from}.xhtml"
                    value="#{empty from ? 'View' : 'Select'}"
              propagation="#{empty from ? 'none' : 'default'}"
@@ -140,7 +146,7 @@
         <s:button view="/CursoEdit.xhtml"
                     id="create"
            propagation="none"
-                 value="Create curso">
+                 value="Crear curso">
             <f:param name="cursoCodigo"/>
         </s:button>
     </s:div>

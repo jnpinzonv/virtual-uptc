@@ -7,17 +7,21 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:a="http://richfaces.org/a4j"
     xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
+    template="layout/template2.xhtml">
+    
+    <ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	</ui:define>
 
-<ui:define name="body">
+<ui:define name="centroT">
 
     <h:form id="grupoCurso" styleClass="edit">
 
         <rich:panel>
-            <f:facet name="header">#{grupoCursoHome.managed ? 'Edit' : 'Add'} Grupo curso</f:facet>
+            <f:facet name="header">#{grupoCursoHome.managed ? 'Editar' : 'Adicionar'} Grupo curso</f:facet>
 
 
-            <s:decorate id="idGrupoField" template="layout/edit.xhtml">
+            <s:decorate id="idGrupoField" template="layout/edit.xhtml" tyle="position:absolute;">
                 <ui:define name="label">Id grupo</ui:define>
                 <h:inputText id="idGrupo"
                        required="true"
@@ -27,8 +31,9 @@
                 </h:inputText>
             </s:decorate>
 
-
-            <s:decorate id="cuposField" template="layout/edit.xhtml">
+			<br/> <br/>
+			
+            <s:decorate id="cuposField" template="layout/edit.xhtml" tyle="position:absolute;">
                 <ui:define name="label">Cupos</ui:define>
                 <h:inputText id="cupos"
                        required="true"
@@ -38,10 +43,10 @@
             </s:decorate>
 
 
+			<br/> <br/>
 
 
-
-            <s:decorate id="inscritosField" template="layout/edit.xhtml">
+            <s:decorate id="inscritosField" template="layout/edit.xhtml" tyle="position:absolute;">
                 <ui:define name="label">Inscritos</ui:define>
                 <h:inputText id="inscritos"
                        required="true"
@@ -50,9 +55,9 @@
                 </h:inputText>
             </s:decorate>
 
-
-
-            <s:decorate id="semestreField" template="layout/edit.xhtml">
+			<br/> <br/>
+		
+            <s:decorate id="semestreField" template="layout/edit.xhtml" tyle="position:absolute;">
                 <ui:define name="label">Semestre</ui:define>
                 <h:inputText id="semestre"
                        required="true"
@@ -62,10 +67,12 @@
                     <a:support event="onblur" reRender="semestreField" bypassUpdates="true" ajaxSingle="true"/>
                 </h:inputText>
             </s:decorate>
-
+			
+			<br/> <br/>
+			
             <div style="clear:both">
                 <span class="required">*</span>
-                required fields
+                Campos Obligatorios
             </div>
 
         </rich:panel>
@@ -73,30 +80,30 @@
         <div class="actionButtons">
 
             <h:commandButton id="save"
-                          value="Save"
+                          value="Guardar"
                          action="#{grupoCursoHome.persist}"
                        disabled="#{!grupoCursoHome.wired}"
                        rendered="#{!grupoCursoHome.managed}"/>
 
             <h:commandButton id="update"
-                          value="Save"
+                          value="Guardar"
                          action="#{grupoCursoHome.update}"
                        rendered="#{grupoCursoHome.managed}"/>
 
             <h:commandButton id="delete"
-                          value="Delete"
+                          value="Eliminar"
                          action="#{grupoCursoHome.remove}"
                       immediate="true"
                        rendered="#{grupoCursoHome.managed}"/>
 
             <s:button id="cancelEdit"
-                   value="Cancel"
+                   value="Cancelar"
              propagation="end"
                     view="/GrupoCurso.xhtml"
                 rendered="#{grupoCursoHome.managed}"/>
 
             <s:button id="cancelAdd"
-                   value="Cancel"
+                   value="Cancelar"
              propagation="end"
                     view="/#{empty grupoCursoFrom ? 'GrupoCursoList' : grupoCursoFrom}.xhtml"
                 rendered="#{!grupoCursoHome.managed}"/>

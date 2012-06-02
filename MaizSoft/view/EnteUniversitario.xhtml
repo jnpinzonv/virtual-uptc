@@ -6,24 +6,32 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
+    template="layout/templat2.xhtml">
+    
+    <ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	</ui:define>
 
-<ui:define name="body">
+<ui:define name="centroT">
 
     <rich:panel>
-        <f:facet name="header">Ente universitario Details</f:facet>
+        <f:facet name="header">Detalles del Ente Universitario</f:facet>
 
 
-        <s:decorate id="descripcionEnteUniversitario" template="layout/display.xhtml">
-            <ui:define name="label">Descripcion ente universitario</ui:define>
+        <s:decorate id="descripcionEnteUniversitario" template="layout/display.xhtml" style="position:absolute;">
+            <ui:define name="label">Descripción ente universitario</ui:define>
             <h:outputText value="#{enteUniversitarioHome.instance.descripcionEnteUniversitario}"/>
         </s:decorate>
-
+		
+		<br/> <br/>
+		
         <s:decorate id="nombreEnteUniversitario" template="layout/display.xhtml">
             <ui:define name="label">Nombre ente universitario</ui:define>
             <h:outputText value="#{enteUniversitarioHome.instance.nombreEnteUniversitario}"/>
         </s:decorate>
-
+		
+		<br/> <br/>
+		
         <div style="clear:both"/>
 
     </rich:panel>
@@ -32,11 +40,11 @@
 
         <s:button view="/EnteUniversitarioEdit.xhtml"
                     id="edit"
-                 value="Edit"/>
+                 value="Editar"/>
 
         <s:button view="/#{empty enteUniversitarioFrom ? 'EnteUniversitarioList' : enteUniversitarioFrom}.xhtml"
                     id="done"
-                 value="Done"/>
+                 value="Aceptar"/>
 
     </div>
 
@@ -113,7 +121,7 @@
                 <h:outputText value="#{_curso.nombreAsignatura}"/>
             </rich:column>
             <h:column>
-                <f:facet name="header">Action</f:facet>
+                <f:facet name="header">Acción</f:facet>
                 <s:link id="selectcurso"
                      value="Select"
                       view="/Curso.xhtml">
@@ -128,7 +136,7 @@
 
     <div class="actionButtons">
         <s:button
-               value="Add curso"
+               value="Adicionar curso"
                 view="/CursoEdit.xhtml">
             <f:param name="enteUniversitarioIdEnteUniversitario"
                     value="#{enteUniversitarioHome.instance.idEnteUniversitario}"/>
@@ -164,7 +172,7 @@
                 <h:outputText value="#{_enteUniversitario.nombreEnteUniversitario}"/>
             </rich:column>
             <h:column>
-                <f:facet name="header">Action</f:facet>
+                <f:facet name="header">Acción</f:facet>
                 <s:link id="selectenteUniversitario"
                      value="Select"
                       view="/EnteUniversitario.xhtml">

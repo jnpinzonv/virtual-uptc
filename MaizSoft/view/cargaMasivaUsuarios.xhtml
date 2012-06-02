@@ -3,8 +3,9 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:a4j="http://richfaces.org/a4j"
-    xmlns:rich="http://richfaces.org/rich">
-
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template2.xhtml">
+	
     <style>
 .top {
     vertical-align: top;
@@ -15,7 +16,7 @@
     overflow: auto;
 }
 </style>
-
+	<ui:define name="centroT">
     <h:form>
         <h:panelGrid columns="2" columnClasses="top,top">
             <rich:fileUpload fileUploadListener="#{fileUploadBean.listener}"
@@ -59,4 +60,5 @@
             </h:panelGroup>
         </h:panelGrid>
     </h:form>
+    </ui:define>
 </ui:composition>

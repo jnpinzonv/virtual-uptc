@@ -6,41 +6,50 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
+    template="layout/template2.xhtml">
+    
+    <ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	</ui:define>
 
-<ui:define name="body">
+<ui:define name="centroT">
 
     <h:form id="grupoCursoSearch" styleClass="edit">
 
-        <rich:simpleTogglePanel label="GrupoCurso Search Filter" switchType="ajax">
+        <rich:simpleTogglePanel label="Buscar Grupo de CUrso" switchType="ajax">
 
-            <s:decorate template="layout/display.xhtml">
+            <s:decorate template="layout/display.xhtml" tyle="position:absolute;">
                 <ui:define name="label">Semestre</ui:define>
                 <h:inputText id="semestre" value="#{grupoCursoList.grupoCurso.semestre}"/>
             </s:decorate>
+            
+            <br/> <br/>
 
             <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Match</ui:define>
+                <ui:define name="label">Buscar por:</ui:define>
                 <h:selectOneRadio id="logic" value="#{grupoCursoList.restrictionLogicOperator}" styleClass="radio">
-                    <f:selectItem itemLabel="All" itemValue="and"/>
-                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                    <f:selectItem itemLabel="Todos los campos" itemValue="and"/>
+                    <f:selectItem itemLabel="Algún campo" itemValue="or"/>
                 </h:selectOneRadio>
             </s:decorate>
-
+			
+			
+			<br/> <br/>
+			
         </rich:simpleTogglePanel>
 
         <div class="actionButtons">
-            <h:commandButton id="search" value="Search" action="/GrupoCursoList.xhtml"/>
+            <h:commandButton id="search" value="Buscar" action="/GrupoCursoList.xhtml"/>
             <s:button id="reset" value="Reset" includePageParams="false"/>
         </div>
 
     </h:form>
 
     <rich:panel>
-        <f:facet name="header">GrupoCurso Search Results (#{empty grupoCursoList.resultList ? 0 : (grupoCursoList.paginated ? grupoCursoList.resultCount : grupoCursoList.resultList.size)})</f:facet>
+        <f:facet name="header">Resultados (#{empty grupoCursoList.resultList ? 0 : (grupoCursoList.paginated ? grupoCursoList.resultCount : grupoCursoList.resultList.size)})</f:facet>
     <div class="results" id="grupoCursoList">
 
-    <h:outputText value="The grupoCurso search returned no results."
+    <h:outputText value="La busqueda no arrojo resultados."
                rendered="#{empty grupoCursoList.resultList}"/>
 
     <rich:dataTable id="grupoCursoList"
@@ -100,7 +109,7 @@
         <rich:column styleClass="action">
             <f:facet name="header">Action</f:facet>
             <s:link view="/#{empty from ? 'GrupoCurso' : from}.xhtml"
-                   value="#{empty from ? 'View' : 'Select'}"
+                   value="#{empty from ? 'Ver' : 'Seleccionar'}"
              propagation="#{empty from ? 'none' : 'default'}"
                       id="grupoCursoViewId">
                 <f:param name="grupoCursoIdGrupo"
@@ -108,7 +117,7 @@
             </s:link>
             #{' '}
             <s:link view="/GrupoCursoEdit.xhtml"
-                   value="Edit"
+                   value="Editar"
              propagation="none"
                       id="grupoCursoEdit"
                 rendered="#{empty from}">
@@ -160,7 +169,7 @@
         <s:button view="/GrupoCursoEdit.xhtml"
                     id="create"
            propagation="none"
-                 value="Create grupoCurso">
+                 value="Crear grupo en Curso">
             <f:param name="grupoCursoIdGrupo"/>
         </s:button>
     </s:div>

@@ -1,29 +1,72 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:s="http://jboss.com/products/seam/taglib"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
 
-    <ui:define name="body">
-<h:form id="homeForm">
-        <h1>Taller 2 Operaciones CRUD!</h1>
-        <rich:panel>
-            <h:panelGrid columns="2">
-                <h:graphicImage value="/img/seamlogo.png" alt="Seam logo"/>
-                <s:div styleClass="info">
-                    <p><strong>Tu proyecto esta desplegado, ya debes tener las entidades del Taller 1 listas</strong></p>
-                   <div class="actionButtons">
-           				 <h:commandButton id="crear" value="Crear" action="#{authenticator.authenticate()}"/>
-           				  <h:commandButton id="find" value="Find" action="#{taller.crearResgistro()}"/>
-           				  
-       				 </div>
-                </s:div>
-            </h:panelGrid>
-        </rich:panel>
-  </h:form>
-    </ui:define>
+	<ui:define name="body">
+		<h:form id="homeForm">
+			<h1>Taller 2 Operaciones CRUD!</h1>
+			<rich:panel>
+				<h:panelGrid columns="2">
+					<h:graphicImage value="/img/seamlogo.png" alt="Seam logo" />
+					<s:div styleClass="info">
+						<p>
+							<strong>Tu proyecto esta desplegado, ya debes tener las
+								entidades del Taller 1 listas</strong>
+						</p>
+						<div class="actionButtons">
+							<h:commandButton id="crear" value="Crear"
+								action="#{authenticator.authenticate()}" />
+							<h:commandButton id="find" value="Find"
+								action="#{taller.crearResgistro()}" />
+
+						</div>
+					</s:div>
+					<rich:dataTable id="dtActualDatosBasicos"
+						value="#{listaEnteUniversitarios}" var="actDatBas" rowKeyVar="rowKey"
+						headerClass="col6" columnClasses="col4"
+						styleClass="tabla_contenido" rows="1"
+						rendered="#{listaTiposEnteUniversitarios.size()>0}">
+						<rich:columns value="#{listaEnteUniversitarios}"
+							var="columns" index="ind" id="column#{ind}" rowspan="1"
+							rendered="#{listaEnteUniversitarios.size()>0}">
+
+							<f:facet name="header" >
+								
+								
+								<h:outputText value="         " 
+								rendered="#{columns.nombreEnteUniversitario.equals('ind')}"/>
+								<h:outputText value="#{columns.nombreEnteUniversitario}" 
+								/>
+							</f:facet>
+
+							<h:outputText value="#{columns.descripcionEnteUniversitario}" />
+
+						</rich:columns>
+					</rich:dataTable>
+				</h:panelGrid>
+			</rich:panel>
+			
+			
+			
+		</h:form>
+		
+		<h:form id="fooForm" enctype="multipart/form-data">
+        
+           <s:fileUpload id="file" 
+				data="#{uploadHandler.file}"
+				accept="image/jpg"
+				fileName="#{uploadHandler.nombreArchivo}"
+				
+		    />
+        
+            <h:commandButton id="upload" value="Upload !!" 
+                             action="#{uploadHandler.handleUpload}"/>     			  
+        
+        </h:form>
+	</ui:define>
 </ui:composition>

@@ -6,38 +6,46 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
+    template="layout/template2.xhtml">
+    
+    <ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	</ui:define>
 
-<ui:define name="body">
+<ui:define name="centroT">
 
     <h:form id="actividadSearch" styleClass="edit">
 
-        <rich:simpleTogglePanel label="Actividad Search Filter" switchType="ajax">
+        <rich:simpleTogglePanel label="Buscar Actividad" switchType="ajax">
 
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Descripcion actividad</ui:define>
+            <s:decorate template="layout/display.xhtml" style="position:absolute;">
+                <ui:define name="label">Descripción actividad</ui:define>
                 <h:inputText id="descripcionActividad" value="#{actividadList.actividad.descripcionActividad}"/>
             </s:decorate>
-
+			
+			<br /><br/>
+			
             <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Match</ui:define>
+                <ui:define name="label">Buscar por campos:</ui:define>
                 <h:selectOneRadio id="logic" value="#{actividadList.restrictionLogicOperator}" styleClass="radio">
-                    <f:selectItem itemLabel="All" itemValue="and"/>
-                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                    <f:selectItem itemLabel="Todos" itemValue="and"/>
+                    <f:selectItem itemLabel="Un campo" itemValue="or"/>
                 </h:selectOneRadio>
             </s:decorate>
+            
+            <br /><br />
 
         </rich:simpleTogglePanel>
 
         <div class="actionButtons">
-            <h:commandButton id="search" value="Search" action="/ActividadList.xhtml"/>
+            <h:commandButton id="search" value="Buscar" action="/ActividadList.xhtml"/>
             <s:button id="reset" value="Reset" includePageParams="false"/>
         </div>
 
     </h:form>
 
     <rich:panel>
-        <f:facet name="header">Actividad Search Results (#{empty actividadList.resultList ? 0 : (actividadList.paginated ? actividadList.resultCount : actividadList.resultList.size)})</f:facet>
+        <f:facet name="header">Resultados de Busqueda (#{empty actividadList.resultList ? 0 : (actividadList.paginated ? actividadList.resultCount : actividadList.resultList.size)})</f:facet>
     <div class="results" id="actividadList">
 
     <h:outputText value="The actividad search returned no results."
@@ -88,9 +96,9 @@
             <h:outputText value="#{_actividad.tipo.idTipo}"/>
         </h:column>
         <rich:column styleClass="action">
-            <f:facet name="header">Action</f:facet>
+            <f:facet name="header">Acción</f:facet>
             <s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
-                   value="#{empty from ? 'View' : 'Select'}"
+                   value="#{empty from ? 'Ver' : 'Seleccionar'}"
              propagation="#{empty from ? 'none' : 'default'}"
                       id="actividadViewId">
                 <f:param name="actividadIdActividad"
@@ -150,7 +158,7 @@
         <s:button view="/ActividadEdit.xhtml"
                     id="create"
            propagation="none"
-                 value="Create actividad">
+                 value="Crear actividad">
             <f:param name="actividadIdActividad"/>
         </s:button>
     </s:div>

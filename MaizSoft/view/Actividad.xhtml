@@ -6,19 +6,24 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
+    template="layout/template2.xhtml">
 
-<ui:define name="body">
+	<ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	</ui:define>
 
+<ui:define name="centroT">
+	
     <rich:panel>
-        <f:facet name="header">Actividad Details</f:facet>
+        <f:facet name="header">Detalles de Actividad</f:facet>
 
-
-        <s:decorate id="descripcionActividad" template="layout/display.xhtml">
-            <ui:define name="label">Descripcion actividad</ui:define>
+        <s:decorate id="descripcionActividad" template="layout/display.xhtml" style="position:absolute;">
+            <ui:define name="label">Descripción actividad</ui:define>
             <h:outputText value="#{actividadHome.instance.descripcionActividad}"/>
         </s:decorate>
 
+		<br /> <br /> 
+		
         <s:decorate id="evaluable" template="layout/display.xhtml">
             <ui:define name="label">Evaluable</ui:define>
             <h:outputText value="#{actividadHome.instance.evaluable}"/>
@@ -32,11 +37,11 @@
 
         <s:button view="/ActividadEdit.xhtml"
                     id="edit"
-                 value="Edit"/>
+                 value="Editar"/>
 
         <s:button view="/#{empty actividadFrom ? 'ActividadList' : actividadFrom}.xhtml"
                     id="done"
-                 value="Done"/>
+                 value="Aceptar"/>
 
     </div>
 

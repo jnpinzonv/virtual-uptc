@@ -8,18 +8,22 @@
     xmlns:a="http://richfaces.org/a4j"
     xmlns:rich="http://richfaces.org/rich"
     xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-    template="layout/template.xhtml">
+    template="layout/template2.xhtml">
+    
+    <ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	</ui:define>
 
-<ui:define name="body">
+<ui:define name="centroT">
 
     <h:form id="curso" styleClass="edit">
 
         <rich:panel>
-            <f:facet name="header">#{cursoHome.managed ? 'Edit' : 'Add'} Curso</f:facet>
+            <f:facet name="header">#{cursoHome.managed ? 'Editar' : 'Adicionar'} Curso</f:facet>
 
 
-            <s:decorate id="codigoField" template="layout/edit.xhtml">
-                <ui:define name="label">Codigo</ui:define>
+            <s:decorate id="codigoField" template="layout/edit.xhtml" style="position:absolute;">
+                <ui:define name="label">Código</ui:define>
                 <h:inputText id="codigo"
                        required="true"
                        disabled="#{cursoHome.managed}"
@@ -29,7 +33,7 @@
             </s:decorate>
 
 
-
+			<br/> <br/>
 
             <s:decorate id="nombreAsignaturaField" template="layout/edit.xhtml">
                 <ui:define name="label">Nombre asignatura</ui:define>
@@ -40,6 +44,8 @@
                               value="#{cursoHome.instance.nombreAsignatura}"/>
             </s:decorate>
             
+            <br/> <br/>
+            
             <h:selectOneMenu
 					value="#{cursoHome.instance.enteUniversitario}"
 					id="sobrenombre" required="true" rendered="true">
@@ -49,9 +55,11 @@
 					<s:convertEntity />
 			</h:selectOneMenu>
 				
+			<br/> <br/>
+				
             <div style="clear:both">
                 <span class="required">*</span>
-                required fields
+                Campos Obligatorios
             </div>
 
         </rich:panel>
@@ -59,30 +67,30 @@
         <div class="actionButtons">
 
             <h:commandButton id="save"
-                          value="Save"
+                          value="Guardar"
                          action="#{cursoHome.persist}"
                        disabled="#{!cursoHome.wired}"
                        rendered="#{!cursoHome.managed}"/>
 
             <h:commandButton id="update"
-                          value="Save"
+                          value="Guardar"
                          action="#{cursoHome.update}"
                        rendered="#{cursoHome.managed}"/>
 
             <h:commandButton id="delete"
-                          value="Delete"
+                          value="Elimine"
                          action="#{cursoHome.remove}"
                       immediate="true"
                        rendered="#{cursoHome.managed}"/>
 
             <s:button id="cancelEdit"
-                   value="Cancel"
+                   value="Cancelar"
              propagation="end"
                     view="/Curso.xhtml"
                 rendered="#{cursoHome.managed}"/>
 
             <s:button id="cancelAdd"
-                   value="Cancel"
+                   value="Cancelar"
              propagation="end"
                     view="/#{empty cursoFrom ? 'CursoList' : cursoFrom}.xhtml"
                 rendered="#{!cursoHome.managed}"/>
@@ -131,7 +139,7 @@
         <f:subview rendered="#{cursoHome.managed}" id="grupoCursos">
         <div class="actionButtons">
             <s:button id="addgrupoCurso"
-                   value="Add grupoCurso"
+                   value="Adicionar grupo al Curso"
                     view="/GrupoCursoEdit.xhtml"
              propagation="none">
                  <f:param name="cursoCodigo"

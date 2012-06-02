@@ -7,436 +7,192 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://richfaces.org/a4j"
 	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
-
+	xmlns:rich="http://richfaces.org/rich"
+	template="layout/template2.xhtml">
 
 	<ui:define name="head">
-		<link href="css/cssLayoutPrincipal.css" rel="stylesheet"
-			type="text/css" />
-		<link href="css/default.css" rel="stylesheet" type="text/css" />
-
-		<script language="JavaScript"> 
-
-    	function mueveReloj(){ 
-    	   	momentoActual = new Date()
-    	   	hora = momentoActual.getHours() 
-   			minuto = momentoActual.getMinutes() 
-   			segundo = momentoActual.getSeconds() 
-
-   			str_segundo = new String (segundo) 
-   			if (str_segundo.length == 1) 
-      	 		segundo = "0" + segundo 
-
-   			str_minuto = new String (minuto) 
-   			if (str_minuto.length == 1) 
-      	 		minuto = "0" + minuto 
-
-   			str_hora = new String (hora) 
-   			if (str_hora.length == 1) 
-	      	 	hora = "0" + hora 
-
-   			horaImprimible = "Hora: "+hora + " : " + minuto + " : " + segundo 
-
-   			document.form_reloj.reloj.value = horaImprimible 
-
-   			setTimeout("mueveReloj()",1000) 
-} 
-</script>
-
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
 	</ui:define>
 
-	<ui:define name="body">
-		<body onload="mueveReloj()">
-			
-	
-			<s:div
-				style="color: white; height: 100px;margin-left: 70px; margin-right: 70px; background-color: #315E9F;">
+	<ui:define name="centroT">
 
-				<div id="topLogo">
-					<h:form>
-						<h:outputText value="MaizSoft"></h:outputText>
-						<h:outputText value="..." style="color:#315E9F"></h:outputText>
-						<h:commandButton image="css/images/calendario.png"
-							style="width:30px" />
-						<h:outputText value=".." style="color:#315E9F"></h:outputText>
-						<h:commandButton action="/GestorMensajeriaEdit.xhtml"
-							image="css/images/mensajes.png" style="width:30px" />
-						<h:outputText value=".." style="color:#315E9F"></h:outputText>
-						<h:commandButton image="css/images/actualizacion.png"
-							style="width:30px" />
-						<br />
-						<br />
+		<h:form id="usuarioSearch" styleClass="edit">
 
-						<h:outputText value="Navegar"></h:outputText>
-					</h:form>
-				</div>
+			<rich:simpleTogglePanel label="Buscar Usuario" switchType="ajax">
 
+				<s:decorate template="layout/display.xhtml">
+					<ui:define name="label">Apellidos</ui:define>
+					<h:inputText id="apellidos"
+						value="#{usuarioList.usuario.apellidos}" />
+				</s:decorate>
 
-				<div id="topPrincipal">
-					<div style="margin-right: 10px">
-						<h:form>
-							<h:outputText id="menuWelcomeId" value="#{credentials.username}"
-								rendered="#{identity.loggedIn}" />
-							<s:link id="menuLogoutId" view="/login.xhtml"
-								action="#{identity.logout}" value="Salir"
-								rendered="#{identity.loggedIn}" propagation="none"
-								style="color: white" />
-						</h:form>
-						<br /> <br />
-						<form name="form_reloj">
+				<s:decorate template="layout/display.xhtml">
+					<ui:define name="label">Correo electronico</ui:define>
+					<h:inputText id="correoElectronico"
+						value="#{usuarioList.usuario.correoElectronico}" />
+				</s:decorate>
 
-							<input type="text" name="reloj" size="17"
-								style="color: #FFFFFF; background: #315E9F; text-align: center"
-								onfocus="window.document.form_reloj.reloj.blur()" />
-						</form>
-					</div>
-				</div>
+				<s:decorate template="layout/display.xhtml">
+					<ui:define name="label">Primer nombre</ui:define>
+					<h:inputText id="primerNombre"
+						value="#{usuarioList.usuario.primerNombre}" />
+				</s:decorate>
 
-				<div id="topSearch">
+				<s:decorate template="layout/display.xhtml">
+					<ui:define name="label">Segundo nombre</ui:define>
+					<h:inputText id="segundoNombre"
+						value="#{usuarioList.usuario.segundoNombre}" />
+				</s:decorate>
 
-					<form class="searchform">
-						<input class="searchfield" type="text" value="Buscar..."
-							onFocus="if (this.value == 'Buscar...') {this.value = '';}"
-							onBlur="if (this.value == '') {this.value = 'Buscar...';}" />
+				<s:decorate template="layout/display.xhtml">
+					<ui:define name="label">Buscar por:</ui:define>
+					<h:selectOneRadio id="logic"
+						value="#{usuarioList.restrictionLogicOperator}" styleClass="radio">
+						<f:selectItem itemLabel="Todos los campos" itemValue="and" />
+						<f:selectItem itemLabel="Un campo" itemValue="or" />
+					</h:selectOneRadio>
+				</s:decorate>
 
-						<h:commandButton class="searchbutton"
-							image="css/images/buscar.png" style="width:24px" />
-					</form>
-				</div>
+			</rich:simpleTogglePanel>
 
-			</s:div>
+			<div class="actionButtons">
+				<h:commandButton id="search" value="Buscar"
+					action="/UsuarioList.xhtml" />
+				<s:button id="reset" value="Limpiar Campos"
+					includePageParams="false" />
+			</div>
 
-
-			<div class="center2" style="margin-top: -20px; height: 660px">
-
-				<div class="right" style="height: 550px">
-					<ui:insert name="right">
-						<h:form>
-
-							<rich:panel>
-
-
-								<rich:calendar popup="false">
-									<f:facet name="weekNumber">
-										<h:outputText value="" style="color:red" />
-									</f:facet>
-								</rich:calendar>
-								<h:commandLink value="Agregar Evento"
-									action="/GestorAgendaEdit.seam"
-									rendered="#{s:hasRole('admin') || s:hasRole('docente')}" />
-								<br />
-								<br />
-								<h:commandLink value="Ayuda" action="/GestorAgendaEdit.seam" />
-								<br />
-								<br />
-								<h:commandLink value="Gestionar noticias"
-									action="/GestorNoticiasList.seam"
-									rendered="#{s:hasRole('admin')}" />
-								<br />
-							</rich:panel>
-
-						</h:form>
-					</ui:insert>
-				</div>
-
-
-				<div class="left" style="height: 550px">
-					<rich:panel>
-						<h:form id="form">
-
-							<img src="css/images/gis.png"
-								style="height: 80px; width: 80px; margin-left: 45px" />
-							<br />
-							<h:commandLink value="#{credentials.username}"
-								action="/UserAccountEdit.seam" />
+			<br />
 							<br />
 							<br />
-							<rich:separator height="2" lineType="dotted" />
 							<br />
 
-							<h:panelGrid columns="2" columnClasses="cols,cols" width="400">
-								<rich:panelMenu style="width:150px;" itemMode="ajax"
-									groupMode="ajax" groupExpandedLeftIcon="triangleUp"
-									groupCollapsedLeftIcon="triangleDown"
-									topGroupExpandedRightIcon="chevronUp"
-									topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc"
-									itemChangeListener="#{panelMenuBean.updateCurrent}"
-									expandSingle="true" showDelay="250" hideDelay="0"
-									submitMode="none">
-									<rich:panelMenuGroup label="Mensajes" style="color: #FFFFFF;">
-										<rich:panelMenuItem label="Crear" style="color: #045491;"
-											icon="disc" />
-										<rich:panelMenuItem label="Ver" style="color: #045491;"
-											icon="disc" />
-									</rich:panelMenuGroup>
-									<rich:panelMenuGroup label="Administrar Usuarios"
-										style="color: #FFFFFF;">
-										<rich:panelMenuItem label="Adicionar Usuariossss"
-											style="color: #045491;" icon="disc"
-																					 
-											action="#{usuarioHome.crearUsuario()}"
-											rendered="#{s:hasPermission('seam.user', 'create')}"/>	
-										<rich:panelMenuItem label="Eliminar / Editar Usuario"
-											style="color: #045491;" icon="disc"
-											action="/UsuarioListEdit.seam" />
-										<rich:panelMenuItem label="Buscar Usuario"
-											style="color: #045491;" icon="disc"
-											action="/UsuarioList.seam" />
-									</rich:panelMenuGroup>
-									<rich:panelMenuGroup label="Administrar Curso"
-										style="color: #FFFFFF;">
-										<rich:panelMenuItem label="Crear Asignatura"
-											style="color: #045491;" icon="disc" action="/CursoEdit.seam" />
-										<rich:panelMenuItem label="Editar Asignatura"
-											style="color: #045491;" icon="disc" action="/CursoList.seam" />
-										<rich:panelMenuItem label="Crear Grupo"
-											style="color: #045491;" icon="disc" />
-										<rich:panelMenuItem label="Editar Grupo"
-											style="color: #045491;" icon="disc" />
-									</rich:panelMenuGroup>
-									<rich:panelMenuGroup label="Administrar Facultad/Escuela"
-										style="color: #FFFFFF;">
-										<rich:panelMenuItem label="Crear" style="color: #045491;"
-											icon="disc" action="/EnteUniversitarioEdit.seam" />
-										<rich:panelMenuItem label="Editar" style="color: #045491;"
-											icon="disc" action="/EnteUniversitarioList.seam"/>
-									</rich:panelMenuGroup>
-									<rich:panelMenuGroup label="Generar Informe"
-										style="color: #FFFFFF;">
-										<rich:panelMenuItem label="Generar" style="color: #045491;"
-											icon="disc" />
-										<rich:panelMenuItem label="Ver" style="color: #045491;"
-											icon="disc" />
-									</rich:panelMenuGroup>
-									<rich:panelMenuGroup label="Chat" style="color: #FFFFFF;">
-										<rich:panelMenuItem label="Chat" style="color: #045491;"
-											icon="disc" />
-									</rich:panelMenuGroup>
-								</rich:panelMenu>
-								<a4j:outputPanel ajaxRendered="true">
-									<rich:panel rendered="#{not empty panelMenuBean.current}">
-										<h:outputText value="#{panelMenuBean.current} selected"
-											id="current" />
-									</rich:panel>
-								</a4j:outputPanel>
-							</h:panelGrid>
-							<rich:separator height="2" lineType="dotted" />
-							<br />
-							<s:link id="menuLogoutId" action="#{identity.logout}"
-								view="/login.seam" value="Salir" rendered="#{identity.loggedIn}"
-								propagation="none" style="color: #3B5999" />
-						</h:form>
-
-					</rich:panel>
-				</div>
-
-				<div id="content" class="right_content">
-					<h:form id="usuarioSearch" styleClass="edit">
-
-						<rich:simpleTogglePanel label="Buscar Usuario" switchType="ajax">
-
-							<s:decorate template="layout/display.xhtml">
-								<ui:define name="label">Apellidos</ui:define>
-								<h:inputText id="apellidos"
-									value="#{usuarioList.usuario.apellidos}" />
-							</s:decorate>
-
-							<s:decorate template="layout/display.xhtml">
-								<ui:define name="label">Correo electronico</ui:define>
-								<h:inputText id="correoElectronico"
-									value="#{usuarioList.usuario.correoElectronico}" />
-							</s:decorate>
-
-							<s:decorate template="layout/display.xhtml">
-								<ui:define name="label">Primer nombre</ui:define>
-								<h:inputText id="primerNombre"
-									value="#{usuarioList.usuario.primerNombre}" />
-							</s:decorate>
-
-							<s:decorate template="layout/display.xhtml">
-								<ui:define name="label">Segundo nombre</ui:define>
-								<h:inputText id="segundoNombre"
-									value="#{usuarioList.usuario.segundoNombre}" />
-							</s:decorate>
-
-							<s:decorate template="layout/display.xhtml">
-								<ui:define name="label">Buscar por:</ui:define>
-								<h:selectOneRadio id="logic"
-									value="#{usuarioList.restrictionLogicOperator}"
-									styleClass="radio">
-									<f:selectItem itemLabel="Todos los campos" itemValue="and" />
-									<f:selectItem itemLabel="Un campo" itemValue="or" />
-								</h:selectOneRadio>
-							</s:decorate>
-
-						</rich:simpleTogglePanel>
-
-						<div class="actionButtons">
-							<h:commandButton id="search" value="Buscar"
-								action="/UsuarioList.xhtml" />
-							<s:button id="reset" value="Limpiar Campos"
-								includePageParams="false" />
-						</div>
-
-					
-
-					
 
 
-					<rich:panel>
-						<f:facet name="header">Resultados de busqueda de usuario (#{empty usuarioList.resultList ? 0 : (usuarioList.paginated ? usuarioList.resultCount : usuarioList.resultList.size)})</f:facet>
-						<div class="results" id="usuarioList">
 
+			<rich:panel>
+				<f:facet name="header">Resultados de busqueda de usuario (#{empty usuarioList.resultList ? 0 : (usuarioList.paginated ? usuarioList.resultCount : usuarioList.resultList.size)})</f:facet>
+				<div class="results" id="usuarioList">
+
+					<h:outputText value="La busqueda de usuario no retorno resultados"
+						rendered="#{empty usuarioList.resultList}" />
+
+					<rich:scrollableDataTable id="usuarioList" var="_usuario"
+						value="#{usuarioList.resultList}" height="200px" width="650px">
+						<h:column>
+							<f:facet name="header">
+								<ui:include src="layout/sort.xhtml">
+									<ui:param name="entityList" value="#{usuarioList}" />
+									<ui:param name="propertyLabel" value="Documento" />
+									<ui:param name="propertyPath"
+										value="usuario.documentoIdentidad" />
+								</ui:include>
+							</f:facet>
 							<h:outputText
-								value="La busqueda de usuario no retorno resultados"
-								rendered="#{empty usuarioList.resultList}" />
+								value="#{_usuario.tipo.nombre}  #{_usuario.documentoIdentidad}" />
+						</h:column>
+						<h:column width="150px">
+							<f:facet name="header">
+								<ui:include src="layout/sort.xhtml">
+									<ui:param name="entityList" value="#{usuarioList}" />
+									<ui:param name="propertyLabel" value="nombre" />
+									<ui:param name="propertyPath" value="usuario.primerNombre" />
+								</ui:include>
+							</f:facet>
+							<h:outputText
+								value="#{_usuario.primerNombre} #{_usuario.segundoNombre}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<ui:include src="layout/sort.xhtml">
+									<ui:param name="entityList" value="#{usuarioList}" />
+									<ui:param name="propertyLabel" value="Apellidos" />
+									<ui:param name="propertyPath" value="usuario.apellidos" />
+								</ui:include>
+							</f:facet>
+							<h:outputText value="#{_usuario.apellidos}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<ui:include src="layout/sort.xhtml">
+									<ui:param name="entityList" value="#{usuarioList}" />
+									<ui:param name="propertyLabel" value="Correo" />
+									<ui:param name="propertyPath" value="usuario.correoElectronico" />
+								</ui:include>
+							</f:facet>
+							<h:outputText value="#{_usuario.correoElectronico}" />
+						</h:column>
 
-							<rich:scrollableDataTable id="usuarioList" var="_usuario"
-								value="#{usuarioList.resultList}"
-								
-								height="200px" width="650px">
-								<h:column>
-									<f:facet name="header">
-										<ui:include src="layout/sort.xhtml">
-											<ui:param name="entityList" value="#{usuarioList}" />
-											<ui:param name="propertyLabel" value="Documento" />
-											<ui:param name="propertyPath"
-												value="usuario.documentoIdentidad" />
-										</ui:include>
-									</f:facet>
-									<h:outputText value="#{_usuario.tipo.nombre}  #{_usuario.documentoIdentidad}" />
-								</h:column>
-								<h:column width="150px">
-									<f:facet name="header">
-										<ui:include src="layout/sort.xhtml">
-											<ui:param name="entityList" value="#{usuarioList}" />
-											<ui:param name="propertyLabel" value="nombre" />
-											<ui:param name="propertyPath" value="usuario.primerNombre" />
-										</ui:include>
-									</f:facet>
-									<h:outputText value="#{_usuario.primerNombre} #{_usuario.segundoNombre}" />
-								</h:column>
-								<h:column>
-									<f:facet name="header">
-										<ui:include src="layout/sort.xhtml">
-											<ui:param name="entityList" value="#{usuarioList}" />
-											<ui:param name="propertyLabel" value="Apellidos" />
-											<ui:param name="propertyPath" value="usuario.apellidos" />
-										</ui:include>
-									</f:facet>
-									<h:outputText value="#{_usuario.apellidos}" />
-								</h:column>
-								<h:column>
-									<f:facet name="header">
-										<ui:include src="layout/sort.xhtml">
-											<ui:param name="entityList" value="#{usuarioList}" />
-											<ui:param name="propertyLabel" value="Correo" />
-											<ui:param name="propertyPath"
-												value="usuario.correoElectronico" />
-										</ui:include>
-									</f:facet>
-									<h:outputText value="#{_usuario.correoElectronico}" />
-								</h:column>
-								
-								<h:column>
-									<f:facet name="header">
-										<ui:include src="layout/sort.xhtml">
-											<ui:param name="entityList" value="#{usuarioList}" />
-											<ui:param name="propertyLabel"
-												value="Escuela" />
-											<ui:param name="propertyPath"
-												value="usuario.enteUniversitarios.idEnteUniversitario" />
-										</ui:include>
-									</f:facet>
-									<h:outputText
-										value="#{_usuario.enteUniversitarios.nombreEnteUniversitario}" />
-								</h:column>
-									
-								<rich:column styleClass="action">
-									<f:facet name="header">Acción</f:facet>
-									<s:link view="/#{empty from ? 'Usuario' : from}.xhtml"
-										value="#{empty from ? 'Editar' : 'Seleccionar'}"
-										propagation="#{empty from ? 'none' : 'default'}"
-										id="usuarioViewId">
-										<f:param name="usuarioId" value="#{_usuario.id}" />
-									</s:link>
+						<h:column>
+							<f:facet name="header">
+								<ui:include src="layout/sort.xhtml">
+									<ui:param name="entityList" value="#{usuarioList}" />
+									<ui:param name="propertyLabel" value="Escuela" />
+									<ui:param name="propertyPath"
+										value="usuario.enteUniversitarios.idEnteUniversitario" />
+								</ui:include>
+							</f:facet>
+							<h:outputText
+								value="#{_usuario.enteUniversitarios.nombreEnteUniversitario}" />
+						</h:column>
+
+						<rich:column styleClass="action">
+							<f:facet name="header">Acción</f:facet>
+							<s:link view="/#{empty from ? 'Usuario' : from}.xhtml"
+								value="#{empty from ? 'Editar' : 'Seleccionar'}"
+								propagation="#{empty from ? 'none' : 'default'}"
+								id="usuarioViewId">
+								<f:param name="usuarioId" value="#{_usuario.id}" />
+							</s:link>
             #{' '}
             <s:link view="/UsuarioEdit.xhtml" value="Editar"
-										propagation="none" id="usuarioEdit" rendered="#{empty from}">
-										<f:param name="usuarioId" value="#{_usuario.id}" />
-									</s:link>
-								</rich:column>
-							</rich:scrollableDataTable>
+								propagation="none" id="usuarioEdit" rendered="#{empty from}">
+								<f:param name="usuarioId" value="#{_usuario.id}" />
+							</s:link>
+						</rich:column>
+					</rich:scrollableDataTable>
 
-						</div>
-					</rich:panel>
-
-					<div class="tableControl">
-
-						<s:link view="/UsuarioList.xhtml"
-							rendered="#{usuarioList.previousExists}"
-							value="#{messages.left}#{messages.left} First Page"
-							id="firstPage">
-							<f:param name="firstResult" value="0" />
-						</s:link>
-
-						<s:link view="/UsuarioList.xhtml"
-							rendered="#{usuarioList.previousExists}"
-							value="#{messages.left} Previous Page" id="previousPage">
-							<f:param name="firstResult"
-								value="#{usuarioList.previousFirstResult}" />
-						</s:link>
-
-						<s:link view="/UsuarioList.xhtml"
-							rendered="#{usuarioList.nextExists}"
-							value="Next Page #{messages.right}" id="nextPage">
-							<f:param name="firstResult1"
-								value="#{usuarioList.nextFirstResult}" />
-						</s:link>
-
-						<s:link view="/UsuarioList.xhtml"
-							rendered="#{usuarioList.nextExists}"
-							value="Last Page #{messages.right}#{messages.right}"
-							id="lastPage">
-							<f:param name="firstResult"
-								value="#{usuarioList.lastFirstResult}" />
-						</s:link>
-						<br /> <br /> <br /> 
-						<s:div styleClass="actionButtons" rendered="#{empty from}">
-						<s:button view="/UsuarioEdit.xhtml" id="create" propagation="none"
-							value="Crear usuario" action="#{userAction.createUser}"
-							rendered="#{s:hasPermission('seam.user', 'create')}">
-							<f:param name="usuarioId" />
-						</s:button>
-
-					</s:div>
-					</div>
-					</h:form>
 				</div>
+			</rich:panel>
 
-			
+			<div class="tableControl">
 
-			<div class="bottom" align="center" style="margin-top: -10px">
-				<rich:separator height="4" />
-				<img src="css/images/uptc.png"
-					style="height: 80px; margin-left: -430px" />
+				<s:link view="/UsuarioList.xhtml"
+					rendered="#{usuarioList.previousExists}"
+					value="#{messages.left}#{messages.left} First Page" id="firstPage">
+					<f:param name="firstResult" value="0" />
+				</s:link>
 
-				<div style="margin-top: -90px; height: 100px;">
+				<s:link view="/UsuarioList.xhtml"
+					rendered="#{usuarioList.previousExists}"
+					value="#{messages.left} Previous Page" id="previousPage">
+					<f:param name="firstResult"
+						value="#{usuarioList.previousFirstResult}" />
+				</s:link>
 
-					<p>
-						Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
-						<br /> Facultad de Ingenier&#237;a <br /> Ingenier&#237;a de
-						Sistemas y Computaci&#243;n <br /> Grupo de Investigaci&#243;n en
-						Ingenier&#237;a del Software <br /> Correo:gis@uptc.edu.co
-					</p>
-				</div>
-				<div style="margin-top: -95px">
-					<img src="css/images/gis.png"
-						style="height: 80px; width: 80px; margin-left: 470px" />
-				</div>
+				<s:link view="/UsuarioList.xhtml"
+					rendered="#{usuarioList.nextExists}"
+					value="Next Page #{messages.right}" id="nextPage">
+					<f:param name="firstResult1" value="#{usuarioList.nextFirstResult}" />
+				</s:link>
+
+				<s:link view="/UsuarioList.xhtml"
+					rendered="#{usuarioList.nextExists}"
+					value="Last Page #{messages.right}#{messages.right}" id="lastPage">
+					<f:param name="firstResult" value="#{usuarioList.lastFirstResult}" />
+				</s:link>
+				<br /> <br /> <br />
+				<s:div styleClass="actionButtons" rendered="#{empty from}">
+					<s:button view="/UsuarioEdit.xhtml" id="create" propagation="none"
+						value="Crear usuario" action="#{userAction.createUser}"
+						rendered="#{s:hasPermission('seam.user', 'create')}">
+						<f:param name="usuarioId" />
+					</s:button>
+
+				</s:div>
 			</div>
-			</div>
-		</body>
+		</h:form>		
+
 	</ui:define>
 
 </ui:composition>

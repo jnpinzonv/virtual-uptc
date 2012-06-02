@@ -6,22 +6,30 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
+    template="layout/template2.xhtml">
+    
+    <ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	</ui:define>
 
-<ui:define name="body">
+<ui:define name="centroT">
 
     <rich:panel>
-        <f:facet name="header">Curso Details</f:facet>
+        <f:facet name="header">Detalles del Curso</f:facet>
 
-        <s:decorate id="codigo" template="layout/display.xhtml">
+        <s:decorate id="codigo" template="layout/display.xhtml" style="position:absolute;">
             <ui:define name="label">Codigo</ui:define>
             <h:outputText value="#{cursoHome.instance.codigo}"/>
         </s:decorate>
+        
+        <br/><br/>
 
-        <s:decorate id="nombreAsignatura" template="layout/display.xhtml">
+        <s:decorate id="nombreAsignatura" template="layout/display.xhtml" style="position:absolute;">
             <ui:define name="label">Nombre asignatura</ui:define>
             <h:outputText value="#{cursoHome.instance.nombreAsignatura}"/>
         </s:decorate>
+        
+        <br /><br/>
 
         <div style="clear:both"/>
 
@@ -31,11 +39,11 @@
 
         <s:button view="/CursoEdit.xhtml"
                     id="edit"
-                 value="Edit"/>
+                 value="Editar"/>
 
         <s:button view="/#{empty cursoFrom ? 'CursoList' : cursoFrom}.xhtml"
                     id="done"
-                 value="Done"/>
+                 value="Aceptar"/>
 
     </div>
 
@@ -76,7 +84,7 @@
                 <h:outputText value="#{_enteUniversitario.tipoEnteUniversitario.idTipo}"/>
             </h:column>
             <h:column styleClass="action">
-                <f:facet name="header">Action</f:facet>
+                <f:facet name="header">Acción</f:facet>
                 <s:link id="viewenteUniversitario"
                      value="View"
                       view="/EnteUniversitario.xhtml">
@@ -120,7 +128,7 @@
                 <h:outputText value="#{_grupoCurso.semestre}"/>
             </rich:column>
             <h:column>
-                <f:facet name="header">Action</f:facet>
+                <f:facet name="header">Acción</f:facet>
                 <s:link id="selectgrupoCurso"
                      value="Select"
                       view="/GrupoCurso.xhtml">

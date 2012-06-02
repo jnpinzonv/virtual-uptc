@@ -30,8 +30,8 @@
 			<value>/security.drl</value>
 		</drools:rule-files>
 	</drools:rule-base>
-	
-	
+
+
 	<security:rule-based-permission-resolver
 		security-rules="#{securityRules}" />
 
@@ -58,6 +58,14 @@
 
 	<security:remember-me enabled="true" />
 
-   
+	<web:multipart-filter create-temp-files="true"
+		max-request-size="1000000" url-pattern="*.seam" />
+
+	<core:resource-loader>
+		<core:bundle-names>
+			<value>variablesentorno</value>			 
+		</core:bundle-names>
+	</core:resource-loader>
+
 
 </components>

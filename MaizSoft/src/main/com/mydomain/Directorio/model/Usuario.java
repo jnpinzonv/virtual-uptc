@@ -25,7 +25,7 @@ import org.hibernate.validator.Pattern;
 
 
 /**
- *@author Josué Nicolás Pinzón Villamil <jnpinzonv@hotmail.com>
+ *@author Josuï¿½ Nicolï¿½s Pinzï¿½n Villamil <jnpinzonv@hotmail.com>
  *@Version${date}
  */
 @Entity
@@ -64,6 +64,8 @@ public class Usuario{
 	private Set<CuentasUsuario> cuentasUsuario;
 	
 	private EnteUniversitario enteUniversitarios;
+	
+	private String codigoUsuarios;
 	
 	private Tipo tipo;
 	
@@ -220,9 +222,26 @@ public class Usuario{
 	public Long getDocumentoIdentidad() {
 		return documentoIdentidad;
 	}
+	
+	
 
 	
 	
+	/**
+	 * @return the codigoUsuarios
+	 */
+	@NotEmpty
+	public String getCodigoUsuarios() {
+		return codigoUsuarios;
+	}
+
+	/**
+	 * @param codigoUsuarios the codigoUsuarios to set
+	 */
+	public void setCodigoUsuarios(String codigoUsuarios) {
+		this.codigoUsuarios = codigoUsuarios;
+	}
+
 	/**
 	 * @return the usuarioEmisor
 	 */
@@ -240,6 +259,9 @@ public class Usuario{
 	public void setUsuarioEmisor(Set<GestorMensajeria> usuarioEmisor) {
 		this.usuarioEmisor = usuarioEmisor;
 	}
+	
+	
+	
 
 	
 	

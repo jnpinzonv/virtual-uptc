@@ -108,9 +108,9 @@
 			</s:div>
 
 
-			<div class="center2" style="margin-top: -20px; height: 590px">
+			<div class="center2" style="margin-top: -20px; height: 600px">
 
-				<div class="right" style="height: 480px">
+				<div class="right" style="height: 498px">
 					<ui:insert name="right">
 						<h:form>
 
@@ -141,7 +141,7 @@
 				</div>
 
 
-				<div class="left" style="height: 480px">
+				<div class="left" style="height: 498px">
 					<rich:panel>
 						<h:form id="form">
 
@@ -172,9 +172,10 @@
 									</rich:panelMenuGroup>
 									<rich:panelMenuGroup label="Administrar Usuarios"
 										style="color: #FFFFFF;">
-										<rich:panelMenuItem label="Adicionar Usuario"
+										<rich:panelMenuItem label="Adicionar Usuariossss"
 											style="color: #045491;" icon="disc"
-											action="/UsuarioEdit.seam" />
+											action="#{usuarioHome.crearUsuario()}"
+											rendered="#{s:hasPermission('seam.user', 'create')}" />
 										<rich:panelMenuItem label="Eliminar / Editar Usuario"
 											style="color: #045491;" icon="disc"
 											action="/UsuarioList.seam" />
@@ -232,89 +233,105 @@
 				<div id="content" class="right_content">
 					<h:form id="enteUniversitario" styleClass="edit">
 
-			<rich:panel>
-				<f:facet name="header">#{enteUniversitarioHome.managed ? 'Editar' : 'Adicionar'} Ente universitario</f:facet>
-				
-				<s:decorate id="nombreEnteUniversitarioField"
-					template="layout/edit.xhtml" style="position:absolute;">
-					<ui:define name="label">Nombre ente universitario</ui:define>
-					<h:inputTextarea id="nombreEnteUniversitario" cols="60" rows="2"
-						required="true"
-						value="#{enteUniversitarioHome.instance.nombreEnteUniversitario}" />
-						
-				</s:decorate>
-				
-				<br />
-				<br />
-				<br />
-				<br />
-				
-				<s:decorate id="descripcionEnteUniversitarioField"
-					template="layout/edit.xhtml" style="position:absolute;">
-					<ui:define name="label">Descripción ente universitario</ui:define>
-					<h:inputTextarea id="descripcionEnteUniversitario" cols="70"
-						rows="3"
-						value="#{enteUniversitarioHome.instance.descripcionEnteUniversitario}" />
-						
-				</s:decorate>
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<h:selectOneMenu
-					value="#{enteUniversitarioHome.instance.tipoEnteUniversitario}"
-					id="sobrenombre" required="true" rendered="true">
-					<s:selectItems value="#{listaTiposEnteUniversitarios}" var="lista"
-						label="#{lista.nombre}" noSelectionLabel="SELECCIONE..." />
-					<s:convertEntity />
-				</h:selectOneMenu>
-				
-				<br />
-				<br />
-				
-				<h:selectOneMenu
-					value="#{enteUniversitarioHome.instance.enteUniversitario}"
-					id="enteUniveristario" rendered="true">
-					<s:selectItems value="#{listaEnteUniversitarios}" var="listaE"
-						label="#{listaE.nombreEnteUniversitario}"
-						noSelectionLabel="SELECCIONE..."/>
-					<s:convertEntity />
-				</h:selectOneMenu>
-				<div style="clear: both">
-					<span class="required">*</span> Campos Obligatorios
+						<rich:panel>
+							<f:facet name="header">#{enteUniversitarioHome.managed ? 'Editar' : 'Adicionar'} Ente universitario</f:facet>
+
+							<s:decorate id="nombreEnteUniversitarioField"
+								template="layout/edit.xhtml" style="position:absolute;">
+								<ui:define name="label">Nombre ente universitario</ui:define>
+								<h:inputTextarea id="nombreEnteUniversitario" cols="60" rows="2"
+									required="true"
+									value="#{enteUniversitarioHome.instance.nombreEnteUniversitario}" />
+
+							</s:decorate>
+
+							<br />
+							<br />
+							<br />
+							<br />
+
+							<s:decorate id="descripcionEnteUniversitarioField"
+								template="layout/edit.xhtml" style="position:absolute;">
+								<ui:define name="label">Descripción ente universitario</ui:define>
+								<h:inputTextarea id="descripcionEnteUniversitario" cols="70"
+									rows="3"
+									value="#{enteUniversitarioHome.instance.descripcionEnteUniversitario}" />
+
+							</s:decorate>
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							
+							
+							
+							<h:selectOneMenu
+								value="#{enteUniversitarioHome.instance.tipoEnteUniversitario}"
+								id="sobrenombre" required="true" rendered="true">
+								<s:selectItems value="#{listaTiposEnteUniversitarios}"
+									var="lista" label="#{lista.nombre}"/>
+								<a4j:support event="onchange" reRender="tres"/>
+								<s:convertEntity />
+							</h:selectOneMenu>
+
+							<br />
+
+							<a4j:outputPanel id="tres" ajaxRendered="true">
+								<h:panelGroup rendered="#{('Facultad' == enteUniversitarioHome.instance.tipoEnteUniversitario) ? true : false}">
+									<h:selectOneMenu
+										value="#{enteUniversitarioHome.instance.enteUniversitario}"
+										id="enteUniveristario" rendered="true">
+										<s:selectItems value="#{listaEnteUniversitarios}" var="listaE"
+											label="#{listaE.nombreEnteUniversitario}" />
+										<s:convertEntity />
+									</h:selectOneMenu>
+								</h:panelGroup>
+							</a4j:outputPanel>
+							
+													
+							
+							<br />
+							<br />
+							<div style="clear: both; position: absolute">
+								<span class="required">*</span> Campos Obligatorios
+							</div>
+
+							<br />
+							<br />
+
+						</rich:panel>
+
+						<div class="actionButtons">
+							<a4j:outputPanel id="dos">
+								<h:commandButton id="save" value="Guardar"
+									action="#{enteUniversitarioHome.persist}"
+									rendered="#{!enteUniversitarioHome.managed}" />
+
+								<h:commandButton id="update" value="Guardar"
+									action="#{enteUniversitarioHome.update}"
+									rendered="#{enteUniversitarioHome.managed}" />
+
+								<h:commandButton id="delete" value="Eliminar"
+									action="#{enteUniversitarioHome.remove}" immediate="true"
+									rendered="#{enteUniversitarioHome.managed}" />
+
+								<s:button id="cancelEdit" value="Cancelar" propagation="end"
+									view="/EnteUniversitario.xhtml"
+									rendered="#{enteUniversitarioHome.managed}" />
+
+								<s:button id="cancelAdd" value="Cancelar" propagation="end"
+									view="/#{empty enteUniversitarioFrom ? 'EnteUniversitarioList' : enteUniversitarioFrom}.xhtml"
+									rendered="#{!enteUniversitarioHome.managed}" />
+							</a4j:outputPanel>
+						</div>
+					</h:form>
+					<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+					<br /> <br />
 				</div>
 
-			</rich:panel>
 
-			<div class="actionButtons">
-				<a4j:outputPanel id="dos">
-					<h:commandButton id="save" value="Guardar"
-						action="#{enteUniversitarioHome.persist}"
-						rendered="#{!enteUniversitarioHome.managed}" />
-
-					<h:commandButton id="update" value="Guardar"
-						action="#{enteUniversitarioHome.update}"
-						rendered="#{enteUniversitarioHome.managed}" />
-
-					<h:commandButton id="delete" value="Eliminar"
-						action="#{enteUniversitarioHome.remove}" immediate="true"
-						rendered="#{enteUniversitarioHome.managed}" />
-
-					<s:button id="cancelEdit" value="Cancelar" propagation="end"
-						view="/EnteUniversitario.xhtml"
-						rendered="#{enteUniversitarioHome.managed}" />
-
-					<s:button id="cancelAdd" value="Cancelar" propagation="end"
-						view="/#{empty enteUniversitarioFrom ? 'EnteUniversitarioList' : enteUniversitarioFrom}.xhtml"
-						rendered="#{!enteUniversitarioHome.managed}" />
-				</a4j:outputPanel>
-			</div>
-		</h:form>				
-				</div>
-
-				</div>
 
 				<div class="bottom" align="center" style="margin-top: -10px">
 					<rich:separator height="4" />
@@ -335,6 +352,7 @@
 							style="height: 80px; width: 80px; margin-left: 470px" />
 					</div>
 				</div>
+			</div>
 		</body>
 	</ui:define>
 

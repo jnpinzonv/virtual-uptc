@@ -106,9 +106,9 @@
 			</s:div>
 
 
-			<div class="center2" style="margin-top: -20px; height: 470px">
+			<div class="center2" style="margin-top: -20px; height: 552px">
 
-				<div class="right" style="height: 360px">
+				<div class="right" style="height: 445px">
 					<ui:insert name="right">
 						<h:form>
 
@@ -139,7 +139,7 @@
 				</div>
 
 
-				<div class="left" style="height: 360px">
+				<div class="left" style="height: 445px">
 					<rich:panel>
 						<h:form id="form">
 
@@ -248,7 +248,7 @@
 						<br />
 						<s:decorate id="tipoDocumentoIdentidad"
 							template="layout/display.xhtml" style="position:absolute;">
-							<ui:define name="label">TipoDocumento</ui:define>
+							<ui:define name="label">Tipo Documento</ui:define>
 							<h:outputText value="#{usuarioHome.instance.tipo}" />
 						</s:decorate>
 						<br />
@@ -276,14 +276,9 @@
 							<ui:define name="label">Foto</ui:define>
 							<h:outputText value="#{usuarioHome.instance.fotoUser}" />
 						</s:decorate>
-						<br />
-						<br />
 						
-
+						<br /> <br /> <br /> <br /> <br /><br /> 
 						
-
-						<div style="clear: both" />
-
 					</rich:panel>
 
 					<div class="actionButtons">
@@ -292,10 +287,10 @@
 
 						<s:button
 							view="/#{empty usuarioFrom ? 'UsuarioList' : usuarioFrom}.xhtml"
-							id="done" value="Done" />
+							id="done" value="Aceptar" />
 
 					</div>				
-
+						<br /> <br /> <br /> <br /> <br /><br />
 				</div>
 
 				<div class="bottom" align="center" style="margin-top: -10px">

@@ -13,7 +13,7 @@
 	</ui:define>
 
 <ui:define name="centroT">
-
+	<!-- 	
     <h:form id="enteUniversitarioSearch" styleClass="edit">
 
         <rich:simpleTogglePanel label="Buscar Ente Universitario" switchType="ajax">
@@ -50,72 +50,54 @@
         </div>
 
     </h:form>
+     -->
 
     <rich:panel>
-        <f:facet name="header">Resultados de Busqueda (#{empty enteUniversitarioList.resultList ? 0 : (enteUniversitarioList.paginated ? enteUniversitarioList.resultCount : enteUniversitarioList.resultList.size)})</f:facet>
+        <f:facet name="header">Entes Universitario (#{empty enteUniversitarioList.resultList ? 0 : (enteUniversitarioList.paginated ? enteUniversitarioList.resultCount : enteUniversitarioList.resultList.size)})</f:facet>
     <div class="results" id="enteUniversitarioList">
 
     <h:outputText value="The enteUniversitario search returned no results."
                rendered="#{empty enteUniversitarioList.resultList}"/>
-
-    <rich:dataTable id="enteUniversitarioList"
+	
+	
+	<h3>Facultades:</h3>
+    <rich:scrollableDataTable id="enteUniversitarioList"
                 var="_enteUniversitario"
-              value="#{enteUniversitarioList.resultList}"
-           rendered="#{not empty enteUniversitarioList.resultList}">
+              value="#{listaEnteUniversitariosFacultades}" height="200px" >
         <h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{enteUniversitarioList}"/>
-                    <ui:param name="propertyLabel" value="Id ente universitario"/>
+                    <ui:param name="propertyLabel" value="Id"/>
                     <ui:param name="propertyPath" value="enteUniversitario.idEnteUniversitario"/>
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_enteUniversitario.idEnteUniversitario}"/>
         </h:column>
-        <h:column>
+        <h:column width="220px">
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{enteUniversitarioList}"/>
-                    <ui:param name="propertyLabel" value="Descripcion ente universitario"/>
-                    <ui:param name="propertyPath" value="enteUniversitario.descripcionEnteUniversitario"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_enteUniversitario.descripcionEnteUniversitario}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{enteUniversitarioList}"/>
-                    <ui:param name="propertyLabel" value="Ente universitario id ente universitario"/>
-                    <ui:param name="propertyPath" value="enteUniversitario.enteUniversitario.idEnteUniversitario"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_enteUniversitario.enteUniversitario.idEnteUniversitario}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{enteUniversitarioList}"/>
-                    <ui:param name="propertyLabel" value="Nombre ente universitario"/>
+                    <ui:param name="propertyLabel" value="Nombre"/>
                     <ui:param name="propertyPath" value="enteUniversitario.nombreEnteUniversitario"/>
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_enteUniversitario.nombreEnteUniversitario}"/>
         </h:column>
-        <h:column>
+        <h:column width="250px">
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{enteUniversitarioList}"/>
-                    <ui:param name="propertyLabel" value="Tipo ente universitario id tipo"/>
-                    <ui:param name="propertyPath" value="enteUniversitario.tipoEnteUniversitario.idTipo"/>
+                    <ui:param name="propertyLabel" value="Descripción"/>
+                    <ui:param name="propertyPath" value="enteUniversitario.descripcionEnteUniversitario"/>
                 </ui:include>
             </f:facet>
-            <h:outputText value="#{_enteUniversitario.tipoEnteUniversitario.idTipo}"/>
+            <h:outputText value="#{_enteUniversitario.descripcionEnteUniversitario}"/>
         </h:column>
         <rich:column styleClass="action">
-            <f:facet name="header">Action</f:facet>
+            <f:facet name="header">Acción</f:facet>
             <s:link view="/#{empty from ? 'EnteUniversitario' : from}.xhtml"
-                   value="#{empty from ? 'View' : 'Select'}"
+                   value="#{empty from ? 'Ver' : 'Seleccionar'}"
              propagation="#{empty from ? 'none' : 'default'}"
                       id="enteUniversitarioViewId">
                 <f:param name="enteUniversitarioIdEnteUniversitario"
@@ -123,7 +105,7 @@
             </s:link>
             #{' '}
             <s:link view="/EnteUniversitarioEdit.xhtml"
-                   value="Edit"
+                   value="Editar"
              propagation="none"
                       id="enteUniversitarioEdit"
                 rendered="#{empty from}">
@@ -131,8 +113,75 @@
                         value="#{_enteUniversitario.idEnteUniversitario}"/>
             </s:link>
         </rich:column>
-    </rich:dataTable>
-
+    </rich:scrollableDataTable>
+    
+    <br/>
+   
+   	<h3>Escuelas:</h3>
+	 <rich:scrollableDataTable id="enteUniversitarioListE"
+                var="_enteUniversitario"
+              value="#{listaEntesUniversitariosEscuelas}" height="200px">
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{enteUniversitarioList}"/>
+                    <ui:param name="propertyLabel" value="Id"/>
+                    <ui:param name="propertyPath" value="enteUniversitario.idEnteUniversitario"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_enteUniversitario.idEnteUniversitario}"/>
+        </h:column>
+        <h:column width="160px">
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{enteUniversitarioList}"/>
+                    <ui:param name="propertyLabel" value="Nombre"/>
+                    <ui:param name="propertyPath" value="enteUniversitario.nombreEnteUniversitario"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_enteUniversitario.nombreEnteUniversitario}"/>
+        </h:column>
+        <h:column width="160px">
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{enteUniversitarioList}"/>
+                    <ui:param name="propertyLabel" value="Descripción"/>
+                    <ui:param name="propertyPath" value="enteUniversitario.descripcionEnteUniversitario"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_enteUniversitario.descripcionEnteUniversitario}"/>
+        </h:column>
+        <h:column width="150px">
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{enteUniversitarioList}"/>
+                    <ui:param name="propertyLabel" value="Facultad"/>
+                    <ui:param name="propertyPath" value="enteUniversitario.enteUniversitario.idEnteUniversitario"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_enteUniversitario.enteUniversitario.nombreEnteUniversitario}"/>
+        </h:column>
+        
+        <rich:column styleClass="action">
+            <f:facet name="header">Acción</f:facet>
+            <s:link view="/#{empty from ? 'EnteUniversitario' : from}.xhtml"
+                   value="#{empty from ? 'Ver' : 'Seleccionar'}"
+             propagation="#{empty from ? 'none' : 'default'}"
+                      id="enteUniversitarioViewId">
+                <f:param name="enteUniversitarioIdEnteUniversitario"
+                        value="#{_enteUniversitario.idEnteUniversitario}"/>
+            </s:link>
+            #{' '}
+            <s:link view="/EnteUniversitarioEdit.xhtml"
+                   value="Editar"
+             propagation="none"
+                      id="enteUniversitarioEdit"
+                rendered="#{empty from}">
+                <f:param name="enteUniversitarioIdEnteUniversitario"
+                        value="#{_enteUniversitario.idEnteUniversitario}"/>
+            </s:link>
+        </rich:column>
+    </rich:scrollableDataTable>
     </div>
     </rich:panel>
 

@@ -21,7 +21,7 @@
             <f:facet name="header">#{grupoCursoHome.managed ? 'Editar' : 'Adicionar'} Grupo curso</f:facet>
 
 
-            <s:decorate id="idGrupoField" template="layout/edit.xhtml" tyle="position:absolute;">
+            <s:decorate id="idGrupoField" template="layout/edit.xhtml" style="position:absolute;">
                 <ui:define name="label">Id grupo</ui:define>
                 <h:inputText id="idGrupo"
                        required="true"
@@ -33,7 +33,7 @@
 
 			<br/> <br/>
 			
-            <s:decorate id="cuposField" template="layout/edit.xhtml" tyle="position:absolute;">
+            <s:decorate id="cuposField" template="layout/edit.xhtml" style="position:absolute;">
                 <ui:define name="label">Cupos</ui:define>
                 <h:inputText id="cupos"
                        required="true"
@@ -46,7 +46,7 @@
 			<br/> <br/>
 
 
-            <s:decorate id="inscritosField" template="layout/edit.xhtml" tyle="position:absolute;">
+            <s:decorate id="inscritosField" template="layout/edit.xhtml" style="position:absolute;">
                 <ui:define name="label">Inscritos</ui:define>
                 <h:inputText id="inscritos"
                        required="true"
@@ -57,7 +57,7 @@
 
 			<br/> <br/>
 		
-            <s:decorate id="semestreField" template="layout/edit.xhtml" tyle="position:absolute;">
+            <s:decorate id="semestreField" template="layout/edit.xhtml" style="position:absolute;">
                 <ui:define name="label">Semestre</ui:define>
                 <h:inputText id="semestre"
                        required="true"
@@ -70,11 +70,11 @@
 			
 			<br/> <br/>
 			
-            <div style="clear:both">
+            <div style="clear:both; position:absolute;">
                 <span class="required">*</span>
                 Campos Obligatorios
             </div>
-
+			<br/>
         </rich:panel>
 
         <div class="actionButtons">

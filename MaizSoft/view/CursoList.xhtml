@@ -16,77 +16,70 @@
 	
     <h:form id="cursoSearch" styleClass="edit">
 
-        <rich:simpleTogglePanel label="Curso Search Filter" switchType="ajax">
+        <rich:simpleTogglePanel label="Buscar Asignatura" switchType="ajax">
 
             <s:decorate template="layout/display.xhtml" style="position:absolute;">
                 <ui:define name="label">Nombre asignatura</ui:define>
                 <h:inputText id="nombreAsignatura" value="#{cursoList.curso.nombreAsignatura}"/>
             </s:decorate>
 			
-			<br/> <br/>
+			<br/> <br/><br/>
 			
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Buscar por campos:</ui:define>
-                <h:selectOneRadio id="logic" value="#{cursoList.restrictionLogicOperator}" styleClass="radio">
-                    <f:selectItem itemLabel="Todos" itemValue="and"/>
-                    <f:selectItem itemLabel="Alguno" itemValue="or"/>
-                </h:selectOneRadio>
-            </s:decorate>
+            
 
         </rich:simpleTogglePanel>
 
         <div class="actionButtons">
-            <h:commandButton id="search" value="Buscar" action="/CursoList.xhtml"/>
-            <s:button id="reset" value="Reset" includePageParams="false"/>
+            <h:commandButton id="search" value="Buscar" action="/CursoList.xhtml"/>            
         </div>
-
+		<br/>
     </h:form>
 
     <rich:panel>
-        <f:facet name="header">Resultados de la busqueda cusro (#{empty cursoList.resultList ? 0 : (cursoList.paginated ? cursoList.resultCount : cursoList.resultList.size)})</f:facet>
+        <f:facet name="header">Resultados de la busqueda curso (#{empty cursoList.resultList ? 0 : (cursoList.paginated ? cursoList.resultCount : cursoList.resultList.size)})</f:facet>
     <div class="results" id="cursoList">
 
-    <h:outputText value="The curso search returned no results."
+    <h:outputText value="No se encontraron resultados"
                rendered="#{empty cursoList.resultList}"/>
 
-    <rich:dataTable id="cursoList"
+    <rich:scrollableDataTable id="cursoList"
                 var="_curso"
-              value="#{cursoList.resultList}"
-           rendered="#{not empty cursoList.resultList}">
+              value="#{cursoList.resultList}"height="220px">
         <h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{cursoList}"/>
-                    <ui:param name="propertyLabel" value="Codigo"/>
+                    <ui:param name="propertyLabel" value="Código"/>
                     <ui:param name="propertyPath" value="curso.codigo"/>
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_curso.codigo}"/>
         </h:column>
-        <h:column>
+        <h:column width="242px">
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{cursoList}"/>
-                    <ui:param name="propertyLabel" value="Ente universitario id ente universitario"/>
-                    <ui:param name="propertyPath" value="curso.enteUniversitario.idEnteUniversitario"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_curso.enteUniversitario.idEnteUniversitario}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{cursoList}"/>
-                    <ui:param name="propertyLabel" value="Nombre asignatura"/>
+                    <ui:param name="propertyLabel" value="Nombre"/>
                     <ui:param name="propertyPath" value="curso.nombreAsignatura"/>
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_curso.nombreAsignatura}"/>
         </h:column>
+        <h:column width="220px">
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{cursoList}"/>
+                    <ui:param name="propertyLabel" value="Ente universitario"/>
+                    <ui:param name="propertyPath" value="curso.enteUniversitario.idEnteUniversitario"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_curso.enteUniversitario.nombreEnteUniversitario}"/>
+        </h:column>
+        
         <rich:column styleClass="action">
             <f:facet name="header">Acción</f:facet>
             <s:link view="/#{empty from ? 'Curso' : from}.xhtml"
-                   value="#{empty from ? 'View' : 'Select'}"
+                   value="#{empty from ? 'Ver' : 'Seleccionar'}"
              propagation="#{empty from ? 'none' : 'default'}"
                       id="cursoViewId">
                 <f:param name="cursoCodigo"
@@ -102,7 +95,7 @@
                         value="#{_curso.codigo}"/>
             </s:link>
         </rich:column>
-    </rich:dataTable>
+    </rich:scrollableDataTable>
 
     </div>
     </rich:panel>
@@ -150,6 +143,6 @@
             <f:param name="cursoCodigo"/>
         </s:button>
     </s:div>
-
+	<br/><br/>
 	</ui:define>
 </ui:composition>

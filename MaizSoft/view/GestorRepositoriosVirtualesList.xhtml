@@ -6,52 +6,51 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
+    template="layout/template2.xhtml">
+    
+    <ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	</ui:define>
 
-<ui:define name="body">
+<ui:define name="centroT">
 
     <h:form id="gestorRepositoriosVirtualesSearch" styleClass="edit">
 
         <rich:simpleTogglePanel label="GestorRepositoriosVirtuales Search Filter" switchType="ajax">
 
             <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Descripcion repositorio</ui:define>
+                <ui:define name="label">Descripción</ui:define>
                 <h:inputText id="descripcionRepositorio" value="#{gestorRepositoriosVirtualesList.gestorRepositoriosVirtuales.descripcionRepositorio}"/>
             </s:decorate>
 
             <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Nombre repositorio</ui:define>
+                <ui:define name="label">Nombre</ui:define>
                 <h:inputText id="nombreRepositorio" value="#{gestorRepositoriosVirtualesList.gestorRepositoriosVirtuales.nombreRepositorio}"/>
             </s:decorate>
-
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Password repositorio</ui:define>
-                <h:inputText id="passwordRepositorio" value="#{gestorRepositoriosVirtualesList.gestorRepositoriosVirtuales.passwordRepositorio}"/>
-            </s:decorate>
-
+            
             <s:decorate template="layout/display.xhtml">
                 <ui:define name="label">Url repositorio</ui:define>
                 <h:inputText id="urlRepositorio" value="#{gestorRepositoriosVirtualesList.gestorRepositoriosVirtuales.urlRepositorio}"/>
             </s:decorate>
-
-            <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Username repositorio</ui:define>
+			
+			<s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Username</ui:define>
                 <h:inputText id="usernameRepositorio" value="#{gestorRepositoriosVirtualesList.gestorRepositoriosVirtuales.usernameRepositorio}"/>
             </s:decorate>
-
+		
             <s:decorate template="layout/display.xhtml">
-                <ui:define name="label">Match</ui:define>
+                <ui:define name="label">Buscar por:</ui:define>
                 <h:selectOneRadio id="logic" value="#{gestorRepositoriosVirtualesList.restrictionLogicOperator}" styleClass="radio">
-                    <f:selectItem itemLabel="All" itemValue="and"/>
-                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                    <f:selectItem itemLabel="Todos los campos" itemValue="and"/>
+                    <f:selectItem itemLabel="Algún campo" itemValue="or"/>
                 </h:selectOneRadio>
             </s:decorate>
 
         </rich:simpleTogglePanel>
 
         <div class="actionButtons">
-            <h:commandButton id="search" value="Search" action="/GestorRepositoriosVirtualesList.xhtml"/>
-            <s:button id="reset" value="Reset" includePageParams="false"/>
+            <h:commandButton id="search" value="Buscar" action="/GestorRepositoriosVirtualesList.xhtml"/>
+            <s:button id="reset" value="Limpiar Campos" includePageParams="false"/>
         </div>
 
     </h:form>
@@ -63,10 +62,11 @@
     <h:outputText value="The gestorRepositoriosVirtuales search returned no results."
                rendered="#{empty gestorRepositoriosVirtualesList.resultList}"/>
 
-    <rich:dataTable id="gestorRepositoriosVirtualesList"
+    <rich:scrollableDataTable id="gestorRepositoriosVirtualesList"
                 var="_gestorRepositoriosVirtuales"
               value="#{gestorRepositoriosVirtualesList.resultList}"
-           rendered="#{not empty gestorRepositoriosVirtualesList.resultList}">
+           rendered="#{not empty gestorRepositoriosVirtualesList.resultList}"
+           height="200px">
         <h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
@@ -97,16 +97,7 @@
             </f:facet>
             <h:outputText value="#{_gestorRepositoriosVirtuales.nombreRepositorio}"/>
         </h:column>
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{gestorRepositoriosVirtualesList}"/>
-                    <ui:param name="propertyLabel" value="Password repositorio"/>
-                    <ui:param name="propertyPath" value="gestorRepositoriosVirtuales.passwordRepositorio"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_gestorRepositoriosVirtuales.passwordRepositorio}"/>
-        </h:column>
+        
         <h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
@@ -115,7 +106,7 @@
                     <ui:param name="propertyPath" value="gestorRepositoriosVirtuales.tipos.idTipo"/>
                 </ui:include>
             </f:facet>
-            <h:outputText value="#{_gestorRepositoriosVirtuales.tipos.idTipo}"/>
+            <h:outputText value="#{_gestorRepositoriosVirtuales.tipos.nombre}"/>
         </h:column>
         <h:column>
             <f:facet name="header">
@@ -140,7 +131,7 @@
         <rich:column styleClass="action">
             <f:facet name="header">Action</f:facet>
             <s:link view="/#{empty from ? 'GestorRepositoriosVirtuales' : from}.xhtml"
-                   value="#{empty from ? 'View' : 'Select'}"
+                   value="#{empty from ? 'Ver' : 'Seleccionar'}"
              propagation="#{empty from ? 'none' : 'default'}"
                       id="gestorRepositoriosVirtualesViewId">
                 <f:param name="gestorRepositoriosVirtualesIdRepositorio"
@@ -148,7 +139,7 @@
             </s:link>
             #{' '}
             <s:link view="/GestorRepositoriosVirtualesEdit.xhtml"
-                   value="Edit"
+                   value="Editar"
              propagation="none"
                       id="gestorRepositoriosVirtualesEdit"
                 rendered="#{empty from}">
@@ -156,7 +147,7 @@
                         value="#{_gestorRepositoriosVirtuales.idRepositorio}"/>
             </s:link>
         </rich:column>
-    </rich:dataTable>
+    </rich:scrollableDataTable>
 
     </div>
     </rich:panel>
@@ -200,7 +191,7 @@
         <s:button view="/GestorRepositoriosVirtualesEdit.xhtml"
                     id="create"
            propagation="none"
-                 value="Create gestorRepositoriosVirtuales">
+                 value="Crear Repositorio Virtual">
             <f:param name="gestorRepositoriosVirtualesIdRepositorio"/>
         </s:button>
     </s:div>

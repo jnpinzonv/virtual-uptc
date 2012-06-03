@@ -98,7 +98,19 @@
 										bypassUpdates="true" ajaxSingle="true" />
 								</h:inputText>
 							</s:decorate>
+							<br />
+							<br />
 
+
+							<s:decorate id="codigoField" template="layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Código</ui:define>
+								<h:inputText id="apellidos" required="true" size="30"
+									maxlength="35" value="#{usuarioHome.instance.codigoUsuarios}">
+									<a:support event="onblur" reRender="apellidosField"
+										bypassUpdates="true" ajaxSingle="true" />
+								</h:inputText>
+							</s:decorate>
 
 							<br />
 							<br />

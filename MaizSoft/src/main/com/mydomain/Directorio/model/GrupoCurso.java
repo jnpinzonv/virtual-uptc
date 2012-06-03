@@ -9,6 +9,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -26,6 +28,22 @@ import org.hibernate.validator.Size;
 @Table(name= "grupo_curso")
 public class GrupoCurso {
 	
+	private Long codigoGrupo;
+	
+	/**
+	 * @return the codigoGrupo
+	 */
+	public Long getCodigoGrupo() {
+		return codigoGrupo;
+	}
+
+	/**
+	 * @param codigoGrupo the codigoGrupo to set
+	 */
+	public void setCodigoGrupo(Long codigoGrupo) {
+		this.codigoGrupo = codigoGrupo;
+	}
+
 	private Long idGrupo;
 		
 	private Integer cupos;
@@ -41,11 +59,14 @@ public class GrupoCurso {
 	private Set<GrupoUsuarios> grupoUsuarios;
 	
 	private Set<HistorialNotas> listaHistorialNotas;
+	
+	
+
 	/**
 	 * @return the idGrupo
 	 */
 	@Id
-	@NotNull
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getIdGrupo() {
 		return idGrupo;
 	}
@@ -151,6 +172,9 @@ public class GrupoCurso {
 	 */
 	@OneToMany(mappedBy="grupoCurso",cascade=CascadeType.ALL)
 	public Set<GrupoUsuarios> getGrupoUsuarios() {
+		if(grupoUsuarios==null){
+			return new HashSet<GrupoUsuarios>();
+		}
 		return grupoUsuarios;
 	}
 

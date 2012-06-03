@@ -49,7 +49,7 @@ public class Curso {
 	 * @param codigo the codigo to set
 	 */
 	
-	@Column(name="codigo")
+	
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}

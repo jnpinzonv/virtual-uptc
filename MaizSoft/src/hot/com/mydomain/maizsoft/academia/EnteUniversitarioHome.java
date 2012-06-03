@@ -89,7 +89,7 @@ public class EnteUniversitarioHome extends EntityHome<EnteUniversitario> {
 	}
 	
 	
-	@Factory("listaEnteUniversitarios")
+	@Factory("listaEnteUniversitariosFacultades")
 	public List<EnteUniversitario> listaEntesUniversitarios() {
 
 		Query q = getEntityManager()

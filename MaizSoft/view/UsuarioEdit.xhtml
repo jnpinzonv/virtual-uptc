@@ -108,7 +108,7 @@
 								<h:selectOneMenu
 									value="#{usuarioHome.instance.enteUniversitarios}"
 									id="enteUniversitario" required="true" rendered="true">
-									<s:selectItems value="#{listaEscuelasCurso}" var="lista"
+									<s:selectItems value="#{listaEntesUniversitariosEscuelas}" var="lista"
 										label="#{lista.nombreEnteUniversitario}"/>
 									<a4j:support event="onchange" reRender="dos" />
 									<s:convertEntity />

@@ -45,6 +45,12 @@
 				</s:decorate>
 
 				<s:decorate template="layout/display.xhtml">
+					<ui:define name="label">Código</ui:define>
+					<h:inputText id="codigo"
+						value="#{usuarioList.usuario.codigoUsuarios}" />
+				</s:decorate>
+
+				<s:decorate template="layout/display.xhtml">
 					<ui:define name="label">Buscar por:</ui:define>
 					<h:selectOneRadio id="logic"
 						value="#{usuarioList.restrictionLogicOperator}" styleClass="radio">
@@ -61,14 +67,6 @@
 				<s:button id="reset" value="Limpiar Campos"
 					includePageParams="false" />
 			</div>
-
-			<br />
-							<br />
-							<br />
-							<br />
-
-
-
 
 			<rich:panel>
 				<f:facet name="header">Resultados de busqueda de usuario (#{empty usuarioList.resultList ? 0 : (usuarioList.paginated ? usuarioList.resultCount : usuarioList.resultList.size)})</f:facet>
@@ -181,7 +179,7 @@
 					value="Last Page #{messages.right}#{messages.right}" id="lastPage">
 					<f:param name="firstResult" value="#{usuarioList.lastFirstResult}" />
 				</s:link>
-				<br /> <br /> <br />
+				<br /> 
 				<s:div styleClass="actionButtons" rendered="#{empty from}">
 					<s:button view="/UsuarioEdit.xhtml" id="create" propagation="none"
 						value="Crear usuario" action="#{userAction.createUser}"

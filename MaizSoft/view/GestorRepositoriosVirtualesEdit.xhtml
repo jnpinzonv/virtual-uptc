@@ -8,42 +8,87 @@
     xmlns:a="http://richfaces.org/a4j"
     xmlns:rich="http://richfaces.org/rich"
     xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-    template="layout/template.xhtml">
+    template="layout/template2.xhtml">
+    
+    <ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	</ui:define>
 
-<ui:define name="body">
+<ui:define name="centroT">
+
+	<ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	</ui:define>
 
     <h:form id="gestorRepositoriosVirtuales" styleClass="edit">
 
         <rich:panel>
-            <f:facet name="header">#{gestorRepositoriosVirtualesHome.managed ? 'Edit' : 'Add'} Gestor repositorios virtuales</f:facet>
+            <f:facet name="header">#{gestorRepositoriosVirtualesHome.managed ? 'Editar' : 'Adicionar'} repositorio virtuales</f:facet>
 
-
-
-            <s:decorate id="descripcionRepositorioField" template="layout/edit.xhtml">
-                <ui:define name="label">Descripcion repositorio</ui:define>
-                <h:inputText id="descripcionRepositorio"
-                           size="100"
-                      maxlength="100"
-                          value="#{gestorRepositoriosVirtualesHome.instance.descripcionRepositorio}">
-                    <a:support event="onblur" reRender="descripcionRepositorioField" bypassUpdates="true" ajaxSingle="true"/>
-                </h:inputText>
-            </s:decorate>
-
-
-            <s:decorate id="nombreRepositorioField" template="layout/edit.xhtml">
-                <ui:define name="label">Nombre repositorio</ui:define>
+			<s:decorate id="nombreRepositorioField" template="layout/edit.xhtml" style="position:absolute;">
+                <ui:define name="label">Nombre</ui:define>
                 <h:inputText id="nombreRepositorio"
                        required="true"
-                           size="100"
+                           size="70"
                       maxlength="100"
                           value="#{gestorRepositoriosVirtualesHome.instance.nombreRepositorio}">
                     <a:support event="onblur" reRender="nombreRepositorioField" bypassUpdates="true" ajaxSingle="true"/>
                 </h:inputText>
             </s:decorate>
 
+			<br/><br/>
 
-            <s:decorate id="passwordRepositorioField" template="layout/edit.xhtml">
-                <ui:define name="label">Password repositorio</ui:define>
+            <s:decorate id="descripcionRepositorioField" template="layout/edit.xhtml" style="position:absolute;">
+                <ui:define name="label">Descripción</ui:define>
+                <h:inputText id="descripcionRepositorio"
+                           size="70"
+                      maxlength="100"
+                          value="#{gestorRepositoriosVirtualesHome.instance.descripcionRepositorio}">
+                    <a:support event="onblur" reRender="descripcionRepositorioField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+			
+			<br/><br/>
+			
+			<s:decorate id="urlRepositorioField" template="layout/edit.xhtml" style="position:absolute;">
+                <ui:define name="label">Url repositorio</ui:define>
+                <h:inputTextarea id="urlRepositorio"
+                               cols="60"
+                               rows="1"
+                           required="true"
+                              value="#{gestorRepositoriosVirtualesHome.instance.urlRepositorio}"/>
+            </s:decorate>
+
+			<br/><br/><br/>
+            
+            <h:outputText value="Tipo Repositorio:" />
+			<h:selectOneMenu
+					value="#{gestorRepositoriosVirtualesHome.instance.tipos}"
+					id="sobrenombre" required="true" rendered="true">
+					<s:selectItems value="#{listaTiposRepositoriosVirtuales}" var="lista"
+						label="#{lista.nombre}"/>
+					<a4j:support event="onchange" reRender="dos" />
+					<s:convertEntity />
+				</h:selectOneMenu>
+			
+			<br/><br/>
+			
+                
+				
+            <s:decorate id="usernameRepositorioField" template="layout/edit.xhtml" style="position:absolute;">
+                <ui:define name="label">Username</ui:define>
+                <h:inputText id="usernameRepositorio"
+                           size="30"
+                      maxlength="30"
+                          value="#{gestorRepositoriosVirtualesHome.instance.usernameRepositorio}">
+                    <a:support event="onblur" reRender="usernameRepositorioField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+			
+			<br/><br/>
+			
+			<s:decorate id="passwordRepositorioField" template="layout/edit.xhtml" style="position:absolute;">
+                <ui:define name="label">Password</ui:define>
                 <h:inputText id="passwordRepositorio"
                            size="30"
                       maxlength="30"
@@ -52,72 +97,43 @@
                 </h:inputText>
             </s:decorate>
 
-
-
-            <s:decorate id="urlRepositorioField" template="layout/edit.xhtml">
-                <ui:define name="label">Url repositorio</ui:define>
-                <h:inputTextarea id="urlRepositorio"
-                               cols="80"
-                               rows="3"
-                           required="true"
-                              value="#{gestorRepositoriosVirtualesHome.instance.urlRepositorio}"/>
-            </s:decorate>
-
-
-            <s:decorate id="usernameRepositorioField" template="layout/edit.xhtml">
-                <ui:define name="label">Username repositorio</ui:define>
-                <h:inputText id="usernameRepositorio"
-                           size="30"
-                      maxlength="30"
-                          value="#{gestorRepositoriosVirtualesHome.instance.usernameRepositorio}">
-                    <a:support event="onblur" reRender="usernameRepositorioField" bypassUpdates="true" ajaxSingle="true"/>
-                </h:inputText>
-            </s:decorate>
-
-			<h:selectOneMenu
-					value="#{gestorRepositoriosVirtualesHome.instance.tipos}"
-					id="sobrenombre" required="true" rendered="true">
-					<s:selectItems value="#{listaTiposRepositoriosVirtuales}" var="lista"
-						label="#{lista.nombre}" noSelectionLabel="SELECCIONE..." />
-					<a4j:support event="onchange" reRender="dos" />
-					<s:convertEntity />
-				</h:selectOneMenu>
+			<br/><br/><br/>
+			
 				
-            <div style="clear:both">
+            <div style="clear:both; position:absolute;">
                 <span class="required">*</span>
-                required fields
+                Campos Obligatorios
             </div>
-
+			<br/>
         </rich:panel>
-
+    <br/><br/>
 	<a4j:outputPanel id="dos">
         <div class="actionButtons">
 
             <h:commandButton id="save"
-                          value="Save"
+                          value="Guardar"
                          action="#{gestorRepositoriosVirtualesHome.persist}"
-                       disabled="#{!gestorRepositoriosVirtualesHome.wired}"
                        rendered="#{!gestorRepositoriosVirtualesHome.managed}"/>
 
             <h:commandButton id="update"
-                          value="Save"
+                          value="Guardar"
                          action="#{gestorRepositoriosVirtualesHome.update}"
                        rendered="#{gestorRepositoriosVirtualesHome.managed}"/>
 
             <h:commandButton id="delete"
-                          value="Delete"
+                          value="Eliminar"
                          action="#{gestorRepositoriosVirtualesHome.remove}"
                       immediate="true"
                        rendered="#{gestorRepositoriosVirtualesHome.managed}"/>
 
             <s:button id="cancelEdit"
-                   value="Cancel"
+                   value="Cancelar"
              propagation="end"
                     view="/GestorRepositoriosVirtuales.xhtml"
                 rendered="#{gestorRepositoriosVirtualesHome.managed}"/>
 
             <s:button id="cancelAdd"
-                   value="Cancel"
+                   value="Cancelar"
              propagation="end"
                     view="/#{empty gestorRepositoriosVirtualesFrom ? 'GestorRepositoriosVirtualesList' : gestorRepositoriosVirtualesFrom}.xhtml"
                 rendered="#{!gestorRepositoriosVirtualesHome.managed}"/>
@@ -125,7 +141,7 @@
         </div>
         </a4j:outputPanel>
     </h:form>
-
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 </ui:define>
 

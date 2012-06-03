@@ -1,106 +1,143 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:s="http://jboss.com/products/seam/taglib"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	template="layout/template2.xhtml">
 
-<ui:define name="body">
+	<ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
+	</ui:define>
 
-    <rich:panel>
-        <f:facet name="header">Gestor repositorios virtuales Details</f:facet>
+	<ui:define name="centroT">
+
+		<rich:panel>
+			<f:facet name="header">Detalles del Repositorio Virtual</f:facet>
 
 
-        <s:decorate id="descripcionRepositorio" template="layout/display.xhtml">
-            <ui:define name="label">Descripcion repositorio</ui:define>
-            <h:outputText value="#{gestorRepositoriosVirtualesHome.instance.descripcionRepositorio}"/>
-        </s:decorate>
+			<s:decorate id="descripcionRepositorio"
+				template="layout/display.xhtml" style="position:absolute;">
+				<ui:define name="label">Descripción</ui:define>
+				<h:outputText
+					value="#{gestorRepositoriosVirtualesHome.instance.descripcionRepositorio}" />
+			</s:decorate>
 
-        <s:decorate id="nombreRepositorio" template="layout/display.xhtml">
-            <ui:define name="label">Nombre repositorio</ui:define>
-            <h:outputText value="#{gestorRepositoriosVirtualesHome.instance.nombreRepositorio}"/>
-        </s:decorate>
+			<br />
+			<br />
 
-        <s:decorate id="passwordRepositorio" template="layout/display.xhtml">
-            <ui:define name="label">Password repositorio</ui:define>
-            <h:outputText value="#{gestorRepositoriosVirtualesHome.instance.passwordRepositorio}"/>
-        </s:decorate>
+			<s:decorate id="nombreRepositorio" template="layout/display.xhtml"
+				style="position:absolute;">
+				<ui:define name="label">Nombre</ui:define>
+				<h:outputText
+					value="#{gestorRepositoriosVirtualesHome.instance.nombreRepositorio}" />
+			</s:decorate>
 
-        <s:decorate id="urlRepositorio" template="layout/display.xhtml">
-            <ui:define name="label">Url repositorio</ui:define>
-            <h:outputText value="#{gestorRepositoriosVirtualesHome.instance.urlRepositorio}"/>
-        </s:decorate>
+			<br />
+			<br />
+			<s:decorate id="usernameRepositorio" template="layout/display.xhtml"
+				style="position:absolute;">
+				<ui:define name="label">Username</ui:define>
+				<h:outputText
+					value="#{gestorRepositoriosVirtualesHome.instance.usernameRepositorio}" />
+			</s:decorate>
 
-        <s:decorate id="usernameRepositorio" template="layout/display.xhtml">
-            <ui:define name="label">Username repositorio</ui:define>
-            <h:outputText value="#{gestorRepositoriosVirtualesHome.instance.usernameRepositorio}"/>
-        </s:decorate>
+			<br />
+			<br />
 
-        <div style="clear:both"/>
+			<s:decorate id="passwordRepositorio" template="layout/display.xhtml"
+				style="position:absolute;">
+				<ui:define name="label">Password</ui:define>
+				<h:outputText
+					value="#{gestorRepositoriosVirtualesHome.instance.passwordRepositorio}" />
+			</s:decorate>
 
-    </rich:panel>
+			<br />
+			<br />
+			<s:decorate id="urlRepositorio" template="layout/display.xhtml"
+				style="position:absolute;">
+				<ui:define name="label">Url</ui:define>
+				<h:outputText
+					value="#{gestorRepositoriosVirtualesHome.instance.urlRepositorio}" />
+			</s:decorate>
 
-    <div class="actionButtons">
+			<br />
+			<br />
 
-        <s:button view="/GestorRepositoriosVirtualesEdit.xhtml"
-                    id="edit"
-                 value="Edit"/>
 
-        <s:button view="/#{empty gestorRepositoriosVirtualesFrom ? 'GestorRepositoriosVirtualesList' : gestorRepositoriosVirtualesFrom}.xhtml"
-                    id="done"
-                 value="Done"/>
+			<div style="clear: both; position: absolute;" />
+			<br />
+			<br />
+			<br />
 
-    </div>
+		</rich:panel>
 
-    <rich:tabPanel switchType="ajax">
+		<div class="actionButtons">
 
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Tipos</h:panelGroup>
-        </f:facet>
-    <div class="association" id="tiposParent">
+			<s:button view="/GestorRepositoriosVirtualesEdit.xhtml" id="edit"
+				value="Editar" />
 
-        <h:outputText value="There is no tipos associated with this gestorRepositoriosVirtuales."
-                   rendered="#{gestorRepositoriosVirtualesHome.instance.tipos == null}"/>
+			<s:button
+				view="/#{empty gestorRepositoriosVirtualesFrom ? 'GestorRepositoriosVirtualesList' : gestorRepositoriosVirtualesFrom}.xhtml"
+				id="done" value="Aceptar" />
 
-        <rich:dataTable var="_tipo"
-                   value="#{gestorRepositoriosVirtualesHome.instance.tipos}"
-                rendered="#{gestorRepositoriosVirtualesHome.instance.tipos != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="tiposTable">
-            <h:column>
-                <f:facet name="header">Id tipo</f:facet>
-                <h:outputText value="#{_tipo.idTipo}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Descripcion</f:facet>
-                <h:outputText value="#{_tipo.descripcion}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nombre</f:facet>
-                <h:outputText value="#{_tipo.nombre}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo id tipo</f:facet>
-                <h:outputText value="#{_tipo.tipo.idTipo}"/>
-            </h:column>
-            <h:column styleClass="action">
-                <f:facet name="header">Action</f:facet>
-                <s:link id="viewtipo"
-                     value="View"
-                      view="/Tipo.xhtml">
-                    <f:param name="tipoIdTipo"
-                           value="#{_tipo.idTipo}"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
+		</div>
 
-    </div>
-    </rich:tab>
-</rich:tabPanel>
-</ui:define>
+		<rich:tabPanel switchType="ajax">
+
+			<rich:tab>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:graphicImage value="/img/manytoone.gif"
+							style="vertical-align: middle; padding-right: 4px;" />Tipo</h:panelGroup>
+				</f:facet>
+				<div class="association" id="tiposParent">
+
+					<h:outputText
+						value="There is no tipos associated with this gestorRepositoriosVirtuales."
+						rendered="#{gestorRepositoriosVirtualesHome.instance.tipos == null}" />
+
+					<rich:dataTable var="_tipo"
+						value="#{gestorRepositoriosVirtualesHome.instance.tipos}"
+						rendered="#{gestorRepositoriosVirtualesHome.instance.tipos != null}"
+						rowClasses="rvgRowOne,rvgRowTwo" id="tiposTable">
+						<h:column>
+							<f:facet name="header">Id tipo</f:facet>
+							<h:outputText value="#{_tipo.idTipo}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Descripcion</f:facet>
+							<h:outputText value="#{_tipo.descripcion}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nombre</f:facet>
+							<h:outputText value="#{_tipo.nombre}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Tipo id tipo</f:facet>
+							<h:outputText value="#{_tipo.tipo.idTipo}" />
+						</h:column>
+						<h:column styleClass="action">
+							<f:facet name="header">Acción</f:facet>
+							<s:link id="viewtipo" value="Ver" view="/Tipo.xhtml">
+								<f:param name="tipoIdTipo" value="#{_tipo.idTipo}" />
+							</s:link>
+						</h:column>
+					</rich:dataTable>
+
+				</div>
+			</rich:tab>
+		</rich:tabPanel>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+	</ui:define>
 
 </ui:composition>

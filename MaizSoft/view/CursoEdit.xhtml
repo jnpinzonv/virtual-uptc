@@ -1,155 +1,97 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:s="http://jboss.com/products/seam/taglib"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:a="http://richfaces.org/a4j"
-    xmlns:rich="http://richfaces.org/rich"
-    xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-    template="layout/template2.xhtml">
-    
-    <ui:define name="head">
-		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	template="layout/template2.xhtml">
+
+	<ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
 	</ui:define>
 
-<ui:define name="centroT">
+	<ui:define name="centroT">
 
-    <h:form id="curso" styleClass="edit">
+		<h:form id="curso" styleClass="edit">
 
-        <rich:panel>
-            <f:facet name="header">#{cursoHome.managed ? 'Editar' : 'Adicionar'} Curso</f:facet>
-
-
-            <s:decorate id="codigoField" template="layout/edit.xhtml" style="position:absolute;">
-                <ui:define name="label">Código</ui:define>
-                <h:inputText id="codigo"
-                       required="true"
-                       disabled="#{cursoHome.managed}"
-                          value="#{cursoHome.instance.codigo}">
-                    <a:support event="onblur" reRender="codigoField" bypassUpdates="true" ajaxSingle="true"/>
-                </h:inputText>
-            </s:decorate>
+			<rich:panel>
+				<f:facet name="header">#{cursoHome.managed ? 'Editar' : 'Adicionar'} Curso</f:facet>
 
 
-			<br/> <br/>
+				<s:decorate id="codigoField" template="layout/edit.xhtml"
+					style="position:absolute;">
+					<ui:define name="label">Código</ui:define>
+					<h:inputText id="codigo" required="true"
+						disabled="#{cursoHome.managed}"
+						value="#{cursoHome.instance.codigo}">
+						<a:support event="onblur" reRender="dos" bypassUpdates="true"
+							ajaxSingle="true" />
+					</h:inputText>
+				</s:decorate>
 
-            <s:decorate id="nombreAsignaturaField" template="layout/edit.xhtml">
-                <ui:define name="label">Nombre asignatura</ui:define>
-                <h:inputTextarea id="nombreAsignatura"
-                               cols="80"
-                               rows="2"
-                           required="true"
-                              value="#{cursoHome.instance.nombreAsignatura}"/>
-            </s:decorate>
-            
-            <br/> <br/>
-            
-            <h:selectOneMenu
-					value="#{cursoHome.instance.enteUniversitario}"
+
+				<br />
+				<br />
+
+				<s:decorate id="nombreAsignaturaField" template="layout/edit.xhtml"
+					style="position:absolute;">
+					<ui:define name="label">Nombre asignatura</ui:define>
+					<h:inputText id="nombreAsignatura" size="40" required="true"
+						value="#{cursoHome.instance.nombreAsignatura}">
+						<a4j:support event="onchange" reRender="dos" />
+					</h:inputText>
+				</s:decorate>
+
+				<br />
+				<br />
+
+				<h:outputText value="Seleccione Escuela:" />
+				<h:selectOneMenu value="#{cursoHome.instance.enteUniversitario}"
 					id="sobrenombre" required="true" rendered="true">
 					<s:selectItems value="#{listaEscuelas}" var="lista"
-						label="#{lista.nombreEnteUniversitario}" noSelectionLabel="SELECCIONE..." />
+						label="#{lista.nombreEnteUniversitario}" />
 					<a4j:support event="onchange" reRender="dos" />
 					<s:convertEntity />
-			</h:selectOneMenu>
-				
-			<br/> <br/>
-				
-            <div style="clear:both">
-                <span class="required">*</span>
-                Campos Obligatorios
-            </div>
+				</h:selectOneMenu>
 
-        </rich:panel>
+				<br />
+				<br />
+
+				<div style="clear: both; position: absolute;">
+					<span class="required">*</span> Campos Obligatorios
+				</div>
+				<br />
+				<br />
+			</rich:panel>
 			<a4j:outputPanel id="dos">
-        <div class="actionButtons">
+				<div class="actionButtons">
 
-            <h:commandButton id="save"
-                          value="Guardar"
-                         action="#{cursoHome.persist}"
-                       disabled="#{!cursoHome.wired}"
-                       rendered="#{!cursoHome.managed}"/>
+					<h:commandButton id="save" value="Guardar"
+						action="#{cursoHome.persist}" rendered="#{!cursoHome.managed}" />
 
-            <h:commandButton id="update"
-                          value="Guardar"
-                         action="#{cursoHome.update}"
-                       rendered="#{cursoHome.managed}"/>
+					<h:commandButton id="update" value="Guardar"
+						action="#{cursoHome.update}" rendered="#{cursoHome.managed}" />
 
-            <h:commandButton id="delete"
-                          value="Elimine"
-                         action="#{cursoHome.remove}"
-                      immediate="true"
-                       rendered="#{cursoHome.managed}"/>
+					<h:commandButton id="delete" value="Eliminar"
+						action="#{cursoHome.remove}" immediate="true"
+						rendered="#{cursoHome.managed}" />
 
-            <s:button id="cancelEdit"
-                   value="Cancelar"
-             propagation="end"
-                    view="/Curso.xhtml"
-                rendered="#{cursoHome.managed}"/>
+					<s:button id="cancelEdit" value="Cancelar" propagation="end"
+						view="/Curso.xhtml" rendered="#{cursoHome.managed}" />
 
-            <s:button id="cancelAdd"
-                   value="Cancelar"
-             propagation="end"
-                    view="/#{empty cursoFrom ? 'CursoList' : cursoFrom}.xhtml"
-                rendered="#{!cursoHome.managed}"/>
+					<s:button id="cancelAdd" value="Cancelar" propagation="end"
+						view="/#{empty cursoFrom ? 'CursoList' : cursoFrom}.xhtml"
+						rendered="#{!cursoHome.managed}" />
 
-        </div>
-        
-        </a4j:outputPanel>
-    </h:form>
+				</div>
 
-<rich:tabPanel switchType="ajax">
-
-   
-
-
-    <rich:tab label="Grupo cursos">
-        <h:form styleClass="association" id="grupoCursosChildren">
-
-            <h:outputText value="There are no grupoCursos associated with this curso."
-                       rendered="#{empty cursoHome.grupoCursos}"/>
-
-            <rich:dataTable value="#{cursoHome.grupoCursos}"
-                           var="_grupoCurso"
-                      rendered="#{not empty cursoHome.grupoCursos}"
-                    rowClasses="rvgRowOne,rvgRowTwo"
-                            id="grupoCursosTable">
-                <rich:column sortBy="#{_grupoCurso.idGrupo}">
-                    <f:facet name="header">Id grupo</f:facet>
-                    <h:outputText value="#{_grupoCurso.idGrupo}"/>
-                </rich:column>
-                <rich:column sortBy="#{_grupoCurso.cupos}">
-                    <f:facet name="header">Cupos</f:facet>
-                    <h:outputText value="#{_grupoCurso.cupos}"/>
-                </rich:column>
-                <rich:column sortBy="#{_grupoCurso.inscritos}">
-                    <f:facet name="header">Inscritos</f:facet>
-                    <h:outputText value="#{_grupoCurso.inscritos}"/>
-                </rich:column>
-                <rich:column sortBy="#{_grupoCurso.semestre}">
-                    <f:facet name="header">Semestre</f:facet>
-                    <h:outputText value="#{_grupoCurso.semestre}"/>
-                </rich:column>
-            </rich:dataTable>
-
-        </h:form>
-
-        <f:subview rendered="#{cursoHome.managed}" id="grupoCursos">
-        <div class="actionButtons">
-            <s:button id="addgrupoCurso"
-                   value="Adicionar grupo al Curso"
-                    view="/GrupoCursoEdit.xhtml"
-             propagation="none">
-                 <f:param name="cursoCodigo"
-                         value="#{cursoHome.instance.codigo}"/>
-                 <f:param name="grupoCursoFrom" value="Curso"/>
-            </s:button>
-        </div>
-        </f:subview>
-    </rich:tab>
-</rich:tabPanel>
-</ui:define>
+			</a4j:outputPanel>
+		</h:form>
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	</ui:define>
 
 </ui:composition>

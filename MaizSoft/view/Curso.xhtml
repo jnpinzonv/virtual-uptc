@@ -29,8 +29,17 @@
             <h:outputText value="#{cursoHome.instance.nombreAsignatura}"/>
         </s:decorate>
         
-        <br /><br/>
-
+        <br /><br/><br/>
+        
+        <h:outputText value="  Ente Universitario: " />
+        <h:outputText value="#{cursoHome.instance.enteUniversitario.nombreEnteUniversitario}" />
+		<s:link id="viewenteUniversitario"
+                     value="Ver"
+                      view="/EnteUniversitario.xhtml">
+                    <f:param name="enteUniversitarioIdEnteUniversitario"
+                           value="#{cursoHome.instance.enteUniversitario.idEnteUniversitario}"/>
+         </s:link>
+		
         <div style="clear:both"/>
 
     </rich:panel>
@@ -40,118 +49,17 @@
         <s:button view="/CursoEdit.xhtml"
                     id="edit"
                  value="Editar"/>
-
-        <s:button view="/#{empty cursoFrom ? 'CursoList' : cursoFrom}.xhtml"
-                    id="done"
-                 value="Aceptar"/>
-
-    </div>
-
-    <rich:tabPanel switchType="ajax">
-
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Ente universitario</h:panelGroup>
-        </f:facet>
-    <div class="association" id="enteUniversitarioParent">
-
-        <h:outputText value="There is no enteUniversitario associated with this curso."
-                   rendered="#{cursoHome.instance.enteUniversitario == null}"/>
-
-        <rich:dataTable var="_enteUniversitario"
-                   value="#{cursoHome.instance.enteUniversitario}"
-                rendered="#{cursoHome.instance.enteUniversitario != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="enteUniversitarioTable">
-            <h:column>
-                <f:facet name="header">Id ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.idEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Descripcion ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.descripcionEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Ente universitario id ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.enteUniversitario.idEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nombre ente universitario</f:facet>
-                <h:outputText value="#{_enteUniversitario.nombreEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo ente universitario id tipo</f:facet>
-                <h:outputText value="#{_enteUniversitario.tipoEnteUniversitario.idTipo}"/>
-            </h:column>
-            <h:column styleClass="action">
-                <f:facet name="header">Acción</f:facet>
-                <s:link id="viewenteUniversitario"
-                     value="View"
-                      view="/EnteUniversitario.xhtml">
-                    <f:param name="enteUniversitarioIdEnteUniversitario"
-                           value="#{_enteUniversitario.idEnteUniversitario}"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
-    </div>
-    </rich:tab>
-
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Grupo cursos</h:panelGroup>
-        </f:facet>
-    <h:form styleClass="association" id="grupoCursosChildren">
-
-        <h:outputText value="There are no grupoCursos associated with this curso."
-                   rendered="#{empty cursoHome.grupoCursos}"/>
-
-        <rich:dataTable value="#{cursoHome.grupoCursos}"
-                       var="_grupoCurso"
-                  rendered="#{not empty cursoHome.grupoCursos}"
-                rowClasses="rvgRowOne,rvgRowTwo"
-                        id="grupoCursosTable">
-            <rich:column sortBy="#{_grupoCurso.idGrupo}">
-                <f:facet name="header">Id grupo</f:facet>
-                <h:outputText value="#{_grupoCurso.idGrupo}"/>
-            </rich:column>
-            <rich:column sortBy="#{_grupoCurso.cupos}">
-                <f:facet name="header">Cupos</f:facet>
-                <h:outputText value="#{_grupoCurso.cupos}"/>
-            </rich:column>
-            <rich:column sortBy="#{_grupoCurso.inscritos}">
-                <f:facet name="header">Inscritos</f:facet>
-                <h:outputText value="#{_grupoCurso.inscritos}"/>
-            </rich:column>
-            <rich:column sortBy="#{_grupoCurso.semestre}">
-                <f:facet name="header">Semestre</f:facet>
-                <h:outputText value="#{_grupoCurso.semestre}"/>
-            </rich:column>
-            <h:column>
-                <f:facet name="header">Acción</f:facet>
-                <s:link id="selectgrupoCurso"
-                     value="Select"
-                      view="/GrupoCurso.xhtml">
-                    <f:param name="grupoCursoIdGrupo"
-                            value="#{_grupoCurso.idGrupo}"/>
-                    <f:param name="grupoCursoFrom" value="Curso"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
-    </h:form>
-
-    <div class="actionButtons">
+                      
         <s:button
-               value="Add grupoCurso"
+               value="Aceptar"
                 view="/GrupoCursoEdit.xhtml">
             <f:param name="cursoCodigo"
                     value="#{cursoHome.instance.codigo}"/>
             <f:param name="grupoCursoFrom" value="Curso"/>
-        </s:button>
+        </s:button>         
+
     </div>
-    </rich:tab>
-</rich:tabPanel>
+       
 </ui:define>
 
 </ui:composition>

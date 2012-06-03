@@ -11,13 +11,43 @@
 	xmlns:rich="http://richfaces.org/rich" template="template.xhtml">
 
 
-	<ui:define name="head">
+	 
+	 <ui:define name="reloj">
+		
+    	<script language="JavaScript"> 
 
-	</ui:define>
+    	function mueveReloj(){ 
+    	   	momentoActual = new Date()
+    	   	hora = momentoActual.getHours() 
+   			minuto = momentoActual.getMinutes() 
+   			segundo = momentoActual.getSeconds() 
+
+   			str_segundo = new String (segundo) 
+   			if (str_segundo.length == 1) 
+      	 		segundo = "0" + segundo 
+
+   			str_minuto = new String (minuto) 
+   			if (str_minuto.length == 1) 
+      	 		minuto = "0" + minuto 
+
+   			str_hora = new String (hora) 
+   			if (str_hora.length == 1) 
+	      	 	hora = "0" + hora 
+
+   			horaImprimible = "hora: "+hora + " : " + minuto + " : " + segundo 
+
+   			document.form_reloj.reloj.value = horaImprimible 
+
+   			setTimeout("mueveReloj()",1000) 
+} 
+</script>
+</ui:define>
+
+
 
 	<ui:define name="body">
-		<div
-			>
+	<body onload="mueveReloj()">
+		<div>
 			<ui:insert name="cabezoteT">
 				<div id="cabezote"
 					style="position: relative; background-color: #315E9F; color: white; height: 80px; margin-left: 70px; margin-right: 70px;">
@@ -87,9 +117,7 @@
 						<rich:panel>
 							<h:form id="form">
 
-								<img src="css/images/gis.png"
-									style="height: 80px; width: 80px; margin-left: 45px" />
-								<br />
+								
 								<h:commandLink value="#{credentials.username}"
 									action="/UserAccountEdit.seam" />
 								<br />
@@ -108,13 +136,13 @@
 										submitMode="none">
 										<rich:panelMenuGroup label="Mensajes" style="color: #FFFFFF;">
 											<rich:panelMenuItem label="Crear" style="color: #045491;"
-												icon="disc" />
+												action="/GestorMensajeriaEdit.seam" icon="disc" />
 											<rich:panelMenuItem label="Ver" style="color: #045491;"
-												icon="disc" />
+												action="/GestorMensajeriaEdit.seam" icon="disc" />
 										</rich:panelMenuGroup>
 										<rich:panelMenuGroup label="Administrar Usuarios"
 											style="color: #FFFFFF;">
-											<rich:panelMenuItem label="Adicionar Usuariossss"
+											<rich:panelMenuItem label="Adicionar Usuarios"
 												style="color: #045491;" icon="disc"
 												action="#{usuarioHome.crearUsuario()}"
 												rendered="#{s:hasPermission('seam.user', 'create')}" />
@@ -122,6 +150,12 @@
 												style="color: #045491;" icon="disc"
 												action="/UsuarioListEdit.seam" />
 											<rich:panelMenuItem label="Buscar Usuario"
+												style="color: #045491;" icon="disc"
+												action="/UsuarioList.seam" />
+												<rich:panelMenuItem label="Crear Cuenta Usuario"
+												style="color: #045491;" icon="disc"
+												action="/UsuarioList.seam" />
+												<rich:panelMenuItem label="Carga Masiva de Usuarios"
 												style="color: #045491;" icon="disc"
 												action="/UsuarioList.seam" />
 										</rich:panelMenuGroup>
@@ -132,11 +166,15 @@
 											<rich:panelMenuItem label="Editar Asignatura"
 												style="color: #045491;" icon="disc" action="/CursoList.seam" />
 											<rich:panelMenuItem label="Crear Grupo"
-												style="color: #045491;" icon="disc" />
+												style="color: #045491;" icon="disc" action="/GrupoCursoEdit.seam"/>
 											<rich:panelMenuItem label="Editar Grupo"
+												style="color: #045491;" icon="disc" action="/GrupoCursoList.seam"/>
+												<rich:panelMenuItem label="Adicionar usuario"
+												style="color: #045491;" icon="disc" />
+												<rich:panelMenuItem label="Carga masiva de usuarios"
 												style="color: #045491;" icon="disc" />
 										</rich:panelMenuGroup>
-										<rich:panelMenuGroup label="Administrar Facultad/Escuela"
+										<rich:panelMenuGroup label="Administrar Facultad y Escuela"
 											style="color: #FFFFFF;">
 											<rich:panelMenuItem label="Crear" style="color: #045491;"
 												icon="disc" action="/EnteUniversitarioEdit.seam" />
@@ -150,10 +188,14 @@
 											<rich:panelMenuItem label="Ver" style="color: #045491;"
 												icon="disc" />
 										</rich:panelMenuGroup>
-										<rich:panelMenuGroup label="Chat" style="color: #FFFFFF;">
-											<rich:panelMenuItem label="Chat" style="color: #045491;"
-												icon="disc" />
+										<rich:panelMenuGroup label="Administrar Repositorio"
+											style="color: #FFFFFF;">
+											<rich:panelMenuItem label="Crear" style="color: #045491;"
+												action="/GestorRepositoriosVirtualesEdit.seam" icon="disc" />
+											<rich:panelMenuItem label="Editar" style="color: #045491;"
+												 action="/GestorRepositoriosVirtualesList.seam" icon="disc"/>
 										</rich:panelMenuGroup>
+										
 									</rich:panelMenu>
 									<a4j:outputPanel ajaxRendered="true">
 										<rich:panel rendered="#{not empty panelMenuBean.current}">
@@ -187,17 +229,14 @@
 										<h:outputText value="" style="color:red" />
 									</f:facet>
 								</rich:calendar>
-								<h:commandLink value="Agregar Evento"
-									action="/GestorAgendaEdit.seam"
-									rendered="#{s:hasRole('admin') || s:hasRole('docente')}" />
 								<br />
-								<br />
-								<h:commandLink value="Ayuda" action="/GestorAgendaEdit.seam" />
-								<br />
-								<br />
+								
 								<h:commandLink value="Gestionar noticias"
 									action="/GestorNoticiasList.seam"
 									rendered="#{s:hasRole('admin')}" />
+								<br />
+								<br />
+								<h:commandLink value="Ayuda" action="/GestorAgendaEdit.seam" />
 								<br />
 							</rich:panel>
 
@@ -218,12 +257,15 @@
 			</div>
 			<ui:insert name="footerT">
 				<div id="footer" align="center"
-					style="position: relative; padding: 5px; margin-left: 70px; margin-right: 70px; width: 100%;">
+					style="position: relative; margin-left: 70px; margin-right: 70px">
 					
-					<div style="float: left;">
-						<img src="/css/images/uptc.png" style="height: 80px" />
+					<div style="float: left;margin-left: 270px">
+						<img src="css/images/uptc.png" style="height: 80px" />
 					</div>
-					<div style="position: relative;">
+					<div style="float: right; margin-right: 270px">
+						<img src="css/images/gis.png" style="height: 80px" />
+					</div>
+					<div style="position: relative;">						
 						<p>
 							Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
 							<br /> Facultad de Ingenier&#237;a <br /> Ingenier&#237;a de
@@ -231,13 +273,12 @@
 							en Ingenier&#237;a del Software <br /> Correo:gis@uptc.edu.co
 						</p>
 					</div>
-					<div style="float: right:;">
-						<img src="///css/images/gis.png" style="height: 80px" />
-					</div>
+					
 
 				</div>
 			</ui:insert>
 		</div>
+	</body>	
 	</ui:define>
 
 </ui:composition>

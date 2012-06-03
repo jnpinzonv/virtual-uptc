@@ -14,12 +14,12 @@
 		<link href="css/default.css" rel="stylesheet" type="text/css" />	
 	</ui:define>
 	
-	<ui:define name="centroT">		
+	<ui:define name="centroT">	 	
 				
 					<h:form id="usuarioSearch" styleClass="edit">
 
-						<rich:simpleTogglePanel label="Buscar Usuario" switchType="ajax">
-
+						<rich:simpleTogglePanel label="Buscar Usuario">
+							
 							<s:decorate template="layout/display.xhtml">
 								<ui:define name="label">Apellidos</ui:define>
 								<h:inputText id="apellidos"
@@ -43,6 +43,12 @@
 								<h:inputText id="segundoNombre"
 									value="#{usuarioList.usuario.segundoNombre}" />
 							</s:decorate>
+							
+							<s:decorate template="layout/display.xhtml">
+								<ui:define name="label">Código</ui:define>
+								<h:inputText id="codigo"
+									value="#{usuarioList.usuario.codigoUsuarios}" />
+							</s:decorate>
 
 							<s:decorate template="layout/display.xhtml">
 								<ui:define name="label">Buscar por:</ui:define>
@@ -61,12 +67,7 @@
 								action="/UsuarioList.xhtml" />
 							<s:button id="reset" value="Limpiar Campos"
 								includePageParams="false" />
-						</div>
-
-						<br/> <br/><br/> <br/><br />
-							<br />
-							<br />
-							<br />
+						</div>										
 
 					<rich:panel>
 						<f:facet name="header">Resultados de busqueda de usuario (#{empty usuarioList.resultList ? 0 : (usuarioList.paginated ? usuarioList.resultCount : usuarioList.resultList.size)})</f:facet>
@@ -77,9 +78,8 @@
 								rendered="#{empty usuarioList.resultList}" />
 
 							<rich:scrollableDataTable id="usuarioList" var="_usuario"
-								value="#{usuarioList.resultList}"
-								
-								height="220px" width="650px">
+								value="#{usuarioList.resultList}"								
+								height="150px">
 								<h:column>
 									<f:facet name="header">
 										<ui:include src="layout/sort.xhtml">
@@ -122,7 +122,17 @@
 									</f:facet>
 									<h:outputText value="#{_usuario.correoElectronico}" />
 								</h:column>
-								
+								<h:column>
+									<f:facet name="header">
+										<ui:include src="layout/sort.xhtml">
+											<ui:param name="entityList" value="#{usuarioList}" />
+											<ui:param name="propertyLabel" value="Código" />
+											<ui:param name="propertyPath"
+												value="usuario.codigoUsuarios" />
+										</ui:include>
+									</f:facet>
+									<h:outputText value="#{_usuario.codigoUsuarios}" />
+								</h:column>
 								<h:column>
 									<f:facet name="header">
 										<ui:include src="layout/sort.xhtml">
@@ -189,7 +199,7 @@
 							<f:param name="firstResult"
 								value="#{usuarioList.lastFirstResult}" />
 						</s:link>
-						<br /> <br /> <br /><br /> <br /><br /><br /> 
+						<br /> 
 					</div>
 					</h:form>				
 	</ui:define>

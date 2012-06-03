@@ -16,7 +16,7 @@
         <rich:panel>
             <f:facet name="header">#{gestorMensajeriaHome.managed ? 'Edit' : 'Add'} Gestor mensajeria</f:facet>
 
-
+			<br/> <br/>
 
             <s:decorate id="asuntoField" template="layout/edit.xhtml">
                 <ui:define name="label">Asunto</ui:define>
@@ -53,38 +53,38 @@
 
             <div style="clear:both">
                 <span class="required">*</span>
-                required fields
+                Campos Obligatorios
             </div>
 
         </rich:panel>
-
+		
         <div class="actionButtons">
-
+			<br/> <br/> 
             <h:commandButton id="save"
-                          value="Save"
+                          value="Guardar"
                          action="#{gestorMensajeriaHome.persist}"
                        disabled="#{!gestorMensajeriaHome.wired}"
                        rendered="#{!gestorMensajeriaHome.managed}"/>
 
             <h:commandButton id="update"
-                          value="Save"
+                          value="Guardar"
                          action="#{gestorMensajeriaHome.update}"
                        rendered="#{gestorMensajeriaHome.managed}"/>
 
             <h:commandButton id="delete"
-                          value="Delete"
+                          value="Eliminar"
                          action="#{gestorMensajeriaHome.remove}"
                       immediate="true"
                        rendered="#{gestorMensajeriaHome.managed}"/>
 
             <s:button id="cancelEdit"
-                   value="Cancel"
+                   value="Cancelar"
              propagation="end"
                     view="/GestorMensajeria.xhtml"
                 rendered="#{gestorMensajeriaHome.managed}"/>
 
             <s:button id="cancelAdd"
-                   value="Cancel"
+                   value="Cancelar"
              propagation="end"
                     view="/#{empty gestorMensajeriaFrom ? 'GestorMensajeriaList' : gestorMensajeriaFrom}.xhtml"
                 rendered="#{!gestorMensajeriaHome.managed}"/>
@@ -326,7 +326,7 @@
                 <f:param name="from" value="GestorMensajeriaEdit"/>
             </s:button>
         </div>
-
+			<br/><br/><br/>
     </div>
     </rich:tab>
 </rich:tabPanel>

@@ -115,7 +115,7 @@ public class UsuarioHome extends EntityHome<Usuario> {
 		return "/UsuarioEdit.xhtml";
 	}
 
-	@Factory("listaEscuelasCurso")
+	@Factory("listaEntesUniversitariosEscuelas")
 	public List<EnteUniversitario> listaEntesUniversitarios() {
 		Query q = getEntityManager()
 				.createQuery(
@@ -125,6 +125,8 @@ public class UsuarioHome extends EntityHome<Usuario> {
 		return listaEntesUniversitarios;
 
 	}
+	
+	
 	
 	
 	@Factory("listaTiposDocumento")

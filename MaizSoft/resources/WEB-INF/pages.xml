@@ -66,11 +66,18 @@
 		</redirect>
 	</exception>
 
-	<page view-id="/UsuarioEdit.xhtml"
-		login-required="true"  action="#{userAction.createUser}">
+	<page view-id="/UsuarioEdit.xhtml" login-required="true"
+		action="#{userAction.createUser}">
 		<navigation from-action="#{s:hasPermission('seam.user', 'create')}">
 			<redirect view-id="/UsuarioEdit.xhtml" />
 		</navigation>
 	</page>
+
+
+	<page view-id="/admin/*" login-required="true">
+		<restrict>#{s:hasRole('admin')}</restrict>
+	</page>
+
+	
 
 </pages>

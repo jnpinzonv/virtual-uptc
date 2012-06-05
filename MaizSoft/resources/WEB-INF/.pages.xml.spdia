@@ -72,4 +72,6 @@
   <output ID="/UsuarioEdit.xhtml" NAME="output"
    PATH="/UsuarioEdit.xhtml" TARGET="#xUsuarioEdit.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
  </item>
+ <item ID="#admin#*" NAME="#xadmin#x*" PATH="/admin/*"
+  SHAPE="664,953,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
 </diagram>

@@ -61,11 +61,9 @@
 	<web:multipart-filter create-temp-files="true"
 		max-request-size="1000000" url-pattern="*.seam" />
 
-	<core:resource-loader>
-		<core:bundle-names>
-			<value>variablesentorno</value>			 
-		</core:bundle-names>
-	</core:resource-loader>
+	<event type="org.jboss.seam.postAuthenticate">
+		<action execute="#{authenticator.returnTo}" />
+	</event>
 
 
 </components>

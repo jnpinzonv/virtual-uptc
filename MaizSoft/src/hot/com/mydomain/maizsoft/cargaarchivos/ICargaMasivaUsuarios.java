@@ -1,12 +1,18 @@
 package com.mydomain.maizsoft.cargaarchivos;
 
 import javax.ejb.Local;
+import javax.ejb.Remote;
 
 @Local
 public interface ICargaMasivaUsuarios {
 	// seam-gen method
 	public void cargaMasivaUsuarios();
 
-	// add additional interface methods here
+	/**
+	 * @return the rutaCargaUsuarios
+	 */
+	public String getRutaCargaUsuarios();
+	
+	public void setRutaCargaUsuarios(String rutaCargaUsuarios);
 
 }

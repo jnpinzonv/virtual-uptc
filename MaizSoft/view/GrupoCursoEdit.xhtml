@@ -22,11 +22,11 @@
 
 
             <s:decorate id="idGrupoField" template="layout/edit.xhtml" style="position:absolute;">
-                <ui:define name="label">Id grupo</ui:define>
+                <ui:define name="label">Código grupo</ui:define>
                 <h:inputText id="idGrupo"
                        required="true"
                        disabled="#{grupoCursoHome.managed}"
-                          value="#{grupoCursoHome.instance.idGrupo}">
+                          value="#{grupoCursoHome.instance.codigoGrupo}">
                     <a:support event="onblur" reRender="idGrupoField" bypassUpdates="true" ajaxSingle="true"/>
                 </h:inputText>
             </s:decorate>

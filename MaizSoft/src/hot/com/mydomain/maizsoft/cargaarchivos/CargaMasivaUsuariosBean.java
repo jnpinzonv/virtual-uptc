@@ -15,15 +15,25 @@ import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
+import org.jboss.seam.security.management.action.UserAction;
 
+import com.mydomain.Directorio.model.Usuario;
+
+
+@Name("cargaMasivaUsuariosBean")
 @Stateless
-@Name("CargaMasivaUsuarios")
 public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 	@Logger
 	private Log log;
 
 	@In
 	StatusMessages statusMessages;
+	@In(create=true)
+	private UserAction userAction;
+	@In(create=true)
+	private Usuario usuario;
+	
+	private String rutaCargaUsuarios;
 
 	public void cargaMasivaUsuarios() {
 		// implement your business logic here
@@ -31,12 +41,12 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 		statusMessages.add("cargaMasivaUsuarios");
 
 		//Ubicaci�n del archivo XLS
-		String archivo = "C:/Users/Nicolas/Desktop/pruebaMasiva.xls";
+		//String archivo = "C:/Users/Nicolas/Desktop/pruebaMasiva.xls";
 
 		//Creamos un Workbook para cargar el XLS en memoria 
 		Workbook workbook = null;
 		try {
-			workbook = Workbook.getWorkbook(new File(archivo));
+			workbook = Workbook.getWorkbook(new File(rutaCargaUsuarios));
 			//Elegimos la primera hoja
 			Sheet sheet = workbook.getSheet(0);
 			//inicializo el objeto que leer� el valor de la celda
@@ -46,8 +56,10 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 
 			//Obtengo el n�mero de filas ocupadas en la hoja
 			int rows = sheet.getRows();
+			System.out.println(rows+"filasssssssssss");
 			//Obtengo el n�mero de columnas ocupadas en la hoja
 			int cols = sheet.getColumns();
+			System.out.println(cols+"colssssssssssssss");
 
 			//Para efectos de ejemplo recorremos las columnas de cada fila
 			for (int x = 0; x < rows; x++) {
@@ -56,9 +68,9 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 					celdaCurso = sheet.getCell(y, x);
 					//Obtenemos el valor de la celda
 					valorCeldaCurso = celdaCurso.getContents();
-					System.out.print(valorCeldaCurso + "|");
+					//userAction.setPassword()
 				}
-				System.out.println("");
+				
 
 			}
 
@@ -72,6 +84,27 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 		}
 
 	}
+	
+	public void preCargaUsuarios(){
+		
+	}
+
+	/**
+	 * @return the rutaCargaUsuarios
+	 */
+	public String getRutaCargaUsuarios() {
+		return rutaCargaUsuarios;
+	}
+
+	/**
+	 * @param rutaCargaUsuarios the rutaCargaUsuarios to set
+	 */
+	public void setRutaCargaUsuarios(String rutaCargaUsuarios) {
+		this.rutaCargaUsuarios = rutaCargaUsuarios;
+	}
+	
+	
+	
 
 	// add additional action methods
 

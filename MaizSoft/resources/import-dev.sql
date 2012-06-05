@@ -39,6 +39,7 @@ insert into user_role_group (role_id, member_of_role) values (1, 2);
 insert into user_role_group (role_id, member_of_role) values (1, 3);
 
 insert into configuraciones_sistema(id,nombre_propiedad,detalles_propiedades) values(1,'pathArchivos','C://archivos');
+insert into configuraciones_sistema(id,nombre_propiedad,detalles_propiedades) values(2,'pathArchivosExcel','archivosCargasExcel');
 
 
 

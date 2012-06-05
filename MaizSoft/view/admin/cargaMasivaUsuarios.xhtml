@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich"
+	template="../layout/template2.xhtml">
+
+	<style>
+.top {
+	vertical-align: top;
+}
+
+.info {
+	height: 202px;
+	overflow: auto;
+}
+</style>
+	<ui:define name="centroT">
+		
+
+			<rich:panel>
+				<f:facet name="header">cargaMasivaUsuarios</f:facet>
+
+				<h:form id="fooForm" enctype="multipart/form-data">
+
+					<s:fileUpload id="file" data="#{uploadHandler.file}"
+						accept="image/jpg" fileName="#{uploadHandler.nombreArchivo}" />
+
+					<h:commandButton id="upload" value="Upload !!"
+						action="#{uploadHandler.handleUpload}" />
+
+				</h:form>
+
+			</rich:panel>
+
+		</ui:define>
+</ui:composition>

@@ -45,8 +45,7 @@ public class FileUploadBean implements IFileUpload{
     }
     public void listener(UploadEvent event) throws Exception{
         UploadItem item = event.getUploadItem();
-        File file = new File();
-        System.out.println((item.getData()==null)+"-------->");
+        File file = new File();       
         file.setLength(item.getData().length);
         file.setName(item.getFileName());
         file.setData(item.getData());

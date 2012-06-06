@@ -199,12 +199,6 @@ public class GrupoCurso {
 	 */
 	public void setSemestre(String semestre) {
 		this.semestre = semestre;
-	}
-
-	
-	
-	
-	
-	
+	}	
 
 }

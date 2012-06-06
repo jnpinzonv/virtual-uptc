@@ -21,6 +21,7 @@ import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 import org.hibernate.validator.Pattern;
+import org.jboss.seam.annotations.Name;
 
 
 
@@ -29,6 +30,7 @@ import org.hibernate.validator.Pattern;
  *@Version${date}
  */
 @Entity
+@Name("usuario")
 @Table(name ="usuarios")
 public class Usuario{
 

@@ -38,6 +38,7 @@
 	</exception>
 
 	<exception class="org.jboss.seam.security.AuthorizationException">
+	<end-conversation/>
 		<redirect view-id="/error.xhtml">
 			<message severity="error">You don't have permission to access this resource</message>
 		</redirect>
@@ -74,8 +75,23 @@
 	</page>
 
 
-	<page view-id="/admin/*" login-required="true">
-		<restrict>#{s:hasRole('admin')}</restrict>
+	<page view-id="/admin/*" login-required="true"
+		action="#{authorizationAdminController.forceCheckAdminAuthorization}">
+	</page>
+	
+
+	
+	<page view-id="/docente/*" login-required="true"
+		action="#{authorizationAdminController.forceCheckDocenteAuthorization}">
+	</page>
+	
+	
+	<page view-id="/estudiante/*" login-required="true"
+		action="#{authorizationAdminController.forceCheckEstudianteAuthorization}">
+	</page>
+	
+	<page view-id="/visitante/*" login-required="true"
+		action="#{authorizationAdminController.forceCheckVisitanteAuthorization}">
 	</page>
 
 	

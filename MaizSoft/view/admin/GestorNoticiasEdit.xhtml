@@ -8,10 +8,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://richfaces.org/a4j"
 	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-	xmlns:rich="http://richfaces.org/rich" template="layout/template2.xhtml">
+	xmlns:rich="http://richfaces.org/rich" template="../layout/template2.xhtml">
 	
 	<ui:define name="head">
-		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+		<link href="../css/default.css" rel="stylesheet" type="../text/css" />	
 	</ui:define>
 	
 	<ui:define name="centroT">
@@ -20,7 +20,7 @@
 						<rich:panel>
 							<f:facet name="header">#{gestorNoticiasHome.managed ? 'Editar' : 'Adicionar'} noticias</f:facet>
 							<br/><br/>
-							<s:decorate id="nombreNoticiaField" template="layout/edit.xhtml"
+							<s:decorate id="nombreNoticiaField" template="../layout/edit.xhtml"
 								style="position:absolute;">
 								<ui:define name="label">Titulo</ui:define>
 								<h:inputText id="nombreNoticia" size="50"
@@ -34,7 +34,7 @@
 							<br />
 
 							
-							<s:decorate id="descripcionField" template="layout/edit.xhtml"
+							<s:decorate id="descripcionField" template="../layout/edit.xhtml"
 								style="position:absolute;">
 								<ui:define name="label">Noticia</ui:define>
 								<h:inputTextarea id="descripcion" required="true" cols="70" rows="4"
@@ -77,7 +77,7 @@
 								rendered="#{gestorNoticiasHome.managed}" />
 
 							<s:button id="cancelEdit" value="Cancelar" propagation="end"
-								view="/GestorNoticias.xhtml"
+								view="/admin/GestorNoticias.xhtml"
 								rendered="#{gestorNoticiasHome.managed}" />
 
 							<s:button id="cancelAdd" value="Cancelar" propagation="end"

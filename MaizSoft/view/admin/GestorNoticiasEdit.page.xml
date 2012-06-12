@@ -16,21 +16,21 @@
    <navigation from-action="#{gestorNoticiasHome.persist}">
       <rule if-outcome="persisted">
          <end-conversation/>
-         <redirect view-id="/GestorNoticias.xhtml"/>
+         <redirect view-id="/admin/GestorNoticias.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{gestorNoticiasHome.update}">
       <rule if-outcome="updated">
          <end-conversation/>
-         <redirect view-id="/GestorNoticias.xhtml"/>
+         <redirect view-id="/admin/GestorNoticias.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{gestorNoticiasHome.remove}">
       <rule if-outcome="removed">
          <end-conversation/>
-         <redirect view-id="/GestorNoticiasList.xhtml"/>
+         <redirect view-id="/admin/GestorNoticiasList.xhtml"/>
       </rule>
    </navigation>
 

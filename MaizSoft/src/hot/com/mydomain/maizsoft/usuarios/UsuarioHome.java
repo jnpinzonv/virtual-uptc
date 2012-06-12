@@ -112,7 +112,7 @@ public class UsuarioHome extends EntityHome<Usuario> {
 	
 	public String crearUsuario(){
 		userAction.createUser();
-		return "/UsuarioEdit.xhtml";
+		return "/admin/UsuarioEdit.xhtml";
 	}
 
 	@Factory("listaEntesUniversitariosEscuelas")
@@ -125,9 +125,7 @@ public class UsuarioHome extends EntityHome<Usuario> {
 		return listaEntesUniversitarios;
 
 	}
-	
-	
-	
+		
 	
 	@Factory("listaTiposDocumento")
 	public List<Tipo> listaTiposEntesUniversitarios() {

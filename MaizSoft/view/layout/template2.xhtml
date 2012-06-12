@@ -57,13 +57,13 @@
 						<h:form>
 							<h:outputText value="MaizSoft"></h:outputText>
 							<h:outputText value="..." style="color:#315E9F"></h:outputText>
-							<h:commandButton image="css/images/calendario.png"
+							<h:commandButton image="/css/images/calendario.png"
 								style="width:30px" />
 							<h:outputText value=".." style="color:#315E9F"></h:outputText>
 							<h:commandButton action="/GestorMensajeriaEdit.xhtml"
-								image="css/images/mensajes.png" style="width:30px" />
+								image="/css/images/mensajes.png" style="width:30px" />
 							<h:outputText value=".." style="color:#315E9F"></h:outputText>
-							<h:commandButton image="css/images/actualizacion.png"
+							<h:commandButton image="/css/images/actualizacion.png"
 								style="width:30px" />
 							<br />
 							<br />
@@ -102,7 +102,7 @@
 								onBlur="if (this.value == '') {this.value = 'Buscar...';}" />
 
 							<h:commandButton class="searchbutton"
-								image="css/images/buscar.png" style="width:24px" />
+								image="/css/images/buscar.png" style="width:24px" />
 						</form>
 					</div>
 
@@ -143,8 +143,16 @@
 										<rich:panelMenuGroup label="Administrar Usuarios"
 											style="color: #FFFFFF;">
 											<rich:panelMenuItem label="Adicionar Usuarios"
-												style="color: #045491;" icon="disc"
+												style="color: #045491;" icon="disc" onclick="this.disabled=true" 
+												oncomplete="this.disabled=false"
 												action="#{usuarioHome.crearUsuario()}"
+												rendered="#{s:hasPermission('seam.user', 'create')}" />
+												
+												<rich:panelMenuItem label="Carga Masiva Usuarios"
+												style="color: #045491;" icon="disc"
+												onclick="this.disabled=true" 
+												oncomplete="this.disabled=false"
+												action="#{cargaMasivaUsuariosBean.crearUsuario()}"
 												rendered="#{s:hasPermission('seam.user', 'create')}" />
 											<rich:panelMenuItem label="Eliminar / Editar Usuario"
 												style="color: #045491;" icon="disc"
@@ -162,11 +170,11 @@
 										<rich:panelMenuGroup label="Administrar Curso"
 											style="color: #FFFFFF;">
 											<rich:panelMenuItem label="Crear Asignatura"
-												style="color: #045491;" icon="disc" action="/CursoEdit.seam" />
+												style="color: #045491;" icon="disc" action="/admin/CursoEdit.seam" />
 											<rich:panelMenuItem label="Editar Asignatura"
 												style="color: #045491;" icon="disc" action="/CursoList.seam" />
 											<rich:panelMenuItem label="Crear Grupo"
-												style="color: #045491;" icon="disc" action="/GrupoCursoEdit.seam"/>
+												style="color: #045491;" icon="disc" action="/admin/GrupoCursoEdit.seam"/>
 											<rich:panelMenuItem label="Editar Grupo"
 												style="color: #045491;" icon="disc" action="/GrupoCursoList.seam"/>
 												<rich:panelMenuItem label="Adicionar usuario"
@@ -177,7 +185,7 @@
 										<rich:panelMenuGroup label="Administrar Facultad y Escuela"
 											style="color: #FFFFFF;">
 											<rich:panelMenuItem label="Crear" style="color: #045491;"
-												icon="disc" action="/EnteUniversitarioEdit.seam" />
+												icon="disc" action="/admin/EnteUniversitarioEdit.seam" />
 											<rich:panelMenuItem label="Editar" style="color: #045491;"
 												icon="disc" action="/EnteUniversitarioList.seam" />
 										</rich:panelMenuGroup>
@@ -204,12 +212,7 @@
 										</rich:panel>
 									</a4j:outputPanel>
 								</h:panelGrid>
-								<rich:separator height="2" lineType="dotted" />
-								<br />
-								<s:link id="menuLogoutId" action="#{identity.logout}"
-									view="/login.seam" value="Salir"
-									rendered="#{identity.loggedIn}" propagation="none"
-									style="color: #3B5999" />
+								
 							</h:form>
 
 						</rich:panel>
@@ -260,10 +263,11 @@
 					style="position: relative; margin-left: 70px; margin-right: 70px">
 					
 					<div style="float: left;margin-left: 270px">
-						<img src="css/images/uptc.png" style="height: 80px" />
+						<img src="../css/images/uptc.png" style="height: 80px" />
 					</div>
+					
 					<div style="float: right; margin-right: 270px">
-						<img src="css/images/gis.png" style="height: 80px" />
+						<img src="../css/images/gis.png" style="height: 80px" />
 					</div>
 					<div style="position: relative;">						
 						<p>

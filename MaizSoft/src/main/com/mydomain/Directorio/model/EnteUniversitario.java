@@ -36,6 +36,8 @@ public class EnteUniversitario {
 		
 	private EnteUniversitario enteUniversitario;
 	
+	private String codigoEnteUniversitario;
+	
 	private Set<EnteUniversitario> listaEnteUniversitarios;
 	
 	private Tipo tipoEnteUniversitario;
@@ -90,6 +92,23 @@ public class EnteUniversitario {
 	 */
 	public void setDescripcionEnteUniversitario(String descripcionEnteUniversitario) {
 		this.descripcionEnteUniversitario = descripcionEnteUniversitario;
+	}
+	
+	
+	
+
+	/**
+	 * @return the codigoEnteUniversitario
+	 */
+	public String getCodigoEnteUniversitario() {
+		return codigoEnteUniversitario;
+	}
+
+	/**
+	 * @param codigoEnteUniversitario the codigoEnteUniversitario to set
+	 */
+	public void setCodigoEnteUniversitario(String codigoEnteUniversitario) {
+		this.codigoEnteUniversitario = codigoEnteUniversitario;
 	}
 
 	/**

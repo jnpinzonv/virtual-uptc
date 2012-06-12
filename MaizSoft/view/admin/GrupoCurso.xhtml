@@ -6,10 +6,10 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:rich="http://richfaces.org/rich"
-    template="layout/template2.xhtml">
+    template="../layout/template2.xhtml">
     
     <ui:define name="head">
-		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+		<link href="../css/default.css" rel="stylesheet" type="../text/css" />	
 	</ui:define>
 
 <ui:define name="centroT">
@@ -17,28 +17,28 @@
     <rich:panel>
         <f:facet name="header">Detalles del Grupo</f:facet>
 
-        <s:decorate id="idGrupo" template="layout/display.xhtml" tyle="position:absolute;">
+        <s:decorate id="idGrupo" template="../layout/display.xhtml" tyle="position:absolute;">
             <ui:define name="label">Id grupo</ui:define>
             <h:outputText value="#{grupoCursoHome.instance.idGrupo}"/>
         </s:decorate>
 		
 		<br/> <br/>
 		
-        <s:decorate id="cupos" template="layout/display.xhtml" tyle="position:absolute;">
+        <s:decorate id="cupos" template="../layout/display.xhtml" tyle="position:absolute;">
             <ui:define name="label">Cupos</ui:define>
             <h:outputText value="#{grupoCursoHome.instance.cupos}"/>
         </s:decorate>
         
         <br/> <br/>
 
-        <s:decorate id="inscritos" template="layout/display.xhtml" tyle="position:absolute;">
+        <s:decorate id="inscritos" template="../layout/display.xhtml" tyle="position:absolute;">
             <ui:define name="label">Inscritos</ui:define>
             <h:outputText value="#{grupoCursoHome.instance.inscritos}"/>
         </s:decorate>
         
         <br/> <br/>
 
-        <s:decorate id="semestre" template="layout/display.xhtml" tyle="position:absolute;">
+        <s:decorate id="semestre" template="../layout/display.xhtml" tyle="position:absolute;">
             <ui:define name="label">Semestre</ui:define>
             <h:outputText value="#{grupoCursoHome.instance.semestre}"/>
         </s:decorate>
@@ -51,7 +51,7 @@
 
     <div class="actionButtons">
 
-        <s:button view="/GrupoCursoEdit.xhtml"
+        <s:button view="admin/GrupoCursoEdit.xhtml"
                     id="edit"
                  value="Editar"/>
 

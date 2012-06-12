@@ -7,10 +7,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://richfaces.org/a4j"
 	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-	xmlns:rich="http://richfaces.org/rich" template="layout/template2.xhtml">
+	xmlns:rich="http://richfaces.org/rich" template="../layout/template2.xhtml">
 	
 	<ui:define name="head">
-		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+		<link href="../css/default.css" rel="stylesheet" type="../text/css" />	
 	</ui:define>
 
 	<ui:define name="centroT">
@@ -20,7 +20,7 @@
 						<rich:panel>
 							<f:facet name="header">#{usuarioHome.managed ? 'Editar' : 'Adicionar'} Usuario</f:facet>
 
-							<s:decorate id="primerNombreField" template="layout/edit.xhtml"
+							<s:decorate id="primerNombreField" template="../layout/edit.xhtml"
 								style="position:absolute;">
 								<ui:define name="label">Primer nombre</ui:define>
 								<h:inputText id="primerNombre" required="true" size="30"
@@ -32,7 +32,7 @@
 
 							<br />
 							<br />
-							<s:decorate id="segundoNombreField" template="layout/edit.xhtml"
+							<s:decorate id="segundoNombreField" template="../layout/edit.xhtml"
 								style="position:absolute;">
 								<ui:define name="label">Segundo nombre</ui:define>
 								<h:inputText id="segundoNombre" size="30" maxlength="35"
@@ -45,7 +45,7 @@
 							<br />
 
 
-							<s:decorate id="apellidosField" template="layout/edit.xhtml"
+							<s:decorate id="apellidosField" template="../layout/edit.xhtml"
 								style="position:absolute;">
 								<ui:define name="label">Apellidos</ui:define>
 								<h:inputText id="apellidos" required="true" size="30"
@@ -57,7 +57,7 @@
 
 							<br />
 							<br />
-							<s:decorate id="tipoDocumento" template="layout/edit.xhtml"
+							<s:decorate id="tipoDocumento" template="../layout/edit.xhtml"
 								style="position:absolute;">
 								<ui:define name="label">Tipo Documento identidad</ui:define>
 								<h:selectOneMenu value="#{usuarioHome.instance.tipo}"
@@ -74,7 +74,7 @@
 							<br />
 
 							<s:decorate id="documentoIdentidadField"
-								template="layout/edit.xhtml" style="position:absolute;">
+								template="../layout/edit.xhtml" style="position:absolute;">
 								<ui:define name="label">Documento identidad</ui:define>
 								<h:inputText id="documentoIdentidad" required="true" size="30"
 									maxlength="35"
@@ -89,7 +89,7 @@
 							<br />
 
 							<s:decorate id="correoElectronicoField"
-								template="layout/edit.xhtml" style="position:absolute;">
+								template="../layout/edit.xhtml" style="position:absolute;">
 								<ui:define name="label">Correo electronico</ui:define>
 								<h:inputText id="correoElectronico" required="true" size="30"
 									maxlength="35"
@@ -102,7 +102,7 @@
 							<br />
 
 
-							<s:decorate id="codigoField" template="layout/edit.xhtml"
+							<s:decorate id="codigoField" template="../layout/edit.xhtml"
 								style="position:absolute;">
 								<ui:define name="label">Código</ui:define>
 								<h:inputText id="apellidos" required="true" size="30"
@@ -114,7 +114,7 @@
 
 							<br />
 							<br />
-							<s:decorate id="facultad" template="layout/edit.xhtml"
+							<s:decorate id="facultad" template="../layout/edit.xhtml"
 								style="position:absolute;">
 								<ui:define name="label">Escuela</ui:define>
 								<h:selectOneMenu
@@ -129,7 +129,7 @@
 
 							<br />
 							<br />
-							<s:decorate id="usernameField" template="/layout/edit.xhtml"
+							<s:decorate id="usernameField" template="../layout/edit.xhtml"
 								style="position:absolute;">
 								<ui:define name="label">Username</ui:define>
 								<h:inputText id="username" value="#{userAction.username}"
@@ -137,7 +137,7 @@
 							</s:decorate>
 							<br />
 							<br />
-							<s:decorate id="passwordField" template="/layout/edit.xhtml"
+							<s:decorate id="passwordField" template="../layout/edit.xhtml"
 								style="position:absolute;">
 								<ui:define name="label">Password</ui:define>
 								<h:inputSecret id="password" value="#{userAction.password}"
@@ -145,7 +145,7 @@
 							</s:decorate>
 							<br />
 							<br />
-							<s:decorate id="confirmField" template="/layout/edit.xhtml"
+							<s:decorate id="confirmField" template="../layout/edit.xhtml"
 								style="position:absolute;">
 								<ui:define name="label">Confirmar password</ui:define>
 								<h:inputSecret id="confirm" value="#{userAction.confirm}"
@@ -154,14 +154,14 @@
 							<br />
 							<br />
 							<br />
-							<s:decorate id="enabledField" template="/layout/edit.xhtml" style="position:absolute;">
+							<s:decorate id="enabledField" template="../layout/edit.xhtml" style="position:absolute;">
 								<ui:define name="label">Habilitar Usuario</ui:define>
 								<h:selectBooleanCheckbox id="enabled"
 									value="#{userAction.enabled}" />
 							</s:decorate>
 							<br />
 							<br />
-							<s:decorate id="rolesField" template="/layout/edit.xhtml"
+							<s:decorate id="rolesField" template="../layout/edit.xhtml"
 								style="position:absolute;">
 								<ui:define name="label">Roles</ui:define>
 								<div class="selectOne">
@@ -179,7 +179,7 @@
 							<br />
 							<br />
 							<br />
-							<s:decorate id="fotoUserField" template="layout/edit.xhtml"
+							<s:decorate id="fotoUserField" template="../layout/edit.xhtml"
 								style="position:absolute;">
 								<ui:define name="label">Foto:</ui:define>
 								<br />

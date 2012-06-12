@@ -14,5 +14,10 @@ public interface ICargaMasivaUsuarios {
 	public String getRutaCargaUsuarios();
 	
 	public void setRutaCargaUsuarios(String rutaCargaUsuarios);
+	
+	public void saveUsuarios() throws Exception;
+	
+	public String crearUsuario();
+	
 
 }

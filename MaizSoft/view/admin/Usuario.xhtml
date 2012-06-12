@@ -7,10 +7,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://richfaces.org/a4j"
 	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-	xmlns:rich="http://richfaces.org/rich" template="layout/template2.xhtml">
+	xmlns:rich="http://richfaces.org/rich" template="../layout/template2.xhtml">
 	
 	<ui:define name="head">
-		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+		<link href="../css/default.css" rel="stylesheet" type="../text/css" />	
 	</ui:define>
 	
 	<ui:define name="centroT">
@@ -18,14 +18,14 @@
 					<rich:panel>
 						<f:facet name="header">Detalles de Usuario</f:facet>
 						
-						<s:decorate id="primerNombre" template="layout/display.xhtml" style="position:absolute;">
+						<s:decorate id="primerNombre" template="../layout/display.xhtml" style="position:absolute;">
 							<ui:define name="label">Primer nombre</ui:define>
 							<h:outputText value="#{usuarioHome.instance.primerNombre}"/>
 						</s:decorate>
 						
 						<br />
 						<br />
-						<s:decorate id="segundoNombre" template="layout/display.xhtml" style="position:absolute;">
+						<s:decorate id="segundoNombre" template="../layout/display.xhtml" style="position:absolute;">
 							<ui:define name="label">Segundo nombre</ui:define>
 							<h:outputText value="#{usuarioHome.instance.segundoNombre}" />
 						</s:decorate>
@@ -33,7 +33,7 @@
 						<br />
 						<br />
 
-						<s:decorate id="apellidos" template="layout/display.xhtml" style="position:absolute;">
+						<s:decorate id="apellidos" template="../layout/display.xhtml" style="position:absolute;">
 							<ui:define name="label">Apellidos</ui:define>
 							<h:outputText value="#{usuarioHome.instance.apellidos}" />
 						</s:decorate>
@@ -41,38 +41,38 @@
 						<br />
 						<br />
 						<s:decorate id="tipoDocumentoIdentidad"
-							template="layout/display.xhtml" style="position:absolute;">
+							template="../layout/display.xhtml" style="position:absolute;">
 							<ui:define name="label">Tipo Documento</ui:define>
 							<h:outputText value="#{usuarioHome.instance.tipo}" />
 						</s:decorate>
 						<br />
 						<br />
 						<s:decorate id="documentoIdentidad"
-							template="layout/display.xhtml" style="position:absolute;">
+							template="../layout/display.xhtml" style="position:absolute;">
 							<ui:define name="label">Documento identidad</ui:define>
 							<h:outputText value="#{usuarioHome.instance.documentoIdentidad}" />
 						</s:decorate>
 						<br />
 						<br />
-						<s:decorate id="correoElectronico" template="layout/display.xhtml" style="position:absolute;">
+						<s:decorate id="correoElectronico" template="../layout/display.xhtml" style="position:absolute;">
 							<ui:define name="label">Correo electronico</ui:define>
 							<h:outputText value="#{usuarioHome.instance.correoElectronico}" />
 						</s:decorate>
 						<br />
 						<br />
-						<s:decorate id="codigo" template="layout/display.xhtml" style="position:absolute;">
+						<s:decorate id="codigo" template="../layout/display.xhtml" style="position:absolute;">
 							<ui:define name="label">Código</ui:define>
 							<h:outputText value="#{usuarioHome.instance.codigoUsuarios}" />
 						</s:decorate>
 						<br />
 						<br />
-						<s:decorate id="facultad" template="layout/display.xhtml" style="position:absolute;">
+						<s:decorate id="facultad" template="../layout/display.xhtml" style="position:absolute;">
 							<ui:define name="label">Facultad</ui:define>
 							<h:outputText value="#{usuarioHome.instance.enteUniversitarios}" />
 						</s:decorate>
 						<br />
 						<br />
-						<s:decorate id="fotoUser" template="layout/display.xhtml" style="position:absolute;">
+						<s:decorate id="fotoUser" template="../layout/display.xhtml" style="position:absolute;">
 							<ui:define name="label">Foto</ui:define>
 							<h:outputText value="#{usuarioHome.instance.fotoUser}" />
 						</s:decorate>
@@ -83,7 +83,7 @@
 
 					<div class="actionButtons">
 
-						<s:button view="/UsuarioEdit.xhtml" id="edit" value="Editar" />
+						<s:button view="/admin/UsuarioEdit.xhtml" id="edit" value="Editar" />
 
 						<s:button
 							view="/#{empty usuarioFrom ? 'UsuarioList' : usuarioFrom}.xhtml"

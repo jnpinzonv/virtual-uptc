@@ -22,21 +22,21 @@
    <navigation from-action="#{cursoHome.persist}">
       <rule if-outcome="persisted">
          <end-conversation/>
-         <redirect view-id="/Curso.xhtml"/>
+         <redirect view-id="/admin/Curso.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{cursoHome.update}">
       <rule if-outcome="updated">
          <end-conversation/>
-         <redirect view-id="/Curso.xhtml"/>
+         <redirect view-id="/admin/Curso.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{cursoHome.remove}">
       <rule if-outcome="removed">
          <end-conversation/>
-         <redirect view-id="/CursoList.xhtml"/>
+         <redirect view-id="/admin/CursoList.xhtml"/>
       </rule>
    </navigation>
 

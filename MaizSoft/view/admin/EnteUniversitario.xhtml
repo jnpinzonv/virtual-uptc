@@ -6,10 +6,10 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:rich="http://richfaces.org/rich"
-    template="layout/template2.xhtml">
+    template="../layout/template2.xhtml">
     
     <ui:define name="head">
-		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+		<link href="../css/default.css" rel="stylesheet" type="../text/css" />	
 	</ui:define>
 
 <ui:define name="centroT">
@@ -18,14 +18,14 @@
         <f:facet name="header">Detalles del Ente Universitario</f:facet>
 
 
-        <s:decorate id="descripcionEnteUniversitario" template="layout/display.xhtml" style="position:absolute;">
+        <s:decorate id="descripcionEnteUniversitario" template="../layout/display.xhtml" style="position:absolute;">
             <ui:define name="label">Descripción ente universitario</ui:define>
             <h:outputText value="#{enteUniversitarioHome.instance.descripcionEnteUniversitario}"/>
         </s:decorate>
 		
 		<br/> <br/>
 		
-        <s:decorate id="nombreEnteUniversitario" template="layout/display.xhtml" style="position:absolute;">
+        <s:decorate id="nombreEnteUniversitario" template="../layout/display.xhtml" style="position:absolute;">
             <ui:define name="label">Nombre ente universitario</ui:define>
             <h:outputText value="#{enteUniversitarioHome.instance.nombreEnteUniversitario}"/>
         </s:decorate>
@@ -38,7 +38,7 @@
 
     <div class="actionButtons">
 
-        <s:button view="/EnteUniversitarioEdit.xhtml"
+        <s:button view="/admin/EnteUniversitarioEdit.xhtml"
                     id="edit"
                  value="Editar"/>
 

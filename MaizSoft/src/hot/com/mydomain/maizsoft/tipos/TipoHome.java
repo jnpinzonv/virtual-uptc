@@ -1,8 +1,12 @@
 package com.mydomain.maizsoft.tipos;
 
 import com.mydomain.Directorio.model.*;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Query;
+
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
@@ -49,33 +53,38 @@ public class TipoHome extends EntityHome<Tipo> {
 		return getInstance() == null ? null : new ArrayList<Actividad>(
 				getInstance().getActividad());
 	}
+
 	public List<EnteUniversitario> getEnteUniversitarios() {
 		return getInstance() == null ? null : new ArrayList<EnteUniversitario>(
 				getInstance().getEnteUniversitarios());
 	}
+
 	public List<GestorCargaArchivos> getGestorCargaArchivos() {
-		return getInstance() == null
-				? null
+		return getInstance() == null ? null
 				: new ArrayList<GestorCargaArchivos>(getInstance()
 						.getGestorCargaArchivos());
 	}
+
 	public List<GestorRepositoriosVirtuales> getGestorRepositoriosVirtuales() {
-		return getInstance() == null
-				? null
+		return getInstance() == null ? null
 				: new ArrayList<GestorRepositoriosVirtuales>(getInstance()
 						.getGestorRepositoriosVirtuales());
 	}
+
 	public List<GestorMensajeria> getListaGestorMensajeria() {
 		return getInstance() == null ? null : new ArrayList<GestorMensajeria>(
 				getInstance().getListaGestorMensajeria());
 	}
+
 	public List<Tipo> getListaTipo() {
 		return getInstance() == null ? null : new ArrayList<Tipo>(getInstance()
 				.getListaTipo());
 	}
+
 	public List<Usuario> getUserAccount() {
 		return getInstance() == null ? null : new ArrayList<Usuario>(
 				getInstance().getUserAccount());
 	}
 
+	
 }

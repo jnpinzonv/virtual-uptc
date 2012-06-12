@@ -7,10 +7,10 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:a="http://richfaces.org/a4j"
     xmlns:rich="http://richfaces.org/rich"
-    template="layout/template2.xhtml">
+    template="../layout/template2.xhtml">
     
-    <ui:define name="head">
-		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+   <ui:define name="head">
+		<link href="../css/default.css" rel="stylesheet" type="../text/css" />	
 	</ui:define>
 
 <ui:define name="centroT">
@@ -21,7 +21,7 @@
             <f:facet name="header">#{grupoCursoHome.managed ? 'Editar' : 'Adicionar'} Grupo curso</f:facet>
 
 
-            <s:decorate id="idGrupoField" template="layout/edit.xhtml" style="position:absolute;">
+            <s:decorate id="idGrupoField" template="../layout/edit.xhtml" style="position:absolute;">
                 <ui:define name="label">Código grupo</ui:define>
                 <h:inputText id="idGrupo"
                        required="true"
@@ -33,7 +33,7 @@
 
 			<br/> <br/>
 			
-            <s:decorate id="cuposField" template="layout/edit.xhtml" style="position:absolute;">
+            <s:decorate id="cuposField" template="../layout/edit.xhtml" style="position:absolute;">
                 <ui:define name="label">Cupos</ui:define>
                 <h:inputText id="cupos"
                        required="true"
@@ -46,7 +46,7 @@
 			<br/> <br/>
 
 
-            <s:decorate id="inscritosField" template="layout/edit.xhtml" style="position:absolute;">
+            <s:decorate id="inscritosField" template="../layout/edit.xhtml" style="position:absolute;">
                 <ui:define name="label">Inscritos</ui:define>
                 <h:inputText id="inscritos"
                        required="true"
@@ -57,7 +57,7 @@
 
 			<br/> <br/>
 		
-            <s:decorate id="semestreField" template="layout/edit.xhtml" style="position:absolute;">
+            <s:decorate id="semestreField" template="../layout/edit.xhtml" style="position:absolute;">
                 <ui:define name="label">Semestre</ui:define>
                 <h:inputText id="semestre"
                        required="true"
@@ -99,7 +99,7 @@
             <s:button id="cancelEdit"
                    value="Cancelar"
              propagation="end"
-                    view="/GrupoCurso.xhtml"
+                    view="/admin/GrupoCurso.xhtml"
                 rendered="#{grupoCursoHome.managed}"/>
 
             <s:button id="cancelAdd"

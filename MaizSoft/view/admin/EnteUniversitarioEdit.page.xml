@@ -19,21 +19,21 @@
    <navigation from-action="#{enteUniversitarioHome.persist}">
       <rule if-outcome="persisted">
          <end-conversation/>
-         <redirect view-id="/EnteUniversitario.xhtml"/>
+         <redirect view-id="/admin/EnteUniversitario.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{enteUniversitarioHome.update}">
       <rule if-outcome="updated">
          <end-conversation/>
-         <redirect view-id="/EnteUniversitario.xhtml"/>
+         <redirect view-id="/admin/EnteUniversitario.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{enteUniversitarioHome.remove}">
       <rule if-outcome="removed">
          <end-conversation/>
-         <redirect view-id="/EnteUniversitarioList.xhtml"/>
+         <redirect view-id="/admin/EnteUniversitarioList.xhtml"/>
       </rule>
    </navigation>
 

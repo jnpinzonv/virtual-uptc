@@ -8,7 +8,7 @@
 	xmlns:a="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-	template="layout/template2.xhtml">
+	template="../layout/template2.xhtml">
 
 	<ui:define name="head">
 		<link href="css/default.css" rel="stylesheet" type="text/css" />
@@ -22,7 +22,7 @@
 				<f:facet name="header">#{cursoHome.managed ? 'Editar' : 'Adicionar'} Curso</f:facet>
 
 
-				<s:decorate id="codigoField" template="layout/edit.xhtml"
+				<s:decorate id="codigoField" template="../layout/edit.xhtml"
 					style="position:absolute;">
 					<ui:define name="label">Código</ui:define>
 					<h:inputText id="codigo" required="true"
@@ -37,7 +37,7 @@
 				<br />
 				<br />
 
-				<s:decorate id="nombreAsignaturaField" template="layout/edit.xhtml"
+				<s:decorate id="nombreAsignaturaField" template="../layout/edit.xhtml"
 					style="position:absolute;">
 					<ui:define name="label">Nombre asignatura</ui:define>
 					<h:inputText id="nombreAsignatura" size="40" required="true"
@@ -81,7 +81,7 @@
 						rendered="#{cursoHome.managed}" />
 
 					<s:button id="cancelEdit" value="Cancelar" propagation="end"
-						view="/Curso.xhtml" rendered="#{cursoHome.managed}" />
+						view="/admin/Curso.xhtml" rendered="#{cursoHome.managed}" />
 
 					<s:button id="cancelAdd" value="Cancelar" propagation="end"
 						view="/#{empty cursoFrom ? 'CursoList' : cursoFrom}.xhtml"

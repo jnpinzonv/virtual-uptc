@@ -25,21 +25,21 @@
    <navigation from-action="#{grupoCursoHome.persist}">
       <rule if-outcome="persisted">
          <end-conversation/>
-         <redirect view-id="/GrupoCurso.xhtml"/>
+         <redirect view-id="/admin/GrupoCurso.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{grupoCursoHome.update}">
       <rule if-outcome="updated">
          <end-conversation/>
-         <redirect view-id="/GrupoCurso.xhtml"/>
+         <redirect view-id="/admin/GrupoCurso.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{grupoCursoHome.remove}">
       <rule if-outcome="removed">
          <end-conversation/>
-         <redirect view-id="/GrupoCursoList.xhtml"/>
+         <redirect view-id="/admin/GrupoCursoList.xhtml"/>
       </rule>
    </navigation>
 

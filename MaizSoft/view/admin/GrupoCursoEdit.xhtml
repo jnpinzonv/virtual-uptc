@@ -105,7 +105,7 @@
             <s:button id="cancelAdd"
                    value="Cancelar"
              propagation="end"
-                    view="/#{empty grupoCursoFrom ? 'GrupoCursoList' : grupoCursoFrom}.xhtml"
+                    view="/admin/#{empty grupoCursoFrom ? 'GrupoCursoList' : grupoCursoFrom}.xhtml"
                 rendered="#{!grupoCursoHome.managed}"/>
 
         </div>
@@ -139,7 +139,7 @@
         </rich:dataTable>
 
         <div class="actionButtons">
-            <s:button id="#{grupoCursoHome.instance.cursoGrupo != null ? 'changeParentcursoGrupo' : 'selectParentcursoGrupo'}" value="#{grupoCursoHome.instance.cursoGrupo != null ? 'Change' : 'Select'} cursoGrupo"
+            <s:button id="#{grupoCursoHome.instance.cursoGrupo != null ? 'changeParentcursoGrupo' : 'selectParentcursoGrupo'}" value="#{grupoCursoHome.instance.cursoGrupo != null ? 'Cambiar' : 'Seleccionar'} cursoGrupo"
                        view="/CursoList.xhtml">
                 <f:param name="from" value="GrupoCursoEdit"/>
             </s:button>
@@ -147,121 +147,7 @@
 
     </div>
     </rich:tab>
-
-    <rich:tab label="Enlaces externos">
-        <h:form styleClass="association" id="enlacesExternosChildren">
-
-            <h:outputText value="There are no enlacesExternos associated with this grupoCurso."
-                       rendered="#{empty grupoCursoHome.enlacesExternos}"/>
-
-            <rich:dataTable value="#{grupoCursoHome.enlacesExternos}"
-                           var="_gestorEnlacesExternos"
-                      rendered="#{not empty grupoCursoHome.enlacesExternos}"
-                    rowClasses="rvgRowOne,rvgRowTwo"
-                            id="enlacesExternosTable">
-                <rich:column sortBy="#{_gestorEnlacesExternos.idEnlace}">
-                    <f:facet name="header">Id enlace</f:facet>
-                    <h:outputText value="#{_gestorEnlacesExternos.idEnlace}"/>
-                </rich:column>
-                <rich:column sortBy="#{_gestorEnlacesExternos.descripcionEnlace}">
-                    <f:facet name="header">Descripcion enlace</f:facet>
-                    <h:outputText value="#{_gestorEnlacesExternos.descripcionEnlace}"/>
-                </rich:column>
-                <rich:column sortBy="#{_gestorEnlacesExternos.nombreEnlace}">
-                    <f:facet name="header">Nombre enlace</f:facet>
-                    <h:outputText value="#{_gestorEnlacesExternos.nombreEnlace}"/>
-                </rich:column>
-                <rich:column sortBy="#{_gestorEnlacesExternos.urlEnlace}">
-                    <f:facet name="header">Url enlace</f:facet>
-                    <h:outputText value="#{_gestorEnlacesExternos.urlEnlace}"/>
-                </rich:column>
-            </rich:dataTable>
-
-        </h:form>
-
-        <f:subview rendered="#{grupoCursoHome.managed}" id="enlacesExternos">
-        <div class="actionButtons">
-            <s:button id="addgestorEnlacesExternos"
-                   value="Add gestorEnlacesExternos"
-                    view="/GestorEnlacesExternosEdit.xhtml"
-             propagation="none">
-                 <f:param name="grupoCursoIdGrupo"
-                         value="#{grupoCursoHome.instance.idGrupo}"/>
-                 <f:param name="gestorEnlacesExternosFrom" value="GrupoCurso"/>
-            </s:button>
-        </div>
-        </f:subview>
-    </rich:tab>
-
-    <rich:tab label="Grupo usuarios">
-        <h:form styleClass="association" id="grupoUsuariosChildren">
-
-            <h:outputText value="There are no grupoUsuarios associated with this grupoCurso."
-                       rendered="#{empty grupoCursoHome.grupoUsuarios}"/>
-
-            <rich:dataTable value="#{grupoCursoHome.grupoUsuarios}"
-                           var="_grupoUsuarios"
-                      rendered="#{not empty grupoCursoHome.grupoUsuarios}"
-                    rowClasses="rvgRowOne,rvgRowTwo"
-                            id="grupoUsuariosTable">
-                <rich:column sortBy="#{_grupoUsuarios.idGrupoUsuarios}">
-                    <f:facet name="header">Id grupo usuarios</f:facet>
-                    <h:outputText value="#{_grupoUsuarios.idGrupoUsuarios}"/>
-                </rich:column>
-            </rich:dataTable>
-
-        </h:form>
-
-        <f:subview rendered="#{grupoCursoHome.managed}" id="grupoUsuarios">
-        <div class="actionButtons">
-            <s:button id="addgrupoUsuarios"
-                   value="Add grupoUsuarios"
-                    view="/admin/GrupoUsuariosEdit.xhtml"
-             propagation="none">
-                 <f:param name="grupoCursoIdGrupo"
-                         value="#{grupoCursoHome.instance.idGrupo}"/>
-                 <f:param name="grupoUsuariosFrom" value="GrupoCurso"/>
-            </s:button>
-        </div>
-        </f:subview>
-    </rich:tab>
-
-    <rich:tab label="Lista historial notas">
-        <h:form styleClass="association" id="listaHistorialNotasChildren">
-
-            <h:outputText value="There are no listaHistorialNotas associated with this grupoCurso."
-                       rendered="#{empty grupoCursoHome.listaHistorialNotas}"/>
-
-            <rich:dataTable value="#{grupoCursoHome.listaHistorialNotas}"
-                           var="_historialNotas"
-                      rendered="#{not empty grupoCursoHome.listaHistorialNotas}"
-                    rowClasses="rvgRowOne,rvgRowTwo"
-                            id="listaHistorialNotasTable">
-                <rich:column sortBy="#{_historialNotas.idHistorialNotas}">
-                    <f:facet name="header">Id historial notas</f:facet>
-                    <h:outputText value="#{_historialNotas.idHistorialNotas}"/>
-                </rich:column>
-                <rich:column sortBy="#{_historialNotas.nota}">
-                    <f:facet name="header">Nota</f:facet>
-                    <h:outputText value="#{_historialNotas.nota}"/>
-                </rich:column>
-            </rich:dataTable>
-
-        </h:form>
-
-        <f:subview rendered="#{grupoCursoHome.managed}" id="listaHistorialNotas">
-        <div class="actionButtons">
-            <s:button id="addhistorialNotas"
-                   value="Add historialNotas"
-                    view="/admin/HistorialNotasEdit.xhtml"
-             propagation="none">
-                 <f:param name="grupoCursoIdGrupo"
-                         value="#{grupoCursoHome.instance.idGrupo}"/>
-                 <f:param name="historialNotasFrom" value="GrupoCurso"/>
-            </s:button>
-        </div>
-        </f:subview>
-    </rich:tab>
+  
 </rich:tabPanel>
 </ui:define>
 

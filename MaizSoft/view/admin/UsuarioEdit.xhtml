@@ -10,7 +10,7 @@
 	xmlns:rich="http://richfaces.org/rich" template="../layout/template2.xhtml">
 	
 	<ui:define name="head">
-		<link href="../css/default.css" rel="stylesheet" type="../text/css" />	
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
 	</ui:define>
 
 	<ui:define name="centroT">
@@ -246,7 +246,7 @@
 
 								<s:button id="cancelAdd" value="Cancelar" propagation="end"
 									view="/#{empty usuarioFrom ? 'UsuarioList' : usuarioFrom}.xhtml"
-									rendered="#{!usuarioHome.managed}" />
+									rendered="#{!usuarioHome.managed}"/>
 
 							</div>
 

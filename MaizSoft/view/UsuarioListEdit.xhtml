@@ -11,7 +11,7 @@
 	template="layout/template2.xhtml">
 
 	<ui:define name="head">
-		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
 	</ui:define>
 
 	<ui:define name="centroT">
@@ -74,82 +74,82 @@
 
 					<h:outputText value="La busqueda de usuario no retorno resultados"
 						rendered="#{empty usuarioList.resultList}" />
+					<div align="center">
+						<rich:scrollableDataTable id="usuarioList" var="_usuario"
+							value="#{usuarioList.resultList}" height="200px" width="650px">
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList" value="#{usuarioList}" />
+										<ui:param name="propertyLabel" value="Documento" />
+										<ui:param name="propertyPath"
+											value="usuario.documentoIdentidad" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_usuario.tipo.nombre}  #{_usuario.documentoIdentidad}" />
+							</h:column>
+							<h:column width="140px">
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList" value="#{usuarioList}" />
+										<ui:param name="propertyLabel" value="nombre" />
+										<ui:param name="propertyPath" value="usuario.primerNombre" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_usuario.apellidos} #{_usuario.primerNombre} #{_usuario.segundoNombre}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList" value="#{usuarioList}" />
+										<ui:param name="propertyLabel" value="Correo" />
+										<ui:param name="propertyPath"
+											value="usuario.correoElectronico" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_usuario.correoElectronico}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList" value="#{usuarioList}" />
+										<ui:param name="propertyLabel" value="Código" />
+										<ui:param name="propertyPath" value="usuario.codigoUsuarios" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_usuario.codigoUsuarios}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList" value="#{usuarioList}" />
+										<ui:param name="propertyLabel" value="Escuela" />
+										<ui:param name="propertyPath"
+											value="usuario.enteUniversitarios.idEnteUniversitario" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_usuario.enteUniversitarios.nombreEnteUniversitario}" />
+							</h:column>
 
-					<rich:scrollableDataTable id="usuarioList" var="_usuario"
-						value="#{usuarioList.resultList}" height="200px" width="650px">
-						<h:column>
-							<f:facet name="header">
-								<ui:include src="layout/sort.xhtml">
-									<ui:param name="entityList" value="#{usuarioList}" />
-									<ui:param name="propertyLabel" value="Documento" />
-									<ui:param name="propertyPath"
-										value="usuario.documentoIdentidad" />
-								</ui:include>
-							</f:facet>
-							<h:outputText
-								value="#{_usuario.tipo.nombre}  #{_usuario.documentoIdentidad}" />
-						</h:column>
-						<h:column width="150px">
-							<f:facet name="header">
-								<ui:include src="layout/sort.xhtml">
-									<ui:param name="entityList" value="#{usuarioList}" />
-									<ui:param name="propertyLabel" value="nombre" />
-									<ui:param name="propertyPath" value="usuario.primerNombre" />
-								</ui:include>
-							</f:facet>
-							<h:outputText
-								value="#{_usuario.primerNombre} #{_usuario.segundoNombre}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<ui:include src="layout/sort.xhtml">
-									<ui:param name="entityList" value="#{usuarioList}" />
-									<ui:param name="propertyLabel" value="Apellidos" />
-									<ui:param name="propertyPath" value="usuario.apellidos" />
-								</ui:include>
-							</f:facet>
-							<h:outputText value="#{_usuario.apellidos}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<ui:include src="layout/sort.xhtml">
-									<ui:param name="entityList" value="#{usuarioList}" />
-									<ui:param name="propertyLabel" value="Correo" />
-									<ui:param name="propertyPath" value="usuario.correoElectronico" />
-								</ui:include>
-							</f:facet>
-							<h:outputText value="#{_usuario.correoElectronico}" />
-						</h:column>
-
-						<h:column>
-							<f:facet name="header">
-								<ui:include src="layout/sort.xhtml">
-									<ui:param name="entityList" value="#{usuarioList}" />
-									<ui:param name="propertyLabel" value="Escuela" />
-									<ui:param name="propertyPath"
-										value="usuario.enteUniversitarios.idEnteUniversitario" />
-								</ui:include>
-							</f:facet>
-							<h:outputText
-								value="#{_usuario.enteUniversitarios.nombreEnteUniversitario}" />
-						</h:column>
-
-						<rich:column styleClass="action">
-							<f:facet name="header">Acción</f:facet>
-							<s:link view="/#{empty from ? 'Usuario' : from}.xhtml"
-								value="#{empty from ? 'Editar' : 'Seleccionar'}"
-								propagation="#{empty from ? 'none' : 'default'}"
-								id="usuarioViewId">
-								<f:param name="usuarioId" value="#{_usuario.id}" />
-							</s:link>
+							<rich:column styleClass="action">
+								<f:facet name="header">Acción</f:facet>
+								<s:link view="/#{empty from ? 'Usuario' : from}.xhtml"
+									value="#{empty from ? 'Editar' : 'Seleccionar'}"
+									propagation="#{empty from ? 'none' : 'default'}"
+									id="usuarioViewId">
+									<f:param name="usuarioId" value="#{_usuario.id}" />
+								</s:link>
             #{' '}
-            <s:link view="/UsuarioEdit.xhtml" value="Editar"
-								propagation="none" id="usuarioEdit" rendered="#{empty from}">
-								<f:param name="usuarioId" value="#{_usuario.id}" />
-							</s:link>
-						</rich:column>
-					</rich:scrollableDataTable>
-
+            <s:link view="/admin/UsuarioEdit.xhtml" value="Editar"
+									propagation="none" id="usuarioEdit" rendered="#{empty from}">
+									<f:param name="usuarioId" value="#{_usuario.id}" />
+								</s:link>
+							</rich:column>
+						</rich:scrollableDataTable>
+					</div>
 				</div>
 			</rich:panel>
 
@@ -179,17 +179,10 @@
 					value="Last Page #{messages.right}#{messages.right}" id="lastPage">
 					<f:param name="firstResult" value="#{usuarioList.lastFirstResult}" />
 				</s:link>
-				<br /> 
-				<s:div styleClass="actionButtons" rendered="#{empty from}">
-					<s:button view="/UsuarioEdit.xhtml" id="create" propagation="none"
-						value="Crear usuario" action="#{userAction.createUser}"
-						rendered="#{s:hasPermission('seam.user', 'create')}">
-						<f:param name="usuarioId" />
-					</s:button>
-
-				</s:div>
+				<br />
+				
 			</div>
-		</h:form>		
+		</h:form>
 
 	</ui:define>
 

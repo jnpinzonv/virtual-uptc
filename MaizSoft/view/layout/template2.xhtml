@@ -10,7 +10,6 @@
 	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
 	xmlns:rich="http://richfaces.org/rich" template="template.xhtml">
 
-
 	 
 	 <ui:define name="reloj">
 		
@@ -47,10 +46,10 @@
 
 	<ui:define name="body">
 	<body onload="mueveReloj()">
-		<div>
+		<div >
 			<ui:insert name="cabezoteT">
 				<div id="cabezote"
-					style="position: relative; background-color: #315E9F; color: white; height: 80px; margin-left: 70px; margin-right: 70px;">
+					style="position: relative; background-color: #315E9F; color: white; height: 80px;">
 
 					<div id="topLogo"
 						style="position: relative; float: left; background-color: #315E9F; height: 30px; margin-top: 4px;">
@@ -73,7 +72,7 @@
 
 
 					<div id="topPrincipal"
-						style="position: relative; float: right; background-color: #315E9F; height: 30px; margin-top: 4px;">
+						style="position: relative; float: right; background-color: #315E9F; height: 30px; margin-top: 4px">
 						<div style="margin-right: 10px">
 							<h:form>
 								<h:outputText id="menuWelcomeId" value="#{credentials.username}"
@@ -110,8 +109,9 @@
 			</ui:insert>
 
 			<div id="medio"
-				style="position: static; background-color: #FFFFFF; margin-left: 70px; margin-right: 70px; color: #000000;">
+				style="float:left; background-color: #FFFFFF; color: #000000; width: 100%;">
 				<ui:insert name="izquierdaT">
+					
 					<div id="izquierda"
 						style="float: left; background-image: url(images/MenuMiddle2.jpg); padding: 5px; width: 190px;">
 						<rich:panel>
@@ -140,20 +140,29 @@
 											<rich:panelMenuItem label="Ver" style="color: #045491;"
 												action="/GestorMensajeriaEdit.seam" icon="disc" />
 										</rich:panelMenuGroup>
+										<rich:panelMenuGroup label="Mensajess" style="color: #FFFFFF;">
+											<rich:panelMenuItem label="Crear" style="color: #045491;"
+												action="/GestorMensajeriaEdit.seam" icon="disc" />
+											<rich:panelMenuItem label="Ver" style="color: #045491;"
+												action="/GestorMensajeriaEdit.seam" icon="disc">
+												</rich:panelMenuItem>
+											<s:link value="asfddas"></s:link>	
+										</rich:panelMenuGroup>
+												
 										<rich:panelMenuGroup label="Administrar Usuarios"
 											style="color: #FFFFFF;">
 											<rich:panelMenuItem label="Adicionar Usuarios"
-												style="color: #045491;" icon="disc" onclick="this.disabled=true" 
-												oncomplete="this.disabled=false"
+												style="color: #045491;" icon="disc" 
 												action="#{usuarioHome.crearUsuario()}"
-												rendered="#{s:hasPermission('seam.user', 'create')}" />
+												rendered="#{s:hasPermission('seam.user', 'create')}" 
+												propagation="end"
+												/>
 												
 												<rich:panelMenuItem label="Carga Masiva Usuarios"
 												style="color: #045491;" icon="disc"
-												onclick="this.disabled=true" 
-												oncomplete="this.disabled=false"
 												action="#{cargaMasivaUsuariosBean.crearUsuario()}"
-												rendered="#{s:hasPermission('seam.user', 'create')}" />
+												rendered="#{s:hasPermission('seam.user', 'create')}" 
+												propagation="end"/>
 											<rich:panelMenuItem label="Eliminar / Editar Usuario"
 												style="color: #045491;" icon="disc"
 												action="/UsuarioListEdit.seam" />
@@ -249,25 +258,27 @@
 				</ui:insert>
 
 				<div id="centro"
-					style="position: static; float: inherit; margin-left: 210px; margin-right: 210px;">
+					style="float: center; margin-left: 210px; margin-right: 210px;overflow:hidden">
 					<ui:insert name="centroT">
 						<h1>CENTRO</h1>
 						
 					</ui:insert>
 					
 				</div>
-					<rich:separator height="4" />
-			</div>
-			<ui:insert name="footerT">
-				<div id="footer" align="center"
-					style="position: relative; margin-left: 70px; margin-right: 70px">
 					
+			</div>
+			
+			<ui:insert name="footerT">
+			
+				<div id="footer" style="overflow:hidden; float:center;" align="center">
+					<rich:separator height="4" />
+					<br/>
 					<div style="float: left;margin-left: 270px">
-						<img src="../css/images/uptc.png" style="height: 80px" />
+						<img src="css/images/uptc.png" style="height: 80px" />
 					</div>
 					
 					<div style="float: right; margin-right: 270px">
-						<img src="../css/images/gis.png" style="height: 80px" />
+						<img src="css/images/gis.png" style="height: 80px" />
 					</div>
 					<div style="position: relative;">						
 						<p>

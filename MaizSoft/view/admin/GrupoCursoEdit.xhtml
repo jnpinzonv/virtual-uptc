@@ -10,7 +10,7 @@
     template="../layout/template2.xhtml">
     
    <ui:define name="head">
-		<link href="../css/default.css" rel="stylesheet" type="../text/css" />	
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
 	</ui:define>
 
 <ui:define name="centroT">
@@ -216,7 +216,7 @@
         <div class="actionButtons">
             <s:button id="addgrupoUsuarios"
                    value="Add grupoUsuarios"
-                    view="/GrupoUsuariosEdit.xhtml"
+                    view="/admin/GrupoUsuariosEdit.xhtml"
              propagation="none">
                  <f:param name="grupoCursoIdGrupo"
                          value="#{grupoCursoHome.instance.idGrupo}"/>
@@ -253,7 +253,7 @@
         <div class="actionButtons">
             <s:button id="addhistorialNotas"
                    value="Add historialNotas"
-                    view="/HistorialNotasEdit.xhtml"
+                    view="/admin/HistorialNotasEdit.xhtml"
              propagation="none">
                  <f:param name="grupoCursoIdGrupo"
                          value="#{grupoCursoHome.instance.idGrupo}"/>

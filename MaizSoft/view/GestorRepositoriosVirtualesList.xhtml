@@ -57,7 +57,7 @@
 
     <rich:panel>
         <f:facet name="header">GestorRepositoriosVirtuales Search Results (#{empty gestorRepositoriosVirtualesList.resultList ? 0 : (gestorRepositoriosVirtualesList.paginated ? gestorRepositoriosVirtualesList.resultCount : gestorRepositoriosVirtualesList.resultList.size)})</f:facet>
-    <div class="results" id="gestorRepositoriosVirtualesList">
+    <div>
 
     <h:outputText value="The gestorRepositoriosVirtuales search returned no results."
                rendered="#{empty gestorRepositoriosVirtualesList.resultList}"/>
@@ -138,7 +138,7 @@
                         value="#{_gestorRepositoriosVirtuales.idRepositorio}"/>
             </s:link>
             #{' '}
-            <s:link view="/GestorRepositoriosVirtualesEdit.xhtml"
+            <s:link view="/admin/GestorRepositoriosVirtualesEdit.xhtml"
                    value="Editar"
              propagation="none"
                       id="gestorRepositoriosVirtualesEdit"
@@ -187,14 +187,6 @@
 
     </div>
 
-    <s:div styleClass="actionButtons" rendered="#{empty from}">
-        <s:button view="/GestorRepositoriosVirtualesEdit.xhtml"
-                    id="create"
-           propagation="none"
-                 value="Crear Repositorio Virtual">
-            <f:param name="gestorRepositoriosVirtualesIdRepositorio"/>
-        </s:button>
-    </s:div>
 
 </ui:define>
 

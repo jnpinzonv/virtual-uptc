@@ -54,16 +54,17 @@
 
     <rich:panel>
         <f:facet name="header">Entes Universitario (#{empty enteUniversitarioList.resultList ? 0 : (enteUniversitarioList.paginated ? enteUniversitarioList.resultCount : enteUniversitarioList.resultList.size)})</f:facet>
-    <div class="results" id="enteUniversitarioList">
+    <div >
 
     <h:outputText value="The enteUniversitario search returned no results."
                rendered="#{empty enteUniversitarioList.resultList}"/>
 	
-	
+	<div align="center">
 	<h3>Facultades:</h3>
     <rich:scrollableDataTable id="enteUniversitarioList"
                 var="_enteUniversitario"
-              value="#{listaEnteUniversitariosFacultades}" height="200px" >
+              rendered="#{not empty enteUniversitarioList.resultList}"
+              value="#{listaEnteUniversitariosFacultades}" height="200px" width="675px">
         <h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
@@ -104,7 +105,7 @@
                         value="#{_enteUniversitario.idEnteUniversitario}"/>
             </s:link>
             #{' '}
-            <s:link view="/EnteUniversitarioEdit.xhtml"
+            <s:link view="/admin/EnteUniversitarioEdit.xhtml"
                    value="Editar"
              propagation="none"
                       id="enteUniversitarioEdit"
@@ -120,7 +121,8 @@
    	<h3>Escuelas:</h3>
 	 <rich:scrollableDataTable id="enteUniversitarioListE"
                 var="_enteUniversitario"
-              value="#{listaEntesUniversitariosEscuelas}" height="200px">
+                rendered="#{not empty enteUniversitarioList.resultList}"
+              value="#{listaEntesUniversitariosEscuelas}" height="200px" width="675px">
         <h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
@@ -182,6 +184,7 @@
             </s:link>
         </rich:column>
     </rich:scrollableDataTable>
+    </div>
     </div>
     </rich:panel>
 

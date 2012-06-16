@@ -1,12 +1,14 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:s="http://jboss.com/products/seam/taglib"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:rich="http://richfaces.org/rich"
-    template="layout/template2.xhtml">
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich" 
+	template="layout/template2.xhtml">
     
     <ui:define name="head">
 		<link href="css/default.css" rel="stylesheet" type="text/css" />	
@@ -37,15 +39,16 @@
 
       <rich:panel>
         <f:facet name="header">Curso Search Results (#{empty cursoList.resultList ? 0 : (cursoList.paginated ? cursoList.resultCount : cursoList.resultList.size)})</f:facet>
-    <div class="results" id="cursoList">
+    <div>
 
     <h:outputText value="The curso search returned no results."
                rendered="#{empty cursoList.resultList}"/>
-
-    <rich:dataTable id="cursoList"
+	<div align="center">
+    <rich:scrollableDataTable id="cursoList"
                 var="_curso"
               value="#{cursoList.resultList}"
-           rendered="#{not empty cursoList.resultList}">
+              height="150px" width="420px"
+              rendered="#{not empty cursoList.resultList}">
         <h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
@@ -60,33 +63,33 @@
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{cursoList}"/>
-                    <ui:param name="propertyLabel" value="Ente universitario id ente universitario"/>
+                    <ui:param name="propertyLabel" value="Ente"/>
                     <ui:param name="propertyPath" value="curso.enteUniversitario.idEnteUniversitario"/>
                 </ui:include>
             </f:facet>
-            <h:outputText value="#{_curso.enteUniversitario.idEnteUniversitario}"/>
+            <h:outputText value="#{_curso.enteUniversitario.nombreEnteUniversitario}"/>
         </h:column>
         <h:column>
             <f:facet name="header">
                 <ui:include src="layout/sort.xhtml">
                     <ui:param name="entityList" value="#{cursoList}"/>
-                    <ui:param name="propertyLabel" value="Nombre asignatura"/>
+                    <ui:param name="propertyLabel" value="Curso"/>
                     <ui:param name="propertyPath" value="curso.nombreAsignatura"/>
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_curso.nombreAsignatura}"/>
         </h:column>
         <rich:column styleClass="action">
-            <f:facet name="header">Action</f:facet>
-            <s:link view="/#{empty from ? 'Curso' : from}.xhtml"
-                   value="#{empty from ? 'View' : 'Select'}"
+            <f:facet name="header">Acción</f:facet>
+            <s:link view="/admin/#{empty from ? 'Curso' : from}.xhtml"
+                   value="#{empty from ? 'Ver' : 'Seleccionar'}"
              propagation="#{empty from ? 'none' : 'default'}"
                       id="cursoViewId">
                 <f:param name="cursoCodigo"
                         value="#{_curso.codigo}"/>
             </s:link>
             #{' '}
-            <s:link view="/CursoEdit.xhtml"
+            <s:link view="/admin/CursoEdit.xhtml"
                    value="Edit"
              propagation="none"
                       id="cursoEdit"
@@ -95,8 +98,8 @@
                         value="#{_curso.codigo}"/>
             </s:link>
         </rich:column>
-    </rich:dataTable>
-
+    </rich:scrollableDataTable>
+	</div>
     </div>
     </rich:panel>
 

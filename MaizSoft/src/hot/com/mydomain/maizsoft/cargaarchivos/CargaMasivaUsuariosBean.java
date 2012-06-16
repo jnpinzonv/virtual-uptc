@@ -13,9 +13,15 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
+import org.drools.common.PropagationContextImpl;
+import org.drools.spi.PropagationContext;
+import org.jboss.seam.Component;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.contexts.Context;
+import org.jboss.seam.core.ConversationPropagation;
+import org.jboss.seam.core.PropagationType;
 import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
 import org.jboss.seam.security.management.IdentityManagementException;
@@ -165,6 +171,7 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 		q.setParameter("parametro", parametro);
 
 		return (EnteUniversitario) q.getSingleResult();
+		
 	}
 
 	public Tipo buscarTipoIdentificacion(String parametro) {
@@ -177,7 +184,8 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 
 	
 	public String crearUsuario(){
-		userAction.createUser();
+		
+		userAction.createUser();		
 		return "/admin/cargaMasivaUsuarios.xhtml";
 	}
 	/**

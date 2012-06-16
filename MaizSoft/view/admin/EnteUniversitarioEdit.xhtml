@@ -7,128 +7,133 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://richfaces.org/a4j"
 	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-	xmlns:rich="http://richfaces.org/rich" template="../layout/template2.xhtml">
+	xmlns:rich="http://richfaces.org/rich"
+	template="../layout/template2.xhtml">
 
 	<ui:define name="head">
-		<link href="../css/default.css" rel="stylesheet" type="../text/css" />	
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
 	</ui:define>
-	
+
 	<ui:define name="centroT">
+
+		<h:form id="enteUniversitario" styleClass="edit">
+
+			<rich:panel>
+				<f:facet name="header">#{enteUniversitarioHome.managed ? 'Editar' : 'Adicionar'} Ente universitario</f:facet>
+
+				<s:decorate id="nombreEnteUniversitarioField"
+					template="../layout/edit.xhtml" style="position:absolute;">
+					<ui:define name="label">Nombre ente universitario</ui:define>
+					<h:inputTextarea id="nombreEnteUniversitario" cols="60" rows="2"
+						required="true"
+						value="#{enteUniversitarioHome.instance.nombreEnteUniversitario}" />
+
+				</s:decorate>
+
+				<br />
+				<br />
+				<br />
+				<br />
+
+				<s:decorate id="descripcionEnteUniversitarioField"
+					template="../layout/edit.xhtml" style="position:absolute;">
+					<ui:define name="label">Descripción ente universitario</ui:define>
+					<h:inputTextarea id="descripcionEnteUniversitario" cols="70"
+						rows="3"
+						value="#{enteUniversitarioHome.instance.descripcionEnteUniversitario}" />
+
+				</s:decorate>
+
+				<br />
+				<br />
+				<br />
+				<br />
+
+				<s:decorate id="codigoEnteUniversitarioField"
+					template="../layout/edit.xhtml" style="position:absolute;">
+					<ui:define name="label">Codigo ente universitario</ui:define>
+					<h:inputTextarea id="codigoEnteUniversitario" cols="70" rows="3"
+						value="#{enteUniversitarioHome.instance.codigoEnteUniversitario}" />
+
+				</s:decorate>
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+
+				<h:outputText value="Seleccione Ente Universitario que desea crear:" />
+				<h:selectOneMenu
+					value="#{enteUniversitarioHome.instance.tipoEnteUniversitario}"
+					id="sobrenombres" required="true" rendered="true">
+					<s:selectItems value="#{listaTiposEnteUniversitarios}" var="lista"
+						label="#{lista.nombre}" />
+					<a4j:support event="onchange" reRender="tress" ajaxSingle="true" />
+					<s:convertEntity />
+				</h:selectOneMenu>
+
+				<br />
+				<br />
+
+				<a4j:outputPanel id="tress" ajaxRendered="true">
+					<h:outputText
+						value="Seleccione Facultad a la que pertenece la escuela:" 
+						rendered="#{enteUniversitarioHome.instance.tipoEnteUniversitario.nombre.equals('Escuela')}"/>
+
+					<h:panelGroup>
+						<h:selectOneMenu
+							value="#{enteUniversitarioHome.instance.enteUniversitario}"
+							id="enteUniveristarios"
+							rendered="#{enteUniversitarioHome.instance.tipoEnteUniversitario.nombre.equals('Escuela')}">
+							<s:selectItems value="#{listaEnteUniversitariosFacultades}"
+								var="listaE" label="#{listaE.nombreEnteUniversitario}" />
+							<s:convertEntity />
+						</h:selectOneMenu>
+					</h:panelGroup>
+				</a4j:outputPanel>
+				<br />
+				<br />
+				<div style="clear: both; position: absolute">
+					<span class="required">*</span> Campos Obligatorios
+				</div>
+
+				<br />
+				<br />
+
+			</rich:panel>
+
+
+
+			<br />
+			<br />
+
+			<div class="actionButtons">
+				<a4j:outputPanel id="dos">
+					<h:commandButton id="save" value="Guardar"
+						action="#{enteUniversitarioHome.persist}"
+						rendered="#{!enteUniversitarioHome.managed}" />
+
+					<h:commandButton id="update" value="Guardar"
+						action="#{enteUniversitarioHome.update}"
+						rendered="#{enteUniversitarioHome.managed}" />
+
+					<h:commandButton id="delete" value="Eliminar"
+						action="#{enteUniversitarioHome.remove}" immediate="true"
+						rendered="#{enteUniversitarioHome.managed}" />
+
+					<s:button id="cancelEdit" value="Cancelar" propagation="end"
+						view="/admin/EnteUniversitario.xhtml"
+						rendered="#{enteUniversitarioHome.managed}" />
+
+					<s:button id="cancelAdd" value="Cancelar" propagation="end"
+						view="/#{empty enteUniversitarioFrom ? 'EnteUniversitarioList' : enteUniversitarioFrom}.xhtml"
+						rendered="#{!enteUniversitarioHome.managed}" />
+				</a4j:outputPanel>
+			</div>
+		</h:form>
+		<br />
 		
-					<h:form id="enteUniversitario" styleClass="edit">
-
-						<rich:panel>
-							<f:facet name="header">#{enteUniversitarioHome.managed ? 'Editar' : 'Adicionar'} Ente universitario</f:facet>
-
-							<s:decorate id="nombreEnteUniversitarioField"
-								template="../layout/edit.xhtml" style="position:absolute;">
-								<ui:define name="label">Nombre ente universitario</ui:define>
-								<h:inputTextarea id="nombreEnteUniversitario" cols="60" rows="2"
-									required="true"
-									value="#{enteUniversitarioHome.instance.nombreEnteUniversitario}" />
-
-							</s:decorate>
-
-							<br />
-							<br />
-							<br />
-							<br />
-
-							<s:decorate id="descripcionEnteUniversitarioField"
-								template="../layout/edit.xhtml" style="position:absolute;">
-								<ui:define name="label">Descripción ente universitario</ui:define>
-								<h:inputTextarea id="descripcionEnteUniversitario" cols="70"
-									rows="3"
-									value="#{enteUniversitarioHome.instance.descripcionEnteUniversitario}" />
-
-							</s:decorate>
-							
-							<br />
-							<br />
-							<br />
-							<br />
-							
-							<s:decorate id="codigoEnteUniversitarioField"
-								template="../layout/edit.xhtml" style="position:absolute;">
-								<ui:define name="label">Codigo ente universitario</ui:define>
-								<h:inputTextarea id="codigoEnteUniversitario" cols="70"
-									rows="3"
-									value="#{enteUniversitarioHome.instance.codigoEnteUniversitario}" />
-
-							</s:decorate>
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							
-							
-							
-							<h:selectOneMenu
-								value="#{enteUniversitarioHome.instance.tipoEnteUniversitario}"
-								id="sobrenombre" required="true" rendered="true">
-								<s:selectItems value="#{listaTiposEnteUniversitarios}"
-									var="lista" label="#{lista.nombre}"/>
-								<a4j:support event="onchange" reRender="tres"/>
-								<s:convertEntity />
-							</h:selectOneMenu>
-
-							<br />
-
-							<a4j:outputPanel id="tres" ajaxRendered="true">
-								<h:panelGroup rendered="#{('Facultad' == enteUniversitarioHome.instance.tipoEnteUniversitario) ? true : false}">
-									<h:selectOneMenu
-										value="#{enteUniversitarioHome.instance.enteUniversitario}"
-										id="enteUniveristario" rendered="true">
-										<s:selectItems value="#{listaEnteUniversitariosFacultades}" var="listaE"
-											label="#{listaE.nombreEnteUniversitario}" />
-										<s:convertEntity />
-									</h:selectOneMenu>
-								</h:panelGroup>
-							</a4j:outputPanel>
-							
-													
-							
-							<br />
-							<br />
-							<div style="clear: both; position: absolute">
-								<span class="required">*</span> Campos Obligatorios
-							</div>
-
-							<br />
-							<br />
-
-						</rich:panel>
-						<br />
-							<br />
-
-						<div class="actionButtons">
-							<a4j:outputPanel id="dos">
-								<h:commandButton id="save" value="Guardar"
-									action="#{enteUniversitarioHome.persist}"
-									rendered="#{!enteUniversitarioHome.managed}" />
-
-								<h:commandButton id="update" value="Guardar"
-									action="#{enteUniversitarioHome.update}"
-									rendered="#{enteUniversitarioHome.managed}" />
-
-								<h:commandButton id="delete" value="Eliminar"
-									action="#{enteUniversitarioHome.remove}" immediate="true"
-									rendered="#{enteUniversitarioHome.managed}" />
-
-								<s:button id="cancelEdit" value="Cancelar" propagation="end"
-									view="/admin/EnteUniversitario.xhtml"
-									rendered="#{enteUniversitarioHome.managed}" />
-
-								<s:button id="cancelAdd" value="Cancelar" propagation="end"
-									view="/#{empty enteUniversitarioFrom ? 'EnteUniversitarioList' : enteUniversitarioFrom}.xhtml"
-									rendered="#{!enteUniversitarioHome.managed}" />
-							</a4j:outputPanel>
-						</div>
-					</h:form>
-					<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-					<br /> <br />
 	</ui:define>
 
 </ui:composition>

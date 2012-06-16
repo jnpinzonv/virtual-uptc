@@ -58,7 +58,7 @@ public class Curso {
 	 * @return the nombreAsignatura
 	 */
 	@NotEmpty
-	@Column(name="nombre_asignatura")
+	@Column(name="nombre_asignatura" )
 	@Length(max=200)
 	public String getNombreAsignatura() {
 		return nombreAsignatura;

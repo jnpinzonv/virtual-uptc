@@ -9,7 +9,7 @@
     template="../layout/template2.xhtml">
     
     <ui:define name="head">
-		<link href="../css/default.css" rel="stylesheet" type="../text/css" />	
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
 	</ui:define>
 
 <ui:define name="centroT">
@@ -33,12 +33,7 @@
         
         <h:outputText value="  Ente Universitario: " />
         <h:outputText value="#{cursoHome.instance.enteUniversitario.nombreEnteUniversitario}" />
-		<s:link id="viewenteUniversitario"
-                     value="Ver"
-                      view="/admin/EnteUniversitario.xhtml">
-                    <f:param name="enteUniversitarioIdEnteUniversitario"
-                           value="#{cursoHome.instance.enteUniversitario.idEnteUniversitario}"/>
-         </s:link>
+		
 		
         <div style="clear:both"/>
 

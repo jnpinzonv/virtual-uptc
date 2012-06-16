@@ -8,94 +8,89 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://richfaces.org/a4j"
 	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-	xmlns:rich="http://richfaces.org/rich" template="../layout/template2.xhtml">
-	
+	xmlns:rich="http://richfaces.org/rich"
+	template="../layout/template2.xhtml">
+
 	<ui:define name="head">
-		<link href="../css/default.css" rel="stylesheet" type="../text/css" />	
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
 	</ui:define>
-	
+
 	<ui:define name="centroT">
-					<h:form id="gestorNoticias" styleClass="edit">
+		<h:form id="gestorNoticias" styleClass="edit">
 
-						<rich:panel>
-							<f:facet name="header">#{gestorNoticiasHome.managed ? 'Editar' : 'Adicionar'} noticias</f:facet>
-							<br/><br/>
-							<s:decorate id="nombreNoticiaField" template="../layout/edit.xhtml"
-								style="position:absolute;">
-								<ui:define name="label">Titulo</ui:define>
-								<h:inputText id="nombreNoticia" size="50"
-									required="true"
-									value="#{gestorNoticiasHome.instance.nombreNoticia}" />
-							</s:decorate>
+			<rich:panel>
+				<f:facet name="header">#{gestorNoticiasHome.managed ? 'Editar' : 'Adicionar'} noticias</f:facet>
+				<br />
+				<br />
+				<s:decorate id="nombreNoticiaField" template="../layout/edit.xhtml"
+					style="position:absolute;">
+					<ui:define name="label">Titulo</ui:define>
+					<h:inputText id="nombreNoticia" size="50" required="true"
+						value="#{gestorNoticiasHome.instance.nombreNoticia}" />
+				</s:decorate>
 
 
-							<br />
-							<br />
-							<br />
+				<br />
+				<br />
+				<br />
 
-							
-							<s:decorate id="descripcionField" template="../layout/edit.xhtml"
-								style="position:absolute;">
-								<ui:define name="label">Noticia</ui:define>
-								<h:inputTextarea id="descripcion" required="true" cols="70" rows="4"
-									value="#{gestorNoticiasHome.instance.descripcion}">
-									<a:support event="onblur" reRender="descripcionField"
-										bypassUpdates="true" ajaxSingle="true" />
-								</h:inputTextarea>
-							</s:decorate>
 
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
+				<s:decorate id="descripcionField" template="../layout/edit.xhtml"
+					style="position:absolute;">
+					<ui:define name="label">Noticia</ui:define>
+					<h:inputTextarea id="descripcion" required="true" cols="70"
+						rows="4" value="#{gestorNoticiasHome.instance.descripcion}">
+						<a:support event="onblur" reRender="descripcionField"
+							bypassUpdates="true" ajaxSingle="true" />
+					</h:inputTextarea>
+				</s:decorate>
 
-							<div style="clear: both; position: absolute;">
-								<span class="required">*</span> Campos Obligatorios
-							</div>
-							<br/><br/><br/>
-							<br />
-							<br />
-						</rich:panel>
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
 
-						<div class="actionButtons">
+				<div style="clear: both; position: absolute;">
+					<span class="required">*</span> Campos Obligatorios
+				</div>
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+			</rich:panel>
 
-							<h:commandButton id="save" value="Guardar"
-								action="#{gestorNoticiasHome.persist}"
-								disabled="#{!gestorNoticiasHome.wired}"
-								rendered="#{!gestorNoticiasHome.managed}" />
+			<div class="actionButtons">
 
-							<h:commandButton id="update" value="Guardar"
-								action="#{gestorNoticiasHome.update}"
-								rendered="#{gestorNoticiasHome.managed}" />
+				<h:commandButton id="save" value="Guardar"
+					action="#{gestorNoticiasHome.persist}"
+					disabled="#{!gestorNoticiasHome.wired}"
+					rendered="#{!gestorNoticiasHome.managed}" />
 
-							<h:commandButton id="delete" value="Borrar"
-								action="#{gestorNoticiasHome.remove}" immediate="true"
-								rendered="#{gestorNoticiasHome.managed}" />
+				<h:commandButton id="update" value="Guardar"
+					action="#{gestorNoticiasHome.update}"
+					rendered="#{gestorNoticiasHome.managed}" />
 
-							<s:button id="cancelEdit" value="Cancelar" propagation="end"
-								view="/admin/GestorNoticias.xhtml"
-								rendered="#{gestorNoticiasHome.managed}" />
+				<h:commandButton id="delete" value="Borrar"
+					action="#{gestorNoticiasHome.remove}" immediate="true"
+					rendered="#{gestorNoticiasHome.managed}" />
 
-							<s:button id="cancelAdd" value="Cancelar" propagation="end"
-								view="/#{empty gestorNoticiasFrom ? 'GestorNoticiasList' : gestorNoticiasFrom}.xhtml"
-								rendered="#{!gestorNoticiasHome.managed}" />
+				<s:button id="cancelEdit" value="Cancelar" propagation="end"
+					view="/admin/GestorNoticias.xhtml"
+					rendered="#{gestorNoticiasHome.managed}" />
 
-						</div>
-					</h:form>
-					<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<br/><br/><br/>
+				<s:button id="cancelAdd" value="Cancelar" propagation="end"
+					view="/#{empty gestorNoticiasFrom ? 'GestorNoticiasList' : gestorNoticiasFrom}.xhtml"
+					rendered="#{!gestorNoticiasHome.managed}" />
+
+			</div>
+		</h:form>
+		<br />
+
 
 	</ui:define>
 

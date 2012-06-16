@@ -40,7 +40,7 @@
 
 					<rich:panel>
 						<f:facet name="header">Resultado de busqueda (#{empty gestorNoticiasList.resultList ? 0 : (gestorNoticiasList.paginated ? gestorNoticiasList.resultCount : gestorNoticiasList.resultList.size)})</f:facet>
-						<div class="results" id="gestorNoticiasList">
+						<div>
 
 							<h:outputText value="La busqueda no retorno resultados"
 								rendered="#{empty gestorNoticiasList.resultList}" />
@@ -92,7 +92,7 @@
 											value="#{_gestorNoticias.idNoticia}" />
 									</s:link>
             #{' '}
-            <s:link view="/GestorNoticiasEdit.xhtml" value="Editar"
+            <s:link view="/admin/GestorNoticiasEdit.xhtml" value="Editar"
 										propagation="none" id="gestorNoticiasEdit"
 										rendered="#{empty from}">
 										<f:param name="gestorNoticiasIdNoticia"
@@ -145,10 +145,7 @@
 						</s:button>
 					</s:div>
 
-					<br />	
-					<br/>	
-					<br/>	
-					<br/>			
+							
 				
 	</ui:define>
 

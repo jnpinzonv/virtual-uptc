@@ -9,7 +9,7 @@
 
 
 	<ui:define name="head">
-		<link href="../css/default.css" rel="stylesheet" type="../text/css" />	
+		<link href="css/default.css" rel="stylesheet" type="text/css" />	
 	</ui:define>
 	
 	<style>
@@ -33,58 +33,12 @@
 				<s:fileUpload id="file" data="#{uploadHandler.file}"
 					accept="image/jpg" fileName="#{uploadHandler.nombreArchivo}" />
 
-				<h:commandButton id="upload" value="Upload !!"
+				<h:commandButton id="upload" value="Subir !!"
 					action="#{uploadHandler.handleUpload}"/>
 					
 			</h:form>
 
-			<h:form id="guardar">
-			<s:div>
-					<s:decorate id="rolesField" template="../layout/edit.xhtml"
-								style="position:absolute;">
-								<ui:define name="label">Roles</ui:define>
-								<div class="selectOne">
-									<h:selectManyCheckbox id="roles" value="#{userAction.roles}"
-										layout="pageDirection" styleClass="roles" >
-										<s:selectItems value="#{identityManager.listGrantableRoles()}"
-											var="_role" label="#{_role}" />
-											
-									</h:selectManyCheckbox>
-								</div>
-							</s:decorate>
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<s:decorate id="enabledField" template="../layout/edit.xhtml" style="position:absolute;">
-								<ui:define name="label">Habilitar Usuario</ui:define>
-								<h:selectBooleanCheckbox id="enabled"
-									value="#{userAction.enabled}" />
-							</s:decorate>
-							<br />
-							<br />
-							<s:decorate id="facultad" template="../layout/edit.xhtml"
-								style="position:absolute;">
-								<ui:define name="label">Escuela</ui:define>
-								<h:selectOneMenu
-									value="#{usuario.enteUniversitarios}"
-									id="enteUniversitario" required="true" rendered="true">
-									<s:selectItems value="#{listaEntesUniversitariosEscuelas}" var="lista"
-										label="#{lista.nombreEnteUniversitario}"/>
-									<a4j:support event="onchange" reRender="dos" />
-									<s:convertEntity />
-								</h:selectOneMenu>
-							</s:decorate>
-							<br />
-							<br />
-							<br />
-							
-							<h:commandButton value="Guardar Usuarios" id ="crearUsuarios" action="#{cargaMasivaUsuariosBean.saveUsuarios()}" styleClass="newuser" rendered="#{s:hasPermission('seam.user', 'create')}"/>
-				</s:div>
-					</h:form>
-
+			
 			<h:form id="tabla">
 				<rich:dataTable value="#{listaUsuariosPreCargada}" var="cap">
 					<f:facet name="caption">

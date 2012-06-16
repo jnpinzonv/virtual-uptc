@@ -115,7 +115,7 @@
                         value="#{_grupoCurso.idGrupo}"/>
             </s:link>
             #{' '}
-            <s:link view="/GrupoCursoEdit.xhtml"
+            <s:link view="/admin/GrupoCursoEdit.xhtml"
                    value="Editar"
              propagation="none"
                       id="grupoCursoEdit"
@@ -165,7 +165,7 @@
     </div>
 
     <s:div styleClass="actionButtons" rendered="#{empty from}">
-        <s:button view="/GrupoCursoEdit.xhtml"
+        <s:button view="/admin/GrupoCursoEdit.xhtml"
                     id="create"
            propagation="none"
                  value="Crear grupo en Curso">

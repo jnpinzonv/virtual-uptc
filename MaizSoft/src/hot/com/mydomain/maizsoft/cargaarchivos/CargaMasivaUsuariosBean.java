@@ -44,8 +44,7 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 	@In(create = true)
 	private UserAction userAction;
 
-	@In(create = true)
-	private Usuario usuario;
+	
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -124,25 +123,22 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 			saveUsuarios();
 		} catch (Exception e) {
 			
-			 log.info("Error " + e.getMessage() + " " + e.getCause()+ " Duplicado Username");
+			 log.info("Error " + e.getMessage() + " " + e.getCause()+ " NO ingreso por el Link de Carga");
 				statusMessages.add("NO ingreso por el Link de Carga");
 		}
 
 	}
 
-	public void saveUsuarios() throws Exception{	
-	
-
-			
-		try {
+	public void saveUsuarios() throws Exception{		
 			
 		
 		for (int i = 0; i < preCargaUsuarios.getUsuarios().size(); i++) {
-
+			try {
 			UserAction nuevoU =preCargaUsuarios.getUserActions().get(i);
 			userAction.setUsername(nuevoU.getUsername());
 			userAction.setPassword(nuevoU.getPassword());
 			userAction.setConfirm(nuevoU.getPassword());
+			userAction.setEnabled(true);
 			userAction.save();
 			Usuario nuevo = preCargaUsuarios.getUsuarios().get(i);			
 			entityManager.persist(nuevo);
@@ -154,13 +150,14 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 			q.setParameter("parametro", nuevoU.getUsername());
 			nuevoCuenta.setUserAccounts((UserAccount) q.getSingleResult());
 			entityManager.persist(nuevoCuenta);
-		}
-		
-		
 		} catch (IdentityManagementException e) {
 			log.info("Error " + e.getMessage() + " " + e.getCause()+ " Duplicado Username");
 			statusMessages.add("Duplicado Username");
 		}
+		}
+		
+		
+		
 		
 	
 	}

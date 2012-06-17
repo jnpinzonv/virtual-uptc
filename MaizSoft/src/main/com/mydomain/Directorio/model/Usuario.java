@@ -41,8 +41,14 @@ public class Usuario{
 	
 	private Long id;
 
+	/**
+	 * 
+	 */
 	private Long documentoIdentidad;	
 	
+	/**
+	 * 
+	 */
 	private String primerNombre;
 	
 	private String segundoNombre;

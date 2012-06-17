@@ -18,9 +18,10 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.NotNull;
 
+
 /**
- *@author JosuÈ Nicol·s PinzÛn Villamil <jnpinzonv@hotmail.com>
- *@Version${date}
+ *@author Josu√© Nicol√°s Pinz√≥n Villamil <jnpinzonv@hotmail.com>
+ *@Version 16/06/2012
  */
 @Entity
 @Table(name ="grupo_usuarios")
@@ -35,8 +36,6 @@ public class GrupoUsuarios {
 	private Set<NotaActividad> notaActividades;
 	
 	private CuentasUsuario userRole;
-	
-	
 	
 	
 	
@@ -79,7 +78,7 @@ public class GrupoUsuarios {
 	/**
 	 * @return the grupoCurso
 	 */
-	@NotNull
+	
 	@ManyToOne
 	public GrupoCurso getGrupoCurso() {
 		return grupoCurso;

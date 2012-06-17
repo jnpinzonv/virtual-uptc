@@ -12,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,6 +20,7 @@ import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 import org.hibernate.validator.Size;
+import org.jboss.seam.annotations.Name;
 
 /**
  * @author Nicolas
@@ -26,6 +28,8 @@ import org.hibernate.validator.Size;
  */
 @Entity
 @Table(name="curso")
+@Name("curso")
+@NamedQuery(name="cursosPorEscuela",query="select c from Curso c where c.enteUniversitario.idEnteUniversitario=:parametro")
 public class Curso {
 
 	private Long codigo;

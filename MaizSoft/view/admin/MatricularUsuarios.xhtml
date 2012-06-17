@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich"
+	template="../layout/template2.xhtml">
+
+
+	<ui:define name="head">
+		<link href="../css/default.css" rel="stylesheet" type="../text/css" />	
+	</ui:define>
+	
+	<style>
+.top {
+	vertical-align: top;
+}
+
+.info {
+	height: 202px;
+	overflow: auto;
+}
+</style>
+	<ui:define name="centroT">
+
+<h:form id="entes">
+		<rich:panel>
+		
+		
+			<f:facet name="header">Matricula a Curso</f:facet>
+	<s:conversationPropagation>
+			<h:outputText value="Seleccione EnteUnivesitario Padre:" />
+				<h:selectOneMenu
+					value="#{enteUniversitarioHome.instance}"
+					id="sobrenombres" rendered="true">
+					<s:selectItems value="#{listaEnteUniversitariosFacultades}" var="lista"
+						label="#{lista.nombreEnteUniversitario}" />
+					<a4j:support event="onchange" reRender="dos" />
+					<s:convertEntity />
+					
+				</h:selectOneMenu>
+
+				<a4j:outputPanel id="dos" >
+					<h:outputText
+						value="Seleccione EnteUniversitario Hijo:"/>					
+						<h:selectOneMenu
+							value="#{enteUniversitarioHome.instance.enteUniversitario}" 
+							id="enteUniveristarios" >
+							<s:selectItems value="#{listaEscuelasMatriculas}"
+								var="listaE" label="#{listaE.nombreEnteUniversitario}" noSelectionLabel="Seleccione ..." />
+								<a4j:support event="onchange" reRender="tres" />
+								<s:convertEntity />							
+						</h:selectOneMenu>					
+				</a4j:outputPanel>
+				
+				<a4j:outputPanel id="tres" >
+				<h:outputText value="Seleccione curso:" />
+				<h:selectOneMenu
+					value="#{gestorMatriculasBean.curso}"
+					id="curso"  rendered="true">
+					<s:selectItems value="#{listaCursoMatricula}" var="lis"
+						label="#{lis.nombreAsignatura}" noSelectionLabel="Seleccione ..." />
+					<a4j:support event="onchange" reRender="cuatro" />
+					<s:convertEntity />
+				</h:selectOneMenu>
+				</a4j:outputPanel>
+				
+				<a4j:outputPanel id="cuatro" >
+					<h:outputText
+						value="Seleccione grupo:"/>					
+						<h:selectOneMenu
+							value="#{enteUniversitarioHome.instance.enteUniversitario}" 
+							id="grupos" >
+							<s:selectItems value="#{listaEscuelasMatriculas}"
+								var="listaE" label="#{listaE.nombreEnteUniversitario}" noSelectionLabel="Seleccione ..." />
+								<s:convertEntity />							
+						</h:selectOneMenu>					
+				</a4j:outputPanel>
+				</s:conversationPropagation>
+		</rich:panel>
+	
+	</h:form>
+	</ui:define>
+</ui:composition>

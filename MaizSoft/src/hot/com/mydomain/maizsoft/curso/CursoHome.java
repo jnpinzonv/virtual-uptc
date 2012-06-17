@@ -18,6 +18,9 @@ public class CursoHome extends EntityHome<Curso> {
 
 	@In(create = true)
 	EnteUniversitarioHome enteUniversitarioHome;
+	
+	@In(create=true)
+	GrupoCursoHome grupoCursoHome;
 
 	public void setCursoCodigo(Long id) {
 		setId(id);
@@ -61,6 +64,13 @@ public class CursoHome extends EntityHome<Curso> {
 	public List<GrupoCurso> getGrupoCursos() {
 		return getInstance() == null ? null : new ArrayList<GrupoCurso>(
 				getInstance().getGrupoCursos());
+	}
+	
+	public void saveCurso(){
+		persist();
+		grupoCursoHome.getInstance().setCursoGrupo(getInstance());
+		grupoCursoHome.getInstance().setInscritos(0);
+		grupoCursoHome.persist();
 	}
 	
 	@Factory("listaEscuelas")

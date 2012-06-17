@@ -7,52 +7,59 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://richfaces.org/a4j"
 	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-	xmlns:rich="http://richfaces.org/rich" template="../layout/template2.xhtml">
-	
+	xmlns:rich="http://richfaces.org/rich"
+	template="../layout/template2.xhtml">
+
 	<ui:define name="head">
-		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
 	</ui:define>
 
 
 	<ui:define name="centroT">
-					<rich:panel>
-						<f:facet name="header">Detalles de noticias</f:facet>
-						
-							<br/><br/>					
-							<rich:scrollableDataTable value="fofo"
-								var="issues" frozenColCount="1" first="0" rows="1"
-								width="656px" height="90px">
-								<rich:column width="200px">
-									<f:facet name="header">
-										<h:outputText value="Titulo" />
-									</f:facet>
-									<h:outputText value="#{gestorNoticiasHome.instance.nombreNoticia}" />									
-								</rich:column>
-								<rich:column width="450px" >
-									<f:facet name="header">
-										<h:outputText value="Descripción" />
-									</f:facet>
-									<h:outputText value="#{gestorNoticiasHome.instance.descripcion}" />									
-								</rich:column>
-							</rich:scrollableDataTable>
+		<h:form>
+			<rich:panel>
+				<f:facet name="header">Detalles de noticias</f:facet>
+
+				<br />
+				<br />
+				<rich:datascroller align="left" for="noticiasList"
+					page="#{noticiasList.pageCount}" id="sc23" reRender="sc24" />
+				<rich:dataTable value="fofo" id="noticiasList" var="issues"
+					rows="10" width="656px">
+					<rich:column width="200px">
+						<f:facet name="header">
+							<h:outputText value="Titulo" />
+						</f:facet>
+						<h:outputText value="#{gestorNoticiasHome.instance.nombreNoticia}" />
+					</rich:column>
+					<rich:column width="450px">
+						<f:facet name="header">
+							<h:outputText value="Descripción" />
+						</f:facet>
+						<h:outputText value="#{gestorNoticiasHome.instance.descripcion}" />
+					</rich:column>
+				</rich:dataTable>
+				<rich:datascroller align="left" for="noticiasList"
+					page="#{noticiasList.pageCount}" id="sc24" reRender="sc23" />
 
 
-				
 
-					</rich:panel>
-					<br/><br/>
-					<div class="actionButtons">
+			</rich:panel>
+		</h:form>
+		<br />
+		<br />
+		<div class="actionButtons">
 
-						<s:button view="/admin/GestorNoticiasEdit.xhtml" id="edit"
-							value="Editar" />
+			<s:button view="/admin/GestorNoticiasEdit.xhtml" id="edit"
+				value="Editar" />
 
-						<s:button
-							view="/#{empty gestorNoticiasFrom ? 'GestorNoticiasList' : gestorNoticiasFrom}.xhtml"
-							id="done" value="Aceptar" />
+			<s:button
+				view="/#{empty gestorNoticiasFrom ? 'GestorNoticiasList' : gestorNoticiasFrom}.xhtml"
+				id="done" value="Aceptar" />
 
-					</div>
+		</div>
 
-					<br /> 
+		<br />
 	</ui:define>
 
 </ui:composition>

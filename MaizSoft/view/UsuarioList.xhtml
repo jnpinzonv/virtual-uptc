@@ -76,8 +76,12 @@
 					<h:outputText value="La busqueda de usuario no retorno resultados"
 						rendered="#{empty usuarioList.resultList}" />
 					<div align="center">
-						<rich:scrollableDataTable id="usuarioList" var="_usuario"
-							value="#{usuarioList.resultList}" height="200px" width="700px">
+
+						<rich:datascroller align="left" for="usuarioList" 
+							page="#{usuarioList.pageCount}" reRender="sc2" id="sc1" />
+						<rich:dataTable id="usuarioList" var="_usuario"
+							value="#{usuarioList.resultList}" rows="10" width="700px"
+							>
 							<h:column width="100px">
 								<f:facet name="header">
 									<ui:include src="layout/sort.xhtml">
@@ -153,7 +157,9 @@
 									<f:param name="usuarioId" value="#{_usuario.id}" />
 								</s:link>
 							</rich:column>
-						</rich:scrollableDataTable>
+						</rich:dataTable>
+						<rich:datascroller align="left" for="usuarioList"
+							page="#{usuarioList.pageCount}" id="sc2" reRender="sc1" />
 					</div>
 				</div>
 			</rich:panel>

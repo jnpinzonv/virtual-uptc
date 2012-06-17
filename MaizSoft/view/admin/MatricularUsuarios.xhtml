@@ -36,7 +36,7 @@
 					id="sobrenombres" rendered="true">
 					<s:selectItems value="#{listaEnteUniversitariosFacultades}" var="lista"
 						label="#{lista.nombreEnteUniversitario}" />
-					<a4j:support event="onchange" reRender="dos" />
+					<a4j:support event="onchange" reRender="dos" ajaxSingle="true"/>
 					<s:convertEntity />
 					
 				</h:selectOneMenu>
@@ -49,7 +49,7 @@
 							id="enteUniveristarios" >
 							<s:selectItems value="#{listaEscuelasMatriculas}"
 								var="listaE" label="#{listaE.nombreEnteUniversitario}" noSelectionLabel="Seleccione ..." />
-								<a4j:support event="onchange" reRender="tres" />
+								<a4j:support event="onchange" reRender="tres" ajaxSingle="true"/>
 								<s:convertEntity />							
 						</h:selectOneMenu>					
 				</a4j:outputPanel>
@@ -61,7 +61,7 @@
 					id="curso"  rendered="true">
 					<s:selectItems value="#{listaCursoMatricula}" var="lis"
 						label="#{lis.nombreAsignatura}" noSelectionLabel="Seleccione ..." />
-					<a4j:support event="onchange" reRender="cuatro" />
+					<a4j:support event="onchange" reRender="cuatro" ajaxSingle="true"/>
 					<s:convertEntity />
 				</h:selectOneMenu>
 				</a4j:outputPanel>

@@ -1,0 +1,107 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
+
+	<ui:define name="head">
+		<link href="css/cssLayoutAutenticar.css" rel="stylesheet"
+			type="text/css" />
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
+	</ui:define>
+
+	<ui:define name="body">
+
+		<s:div styleClass="top">Banner</s:div>
+
+		<div class="center2" style="height: 440px">
+
+			<div class="left">
+				<ui:insert name="top">
+					<div class="menuheaderNoticias"></div>
+					<div class="menucontent"></div>
+					<div class="menucontent"></div>
+					<div class="menucontent"></div>
+					<div class="menucontent"></div>
+					<div class="menudown"></div>
+				</ui:insert>
+				<pre></pre>
+				<ui:insert name="centers">
+					<div class="menuheaderguias"></div>
+					<div class="menucontent">
+						<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+					</div>
+					
+					<div class="menudown"></div>
+				</ui:insert>
+			</div>
+
+			<div class="right">
+				<ui:insert name="right">
+					<div class="menuheadercalendario"></div>
+					<div class="menucontent">
+						<rich:panel>
+							<!--  <rich:calendar popup="false"/>-->
+							<rich:calendar popup="false">
+								<f:facet name="weekNumber">
+									<h:outputText value="" style="color:red" />
+								</f:facet>
+							</rich:calendar>
+
+						</rich:panel>
+						<br />
+					</div>
+					<div class="menudown"></div>
+				</ui:insert>
+			</div>
+
+
+			<div class="center2" style="color: #000000; height: 350px">
+				<div align="center">
+					<h:form>
+						<h3>¿Olvido su contraseña?</h3>
+						<br />
+						<p>Para restablecer su contraseña, introduzca el nombre de
+							usuario que utiliza para iniciar sesión y la dirección de
+							correo electrónico que este asociado a esta cuenta, y la nueva
+							contraseña será enviada a su correo electrónico.</p>
+						<br />
+						<br />
+						<h:outputLabel value="Nombre de Usuario: " />
+						<h:inputText value=""/>
+						<br />
+						<br />
+						<h:outputLabel value="Correo Electrónico: " />
+						<h:inputText value=""/>
+						<br />
+						<br />
+					
+						<h:commandButton value="Aceptar" action="/login.seam"/>
+						<h:commandButton value="Cancelar" action="/login.seam" />
+					</h:form>
+				</div>
+			</div>
+
+			<div class="down" align="center" style="height: 100px">
+				<div style="float: left; margin-left: 270px">
+					<img src="css/images/uptc.png" style="height: 80px" />
+				</div>
+
+				<div style="float: right; margin-right: 270px">
+					<img src="css/images/gis1.png" style="height: 80px" />
+				</div>
+				<div style="position: relative;">
+					<p>
+						Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
+						<br /> Facultad de Ingenier&#237;a <br /> Ingenier&#237;a de
+						Sistemas y Computaci&#243;n <br /> Grupo de Investigaci&#243;n en
+						Ingenier&#237;a del Software <br /> Correo:gis@uptc.edu.co
+					</p>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

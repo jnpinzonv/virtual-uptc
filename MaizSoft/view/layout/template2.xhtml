@@ -78,10 +78,9 @@
 									<h:outputText id="menuWelcomeId"
 										value="#{credentials.username}"
 										rendered="#{identity.loggedIn}" />
-									<s:link id="menuLogoutId" view="/login.xhtml"
-										action="#{identity.logout}" value="Salir"
-										rendered="#{identity.loggedIn}" propagation="none"
-										style="color: white" />
+									<s:link id="menuLogoutId" 
+										action="#{identity.logout}" value="Salir" propagation="end"
+										style="color: white" view="/login.xhtml"/>
 								</h:form>
 								<br /> <br />
 								<form name="form_reloj">
@@ -150,14 +149,14 @@
 												style="color: #FFFFFF;">
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Adicionar"
-														action="#{usuarioHome.crearUsuario()}"
+														action="#{usuarioHome.crearUsuario}"
 														rendered="#{s:hasPermission('seam.user', 'create')}"
 														propagation="end"></s:link>
 												</rich:panelMenuItem>
 
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Carga Masiva"
-														action="#{cargaMasivaUsuariosBean.crearUsuario()}"
+														action="#{cargaMasivaUsuariosBean.crearUsuario}"
 														rendered="#{s:hasPermission('seam.user', 'create')}"
 														propagation="end"></s:link>
 												</rich:panelMenuItem>
@@ -177,26 +176,26 @@
 											<rich:panelMenuGroup label="Administrar Curso"
 												style="color: #FFFFFF;">
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Crear" action="/admin/CursoEdit.seam"
+													<s:link value="Crear Curso" action="/admin/CursoEdit.seam"
 														propagation="end"></s:link>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Editar" action="/CursoList.seam"
+													<s:link value="Editar Curso" action="/CursoList.seam"
 														propagation="end"></s:link>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Crear" action="/admin/GrupoCursoEdit.seam"
+													<s:link value="Crear Grupo" action="/admin/GrupoCursoEdit.seam"
 														propagation="end"></s:link>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Editar" action="/GrupoCursoList.seam"
+													<s:link value="Editar Grupo" action="/GrupoCursoList.seam"
 														propagation="end"></s:link>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Adicionar" propagation="end"></s:link>
+													<s:link value="Adicionar Estudiante" propagation="end"></s:link>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Carga Masiva" propagation="end"></s:link>
+													<s:link value="Carga Masiva Estudiantes" propagation="end"></s:link>
 												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
 											<rich:panelMenuGroup label="Administrar Facultad y Escuela"

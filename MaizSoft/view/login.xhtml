@@ -69,13 +69,11 @@
             				<h:commandButton value="Entrar" action="#{identity.login}"/>
             				<br/>            				       						       
         				</div>
-					</center>
-						<div>
-							<h:commandLink value= "&#191;Ha olvidado su contrase&#241;a?" />
-						</div>
-						 
-    			</h:form>                        
-           	</div>
+					</center>						
+						<s:link value= "&#191;Ha olvidado su contrase&#241;a?" action="/OlvidoContrasena.seam"/>                        
+												 
+    			</h:form>
+    			           	</div>
             	<div class="menudown"></div>            	
             	<pre></pre>
                         <div class="menuheadercalendario"></div>
@@ -88,7 +86,9 @@
        							 </f:facet > 
                         		</rich:calendar> 
                         		
-                           	</rich:panel>     	                    
+                           	</rich:panel>
+                           	<br />
+                           	  	                    
                         </div>
                         <div class="menudown"></div>
          </ui:insert>  

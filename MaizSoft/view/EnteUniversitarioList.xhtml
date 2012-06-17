@@ -1,19 +1,19 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:s="http://jboss.com/products/seam/taglib"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:rich="http://richfaces.org/rich"
-    template="layout/template2.xhtml">
-    
-    <ui:define name="head">
-		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	template="layout/template2.xhtml">
+
+	<ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
 	</ui:define>
 
-<ui:define name="centroT">
-	<!-- 	
+	<ui:define name="centroT">
+		<!-- 	
     <h:form id="enteUniversitarioSearch" styleClass="edit">
 
         <rich:simpleTogglePanel label="Buscar Ente Universitario" switchType="ajax">
@@ -51,187 +51,203 @@
 
     </h:form>
      -->
+		<h:form>
+			<rich:panel>
+				<f:facet name="header">Entes Universitario (#{empty enteUniversitarioList.resultList ? 0 : (enteUniversitarioList.paginated ? enteUniversitarioList.resultCount : enteUniversitarioList.resultList.size)})</f:facet>
+				<div>
 
-    <rich:panel>
-        <f:facet name="header">Entes Universitario (#{empty enteUniversitarioList.resultList ? 0 : (enteUniversitarioList.paginated ? enteUniversitarioList.resultCount : enteUniversitarioList.resultList.size)})</f:facet>
-    <div >
+					<h:outputText
+						value="The enteUniversitario search returned no results."
+						rendered="#{empty enteUniversitarioList.resultList}" />
 
-    <h:outputText value="The enteUniversitario search returned no results."
-               rendered="#{empty enteUniversitarioList.resultList}"/>
-	
-	<div align="center">
-	<h3>Facultades:</h3>
-    <rich:scrollableDataTable id="enteUniversitarioList"
-                var="_enteUniversitario"
-              rendered="#{not empty enteUniversitarioList.resultList}"
-              value="#{listaEnteUniversitariosFacultades}" height="200px" width="675px">
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{enteUniversitarioList}"/>
-                    <ui:param name="propertyLabel" value="Id"/>
-                    <ui:param name="propertyPath" value="enteUniversitario.idEnteUniversitario"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_enteUniversitario.idEnteUniversitario}"/>
-        </h:column>
-        <h:column width="220px">
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{enteUniversitarioList}"/>
-                    <ui:param name="propertyLabel" value="Nombre"/>
-                    <ui:param name="propertyPath" value="enteUniversitario.nombreEnteUniversitario"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_enteUniversitario.nombreEnteUniversitario}"/>
-        </h:column>
-        <h:column width="250px">
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{enteUniversitarioList}"/>
-                    <ui:param name="propertyLabel" value="Descripción"/>
-                    <ui:param name="propertyPath" value="enteUniversitario.descripcionEnteUniversitario"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_enteUniversitario.descripcionEnteUniversitario}"/>
-        </h:column>
-        <rich:column styleClass="action">
-            <f:facet name="header">Acción</f:facet>
-            <s:link view="/#{empty from ? 'EnteUniversitario' : from}.xhtml"
-                   value="#{empty from ? 'Ver' : 'Seleccionar'}"
-             propagation="#{empty from ? 'none' : 'default'}"
-                      id="enteUniversitarioViewId">
-                <f:param name="enteUniversitarioIdEnteUniversitario"
-                        value="#{_enteUniversitario.idEnteUniversitario}"/>
-            </s:link>
+					<div align="center">
+						<h3>Facultades:</h3>
+						<rich:datascroller align="left" for="enteUniversitarioList"
+							page="#{enteUniversitarioList.pageCount}" id="sc17"
+							reRender="sc18" />
+						<rich:dataTable id="enteUniversitarioList"
+							var="_enteUniversitario"
+							rendered="#{not empty enteUniversitarioList.resultList}"
+							value="#{listaEnteUniversitariosFacultades}" rows="10"
+							width="675px">
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList" value="#{enteUniversitarioList}" />
+										<ui:param name="propertyLabel" value="Id" />
+										<ui:param name="propertyPath"
+											value="enteUniversitario.idEnteUniversitario" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_enteUniversitario.idEnteUniversitario}" />
+							</h:column>
+							<h:column width="220px">
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList" value="#{enteUniversitarioList}" />
+										<ui:param name="propertyLabel" value="Nombre" />
+										<ui:param name="propertyPath"
+											value="enteUniversitario.nombreEnteUniversitario" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_enteUniversitario.nombreEnteUniversitario}" />
+							</h:column>
+							<h:column width="250px">
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList" value="#{enteUniversitarioList}" />
+										<ui:param name="propertyLabel" value="Descripción" />
+										<ui:param name="propertyPath"
+											value="enteUniversitario.descripcionEnteUniversitario" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_enteUniversitario.descripcionEnteUniversitario}" />
+							</h:column>
+							<rich:column styleClass="action">
+								<f:facet name="header">Acción</f:facet>
+								<s:link view="/#{empty from ? 'EnteUniversitario' : from}.xhtml"
+									value="#{empty from ? 'Ver' : 'Seleccionar'}"
+									propagation="#{empty from ? 'none' : 'default'}"
+									id="enteUniversitarioViewId">
+									<f:param name="enteUniversitarioIdEnteUniversitario"
+										value="#{_enteUniversitario.idEnteUniversitario}" />
+								</s:link>
             #{' '}
             <s:link view="/admin/EnteUniversitarioEdit.xhtml"
-                   value="Editar"
-             propagation="none"
-                      id="enteUniversitarioEdit"
-                rendered="#{empty from}">
-                <f:param name="enteUniversitarioIdEnteUniversitario"
-                        value="#{_enteUniversitario.idEnteUniversitario}"/>
-            </s:link>
-        </rich:column>
-    </rich:scrollableDataTable>
-    
-    <br/>
-   
-   	<h3>Escuelas:</h3>
-	 <rich:scrollableDataTable id="enteUniversitarioListE"
-                var="_enteUniversitario"
-                rendered="#{not empty enteUniversitarioList.resultList}"
-              value="#{listaEntesUniversitariosEscuelas}" height="200px" width="675px">
-        <h:column>
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{enteUniversitarioList}"/>
-                    <ui:param name="propertyLabel" value="Id"/>
-                    <ui:param name="propertyPath" value="enteUniversitario.idEnteUniversitario"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_enteUniversitario.idEnteUniversitario}"/>
-        </h:column>
-        <h:column width="160px">
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{enteUniversitarioList}"/>
-                    <ui:param name="propertyLabel" value="Nombre"/>
-                    <ui:param name="propertyPath" value="enteUniversitario.nombreEnteUniversitario"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_enteUniversitario.nombreEnteUniversitario}"/>
-        </h:column>
-        <h:column width="160px">
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{enteUniversitarioList}"/>
-                    <ui:param name="propertyLabel" value="Descripción"/>
-                    <ui:param name="propertyPath" value="enteUniversitario.descripcionEnteUniversitario"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_enteUniversitario.descripcionEnteUniversitario}"/>
-        </h:column>
-        <h:column width="150px">
-            <f:facet name="header">
-                <ui:include src="layout/sort.xhtml">
-                    <ui:param name="entityList" value="#{enteUniversitarioList}"/>
-                    <ui:param name="propertyLabel" value="Facultad"/>
-                    <ui:param name="propertyPath" value="enteUniversitario.enteUniversitario.idEnteUniversitario"/>
-                </ui:include>
-            </f:facet>
-            <h:outputText value="#{_enteUniversitario.enteUniversitario.nombreEnteUniversitario}"/>
-        </h:column>
-        
-        <rich:column styleClass="action">
-            <f:facet name="header">Acción</f:facet>
-            <s:link view="/#{empty from ? 'EnteUniversitario' : from}.xhtml"
-                   value="#{empty from ? 'Ver' : 'Seleccionar'}"
-             propagation="#{empty from ? 'none' : 'default'}"
-                      id="enteUniversitarioViewId">
-                <f:param name="enteUniversitarioIdEnteUniversitario"
-                        value="#{_enteUniversitario.idEnteUniversitario}"/>
-            </s:link>
+									value="Editar" propagation="none" id="enteUniversitarioEdit"
+									rendered="#{empty from}">
+									<f:param name="enteUniversitarioIdEnteUniversitario"
+										value="#{_enteUniversitario.idEnteUniversitario}" />
+								</s:link>
+							</rich:column>
+						</rich:dataTable>
+						<rich:datascroller align="left" for="enteUniversitarioList"
+							page="#{enteUniversitarioList.pageCount}" id="sc2" reRender="sc1" />
+
+						<br />
+
+						<h3>Escuelas:</h3>
+						<rich:datascroller align="left" for="enteUniversitarioListE"
+							page="#{enteUniversitarioListE.pageCount}" id="sc21"
+							reRender="sc22" />
+						<rich:dataTable id="enteUniversitarioListE"
+							var="_enteUniversitario"
+							rendered="#{not empty enteUniversitarioList.resultList}"
+							value="#{listaEntesUniversitariosEscuelas}" rows="10"
+							width="675px">
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList" value="#{enteUniversitarioList}" />
+										<ui:param name="propertyLabel" value="Id" />
+										<ui:param name="propertyPath"
+											value="enteUniversitario.idEnteUniversitario" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_enteUniversitario.idEnteUniversitario}" />
+							</h:column>
+							<h:column width="160px">
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList" value="#{enteUniversitarioList}" />
+										<ui:param name="propertyLabel" value="Nombre" />
+										<ui:param name="propertyPath"
+											value="enteUniversitario.nombreEnteUniversitario" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_enteUniversitario.nombreEnteUniversitario}" />
+							</h:column>
+							<h:column width="160px">
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList" value="#{enteUniversitarioList}" />
+										<ui:param name="propertyLabel" value="Descripción" />
+										<ui:param name="propertyPath"
+											value="enteUniversitario.descripcionEnteUniversitario" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_enteUniversitario.descripcionEnteUniversitario}" />
+							</h:column>
+							<h:column width="150px">
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList" value="#{enteUniversitarioList}" />
+										<ui:param name="propertyLabel" value="Facultad" />
+										<ui:param name="propertyPath"
+											value="enteUniversitario.enteUniversitario.idEnteUniversitario" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_enteUniversitario.enteUniversitario.nombreEnteUniversitario}" />
+							</h:column>
+
+							<rich:column styleClass="action">
+								<f:facet name="header">Acción</f:facet>
+								<s:link view="/#{empty from ? 'EnteUniversitario' : from}.xhtml"
+									value="#{empty from ? 'Ver' : 'Seleccionar'}"
+									propagation="#{empty from ? 'none' : 'default'}"
+									id="enteUniversitarioViewId">
+									<f:param name="enteUniversitarioIdEnteUniversitario"
+										value="#{_enteUniversitario.idEnteUniversitario}" />
+								</s:link>
             #{' '}
             <s:link view="/admin/EnteUniversitarioEdit.xhtml"
-                   value="Editar"
-             propagation="none"
-                      id="enteUniversitarioEdit"
-                rendered="#{empty from}">
-                <f:param name="enteUniversitarioIdEnteUniversitario"
-                        value="#{_enteUniversitario.idEnteUniversitario}"/>
-            </s:link>
-        </rich:column>
-    </rich:scrollableDataTable>
-    </div>
-    </div>
-    </rich:panel>
+									value="Editar" propagation="none" id="enteUniversitarioEdit"
+									rendered="#{empty from}">
+									<f:param name="enteUniversitarioIdEnteUniversitario"
+										value="#{_enteUniversitario.idEnteUniversitario}" />
+								</s:link>
+							</rich:column>
+						</rich:dataTable>
+						<rich:datascroller align="left" for="enteUniversitarioListE"
+							page="#{enteUniversitarioListE.pageCount}" id="sc22"
+							reRender="sc21"/>
+					</div>
+				</div>
+			</rich:panel>
 
-    <div class="tableControl">
+			<div class="tableControl">
 
-        <s:link view="/EnteUniversitarioList.xhtml"
-            rendered="#{enteUniversitarioList.previousExists}"
-               value="#{messages.left}#{messages.left} First Page"
-                  id="firstPage">
-          <f:param name="firstResult" value="0"/>
-        </s:link>
+				<s:link view="/EnteUniversitarioList.xhtml"
+					rendered="#{enteUniversitarioList.previousExists}"
+					value="#{messages.left}#{messages.left} First Page" id="firstPage">
+					<f:param name="firstResult" value="0" />
+				</s:link>
 
-        <s:link view="/EnteUniversitarioList.xhtml"
-            rendered="#{enteUniversitarioList.previousExists}"
-               value="#{messages.left} Previous Page"
-                  id="previousPage">
-            <f:param name="firstResult"
-                    value="#{enteUniversitarioList.previousFirstResult}"/>
-        </s:link>
+				<s:link view="/EnteUniversitarioList.xhtml"
+					rendered="#{enteUniversitarioList.previousExists}"
+					value="#{messages.left} Previous Page" id="previousPage">
+					<f:param name="firstResult"
+						value="#{enteUniversitarioList.previousFirstResult}" />
+				</s:link>
 
-        <s:link view="/EnteUniversitarioList.xhtml"
-            rendered="#{enteUniversitarioList.nextExists}"
-               value="Next Page #{messages.right}"
-                  id="nextPage">
-            <f:param name="firstResult"
-                    value="#{enteUniversitarioList.nextFirstResult}"/>
-        </s:link>
+				<s:link view="/EnteUniversitarioList.xhtml"
+					rendered="#{enteUniversitarioList.nextExists}"
+					value="Next Page #{messages.right}" id="nextPage">
+					<f:param name="firstResult"
+						value="#{enteUniversitarioList.nextFirstResult}" />
+				</s:link>
 
-        <s:link view="/EnteUniversitarioList.xhtml"
-            rendered="#{enteUniversitarioList.nextExists}"
-               value="Last Page #{messages.right}#{messages.right}"
-                  id="lastPage">
-            <f:param name="firstResult"
-                    value="#{enteUniversitarioList.lastFirstResult}"/>
-        </s:link>
+				<s:link view="/EnteUniversitarioList.xhtml"
+					rendered="#{enteUniversitarioList.nextExists}"
+					value="Last Page #{messages.right}#{messages.right}" id="lastPage">
+					<f:param name="firstResult"
+						value="#{enteUniversitarioList.lastFirstResult}" />
+				</s:link>
 
-    </div>
+			</div>
 
-    <s:div styleClass="actionButtons" rendered="#{empty from}">
-        <s:button view="/EnteUniversitarioEdit.xhtml"
-                    id="create"
-           propagation="none"
-                 value="Crear enteUniversitario">
-            <f:param name="enteUniversitarioIdEnteUniversitario"/>
-        </s:button>
-    </s:div>
-
-</ui:define>
+			<s:div styleClass="actionButtons" rendered="#{empty from}">
+				<s:button view="/EnteUniversitarioEdit.xhtml" id="create"
+					propagation="none" value="Crear enteUniversitario">
+					<f:param name="enteUniversitarioIdEnteUniversitario" />
+				</s:button>
+			</s:div>
+		</h:form>
+	</ui:define>
 
 </ui:composition>

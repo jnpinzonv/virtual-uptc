@@ -12,7 +12,6 @@ import javax.persistence.Query;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
-import org.jboss.seam.annotations.Out;
 import org.jboss.seam.framework.EntityHome;
 import org.jboss.seam.security.management.action.UserAction;
 
@@ -21,9 +20,6 @@ public class UsuarioHome extends EntityHome<Usuario> {
 
 	@In(create = true)
 	EnteUniversitarioHome enteUniversitarioHome;
-	@In(create = true)
-	@Out
-	EnteUniversitario enteUniversitarioPadre;
 	@In(create = true)
 	TipoHome tipoHome;
 	
@@ -118,8 +114,6 @@ public class UsuarioHome extends EntityHome<Usuario> {
 		userAction.createUser();
 		return "/admin/UsuarioEdit.xhtml";
 	}
-	
-	
 
 	@Factory("listaEntesUniversitariosEscuelas")
 	public List<EnteUniversitario> listaEntesUniversitarios() {

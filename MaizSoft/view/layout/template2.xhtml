@@ -146,7 +146,7 @@
 											</rich:panelMenuGroup>
 
 											<rich:panelMenuGroup label="Administrar Usuarios"
-												style="color: #FFFFFF;">
+												style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Adicionar"
 														action="#{usuarioHome.crearUsuario}"
@@ -174,7 +174,7 @@
 												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
 											<rich:panelMenuGroup label="Administrar Curso"
-												style="color: #FFFFFF;">
+												style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Crear Curso" action="/admin/CursoEdit.seam"
 														propagation="end"></s:link>
@@ -199,7 +199,7 @@
 												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
 											<rich:panelMenuGroup label="Administrar Facultad y Escuela"
-												style="color: #FFFFFF;">
+												style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Crear"
 														action="/admin/EnteUniversitarioEdit.seam"
@@ -211,7 +211,7 @@
 												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
 											<rich:panelMenuGroup label="Generar Informe"
-												style="color: #FFFFFF;">
+												style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Generar" propagation="end"></s:link>
 												</rich:panelMenuItem>
@@ -220,7 +220,7 @@
 												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
 											<rich:panelMenuGroup label="Administrar Repositorio"
-												style="color: #FFFFFF;">
+												style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Crear"
 														action="/GestorRepositoriosVirtualesEdit.seam"
@@ -230,9 +230,16 @@
 													<s:link value="Editar"
 														action="/GestorRepositoriosVirtualesList.seam"
 														propagation="end"></s:link>
-												</rich:panelMenuItem>
+												</rich:panelMenuItem>												
 											</rich:panelMenuGroup>
-
+											<rich:panelMenuGroup label="Chat"
+												style="color: #FFFFFF;" rendered="#{s:hasRole('estudiante')} #{s:hasRole('docente')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+													<s:link value="Chat"
+														action="/GestorRepositoriosVirtualesList.seam"
+														propagation="end" ></s:link>
+											</rich:panelMenuItem>
+											</rich:panelMenuGroup>
 										</rich:panelMenu>
 										<a4j:outputPanel ajaxRendered="true">
 											<rich:panel rendered="#{not empty panelMenuBean.current}">
@@ -261,8 +268,10 @@
 											<h:outputText value="" style="color:red" />
 										</f:facet>
 									</rich:calendar>
-									<br />
-
+									<s:link value="Agenda" action="/GestorNoticiasList.seam" 
+									rendered="#{s:hasRole('estudiante')}" propagation="end" />
+									<br />	
+									
 									<s:link value="Gestionar noticias"
 										action="/GestorNoticiasList.seam"
 										rendered="#{s:hasRole('admin')}" propagation="end" />

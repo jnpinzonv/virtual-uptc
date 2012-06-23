@@ -24,21 +24,10 @@
 </style>
 	<ui:define name="centroT">
 
-
 		<rich:panel>
 			<f:facet name="header">cargaMasivaUsuarios</f:facet>
 
-			<h:form id="fooForm" enctype="multipart/form-data" >
-
-				<s:fileUpload id="file" data="#{uploadHandler.file}"
-					accept="image/jpg" fileName="#{uploadHandler.nombreArchivo}"/>
-
-				<h:commandButton id="upload" value="Subir !!"
-					action="#{uploadHandler.handleUpload}"/>
-				  	
-			</h:form>
-
-			
+				
 			<h:form id="tabla">
 				<rich:dataTable value="#{listaUsuariosPreCargada}" var="cap">
 					<f:facet name="caption">

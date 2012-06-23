@@ -44,6 +44,9 @@ public class Actividad {
 	/**
 	 * @return the tipo
 	 */
+	/**
+	 * @return
+	 */
 	@NotNull
 	@ManyToOne
 	public Tipo getTipo() {

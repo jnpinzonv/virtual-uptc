@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,7 +26,7 @@ import org.jboss.seam.annotations.Name;
 * Descripcion: Esta Clase se encarga de almacenar información
 * de los usuarios de la palataforma.
 * Modulo de Desarrollo :CU- ...
-* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -34,15 +36,16 @@ import org.jboss.seam.annotations.Name;
 @Entity
 @Name("usuario")
 @Table(name ="usuarios")
+@NamedQuery(name="asociarusuariosconcuentas",query="select t from Usuario t where t.cuentasUsuario.id=:parametro")
 public class Usuario{
 
 	/**
-	 * Variable que almacena el número de identificación del usuario.
+	 * Variable que almacena el nÃºmero de identificaciÃ³n del usuario.
 	 */
 	private Long id;
 
 	/**
-	 * Variable que se encarga de almacenar el número del documento
+	 * Variable que se encarga de almacenar el nï¿½mero del documento
 	 * de identidad del usuario.
 	 */
 	private Long documentoIdentidad;	
@@ -63,13 +66,13 @@ public class Usuario{
 	private String apellidos;
 	
 	/**
-	 * Variable que almacena la dirreción de correo
-	 * electrónico del usuario.
+	 * Variable que almacena la dirreciï¿½n de correo
+	 * electrï¿½nico del usuario.
 	 */
 	private String correoElectronico;
 	
 	/**
-	 * Variable que guarda la dirección de la fotografía del usuario.
+	 * Variable que guarda la direcciï¿½n de la fotografï¿½a del usuario.
 	 */
 	private String fotoUser;
 	
@@ -104,7 +107,7 @@ public class Usuario{
 	private Set<CuentasUsuario> cuentasUsuario;
 	
 	/**
-	 * Variable que almacena la información conserniente a la
+	 * Variable que almacena la informaciï¿½n conserniente a la
 	 * universidad a la cual pertenece el curso y por lo tanto
 	 * sus integrantes.
 	 * Instancia de la clase EnteUniversitrio.
@@ -112,13 +115,13 @@ public class Usuario{
 	private EnteUniversitario enteUniversitarios;
 	
 	/**
-	 * Variable encargada de almacenar el código de los
-	 * usuarios, el cual puede tener letras y números.
+	 * Variable encargada de almacenar el cï¿½digo de los
+	 * usuarios, el cual puede tener letras y nï¿½meros.
 	 */
 	private String codigoUsuarios;
 	
 	/**
-	 * Variable que guarda la información del tipo de usuario
+	 * Variable que guarda la informaciï¿½n del tipo de usuario
 	 * que se encuentra inscirto en el curso.
 	 */
 	private Tipo tipo;

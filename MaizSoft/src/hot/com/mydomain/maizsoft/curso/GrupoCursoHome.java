@@ -3,6 +3,8 @@ package com.mydomain.maizsoft.curso;
 import com.mydomain.Directorio.model.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
@@ -10,6 +12,8 @@ import org.jboss.seam.framework.EntityHome;
 @Name("grupoCursoHome")
 public class GrupoCursoHome extends EntityHome<GrupoCurso> {
 
+	public final static int MAX_SEMANAS=20;
+	
 	@In(create = true)
 	CursoHome cursoHome;
 
@@ -64,6 +68,17 @@ public class GrupoCursoHome extends EntityHome<GrupoCurso> {
 	public List<HistorialNotas> getListaHistorialNotas() {
 		return getInstance() == null ? null : new ArrayList<HistorialNotas>(
 				getInstance().getListaHistorialNotas());
+	}
+	
+	@Factory ("listaSemanaMaxima")
+	public List<Integer> getMaximoSemanas(){
+		ArrayList<Integer> maximo = new ArrayList<Integer>();
+		
+		for (int i = 1; i < MAX_SEMANAS+1; i++) {
+			maximo.add(i);
+		}
+		
+		return maximo;
 	}
 
 }

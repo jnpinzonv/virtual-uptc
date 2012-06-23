@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,12 +20,12 @@ import org.hibernate.validator.Size;
 
 /**
 * Descripcion: Esta Clase se encarga de definir las variables relacionadas con los grupos de 
-* los cursos de las diferentes asignaturas como lo son: el código del grupo, su número de 
-* identificación, la cantidad de cupos con los que cuenta, el número de alumnos inscritos en 
+* los cursos de las diferentes asignaturas como lo son: el cï¿½digo del grupo, su nï¿½mero de 
+* identificaciï¿½n, la cantidad de cupos con los que cuenta, el nï¿½mero de alumnos inscritos en 
 * cada curso, semestre al que pertenece el curso y sus inscritos, el historial de notas de 
 * las personas que conforman determinado grupo o curso y la lista de usuarios del mismo.
 * Modulo de Desarrollo :CU- ...
-* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -33,15 +34,16 @@ import org.hibernate.validator.Size;
 */
 @Entity
 @Table(name= "grupo_curso")
+@NamedQuery(name="gruposPorCurso",query="select c from GrupoCurso c where c.cursoGrupo.codigo=:parametro")
 public class GrupoCurso {
 
 	/**
-	 * Variable encargada de almacenar el código del grupo.
+	 * Variable encargada de almacenar el cï¿½digo del grupo.
 	 */
 	private Long codigoGrupo;
 	
 	/**
-	 * Variable encargada de almacenar la identificación del grupo.
+	 * Variable encargada de almacenar la identificaciï¿½n del grupo.
 	 */
 	private Long idGrupo;
 
@@ -53,7 +55,7 @@ public class GrupoCurso {
 	private Integer cupos;
 	
 	/**
-	 * Variable que almacena el número de estudiantes inscritos
+	 * Variable que almacena el nï¿½mero de estudiantes inscritos
 	 * en un grupo.
 	 */
 	private Integer inscritos;

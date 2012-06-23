@@ -53,8 +53,9 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 	private PreCargaUsuarios preCargaUsuarios;
 
 	private String rutaCargaUsuarios;
-
+	
 	public void cargaMasivaUsuarios() {
+		
 		// implement your business logic here
 		log.info("CargaMasivaUsuarios.cargaMasivaUsuarios() action called");
 		statusMessages.add("cargaMasivaUsuarios");
@@ -101,6 +102,7 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 					nuevo.setEnteUniversitarios(enteUniversitarios);
 					ArrayList<String> nuevoR = new ArrayList<String>();
 					nuevoR.add(sheet.getCell(10, x).getContents());
+					action.setRoles(nuevoR);
 					preCargaUsuarios.getUsuarios().add(nuevo);
 					preCargaUsuarios.getUserActions().add(action);
 
@@ -139,11 +141,13 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 			userAction.setPassword(nuevoU.getPassword());
 			userAction.setConfirm(nuevoU.getPassword());
 			userAction.setEnabled(true);
+			userAction.setRoles(nuevoU.getRoles());
 			userAction.save();
 			Usuario nuevo = preCargaUsuarios.getUsuarios().get(i);			
 			entityManager.persist(nuevo);
 			CuentasUsuario nuevoCuenta = new CuentasUsuario();
 			nuevoCuenta.setUsuarios(nuevo);
+		
 			
 			Query q = entityManager
 					.createQuery("select u from UserAccount u where u.username=:parametro");
@@ -156,12 +160,8 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 		}
 		}
 		
-		
-		
-		
-	
 	}
-
+	
 	public EnteUniversitario buscarEnteUniversitario(String parametro) {
 		Query q = entityManager
 				.createQuery("select t from EnteUniversitario t where t.codigoEnteUniversitario=:parametro");

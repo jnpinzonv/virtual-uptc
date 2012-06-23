@@ -8,11 +8,11 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,8 +24,13 @@ import org.hibernate.validator.NotNull;
  * @author Nicolas
  *
  */
+/**
+ *@author Josué Nicolás Pinzón Villamil <jnpinzonv@hotmail.com>
+ *@Version {date}
+ */
 @Entity
 @Table(name="ente_universitario")
+@NamedQuery(name="entesUniversitariosPorFacultad",query="select t from EnteUniversitario t where t.enteUniversitario.idEnteUniversitario=:parametro")
 public class EnteUniversitario {
 	
 	private Long idEnteUniversitario;

@@ -39,6 +39,8 @@ public class Actividad {
 	
 	private Set<GestorAnuncios> gestorAnuncios;
 	
+	private Set<NumeroDivisiones> numeroDivisiones;
+	
 	/**
 	 * @return the tipo
 	 */
@@ -138,5 +140,18 @@ public class Actividad {
 		this.gestorAnuncios = gestorAnuncios;
 	}
 
-	
+	/**
+	 * @return the numeroDivisiones
+	 */
+	@OneToMany(mappedBy="actividad",cascade=CascadeType.ALL)
+	public Set<NumeroDivisiones> getNumeroDivisiones() {
+		return numeroDivisiones;
+	}
+
+	/**
+	 * @param numeroDivisiones the numeroDivisiones to set
+	 */
+	public void setNumeroDivisiones(Set<NumeroDivisiones> numeroDivisiones) {
+		this.numeroDivisiones = numeroDivisiones;
+	}
 }

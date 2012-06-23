@@ -21,7 +21,8 @@ import org.hibernate.validator.Pattern;
 import org.jboss.seam.annotations.Name;
 
 /**
-* Descripcion: Esta Clase se encarga de ...
+* Descripcion: Esta Clase se encarga de almacenar información
+* de los usuarios de la palataforma.
 * Modulo de Desarrollo :CU- ...
 * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com

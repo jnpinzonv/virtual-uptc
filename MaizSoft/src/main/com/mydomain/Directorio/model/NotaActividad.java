@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.mydomain.Directorio.model;
 
 import javax.persistence.Entity;
@@ -15,28 +12,70 @@ import org.hibernate.validator.NotNull;
 import org.hibernate.validator.Size;
 
 /**
- *@author Josué Nicolás Pinzón Villamil <jnpinzonv@hotmail.com>
- *@Version${date}
- */
+* Descripcion: Esta Clase se encarga de ...
+* Modulo de Desarrollo :CU- ...
+ * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
+* Grupo de Investigacion Ingenieria Software (GIS)
+* Semillero de Investigacion Moviles Sabatt (SIMS)
+* Universidad Pedagogica y Tecnologica de Colombia
+* @version 23/06/2012 
+*/
 @Entity
 @Table(name="nota_actividad")
 public class NotaActividad {
 
+	/**
+	 * Variable encargada de almacenar el identificador de las
+	 * notas o calificaciones de determinada actividad.
+	 */
 	private Long idNotaActividad;
+	
+	/**
+	 * Variable encargada de informar si el estado de la nota de
+	 * determinada actividad está pendiente o ya fue asignada.
+	 */
 	private boolean estadoPendiente;
+	
+	/**
+	 * Variable encargada de almacenar la descripción de la justificación
+	 * de la nota o calificación de determinada actividad.
+	 */
 	private String justificacion;
 	
+	/**
+	 * Variable encargada de almacenar lo referente a cargar archivos 
+	 * en la plataforma.
+	 * Instancia de la clase GestorCargaArchivos.
+	 */
 	private GestorCargaArchivos gestorCargaArchivos;
 	
+	/**
+	 * Variable encargada de guardar la información relacionada
+	 * a las diferentes actividades planteadas en la plataforma.
+	 * Instancia de la clase Actividad.
+	 */
 	private Actividad actividad;
+	/**
+	 * Variable encargada de almacenar información competente
+	 * a los grupos de usuarios
+	 */
 	private GrupoUsuarios grupoCurso;
+	
+	/**
+	 * 
+	 */
 	private GestorMensajeria gestorMensajeria;
 	
+	/**
+	 * 
+	 */
 	private Long nota;
 	
 
 	/**
-	 * @return the idNotaActividad
+	 * Se obtiene el valor de idNotaActividad
+	 * @return El valor de idNotaActividad
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -45,28 +84,32 @@ public class NotaActividad {
 	}
 
 	/**
-	 * @param idNotaActividad the idNotaActividad to set
+	 * Asigna el valor de idNotaActividad
+	 * @param idNotaActividad El valor por establecer para idNotaActividad
 	 */
 	public void setIdNotaActividad(Long idNotaActividad) {
 		this.idNotaActividad = idNotaActividad;
 	}
-
+	
 	/**
-	 * @return the estadoPendiente
+	 * Se obtiene el valor de estadoPendiente
+	 * @return El valor de estadoPendiente
 	 */
 	public boolean isEstadoPendiente() {
 		return estadoPendiente;
 	}
 
 	/**
-	 * @param estadoPendiente the estadoPendiente to set
+	 * Asigna el valor de estadoPendiente
+	 * @param estadoPendiente El valor por establecer para estadoPendiente
 	 */
 	public void setEstadoPendiente(boolean estadoPendiente) {
 		this.estadoPendiente = estadoPendiente;
 	}
-
+	
 	/**
-	 * @return the justificacion
+	 * Se obtiene el valor de justificacion
+	 * @return El valor de justificacion
 	 */
 	@Length(max=300)
 	public String getJustificacion() {
@@ -74,32 +117,33 @@ public class NotaActividad {
 	}
 
 	/**
-	 * @param justificacion the justificacion to set
+	 * Asigna el valor de justificacion
+	 * @param justificacion El valor por establecer para justificacion
 	 */
 	public void setJustificacion(String justificacion) {
 		this.justificacion = justificacion;
 	}
-
-	/**
-	 * @return the gestorCargaArchivos
-	 */
 	
+	/**
+	 * Se obtiene el valor de gestorCargaArchivos
+	 * @return El valor de gestorCargaArchivos
+	 */
 	@ManyToOne
 	public GestorCargaArchivos getGestorCargaArchivos() {
 		return gestorCargaArchivos;
 	}
 
 	/**
-	 * @param gestorCargaArchivos the gestorCargaArchivos to set
+	 * Asigna el valor de gestorCargaArchivos
+	 * @param gestorCargaArchivos El valor por establecer para gestorCargaArchivos
 	 */
 	public void setGestorCargaArchivos(GestorCargaArchivos gestorCargaArchivos) {
 		this.gestorCargaArchivos = gestorCargaArchivos;
 	}
-
 	
-
 	/**
-	 * @return the actividad
+	 * Se obtiene el valor de actividad
+	 * @return El valor de actividad
 	 */
 	@NotNull
 	@ManyToOne
@@ -108,14 +152,16 @@ public class NotaActividad {
 	}
 
 	/**
-	 * @param actividad the actividad to set
+	 * Asigna el valor de actividad
+	 * @param actividad El valor por establecer para actividad
 	 */
 	public void setActividad(Actividad actividad) {
 		this.actividad = actividad;
 	}
-
+	
 	/**
-	 * @return the grupoCurso
+	 * Se obtiene el valor de grupoCurso
+	 * @return El valor de grupoCurso
 	 */
 	@NotNull
 	@ManyToOne
@@ -124,14 +170,16 @@ public class NotaActividad {
 	}
 
 	/**
-	 * @param grupoCurso the grupoCurso to set
+	 * Asigna el valor de grupoCurso
+	 * @param grupoCurso El valor por establecer para grupoCurso
 	 */
 	public void setGrupoCurso(GrupoUsuarios grupoCurso) {
 		this.grupoCurso = grupoCurso;
 	}
 
 	/**
-	 * @return the gestorMensajeria
+	 * Se obtiene el valor de gestorMensajeria
+	 * @return El valor de gestorMensajeria
 	 */
 	@ManyToOne
 	public GestorMensajeria getGestorMensajeria() {
@@ -139,14 +187,16 @@ public class NotaActividad {
 	}
 
 	/**
-	 * @param gestorMensajeria the gestorMensajeria to set
+	 * Asigna el valor de gestorMensajeria
+	 * @param gestorMensajeria El valor por establecer para gestorMensajeria
 	 */
 	public void setGestorMensajeria(GestorMensajeria gestorMensajeria) {
 		this.gestorMensajeria = gestorMensajeria;
 	}
 
 	/**
-	 * @return the nota
+	 * Se obtiene el valor de nota
+	 * @return El valor de nota
 	 */
 	@NotNull
 	public Long getNota() {
@@ -154,12 +204,10 @@ public class NotaActividad {
 	}
 
 	/**
-	 * @param nota the nota to set
+	 * Asigna el valor de nota
+	 * @param nota El valor por establecer para nota
 	 */
 	public void setNota(Long nota) {
 		this.nota = nota;
 	}
-	
-	
-	
 }

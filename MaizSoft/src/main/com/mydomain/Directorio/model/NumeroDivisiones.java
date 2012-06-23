@@ -17,10 +17,10 @@ import org.jboss.seam.annotations.Name;
 import com.sun.istack.internal.NotNull;
 
 /**
-* Descripcion: Esta Clase se encarga de almacenar información relacionada
-* con la división de los grupos.
+* Descripcion: Esta Clase se encarga de almacenar informaciï¿½n relacionada
+* con la divisiï¿½n de los grupos.
 * Modulo de Desarrollo :CU- ...
- * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+ * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -33,37 +33,18 @@ import com.sun.istack.internal.NotNull;
 public class NumeroDivisiones {
 
 	
-	/**
-	 * Variable que almacena la información competente
-	 * al identificador del número de divisiones que diferencian
-	 * las actividades planteadas en el curso.
-	 */
-	private Long id; 
+	private Long id; 	
 	
-	
-	/**
-	 * Variable encargada de almacenar el número de divisiones
-	 * presentes en cada curso.
-	 */
-	private Integer numeroDivision;
-	
-	/**
-	 * Variable que se encarga de guardar la infomacíon pertenenciente
-	 * a las actividades planteadas en el curso.
-	 * Instancia de la clase Actividad.
-	 */
+	private Integer numeroDivision;	
+
 	private Actividad actividad;
 	
-	/**
-	 * Variable encargada de almacenar información pertinente de los 
-	 * diferentes grupos de los cursos creados.
-	 * Instancia de la clase GrupoCurso.
-	 */
 	private GrupoCurso grupoCurso;
+	
+
 
 	/**
-	 * Se obtiene el valor de id
-	 * @return El valor de id
+	 * @return the id
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -73,16 +54,16 @@ public class NumeroDivisiones {
 
 
 	/**
-	 * Asigna el valor de id
-	 * @param id El valor por establecer para id
+	 * @param id the id to set
 	 */
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
+
 	/**
-	 * Se obtiene el valor de numeroDivision
-	 * @return El valor de numeroDivision
+	 * @return the numeroDivision
 	 */
 	public Integer getNumeroDivision() {
 		return numeroDivision;
@@ -90,16 +71,15 @@ public class NumeroDivisiones {
 
 
 	/**
-	 * Asigna el valor de numeroDivision
-	 * @param numeroDivision El valor por establecer para numeroDivision
+	 * @param numeroDivision the numeroDivision to set
 	 */
 	public void setNumeroDivision(Integer numeroDivision) {
 		this.numeroDivision = numeroDivision;
 	}
 
+
 	/**
-	 * Se obtiene el valor de actividad
-	 * @return El valor de actividad
+	 * @return the actividad
 	 */
 	@ManyToOne
 	@NotNull
@@ -107,17 +87,17 @@ public class NumeroDivisiones {
 		return actividad;
 	}
 
+
 	/**
-	 * Asigna el valor de actividad
-	 * @param actividad El valor por establecer para actividad
+	 * @param actividad the actividad to set
 	 */
 	public void setActividad(Actividad actividad) {
 		this.actividad = actividad;
 	}
 
+
 	/**
-	 * Se obtiene el valor de grupoCurso
-	 * @return El valor de grupoCurso
+	 * @return the grupoCurso
 	 */
 	@ManyToOne
 	@NotNull
@@ -125,11 +105,16 @@ public class NumeroDivisiones {
 		return grupoCurso;
 	}
 
+
 	/**
-	 * Asigna el valor de grupoCurso
-	 * @param grupoCurso El valor por establecer para grupoCurso
+	 * @param grupoCurso the grupoCurso to set
 	 */
 	public void setGrupoCurso(GrupoCurso grupoCurso) {
 		this.grupoCurso = grupoCurso;
 	}
+
+
+	
+	
+	
 }

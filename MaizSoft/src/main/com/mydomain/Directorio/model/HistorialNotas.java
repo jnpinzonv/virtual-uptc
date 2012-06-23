@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.hibernate.validator.NotNull;
@@ -15,7 +16,7 @@ import org.hibernate.validator.NotNull;
 /**
 * Descripcion: Esta Clase se encarga de ...
 * Modulo de Desarrollo :CU- ...
- * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+ * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -24,6 +25,7 @@ import org.hibernate.validator.NotNull;
 */
 @Entity
 @Table(name= "historial_notas")
+@NamedQuery(name="NotasPorUsuario", query="select t from HistorialNotas t where t.userAccount.documentoIdentidad=:parametro")
 public class HistorialNotas {
 
 	/**
@@ -33,19 +35,19 @@ public class HistorialNotas {
 	private Long idHistorialNotas;
 	
 	/**
-	 * Variable que almacena la nota o calificación obtenida
+	 * Variable que almacena la nota o calificaciï¿½n obtenida
 	 * por un inscrito al curso.
 	 */
 	private Long nota;
 	
 	/**
-	 * Variable que almacena información relacionada a los usuarios.
+	 * Variable que almacena informaciï¿½n relacionada a los usuarios.
 	 * Instancia de la clase Usuario.
 	 */
 	private Usuario userAccount;
 	
 	/**
-	 * Variable encargada de guardar información correspondiente a los
+	 * Variable encargada de guardar informaciï¿½n correspondiente a los
 	 * grupos de los diferentes cursos.
 	 */
 	private GrupoCurso grupoCurso;

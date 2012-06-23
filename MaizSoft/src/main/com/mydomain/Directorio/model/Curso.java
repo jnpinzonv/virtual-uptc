@@ -52,8 +52,6 @@ public class Curso {
 	/**
 	 * @param codigo the codigo to set
 	 */
-	
-	
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}

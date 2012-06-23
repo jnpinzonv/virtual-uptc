@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.mydomain.Directorio.model;
 
 import java.util.HashSet;
@@ -21,38 +18,96 @@ import org.hibernate.validator.NotNull;
 import org.hibernate.validator.Size;
 
 /**
- * @author Nicolas
- *
- */
+* Descripcion: Esta Clase se encarga de definir las variables relacionadas con los grupos de 
+* los cursos de las diferentes asignaturas como lo son: el código del grupo, su número de 
+* identificación, la cantidad de cupos con los que cuenta, el número de alumnos inscritos en 
+* cada curso, semestre al que pertenece el curso y sus inscritos, el historial de notas de 
+* las personas que conforman determinado grupo o curso y la lista de usuarios del mismo.
+* Modulo de Desarrollo :CU- ...
+* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
+* Grupo de Investigacion Ingenieria Software (GIS)
+* Semillero de Investigacion Moviles Sabatt (SIMS)
+* Universidad Pedagogica y Tecnologica de Colombia
+* @version 22/06/2012 
+*/
 @Entity
 @Table(name= "grupo_curso")
 public class GrupoCurso {
-	
-	private Long codigoGrupo;	
 
+	/**
+	 * Variable encargada de almacenar el código del grupo.
+	 */
+	private Long codigoGrupo;
+	
+	/**
+	 * Variable encargada de almacenar la identificación del grupo.
+	 */
 	private Long idGrupo;
-		
+
+
+	/**
+	 * Variable encargada de almacenar la cantidad de cupos
+	 * disponibles en determinado grupo.
+	 */
 	private Integer cupos;
 	
+	/**
+	 * Variable que almacena el número de estudiantes inscritos
+	 * en un grupo.
+	 */
 	private Integer inscritos;
 	
+	/**
+	 * 
+	 */
 	private Curso cursoGrupo;
 	
+	/**
+	 * Variable que almacena el semestre al que pertenece el grupo de
+	 * determinado curso.
+	 */
 	private String semestre;
 	
+	/**
+	 * Variable que almacena la lista de enlaces externos del grupo.
+	 */
 	private Integer numeroTotal;
 	
 	private Set<GestorEnlacesExternos> enlacesExternos;
 
+	/**
+	 * Variable encargada de almacenar los usuarios del grupo.
+	 */
 	private Set<GrupoUsuarios> grupoUsuarios;
 	
+	/**
+	 * Variable encargada de guardar la lista del historial de
+	 * calificaciones de los integrantes del grupo.
+	 */
 	private Set<HistorialNotas> listaHistorialNotas;
 	
 	private Set<NumeroDivisiones> numeroDivisiones;
 	
+	/**
+	 * Se obtiene el valor de codigoGrupo
+	 * @return El valor de codigoGrupo
+	 */
+	public Long getCodigoGrupo() {
+		return codigoGrupo;
+	}
 
 	/**
-	 * @return the idGrupo
+	 * Asigna el valor de codigoGrupo
+	 * @param codigoGrupo El valor por establecer para codigoGrupo
+	 */
+	public void setCodigoGrupo(Long codigoGrupo) {
+		this.codigoGrupo = codigoGrupo;
+	}
+	
+	/**
+	 * Se obtiene el valor de idGrupo
+	 * @return El valor de idGrupo
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -61,15 +116,16 @@ public class GrupoCurso {
 	}
 
 	/**
-	 * @param idGrupo the idGrupo to set
+	 * Asigna el valor de idGrupo
+	 * @param idGrupo El valor por establecer para idGrupo
 	 */
 	public void setIdGrupo(Long idGrupo) {
 		this.idGrupo = idGrupo;
 	}
-
 	
 	/**
-	 * @return the cupos
+	 * Se obtiene el valor de cupos
+	 * @return El valor de cupos
 	 */
 	@Column(name="cupos")
 	@NotNull
@@ -78,14 +134,16 @@ public class GrupoCurso {
 	}
 
 	/**
-	 * @param cupos the cupos to set
+	 * Asigna el valor de cupos
+	 * @param cupos El valor por establecer para cupos
 	 */
 	public void setCupos(Integer cupos) {
 		this.cupos = cupos;
 	}
-
+	
 	/**
-	 * @return the inscritos
+	 * Se obtiene el valor de inscritos
+	 * @return El valor de inscritos
 	 */
 	@Column(name="inscritos")
 	@NotNull
@@ -94,14 +152,16 @@ public class GrupoCurso {
 	}
 
 	/**
-	 * @param inscritos the inscritos to set
+	 * Asigna el valor de inscritos
+	 * @param inscritos El valor por establecer para inscritos
 	 */
 	public void setInscritos(Integer inscritos) {
 		this.inscritos = inscritos;
 	}
 
 	/**
-	 * @return the cursoGrupo
+	 * Se obtiene el valor de cursoGrupo
+	 * @return El valor de cursoGrupo
 	 */
 	@NotNull
 	@ManyToOne
@@ -110,18 +170,16 @@ public class GrupoCurso {
 	}
 
 	/**
-	 * @param cursoGrupo the cursoGrupo to set
+	 * Asigna el valor de cursoGrupo
+	 * @param cursoGrupo El valor por establecer para cursoGrupo
 	 */
 	public void setCursoGrupo(Curso cursoGrupo) {
 		this.cursoGrupo = cursoGrupo;
 	}
-
 	
-
-	
-
 	/**
-	 * @return the enlacesExternos
+	 * Se obtiene el valor de enlacesExternos
+	 * @return El valor de enlacesExternos
 	 */
 	@OneToMany(mappedBy="grupoCurso",cascade=CascadeType.ALL)
 	public Set<GestorEnlacesExternos> getEnlacesExternos() {
@@ -132,14 +190,16 @@ public class GrupoCurso {
 	}
 
 	/**
-	 * @param enlacesExternos the enlacesExternos to set
+	 * Asigna el valor de enlacesExternos
+	 * @param enlacesExternos El valor por establecer para enlacesExternos
 	 */
 	public void setEnlacesExternos(Set<GestorEnlacesExternos> enlacesExternos) {
 		this.enlacesExternos = enlacesExternos;
 	}
 
 	/**
-	 * @return the listaHistorialNotas
+	 * Se obtiene el valor de listaHistorialNotas
+	 * @return El valor de listaHistorialNotas
 	 */
 	@OneToMany(mappedBy="grupoCurso",cascade=CascadeType.ALL)
 	public Set<HistorialNotas> getListaHistorialNotas() {
@@ -150,14 +210,16 @@ public class GrupoCurso {
 	}
 
 	/**
-	 * @param listaHistorialNotas the listaHistorialNotas to set
+	 * Asigna el valor de listaHistorialNotas
+	 * @param listaHistorialNotas El valor por establecer para listaHistorialNotas
 	 */
 	public void setListaHistorialNotas(Set<HistorialNotas> listaHistorialNotas) {
 		this.listaHistorialNotas = listaHistorialNotas;
 	}
 
 	/**
-	 * @return the grupoUsuarios
+	 * Se obtiene el valor de grupoUsuarios
+	 * @return El valor de grupoUsuarios
 	 */
 	@OneToMany(mappedBy="grupoCurso",cascade=CascadeType.ALL)
 	public Set<GrupoUsuarios> getGrupoUsuarios() {
@@ -168,14 +230,16 @@ public class GrupoCurso {
 	}
 
 	/**
-	 * @param grupoUsuarios the grupoUsuarios to set
+	 * Asigna el valor de grupoUsuarios
+	 * @param grupoUsuarios El valor por establecer para grupoUsuarios
 	 */
 	public void setGrupoUsuarios(Set<GrupoUsuarios> grupoUsuarios) {
 		this.grupoUsuarios = grupoUsuarios;
 	}
 
 	/**
-	 * @return the semestre
+	 * Se obtiene el valor de semestre
+	 * @return El valor de semestre
 	 */
 	@NotNull
 	@Length(max=20)
@@ -184,29 +248,16 @@ public class GrupoCurso {
 	}
 
 	/**
-	 * @param semestre the semestre to set
+	 * Asigna el valor de semestre
+	 * @param semestre El valor por establecer para semestre
 	 */
 	public void setSemestre(String semestre) {
 		this.semestre = semestre;
-	}	
-
-	
-	/**
-	 * @return the codigoGrupo
-	 */
-	public Long getCodigoGrupo() {
-		return codigoGrupo;
 	}
 
-	/**
-	 * @param codigoGrupo the codigoGrupo to set
-	 */
-	public void setCodigoGrupo(Long codigoGrupo) {
-		this.codigoGrupo = codigoGrupo;
-	}
 	
-
-	/**
+	
+		/**
 	 * @return the numeroTotal
 	 */
 	public Integer getNumeroTotal() {

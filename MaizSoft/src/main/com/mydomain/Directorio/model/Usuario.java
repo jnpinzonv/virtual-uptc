@@ -23,7 +23,7 @@ import org.hibernate.validator.Pattern;
 import org.jboss.seam.annotations.Name;
 
 /**
-* Descripcion: Esta Clase se encarga de almacenar información
+* Descripcion: Esta Clase se encarga de almacenar informaciï¿½n
 * de los usuarios de la palataforma.
 * Modulo de Desarrollo :CU- ...
 * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
@@ -36,7 +36,6 @@ import org.jboss.seam.annotations.Name;
 @Entity
 @Name("usuario")
 @Table(name ="usuarios")
-@NamedQuery(name="asociarusuariosconcuentas",query="select t from Usuario t where t.cuentasUsuario.id=:parametro")
 public class Usuario{
 
 	/**
@@ -45,7 +44,7 @@ public class Usuario{
 	private Long id;
 
 	/**
-	 * Variable que se encarga de almacenar el nï¿½mero del documento
+	 * Variable que se encarga de almacenar el nÃºmero del documento
 	 * de identidad del usuario.
 	 */
 	private Long documentoIdentidad;	

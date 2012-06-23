@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,6 +24,7 @@ import org.hibernate.validator.NotNull;
  */
 @Entity
 @Table(name="cuentas_usuario")
+@NamedQuery(name = "buscarCuentaporUsername", query = "select s from CuentasUsuario s where s.userAccounts.username=:parametro")
 public class CuentasUsuario {
 	
 	private Long id;

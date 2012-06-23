@@ -24,12 +24,17 @@ import org.jboss.seam.annotations.security.management.UserPassword;
 import org.jboss.seam.annotations.security.management.UserPrincipal;
 import org.jboss.seam.annotations.security.management.UserRoles;
 
-
 /**
- * @author Josue Nicolas Pinzon Villamil Fecha: 13/03/2012 Correo:
- *         jnpinzonv@hotmail.com Clase empleada para describir el usuario de la
- *         plataforma
- */
+* Descripcion: Esta Clase se encarga de almacenar la información perteneciente
+* a las cuentas de los usuarios de la plataforma.
+* Modulo de Desarrollo :CU- ...
+ * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
+* Grupo de Investigacion Ingenieria Software (GIS)
+* Semillero de Investigacion Moviles Sabatt (SIMS)
+* Universidad Pedagogica y Tecnologica de Colombia
+* @version 23/06/2012 
+*/
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "username"), name = "user_account")
 @Scope(ScopeType.SESSION)
@@ -53,6 +58,7 @@ public class UserAccount implements Serializable {
 	 * Contrasenia de usuario para logueo de la plataforma
 	 */
 	private String passwordHash;
+	
 	/**
 	 * Representa el estado de la cuenta activa/inactiva
 	 */
@@ -62,24 +68,33 @@ public class UserAccount implements Serializable {
 	 * Lista de roles que desemplenia el usuario dentro de la plataforma
 	 */
 	private Set<UserRole> roles;
+	/**
+	 * Lista de cuentas del usuario dentro de la plataforma.
+	 */
 
-	
 	private Set<CuentasUsuario> cuentasUsuarios;
 
+	/**
+	 * Se obtiene el valor de id
+	 * @return El valor de id
+	 */
 	@Id
 	@GeneratedValue
 	public Long getId() {
 		return id;
 	}
 
+	/**
+	 * Asigna el valor de id
+	 * @param id El valor por establecer para id
+	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 	/**
-	 * Retorna el nombre del usuario
-	 * 
-	 * @return usuername
+	 * Se obtiene el valor de username
+	 * @return El valor de usuername
 	 */
 
 	@NotNull
@@ -89,19 +104,16 @@ public class UserAccount implements Serializable {
 	}
 
 	/**
-	 * Impone el nombre de usuario
-	 * 
-	 * @param username
-	 *            =! null
+	 * Asigna el valor de username
+	 * @param username El valor por establecer para id
 	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
 	/**
-	 * Retorna el Password del Usuario
-	 * 
-	 * @return
+	 * Se obtiene el valor de passwordHash
+	 * @return El valor de passwordHash
 	 */
 	@UserPassword(hash = "SHA")
 	@Column(name = "password_hash")
@@ -110,19 +122,16 @@ public class UserAccount implements Serializable {
 	}
 
 	/**
-	 * Impone el password de usuario
-	 * 
-	 * @param passwordHash
-	 *            =! null
+	 * Asigna el valor de passwordHash
+	 * @param passwordHash El valor por establecer para passwordHash
 	 */
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
 	}
 
 	/**
-	 * Estado de la cuenta del usario
-	 * 
-	 * @return enable
+	 * Se obtiene el valor de enabled
+	 * @return El valor de enabled
 	 */
 	@UserEnabled
 	public boolean isEnabled() {
@@ -130,18 +139,16 @@ public class UserAccount implements Serializable {
 	}
 
 	/**
-	 * Impone el parametro de estado
-	 * 
-	 * @param enabled
+	 * Asigna el valor de enabled
+	 * @param enabled El valor por establecer para enabled
 	 */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-
+	
 	/**
-	 * Lista de roles del usuario
-	 * 
-	 * @return roles
+	 * Se obtiene el valor de roles
+	 * @return El valor de roles
 	 */
 	@UserRoles
 	@ManyToMany
@@ -151,40 +158,30 @@ public class UserAccount implements Serializable {
 	}
 
 	/**
-	 * Lista de roles
-	 * 
-	 * @param roles
-	 *            != null
+	 * Asigna el valor de roles
+	 * @param roles El valor por establecer para roles
 	 */
 	public void setRoles(Set<UserRole> roles) {
 		this.roles = roles;
 	}
 
 	/**
-	 * @return the cuentasUsuarios
+	 * Se obtiene el valor de cuentasUsuarios
+	 * @return El valor de cuentasUsuarios
 	 */
 	@OneToMany(mappedBy="userAccounts",cascade=CascadeType.ALL)
 	public Set<CuentasUsuario> getCuentasUsuarios() {
 		if(cuentasUsuarios==null){
 			return new HashSet<CuentasUsuario>();
 		}
-		
 		return cuentasUsuarios;
 	}
 
 	/**
-	 * @param cuentasUsuarios the cuentasUsuarios to set
+	 * Asigna el valor de cuentasUsuarios
+	 * @param cuentasUsuarios El valor por establecer para cuentasUsuarios
 	 */
 	public void setCuentasUsuarios(Set<CuentasUsuario> cuentasUsuarios) {
 		this.cuentasUsuarios = cuentasUsuarios;
 	}
-
-	/**
-	 * @return the cuentasUsuario
-	 */
-
-
-
-	
-
 }

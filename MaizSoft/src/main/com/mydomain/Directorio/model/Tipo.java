@@ -20,36 +20,90 @@ import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 
 /**
- *@author Josué Nicolás Pinzón Villamil <jnpinzonv@hotmail.com>
- *@Version${date}
- */
+* Descripcion: Esta Clase se encarga de almacenar información
+* relacionada con los diferentes tipos de actividades.
+* Modulo de Desarrollo :CU- ...
+ * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
+* Grupo de Investigacion Ingenieria Software (GIS)
+* Semillero de Investigacion Moviles Sabatt (SIMS)
+* Universidad Pedagogica y Tecnologica de Colombia
+* @version 23/06/2012 
+*/
 @Entity
 @Table(name="tipo",uniqueConstraints = @UniqueConstraint(columnNames = "nombre"))
 public class Tipo {
 	
+	/**
+	 * Variable encargada de almacenar el identificador
+	 * del tipo de actividad.
+	 */
 	private Long idTipo;
 	
+	/**
+	 * Variable encargada de guardar el nombre del
+	 * tipo de actividad.
+	 */
 	private String nombre;
 	
+	/**
+	 * Variable encargada de guardar la descripción del
+	 * tipo de actividad.
+	 */
 	private String descripcion;
 	
+	/**
+	 * Variable encargada de guardar información del
+	 * tipo de actividad.
+	 * Instancia de la clase Tipo 
+	 */
 	private Tipo tipo;
 	
+	/**
+	 * Variable encargada de guardar la lista de los
+	 * diferentes tipos de actividades.
+	 */
 	private Set<Tipo> listaTipo;
 	
+	/**
+	 *Variable encargada de guardar la lista de los
+	 * diferentes entes universitarios. 
+	 */
 	private Set<EnteUniversitario> enteUniversitarios;
 	
+	/**
+	 * Variable encargada de almacenar la el conjunto de
+	 * actividades establecidas.
+	 */
 	private Set<Actividad> actividad;
 	
+	/**
+	 * Variable encargada de listar la información referente
+	 * a la mensajería.
+	 */
 	private Set<GestorMensajeria> listaGestorMensajeria;
 	
+	/**
+	 * Variable encargada de listar la información referente
+	 * a los repositorios virtuales. 
+	 */
 	private Set<GestorRepositoriosVirtuales> gestorRepositoriosVirtuales;
 	
+	/**
+	 *  Variable encargada de listar la información referente
+	 * a los diferentes usuarios.
+	 */
 	private Set<Usuario> userAccount;
 
-	private Set<GestorCargaArchivos> gestorCargaArchivos;
 	/**
-	 * @return the idTipo
+	 *  Variable encargada de listar la información referente
+	 * a cargar archivos al curso.
+	 */
+	private Set<GestorCargaArchivos> gestorCargaArchivos;
+	
+	/**
+	 * Se obtiene el valor de idTipo
+	 * @return El valor de idTipo
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -58,14 +112,16 @@ public class Tipo {
 	}
 
 	/**
-	 * @param idTipo the idTipo to set
+	 * Asigna el valor de idTipo
+	 * @param idTipo El valor por establecer para idTipo
 	 */
 	public void setIdTipo(Long idTipo) {
 		this.idTipo = idTipo;
 	}
-
+	
 	/**
-	 * @return the nombre
+	 * Se obtiene el valor de nombre
+	 * @return El valor de nombre
 	 */
 	@NotEmpty
 	public String getNombre() {
@@ -73,14 +129,16 @@ public class Tipo {
 	}
 
 	/**
-	 * @param nombre the nombre to set
+	 * Asigna el valor de nombre
+	 * @param nombre El valor por establecer para nombre
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
 	/**
-	 * @return the descripcion
+	 * Se obtiene el valor de descripcion
+	 * @return El valor de descripcion
 	 */
 	@Length(max=300)
 	public String getDescripcion() {
@@ -88,14 +146,16 @@ public class Tipo {
 	}
 
 	/**
-	 * @param descripcion the descripcion to set
+	 * Asigna el valor de descripcion
+	 * @param descripcion El valor por establecer para descripcion
 	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
+	
 	/**
-	 * @return the tipo
+	 * Se obtiene el valor de tipo
+	 * @return El valor de tipo
 	 */
 	@ManyToOne
 	public Tipo getTipo() {
@@ -103,14 +163,16 @@ public class Tipo {
 	}
 
 	/**
-	 * @param tipo the tipo to set
+	 * Asigna el valor de tipo
+	 * @param tipo El valor por establecer para tipo
 	 */
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
 
 	/**
-	 * @return the listaTipo
+	 * Se obtiene el valor de listaTipo
+	 * @return El valor de listaTipo
 	 */
 	@OneToMany(mappedBy="tipo",cascade=CascadeType.ALL)
 	public Set<Tipo> getListaTipo() {
@@ -121,14 +183,16 @@ public class Tipo {
 	}
 
 	/**
-	 * @param listaTipo the listaTipo to set
+	 * Asigna el valor de listaTipo
+	 * @param listaTipo El valor por establecer para listaTipo
 	 */
 	public void setListaTipo(Set<Tipo> listaTipo) {
 		this.listaTipo = listaTipo;
 	}
-
+	
 	/**
-	 * @return the enteUniversitarios
+	 * Se obtiene el valor de enteUniversitarios
+	 * @return El valor de enteUniversitarios
 	 */
 	@OneToMany(mappedBy="tipoEnteUniversitario",cascade=CascadeType.ALL)
 	public Set<EnteUniversitario> getEnteUniversitarios() {
@@ -136,15 +200,16 @@ public class Tipo {
 	}
 
 	/**
-	 * @param enteUniversitarios the enteUniversitarios to set
+	 * Asigna el valor de enteUniversitarios
+	 * @param enteUniversitarios El valor por establecer para enteUniversitarios
 	 */
 	public void setEnteUniversitarios(Set<EnteUniversitario> enteUniversitarios) {
 		this.enteUniversitarios = enteUniversitarios;
 	}
-
 	
 	/**
-	 * @return the listaGestorMensajeria
+	 * Se obtiene el valor de listaGestorMensajeria
+	 * @return El valor de listaGestorMensajeria
 	 */
 	@OneToMany(mappedBy="tipo",cascade=CascadeType.ALL)
 	public Set<GestorMensajeria> getListaGestorMensajeria() {
@@ -155,16 +220,19 @@ public class Tipo {
 	}
 
 	/**
-	 * @param listaGestorMensajeria the listaGestorMensajeria to set
+	 * Asigna el valor de listaGestorMensajeria
+	 * @param listaGestorMensajeria El valor por establecer para listaGestorMensajeria
 	 */
 	public void setListaGestorMensajeria(Set<GestorMensajeria> listaGestorMensajeria) {
 		this.listaGestorMensajeria = listaGestorMensajeria;
 	}
 
 	/**
-	 * @return the gestorRepositoriosVirtuales
+	 * Se obtiene el valor de gestorRepositoriosVirtuales
+	 * @return El valor de gestorRepositoriosVirtuales
 	 */
 	@OneToMany(mappedBy="tipos",cascade=CascadeType.ALL)
+
 	public Set<GestorRepositoriosVirtuales> getGestorRepositoriosVirtuales() {
 		if(gestorRepositoriosVirtuales==null){
 			return new HashSet<GestorRepositoriosVirtuales>();
@@ -173,7 +241,8 @@ public class Tipo {
 	}
 
 	/**
-	 * @param gestorRepositoriosVirtuales the gestorRepositoriosVirtuales to set
+	 * Asigna el valor de gestorRepositoriosVirtuales
+	 * @param gestorRepositoriosVirtuales El valor por establecer para gestorRepositoriosVirtuales
 	 */
 	public void setGestorRepositoriosVirtuales(
 			Set<GestorRepositoriosVirtuales> gestorRepositoriosVirtuales) {
@@ -181,7 +250,8 @@ public class Tipo {
 	}
 
 	/**
-	 * @return the userAccount
+	 * Se obtiene el valor de userAccount
+	 * @return El valor de userAccount
 	 */
 	@OneToMany(mappedBy="tipo",cascade=CascadeType.ALL)
 	public Set<Usuario> getUserAccount() {
@@ -192,14 +262,16 @@ public class Tipo {
 	}
 
 	/**
-	 * @param userAccount the userAccount to set
+	 * Asigna el valor de userAccount
+	 * @param userAccount El valor por establecer para userAccount
 	 */
 	public void setUserAccount(Set<Usuario> userAccount) {
 		this.userAccount = userAccount;
 	}
 
 	/**
-	 * @return the gestorCargaArchivos
+	 * Se obtiene el valor de gestorCargaArchivos
+	 * @return El valor de gestorCargaArchivos
 	 */
 	@OneToMany(mappedBy="tipo",cascade=CascadeType.ALL)
 	public Set<GestorCargaArchivos> getGestorCargaArchivos() {
@@ -210,14 +282,16 @@ public class Tipo {
 	}
 
 	/**
-	 * @param gestorCargaArchivos the gestorCargaArchivos to set
+	 * Asigna el valor de gestorCargaArchivos
+	 * @param gestorCargaArchivos El valor por establecer para gestorCargaArchivos
 	 */
 	public void setGestorCargaArchivos(Set<GestorCargaArchivos> gestorCargaArchivos) {
 		this.gestorCargaArchivos = gestorCargaArchivos;
 	}
 
 	/**
-	 * @return the actividad
+	 * Se obtiene el valor de actividad
+	 * @return El valor de actividad
 	 */
 	@OneToMany(mappedBy="tipo",cascade=CascadeType.ALL)
 	public Set<Actividad> getActividad() {
@@ -228,12 +302,11 @@ public class Tipo {
 	}
 
 	/**
-	 * @param actividad the actividad to set
+	 * Asigna el valor de actividad
+	 * @param actividad El valor por establecer para actividad
 	 */
 	public void setActividad(Set<Actividad> actividad) {
 		this.actividad = actividad;
 	}
-
-	
-	
+		
 }

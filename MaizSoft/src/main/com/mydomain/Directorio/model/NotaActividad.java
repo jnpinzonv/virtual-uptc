@@ -12,7 +12,9 @@ import org.hibernate.validator.NotNull;
 import org.hibernate.validator.Size;
 
 /**
-* Descripcion: Esta Clase se encarga de ...
+* Descripcion: Esta Clase se encarga de almacenar toda la información
+* relacionada con las calificaciones obtenidas por los usuarios en
+* las actividades realizadas por cada uno de ellos.
 * Modulo de Desarrollo :CU- ...
  * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
@@ -63,12 +65,15 @@ public class NotaActividad {
 	private GrupoUsuarios grupoCurso;
 	
 	/**
-	 * 
+	 * Variable encargada de almacenar información relacionada
+	 * con mensajería.
+	 * Instancia de la clase GestorMensajeria.
 	 */
 	private GestorMensajeria gestorMensajeria;
 	
 	/**
-	 * 
+	 * Variable encargada de guardar las notas o calificaciones
+	 * obtenidas por determinado usuario en una actividad dada.
 	 */
 	private Long nota;
 	

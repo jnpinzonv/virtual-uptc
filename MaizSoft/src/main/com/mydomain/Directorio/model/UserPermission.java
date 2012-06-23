@@ -13,16 +13,41 @@ import org.jboss.seam.annotations.security.permission.PermissionRole;
 import org.jboss.seam.annotations.security.permission.PermissionTarget;
 import org.jboss.seam.annotations.security.permission.PermissionUser;
 
+/**
+* Descripcion: Esta Clase se encarga de ...
+* Modulo de Desarrollo :CU- ...
+ * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
+* Grupo de Investigacion Ingenieria Software (GIS)
+* Semillero de Investigacion Moviles Sabatt (SIMS)
+* Universidad Pedagogica y Tecnologica de Colombia
+* @version 23/06/2012 
+*/
 @Entity
 @Table(name = "user_permission")
 public class UserPermission implements Serializable
 {
    private static final long serialVersionUID = -5628863031792429938L;
    
+   /**
+    * 
+    */
    private Long id;
+   /**
+    * 
+    */
    private String recipient;
+   /**
+    * 
+    */
    private String target;
+   /**
+    * 
+    */
    private String action;
+   /**
+    * 
+    */
    private String discriminator;
    
    @Id @GeneratedValue

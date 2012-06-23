@@ -18,7 +18,7 @@ import org.hibernate.validator.NotNull;
 
 
 /**
- *@author Josué Nicolás Pinzón Villamil <jnpinzonv@hotmail.com>
+ *@author Josuï¿½ Nicolï¿½s Pinzï¿½n Villamil <jnpinzonv@hotmail.com>
  *@Version${date}
  */
 @Entity
@@ -32,8 +32,7 @@ public class CuentasUsuario {
 	private Usuario usuarios;
 	
 	private GrupoUsuarios grupoUsuarios;
-
-
+	
 	/**
 	 * @return the id
 	 */

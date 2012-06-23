@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.mydomain.Directorio.model;
 
 import javax.persistence.Entity;
@@ -14,34 +11,59 @@ import javax.persistence.Table;
 import org.hibernate.validator.NotNull;
 
 /**
- *@author Josué Nicolás Pinzón Villamil <jnpinzonv@hotmail.com>
- *@Version${date}
- */
+* Descripcion: Esta Clase se encarga de guardar infomación sobre los
+* receptores de los mensajes enviados y porteriormente recibidos.
+* Modulo de Desarrollo :CU- ...
+ * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
+* Grupo de Investigacion Ingenieria Software (GIS)
+* Semillero de Investigacion Moviles Sabatt (SIMS)
+* Universidad Pedagogica y Tecnologica de Colombia
+* @version 23/06/2012 
+*/
 @Entity
 @Table(name="receptor_mensajes")
 public class ReceptorMensajes {
 	
+	/**
+	 * Variable encargada de almacenar el identificador del
+	 * receptor de determinado mensaje.
+	 */
 	private Long idReceptormenajes;
+	
+	/**
+	 * Variable en cargada de almacenar información con respecto
+	 * a los usuarios del curso.
+	 * Instancia de la clase Usuario.
+	 */
 	private Usuario userAccount;
+	
+	/**
+	 * Variable encargada de guardar información con respecto
+	 * al envío de mensajes en la plataformfa.
+	 */
 	private GestorMensajeria gestorMensajeria;
 	
 	/**
-	 * @return the idReceptormenajes
+	 * Se obtiene el valor de idReceptormenajes
+	 * @return El valor de idReceptormenajes
 	 */
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getIdReceptormenajes() {
 		return idReceptormenajes;
 	}
 	/**
-	 * @param idReceptormenajes the idReceptormenajes to set
+	 * Asigna el valor de idReceptormenajes
+	 * @param idReceptormenajes El valor por establecer para idReceptormenajes
 	 */
 	public void setIdReceptormenajes(Long idReceptormenajes) {
 		this.idReceptormenajes = idReceptormenajes;
 	}
+	
 	/**
-	 * @return the userAccount
+	 * Se obtiene el valor de userAccount
+	 * @return El valor de userAccount
 	 */
 	@NotNull
 	@ManyToOne
@@ -49,13 +71,16 @@ public class ReceptorMensajes {
 		return userAccount;
 	}
 	/**
-	 * @param userAccount the userAccount to set
+	 * Asigna el valor de userAccount
+	 * @param userAccount El valor por establecer para userAccount
 	 */
 	public void setUserAccount(Usuario userAccount) {
 		this.userAccount = userAccount;
 	}
+	
 	/**
-	 * @return the gestorMensajeria
+	 * Se obtiene el valor de gestorMensajeria
+	 * @return El valor de gestorMensajeria
 	 */
 	@NotNull
 	@ManyToOne
@@ -63,12 +88,10 @@ public class ReceptorMensajes {
 		return gestorMensajeria;
 	}
 	/**
-	 * @param gestorMensajeria the gestorMensajeria to set
+	 * Asigna el valor de gestorMensajeria
+	 * @param gestorMensajeria El valor por establecer para gestorMensajeria
 	 */
 	public void setGestorMensajeria(GestorMensajeria gestorMensajeria) {
 		this.gestorMensajeria = gestorMensajeria;
 	}
-	
-	
-
 }

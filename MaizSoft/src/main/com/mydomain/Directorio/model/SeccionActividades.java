@@ -11,19 +11,43 @@ import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 
 /**
- *@author Josué Nicolás Pinzón Villamil <jnpinzonv@hotmail.com>
- *@Version${date}
- */
+* Descripcion: Esta Clase se encarga de almacenar información
+* competente a las diferentes secciones de las actividades
+* del curso.
+* Modulo de Desarrollo :CU- ...
+ * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
+* Grupo de Investigacion Ingenieria Software (GIS)
+* Semillero de Investigacion Moviles Sabatt (SIMS)
+* Universidad Pedagogica y Tecnologica de Colombia
+* @version 23/06/2012 
+*/
 public class SeccionActividades {
 	
+	/**
+	 * Variable encargada de almacenar lo referente
+	 * a las sesiones de las distinta actividades
+	 * planteadas por el docente en la plataforma.
+	 */
 	private Long idSeccionActividades;
 	
+	/**
+	 * Variable encargada de almacenar el nombre de las
+	 * secciones que conforman el curso.
+	 */
 	private String nombreSeccion;
 	
+	/**
+	 * Variable encargada de guardar la información referente a 
+	 * las diferentes actividades planteadas.
+	 * Instancia de la clase Actividad.
+	 */
 	private Actividad actividad;
 
+
 	/**
-	 * @return the idSeccionActividades
+	 * Se obtiene el valor de idSeccionActividades
+	 * @return El valor de idSeccionActividades
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -32,14 +56,16 @@ public class SeccionActividades {
 	}
 
 	/**
-	 * @param idSeccionActividades the idSeccionActividades to set
+	 * Asigna el valor de idSeccionActividades
+	 * @param idSeccionActividades El valor por establecer para idSeccionActividades
 	 */
 	public void setIdSeccionActividades(Long idSeccionActividades) {
 		this.idSeccionActividades = idSeccionActividades;
 	}
-
+	
 	/**
-	 * @return the nombreSeccion
+	 * Se obtiene el valor de nombreSeccion
+	 * @return El valor de nombreSeccion
 	 */
 	@NotEmpty
 	@Length(max=100)
@@ -48,28 +74,26 @@ public class SeccionActividades {
 	}
 
 	/**
-	 * @param nombreSeccion the nombreSeccion to set
+	 * Asigna el valor de nombreSeccion
+	 * @param nombreSeccion El valor por establecer para nombreSeccion
 	 */
 	public void setNombreSeccion(String nombreSeccion) {
 		this.nombreSeccion = nombreSeccion;
 	}
-
-	/**
-	 * @return the actividad
-	 */
 	
+	/**
+	 * Se obtiene el valor de actividad
+	 * @return El valor de actividad
+	 */
 	public Actividad getActividad() {
 		return actividad;
 	}
 
 	/**
-	 * @param actividad the actividad to set
+	 * Asigna el valor de actividad
+	 * @param actividad El valor por establecer para actividad
 	 */
 	public void setActividad(Actividad actividad) {
 		this.actividad = actividad;
 	}
-	
-	
-	
-
 }

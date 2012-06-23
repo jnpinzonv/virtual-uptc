@@ -1,6 +1,7 @@
 package com.mydomain.Directorio.model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,14 +13,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.NotNull;
 
 /**
-* Descripcion: Esta Clase se encarga de indicar y almacenar información
+* Descripcion: Esta Clase se encarga de indicar y almacenar informaciï¿½n
 * relacionada con los usuarios de los grupos.
 * Modulo de Desarrollo :CU- ...
- * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+ * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -31,7 +33,7 @@ import org.hibernate.validator.NotNull;
 public class GrupoUsuarios {
 
 	/**
-	 * Variable que almacena la identificación del grupo de usuarios del curso.
+	 * Variable que almacena la identificaciï¿½n del grupo de usuarios del curso.
 	 */
 	private Long idGrupoUsuarios;
 	
@@ -42,7 +44,7 @@ public class GrupoUsuarios {
 	private Usuario userGrupoCurso;
 	
 	/**
-	 * Variable encargada de hacer referencia a la información del grupo.
+	 * Variable encargada de hacer referencia a la informaciï¿½n del grupo.
 	 * Instancia de la clase GrupoCurso.
 	 */
 	private GrupoCurso grupoCurso;
@@ -54,10 +56,17 @@ public class GrupoUsuarios {
 	private Set<NotaActividad> notaActividades;
 	
 	/**
-	 * Variable que hace referencia a la información de la cuenta del usuario.
+	 * Variable que hace referencia a la informaciï¿½n de la cuenta del usuario.
 	 * Instancia de la clase CuentasUsuario.
 	 */
 	private CuentasUsuario userRole;
+	
+	private transient EnteUniversitario enteUniversitarioPadre;
+	
+	private transient EnteUniversitario enteUniversitarioHijo;
+	
+	private  transient List <Curso> cursos;
+	
 	
 	
 	/**
@@ -149,5 +158,37 @@ public class GrupoUsuarios {
 	 */
 	public void setUserRole(CuentasUsuario userRole) {
 		this.userRole = userRole;
+	}
+	
+	/**
+	 * @return the enteUniversitarioPadre
+	 */
+	@Transient
+	public EnteUniversitario getEnteUniversitarioPadre() {
+		
+		return enteUniversitarioPadre;
+	}
+
+	/**
+	 * @param enteUniversitarioPadre the enteUniversitarioPadre to set
+	 */
+	public void setEnteUniversitarioPadre(EnteUniversitario enteUniversitarioPadre) {
+		this.enteUniversitarioPadre = enteUniversitarioPadre;
+	}
+
+	/**
+	 * @return the enteUniversitarioHijo
+	 */
+	
+	@Transient
+	public EnteUniversitario getEnteUniversitarioHijo() {		
+		return enteUniversitarioHijo;
+	}
+
+	/**
+	 * @param enteUniversitarioHijo the enteUniversitarioHijo to set
+	 */
+	public void setEnteUniversitarioHijo(EnteUniversitario enteUniversitarioHijo) {
+		this.enteUniversitarioHijo = enteUniversitarioHijo;
 	}
 }

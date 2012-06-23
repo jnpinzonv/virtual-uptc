@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -30,10 +31,11 @@ import org.hibernate.validator.NotNull;
 */
 @Entity
 @Table(name ="grupo_usuarios")
+@NamedQuery(name="usuariosPorGrupo", query="select t from GrupoUsuarios t where t.userGrupoCurso.id=:parametro")
 public class GrupoUsuarios {
 
 	/**
-	 * Variable que almacena la identificaci�n del grupo de usuarios del curso.
+	 * Variable que almacena la identificación del grupo de usuarios del curso.
 	 */
 	private Long idGrupoUsuarios;
 	
@@ -44,7 +46,7 @@ public class GrupoUsuarios {
 	private Usuario userGrupoCurso;
 	
 	/**
-	 * Variable encargada de hacer referencia a la informaci�n del grupo.
+	 * Variable encargada de hacer referencia a la información del grupo.
 	 * Instancia de la clase GrupoCurso.
 	 */
 	private GrupoCurso grupoCurso;

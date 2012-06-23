@@ -6,6 +6,10 @@ import com.mydomain.maizsoft.usuarios.UsuarioHome;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Query;
+
+import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
@@ -69,6 +73,41 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 	public List<NotaActividad> getNotaActividades() {
 		return getInstance() == null ? null : new ArrayList<NotaActividad>(
 				getInstance().getNotaActividades());
+	}
+
+	@Factory("listaEscuelasMatriculas")
+	public List<EnteUniversitario> listaEntesUniversitarios() {
+		List<EnteUniversitario> listaEntesUniversitarios = new ArrayList<EnteUniversitario>();
+		Query q = getEntityManager().createNamedQuery(
+				"entesUniversitariosPorFacultad");
+		if (instance.getEnteUniversitarioPadre() == null) {
+			q.setParameter("parametro", 7L);
+			listaEntesUniversitarios = (List<EnteUniversitario>) q
+					.getResultList();
+		} else {
+
+			q.setParameter("parametro", instance.getEnteUniversitarioPadre()
+					.getIdEnteUniversitario());
+			listaEntesUniversitarios = (List<EnteUniversitario>) q
+					.getResultList();
+		}
+		return listaEntesUniversitarios;
+	}
+
+	@Factory("listaCursoMatricula")
+	public List<Curso> listaCursoMatricula() {
+
+		List<Curso> listaCursoMatricula = new ArrayList<Curso>();
+		Query q = getEntityManager().createNamedQuery("cursosPorEscuela");
+		if (instance.getEnteUniversitarioHijo() == null) {
+			q.setParameter("parametro", 15L);
+			listaCursoMatricula = (List<Curso>) q.getResultList();
+		} else {
+			q.setParameter("parametro", instance.getEnteUniversitarioHijo()
+					.getIdEnteUniversitario());
+			listaCursoMatricula = (List<Curso>) q.getResultList();
+		}
+		return listaCursoMatricula;
 	}
 
 }

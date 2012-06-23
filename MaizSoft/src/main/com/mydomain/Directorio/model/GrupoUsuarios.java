@@ -15,8 +15,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.NotNull;
+
+import java.util.List;
 
 
 /**
@@ -37,11 +40,11 @@ public class GrupoUsuarios {
 	
 	private CuentasUsuario userRole;
 	
+	private transient EnteUniversitario enteUniversitarioPadre;
 	
+	private transient EnteUniversitario enteUniversitarioHijo;
 	
-	
-	
-	
+	private  transient List <Curso> cursos;
 
 	/**
 	 * @return the userGrupoCurso
@@ -124,10 +127,42 @@ public class GrupoUsuarios {
 	public void setUserRole(CuentasUsuario userRole) {
 		this.userRole = userRole;
 	}
+
+	/**
+	 * @return the enteUniversitarioPadre
+	 */
+	@Transient
+	public EnteUniversitario getEnteUniversitarioPadre() {
+		
+		return enteUniversitarioPadre;
+	}
+
+	/**
+	 * @param enteUniversitarioPadre the enteUniversitarioPadre to set
+	 */
+	public void setEnteUniversitarioPadre(EnteUniversitario enteUniversitarioPadre) {
+		this.enteUniversitarioPadre = enteUniversitarioPadre;
+	}
+
+	/**
+	 * @return the enteUniversitarioHijo
+	 */
+	
+	@Transient
+	public EnteUniversitario getEnteUniversitarioHijo() {		
+		return enteUniversitarioHijo;
+	}
+
+	/**
+	 * @param enteUniversitarioHijo the enteUniversitarioHijo to set
+	 */
+	public void setEnteUniversitarioHijo(EnteUniversitario enteUniversitarioHijo) {
+		this.enteUniversitarioHijo = enteUniversitarioHijo;
+	}
 	
 	
 	
-	
+		
 	
 	
 }

@@ -60,6 +60,46 @@
 
 				<br />
 				<br />
+				
+				<h:outputText value="Datos de Grupo" />
+					<br />
+					<br />
+					 <s:decorate id="idGrupoField" template="../layout/edit.xhtml" style="position:absolute;">
+	                <ui:define name="label">Código grupo</ui:define>
+	                <h:inputText id="idGrupo"
+	                       required="true"
+	                       disabled="#{grupoCursoHome.managed}"
+	                          value="#{grupoCursoHome.instance.codigoGrupo}">
+	                    <a:support event="onblur" reRender="idGrupoField" bypassUpdates="true" ajaxSingle="true"/>
+	                </h:inputText>
+	            </s:decorate>
+	
+				<br/> <br/>
+	
+	            <s:decorate id="cuposField" template="../layout/edit.xhtml" style="position:absolute;">
+	                <ui:define name="label">Cupos</ui:define>
+	                <h:inputText id="cupos"
+	                       required="true"
+	                          value="#{grupoCursoHome.instance.cupos}">
+	                    <a:support event="onblur" reRender="cuposField" bypassUpdates="true" ajaxSingle="true"/>
+	                </h:inputText>
+	            </s:decorate>
+	
+				<br/> <br/>
+	
+	            <s:decorate id="semestreField" template="../layout/edit.xhtml" style="position:absolute;">
+	                <ui:define name="label">Semestre</ui:define>
+	                <h:inputText id="semestre"
+	                       required="true"
+	                           size="20"
+	                      maxlength="20"
+	                          value="#{grupoCursoHome.instance.semestre}">
+	                    <a:support event="onblur" reRender="semestreField" bypassUpdates="true" ajaxSingle="true"/>
+	                </h:inputText>
+	            </s:decorate>
+	
+				<br/> <br/>
+
 
 				<div style="clear: both; position: absolute;">
 					<span class="required">*</span> Campos Obligatorios

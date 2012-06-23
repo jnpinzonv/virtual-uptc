@@ -28,21 +28,7 @@ import org.hibernate.validator.Size;
 @Table(name= "grupo_curso")
 public class GrupoCurso {
 	
-	private Long codigoGrupo;
-	
-	/**
-	 * @return the codigoGrupo
-	 */
-	public Long getCodigoGrupo() {
-		return codigoGrupo;
-	}
-
-	/**
-	 * @param codigoGrupo the codigoGrupo to set
-	 */
-	public void setCodigoGrupo(Long codigoGrupo) {
-		this.codigoGrupo = codigoGrupo;
-	}
+	private Long codigoGrupo;	
 
 	private Long idGrupo;
 		
@@ -54,12 +40,15 @@ public class GrupoCurso {
 	
 	private String semestre;
 	
+	private Integer numeroTotal;
+	
 	private Set<GestorEnlacesExternos> enlacesExternos;
 
 	private Set<GrupoUsuarios> grupoUsuarios;
 	
 	private Set<HistorialNotas> listaHistorialNotas;
 	
+	private Set<NumeroDivisiones> numeroDivisiones;
 	
 
 	/**
@@ -201,4 +190,51 @@ public class GrupoCurso {
 		this.semestre = semestre;
 	}	
 
+	
+	/**
+	 * @return the codigoGrupo
+	 */
+	public Long getCodigoGrupo() {
+		return codigoGrupo;
+	}
+
+	/**
+	 * @param codigoGrupo the codigoGrupo to set
+	 */
+	public void setCodigoGrupo(Long codigoGrupo) {
+		this.codigoGrupo = codigoGrupo;
+	}
+	
+
+	/**
+	 * @return the numeroTotal
+	 */
+	public Integer getNumeroTotal() {
+		return numeroTotal;
+	}
+
+
+	/**
+	 * @param numeroTotal the numeroTotal to set
+	 */
+	public void setNumeroTotal(Integer numeroTotal) {
+		this.numeroTotal = numeroTotal;
+	}
+
+	/**
+	 * @return the numeroDivisiones
+	 */
+	@OneToMany(mappedBy="grupoCurso",cascade=CascadeType.ALL)
+	public Set<NumeroDivisiones> getNumeroDivisiones() {
+		return numeroDivisiones;
+	}
+
+	/**
+	 * @param numeroDivisiones the numeroDivisiones to set
+	 */
+	public void setNumeroDivisiones(Set<NumeroDivisiones> numeroDivisiones) {
+		this.numeroDivisiones = numeroDivisiones;
+	}
+	
+	
 }

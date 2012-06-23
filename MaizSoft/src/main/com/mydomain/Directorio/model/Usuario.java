@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.mydomain.Directorio.model;
 
 import java.util.HashSet;
@@ -23,65 +20,111 @@ import org.hibernate.validator.NotNull;
 import org.hibernate.validator.Pattern;
 import org.jboss.seam.annotations.Name;
 
-
-
 /**
- *@author Josuï¿½ Nicolï¿½s Pinzï¿½n Villamil <jnpinzonv@hotmail.com>
- *@Version${date}
- */
+* Descripcion: Esta Clase se encarga de ...
+* Modulo de Desarrollo :CU- ...
+* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
+* Grupo de Investigacion Ingenieria Software (GIS)
+* Semillero de Investigacion Moviles Sabatt (SIMS)
+* Universidad Pedagogica y Tecnologica de Colombia
+* @version 22/06/2012 
+*/
 @Entity
 @Name("usuario")
 @Table(name ="usuarios")
 public class Usuario{
 
 	/**
-	 * 
+	 * Variable que almacena el número de identificación del usuario.
 	 */
-
-	
 	private Long id;
 
 	/**
-	 * 
+	 * Variable que se encarga de almacenar el número del documento
+	 * de identidad del usuario.
 	 */
 	private Long documentoIdentidad;	
 	
 	/**
-	 * 
+	 * Variable que guarda el primer nombre del usuario.
 	 */
 	private String primerNombre;
 	
+	/**
+	 * Variable que guarda el segundo nombre del usuario.
+	 */
 	private String segundoNombre;
 	
+	/**
+	 * Variable que guarda los apellidos del usuario.
+	 */
 	private String apellidos;
 	
+	/**
+	 * Variable que almacena la dirreción de correo
+	 * electrónico del usuario.
+	 */
 	private String correoElectronico;
 	
+	/**
+	 * Variable que guarda la dirección de la fotografía del usuario.
+	 */
 	private String fotoUser;
 	
+	/**
+	 * Variable encargada de almacenar el grupo de usuarios del curso.
+	 */
 	private Set<GrupoUsuarios> grupoUsuarios;
 	
-	
+	/**
+	 *  Variable encargada de almacenar los datos del usuario emisor
+	 *  de un mensaje.
+	 */
 	private Set<GestorMensajeria> usuarioEmisor;
 	
-	private Set< ReceptorMensajes> mensajes;
+	/**
+	 * Variable encargada de almacenar los datos del usuario receptor
+	 *  de un mensaje.
+	 */
+	private Set<ReceptorMensajes> mensajes;
 	
-	
-	private Set<HistorialNotas> historialNotas;
-	
-	private Set<CuentasUsuario> cuentasUsuario;
-	
-	private EnteUniversitario enteUniversitarios;
-	
-	private String codigoUsuarios;
-	
-	private Tipo tipo;
-	
-	
-
 	
 	/**
-	 * @return the id
+	 * Variable encargada de almacenar el historial de notas del usuario
+	 * del curso.
+	 */
+	private Set<HistorialNotas> historialNotas;
+	
+	/**
+	 * Variable encargada de almacenar el conjunto de las cuentas de
+	 * los usuarios.
+	 */
+	private Set<CuentasUsuario> cuentasUsuario;
+	
+	/**
+	 * Variable que almacena la información conserniente a la
+	 * universidad a la cual pertenece el curso y por lo tanto
+	 * sus integrantes.
+	 * Instancia de la clase EnteUniversitrio.
+	 */
+	private EnteUniversitario enteUniversitarios;
+	
+	/**
+	 * Variable encargada de almacenar el código de los
+	 * usuarios, el cual puede tener letras y números.
+	 */
+	private String codigoUsuarios;
+	
+	/**
+	 * Variable que guarda la información del tipo de usuario
+	 * que se encuentra inscirto en el curso.
+	 */
+	private Tipo tipo;
+	
+	/**
+	 * Se obtiene el valor de id
+	 * @return El valor de id
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -90,14 +133,16 @@ public class Usuario{
 	}
 
 	/**
-	 * @param id the id to set
+	 * Asigna el valor de id
+	 * @param id El valor por establecer para id
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the tipo
+	 * Se obtiene el valor de tipo
+	 * @return El valor de tipo
 	 */
 	@NotNull
 	@ManyToOne
@@ -106,16 +151,16 @@ public class Usuario{
 	}
 
 	/**
-	 * @param tipo the tipo to set
+	 * Asigna el valor de tipo
+	 * @param tipo El valor por establecer para tipo
 	 */
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
-	
-	
 
 	/**
-	 * @return the primerNombre
+	 * Se obtiene el valor de primerNombre
+	 * @return El valor de primerNombre
 	 */
 	@NotNull
 	@Length(max=50)
@@ -125,16 +170,17 @@ public class Usuario{
 	}
 
 	/**
-	 * @param primerNombre the primerNombre to set
+	 * Asigna el valor de primerNombre
+	 * @param primerNombre El valor por establecer para primerNombre
 	 */
 	public void setPrimerNombre(String primerNombre) {
 		this.primerNombre = primerNombre;
 	}
 
 	/**
-	 * @return the segundoNombre
+	 * Se obtiene el valor de segundoNombre
+	 * @return El valor de segundoNombre
 	 */
-
 	@Length(max=50)
 	@Pattern(regex="^\\w*$")
 	public String getSegundoNombre() {
@@ -142,14 +188,16 @@ public class Usuario{
 	}
 
 	/**
-	 * @param segundoNombre the segundoNombre to set
+	 * Asigna el valor de segundoNombre
+	 * @param segundoNombre El valor por establecer para segundoNombre
 	 */
 	public void setSegundoNombre(String segundoNombre) {
 		this.segundoNombre = segundoNombre;
 	}
 
 	/**
-	 * @return the apellidos
+	 * Se obtiene el valor de apellidos
+	 * @return El valor de apellidos
 	 */
 	@NotNull
 	@Length(max=30)
@@ -159,14 +207,16 @@ public class Usuario{
 	}
 
 	/**
-	 * @param apellidos the apellidos to set
+	 * Asigna el valor de apellidos
+	 * @param apellidos El valor por establecer para apellidos
 	 */
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-
+	
 	/**
-	 * @return the correoElectronico
+	 * Se obtiene el valor de correoElectronico
+	 * @return El valor de correoElectronico
 	 */
 	@NotNull
 	@Email
@@ -176,14 +226,16 @@ public class Usuario{
 	}
 
 	/**
-	 * @param correoElectronico the correoElectronico to set
+	 * Asigna el valor de correoElectronico
+	 * @param correoElectronico El valor por establecer para correoElectronico
 	 */
 	public void setCorreoElectronico(String correoElectronico) {
 		this.correoElectronico = correoElectronico;
 	}
 	
 	/**
-	 * @return the grupoUsuarios
+	 * Se obtiene el valor de grupoUsuarios
+	 * @return El valor de grupoUsuarios
 	 */
 	@OneToMany(mappedBy="userGrupoCurso",cascade=CascadeType.ALL)
 	public Set<GrupoUsuarios> getGrupoUsuarios() {
@@ -194,49 +246,49 @@ public class Usuario{
 	}
 
 	/**
-	 * @param grupoUsuarios the grupoUsuarios to set
+	 * Asigna el valor de grupoUsuarios
+	 * @param grupoUsuarios El valor por establecer para grupoUsuarios
 	 */
 	public void setGrupoUsuarios(Set<GrupoUsuarios> grupoUsuarios) {
 		this.grupoUsuarios = grupoUsuarios;
 	}
-
-	/**
-	 * @return the fotoUser
-	 */
 	
+	/**
+	 * Se obtiene el valor de fotoUser
+	 * @return El valor de fotoUser
+	 */
 	public String getFotoUser() {
 		return fotoUser;
 	}
 
 	/**
-	 * @param fotoUser the fotoUser to set
+	 * Asigna el valor de fotoUser
+	 * @param fotoUser El valor por establecer para fotoUser
 	 */
 	public void setFotoUser(String fotoUser) {
 		this.fotoUser = fotoUser;
 	}
-
-	/**
-	 * @param documentoIdentidad the documentoIdentidad to set
-	 */
 	
-	public void setDocumentoIdentidad(Long documentoIdentidad) {
-		this.documentoIdentidad = documentoIdentidad;
-	}
-
 	/**
-	 * @return the documentoIdentidad
+	 * Se obtiene el valor de documentoIdentidad
+	 * @return El valor de documentoIdentidad
 	 */
 	@NotNull
 	public Long getDocumentoIdentidad() {
 		return documentoIdentidad;
 	}
-	
-	
 
-	
+	/**
+	 * Asigna el valor de documentoIdentidad
+	 * @param documentoIdentidad El valor por establecer para documentoIdentidad
+	 */
+	public void setDocumentoIdentidad(Long documentoIdentidad) {
+		this.documentoIdentidad = documentoIdentidad;
+	}
 	
 	/**
-	 * @return the codigoUsuarios
+	 * Se obtiene el valor de codigoUsuarios
+	 * @return El valor de codigoUsuarios
 	 */
 	@NotEmpty
 	public String getCodigoUsuarios() {
@@ -244,14 +296,16 @@ public class Usuario{
 	}
 
 	/**
-	 * @param codigoUsuarios the codigoUsuarios to set
+	 * Asigna el valor de codigoUsuarios
+	 * @param codigoUsuarios El valor por establecer para codigoUsuarios
 	 */
 	public void setCodigoUsuarios(String codigoUsuarios) {
 		this.codigoUsuarios = codigoUsuarios;
 	}
-
+	
 	/**
-	 * @return the usuarioEmisor
+	 * Se obtiene el valor de usuarioEmisor
+	 * @return El valor de usuarioEmisor
 	 */
 	@OneToMany(mappedBy="deUsuario",cascade=CascadeType.ALL)
 	public Set<GestorMensajeria> getUsuarioEmisor() {
@@ -262,20 +316,16 @@ public class Usuario{
 	}
 
 	/**
-	 * @param usuarioEmisor the usuarioEmisor to set
+	 * Asigna el valor de usuarioEmisor
+	 * @param usuarioEmisor El valor por establecer para usuarioEmisor
 	 */
 	public void setUsuarioEmisor(Set<GestorMensajeria> usuarioEmisor) {
 		this.usuarioEmisor = usuarioEmisor;
 	}
 	
-	
-	
-
-	
-	
-
 	/**
-	 * @return the enteUniversitarios
+	 * Se obtiene el valor de enteUniversitarios
+	 * @return El valor de enteUniversitarios
 	 */
 	@NotNull
 	@ManyToOne
@@ -284,14 +334,16 @@ public class Usuario{
 	}
 
 	/**
-	 * @param enteUniversitarios the enteUniversitarios to set
+	 * Asigna el valor de enteUniversitarios
+	 * @param enteUniversitarios El valor por establecer para enteUniversitarios
 	 */
 	public void setEnteUniversitarios(EnteUniversitario enteUniversitarios) {
 		this.enteUniversitarios = enteUniversitarios;
 	}
-
+	
 	/**
-	 * @return the historialNotas
+	 * Se obtiene el valor de historialNotas
+	 * @return El valor de historialNotas
 	 */
 	@OneToMany(mappedBy="userAccount",cascade=CascadeType.ALL)
 	public Set<HistorialNotas> getHistorialNotas() {
@@ -302,14 +354,16 @@ public class Usuario{
 	}
 
 	/**
-	 * @param historialNotas the historialNotas to set
+	 * Asigna el valor de historialNotas
+	 * @param historialNotas El valor por establecer para historialNotas
 	 */
 	public void setHistorialNotas(Set<HistorialNotas> historialNotas) {
 		this.historialNotas = historialNotas;
 	}
-
+	
 	/**
-	 * @return the mensajes
+	 * Se obtiene el valor de mensajes
+	 * @return El valor de mensajes
 	 */
 	@OneToMany(mappedBy="userAccount",cascade=CascadeType.ALL)
 	public Set<ReceptorMensajes> getMensajes() {
@@ -320,30 +374,29 @@ public class Usuario{
 	}
 
 	/**
-	 * @param mensajes the mensajes to set
+	 * Asigna el valor de mensajes
+	 * @param mensajes El valor por establecer para mensajes
 	 */
 	public void setMensajes(Set<ReceptorMensajes> mensajes) {
 		this.mensajes = mensajes;
 	}
-
+	
 	/**
-	 * @return the cuentasUsuario
+	 * Se obtiene el valor de cuentasUsuario
+	 * @return El valor de cuentasUsuario
 	 */
 	@OneToMany(mappedBy="usuarios",cascade=CascadeType.ALL)
-	public Set<CuentasUsuario> getCuentasUsuario() {
-		if(cuentasUsuario==null){
-			return new HashSet<CuentasUsuario>();
-		}
-		
+	public Set<CuentasUsuario> getCuentasUsuario() {		if(cuentasUsuario==null){
+		return new HashSet<CuentasUsuario>();
+	}
 		return cuentasUsuario;
 	}
 
 	/**
-	 * @param cuentasUsuario the cuentasUsuario to set
+	 * Asigna el valor de cuentasUsuario
+	 * @param cuentasUsuario El valor por establecer para cuentasUsuario
 	 */
 	public void setCuentasUsuario(Set<CuentasUsuario> cuentasUsuario) {
 		this.cuentasUsuario = cuentasUsuario;
 	}
-
-	
 }

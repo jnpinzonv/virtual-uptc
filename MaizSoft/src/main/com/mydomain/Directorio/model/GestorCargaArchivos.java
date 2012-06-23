@@ -20,9 +20,15 @@ import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 
 /**
- *@author Josué Nicolás Pinzón Villamil <jnpinzonv@hotmail.com>
- *@Version${date}
- */
+* Descripcion: Esta Clase se encarga de ...
+* Modulo de Desarrollo :CU- ...
+ * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
+* Grupo de Investigacion Ingenieria Software (GIS)
+* Semillero de Investigacion Moviles Sabatt (SIMS)
+* Universidad Pedagogica y Tecnologica de Colombia
+* @version 22/06/2012 
+*/
 @Entity
 @Table(name="gestor_carga_archivos")
 public class GestorCargaArchivos {
@@ -39,8 +45,10 @@ public class GestorCargaArchivos {
 	
 	private Tipo tipo;
 	
+	
 	/**
-	 * @return the tipo
+	 * Se obtiene el valor de tipo
+	 * @return El valor de tipo
 	 */
 	@NotNull
 	@ManyToOne
@@ -49,12 +57,15 @@ public class GestorCargaArchivos {
 	}
 
 	/**
-	 * @param tipo the tipo to set
+	 * Asigna el valor de tipo
+	 * @param tipo El valor por establecer para tipo
 	 */
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
 
+	
+	
 	/**
 	 * @return the idGestorCargaArchivos
 	 */

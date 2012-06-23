@@ -47,9 +47,11 @@ public class UploadHandler implements IUploadHandler {
 	
 	@In
 	Identity identity;
-
+	
+	
+	
 	public void handleUpload() throws IOException {
-
+				
 		//	System.out.println(identity.);
 		ConfiguracionesSistema path = entityManager.find(
 				ConfiguracionesSistema.class, 1l);
@@ -62,8 +64,8 @@ public class UploadHandler implements IUploadHandler {
 		fo.write(file);
 		fo.flush();
 		fo.close();
-		cargarExcel();
-	}
+		cargarExcel();		
+		}
 
 	/**
 	 * Realiza la carga usuarios de un archivo tipo excel 
@@ -105,5 +107,6 @@ public class UploadHandler implements IUploadHandler {
 	public void setNombreArchivo(String nombreArchivo) {
 		this.nombreArchivo = nombreArchivo;
 	}
+
 
 }

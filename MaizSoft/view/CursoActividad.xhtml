@@ -1,0 +1,214 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/layout/template2.xhtml">
+
+	<ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
+
+		<script type="text/javascript">
+//<![CDATA[
+var maxTabs = 50;
+window.onload = function(){
+    activaTab(document.getElementById("tabck-1"));
+}
+function activaTab(unTab) {
+    try {
+        //Los elementos div de todas las pestañas están todos juntos en una
+        //única celda de la segunda fila de la tabla de estructura de pestañas.
+        //Hemos de buscar la seleccionada, ponerle display block y al resto
+        //ponerle display none.
+        var id = unTab.id;
+        if (id){
+            var idTab = id.split("tabck-");
+            var numTab = parseInt(idTab[1]); 
+            //Las "tabdiv" son los bloques interiores mientras que los "tabck"
+            //son las pestañas.
+            var esteTabDiv = document.getElementById("tabdiv-" + numTab);
+            for (var i=1; i<maxTabs; i++) {
+                var tabdiv = document.getElementById("tabdiv-" + i);
+                if (tabdiv) {
+                    var tabck = document.getElementById("tabck-" + i);
+                    if (tabdiv.id == esteTabDiv.id) {
+                        tabdiv.style.display = "block";
+                        tabck.style.color = "#045491";
+                        tabck.style.backgroundColor = "rgb(235, 235, 225)";
+                        tabck.style.borderBottomColor = "rgb(235, 235, 225)";
+                    } else {
+                        tabdiv.style.display = "none";
+                        tabck.style.color = "white"; 
+                        tabck.style.backgroundColor = "#315E9F"; 
+                        tabck.style.borderBottomColor = "gray";   
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
+    } catch (e) {
+        alert("Error al activar una pestaña. " + e.message);
+    }
+}       
+//]]>
+</script>
+
+	</ui:define>
+
+	<ui:define name="centroT">
+		<rich:panel>
+
+			<f:facet name="header">Modificar Actividades de Curso</f:facet>
+
+			<br />
+			<h:outputLabel value="Seleccione la cantidad de Semanas del Curso" />
+			<h:selectOneMenu
+					value="#{grupoCursoHome.instance.numeroTotal}"
+					id="num" required="true" rendered="true">
+					<s:selectItems value="#{listaSemanaMaxima}" var="lista"
+						label="#{lista}" />
+				</h:selectOneMenu>
+			<h:outputLabel
+				value="Seleccione la semana del curso que desea modificar" />
+			<h:selectOneMenu value="#{numeroDivisiones}" id=semana required="true">
+				
+			</h:selectOneMenu>
+
+			<br />
+			<br />
+			<div align="center">
+				<table class="tabs"
+					style="border-collapse: separate; width: 35em; background-color: rgb(235, 235, 225); border: gray solid 1px;">
+					<tr>
+
+						<th class="tabck" id="tabck-1" onclick="activaTab(this)"
+							style="font-weight: bold; background-color: #045491; padding-left: 0.4em; padding-right: 0.4em; cursor: pointer; color: white; background-color: #045491;">AudioConferencia</th>
+
+						<th class="tabck" id="tabck-2" onclick="activaTab(this)"
+							style="font-weight: bold; background-color: #045491; padding-left: 0.4em; padding-right: 0.4em; cursor: pointer; color: white; background-color: #045491;">Anuncio</th>
+
+						<th class="tabck" id="tabck-3" onclick="activaTab(this)"
+							style="font-weight: bold; background-color: #045491; padding-left: 0.4em; padding-right: 0.4em; cursor: pointer; color: white; background-color: #045491;">Autoevaluación</th>
+
+						<th class="tabck" id="tabck-4" onclick="activaTab(this)"
+							style="font-weight: bold; background-color: #045491; padding-left: 0.4em; padding-right: 0.4em; cursor: pointer; color: white; background-color: #045491;">Cargar
+							Archivos</th>
+
+						<th class="tabck" id="tabck-5" onclick="activaTab(this)"
+							style="font-weight: bold; background-color: #045491; padding-left: 0.4em; padding-right: 0.4em; cursor: pointer; color: white; background-color: #045491;">Enlaces
+							Externos</th>
+
+						<th class="tabck" id="tabck-6" onclick="activaTab(this)"
+							style="font-weight: bold; background-color: #045491; padding-left: 0.4em; padding-right: 0.4em; cursor: pointer; color: white; background-color: #045491;">Foro</th>
+
+						<th class="tabck" id="tabck-7" onclick="activaTab(this)"
+							style="font-weight: bold; background-color: #045491; padding-left: 0.4em; padding-right: 0.4em; cursor: pointer; color: white; background-color: #045491;">Objeto
+							de Aprendizaje</th>
+
+						<th class="tabck" id="tabck-8" onclick="activaTab(this)"
+							style="font-weight: bold; background-color: #045491; padding-left: 0.4em; padding-right: 0.4em; cursor: pointer; color: white; background-color: #045491;">VideoConferencia</th>
+
+					</tr>
+					<tr class="filadiv">
+						<td colspan="6"
+							style="padding: 0.4em; text-align: left; vertical-align: top;">
+							<div class="tabdiv" id="tabdiv-1"
+								style="background-color: rgb(235, 235, 225); display: none;">
+								Contenido de la <b class="rojo">Primera pestaña</b>
+
+								<h:form>
+									<rich:panel>
+										<rich:dataTable id="enteUniversitarioList"
+											var="_enteUniversitario"
+											rendered="#{not empty enteUniversitarioList.resultList}"
+											value="#{listaEnteUniversitariosFacultades}" rows="10"
+											width="675px">
+											<h:column>
+												<f:facet name="header">
+													<ui:include src="layout/sort.xhtml">
+														<ui:param name="entityList"
+															value="#{enteUniversitarioList}" />
+														<ui:param name="propertyLabel" value="Id" />
+														<ui:param name="propertyPath"
+															value="enteUniversitario.idEnteUniversitario" />
+													</ui:include>
+												</f:facet>
+												<h:outputText
+													value="#{_enteUniversitario.idEnteUniversitario}" />
+											</h:column>
+											<h:column width="220px">
+												<f:facet name="header">
+													<ui:include src="layout/sort.xhtml">
+														<ui:param name="entityList"
+															value="#{enteUniversitarioList}" />
+														<ui:param name="propertyLabel" value="Nombre" />
+														<ui:param name="propertyPath"
+															value="enteUniversitario.nombreEnteUniversitario" />
+													</ui:include>
+												</f:facet>
+												<h:outputText
+													value="#{_enteUniversitario.nombreEnteUniversitario}" />
+											</h:column>
+											<h:column width="250px">
+												<f:facet name="header">
+													<ui:include src="layout/sort.xhtml">
+														<ui:param name="entityList"
+															value="#{enteUniversitarioList}" />
+														<ui:param name="propertyLabel" value="Descripción" />
+														<ui:param name="propertyPath"
+															value="enteUniversitario.descripcionEnteUniversitario" />
+													</ui:include>
+												</f:facet>
+												<h:outputText
+													value="#{_enteUniversitario.descripcionEnteUniversitario}" />
+											</h:column>
+											</rich:dataTable>
+									</rich:panel>
+								</h:form>
+							</div>
+							<div class="tabdiv" id="tabdiv-2"
+								style="background-color: rgb(235, 235, 225); display: none;">
+								Otro contenido para la <b class="rojo">PESTAÑA 2ª</b>
+							</div>
+							<div class="tabdiv" id="tabdiv-3"
+								style="background-color: rgb(235, 235, 225); display: none;">
+								El último contenido de la <b class="azul">Pestaña 3</b>
+							</div>
+							<div class="tabdiv" id="tabdiv-4"
+								style="background-color: rgb(235, 235, 225); display: none;">
+								El último contenido de la <b class="azul">Pestaña 3</b>
+							</div>
+							<div class="tabdiv" id="tabdiv-5"
+								style="background-color: rgb(235, 235, 225); display: none;">
+								El último contenido de la <b class="azul">Pestaña 3</b>
+							</div>
+							<div class="tabdiv" id="tabdiv-6"
+								style="background-color: rgb(235, 235, 225); display: none;">
+								El último contenido de la <b class="azul">Pestaña 3</b>
+							</div>
+							<div class="tabdiv" id="tabdiv-7"
+								style="background-color: rgb(235, 235, 225); display: none;">
+								El último contenido de la <b class="azul">Pestaña 3</b>
+							</div>
+							<div class="tabdiv" id="tabdiv-8"
+								style="background-color: rgb(235, 235, 225); display: none;">
+								El último contenido de la <b class="azul">Pestaña 8</b>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<br />
+				<h:commandButton value="Vista Previa" action="/ActividadLista.seam" />
+				<h:commandButton value="Aceptar" action="/ActividadLista.seam" />
+			</div>
+
+		</rich:panel>
+
+
+
+	</ui:define>
+</ui:composition>

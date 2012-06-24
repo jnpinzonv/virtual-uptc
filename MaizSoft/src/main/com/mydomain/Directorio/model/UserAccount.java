@@ -38,7 +38,7 @@ import org.jboss.seam.annotations.security.management.UserRoles;
 */
 @Entity(name="UserAccount")
 @Name("userAccount")
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "username"), name = "user_account")
+@Table(name = "user_account")
 @Scope(ScopeType.SESSION)
 public class UserAccount implements Serializable {
 
@@ -138,7 +138,7 @@ public class UserAccount implements Serializable {
 	 * @return El valor de enabled
 	 */
 	@UserEnabled
-	@Column(name = "enabled", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "bit(1)")
+	@Column(name = "enabled", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "bit(1)")
 	public boolean isEnabled() {
 		return enabled;
 	}

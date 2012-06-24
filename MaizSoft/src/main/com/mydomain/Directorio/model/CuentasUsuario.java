@@ -120,7 +120,7 @@ public class CuentasUsuario {
 	 * @return El valor de grupoUsuarios
 	 */
 	@OneToOne
-	@JoinColumn(name = "id_grupo_usuarios", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_grupo_usuarios", unique = false, nullable = true, insertable = true, updatable = true)
 	public GrupoUsuarios getGrupoUsuarios() {
 		return grupoUsuarios;
 	}

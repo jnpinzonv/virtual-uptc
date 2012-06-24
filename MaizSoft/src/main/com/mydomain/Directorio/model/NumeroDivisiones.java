@@ -6,14 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
+import org.hibernate.validator.NotNull;
 import org.jboss.seam.annotations.Name;
 
-import com.sun.istack.internal.NotNull;
+
 
 /**
 * Descripcion: Esta Clase se encarga de almacenar informaci�n relacionada
@@ -27,7 +26,7 @@ import com.sun.istack.internal.NotNull;
 * @version 23/06/2012 
 */
 @Entity(name="NumeroDivisiones")
-@Name("numero_divisiones")
+@Name("numeroDivisiones")
 @Table(name="numero_divisones")
 public class NumeroDivisiones {
 
@@ -84,7 +83,7 @@ public class NumeroDivisiones {
 	 * Se obtiene el valor de numeroDivision
 	 * @return El valor de numeroDivision
 	 */
-	@Column(name = "id_numero_Division", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(4)")
+	@Column(name = "id_numero_Division", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "numeric(4)")
 	public Integer getNumeroDivision() {
 		return numeroDivision;
 	}

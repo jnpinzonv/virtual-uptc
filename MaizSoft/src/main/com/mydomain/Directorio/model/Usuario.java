@@ -290,7 +290,7 @@ public class Usuario {
 	 * 
 	 * @return El valor de fotoUser
 	 */
-	@Column(name = "foto_user", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
+	@Column(name = "foto_user", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getFotoUser() {
 		return fotoUser;
 	}

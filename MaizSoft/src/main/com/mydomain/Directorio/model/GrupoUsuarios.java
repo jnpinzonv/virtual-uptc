@@ -77,7 +77,7 @@ public class GrupoUsuarios {
 	private transient Curso curso;
 	
 	
-
+	
 	
 	
 	
@@ -86,7 +86,7 @@ public class GrupoUsuarios {
 	 * @return El valor de userGrupoCurso
 	 */
 	@ManyToOne
-	@JoinColumn(name = "id_usuario", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_usuario", unique = false, nullable = true, insertable = true, updatable = true)
 	public Usuario getUserGrupoCurso() {
 		return userGrupoCurso;
 	}

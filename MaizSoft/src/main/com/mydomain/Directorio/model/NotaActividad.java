@@ -104,7 +104,7 @@ public class NotaActividad {
 	 * Se obtiene el valor de estadoPendiente
 	 * @return El valor de estadoPendiente
 	 */
-	@Column(name = "estado_pendiente", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "bit(1)")
+	@Column(name = "estado_pendiente", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "bit(1)")
 	public boolean isEstadoPendiente() {
 		return estadoPendiente;
 	}
@@ -122,7 +122,7 @@ public class NotaActividad {
 	 * @return El valor de justificacion
 	 */
 	@Length(max=300)
-	@Column(name = "justificacion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
+	@Column(name = "justificacion", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getJustificacion() {
 		return justificacion;
 	}
@@ -140,7 +140,7 @@ public class NotaActividad {
 	 * @return El valor de gestorCargaArchivos
 	 */
 	@ManyToOne
-	@JoinColumn(name = "id_gestor_carga_archivos", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_gestor_carga_archivos", unique = false, nullable = true, insertable = true, updatable = true)
 	public GestorCargaArchivos getGestorCargaArchivos() {
 		return gestorCargaArchivos;
 	}
@@ -196,7 +196,7 @@ public class NotaActividad {
 	 * @return El valor de gestorMensajeria
 	 */
 	@ManyToOne
-	@JoinColumn(name = "id_gestor_mensajeria", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_gestor_mensajeria", unique = false, nullable = true, insertable = true, updatable = true)
 	public GestorMensajeria getGestorMensajeria() {
 		return gestorMensajeria;
 	}

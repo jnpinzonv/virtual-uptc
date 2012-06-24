@@ -91,7 +91,7 @@ public class EnteUniversitarioHome extends EntityHome<EnteUniversitario> {
 	
 	@Factory("listaEnteUniversitariosFacultades")
 	public List<EnteUniversitario> listaEntesUniversitarios() {
-
+		
 		Query q = getEntityManager()
 				.createQuery("select t from EnteUniversitario t where t.tipoEnteUniversitario=19");
 		List<EnteUniversitario> listaEntesUniversitarios = (List<EnteUniversitario>)q.getResultList();

@@ -28,7 +28,7 @@ import org.jboss.seam.annotations.Name;
 * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, 
 * en esta clase con lo referente a los entes universitarios, se comunica con la base de datos
 * Modulo de Desarrollo :CU- ...
-* @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
+* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -54,7 +54,7 @@ public class EnteUniversitario {
 	private  String nombreEnteUniversitario;
 	
 	/**
-	 * Variable que almacena la descripciï¿½n del ente universitario
+	 * Variable que almacena la descripción del ente universitario
 	 * Tipo de dato String
 	 */
 	private String descripcionEnteUniversitario;
@@ -66,7 +66,7 @@ public class EnteUniversitario {
 	private EnteUniversitario enteUniversitario;
 	
 	/**
-	 * Variable que almacena el cï¿½digo del ente universitario
+	 * Variable que almacena el código del ente universitario
 	 * Tipo de dato String
 	 */
 	private String codigoEnteUniversitario;

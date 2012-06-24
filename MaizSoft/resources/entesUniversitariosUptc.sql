@@ -1,26 +1,26 @@
 -- Facultades de la Universidad Pedagógica Tecnólogica de Colombia
-insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre) 
-values(1,'Ciencias Agropecurias','Ciencias Agropecurias',19,null);
-insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre) 
-values(2,'Ciencias Básicas','Ciencias Básicas',19,null);
-insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre) 
-values(3,'Ciencias de la Educación','Ciencias de la Educación',19,null);
-insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre) 
-values(4,'Ciencias Economicás y Administrativas','Ciencias Economicás y Administrativas',19,null);
-insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre) 
-values(5,'Ciencias Salud','Ciencias Salud',19,null);
-insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre) 
-values(6,'Derecho y Ciencias Sociales','Derecho y Ciencias Sociales',19,null);
-insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre) 
-values(7,'Ingeniería','Ingeniería',19,null);
-insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre) 
-values(8,'Chinquinquíra','Chinquinquíra',19,null);
-insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre) 
-values(9,'Duitama','Duitama',19,null);
-insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre) 
-values(10,'Sogamoso','Sogamoso',19,null);
-insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre) 
-values(11,'FESAD','Facultad de estudios a distancia',19,null);
+insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
+values(1,'Ciencias Agropecurias','Ciencias Agropecurias',19,null,1001);
+insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
+values(2,'Ciencias Básicas','Ciencias Básicas',19,null,1002);
+insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
+values(3,'Ciencias de la Educación','Ciencias de la Educación',19,null,1003);
+insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
+values(4,'Ciencias Economicás y Administrativas','Ciencias Economicás y Administrativas',19,null,1004);
+insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
+values(5,'Ciencias Salud','Ciencias Salud',19,null,1005);
+insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
+values(6,'Derecho y Ciencias Sociales','Derecho y Ciencias Sociales',19,null,1006);
+insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
+values(7,'Ingeniería','Ingeniería',19,null,1007);
+insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
+values(8,'Chinquinquíra','Chinquinquíra',19,null,1008);
+insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
+values(9,'Duitama','Duitama',19,null,1009);
+insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
+values(10,'Sogamoso','Sogamoso',19,null,10010);
+insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
+values(11,'FESAD','Facultad de estudios a distancia',19,null,10011);
 
 
 -- Escuelas de la Universidad Pedagógica Tecnólogica de Colombia Facultad de Ingeniería

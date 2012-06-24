@@ -35,8 +35,8 @@ values(8105528,'transmision de Datos',15);
 
 -- Grupos Curso de programacion 1,2,3
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (1,1,25,0,1,8108255,null);
+values (1,1,25,0,1,8108255,16);
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (2,1,25,0,1,8108256,null);
+values (2,1,25,0,1,8108256,16);
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (3,1,25,0,1,8108257,null);
+values (3,1,25,0,1,8108257,16);

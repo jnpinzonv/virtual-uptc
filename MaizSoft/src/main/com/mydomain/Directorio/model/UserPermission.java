@@ -65,7 +65,7 @@ public class UserPermission implements Serializable
     */
    @Id
    @GeneratedValue
-   @Column(name = "id_user_permission", unique = false, nullable = false, insertable = true, updatable = true)
+   @Column(name = "id_user_permission", unique = false, nullable = true, insertable = true, updatable = true)
    public Long getId() {
    	return id;
    }
@@ -84,7 +84,7 @@ public class UserPermission implements Serializable
     */
    @PermissionUser 
    @PermissionRole
-   @Column(name = "recipient", unique = false, nullable = false, insertable = true, updatable = true)
+   @Column(name = "recipient", unique = false, nullable = true, insertable = true, updatable = true)
    public String getRecipient() {
    	return recipient;
    }
@@ -102,7 +102,7 @@ public class UserPermission implements Serializable
     * @return El valor de target
     */
    @PermissionTarget
-   @Column(name = "target", unique = false, nullable = false, insertable = true, updatable = true)
+   @Column(name = "target", unique = false, nullable = true, insertable = true, updatable = true)
    public String getTarget() {
    	return target;
    }
@@ -120,7 +120,7 @@ public class UserPermission implements Serializable
     * @return El valor de action
     */
    @PermissionAction
-   @Column(name = "action", unique = false, nullable = false, insertable = true, updatable = true)
+   @Column(name = "action", unique = false, nullable = true, insertable = true, updatable = true)
    public String getAction() {
    	return action;
    }
@@ -137,7 +137,7 @@ public class UserPermission implements Serializable
    * @return El valor de discriminator
    */
    @PermissionDiscriminator
-   @Column(name = "discriminator", unique = false, nullable = false, insertable = true, updatable = true)
+   @Column(name = "discriminator", unique = false, nullable = true, insertable = true, updatable = true)
    public String getDiscriminator() {
 	return discriminator;
 }

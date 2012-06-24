@@ -34,9 +34,9 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="gestor_carga_archivos")
+@Entity(name="gestorCargaArchivos")
 @Table(name="gestor_carga_archivos")
-@Name("gestor_carga_archivos")
+@Name("gestorCargaArchivos")
 public class GestorCargaArchivos {
 
 	/**
@@ -120,7 +120,7 @@ public class GestorCargaArchivos {
 	 * @return El valor de ruta
 	 */
 	@NotEmpty
-	@Column(name = "ruta_archivo", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(100)")
+	@Column(name = "ruta_archivo", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getRuta() {
 		return ruta;
 	}
@@ -138,7 +138,7 @@ public class GestorCargaArchivos {
 	 * @return El valor de descripcion
 	 */
 	@Length(max=300)
-	@Column(name = "descripcion_archivo", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(200)")
+	@Column(name = "descripcion_archivo", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDescripcion() {
 		return descripcion;
 	}

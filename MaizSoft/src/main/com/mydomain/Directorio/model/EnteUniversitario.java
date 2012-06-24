@@ -3,7 +3,7 @@
  */
 package com.mydomain.Directorio.model;
 
-import java.util.HashSet;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -21,6 +21,7 @@ import javax.persistence.Table;
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
+import org.jboss.seam.annotations.Name;
 
 
 /**
@@ -34,9 +35,10 @@ import org.hibernate.validator.NotNull;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="ente_universitario")
+@Entity(name="enteUniversitario")
 @Table(name="ente_universitario")
-@NamedQuery(name="entesUniversitariosPorFacultad",query="select t from EnteUniversitario t where t.enteUniversitario.idEnteUniversitario=:parametro")
+@Name("enteUniversitario")
+@NamedQuery(name="entesUniversitariosPorFacultad",query="select t from enteUniversitario t where t.enteUniversitario.idEnteUniversitario=:parametro")
 public class EnteUniversitario {
 	
 	/**
@@ -99,7 +101,7 @@ public class EnteUniversitario {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id_ente_universitario_padre", unique = false, nullable = false, insertable = true, updatable = true)
+	@Column(name = "id_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdEnteUniversitario() {
 		return idEnteUniversitario;
 	}
@@ -118,7 +120,7 @@ public class EnteUniversitario {
 	 */
 	@NotEmpty
 	@Length(max=200)
-	@Column(name = "nombre_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(200)")
+	@Column(name = "nombre_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(60)")
 	public String getNombreEnteUniversitario() {
 		return nombreEnteUniversitario;
 	}
@@ -136,7 +138,7 @@ public class EnteUniversitario {
 	 * @return El valor de descripcionEnteUniversitario
 	 */
 	@Length(max=300)
-	@Column(name = "descripcion_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(200)")
+	@Column(name = "descripcion_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDescripcionEnteUniversitario() {
 		return descripcionEnteUniversitario;
 	}
@@ -154,7 +156,7 @@ public class EnteUniversitario {
 	 * @return El valor de enteUniversitario
 	 */
 	@ManyToOne
-	@JoinColumn(name = "id_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_ente_universitario_padre", unique = false, nullable = true, insertable = true, updatable = true)
 	public EnteUniversitario getEnteUniversitario() {
 		return enteUniversitario;
 	}
@@ -171,7 +173,7 @@ public class EnteUniversitario {
 	 * Se obtiene el valor de codigoEnteUniversitario
 	 * @return El valor de codigoEnteUniversitario
 	 */
-	@Column(name = "codigo_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name = "codigo_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getCodigoEnteUniversitario() {
 		return codigoEnteUniversitario;
 	}

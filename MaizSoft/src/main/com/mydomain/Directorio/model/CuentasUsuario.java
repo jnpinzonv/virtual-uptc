@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.NotNull;
+import org.jboss.seam.annotations.Name;
 
 /**
 * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, 
@@ -27,9 +28,10 @@ import org.hibernate.validator.NotNull;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
+@Entity(name="cuentasUsuario")
 @Table(name="cuentas_usuario")
-@NamedQuery(name = "buscarCuentaporUsername", query = "select s from CuentasUsuario s where s.userAccounts.username=:parametro")
+@Name("cuentasUsuario")
+@NamedQuery(name = "buscarCuentaPorUsername", query = "select s from cuentasUsuario s where s.userAccounts.username=:parametro")
 public class CuentasUsuario {
 	
 	/**
@@ -81,7 +83,7 @@ public class CuentasUsuario {
 	 */
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "id_usser_account", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_user_account", unique = false, nullable = false, insertable = true, updatable = true)
 	public UserAccount getUserAccounts() {
 		return userAccounts;
 	}
@@ -100,7 +102,7 @@ public class CuentasUsuario {
 	 */
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "id_tipo", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_usuarios", unique = false, nullable = false, insertable = true, updatable = true)
 	public Usuario getUsuarios() {
 		return usuarios;
 	}

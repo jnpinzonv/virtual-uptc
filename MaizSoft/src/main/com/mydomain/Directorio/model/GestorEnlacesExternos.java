@@ -29,9 +29,9 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name= "gestor_enlaces_externos")
+@Entity(name= "gestorEnlacesExternos")
 @Table(name= "gestor_enlaces_externos")
-@Name("gestor_enlaces_externos")
+@Name("gestorEnlacesExternos")
 public class GestorEnlacesExternos {
 	
 	/**
@@ -88,7 +88,7 @@ public class GestorEnlacesExternos {
 	 * @return El valor de urlEnlace
 	 */
 	@NotEmpty
-	@Column(name = "url_enlace", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(50)")
+	@Column(name = "url_enlace", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getUrlEnlace() {
 		return urlEnlace;
 	}
@@ -107,7 +107,7 @@ public class GestorEnlacesExternos {
 	 */
 	@NotEmpty
 	@Length(max=100)
-	@Column(name = "nombre_enlace", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name = "nombre_enlace", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getNombreEnlace() {
 		return nombreEnlace;
 	}
@@ -125,7 +125,7 @@ public class GestorEnlacesExternos {
 	 * @return El valor de descripcionEnlace
 	 */	
 	@Length(max=300)
-	@Column(name = "descripcion_enlace", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(200)")
+	@Column(name = "descripcion_enlace", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDescripcionEnlace() {
 		return descripcionEnlace;
 	}

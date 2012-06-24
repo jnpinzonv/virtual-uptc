@@ -24,9 +24,9 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="receptor_mensajes")
-@Name("receptor_mensajes")
+@Entity(name="receptorMensajes")
 @Table(name="receptor_mensajes")
+@Name("receptorMensajes")
 public class ReceptorMensajes {
 	
 	/**
@@ -54,7 +54,7 @@ public class ReceptorMensajes {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id_receptor_Mensajes", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
+	@Column(name = "id_receptor_mensajes", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdReceptormenajes() {
 		return idReceptormenajes;
 	}
@@ -72,7 +72,7 @@ public class ReceptorMensajes {
 	 */
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "id_user_account", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_usuario", unique = false, nullable = false, insertable = true, updatable = true)
 	public Usuario getUserAccount() {
 		return userAccount;
 	}

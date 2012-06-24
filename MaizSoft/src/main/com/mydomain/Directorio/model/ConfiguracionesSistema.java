@@ -23,9 +23,9 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="configuraciones_sistema")
+@Entity(name="configuracionesSistema")
 @Table(name="configuraciones_sistema")
-@Name("configuraciones_sistema")
+@Name("configuracionesSistema")
 public class ConfiguracionesSistema {
 	
 	/**
@@ -53,7 +53,7 @@ public class ConfiguracionesSistema {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id_propiedad", unique = true, nullable = false, insertable = true, updatable = true)
+	@Column(name = "id_configuraciones_sistema", unique = true, nullable = false, insertable = true, updatable = true)
 	public Long getId() {
 		return id;
 	}
@@ -70,7 +70,7 @@ public class ConfiguracionesSistema {
 	 * Se obtiene el valor de nombrePropiedad
 	 * @return El valor de nombrePropiedad
 	 */
-	@Column(name = "nombre_propiedad", unique = true, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name = "nombre_propiedad", unique = true, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getNombrePropiedad() {
 		return nombrePropiedad;
 	}
@@ -87,7 +87,7 @@ public class ConfiguracionesSistema {
 	 * Se obtiene el valor de detallesPropiedad
 	 * @return El valor de detallesPropiedad
 	 */
-	@Column(name = "detalles_propiedad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(200)")
+	@Column(name = "detalles_propiedad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDetallesPropiedad() {
 		return detallesPropiedad;
 	}

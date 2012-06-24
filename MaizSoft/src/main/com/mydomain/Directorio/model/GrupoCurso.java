@@ -35,10 +35,10 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 22/06/2012 
 */
-@Entity(name="grupo_curso")
-@Name("grupo_curso")
+@Entity(name="grupoCurso")
 @Table(name= "grupo_curso")
-@NamedQueries({ @NamedQuery(name="gruposPorCurso",query="select g from GrupoCurso g where g.cursoGrupo.codigo=:parametro")})
+@Name("grupoCurso")
+@NamedQueries({ @NamedQuery(name="gruposPorCurso",query="select g from grupoCurso g where g.cursoGrupo.codigo=:parametro")})
 public class GrupoCurso {
 
 	/**
@@ -102,7 +102,7 @@ public class GrupoCurso {
 	 * Se obtiene el valor de codigoGrupo
 	 * @return El valor de codigoGrupo
 	 */
-	@Column(name = "id_tipo_identificacion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
+	@Column(name = "id_codigo_grupo", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(15)")
 	public Long getCodigoGrupo() {
 		return codigoGrupo;
 	}
@@ -121,7 +121,7 @@ public class GrupoCurso {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id_Grupo", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
+	@Column(name = "id_grupo", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdGrupo() {
 		return idGrupo;
 	}
@@ -139,7 +139,7 @@ public class GrupoCurso {
 	 * @return El valor de cupos
 	 */
 	@NotNull
-	@Column(name = "id_cupos", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(2)")
+	@Column(name = "cupos", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(4)")
 	public Integer getCupos() {
 		return cupos;
 	}
@@ -158,7 +158,7 @@ public class GrupoCurso {
 	 */
 	
 	@NotNull
-	@Column(name = "id_inscritos", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(2)")
+	@Column(name = "inscritos", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(4)")
 	public Integer getInscritos() {
 		return inscritos;
 	}
@@ -177,7 +177,7 @@ public class GrupoCurso {
 	 */
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "id_curso_grpo", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_curso_grupo", unique = false, nullable = false, insertable = true, updatable = true)
 	public Curso getCursoGrupo() {
 		return cursoGrupo;
 	}
@@ -195,7 +195,6 @@ public class GrupoCurso {
 	 * @return El valor de enlacesExternos
 	 */
 	@OneToMany(mappedBy="grupoCurso",cascade=CascadeType.ALL)
-	@JoinColumn(name = "id_enlaces_externos", unique = false, nullable = false, insertable = true, updatable = true)
 	public Set<GestorEnlacesExternos> getEnlacesExternos() {
 		if(enlacesExternos==null){
 			return new HashSet<GestorEnlacesExternos>();
@@ -216,7 +215,6 @@ public class GrupoCurso {
 	 * @return El valor de listaHistorialNotas
 	 */
 	@OneToMany(mappedBy="grupoCurso",cascade=CascadeType.ALL)
-	@JoinColumn(name = "id_lista_historial_notas", unique = false, nullable = false, insertable = true, updatable = true)
 	public Set<HistorialNotas> getListaHistorialNotas() {
 		if(listaHistorialNotas==null){
 			return new HashSet<HistorialNotas>();
@@ -237,7 +235,6 @@ public class GrupoCurso {
 	 * @return El valor de grupoUsuarios
 	 */
 	@OneToMany(mappedBy="grupoCurso",cascade=CascadeType.ALL)
-	@JoinColumn(name = "id_grupo_usuarios", unique = false, nullable = false, insertable = true, updatable = true)
 	public Set<GrupoUsuarios> getGrupoUsuarios() {
 		if(grupoUsuarios==null){
 			return new HashSet<GrupoUsuarios>();
@@ -259,7 +256,7 @@ public class GrupoCurso {
 	 */
 	@NotNull
 	@Length(max=20)
-	@Column(name = "id_semestre", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(20)")
+	@Column(name = "semestre", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
 	public String getSemestre() {
 		return semestre;
 	}
@@ -277,7 +274,7 @@ public class GrupoCurso {
 		/**
 	 * @return the numeroTotal
 	 */
-	@Column(name = "id_numero_Total", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(3)")
+	@Column(name = "numero_Total", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(4)")
 	public Integer getNumeroTotal() {
 		return numeroTotal;
 	}
@@ -294,7 +291,6 @@ public class GrupoCurso {
 	 * @return the numeroDivisiones
 	 */
 	@OneToMany(mappedBy="grupoCurso",cascade=CascadeType.ALL)
-	@JoinColumn(name = "id_numero_divisiones", unique = false, nullable = false, insertable = true, updatable = true)
 	public Set<NumeroDivisiones> getNumeroDivisiones() {
 		return numeroDivisiones;
 	}

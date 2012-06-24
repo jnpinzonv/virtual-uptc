@@ -26,10 +26,10 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="historial_notas")
+@Entity(name="historialNotas")
 @Table(name="historial_notas")
-@Name("historial_notas")
-@NamedQuery(name="NotasPorUsuario", query="select t from HistorialNotas t where t.userAccount.documentoIdentidad=:parametro")
+@Name("historialNotas")
+@NamedQuery(name="NotasPorUsuario", query="select t from historialNotas t where t.userAccount.documentoIdentidad=:parametro")
 public class HistorialNotas {
 
 	/**
@@ -62,7 +62,7 @@ public class HistorialNotas {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id_Historial_Notas", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
+	@Column(name = "id_historial_notas", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdHistorialNotas() {
 		return idHistorialNotas;
 	}
@@ -80,7 +80,7 @@ public class HistorialNotas {
 	 * @return El valor de nota
 	 */
 	@NotNull
-	@Column(name = "id_nota", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(1)")
+	@Column(name = "nota", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(1)")
 	public Long getNota() {
 		return nota;
 	}
@@ -99,7 +99,7 @@ public class HistorialNotas {
 	 */
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "id_user_account", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_usuario", unique = false, nullable = false, insertable = true, updatable = true)
 	public Usuario getUserAccount() {
 		return userAccount;
 	}

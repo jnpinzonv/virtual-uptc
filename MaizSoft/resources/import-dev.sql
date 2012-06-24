@@ -41,7 +41,10 @@ insert into user_role_group (role_id, member_of_role) values (1, 3);
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(1,'C://archivos','pathArchivos');
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(2,'archivosCargasExcel','pathArchivosExcel');
 
-
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(3,'1','enteUniversiarioPadre');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(4,'2','enteUniversiarioHijo');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(5,'3','cursosEscuela');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(6,'4','grupoCursos');
 
 --insert into ente_universitario(`idEnteUniversitario`,`descripcionEnteUniversitario`,`enteUniversitario_idEnteUniversitario`,`nombreEnteUniversitario`,`tipoEnteUniversitario_idTipo`) values (1,'Aplica cuando el usuario no pertenece a la Universidad',null,'No Aplica',1);
 

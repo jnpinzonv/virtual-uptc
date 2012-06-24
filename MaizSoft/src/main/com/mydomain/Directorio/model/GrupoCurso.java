@@ -93,7 +93,7 @@ public class GrupoCurso {
 	 */
 	private Set<HistorialNotas> listaHistorialNotas;
 	/**
-	 * Variable encargada de guardar la lista del nï¿½mero de
+	 * Variable encargada de guardar la lista del número de
 	 * divisiones del curso.
 	 */
 	private Set<NumeroDivisiones> numeroDivisiones;
@@ -102,6 +102,7 @@ public class GrupoCurso {
 	 * Se obtiene el valor de codigoGrupo
 	 * @return El valor de codigoGrupo
 	 */
+	@NotNull
 	@Column(name = "id_codigo_grupo", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(15)")
 	public Long getCodigoGrupo() {
 		return codigoGrupo;

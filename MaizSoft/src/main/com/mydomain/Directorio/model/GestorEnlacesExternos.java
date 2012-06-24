@@ -29,7 +29,7 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name= "gestorEnlacesExternos")
+@Entity(name= "GestorEnlacesExternos")
 @Table(name= "gestor_enlaces_externos")
 @Name("gestorEnlacesExternos")
 public class GestorEnlacesExternos {

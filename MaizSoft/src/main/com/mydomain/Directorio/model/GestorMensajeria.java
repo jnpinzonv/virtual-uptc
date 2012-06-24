@@ -154,8 +154,9 @@ public class GestorMensajeria {
 	 * Se obtiene el valor de asunto
 	 * @return El valor de asunto
 	 */
+	
 	@Length(max=100)
-	@Column(name = "asunto", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(60)")
+	@Column(name = "asunto", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(60)")
 	public String getAsunto() {
 		return asunto;
 	}
@@ -227,7 +228,7 @@ public class GestorMensajeria {
 	 * @return El valor de gestorMensajeria
 	 */
 	@ManyToOne
-	@JoinColumn(name = "id_gestor_mensajería", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_gestor_mensajería", unique = false, nullable = true, insertable = true, updatable = true)
 	public GestorMensajeria getGestorMensajeria() {
 		return gestorMensajeria;
 	}

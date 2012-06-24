@@ -28,7 +28,7 @@
 			<rich:panel>
 
 
-				<f:facet name="header">Matricula a Curso</f:facet>
+				<f:facet name="header">#{grupoUsuariosHome.managed}Matricula a Curso</f:facet>
 				<s:conversationPropagation>
 					<h:outputText value="Seleccione EnteUnivesitario Padre:" />
 					<h:selectOneMenu
@@ -45,7 +45,7 @@
 						<h:outputText value="Seleccione EnteUniversitario Hijo:" />
 						<h:selectOneMenu
 							value="#{grupoUsuariosHome.instance.enteUniversitarioHijo}"
-							id="enteUniveristarios">
+							id="enteUniveristarios" rendered="true">
 							<s:selectItems value="#{listaEscuelasMatriculas}" var="listaE"
 								label="#{listaE.nombreEnteUniversitario}"
 								noSelectionLabel="Seleccione ..." />
@@ -57,7 +57,7 @@
 					<a4j:outputPanel id="tres">
 						<h:outputText value="Seleccione curso:" />
 						<h:selectOneMenu value="#{grupoUsuariosHome.instance.curso}" id="curso"
-							rendered="true">
+							 rendered="true">
 							<s:selectItems value="#{listaCursoMatricula}" var="lis"
 								label="#{lis.nombreAsignatura}"
 								noSelectionLabel="Seleccione ..." />
@@ -69,7 +69,7 @@
 					<a4j:outputPanel id="cuatro">
 						<h:outputText value="Seleccione grupo:" />
 						<h:selectOneMenu value="#{grupoUsuariosHome.instance.grupoCurso}"
-							id="grupos">
+							id="grupos" rendered="true">
 							<s:selectItems value="#{listaGruposPorCurso}" var="listaG"
 								label="#{listaG.codigoGrupo}"
 								noSelectionLabel="Seleccione ..." />

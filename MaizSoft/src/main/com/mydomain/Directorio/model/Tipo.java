@@ -147,7 +147,7 @@ public class Tipo {
 	 * @return El valor de descripcion
 	 */
 	@Length(max=300)
-	@Column(name = "descripcion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
+	@Column(name = "descripcion", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDescripcion() {
 		return descripcion;
 	}

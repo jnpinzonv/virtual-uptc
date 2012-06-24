@@ -139,7 +139,7 @@ public class GestorRepositoriosVirtuales {
 	 * @return El valor de descripcionRepositorio
 	 */
 	@Length(max=300)
-	@Column(name= "descripcion_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
+	@Column(name= "descripcion_repositorio", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDescripcionRepositorio() {
 		return descripcionRepositorio;
 	}
@@ -157,7 +157,7 @@ public class GestorRepositoriosVirtuales {
 	 * @return El valor de usernameRepositorio
 	 */
 	@Length(max=30)
-	@Column(name= "username_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name= "username_repositorio", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(20)")
 	public String getUsernameRepositorio() {
 		return usernameRepositorio;
 	}
@@ -175,7 +175,7 @@ public class GestorRepositoriosVirtuales {
 	 * @return El valor de passwordRepositorio
 	 */
 	@Length(max=30)
-	@Column(name= "password_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name= "password_repositorio", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(20)")
 	public String getPasswordRepositorio() {
 		return passwordRepositorio;
 	}

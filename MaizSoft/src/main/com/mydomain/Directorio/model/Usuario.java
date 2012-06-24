@@ -201,7 +201,7 @@ public class Usuario {
 	 */
 	@Length(max = 50)
 	@Pattern(regex = "^\\w*$")
-	@Column(name = "segundo_nombre", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
+	@Column(name = "segundo_nombre", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getSegundoNombre() {
 		return segundoNombre;
 	}

@@ -25,7 +25,7 @@ import org.jboss.seam.annotations.Name;
 /**
 * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, se comunica con la base de datos
 * Modulo de Desarrollo :CU- ...
-* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -45,12 +45,12 @@ public class Actividad {
 	
 	/**
 	 * Variable que se encarga de crear un campo en la base de datos para el 
-	 * manejo de descripción de la actividad, se designa con tipo de dato String
+	 * manejo de descripciï¿½n de la actividad, se designa con tipo de dato String
 	 */
 	private String descripcionActividad;
 	
 	/**
-	 * Variable que se encarga de informar el estado de evaluación de la acividad,
+	 * Variable que se encarga de informar el estado de evaluaciï¿½n de la acividad,
 	 * como se manejan estados se designa bajo el tipo de dato boolean
 	 */
 	private boolean evaluable;
@@ -124,7 +124,7 @@ public class Actividad {
 	 * @return El valor de descripcionActividad
 	 */
 	@Length(max=300)
-	@Column(name = "descripcion_actividad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
+	@Column(name = "descripcion_actividad", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDescripcionActividad() {
 		return descripcionActividad;
 	}

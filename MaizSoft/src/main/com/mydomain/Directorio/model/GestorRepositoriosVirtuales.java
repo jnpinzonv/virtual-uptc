@@ -18,150 +18,190 @@ import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 
 /**
- * @author Nicolas
- *
- */
+* Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, 
+* en esta clase con lo referente al gestor de repositorios virtuales, se comunica con la base de datos
+* Modulo de Desarrollo :CU- ...
+* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
+* Grupo de Investigacion Ingenieria Software (GIS)
+* Semillero de Investigacion Moviles Sabatt (SIMS)
+* Universidad Pedagogica y Tecnologica de Colombia
+* @version 23/06/2012 
+*/
 @Entity
 @Table(name= "gestor_repositorio")
 public class GestorRepositoriosVirtuales {
 	
-	
+	/**
+	 * Variable que se encarga de crear un identificador de un repositorio,
+	 * Tipo de Dato Long  
+	 */
 	private Long idRepositorio;
 	
+	/**
+	 * Variable que se encarga de almacenar la url del repositorio,
+	 * Tipo de Dato String 
+	 */
 	private String urlRepositorio;
 	
+	/**
+	 * Variable que se encarga de almacenar el nombre del repositorio
+	 * Tipo de Dato String
+	 */
 	private String nombreRepositorio;
 	
+	/**
+	 * Variable que se encarga de almacenar la descripción del repositorio
+	 * Tipo de Dato String
+	 */
 	private String descripcionRepositorio;
 	
+	/**
+	 * Variable que se encarga de almacenar el nombre de usuario del repositorio
+	 * Tipo de Dato String
+	 */
 	private String usernameRepositorio;
 	
+	/**
+	 * Variable que se encarga de almacenar la contraseña del repositorio
+	 * Tipo de Dato String
+	 */
 	private String passwordRepositorio;
 	
+	/**
+	 * Variable que se encarga de almacenar los tipos de repositorio
+	 * Se instancia de la clase Tipo 
+	 */
 	
 	private Tipo tipos;
-	
-	/**
-	 * @return the tipos
-	 */
-	@NotNull
-	@ManyToOne
-	public Tipo getTipos() {
-		return tipos;
-	}
 
 	/**
-	 * @param tipos the tipos to set
-	 */
-	public void setTipos(Tipo tipos) {
-		this.tipos = tipos;
-	}
-	
-	
-
-	
-	/**
-	 * @return the idRepositorio
+	 * Se obtiene el valor de idRepositorio
+	 * @return El valor de idRepositorio
 	 */
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)	
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "id_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
 	public Long getIdRepositorio() {
 		return idRepositorio;
 	}
 
 	/**
-	 * @param idRepositorio the idRepositorio to set
+	 * Asigna el valor de idRepositorio
+	 * @param idRepositorio El valor por establecer para idRepositorio
 	 */
 	public void setIdRepositorio(Long idRepositorio) {
 		this.idRepositorio = idRepositorio;
 	}
-
+	
 	/**
-	 * @return the urlRepositorio
+	 * Se obtiene el valor de urlRepositorio
+	 * @return El valor de urlRepositorio
 	 */
 	@NotEmpty
-	@Column(name= "url_repositorio")	
+	@Column(name = "url_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(100)")	
 	public String getUrlRepositorio() {
 		return urlRepositorio;
 	}
 
 	/**
-	 * @param urlRepositorio the urlRepositorio to set
+	 * Asigna el valor de urlRepositorio
+	 * @param urlRepositorio El valor por establecer para urlRepositorio
 	 */
 	public void setUrlRepositorio(String urlRepositorio) {
 		this.urlRepositorio = urlRepositorio;
 	}
 
 	/**
-	 * @return the nombreRepositorio
+	 * Se obtiene el valor de nombreRepositorio
+	 * @return El valor de nombreRepositorio
 	 */
-	@Column(name= "nombre_repositorio")
 	@NotEmpty
 	@Length(max=100)
+	@Column(name= "nombre_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
 	public String getNombreRepositorio() {
 		return nombreRepositorio;
 	}
-
+	
 	/**
-	 * @param nombreRepositorio the nombreRepositorio to set
+	 * Asigna el valor de nombreRepositorio
+	 * @param nombreRepositorio El valor por establecer para nombreRepositorio
 	 */
 	public void setNombreRepositorio(String nombreRepositorio) {
 		this.nombreRepositorio = nombreRepositorio;
 	}
 
 	/**
-	 * @return the descripcionRepositorio
+	 * Se obtiene el valor de descripcionRepositorio
+	 * @return El valor de descripcionRepositorio
 	 */
-	@Column(name= "descripcion_repositorio")
 	@Length(max=100)
+	@Column(name= "descripcion_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(50)")
 	public String getDescripcionRepositorio() {
 		return descripcionRepositorio;
 	}
 
 	/**
-	 * @param descripcionRepositorio the descripcionRepositorio to set
+	 * Asigna el valor de descripcionRepositorio
+	 * @param descripcionRepositorio El valor por establecer para descripcionRepositorio
 	 */
 	public void setDescripcionRepositorio(String descripcionRepositorio) {
 		this.descripcionRepositorio = descripcionRepositorio;
 	}
 
 	/**
-	 * @return the usernameRepositorio
+	 * Se obtiene el valor de usernameRepositorio
+	 * @return El valor de usernameRepositorio
 	 */
-	@Column(name= "username_repositorio")
 	@Length(max=30)
+	@Column(name= "username_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
 	public String getUsernameRepositorio() {
 		return usernameRepositorio;
 	}
 
 	/**
-	 * @param usernameRepositorio the usernameRepositorio to set
+	 * Asigna el valor de usernameRepositorio
+	 * @param usernameRepositorio El valor por establecer para usernameRepositorio
 	 */
 	public void setUsernameRepositorio(String usernameRepositorio) {
 		this.usernameRepositorio = usernameRepositorio;
 	}
 
 	/**
-	 * @return the passwordRepositorio
+	 * Se obtiene el valor de passwordRepositorio
+	 * @return El valor de passwordRepositorio
 	 */
-	@Column(name= "password_repositorio")
 	@Length(max=30)
+	@Column(name= "password_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
 	public String getPasswordRepositorio() {
 		return passwordRepositorio;
 	}
 
 	/**
-	 * @param passwordRepositorio the passwordRepositorio to set
+	 * Asigna el valor de passwordRepositorio
+	 * @param passwordRepositorio El valor por establecer para passwordRepositorio
 	 */
 	public void setPasswordRepositorio(String passwordRepositorio) {
 		this.passwordRepositorio = passwordRepositorio;
 	}
 
-	
-	
-	
-	
-	
-	
+	/**
+	 * Se obtiene el valor de tipos
+	 * @return El valor de tipos
+	 */
+	@NotNull
+	@ManyToOne
+	@Column(name= "tipo", unique = false, nullable = false, insertable = true, updatable = true)
+	public Tipo getTipos() {
+		return tipos;
+	}
 
+	/**
+	 * Asigna el valor de tipos
+	 * @param tipos El valor por establecer para tipos
+	 */
+	public void setTipos(Tipo tipos) {
+		this.tipos = tipos;
+	}
+	
 }

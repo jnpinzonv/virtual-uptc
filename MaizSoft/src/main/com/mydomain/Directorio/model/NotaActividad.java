@@ -9,14 +9,13 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
-import org.hibernate.validator.Size;
 
 /**
-* Descripcion: Esta Clase se encarga de almacenar toda la información
+* Descripcion: Esta Clase se encarga de almacenar toda la informaciï¿½n
 * relacionada con las calificaciones obtenidas por los usuarios en
 * las actividades realizadas por cada uno de ellos.
 * Modulo de Desarrollo :CU- ...
- * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+ * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -35,13 +34,13 @@ public class NotaActividad {
 	
 	/**
 	 * Variable encargada de informar si el estado de la nota de
-	 * determinada actividad está pendiente o ya fue asignada.
+	 * determinada actividad estï¿½ pendiente o ya fue asignada.
 	 */
 	private boolean estadoPendiente;
 	
 	/**
-	 * Variable encargada de almacenar la descripción de la justificación
-	 * de la nota o calificación de determinada actividad.
+	 * Variable encargada de almacenar la descripciï¿½n de la justificaciï¿½n
+	 * de la nota o calificaciï¿½n de determinada actividad.
 	 */
 	private String justificacion;
 	
@@ -53,20 +52,20 @@ public class NotaActividad {
 	private GestorCargaArchivos gestorCargaArchivos;
 	
 	/**
-	 * Variable encargada de guardar la información relacionada
+	 * Variable encargada de guardar la informaciï¿½n relacionada
 	 * a las diferentes actividades planteadas en la plataforma.
 	 * Instancia de la clase Actividad.
 	 */
 	private Actividad actividad;
 	/**
-	 * Variable encargada de almacenar información competente
+	 * Variable encargada de almacenar informaciï¿½n competente
 	 * a los grupos de usuarios
 	 */
 	private GrupoUsuarios grupoCurso;
 	
 	/**
-	 * Variable encargada de almacenar información relacionada
-	 * con mensajería.
+	 * Variable encargada de almacenar informaciï¿½n relacionada
+	 * con mensajerï¿½a.
 	 * Instancia de la clase GestorMensajeria.
 	 */
 	private GestorMensajeria gestorMensajeria;

@@ -1,13 +1,9 @@
-/**
- * 
- */
 package com.mydomain.Directorio.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -33,18 +29,37 @@ import com.sun.istack.internal.NotNull;
 public class NumeroDivisiones {
 
 	
-	private Long id; 	
+	/**
+	 * Variable que almacena la informaci�n competente
+	 * al identificador del n�mero de divisiones que diferencian
+	 * las actividades planteadas en el curso.
+	 */
+	private Long id; 
 	
-	private Integer numeroDivision;	
-
+	
+	/**
+	 * Variable encargada de almacenar el n�mero de divisiones
+	 * presentes en cada curso.
+	 */
+	private Integer numeroDivision;
+	
+	/**
+	 * Variable que se encarga de guardar la infomac�on pertenenciente
+	 * a las actividades planteadas en el curso.
+	 * Instancia de la clase Actividad.
+	 */
 	private Actividad actividad;
 	
+	/**
+	 * Variable encargada de almacenar informaci�n pertinente de los 
+	 * diferentes grupos de los cursos creados.
+	 * Instancia de la clase GrupoCurso.
+	 */
 	private GrupoCurso grupoCurso;
-	
-
 
 	/**
-	 * @return the id
+	 * Se obtiene el valor de id
+	 * @return El valor de id
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -54,16 +69,16 @@ public class NumeroDivisiones {
 
 
 	/**
-	 * @param id the id to set
+	 * Asigna el valor de id
+	 * @param id El valor por establecer para id
 	 */
-	
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
+	
 	/**
-	 * @return the numeroDivision
+	 * Se obtiene el valor de numeroDivision
+	 * @return El valor de numeroDivision
 	 */
 	public Integer getNumeroDivision() {
 		return numeroDivision;
@@ -71,15 +86,16 @@ public class NumeroDivisiones {
 
 
 	/**
-	 * @param numeroDivision the numeroDivision to set
+	 * Asigna el valor de numeroDivision
+	 * @param numeroDivision El valor por establecer para numeroDivision
 	 */
 	public void setNumeroDivision(Integer numeroDivision) {
 		this.numeroDivision = numeroDivision;
 	}
 
-
 	/**
-	 * @return the actividad
+	 * Se obtiene el valor de actividad
+	 * @return El valor de actividad
 	 */
 	@ManyToOne
 	@NotNull
@@ -87,17 +103,17 @@ public class NumeroDivisiones {
 		return actividad;
 	}
 
-
 	/**
-	 * @param actividad the actividad to set
+	 * Asigna el valor de actividad
+	 * @param actividad El valor por establecer para actividad
 	 */
 	public void setActividad(Actividad actividad) {
 		this.actividad = actividad;
 	}
 
-
 	/**
-	 * @return the grupoCurso
+	 * Se obtiene el valor de grupoCurso
+	 * @return El valor de grupoCurso
 	 */
 	@ManyToOne
 	@NotNull
@@ -105,16 +121,11 @@ public class NumeroDivisiones {
 		return grupoCurso;
 	}
 
-
 	/**
-	 * @param grupoCurso the grupoCurso to set
+	 * Asigna el valor de grupoCurso
+	 * @param grupoCurso El valor por establecer para grupoCurso
 	 */
 	public void setGrupoCurso(GrupoCurso grupoCurso) {
 		this.grupoCurso = grupoCurso;
 	}
-
-
-	
-	
-	
 }

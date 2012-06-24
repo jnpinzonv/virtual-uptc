@@ -99,6 +99,19 @@
 	            </s:decorate>
 	
 				<br/> <br/>
+	
+	            <s:decorate id="divisionesField" template="../layout/edit.xhtml" style="position:absolute;">
+	                <ui:define name="label">Numero de Peridos</ui:define>
+	                <h:inputText id="perido"
+	                       required="true"
+	                           size="20"
+	                      maxlength="20"
+	                          value="#{grupoCursoHome.instance.numeroTotal}">
+	                    <a:support event="onblur" reRender="divisionesField" bypassUpdates="true" ajaxSingle="true"/>
+	                </h:inputText>
+	            </s:decorate>
+	
+				<br/> <br/>
 
 
 				<div style="clear: both; position: absolute;">

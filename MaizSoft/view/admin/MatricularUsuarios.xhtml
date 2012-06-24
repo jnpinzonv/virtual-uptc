@@ -9,9 +9,9 @@
 
 
 	<ui:define name="head">
-		<link href="../css/default.css" rel="stylesheet" type="../text/css" />	
+		<link href="../css/default.css" rel="stylesheet" type="../text/css" />
 	</ui:define>
-	
+
 	<style>
 .top {
 	vertical-align: top;
@@ -24,62 +24,76 @@
 </style>
 	<ui:define name="centroT">
 
-<h:form id="entes">
-		<rich:panel>
-		
-		
-			<f:facet name="header">Matricula a Curso</f:facet>
-	<s:conversationPropagation>
-			<h:outputText value="Seleccione EnteUnivesitario Padre:" />
-				<h:selectOneMenu
-					value="#{grupoUsuariosHome.instance.enteUniversitarioPadre}"
-					id="sobrenombres" rendered="true">
-					<s:selectItems value="#{listaEnteUniversitariosFacultades}" var="lista"
-						label="#{lista.nombreEnteUniversitario}" />
-					<a4j:support event="onchange" reRender="dos" ajaxSingle="true"/>
-					<s:convertEntity />
-					
-				</h:selectOneMenu>
+		<h:form id="entes">
+			<rich:panel>
 
-				<a4j:outputPanel id="dos" >
-					<h:outputText
-						value="Seleccione EnteUniversitario Hijo:"/>					
+
+				<f:facet name="header">Matricula a Curso</f:facet>
+				<s:conversationPropagation>
+					<h:outputText value="Seleccione EnteUnivesitario Padre:" />
+					<h:selectOneMenu
+						value="#{grupoUsuariosHome.instance.enteUniversitarioPadre}"
+						id="sobrenombres" rendered="true">
+						<s:selectItems value="#{listaEnteUniversitariosFacultades}"
+							var="lista" label="#{lista.nombreEnteUniversitario}" />
+						<a4j:support event="onchange" reRender="dos" ajaxSingle="true" />
+						<s:convertEntity />
+
+					</h:selectOneMenu>
+
+					<a4j:outputPanel id="dos">
+						<h:outputText value="Seleccione EnteUniversitario Hijo:" />
 						<h:selectOneMenu
-							value="#{grupoUsuariosHome.instance.enteUniversitarioHijo}" 
-							id="enteUniveristarios" >
-							<s:selectItems value="#{listaEscuelasMatriculas}"
-								var="listaE" label="#{listaE.nombreEnteUniversitario}" noSelectionLabel="Seleccione ..." />
-								<a4j:support event="onchange" reRender="tres" ajaxSingle="true"/>
-								<s:convertEntity />							
-						</h:selectOneMenu>					
-				</a4j:outputPanel>
-				
-				<a4j:outputPanel id="tres" >
-				<h:outputText value="Seleccione curso:" />
-				<h:selectOneMenu
-					value="#{gestorMatriculasBean.curso}"
-					id="curso"  rendered="true">
-					<s:selectItems value="#{listaCursoMatricula}" var="lis"
-						label="#{lis.nombreAsignatura}" noSelectionLabel="Seleccione ..." />
-					<a4j:support event="onchange" reRender="cuatro" ajaxSingle="true"/>
-					<s:convertEntity />
-				</h:selectOneMenu>
-				</a4j:outputPanel>
-				
-				<a4j:outputPanel id="cuatro" >
-					<h:outputText
-						value="Seleccione grupo:"/>					
-						<h:selectOneMenu
-							value="#{grupoUsuariosHome.instance.grupoCurso}" 
-							id="grupos" >
-							<s:selectItems value="#{listaEscuelasMatriculas}"
-								var="listaE" label="#{listaE.nombreEnteUniversitario}" noSelectionLabel="Seleccione ..." />
-								<s:convertEntity />							
-						</h:selectOneMenu>					
-				</a4j:outputPanel>
+							value="#{grupoUsuariosHome.instance.enteUniversitarioHijo}"
+							id="enteUniveristarios">
+							<s:selectItems value="#{listaEscuelasMatriculas}" var="listaE"
+								label="#{listaE.nombreEnteUniversitario}"
+								noSelectionLabel="Seleccione ..." />
+							<a4j:support event="onchange" reRender="tres" ajaxSingle="true" />
+							<s:convertEntity />
+						</h:selectOneMenu>
+					</a4j:outputPanel>
+
+					<a4j:outputPanel id="tres">
+						<h:outputText value="Seleccione curso:" />
+						<h:selectOneMenu value="#{grupoUsuariosHome.instance.curso}" id="curso"
+							rendered="true">
+							<s:selectItems value="#{listaCursoMatricula}" var="lis"
+								label="#{lis.nombreAsignatura}"
+								noSelectionLabel="Seleccione ..." />
+							<a4j:support event="onchange" reRender="cuatro" ajaxSingle="true" ajaxRendered="true" />
+							<s:convertEntity />
+						</h:selectOneMenu>
+					</a4j:outputPanel>
+
+					<a4j:outputPanel id="cuatro">
+						<h:outputText value="Seleccione grupo:" />
+						<h:selectOneMenu value="#{grupoUsuariosHome.instance.grupoCurso}"
+							id="grupos">
+							<s:selectItems value="#{listaGruposPorCurso}" var="listaG"
+								label="#{listaG.codigoGrupo}"
+								noSelectionLabel="Seleccione ..." />
+							<s:convertEntity />
+						</h:selectOneMenu>
+
+						<h:panelGrid columns="2" columnClasses="top, top">
+
+							<rich:pickList value="#{grupoUsuariosHome.instance.usuarios}" >
+								<f:selectItems value="#{listaUsuariosEscuela}" />	
+								<s:convertEntity />						
+								<a4j:support event="onlistchanged" reRender="result" />
+							</rich:pickList>
+
+							
+						</h:panelGrid>
+
+					</a4j:outputPanel>
 				</s:conversationPropagation>
-		</rich:panel>
-	
-	</h:form>
+			</rich:panel>
+
+
+					<h:commandButton id="matricula" value="Matricular"
+					action="#{grupoUsuariosHome.saveMatricula()}"/>
+		</h:form>
 	</ui:define>
 </ui:composition>

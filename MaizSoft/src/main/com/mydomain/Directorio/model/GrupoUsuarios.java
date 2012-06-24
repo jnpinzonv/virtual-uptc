@@ -1,5 +1,6 @@
 package com.mydomain.Directorio.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +23,7 @@ import org.hibernate.validator.NotNull;
 * Descripcion: Esta Clase se encarga de indicar y almacenar informaci�n
 * relacionada con los usuarios de los grupos.
 * Modulo de Desarrollo :CU- ...
- * @author Edwin Jose Hernandez Ni�o edwher.123@hotmail.com
+* @author Edwin Jose Hernandez Ni�o edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -67,7 +68,12 @@ public class GrupoUsuarios {
 	
 	private transient EnteUniversitario enteUniversitarioHijo;
 	
-	private  transient List <Curso> cursos;
+	private  transient List <Usuario> usuarios;
+	
+	private transient Curso curso;
+	
+	
+
 	
 	
 	
@@ -193,4 +199,39 @@ public class GrupoUsuarios {
 	public void setEnteUniversitarioHijo(EnteUniversitario enteUniversitarioHijo) {
 		this.enteUniversitarioHijo = enteUniversitarioHijo;
 	}
+
+	/**
+	 * @return the usuarios
+	 */
+	@Transient
+	public List<Usuario> getUsuarios() {
+		if(usuarios==null)
+			return new ArrayList<Usuario>();
+		return usuarios;
+	}
+
+	/**
+	 * @param usuarios the usuarios to set
+	 */
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	/**
+	 * @return the curso
+	 */
+	@Transient
+	public Curso getCurso() {
+		return curso;
+	}
+
+	/**
+	 * @param curso the curso to set
+	 */
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+	
+	
+	
 }

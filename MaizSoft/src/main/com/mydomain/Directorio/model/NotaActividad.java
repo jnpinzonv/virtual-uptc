@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
+import org.jboss.seam.annotations.Name;
 
 /**
 * Descripcion: Esta Clase se encarga de almacenar toda la informaci�n
@@ -24,7 +25,8 @@ import org.hibernate.validator.NotNull;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
+@Entity(name="nota_actividad")
+@Name("nota_actividad")
 @Table(name="nota_actividad")
 public class NotaActividad {
 

@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.validator.NotNull;
+import org.jboss.seam.annotations.Name;
 
 /**
 * Descripcion: Esta Clase se encarga de indicar y almacenar informaci�n
@@ -32,7 +33,8 @@ import org.hibernate.validator.NotNull;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 22/06/2012 
 */
-@Entity
+@Entity(name="grupo_usuarios")
+@Name("grupo_usuarios")
 @Table(name ="grupo_usuarios")
 @NamedQuery(name="usuariosPorGrupo", query="select t from GrupoUsuarios t where t.userGrupoCurso.id=:parametro")
 public class GrupoUsuarios {

@@ -4,12 +4,15 @@
 package com.mydomain.Directorio.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
+import org.jboss.seam.annotations.Name;
 
 /**
 * Descripcion: Esta Clase se encarga de almacenar información
@@ -23,6 +26,9 @@ import org.hibernate.validator.NotEmpty;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
+@Entity(name="seccion_actividades")
+@Table(name="seccion_actividades")
+@Name("seccion_actividades")
 public class SeccionActividades {
 	
 	/**

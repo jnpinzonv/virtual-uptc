@@ -18,6 +18,7 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
+import org.jboss.seam.annotations.Name;
 
 
 /**
@@ -34,7 +35,8 @@ import org.hibernate.validator.NotNull;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 22/06/2012 
 */
-@Entity
+@Entity(name="grupo_curso")
+@Name("grupo_curso")
 @Table(name= "grupo_curso")
 @NamedQueries({ @NamedQuery(name="gruposPorCurso",query="select g from GrupoCurso g where g.cursoGrupo.codigo=:parametro")})
 public class GrupoCurso {

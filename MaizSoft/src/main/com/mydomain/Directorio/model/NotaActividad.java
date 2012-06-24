@@ -25,9 +25,9 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="nota_actividad")
-@Name("nota_actividad")
+@Entity(name="notaActividad")
 @Table(name="nota_actividad")
+@Name("notaActividad")
 public class NotaActividad {
 
 	/**
@@ -87,7 +87,7 @@ public class NotaActividad {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id_nota_Actividad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
+	@Column(name = "id_nota_actividad", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdNotaActividad() {
 		return idNotaActividad;
 	}
@@ -104,6 +104,7 @@ public class NotaActividad {
 	 * Se obtiene el valor de estadoPendiente
 	 * @return El valor de estadoPendiente
 	 */
+	@Column(name = "estado_pendiente", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "bit(1)")
 	public boolean isEstadoPendiente() {
 		return estadoPendiente;
 	}
@@ -121,7 +122,7 @@ public class NotaActividad {
 	 * @return El valor de justificacion
 	 */
 	@Length(max=300)
-	@Column(name = "id_justificacion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(100)")
+	@Column(name = "justificacion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getJustificacion() {
 		return justificacion;
 	}
@@ -213,7 +214,7 @@ public class NotaActividad {
 	 * @return El valor de nota
 	 */
 	@NotNull
-	@Column(name = "id_nota", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(3)")
+	@Column(name = "nota", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(1)")
 	public Long getNota() {
 		return nota;
 	}

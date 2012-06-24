@@ -66,7 +66,7 @@ public class NumeroDivisiones {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
+	@Column(name = "id_numero_division", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getId() {
 		return id;
 	}
@@ -84,7 +84,7 @@ public class NumeroDivisiones {
 	 * Se obtiene el valor de numeroDivision
 	 * @return El valor de numeroDivision
 	 */
-	@Column(name = "id_numero_Division", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(3)")
+	@Column(name = "id_numero_Division", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(4)")
 	public Integer getNumeroDivision() {
 		return numeroDivision;
 	}

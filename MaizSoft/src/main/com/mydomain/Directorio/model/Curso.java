@@ -4,7 +4,7 @@
 package com.mydomain.Directorio.model;
 
 
-import java.util.HashSet;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,7 +20,6 @@ import javax.persistence.Table;
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
-import org.hibernate.validator.Size;
 import org.jboss.seam.annotations.Name;
 
 
@@ -38,7 +37,7 @@ import org.jboss.seam.annotations.Name;
 @Entity(name="curso")
 @Table(name="curso")
 @Name("curso")
-@NamedQuery(name="cursosPorEscuela",query="select c from Curso c where c.enteUniversitario.idEnteUniversitario=:parametro")
+@NamedQuery(name="cursosPorEscuela",query="select c from curso c where c.enteUniversitario.idEnteUniversitario=:parametro")
 public class Curso {
 
 	/**
@@ -71,7 +70,7 @@ public class Curso {
 	 */
 	@Id
 	@NotNull	
-	@Column(name = "codigo_curso", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name = "codigo_curso", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -89,8 +88,8 @@ public class Curso {
 	 * @return El valor de nombreAsignatura
 	 */
 	@NotEmpty
-	@Length(max=200)
-	@Column(name = "nombre_asignatura", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(200)")
+	@Length(max=300)
+	@Column(name = "nombre_asignatura", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getNombreAsignatura() {
 		return nombreAsignatura;
 	}

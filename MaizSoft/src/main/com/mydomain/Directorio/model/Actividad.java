@@ -124,7 +124,7 @@ public class Actividad {
 	 * @return El valor de descripcionActividad
 	 */
 	@Length(max=300)
-	@Column(name = "descripcion_actividad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(200)")
+	@Column(name = "descripcion_actividad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDescripcionActividad() {
 		return descripcionActividad;
 	}

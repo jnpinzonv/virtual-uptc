@@ -26,9 +26,9 @@ import org.jboss.seam.annotations.security.permission.PermissionUser;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="user_permission")
+@Entity(name="userPermission")
 @Table(name="user_permission")
-@Name("user_permission")
+@Name("userPermission")
 public class UserPermission implements Serializable
 {
    private static final long serialVersionUID = -5628863031792429938L;
@@ -63,8 +63,9 @@ public class UserPermission implements Serializable
     * Se obtiene el valor de id
     * @return El valor de id
     */
-   @Id @GeneratedValue
-   @Column(name = "id", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
+   @Id
+   @GeneratedValue
+   @Column(name = "id_user_permission", unique = false, nullable = false, insertable = true, updatable = true)
    public Long getId() {
    	return id;
    }
@@ -83,7 +84,7 @@ public class UserPermission implements Serializable
     */
    @PermissionUser 
    @PermissionRole
-   @Column(name = "id_recipient", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchr(20)")
+   @Column(name = "recipient", unique = false, nullable = false, insertable = true, updatable = true)
    public String getRecipient() {
    	return recipient;
    }
@@ -101,7 +102,7 @@ public class UserPermission implements Serializable
     * @return El valor de target
     */
    @PermissionTarget
-   @Column(name = "id_target", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
+   @Column(name = "target", unique = false, nullable = false, insertable = true, updatable = true)
    public String getTarget() {
    	return target;
    }
@@ -119,8 +120,8 @@ public class UserPermission implements Serializable
     * @return El valor de action
     */
    @PermissionAction
-   @Column(name = "id_get_Action", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
- String getAction() {
+   @Column(name = "action", unique = false, nullable = false, insertable = true, updatable = true)
+   public String getAction() {
    	return action;
    }
 
@@ -136,7 +137,7 @@ public class UserPermission implements Serializable
    * @return El valor de discriminator
    */
    @PermissionDiscriminator
-   @Column(name = "id_target", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
+   @Column(name = "discriminator", unique = false, nullable = false, insertable = true, updatable = true)
    public String getDiscriminator() {
 	return discriminator;
 }

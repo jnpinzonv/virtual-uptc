@@ -30,9 +30,9 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name= "gestor_repositorio")
-@Table(name= "gestor_repositorio")
-@Name("gestor_repositorio")
+@Entity(name= "gestorRepositorioVirtuales")
+@Table(name= "gestor_repositorio_virtuales")
+@Name("gestorRepositorioVirtuales")
 public class GestorRepositoriosVirtuales {
 	
 	/**
@@ -102,7 +102,7 @@ public class GestorRepositoriosVirtuales {
 	 * @return El valor de urlRepositorio
 	 */
 	@NotEmpty
-	@Column(name = "url_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(100)")	
+	@Column(name = "url_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")	
 	public String getUrlRepositorio() {
 		return urlRepositorio;
 	}
@@ -121,7 +121,7 @@ public class GestorRepositoriosVirtuales {
 	 */
 	@NotEmpty
 	@Length(max=100)
-	@Column(name= "nombre_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name= "nombre_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getNombreRepositorio() {
 		return nombreRepositorio;
 	}
@@ -138,8 +138,8 @@ public class GestorRepositoriosVirtuales {
 	 * Se obtiene el valor de descripcionRepositorio
 	 * @return El valor de descripcionRepositorio
 	 */
-	@Length(max=100)
-	@Column(name= "descripcion_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(50)")
+	@Length(max=300)
+	@Column(name= "descripcion_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDescripcionRepositorio() {
 		return descripcionRepositorio;
 	}

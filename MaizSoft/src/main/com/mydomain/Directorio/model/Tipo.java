@@ -111,7 +111,7 @@ public class Tipo {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id_tipo", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
+	@Column(name = "id_tipo", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdTipo() {
 		return idTipo;
 	}
@@ -129,7 +129,7 @@ public class Tipo {
 	 * @return El valor de nombre
 	 */
 	@NotEmpty
-	@Column(name = "id_nombre", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name = "nombre", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getNombre() {
 		return nombre;
 	}
@@ -147,7 +147,7 @@ public class Tipo {
 	 * @return El valor de descripcion
 	 */
 	@Length(max=300)
-	@Column(name = "id_descripcion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(100)")
+	@Column(name = "descripcion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -165,7 +165,7 @@ public class Tipo {
 	 * @return El valor de tipo
 	 */
 	@ManyToOne
-	@JoinColumn(name = "id_tipo", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_tipo_padre", unique = false, nullable = true, insertable = true, updatable = true)
 	public Tipo getTipo() {
 		return tipo;
 	}
@@ -183,7 +183,6 @@ public class Tipo {
 	 * @return El valor de listaTipo
 	 */
 	@OneToMany(mappedBy="tipo",cascade=CascadeType.ALL)
-	@JoinColumn(name = "id_lista_tipo", unique = false, nullable = false, insertable = true, updatable = true)
 	public Set<Tipo> getListaTipo() {
 		if(listaTipo==null){
 			return new HashSet<Tipo>();
@@ -204,7 +203,6 @@ public class Tipo {
 	 * @return El valor de enteUniversitarios
 	 */
 	@OneToMany(mappedBy="tipoEnteUniversitario",cascade=CascadeType.ALL)
-	@JoinColumn(name = "id_tipo", unique = false, nullable = false, insertable = true, updatable = true)
 	public Set<EnteUniversitario> getEnteUniversitarios() {
 		return enteUniversitarios;
 	}
@@ -222,7 +220,6 @@ public class Tipo {
 	 * @return El valor de listaGestorMensajeria
 	 */
 	@OneToMany(mappedBy="tipo",cascade=CascadeType.ALL)
-	@JoinColumn(name = "id_gestor_Mensajeria", unique = false, nullable = false, insertable = true, updatable = true)
 	public Set<GestorMensajeria> getListaGestorMensajeria() {
 		if(listaGestorMensajeria==null){
 			return new HashSet<GestorMensajeria>();
@@ -243,8 +240,6 @@ public class Tipo {
 	 * @return El valor de gestorRepositoriosVirtuales
 	 */
 	@OneToMany(mappedBy="tipos",cascade=CascadeType.ALL)
-	@JoinColumn(name = "id_repositorios_virtuales", unique = false, nullable = false, insertable = true, updatable = true)
-
 	public Set<GestorRepositoriosVirtuales> getGestorRepositoriosVirtuales() {
 		if(gestorRepositoriosVirtuales==null){
 			return new HashSet<GestorRepositoriosVirtuales>();
@@ -266,7 +261,6 @@ public class Tipo {
 	 * @return El valor de userAccount
 	 */
 	@OneToMany(mappedBy="tipo",cascade=CascadeType.ALL)
-	@JoinColumn(name = "id_user_Account", unique = false, nullable = false, insertable = true, updatable = true)
 	public Set<Usuario> getUserAccount() {
 		if(userAccount==null){
 			return new HashSet<Usuario>();
@@ -287,7 +281,6 @@ public class Tipo {
 	 * @return El valor de gestorCargaArchivos
 	 */
 	@OneToMany(mappedBy="tipo",cascade=CascadeType.ALL)
-	@JoinColumn(name = "id_gestor_Carga_Archivos", unique = false, nullable = false, insertable = true, updatable = true)
 	public Set<GestorCargaArchivos> getGestorCargaArchivos() {
 		if(gestorCargaArchivos==null){
 			return new HashSet<GestorCargaArchivos>();
@@ -308,7 +301,6 @@ public class Tipo {
 	 * @return El valor de actividad
 	 */
 	@OneToMany(mappedBy="tipo",cascade=CascadeType.ALL)
-	@JoinColumn(name = "id_actividad", unique = false, nullable = false, insertable = true, updatable = true)
 	public Set<Actividad> getActividad() {
 		if(actividad==null){
 			return new HashSet<Actividad>();

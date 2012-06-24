@@ -29,9 +29,9 @@ import org.jboss.seam.annotations.security.management.RoleName;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="user_role")
+@Entity(name="userRole")
 @Table(name="user_role")
-@Name("user_role")
+@Name("userRole")
 public class UserRole implements Serializable {
 	private static final long serialVersionUID = 9177366120789064801L;
 
@@ -64,7 +64,7 @@ public class UserRole implements Serializable {
 	 */
 	@Id
 	@GeneratedValue
-	@Column(name = "id", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
+	@Column(name = "id_user_role", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getId() {
 		return id;
 	}
@@ -83,7 +83,7 @@ public class UserRole implements Serializable {
 	 */
 	@RoleName
 	@NotNull
-	@Column(name = "id_name", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
+	@Column(name = "name", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getName() {
 		return name;
 	}
@@ -102,7 +102,7 @@ public class UserRole implements Serializable {
 	 */
 	@RoleGroups
 	@ManyToMany
-	@JoinTable(name = "id_user_role_group", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
+	@JoinTable(name = "user_role_group", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 		public Set<UserRole> getGroups() {
 		return groups;
 	}
@@ -120,6 +120,7 @@ public class UserRole implements Serializable {
 	 * @return El valor de conditional
 	 */
 	@RoleConditional
+	@Column(name = "conditional", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "bit(1)")
 	public boolean isConditional() {
 		return conditional;
 	}

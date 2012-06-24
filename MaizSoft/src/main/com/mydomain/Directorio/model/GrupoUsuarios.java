@@ -33,10 +33,10 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 22/06/2012 
 */
-@Entity(name="grupo_usuarios")
-@Name("grupo_usuarios")
+@Entity(name="grupoUsuarios")
 @Table(name ="grupo_usuarios")
-@NamedQuery(name="usuariosPorGrupo", query="select t from GrupoUsuarios t where t.userGrupoCurso.id=:parametro")
+@Name("grupoUsuarios")
+@NamedQuery(name="usuariosPorGrupo", query="select t from grupoUsuarios t where t.userGrupoCurso.id=:parametro")
 public class GrupoUsuarios {
 
 	/**
@@ -86,7 +86,7 @@ public class GrupoUsuarios {
 	 * @return El valor de userGrupoCurso
 	 */
 	@ManyToOne
-	@JoinColumn(name = "id_user_grupo_curso", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_usuario", unique = false, nullable = false, insertable = true, updatable = true)
 	public Usuario getUserGrupoCurso() {
 		return userGrupoCurso;
 	}
@@ -97,7 +97,7 @@ public class GrupoUsuarios {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id_Grupo_Usuarios", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
+	@Column(name = "id_grupo_usuarios", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdGrupoUsuarios() {
 		return idGrupoUsuarios;
 	}
@@ -116,7 +116,7 @@ public class GrupoUsuarios {
 	 */
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "id_tipo", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_grupo_curso", unique = false, nullable = false, insertable = true, updatable = true)
 	public GrupoCurso getGrupoCurso() {
 		return grupoCurso;
 	}
@@ -142,7 +142,6 @@ public class GrupoUsuarios {
 	 * @return El valor de notaActividades
 	 */
 	@OneToMany(mappedBy="grupoCurso",cascade=CascadeType.ALL)
-	@JoinColumn(name = "id_nota_actividades", unique = false, nullable = false, insertable = true, updatable = true)
 	public Set<NotaActividad> getNotaActividades() {
 		if(notaActividades==null){
 			return new HashSet<NotaActividad>();
@@ -164,7 +163,7 @@ public class GrupoUsuarios {
 	 */
 	@NotNull
 	@OneToOne(mappedBy="grupoUsuarios")
-	@JoinColumn(name = "id_user_role", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_cuenta_usuario", unique = false, nullable = false, insertable = true, updatable = true)
 	public CuentasUsuario getUserRole() {
 		return userRole;
 	}

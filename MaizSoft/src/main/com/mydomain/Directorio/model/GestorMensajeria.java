@@ -34,9 +34,9 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="gestor_mensajeria")
+@Entity(name="gestorMensajeria")
 @Table(name="gestor_mensajeria")
-@Name("gestor_mensajeria")
+@Name("gestorMensajeria")
 public class GestorMensajeria {
 
 	/**
@@ -137,7 +137,7 @@ public class GestorMensajeria {
 	 */
 	@NotNull
 	@Lob
-	@Column(name = "mensaje", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(100)")
+	@Column(name = "mensaje", unique = false, nullable = false, insertable = true, updatable = true)
 	public String getMensaje() {
 		return mensaje;
 	}
@@ -155,7 +155,7 @@ public class GestorMensajeria {
 	 * @return El valor de asunto
 	 */
 	@Length(max=100)
-	@Column(name = "asunto", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(50)")
+	@Column(name = "asunto", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(60)")
 	public String getAsunto() {
 		return asunto;
 	}

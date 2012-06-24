@@ -26,9 +26,9 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="gestor_noticias")
+@Entity(name="gestorNoticias")
 @Table(name="gestor_noticias")
-@Name("gestor_noticias")
+@Name("gestorNoticias")
 public class GestorNoticias {
 	
 	/**
@@ -73,7 +73,7 @@ public class GestorNoticias {
 	 * @return El valor de nombreNoticia
 	 */
 	@NotEmpty
-	@Column(name = "nombre_noticia", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name = "nombre_noticia", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getNombreNoticia() {
 		return nombreNoticia;
 	}
@@ -90,9 +90,9 @@ public class GestorNoticias {
 	 * Se obtiene el valor de descripcion
 	 * @return El valor de descripcion
 	 */
-	@Lob
+
 	@NotEmpty
-	@Column(name = "descripcion_noticia", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(100)")
+	@Column(name = "descripcion_noticia", unique = false, nullable = false, insertable = true, updatable = true)
 	public String getDescripcion() {
 		return descripcion;
 	}

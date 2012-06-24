@@ -40,7 +40,7 @@ import org.jboss.seam.annotations.Name;
 @Table(name="usuario")
 @Name("usuario")
 @NamedQueries({
-		@NamedQuery(name = "usuariosPorEscuela", query = "select s from Usuario s where s.enteUniversitarios.idEnteUniversitario=:parametro")})
+		@NamedQuery(name = "usuariosPorEscuela", query = "select s from usuario s where s.enteUniversitarios.idEnteUniversitario=:parametro")})
 public class Usuario {
 
 	/**
@@ -134,7 +134,7 @@ public class Usuario {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
+	@Column(name = "id_usuario", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getId() {
 		return id;
 	}
@@ -156,7 +156,7 @@ public class Usuario {
 	 */
 	@NotNull
 	@ManyToOne
-	
+	@JoinColumn(name = "id_tipo", unique = false, nullable = false, insertable = true, updatable = true)
 	public Tipo getTipo() {
 		return tipo;
 	}
@@ -179,7 +179,7 @@ public class Usuario {
 	@NotNull
 	@Length(max = 50)
 	@Pattern(regex = "^\\w*$")
-	@Column(name = "id_primer_nombre", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
+	@Column(name = "primer_nombre", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getPrimerNombre() {
 		return primerNombre;
 	}
@@ -201,7 +201,7 @@ public class Usuario {
 	 */
 	@Length(max = 50)
 	@Pattern(regex = "^\\w*$")
-	@Column(name = "id_segundo_nombre", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
+	@Column(name = "segundo_nombre", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getSegundoNombre() {
 		return segundoNombre;
 	}
@@ -224,7 +224,7 @@ public class Usuario {
 	@NotNull
 	@Length(max = 30)
 	@Pattern(regex = "^\\w*$")
-	@Column(name = "id_apellidos", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
+	@Column(name = "apellidos", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getApellidos() {
 		return apellidos;
 	}
@@ -247,7 +247,7 @@ public class Usuario {
 	@NotNull
 	@Email
 	@Length(max = 60)
-	@Column(name = "id_correo_electronico", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
+	@Column(name = "correo_electronico", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(60)")
 	public String getCorreoElectronico() {
 		return correoElectronico;
 	}
@@ -268,7 +268,6 @@ public class Usuario {
 	 * @return El valor de grupoUsuarios
 	 */
 	@OneToMany(mappedBy = "userGrupoCurso", cascade = CascadeType.ALL)
-	@JoinTable(name = "id_grupo_usuarios", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 	public Set<GrupoUsuarios> getGrupoUsuarios() {
 		if (grupoUsuarios == null) {
 			return new HashSet<GrupoUsuarios>();
@@ -291,7 +290,7 @@ public class Usuario {
 	 * 
 	 * @return El valor de fotoUser
 	 */
-	@Column(name = "id_foto_user", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
+	@Column(name = "foto_user", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getFotoUser() {
 		return fotoUser;
 	}
@@ -312,7 +311,7 @@ public class Usuario {
 	 * @return El valor de documentoIdentidad
 	 */
 	@NotNull
-	@Column(name = "id_documento_identidad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(10)")
+	@Column(name = "documento_identidad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(15)")
 	public Long getDocumentoIdentidad() {
 		return documentoIdentidad;
 	}
@@ -333,7 +332,7 @@ public class Usuario {
 	 * @return El valor de codigoUsuarios
 	 */
 	@NotEmpty
-	@Column(name = "id_codigo_usuarios", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
+	@Column(name = "codigo_usuarios", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(15)")
 	public String getCodigoUsuarios() {
 		return codigoUsuarios;
 	}
@@ -354,7 +353,6 @@ public class Usuario {
 	 * @return El valor de usuarioEmisor
 	 */
 	@OneToMany(mappedBy = "deUsuario", cascade = CascadeType.ALL)
-	@JoinTable(name = "id_usuario_emisor", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 	public Set<GestorMensajeria> getUsuarioEmisor() {
 		if (usuarioEmisor == null) {
 			return new HashSet<GestorMensajeria>();
@@ -379,7 +377,7 @@ public class Usuario {
 	 */
 	@NotNull
 	@ManyToOne
-	@JoinTable(name = "id_ente_universitario", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
+	@JoinColumn(name = "id_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true)
 	public EnteUniversitario getEnteUniversitarios() {
 		return enteUniversitarios;
 	}
@@ -400,7 +398,6 @@ public class Usuario {
 	 * @return El valor de historialNotas
 	 */
 	@OneToMany(mappedBy = "userAccount", cascade = CascadeType.ALL)
-	@JoinTable(name = "id_historial_notas", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 	public Set<HistorialNotas> getHistorialNotas() {
 		if (historialNotas == null) {
 			return new HashSet<HistorialNotas>();
@@ -424,7 +421,6 @@ public class Usuario {
 	 * @return El valor de mensajes
 	 */
 	@OneToMany(mappedBy = "userAccount", cascade = CascadeType.ALL)
-	@JoinTable(name = "id_mensajes", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 	public Set<ReceptorMensajes> getMensajes() {
 		if (mensajes == null) {
 			return new HashSet<ReceptorMensajes>();
@@ -448,7 +444,6 @@ public class Usuario {
 	 * @return El valor de cuentasUsuario
 	 */
 	@OneToMany(mappedBy="usuarios",cascade=CascadeType.ALL)
-	@JoinTable(name = "id_cuentas_usuario", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 	public Set<CuentasUsuario> getCuentasUsuario() {		
 		if(cuentasUsuario==null){
 	}

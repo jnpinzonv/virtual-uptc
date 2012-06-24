@@ -36,8 +36,8 @@ import org.jboss.seam.annotations.security.management.UserRoles;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="user_account")
-@Name("user_account")
+@Entity(name="userAccount")
+@Name("userAccount")
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "username"), name = "user_account")
 @Scope(ScopeType.SESSION)
 public class UserAccount implements Serializable {
@@ -82,7 +82,7 @@ public class UserAccount implements Serializable {
 	 */
 	@Id
 	@GeneratedValue
-	@Column(name = "id", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
+	@Column(name = "id_user_account", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getId() {
 		return id;
 	}
@@ -102,7 +102,7 @@ public class UserAccount implements Serializable {
 
 	@NotNull
 	@UserPrincipal
-	@Column(name = "id_user_name", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
+	@Column(name = "username", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getUsername() {
 		return username;
 	}
@@ -120,7 +120,7 @@ public class UserAccount implements Serializable {
 	 * @return El valor de passwordHash
 	 */
 	@UserPassword(hash = "SHA")
-	@Column(name = "id_password_hash", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
+	@Column(name = "password_hash", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getPasswordHash() {
 		return passwordHash;
 	}
@@ -138,6 +138,7 @@ public class UserAccount implements Serializable {
 	 * @return El valor de enabled
 	 */
 	@UserEnabled
+	@Column(name = "enabled", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "bit(1)")
 	public boolean isEnabled() {
 		return enabled;
 	}
@@ -156,7 +157,7 @@ public class UserAccount implements Serializable {
 	 */
 	@UserRoles
 	@ManyToMany
-	@JoinTable(name = "id_user_account_role", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
+	@JoinTable(name = "user_account_role", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 	public Set<UserRole> getRoles() {
 		return roles;
 	}
@@ -174,7 +175,7 @@ public class UserAccount implements Serializable {
 	 * @return El valor de cuentasUsuarios
 	 */
 	@OneToMany(mappedBy="userAccounts",cascade=CascadeType.ALL)
-	@JoinTable(name = "id_cuentas_usuario", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
+	@JoinTable(name = "cuentas_usuario", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 	public Set<CuentasUsuario> getCuentasUsuarios() {
 		if(cuentasUsuarios==null){
 			return new HashSet<CuentasUsuario>();

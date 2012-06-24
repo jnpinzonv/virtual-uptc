@@ -29,9 +29,9 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="gestor_anuncios")
+@Entity(name="gestorAnuncios")
 @Table(name="gestor_anuncios")
-@Name("gestor_anuncios")
+@Name("gestorAnuncios")
 public class GestorAnuncios {
 	
 	 /**
@@ -64,7 +64,7 @@ public class GestorAnuncios {
 	 */
 	 @Id
 	 @GeneratedValue(strategy=GenerationType.AUTO)
-	 @Column(name = "id_gestor_de_anuncios", unique = false, nullable = false, insertable = true, updatable = true)
+	 @Column(name = "id_gestor_anuncios", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdGestorAnuncios() {
 		return idGestorAnuncios;
 	}
@@ -83,7 +83,7 @@ public class GestorAnuncios {
 	 */
 	@NotEmpty
 	@Length(max=50)
-	@Column(name = "nombre_anuncio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(50)")
+	@Column(name = "nombre_anuncio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(60)")
 	public String getNombre() {
 		return nombre;
 	}

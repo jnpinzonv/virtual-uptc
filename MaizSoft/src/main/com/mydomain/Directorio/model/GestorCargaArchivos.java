@@ -27,14 +27,14 @@ import org.jboss.seam.annotations.Name;
 * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, 
 * en esta clase con lo referente al gestor de carga de archivos, se comunica con la base de datos
 * Modulo de Desarrollo :CU- ...
-* @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
+* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="gestorCargaArchivos")
+@Entity(name="GestorCargaArchivos")
 @Table(name="gestor_carga_archivos")
 @Name("gestorCargaArchivos")
 public class GestorCargaArchivos {
@@ -58,7 +58,7 @@ public class GestorCargaArchivos {
 	private String ruta;
 	
 	/**
-	 * Variable que almacena la descripciï¿½n del archivo
+	 * Variable que almacena la descripción del archivo
 	 * Tipo de Dato String
 	 */
 	private String descripcion;
@@ -138,7 +138,7 @@ public class GestorCargaArchivos {
 	 * @return El valor de descripcion
 	 */
 	@Length(max=300)
-	@Column(name = "descripcion_archivo", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(300)")
+	@Column(name = "descripcion_archivo", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDescripcion() {
 		return descripcion;
 	}

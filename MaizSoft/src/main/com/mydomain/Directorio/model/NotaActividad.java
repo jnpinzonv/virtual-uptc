@@ -25,7 +25,7 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="notaActividad")
+@Entity(name="NotaActividad")
 @Table(name="nota_actividad")
 @Name("notaActividad")
 public class NotaActividad {
@@ -122,7 +122,7 @@ public class NotaActividad {
 	 * @return El valor de justificacion
 	 */
 	@Length(max=300)
-	@Column(name = "justificacion", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(300)")
+	@Column(name = "justificacion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getJustificacion() {
 		return justificacion;
 	}

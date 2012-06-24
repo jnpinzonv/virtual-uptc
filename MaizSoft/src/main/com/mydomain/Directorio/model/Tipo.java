@@ -23,17 +23,17 @@ import org.hibernate.validator.NotEmpty;
 import org.jboss.seam.annotations.Name;
 
 /**
-* Descripcion: Esta Clase se encarga de almacenar informaciï¿½n
+* Descripcion: Esta Clase se encarga de almacenar información
 * relacionada con los diferentes tipos de actividades.
 * Modulo de Desarrollo :CU- ...
- * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
+ * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="tipo")
+@Entity(name="Tipo")
 @Name("tipo")
 @Table(name="tipo",uniqueConstraints = @UniqueConstraint(columnNames = "nombre"))
 public class Tipo {
@@ -51,13 +51,13 @@ public class Tipo {
 	private String nombre;
 	
 	/**
-	 * Variable encargada de guardar la descripciï¿½n del
+	 * Variable encargada de guardar la descripción del
 	 * tipo de actividad.
 	 */
 	private String descripcion;
 	
 	/**
-	 * Variable encargada de guardar informaciï¿½n del
+	 * Variable encargada de guardar información del
 	 * tipo de actividad.
 	 * Instancia de la clase Tipo 
 	 */
@@ -82,25 +82,25 @@ public class Tipo {
 	private Set<Actividad> actividad;
 	
 	/**
-	 * Variable encargada de listar la informaciï¿½n referente
-	 * a la mensajerï¿½a.
+	 * Variable encargada de listar la información referente
+	 * a la mensajería.
 	 */
 	private Set<GestorMensajeria> listaGestorMensajeria;
 	
 	/**
-	 * Variable encargada de listar la informaciï¿½n referente
+	 * Variable encargada de listar la información referente
 	 * a los repositorios virtuales. 
 	 */
 	private Set<GestorRepositoriosVirtuales> gestorRepositoriosVirtuales;
 	
 	/**
-	 *  Variable encargada de listar la informaciï¿½n referente
+	 *  Variable encargada de listar la información referente
 	 * a los diferentes usuarios.
 	 */
 	private Set<Usuario> userAccount;
 
 	/**
-	 *  Variable encargada de listar la informaciï¿½n referente
+	 *  Variable encargada de listar la información referente
 	 * a cargar archivos al curso.
 	 */
 	private Set<GestorCargaArchivos> gestorCargaArchivos;
@@ -147,7 +147,7 @@ public class Tipo {
 	 * @return El valor de descripcion
 	 */
 	@Length(max=300)
-	@Column(name = "descripcion", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(300)")
+	@Column(name = "descripcion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDescripcion() {
 		return descripcion;
 	}

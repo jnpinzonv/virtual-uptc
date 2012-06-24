@@ -23,14 +23,14 @@ import org.jboss.seam.annotations.Name;
 * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, 
 * en esta clase con lo referente al gestor de repositorios virtuales, se comunica con la base de datos
 * Modulo de Desarrollo :CU- ...
-* @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
+* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name= "gestorRepositorioVirtuales")
+@Entity(name= "GestorRepositorioVirtuales")
 @Table(name= "gestor_repositorio_virtuales")
 @Name("gestorRepositorioVirtuales")
 public class GestorRepositoriosVirtuales {
@@ -54,7 +54,7 @@ public class GestorRepositoriosVirtuales {
 	private String nombreRepositorio;
 	
 	/**
-	 * Variable que se encarga de almacenar la descripciï¿½n del repositorio
+	 * Variable que se encarga de almacenar la descripción del repositorio
 	 * Tipo de Dato String
 	 */
 	private String descripcionRepositorio;
@@ -66,7 +66,7 @@ public class GestorRepositoriosVirtuales {
 	private String usernameRepositorio;
 	
 	/**
-	 * Variable que se encarga de almacenar la contraseï¿½a del repositorio
+	 * Variable que se encarga de almacenar la contraseña del repositorio
 	 * Tipo de Dato String
 	 */
 	private String passwordRepositorio;
@@ -139,7 +139,7 @@ public class GestorRepositoriosVirtuales {
 	 * @return El valor de descripcionRepositorio
 	 */
 	@Length(max=300)
-	@Column(name= "descripcion_repositorio", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(300)")
+	@Column(name= "descripcion_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDescripcionRepositorio() {
 		return descripcionRepositorio;
 	}
@@ -157,7 +157,7 @@ public class GestorRepositoriosVirtuales {
 	 * @return El valor de usernameRepositorio
 	 */
 	@Length(max=30)
-	@Column(name= "username_repositorio", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name= "username_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
 	public String getUsernameRepositorio() {
 		return usernameRepositorio;
 	}
@@ -175,7 +175,7 @@ public class GestorRepositoriosVirtuales {
 	 * @return El valor de passwordRepositorio
 	 */
 	@Length(max=30)
-	@Column(name= "password_repositorio", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name= "password_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
 	public String getPasswordRepositorio() {
 		return passwordRepositorio;
 	}

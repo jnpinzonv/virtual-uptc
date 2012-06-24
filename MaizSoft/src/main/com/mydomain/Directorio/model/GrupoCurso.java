@@ -10,13 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
-import org.hibernate.validator.Size;
+
 
 /**
 * Descripcion: Esta Clase se encarga de definir las variables relacionadas con los grupos de 
@@ -34,7 +35,7 @@ import org.hibernate.validator.Size;
 */
 @Entity
 @Table(name= "grupo_curso")
-@NamedQuery(name="gruposPorCurso",query="select c from GrupoCurso c where c.cursoGrupo.codigo=:parametro")
+@NamedQueries({ @NamedQuery(name="gruposPorCurso",query="select g from GrupoCurso g where g.cursoGrupo.codigo=:parametro")})
 public class GrupoCurso {
 
 	/**

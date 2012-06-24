@@ -111,7 +111,7 @@
 				<div class="actionButtons">
 
 					<h:commandButton id="save" value="Guardar"
-						action="#{cursoHome.persist}" rendered="#{!cursoHome.managed}" />
+						action="#{cursoHome.saveCurso()}" rendered="#{!cursoHome.managed}" />
 
 					<h:commandButton id="update" value="Guardar"
 						action="#{cursoHome.update}" rendered="#{cursoHome.managed}" />

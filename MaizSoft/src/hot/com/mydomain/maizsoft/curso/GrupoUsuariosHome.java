@@ -1,18 +1,25 @@
 package com.mydomain.maizsoft.curso;
 
-import com.mydomain.Directorio.model.*;
-import com.mydomain.maizsoft.usuarios.CuentasUsuarioHome;
-import com.mydomain.maizsoft.usuarios.UsuarioHome;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.model.SelectItem;
 import javax.persistence.Query;
 
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
+
+import com.mydomain.Directorio.model.CuentasUsuario;
+import com.mydomain.Directorio.model.Curso;
+import com.mydomain.Directorio.model.EnteUniversitario;
+import com.mydomain.Directorio.model.GrupoCurso;
+import com.mydomain.Directorio.model.GrupoUsuarios;
+import com.mydomain.Directorio.model.NotaActividad;
+import com.mydomain.Directorio.model.Usuario;
+import com.mydomain.maizsoft.usuarios.CuentasUsuarioHome;
+import com.mydomain.maizsoft.usuarios.UsuarioHome;
 
 @Name("grupoUsuariosHome")
 public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
@@ -93,6 +100,26 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 		}
 		return listaEntesUniversitarios;
 	}
+	
+	@Factory("listaGruposPorCurso")
+	public List<GrupoCurso> listagGruposPorCurso() {
+		if (instance.getCurso()!= null)
+		System.out.println(instance.getCurso().getCodigo()+ "gdfshdsf");
+		List<GrupoCurso> listaGruposPorCurso = new ArrayList<GrupoCurso>();
+		Query q = getEntityManager().createNamedQuery(
+				"gruposPorCurso");
+		if (instance.getCurso()== null) {
+			q.setParameter("parametro", 456L);
+			listaGruposPorCurso = (List<GrupoCurso>) q
+					.getResultList();
+		} else {
+
+			q.setParameter("parametro", instance.getCurso().getCodigo());
+			listaGruposPorCurso = (List<GrupoCurso>) q
+					.getResultList();
+		}
+		return listaGruposPorCurso;
+	}
 
 	@Factory("listaCursoMatricula")
 	public List<Curso> listaCursoMatricula() {
@@ -108,6 +135,57 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 			listaCursoMatricula = (List<Curso>) q.getResultList();
 		}
 		return listaCursoMatricula;
+	}
+	
+	
+	
+	@Factory("listaUsuariosEscuela")
+	public List<SelectItem> listaUsuariosEscuela() {
+
+		List<Usuario> listaUsuariosEscuela = new ArrayList<Usuario>();
+		Query q = getEntityManager().createNamedQuery("usuariosPorEscuela");
+		if (instance.getEnteUniversitarioHijo() == null) {
+			q.setParameter("parametro", 15L);
+			listaUsuariosEscuela = (List<Usuario>) q.getResultList();
+		} else {
+			q.setParameter("parametro", instance.getEnteUniversitarioHijo()
+					.getIdEnteUniversitario());
+			listaUsuariosEscuela = (List<Usuario>) q.getResultList();
+		}
+		
+		 List<Usuario> someObjects = listaUsuariosEscuela;
+	      List<SelectItem> sItems = new ArrayList<SelectItem>(); 
+	      for(Usuario sObj : someObjects){
+	          SelectItem sItem = new SelectItem(sObj, sObj.getApellidos());
+	          sItems.add(sItem);
+	         
+	      }
+		
+		return sItems;
+	}
+	
+	
+	public List<SelectItem> getLeftSideValues(){
+		
+		Query q = getEntityManager().createNamedQuery("usuariosPorEscuela");
+		
+			q.setParameter("parametro", 15L);
+			
+	      List<Usuario> someObjects = q.getResultList();
+	      List<SelectItem> sItems = new ArrayList<SelectItem>(); 
+	      for(Usuario sObj : someObjects){
+	          SelectItem sItem = new SelectItem(sObj, sObj.getApellidos());
+	          sItems.add(sItem);
+	          System.out.println(sItem);
+	      }
+	      return sItems;
+	}
+	
+	public void saveMatricula(){
+		List<Usuario> someObjects=instance.getUsuarios();
+		 for(Usuario sObj : someObjects){
+			System.out.println(sObj.getCodigoUsuarios());
+		}
 	}
 
 }

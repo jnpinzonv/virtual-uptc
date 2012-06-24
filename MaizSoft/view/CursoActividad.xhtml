@@ -74,7 +74,7 @@ function activaTab(unTab) {
 				</h:selectOneMenu>
 			<h:outputLabel
 				value="Seleccione la semana del curso que desea modificar" />
-			<h:selectOneMenu value="#{numeroDivisiones}" id=semana required="true">
+			<h:selectOneMenu >
 				
 			</h:selectOneMenu>
 
@@ -119,7 +119,9 @@ function activaTab(unTab) {
 							<div class="tabdiv" id="tabdiv-1"
 								style="background-color: rgb(235, 235, 225); display: none;">
 								Contenido de la <b class="rojo">Primera pestaña</b>
-
+								<div align="right">
+									<h:commandButton  value="Crear" />
+								</div>	
 								<h:form>
 									<rich:panel>
 										<rich:dataTable id="enteUniversitarioList"

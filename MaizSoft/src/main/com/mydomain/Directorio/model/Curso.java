@@ -27,7 +27,7 @@ import org.jboss.seam.annotations.Name;
 * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, 
 * en esta clase con lo referente a los cursos, se comunica con la base de datos
 * Modulo de Desarrollo :CU- ...
-* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Edwin Jose Hernandez NiÃ±o edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -41,7 +41,7 @@ import org.jboss.seam.annotations.Name;
 public class Curso {
 
 	/**
-	 * Variable que almacena el código del curso
+	 * Variable que almacena el cï¿½digo del curso
 	 * Tipo de dato Long
 	 */
 	private Long codigo;

@@ -93,7 +93,7 @@ public class GrupoCurso {
 	 */
 	private Set<HistorialNotas> listaHistorialNotas;
 	/**
-	 * Variable encargada de guardar la lista del número de
+	 * Variable encargada de guardar la lista del nï¿½mero de
 	 * divisiones del curso.
 	 */
 	private Set<NumeroDivisiones> numeroDivisiones;
@@ -158,7 +158,7 @@ public class GrupoCurso {
 	 */
 	
 	@NotNull
-	@Column(name = "inscritos", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(4)")
+	@Column(name = "inscritos", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "numeric(4)")
 	public Integer getInscritos() {
 		return inscritos;
 	}
@@ -271,10 +271,10 @@ public class GrupoCurso {
 
 	
 	
-		/**
+	/**
 	 * @return the numeroTotal
 	 */
-	@Column(name = "numero_Total", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(4)")
+	@Column(name = "numero_total", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "numeric(4)")
 	public Integer getNumeroTotal() {
 		return numeroTotal;
 	}

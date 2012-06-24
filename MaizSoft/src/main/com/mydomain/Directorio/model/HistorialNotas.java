@@ -3,10 +3,12 @@
  */
 package com.mydomain.Directorio.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -58,6 +60,7 @@ public class HistorialNotas {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "id_Historial_Notas", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
 	public Long getIdHistorialNotas() {
 		return idHistorialNotas;
 	}
@@ -75,6 +78,7 @@ public class HistorialNotas {
 	 * @return El valor de nota
 	 */
 	@NotNull
+	@Column(name = "id_nota", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(1)")
 	public Long getNota() {
 		return nota;
 	}
@@ -93,6 +97,7 @@ public class HistorialNotas {
 	 */
 	@NotNull
 	@ManyToOne
+	@JoinColumn(name = "id_user_account", unique = false, nullable = false, insertable = true, updatable = true)
 	public Usuario getUserAccount() {
 		return userAccount;
 	}
@@ -111,6 +116,7 @@ public class HistorialNotas {
 	 */
 	@NotNull
 	@ManyToOne
+	@JoinColumn(name = "id_grupo_curso", unique = false, nullable = false, insertable = true, updatable = true)
 	public GrupoCurso getGrupoCurso() {
 		return grupoCurso;
 	}

@@ -4,10 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -130,6 +134,7 @@ public class Usuario {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
 	public Long getId() {
 		return id;
 	}
@@ -151,6 +156,7 @@ public class Usuario {
 	 */
 	@NotNull
 	@ManyToOne
+	
 	public Tipo getTipo() {
 		return tipo;
 	}
@@ -173,6 +179,7 @@ public class Usuario {
 	@NotNull
 	@Length(max = 50)
 	@Pattern(regex = "^\\w*$")
+	@Column(name = "id_primer_nombre", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
 	public String getPrimerNombre() {
 		return primerNombre;
 	}
@@ -194,6 +201,7 @@ public class Usuario {
 	 */
 	@Length(max = 50)
 	@Pattern(regex = "^\\w*$")
+	@Column(name = "id_segundo_nombre", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
 	public String getSegundoNombre() {
 		return segundoNombre;
 	}
@@ -216,6 +224,7 @@ public class Usuario {
 	@NotNull
 	@Length(max = 30)
 	@Pattern(regex = "^\\w*$")
+	@Column(name = "id_apellidos", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
 	public String getApellidos() {
 		return apellidos;
 	}
@@ -238,6 +247,7 @@ public class Usuario {
 	@NotNull
 	@Email
 	@Length(max = 60)
+	@Column(name = "id_correo_electronico", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
 	public String getCorreoElectronico() {
 		return correoElectronico;
 	}
@@ -258,6 +268,7 @@ public class Usuario {
 	 * @return El valor de grupoUsuarios
 	 */
 	@OneToMany(mappedBy = "userGrupoCurso", cascade = CascadeType.ALL)
+	@JoinTable(name = "id_grupo_usuarios", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 	public Set<GrupoUsuarios> getGrupoUsuarios() {
 		if (grupoUsuarios == null) {
 			return new HashSet<GrupoUsuarios>();
@@ -280,6 +291,7 @@ public class Usuario {
 	 * 
 	 * @return El valor de fotoUser
 	 */
+	@Column(name = "id_foto_user", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
 	public String getFotoUser() {
 		return fotoUser;
 	}
@@ -300,6 +312,7 @@ public class Usuario {
 	 * @return El valor de documentoIdentidad
 	 */
 	@NotNull
+	@Column(name = "id_documento_identidad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(10)")
 	public Long getDocumentoIdentidad() {
 		return documentoIdentidad;
 	}
@@ -320,6 +333,7 @@ public class Usuario {
 	 * @return El valor de codigoUsuarios
 	 */
 	@NotEmpty
+	@Column(name = "id_codigo_usuarios", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
 	public String getCodigoUsuarios() {
 		return codigoUsuarios;
 	}
@@ -340,6 +354,7 @@ public class Usuario {
 	 * @return El valor de usuarioEmisor
 	 */
 	@OneToMany(mappedBy = "deUsuario", cascade = CascadeType.ALL)
+	@JoinTable(name = "id_usuario_emisor", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 	public Set<GestorMensajeria> getUsuarioEmisor() {
 		if (usuarioEmisor == null) {
 			return new HashSet<GestorMensajeria>();
@@ -364,6 +379,7 @@ public class Usuario {
 	 */
 	@NotNull
 	@ManyToOne
+	@JoinTable(name = "id_ente_universitario", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 	public EnteUniversitario getEnteUniversitarios() {
 		return enteUniversitarios;
 	}
@@ -384,6 +400,7 @@ public class Usuario {
 	 * @return El valor de historialNotas
 	 */
 	@OneToMany(mappedBy = "userAccount", cascade = CascadeType.ALL)
+	@JoinTable(name = "id_historial_notas", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 	public Set<HistorialNotas> getHistorialNotas() {
 		if (historialNotas == null) {
 			return new HashSet<HistorialNotas>();
@@ -407,6 +424,7 @@ public class Usuario {
 	 * @return El valor de mensajes
 	 */
 	@OneToMany(mappedBy = "userAccount", cascade = CascadeType.ALL)
+	@JoinTable(name = "id_mensajes", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 	public Set<ReceptorMensajes> getMensajes() {
 		if (mensajes == null) {
 			return new HashSet<ReceptorMensajes>();
@@ -429,6 +447,11 @@ public class Usuario {
 	 * 
 	 * @return El valor de cuentasUsuario
 	 */
+	@OneToMany(mappedBy="usuarios",cascade=CascadeType.ALL)
+	@JoinTable(name = "id_cuentas_usuario", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
+	public Set<CuentasUsuario> getCuentasUsuario() {		if(cuentasUsuario==null){
+		return new HashSet<CuentasUsuario>();
+	}
 	@OneToMany(mappedBy = "usuarios", cascade = CascadeType.ALL)
 	public Set<CuentasUsuario> getCuentasUsuario() {
 		if (cuentasUsuario == null) {

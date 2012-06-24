@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -153,7 +154,7 @@ public class EnteUniversitario {
 	 * @return El valor de enteUniversitario
 	 */
 	@ManyToOne
-	@Column(name = "ente_universitario", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "ente_universitario", unique = false, nullable = false, insertable = true, updatable = true)
 	public EnteUniversitario getEnteUniversitario() {
 		return enteUniversitario;
 	}
@@ -207,7 +208,7 @@ public class EnteUniversitario {
 	 */
 	@NotNull
 	@ManyToOne
-	@Column(name = "tipo_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@JoinColumn(name = "tipo_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true)
 	public Tipo getTipoEnteUniversitario() {
 		return tipoEnteUniversitario;
 	}

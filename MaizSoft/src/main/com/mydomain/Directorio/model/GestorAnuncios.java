@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -118,7 +119,7 @@ public class GestorAnuncios {
 	 */
 	@ManyToOne
 	@NotNull
-	@Column(name = "actividad", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "actividad", unique = false, nullable = false, insertable = true, updatable = true)
 	public Actividad getActividad() {
 		return actividad;
 	}

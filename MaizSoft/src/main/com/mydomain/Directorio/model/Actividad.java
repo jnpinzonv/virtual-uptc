@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -79,7 +80,7 @@ public class Actividad {
 	 */
 	@NotNull
 	@ManyToOne
-	@Column(name = "tipo", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "tipo", unique = false, nullable = false, insertable = true, updatable = true)
 	public Tipo getTipo() {
 		return tipo;
 	}
@@ -152,7 +153,6 @@ public class Actividad {
 	 * Se obtiene el valor de listaNotaActividades
 	 * @return El valor de listaNotaActividades
 	 */
-	
 	@OneToMany(mappedBy="actividad", cascade=CascadeType.ALL)
 	public Set<NotaActividad> getListaNotaActividades() {
 		if(listaNotaActividades==null){

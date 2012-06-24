@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -115,7 +116,7 @@ public class GestorMensajeria {
 	 */
 	@NotNull
 	@ManyToOne
-	@Column(name = "de_usuario", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@JoinColumn(name = "de_usuario", unique = false, nullable = false, insertable = true, updatable = true)
 	public Usuario getDeUsuario() {
 		return deUsuario;
 	}
@@ -189,7 +190,7 @@ public class GestorMensajeria {
 	 */
 	@NotNull
 	@ManyToOne
-	@Column(name = "tipo", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "tipo", unique = false, nullable = false, insertable = true, updatable = true)
 	public Tipo getTipo() {
 		return tipo;
 	}
@@ -224,7 +225,7 @@ public class GestorMensajeria {
 	 * @return El valor de gestorMensajeria
 	 */
 	@ManyToOne
-	@Column(name = "gestor_mensajeria", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "gestor_mensajería", unique = false, nullable = false, insertable = true, updatable = true)
 	public GestorMensajeria getGestorMensajeria() {
 		return gestorMensajeria;
 	}

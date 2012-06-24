@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.security.permission.PermissionAction;
 import org.jboss.seam.annotations.security.permission.PermissionDiscriminator;
 import org.jboss.seam.annotations.security.permission.PermissionRole;
@@ -25,8 +26,9 @@ import org.jboss.seam.annotations.security.permission.PermissionUser;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
-@Table(name = "user_permission")
+@Entity(name="user_permission")
+@Table(name="user_permission")
+@Name("user_permission")
 public class UserPermission implements Serializable
 {
    private static final long serialVersionUID = -5628863031792429938L;

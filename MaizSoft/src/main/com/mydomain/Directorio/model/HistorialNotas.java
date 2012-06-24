@@ -14,6 +14,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.hibernate.validator.NotNull;
+import org.jboss.seam.annotations.Name;
 
 /**
 * Descripcion: Esta Clase se encarga de ...
@@ -25,8 +26,9 @@ import org.hibernate.validator.NotNull;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
-@Table(name= "historial_notas")
+@Entity(name="historial_notas")
+@Table(name="historial_notas")
+@Name("historial_notas")
 @NamedQuery(name="NotasPorUsuario", query="select t from HistorialNotas t where t.userAccount.documentoIdentidad=:parametro")
 public class HistorialNotas {
 

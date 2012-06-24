@@ -18,6 +18,7 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.validator.NotNull;
 import org.jboss.seam.ScopeType;
+import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.annotations.security.management.UserEnabled;
 import org.jboss.seam.annotations.security.management.UserPassword;
@@ -35,7 +36,8 @@ import org.jboss.seam.annotations.security.management.UserRoles;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
+@Entity(name="user_account")
+@Name("user_account")
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "username"), name = "user_account")
 @Scope(ScopeType.SESSION)
 public class UserAccount implements Serializable {

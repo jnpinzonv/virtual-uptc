@@ -26,8 +26,8 @@ import com.sun.istack.internal.NotNull;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
-@Name("numeroDivisiones")
+@Entity(name="numero_divisiones")
+@Name("numero_divisiones")
 @Table(name="numero_divisones")
 public class NumeroDivisiones {
 

@@ -10,11 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.NotNull;
+import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.security.management.RoleConditional;
 import org.jboss.seam.annotations.security.management.RoleGroups;
 import org.jboss.seam.annotations.security.management.RoleName;
@@ -30,8 +29,9 @@ import org.jboss.seam.annotations.security.management.RoleName;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
-@Table(name = "user_role")
+@Entity(name="user_role")
+@Table(name="user_role")
+@Name("user_role")
 public class UserRole implements Serializable {
 	private static final long serialVersionUID = 9177366120789064801L;
 

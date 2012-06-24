@@ -36,9 +36,9 @@ import org.jboss.seam.annotations.Name;
  *         Colombia
  * @version 22/06/2012
  */
-@Entity
+@Entity(name="usuario")
+@Table(name="usuario")
 @Name("usuario")
-@Table(name = "usuarios")
 @NamedQueries({
 		@NamedQuery(name = "usuariosPorEscuela", query = "select s from Usuario s where s.enteUniversitarios.idEnteUniversitario=:parametro")})
 public class Usuario {

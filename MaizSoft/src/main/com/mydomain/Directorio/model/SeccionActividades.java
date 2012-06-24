@@ -3,6 +3,7 @@
  */
 package com.mydomain.Directorio.model;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -51,6 +52,7 @@ public class SeccionActividades {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "id_Seccion_Actividades", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
 	public Long getIdSeccionActividades() {
 		return idSeccionActividades;
 	}
@@ -69,6 +71,7 @@ public class SeccionActividades {
 	 */
 	@NotEmpty
 	@Length(max=100)
+	@Column(name = "id_nombre_Seccion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
 	public String getNombreSeccion() {
 		return nombreSeccion;
 	}
@@ -85,6 +88,7 @@ public class SeccionActividades {
 	 * Se obtiene el valor de actividad
 	 * @return El valor de actividad
 	 */
+	@Column(name = "id_actividad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
 	public Actividad getActividad() {
 		return actividad;
 	}

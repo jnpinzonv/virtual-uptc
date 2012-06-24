@@ -126,7 +126,7 @@ public class Curso {
 	 */
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "ente_universitario", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true)
 	public EnteUniversitario getEnteUniversitario() {
 		return enteUniversitario;
 	}

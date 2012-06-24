@@ -192,7 +192,7 @@ public class GestorRepositoriosVirtuales {
 	 */
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "tipo", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_tipo", unique = false, nullable = false, insertable = true, updatable = true)
 	public Tipo getTipos() {
 		return tipos;
 	}

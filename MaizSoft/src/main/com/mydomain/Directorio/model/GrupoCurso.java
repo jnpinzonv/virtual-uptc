@@ -35,10 +35,10 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 22/06/2012 
 */
-@Entity(name="grupoCurso")
+@Entity(name="GrupoCurso")
 @Table(name= "grupo_curso")
 @Name("grupoCurso")
-@NamedQueries({ @NamedQuery(name="gruposPorCurso",query="select g from grupoCurso g where g.cursoGrupo.codigo=:parametro")})
+@NamedQueries({ @NamedQuery(name="gruposPorCurso",query="select g from GrupoCurso g where g.cursoGrupo.codigo=:parametro")})
 public class GrupoCurso {
 
 	/**
@@ -93,7 +93,7 @@ public class GrupoCurso {
 	 */
 	private Set<HistorialNotas> listaHistorialNotas;
 	/**
-	 * Variable encargada de guardar la lista del nï¿½mero de
+	 * Variable encargada de guardar la lista del número de
 	 * divisiones del curso.
 	 */
 	private Set<NumeroDivisiones> numeroDivisiones;
@@ -158,7 +158,7 @@ public class GrupoCurso {
 	 */
 	
 	@NotNull
-	@Column(name = "inscritos", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "numeric(4)")
+	@Column(name = "inscritos", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(4)")
 	public Integer getInscritos() {
 		return inscritos;
 	}
@@ -271,10 +271,10 @@ public class GrupoCurso {
 
 	
 	
-	/**
+		/**
 	 * @return the numeroTotal
 	 */
-	@Column(name = "numero_total", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "numeric(4)")
+	@Column(name = "numero_Total", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(4)")
 	public Integer getNumeroTotal() {
 		return numeroTotal;
 	}

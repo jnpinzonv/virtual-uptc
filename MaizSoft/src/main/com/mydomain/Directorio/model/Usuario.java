@@ -36,11 +36,11 @@ import org.jboss.seam.annotations.Name;
  *         Colombia
  * @version 22/06/2012
  */
-@Entity(name="usuario")
+@Entity(name="Usuario")
 @Table(name="usuario")
 @Name("usuario")
 @NamedQueries({
-		@NamedQuery(name = "usuariosPorEscuela", query = "select s from usuario s where s.enteUniversitarios.idEnteUniversitario=:parametro")})
+		@NamedQuery(name = "usuariosPorEscuela", query = "select s from Usuario s where s.enteUniversitarios.idEnteUniversitario=:parametro")})
 public class Usuario {
 
 	/**
@@ -201,7 +201,7 @@ public class Usuario {
 	 */
 	@Length(max = 50)
 	@Pattern(regex = "^\\w*$")
-	@Column(name = "segundo_nombre", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(30)")
+	@Column(name = "segundo_nombre", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getSegundoNombre() {
 		return segundoNombre;
 	}

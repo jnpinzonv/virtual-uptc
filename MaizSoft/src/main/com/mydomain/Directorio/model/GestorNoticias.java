@@ -19,14 +19,14 @@ import org.jboss.seam.annotations.Name;
 * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, 
 * en esta clase con lo referente al gestor de noticias, se comunica con la base de datos
 * Modulo de Desarrollo :CU- ...
-* @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
+* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="gestorNoticias")
+@Entity(name="GestorNoticias")
 @Table(name="gestor_noticias")
 @Name("gestorNoticias")
 public class GestorNoticias {
@@ -92,7 +92,7 @@ public class GestorNoticias {
 	 */
 
 	@NotEmpty
-	@Column(name = "descripcion_noticia", unique = false, nullable = true, insertable = true, updatable = true)
+	@Column(name = "descripcion_noticia", unique = false, nullable = false, insertable = true, updatable = true)
 	public String getDescripcion() {
 		return descripcion;
 	}

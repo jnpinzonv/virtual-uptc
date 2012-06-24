@@ -80,6 +80,7 @@ public class UserAccount implements Serializable {
 	 */
 	@Id
 	@GeneratedValue
+	@Column(name = "id", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
 	public Long getId() {
 		return id;
 	}
@@ -99,6 +100,7 @@ public class UserAccount implements Serializable {
 
 	@NotNull
 	@UserPrincipal
+	@Column(name = "id_user_name", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
 	public String getUsername() {
 		return username;
 	}
@@ -116,7 +118,7 @@ public class UserAccount implements Serializable {
 	 * @return El valor de passwordHash
 	 */
 	@UserPassword(hash = "SHA")
-	@Column(name = "password_hash")
+	@Column(name = "id_password_hash", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(8)")
 	public String getPasswordHash() {
 		return passwordHash;
 	}
@@ -152,7 +154,7 @@ public class UserAccount implements Serializable {
 	 */
 	@UserRoles
 	@ManyToMany
-	@JoinTable(name = "user_account_role", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
+	@JoinTable(name = "id_user_account_role", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 	public Set<UserRole> getRoles() {
 		return roles;
 	}
@@ -170,6 +172,7 @@ public class UserAccount implements Serializable {
 	 * @return El valor de cuentasUsuarios
 	 */
 	@OneToMany(mappedBy="userAccounts",cascade=CascadeType.ALL)
+	@JoinTable(name = "id_cuentas_usuario", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 	public Set<CuentasUsuario> getCuentasUsuarios() {
 		if(cuentasUsuarios==null){
 			return new HashSet<CuentasUsuario>();

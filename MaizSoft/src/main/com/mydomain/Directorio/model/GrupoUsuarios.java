@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -82,6 +84,7 @@ public class GrupoUsuarios {
 	 * @return El valor de userGrupoCurso
 	 */
 	@ManyToOne
+	@JoinColumn(name = "id_user_grupo_curso", unique = false, nullable = false, insertable = true, updatable = true)
 	public Usuario getUserGrupoCurso() {
 		return userGrupoCurso;
 	}
@@ -92,6 +95,7 @@ public class GrupoUsuarios {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "id_Grupo_Usuarios", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
 	public Long getIdGrupoUsuarios() {
 		return idGrupoUsuarios;
 	}
@@ -110,6 +114,7 @@ public class GrupoUsuarios {
 	 */
 	@NotNull
 	@ManyToOne
+	@JoinColumn(name = "id_tipo", unique = false, nullable = false, insertable = true, updatable = true)
 	public GrupoCurso getGrupoCurso() {
 		return grupoCurso;
 	}
@@ -135,6 +140,7 @@ public class GrupoUsuarios {
 	 * @return El valor de notaActividades
 	 */
 	@OneToMany(mappedBy="grupoCurso",cascade=CascadeType.ALL)
+	@JoinColumn(name = "id_nota_actividades", unique = false, nullable = false, insertable = true, updatable = true)
 	public Set<NotaActividad> getNotaActividades() {
 		if(notaActividades==null){
 			return new HashSet<NotaActividad>();
@@ -156,6 +162,7 @@ public class GrupoUsuarios {
 	 */
 	@NotNull
 	@OneToOne(mappedBy="grupoUsuarios")
+	@JoinColumn(name = "id_user_role", unique = false, nullable = false, insertable = true, updatable = true)
 	public CuentasUsuario getUserRole() {
 		return userRole;
 	}

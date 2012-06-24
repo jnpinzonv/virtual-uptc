@@ -1,9 +1,12 @@
 package com.mydomain.Directorio.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -63,6 +66,7 @@ public class NumeroDivisiones {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "id", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(8)")
 	public Long getId() {
 		return id;
 	}
@@ -80,6 +84,7 @@ public class NumeroDivisiones {
 	 * Se obtiene el valor de numeroDivision
 	 * @return El valor de numeroDivision
 	 */
+	@Column(name = "id_numero_Division", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(3)")
 	public Integer getNumeroDivision() {
 		return numeroDivision;
 	}
@@ -99,6 +104,7 @@ public class NumeroDivisiones {
 	 */
 	@ManyToOne
 	@NotNull
+	@JoinColumn(name = "id_actividad", unique = false, nullable = false, insertable = true, updatable = true)
 	public Actividad getActividad() {
 		return actividad;
 	}
@@ -117,6 +123,7 @@ public class NumeroDivisiones {
 	 */
 	@ManyToOne
 	@NotNull
+	@JoinColumn(name = "id_grupo_curso", unique = false, nullable = false, insertable = true, updatable = true)
 	public GrupoCurso getGrupoCurso() {
 		return grupoCurso;
 	}

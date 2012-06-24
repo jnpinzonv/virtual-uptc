@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -141,7 +142,7 @@ public class GestorEnlacesExternos {
 	 */
 	@NotNull
 	@ManyToOne
-	@Column(name = "grupo_curso", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@JoinColumn(name = "grupo_curso", unique = false, nullable = false, insertable = true, updatable = true)
 	public GrupoCurso getGrupoCurso() {
 		return grupoCurso;
 	}

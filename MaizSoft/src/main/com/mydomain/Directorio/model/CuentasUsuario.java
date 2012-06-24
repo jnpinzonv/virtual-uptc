@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -80,7 +81,7 @@ public class CuentasUsuario {
 	 */
 	@NotNull
 	@ManyToOne
-	@Column(name = "tipo", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "usser_account", unique = false, nullable = false, insertable = true, updatable = true)
 	public UserAccount getUserAccounts() {
 		return userAccounts;
 	}
@@ -99,7 +100,7 @@ public class CuentasUsuario {
 	 */
 	@NotNull
 	@ManyToOne
-	@Column(name = "tipo", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "tipo", unique = false, nullable = false, insertable = true, updatable = true)
 	public Usuario getUsuarios() {
 		return usuarios;
 	}
@@ -117,7 +118,7 @@ public class CuentasUsuario {
 	 * @return El valor de grupoUsuarios
 	 */
 	@OneToOne
-	@Column(name = "tipo", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "grupo_usuarios", unique = false, nullable = false, insertable = true, updatable = true)
 	public GrupoUsuarios getGrupoUsuarios() {
 		return grupoUsuarios;
 	}

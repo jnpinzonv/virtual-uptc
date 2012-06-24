@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
+import org.jboss.seam.annotations.Name;
 
 
  /**
@@ -28,8 +29,9 @@ import org.hibernate.validator.NotNull;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
+@Entity(name="gestor_anuncios")
 @Table(name="gestor_anuncios")
+@Name("gestor_anuncios")
 public class GestorAnuncios {
 	
 	 /**
@@ -62,7 +64,7 @@ public class GestorAnuncios {
 	 */
 	 @Id
 	 @GeneratedValue(strategy=GenerationType.AUTO)
-	 @Column(name = "id_gestor_de_anuncios", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	 @Column(name = "id_gestor_de_anuncios", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdGestorAnuncios() {
 		return idGestorAnuncios;
 	}

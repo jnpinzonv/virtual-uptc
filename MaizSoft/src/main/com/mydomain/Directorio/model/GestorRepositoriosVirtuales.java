@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
+import org.jboss.seam.annotations.Name;
 
 /**
 * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, 
@@ -29,8 +30,9 @@ import org.hibernate.validator.NotNull;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
+@Entity(name= "gestor_repositorio")
 @Table(name= "gestor_repositorio")
+@Name("gestor_repositorio")
 public class GestorRepositoriosVirtuales {
 	
 	/**
@@ -82,7 +84,7 @@ public class GestorRepositoriosVirtuales {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id_repositorio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name = "id_repositorio", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdRepositorio() {
 		return idRepositorio;
 	}

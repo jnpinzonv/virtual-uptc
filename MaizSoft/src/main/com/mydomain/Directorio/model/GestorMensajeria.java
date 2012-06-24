@@ -20,6 +20,7 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
+import org.jboss.seam.annotations.Name;
 
 
 /**
@@ -33,8 +34,9 @@ import org.hibernate.validator.NotNull;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
+@Entity(name="gestor_mensajeria")
 @Table(name="gestor_mensajeria")
+@Name("gestor_mensajeria")
 public class GestorMensajeria {
 
 	/**
@@ -97,7 +99,7 @@ public class GestorMensajeria {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)	
-	@Column(name = "id_mensaje", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name = "id_mensaje", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdMensaje() {
 		return idMensaje;
 	}

@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
+import org.jboss.seam.annotations.Name;
 
 
 /**
@@ -28,8 +29,9 @@ import org.hibernate.validator.NotNull;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
+@Entity(name= "gestor_enlaces_externos")
 @Table(name= "gestor_enlaces_externos")
+@Name("gestor_enlaces_externos")
 public class GestorEnlacesExternos {
 	
 	/**
@@ -68,7 +70,7 @@ public class GestorEnlacesExternos {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id_enlace", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name = "id_enlace", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdEnlace() {
 		return idEnlace;
 	}
@@ -123,7 +125,7 @@ public class GestorEnlacesExternos {
 	 * @return El valor de descripcionEnlace
 	 */	
 	@Length(max=300)
-	@Column(name = "descripcion_enlace", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(100)")
+	@Column(name = "descripcion_enlace", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(200)")
 	public String getDescripcionEnlace() {
 		return descripcionEnlace;
 	}

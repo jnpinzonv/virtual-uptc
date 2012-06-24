@@ -28,10 +28,10 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="cuentasUsuario")
+@Entity(name="CuentasUsuario")
 @Table(name="cuentas_usuario")
 @Name("cuentasUsuario")
-@NamedQuery(name = "buscarCuentaPorUsername", query = "select s from cuentasUsuario s where s.userAccounts.username=:parametro")
+@NamedQuery(name = "buscarCuentaPorUsername", query = "select s from CuentasUsuario s where s.userAccounts.username=:parametro")
 public class CuentasUsuario {
 	
 	/**

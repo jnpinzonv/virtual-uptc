@@ -20,135 +20,191 @@ import javax.persistence.Table;
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
 
+
 /**
- *@author Josué Nicolás Pinzón Villamil <jnpinzonv@hotmail.com>
- *@Version${date}
- */
+* Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, 
+* en esta clase con lo referente al gestor de mensajería, se comunica con la base de datos
+* Modulo de Desarrollo :CU- ...
+* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
+* Grupo de Investigacion Ingenieria Software (GIS)
+* Semillero de Investigacion Moviles Sabatt (SIMS)
+* Universidad Pedagogica y Tecnologica de Colombia
+* @version 23/06/2012 
+*/
 @Entity
 @Table(name="gestor_mensajeria")
 public class GestorMensajeria {
 
+	/**
+	 * Variable que almacena el identificador del mensaje
+	 * Tipo de Dato Long
+	 */
 	private Long idMensaje;
 	
-
-	
+	/**
+	 * Variable que almacena usuarios quienes envian el mensaje
+	 * Se instancia de la clase Usuario
+	 */
 	private Usuario deUsuario;
 	
+	/**
+	 * Variable que almacena el mensaje 
+	 * Tipo de dato String
+	 */
 	private String mensaje;
 	
+	/**
+	 * Variable que almacena el asunto del mensaje
+	 * Tipo de dato String
+	 */
 	private String asunto;
 	
+	/**
+	 * Variable que almacena la fecha en la que se envía el mensaje
+	 * Tipo de dato Date
+	 */
 	private Date fechaEnvio;
 	
+	/**
+	 * Variable que almacena el tipo de mensaje a transmitir
+	 * Se instancia de la clase Tipo
+	 */
 	private Tipo tipo;
 	
+	/**
+	 * Variable que almacena un listado de gestores de mensajería
+	 * Se instancia de la clase GestorMensajería
+	 */
 	private Set<GestorMensajeria> listaGestorMensajeria;
 	
+	/**
+	 * Variable que almacena los gestores de mensajería
+	 * Se instancia de la clase GestorMensajería 
+	 */
 	private GestorMensajeria gestorMensajeria;
 	
+	/**
+	 * Variable que almacena la nota de la actividad
+	 * Se instancia de la clase NotaActividad
+	 */
 	private Set<NotaActividad> notaActividad;
-	
-	/**
-	 * @return the tipo
-	 */
-	@NotNull
-	@ManyToOne
-	public Tipo getTipo() {
-		return tipo;
-	}
 
 	/**
-	 * @param tipo the tipo to set
-	 */
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
-	}
-
-	/**
-	 * @return the idMensaje
+	 * Se obtiene el valor de idMensaje
+	 * @return El valor de idMensaje
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)	
+	@Column(name = "id_mensaje", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
 	public Long getIdMensaje() {
 		return idMensaje;
 	}
 
 	/**
-	 * @param idMensaje the idMensaje to set
+	 * Asigna el valor de idMensaje
+	 * @param idMensaje El valor por establecer para idMensaje
 	 */
-	
 	public void setIdMensaje(Long idMensaje) {
 		this.idMensaje = idMensaje;
 	}
 
-	
-
 	/**
-	 * @return the deUsuario
+	 * Se obtiene el valor de deUsuario
+	 * @return El valor de deUsuario
 	 */
 	@NotNull
 	@ManyToOne
+	@Column(name = "de_usuario", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
 	public Usuario getDeUsuario() {
 		return deUsuario;
 	}
 
 	/**
-	 * @param deUsuario the deUsuario to set
+	 * Asigna el valor de deUsuario
+	 * @param deUsuario El valor por establecer para deUsuario
 	 */
 	public void setDeUsuario(Usuario deUsuario) {
 		this.deUsuario = deUsuario;
 	}
 
 	/**
-	 * @return the mensaje
+	 * Se obtiene el valor de mensaje
+	 * @return El valor de mensaje
 	 */
-	@Column(name= "mensaje")
 	@NotNull
 	@Lob
+	@Column(name = "mensaje", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(100)")
 	public String getMensaje() {
 		return mensaje;
 	}
 
 	/**
-	 * @param mensaje the mensaje to set
+	 * Asigna el valor de mensaje
+	 * @param mensaje El valor por establecer para mensaje
 	 */
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
 
 	/**
-	 * @return the asunto
+	 * Se obtiene el valor de asunto
+	 * @return El valor de asunto
 	 */
-	@Column(name= "asunto")
 	@Length(max=100)
+	@Column(name = "asunto", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(50)")
 	public String getAsunto() {
 		return asunto;
 	}
 
 	/**
-	 * @param asunto the asunto to set
+	 * Asigna el valor de asunto
+	 * @param asunto El valor por establecer para asunto
 	 */
 	public void setAsunto(String asunto) {
 		this.asunto = asunto;
 	}
 
 	/**
-	 * @return the fechaEnvio
+	 * Se obtiene el valor de fechaEnvio
+	 * @return El valor de fechaEnvio
 	 */
-	@NotNull
+	@NotNull	
+	@Column(name = "fecha_envio", unique = false, nullable = false, insertable = true, updatable = true)
 	public Date getFechaEnvio() {
 		return fechaEnvio;
 	}
 
 	/**
-	 * @param fechaEnvio the fechaEnvio to set
+	 * Asigna el valor de fechaEnvio
+	 * @param fechaEnvio El valor por establecer para fechaEnvio
 	 */
 	public void setFechaEnvio(Date fechaEnvio) {
 		this.fechaEnvio = fechaEnvio;
 	}
 
 	/**
-	 * @return the listaGestorMensajeria
+	 * Se obtiene el valor de tipo
+	 * @return El valor de tipo
+	 */
+	@NotNull
+	@ManyToOne
+	@Column(name = "tipo", unique = false, nullable = false, insertable = true, updatable = true)
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * Asigna el valor de tipo
+	 * @param tipo El valor por establecer para tipo
+	 */
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
+	}
+
+	/**
+	 * Se obtiene el valor de listaGestorMensajeria
+	 * @return El valor de listaGestorMensajeria
 	 */
 	@OneToMany(mappedBy="gestorMensajeria",cascade=CascadeType.ALL)
 	public Set<GestorMensajeria> getListaGestorMensajeria() {
@@ -156,29 +212,34 @@ public class GestorMensajeria {
 	}
 
 	/**
-	 * @param listaGestorMensajeria the listaGestorMensajeria to set
+	 * Asigna el valor de listaGestorMensajeria
+	 * @param listaGestorMensajeria El valor por establecer para listaGestorMensajeria
 	 */
 	public void setListaGestorMensajeria(Set<GestorMensajeria> listaGestorMensajeria) {
 		this.listaGestorMensajeria = listaGestorMensajeria;
 	}
 
 	/**
-	 * @return the gestorMensajeria
+	 * Se obtiene el valor de gestorMensajeria
+	 * @return El valor de gestorMensajeria
 	 */
 	@ManyToOne
+	@Column(name = "gestor_mensajeria", unique = false, nullable = false, insertable = true, updatable = true)
 	public GestorMensajeria getGestorMensajeria() {
 		return gestorMensajeria;
 	}
 
 	/**
-	 * @param gestorMensajeria the gestorMensajeria to set
+	 * Asigna el valor de gestorMensajeria
+	 * @param gestorMensajeria El valor por establecer para gestorMensajeria
 	 */
 	public void setGestorMensajeria(GestorMensajeria gestorMensajeria) {
 		this.gestorMensajeria = gestorMensajeria;
 	}
 
 	/**
-	 * @return the notaActividad
+	 * Se obtiene el valor de notaActividad
+	 * @return El valor de notaActividad
 	 */
 	@OneToMany(mappedBy="gestorMensajeria",cascade=CascadeType.ALL)
 	public Set<NotaActividad> getNotaActividad() {
@@ -186,7 +247,8 @@ public class GestorMensajeria {
 	}
 
 	/**
-	 * @param notaActividad the notaActividad to set
+	 * Asigna el valor de notaActividad
+	 * @param notaActividad El valor por establecer para notaActividad
 	 */
 	public void setNotaActividad(Set<NotaActividad> notaActividad) {
 		this.notaActividad = notaActividad;

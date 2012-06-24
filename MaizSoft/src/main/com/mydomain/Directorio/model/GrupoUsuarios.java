@@ -33,10 +33,10 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 22/06/2012 
 */
-@Entity(name="grupoUsuarios")
+@Entity(name="GrupoUsuarios")
 @Table(name ="grupo_usuarios")
 @Name("grupoUsuarios")
-@NamedQuery(name="usuariosPorGrupo", query="select t from grupoUsuarios t where t.userGrupoCurso.id=:parametro")
+@NamedQuery(name="usuariosPorGrupo", query="select t from GrupoUsuarios t where t.userGrupoCurso.id=:parametro")
 public class GrupoUsuarios {
 
 	/**

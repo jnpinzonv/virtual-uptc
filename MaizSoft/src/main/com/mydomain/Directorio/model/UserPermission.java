@@ -26,7 +26,7 @@ import org.jboss.seam.annotations.security.permission.PermissionUser;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="userPermission")
+@Entity(name="UserPermission")
 @Table(name="user_permission")
 @Name("userPermission")
 public class UserPermission implements Serializable

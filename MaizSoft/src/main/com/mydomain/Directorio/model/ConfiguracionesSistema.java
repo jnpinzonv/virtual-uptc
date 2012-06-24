@@ -23,7 +23,7 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="configuracionesSistema")
+@Entity(name="ConfiguracionesSistema")
 @Table(name="configuraciones_sistema")
 @Name("configuracionesSistema")
 public class ConfiguracionesSistema {

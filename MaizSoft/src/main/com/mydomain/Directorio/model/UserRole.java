@@ -29,7 +29,7 @@ import org.jboss.seam.annotations.security.management.RoleName;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="userRole")
+@Entity(name="UserRole")
 @Table(name="user_role")
 @Name("userRole")
 public class UserRole implements Serializable {

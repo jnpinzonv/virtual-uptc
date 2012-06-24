@@ -26,10 +26,10 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="historialNotas")
+@Entity(name="HistorialNotas")
 @Table(name="historial_notas")
 @Name("historialNotas")
-@NamedQuery(name="NotasPorUsuario", query="select t from historialNotas t where t.userAccount.documentoIdentidad=:parametro")
+@NamedQuery(name="NotasPorUsuario", query="select t from HistorialNotas t where t.userAccount.documentoIdentidad=:parametro")
 public class HistorialNotas {
 
 	/**

@@ -36,7 +36,7 @@ import org.jboss.seam.annotations.security.management.UserRoles;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity(name="userAccount")
+@Entity(name="UserAccount")
 @Name("userAccount")
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "username"), name = "user_account")
 @Scope(ScopeType.SESSION)

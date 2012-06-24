@@ -20,6 +20,7 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
+import org.jboss.seam.annotations.Name;
 
 /**
 * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, se comunica con la base de datos
@@ -31,8 +32,9 @@ import org.hibernate.validator.NotNull;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
+@Entity(name="actividad")
 @Table(name="actividad")
+@Name("actividad")
 public class Actividad {
 	
 	/**
@@ -103,7 +105,7 @@ public class Actividad {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id_Actividad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name = "id_actividad", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdActividad() {
 		return idActividad;
 	}
@@ -122,7 +124,7 @@ public class Actividad {
 	 * @return El valor de descripcionActividad
 	 */
 	@Length(max=300)
-	@Column(name = "descripcion_actividad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(50)")
+	@Column(name = "descripcion_actividad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(200)")
 	public String getDescripcionActividad() {
 		return descripcionActividad;
 	}

@@ -34,7 +34,7 @@ import org.hibernate.validator.NotNull;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
+@Entity(name="ente_universitario")
 @Table(name="ente_universitario")
 @NamedQuery(name="entesUniversitariosPorFacultad",query="select t from EnteUniversitario t where t.enteUniversitario.idEnteUniversitario=:parametro")
 public class EnteUniversitario {
@@ -99,7 +99,7 @@ public class EnteUniversitario {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name = "id_ente_universitario_padre", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdEnteUniversitario() {
 		return idEnteUniversitario;
 	}
@@ -136,7 +136,7 @@ public class EnteUniversitario {
 	 * @return El valor de descripcionEnteUniversitario
 	 */
 	@Length(max=300)
-	@Column(name = "descripcion_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
+	@Column(name = "descripcion_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(200)")
 	public String getDescripcionEnteUniversitario() {
 		return descripcionEnteUniversitario;
 	}

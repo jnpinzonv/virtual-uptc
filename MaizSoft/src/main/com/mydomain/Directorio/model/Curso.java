@@ -35,7 +35,7 @@ import org.jboss.seam.annotations.Name;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
+@Entity(name="curso")
 @Table(name="curso")
 @Name("curso")
 @NamedQuery(name="cursosPorEscuela",query="select c from Curso c where c.enteUniversitario.idEnteUniversitario=:parametro")

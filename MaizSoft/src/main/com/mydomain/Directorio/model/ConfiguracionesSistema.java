@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.jboss.seam.annotations.Name;
+
 
 /**Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, 
 * en esta clase con lo referente a la configuración del sistema, se comunica con la base de datos
@@ -21,8 +23,9 @@ import javax.persistence.Table;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
+@Entity(name="configuraciones_sistema")
 @Table(name="configuraciones_sistema")
+@Name("configuraciones_sistema")
 public class ConfiguracionesSistema {
 	
 	/**
@@ -50,6 +53,7 @@ public class ConfiguracionesSistema {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "id_propiedad", unique = true, nullable = false, insertable = true, updatable = true)
 	public Long getId() {
 		return id;
 	}
@@ -66,7 +70,7 @@ public class ConfiguracionesSistema {
 	 * Se obtiene el valor de nombrePropiedad
 	 * @return El valor de nombrePropiedad
 	 */
-	@Column(name = "tipo", unique = true, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name = "nombre_propiedad", unique = true, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
 	public String getNombrePropiedad() {
 		return nombrePropiedad;
 	}
@@ -83,7 +87,7 @@ public class ConfiguracionesSistema {
 	 * Se obtiene el valor de detallesPropiedad
 	 * @return El valor de detallesPropiedad
 	 */
-	@Column(name = "tipo", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(50)")
+	@Column(name = "detalles_propiedad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(200)")
 	public String getDetallesPropiedad() {
 		return detallesPropiedad;
 	}
@@ -95,10 +99,4 @@ public class ConfiguracionesSistema {
 	public void setDetallesPropiedad(String detallesPropiedad) {
 		this.detallesPropiedad = detallesPropiedad;
 	}
-
-	
-	
-	
-	
-
 }

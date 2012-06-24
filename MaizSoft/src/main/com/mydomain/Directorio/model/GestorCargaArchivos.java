@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
+import org.jboss.seam.annotations.Name;
 
 
 /**
@@ -33,8 +34,9 @@ import org.hibernate.validator.NotNull;
 * Universidad Pedagogica y Tecnologica de Colombia
 * @version 23/06/2012 
 */
-@Entity
+@Entity(name="gestor_carga_archivos")
 @Table(name="gestor_carga_archivos")
+@Name("gestor_carga_archivos")
 public class GestorCargaArchivos {
 
 	/**
@@ -73,9 +75,7 @@ public class GestorCargaArchivos {
 	 * Se instancia de la clase Tipo
 	 */
 	private Tipo tipo;
-	
-	
-	
+		
 	
 	/**
 	 * Se obtiene el valor de idGestorCargaArchivos
@@ -83,7 +83,7 @@ public class GestorCargaArchivos {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id_gestor_carga_archivos", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name = "id_gestor_carga_archivos", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdGestorCargaArchivos() {
 		return idGestorCargaArchivos;
 	}
@@ -138,7 +138,7 @@ public class GestorCargaArchivos {
 	 * @return El valor de descripcion
 	 */
 	@Length(max=300)
-	@Column(name = "descripcion_archivo", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
+	@Column(name = "descripcion_archivo", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(200)")
 	public String getDescripcion() {
 		return descripcion;
 	}

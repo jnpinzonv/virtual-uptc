@@ -449,17 +449,12 @@ public class Usuario {
 	 */
 	@OneToMany(mappedBy="usuarios",cascade=CascadeType.ALL)
 	@JoinTable(name = "id_cuentas_usuario", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
-	public Set<CuentasUsuario> getCuentasUsuario() {		if(cuentasUsuario==null){
+	public Set<CuentasUsuario> getCuentasUsuario() {		
+		if(cuentasUsuario==null){
+	}
 		return new HashSet<CuentasUsuario>();
 	}
-	@OneToMany(mappedBy = "usuarios", cascade = CascadeType.ALL)
-	public Set<CuentasUsuario> getCuentasUsuario() {
-		if (cuentasUsuario == null) {
-			return new HashSet<CuentasUsuario>();
-		}
-		return cuentasUsuario;
-	}
-
+	
 	/**
 	 * Asigna el valor de cuentasUsuario
 	 * 

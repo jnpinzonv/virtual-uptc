@@ -102,7 +102,7 @@ public class UserAccount implements Serializable {
 
 	@NotNull
 	@UserPrincipal
-	@Column(name = "username", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
+	@Column(name = "username", unique = true, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getUsername() {
 		return username;
 	}

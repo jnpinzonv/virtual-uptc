@@ -19,10 +19,10 @@ import org.jboss.seam.annotations.security.management.RoleGroups;
 import org.jboss.seam.annotations.security.management.RoleName;
 
 /**
-* Descripcion: Esta Clase se encarga de almacenar información referente
+* Descripcion: Esta Clase se encarga de almacenar informaciï¿½n referente
 * a los roles de los usuarios.
 * Modulo de Desarrollo :CU- ...
- * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+ * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -83,7 +83,7 @@ public class UserRole implements Serializable {
 	 */
 	@RoleName
 	@NotNull
-	@Column(name = "name", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
+	@Column(name = "name", unique = true, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getName() {
 		return name;
 	}

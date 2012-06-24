@@ -201,7 +201,7 @@ public class Usuario {
 	 */
 	@Length(max = 50)
 	@Pattern(regex = "^\\w*$")
-	@Column(name = "segundo_nombre", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
+	@Column(name = "segundo_nombre", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getSegundoNombre() {
 		return segundoNombre;
 	}
@@ -247,7 +247,7 @@ public class Usuario {
 	@NotNull
 	@Email
 	@Length(max = 60)
-	@Column(name = "correo_electronico", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(60)")
+	@Column(name = "correo_electronico", unique = true, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(60)")
 	public String getCorreoElectronico() {
 		return correoElectronico;
 	}
@@ -311,7 +311,7 @@ public class Usuario {
 	 * @return El valor de documentoIdentidad
 	 */
 	@NotNull
-	@Column(name = "documento_identidad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(15)")
+	@Column(name = "documento_identidad", unique = true, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(15)")
 	public Long getDocumentoIdentidad() {
 		return documentoIdentidad;
 	}
@@ -332,7 +332,7 @@ public class Usuario {
 	 * @return El valor de codigoUsuarios
 	 */
 	@NotEmpty
-	@Column(name = "codigo_usuarios", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(15)")
+	@Column(name = "codigo_usuarios", unique = true, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(15)")
 	public String getCodigoUsuarios() {
 		return codigoUsuarios;
 	}

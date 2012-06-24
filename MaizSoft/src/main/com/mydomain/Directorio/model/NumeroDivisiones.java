@@ -14,7 +14,7 @@ import com.sun.istack.internal.NotNull;
 
 /**
 * Descripcion: Esta Clase se encarga de almacenar informaciï¿½n relacionada
-* con la divisiï¿½n de los grupos.
+* con la división de los grupos.
 * Modulo de Desarrollo :CU- ...
  * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com

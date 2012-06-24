@@ -4,6 +4,7 @@
 package com.mydomain.Directorio.model;
 
 import java.util.HashSet;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,96 +21,138 @@ import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
 
 /**
- * @author Nicolas
- *
- */
+* Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, se comunica con la base de datos
+* Modulo de Desarrollo :CU- ...
+* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
+* Grupo de Investigacion Ingenieria Software (GIS)
+* Semillero de Investigacion Moviles Sabatt (SIMS)
+* Universidad Pedagogica y Tecnologica de Colombia
+* @version 23/06/2012 
+*/
 @Entity
 @Table(name="actividad")
 public class Actividad {
 	
+	/**
+	 * Variable que se encarga de crear un identificador de una actividad,
+	 * se designa con un tipo de dato Long 
+	 */
 	private Long idActividad;
 	
+	/**
+	 * Variable que se encarga de crear un campo en la base de datos para el 
+	 * manejo de descripción de la actividad, se designa con tipo de dato String
+	 */
 	private String descripcionActividad;
 	
+	/**
+	 * Variable que se encarga de informar el estado de evaluación de la acividad,
+	 * como se manejan estados se designa bajo el tipo de dato boolean
+	 */
 	private boolean evaluable;
 	
+	/**
+	 * Variable que se encarga de manejar una lista que almacena las notas de las 
+	 * actividades que se encuentran en la base de datos.
+	 * Se instancia de la clase NotaActividad
+	 */
 	private Set<NotaActividad> listaNotaActividades;
 	
+	/**
+	 * Varible que se encarga de almacenar el tipo de actividad que se esta trabajando
+	 * Instancia de la clase Tipo
+	 */
 	private Tipo tipo;
 	
+	/**
+	 * Variable que se encarga de almacenar una lista de gestor de anuncios
+	 * Se instancia de la clase GestorAnuncios
+	 */
 	private Set<GestorAnuncios> gestorAnuncios;
 	
 	private Set<NumeroDivisiones> numeroDivisiones;
 	
 	/**
-	 * @return the tipo
-	 */
-	/**
-	 * @return
+	 * Se obtiene el valor de tipo
+	 * @return El valor de tipo
 	 */
 	@NotNull
 	@ManyToOne
+	@Column(name = "tipo", unique = false, nullable = false, insertable = true, updatable = true)
 	public Tipo getTipo() {
 		return tipo;
 	}
 
 	/**
-	 * @param tipo the tipo to set
+	 * Asigna el valor de tipo
+	 * @param tipo El valor por establecer para tipo
 	 */
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
-
+	
 	/**
-	 * @return the idActividad
+	 * Se obtiene el valor de idActividad
+	 * @return El valor de idActividad
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "id_Actividad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
 	public Long getIdActividad() {
 		return idActividad;
 	}
 
 	/**
-	 * @param idActividad the idActividad to set
+	 * Asigna el valor de idActividad
+	 * @param idActividad El valor por establecer para idActividad
 	 */
 	public void setIdActividad(Long idActividad) {
 		this.idActividad = idActividad;
 	}
 
+	
 	/**
-	 * @return the descripcionActividad
+	 * Se obtiene el valor de descripcionActividad
+	 * @return El valor de descripcionActividad
 	 */
-	@Column(name="descripcion_actividad")
 	@Length(max=300)
+	@Column(name = "descripcion_actividad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(50)")
 	public String getDescripcionActividad() {
 		return descripcionActividad;
 	}
 
 	/**
-	 * @param descripcionActividad the descripcionActividad to set
+	 * Asigna el valor de descripcionActividad
+	 * @param descripcionActividad El valor por establecer para descripcionActividad
 	 */
 	public void setDescripcionActividad(String descripcionActividad) {
 		this.descripcionActividad = descripcionActividad;
 	}
 
 	/**
-	 * @return the evaluable
+	 * Se obtiene el valor de evaluable
+	 * @return El valor de evaluable
 	 */
-	@Column(name="evaluable")
+	@Column(name = "evaluable", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "bit(1)")
 	public boolean isEvaluable() {
 		return evaluable;
 	}
 
 	/**
-	 * @param evaluable the evaluable to set
+	 * Asigna el valor de evaluable
+	 * @param evaluable El valor por establecer para evaluable
 	 */
 	public void setEvaluable(boolean evaluable) {
 		this.evaluable = evaluable;
 	}
 
+	
 	/**
-	 * @return the listaNotaActividades
+	 * Se obtiene el valor de listaNotaActividades
+	 * @return El valor de listaNotaActividades
 	 */
+	
 	@OneToMany(mappedBy="actividad", cascade=CascadeType.ALL)
 	public Set<NotaActividad> getListaNotaActividades() {
 		if(listaNotaActividades==null){
@@ -119,14 +162,16 @@ public class Actividad {
 	}
 
 	/**
-	 * @param listaNotaActividades the listaNotaActividades to set
+	 * Asigna el valor de listaNotaActividades
+	 * @param listaNotaActividades El valor por establecer para listaNotaActividades
 	 */
 	public void setListaNotaActividades(Set<NotaActividad> listaNotaActividades) {
 		this.listaNotaActividades = listaNotaActividades;
 	}
 
 	/**
-	 * @return the gestorAnuncios
+	 * Se obtiene el valor de gestorAnuncios
+	 * @return El valor de gestorAnuncios
 	 */
 	@OneToMany(mappedBy="actividad",cascade=CascadeType.ALL)
 	public Set<GestorAnuncios> getGestorAnuncios() {
@@ -137,7 +182,8 @@ public class Actividad {
 	}
 
 	/**
-	 * @param gestorAnuncios the gestorAnuncios to set
+	 * Asigna el valor de gestorAnuncios
+	 * @param gestorAnuncios El valor por establecer para gestorAnuncios
 	 */
 	public void setGestorAnuncios(Set<GestorAnuncios> gestorAnuncios) {
 		this.gestorAnuncios = gestorAnuncios;
@@ -157,4 +203,5 @@ public class Actividad {
 	public void setNumeroDivisiones(Set<NumeroDivisiones> numeroDivisiones) {
 		this.numeroDivisiones = numeroDivisiones;
 	}
+
 }

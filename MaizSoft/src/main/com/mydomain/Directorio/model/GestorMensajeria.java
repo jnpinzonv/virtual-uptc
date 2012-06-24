@@ -116,7 +116,7 @@ public class GestorMensajeria {
 	 */
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "de_usuario", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_de_usuario", unique = false, nullable = false, insertable = true, updatable = true)
 	public Usuario getDeUsuario() {
 		return deUsuario;
 	}
@@ -190,7 +190,7 @@ public class GestorMensajeria {
 	 */
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "tipo", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_tipo", unique = false, nullable = false, insertable = true, updatable = true)
 	public Tipo getTipo() {
 		return tipo;
 	}
@@ -225,7 +225,7 @@ public class GestorMensajeria {
 	 * @return El valor de gestorMensajeria
 	 */
 	@ManyToOne
-	@JoinColumn(name = "gestor_mensajería", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_gestor_mensajería", unique = false, nullable = false, insertable = true, updatable = true)
 	public GestorMensajeria getGestorMensajeria() {
 		return gestorMensajeria;
 	}

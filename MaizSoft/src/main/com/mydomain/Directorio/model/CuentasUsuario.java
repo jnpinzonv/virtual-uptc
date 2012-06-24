@@ -81,7 +81,7 @@ public class CuentasUsuario {
 	 */
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "usser_account", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_usser_account", unique = false, nullable = false, insertable = true, updatable = true)
 	public UserAccount getUserAccounts() {
 		return userAccounts;
 	}
@@ -100,7 +100,7 @@ public class CuentasUsuario {
 	 */
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "tipo", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_tipo", unique = false, nullable = false, insertable = true, updatable = true)
 	public Usuario getUsuarios() {
 		return usuarios;
 	}
@@ -118,7 +118,7 @@ public class CuentasUsuario {
 	 * @return El valor de grupoUsuarios
 	 */
 	@OneToOne
-	@JoinColumn(name = "grupo_usuarios", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_grupo_usuarios", unique = false, nullable = false, insertable = true, updatable = true)
 	public GrupoUsuarios getGrupoUsuarios() {
 		return grupoUsuarios;
 	}

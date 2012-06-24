@@ -154,7 +154,7 @@ public class EnteUniversitario {
 	 * @return El valor de enteUniversitario
 	 */
 	@ManyToOne
-	@JoinColumn(name = "ente_universitario", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true)
 	public EnteUniversitario getEnteUniversitario() {
 		return enteUniversitario;
 	}
@@ -208,7 +208,7 @@ public class EnteUniversitario {
 	 */
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "tipo_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_tipo_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true)
 	public Tipo getTipoEnteUniversitario() {
 		return tipoEnteUniversitario;
 	}

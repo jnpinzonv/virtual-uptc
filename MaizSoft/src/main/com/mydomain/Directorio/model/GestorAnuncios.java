@@ -119,7 +119,7 @@ public class GestorAnuncios {
 	 */
 	@ManyToOne
 	@NotNull
-	@JoinColumn(name = "actividad", unique = false, nullable = false, insertable = true, updatable = true)
+	@JoinColumn(name = "id_actividad", unique = false, nullable = false, insertable = true, updatable = true)
 	public Actividad getActividad() {
 		return actividad;
 	}

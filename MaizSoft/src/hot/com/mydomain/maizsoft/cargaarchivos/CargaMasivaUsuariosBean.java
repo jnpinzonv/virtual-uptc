@@ -123,11 +123,14 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 
 		try {
 			saveUsuarios();
-			
+			preCargaUsuarios.setUserActions(null);
+			preCargaUsuarios.setUsuarios(null);
 		} catch (Exception e) {
 			
 			 log.info("Error " + e.getMessage() + " " + e.getCause()+ " NO ingreso por el Link de Carga");
 				statusMessages.add("NO ingreso por el Link de Carga");
+				preCargaUsuarios.setUserActions(null);
+				preCargaUsuarios.setUsuarios(null);
 		}
 
 	}
@@ -157,9 +160,12 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 			entityManager.persist(nuevoCuenta);
 			
 		} catch (IdentityManagementException e) {
-			log.info("Error " + e.getMessage() + " " + e.getCause()+ "Dato Duplicado");
-			statusMessages.add("Dato Duplicado");
+			log.info("Error " + e.getMessage() + " " + e.getCause()+ " Dato Duplicado "+ "Usuario # "+ i+1);
+			statusMessages.add("Dato Duplicado "+ "Usuario # "+ (i+1));
+			preCargaUsuarios.setUserActions(null);
+			preCargaUsuarios.setUsuarios(null);
 			break;
+			
 		}
 		}
 		

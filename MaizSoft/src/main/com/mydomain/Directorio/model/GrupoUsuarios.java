@@ -114,7 +114,6 @@ public class GrupoUsuarios {
 	 * Se obtiene el valor de grupoCurso
 	 * @return El valor de grupoCurso
 	 */
-	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "id_grupo_curso", unique = false, nullable = false, insertable = true, updatable = true)
 	public GrupoCurso getGrupoCurso() {
@@ -161,7 +160,7 @@ public class GrupoUsuarios {
 	 * Se obtiene el valor de userRole
 	 * @return El valor de userRole
 	 */
-	@NotNull
+
 	@OneToOne(mappedBy="grupoUsuarios")
 	@JoinColumn(name = "id_cuenta_usuario", unique = false, nullable = false, insertable = true, updatable = true)
 	public CuentasUsuario getUserRole() {

@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -31,7 +32,12 @@ import org.jboss.seam.annotations.Name;
 @Entity(name="CuentasUsuario")
 @Table(name="cuentas_usuario")
 @Name("cuentasUsuario")
-@NamedQuery(name = "buscarCuentaPorUsername", query = "select s from CuentasUsuario s where s.userAccounts.username=:parametro")
+@NamedQueries({
+	@NamedQuery(name = "buscarCuentaPorUsername", query = "select s from CuentasUsuario s where s.userAccounts.username=:parametro"),
+	@NamedQuery(name = "buscarCuentaPorUsuario", query = "select s from CuentasUsuario s where s.usuarios.documentoIdentidad=:parametro")
+
+})
+
 public class CuentasUsuario {
 	
 	/**

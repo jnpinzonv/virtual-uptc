@@ -12,9 +12,10 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.faces.FacesMessages;
 import org.jboss.seam.security.management.PasswordHash;
-import org.jboss.seam.security.management.action.UserAction;
 
 import com.mydomain.Directorio.model.EnteUniversitario;
+import com.mydomain.Directorio.model.GrupoCurso;
+import com.mydomain.Directorio.model.GrupoUsuarios;
 import com.mydomain.Directorio.model.Tipo;
 import com.mydomain.Directorio.model.UserAccount;
 import com.mydomain.Directorio.model.Usuario;
@@ -111,18 +112,17 @@ public class Taller2 implements Taller {
 		 entityManager.persist(enteUniversitario);
 		 */
 
-		//		GrupoUsuarios grupoUsuarios = new GrupoUsuarios();
-		//		grupoUsuarios.setUserGrupoCurso(entityManager.find(UserAccount.class,
-		//				1l));
-		//		grupoUsuarios.setGrupoCurso(entityManager.find(GrupoCurso.class, 1l));
-		//
-		//		entityManager.persist(grupoUsuarios);
+				GrupoUsuarios grupoUsuarios = new GrupoUsuarios();
+				grupoUsuarios.setUserGrupoCurso(entityManager.find(Usuario.class,
+						1l));
+				grupoUsuarios.setGrupoCurso(entityManager.find(GrupoCurso.class, 1l));		
+				entityManager.persist(grupoUsuarios);
 		//		grupoUsuarios = new GrupoUsuarios();
 		//		grupoUsuarios.setUserGrupoCurso(entityManager.find(UserAccount.class,
 		//				2l));
 		//		grupoUsuarios.setGrupoCurso(entityManager.find(GrupoCurso.class, 1l));
 		//System.out.println(userAction.getUsername()+"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-		Usuario userA = new Usuario();
+		/*Usuario userA = new Usuario();
 		userA.setPrimerNombre("primerNombre");
 		userA.setCorreoElectronico("correoElectronico@hotmail.co");
 		userA.setDocumentoIdentidad(1l);
@@ -133,10 +133,10 @@ public class Taller2 implements Taller {
 		 userA.setConfirm("1");
 		 userA.setUsername("nicolas1");*/
 		//userA.setRoles(userAction.getRoles());
-		userA.setEnteUniversitarios(entityManager.find(EnteUniversitario.class,
+/*		userA.setEnteUniversitarios(entityManager.find(EnteUniversitario.class,
 				1L));
 		userA.setTipo(entityManager.find(Tipo.class, 3L));
-		//entityManager.persist(userA);
+*/		//entityManager.persist(userA);
 
 		/* entityManager.merge(user);
 		 entityManager.merge(user);	*/
@@ -144,7 +144,7 @@ public class Taller2 implements Taller {
 		/*userA.createUser();
 		 userA.save();*/
 		//entityManager.flush();
-		PasswordHash nuevo = (PasswordHash) Component
+/*		PasswordHash nuevo = (PasswordHash) Component
 				.getInstance(PasswordHash.class);
 		facesMessages.add(nuevo.generateHash(""));
 		
@@ -156,7 +156,7 @@ public class Taller2 implements Taller {
 			facesMessages.add(listaTiposEnteUniversitarios.get(0).getNombreEnteUniversitario());
 		}
 	
-
+*/
 	}
 
 	public void eliminarResgistro() {

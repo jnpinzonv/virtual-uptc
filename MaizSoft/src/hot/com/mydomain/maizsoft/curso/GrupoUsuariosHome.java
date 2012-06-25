@@ -196,7 +196,8 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 		 List<Usuario> someObjects = listaUsuariosEscuela;
 	      List<SelectItem> sItems = new ArrayList<SelectItem>(); 
 	      for(Usuario sObj : someObjects){
-	          SelectItem sItem = new SelectItem(sObj, sObj.getApellidos());
+	    	  String var=sObj.getCodigoUsuarios()+ "   "+ sObj.getPrimerNombre() +" "+sObj.getApellidos();
+	          SelectItem sItem = new SelectItem(sObj, var);
 	          sItems.add(sItem);
 	         
 	      }
@@ -209,8 +210,18 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 	
 	public void saveMatricula(){
 		List<Usuario> someObjects=instance.getUsuarios();
-		 for(Usuario sObj : someObjects){
-			System.out.println(sObj.getCodigoUsuarios());
+		GrupoCurso gr=instance.getGrupoCurso();
+		 for(Usuario sObj : someObjects){		
+			 GrupoUsuarios nuevo= new GrupoUsuarios();
+			 nuevo.setUserGrupoCurso(sObj);
+			nuevo.setGrupoCurso(gr);
+			Query q=getEntityManager().createNamedQuery("buscarCuentaPorUsuario");
+			q.setParameter("parametro", sObj.getDocumentoIdentidad());
+			 CuentasUsuario nueva=(CuentasUsuario)q.getSingleResult();
+			 nueva.setGrupoUsuarios(nuevo);
+
+			getEntityManager().persist(nuevo);
+			getEntityManager().persist(nueva);
 		}
 	}
 

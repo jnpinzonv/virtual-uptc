@@ -29,13 +29,14 @@
 
 
 				<f:facet name="header">#{grupoUsuariosHome.managed}Matricula a Curso</f:facet>
-				<s:conversationPropagation>
+				
 					<h:outputText value="Seleccione EnteUnivesitario Padre:" />
 					<h:selectOneMenu
 						value="#{grupoUsuariosHome.instance.enteUniversitarioPadre}"
 						id="sobrenombres" rendered="true">
 						<s:selectItems value="#{listaEnteUniversitariosFacultades}"
-							var="lista" label="#{lista.nombreEnteUniversitario}" />
+							var="lista" label="#{lista.nombreEnteUniversitario}"
+							noSelectionLabel="Seleccione ..."  />
 						<a4j:support event="onchange" reRender="dos" ajaxSingle="true" />
 						<s:convertEntity />
 
@@ -88,7 +89,7 @@
 						</h:panelGrid>
 
 					</a4j:outputPanel>
-				</s:conversationPropagation>
+				
 			</rich:panel>
 
 

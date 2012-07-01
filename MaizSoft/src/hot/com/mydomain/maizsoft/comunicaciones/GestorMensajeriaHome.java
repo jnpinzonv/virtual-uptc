@@ -1,14 +1,25 @@
 package com.mydomain.maizsoft.comunicaciones;
 
-import com.mydomain.Directorio.model.*;
-import com.mydomain.maizsoft.tipos.TipoHome;
-import com.mydomain.maizsoft.usuarios.UsuarioHome;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+import javax.persistence.Query;
+
+import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
+
+import com.mydomain.Directorio.model.GestorMensajeria;
+import com.mydomain.Directorio.model.GrupoUsuarios;
+import com.mydomain.Directorio.model.NotaActividad;
+import com.mydomain.Directorio.model.Tipo;
+import com.mydomain.Directorio.model.Usuario;
+import com.mydomain.maizsoft.curso.GrupoCursoHome;
+import com.mydomain.maizsoft.tipos.TipoHome;
+import com.mydomain.maizsoft.usuarios.UsuarioHome;
 
 @Name("gestorMensajeriaHome")
 public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
@@ -19,6 +30,13 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 	GestorMensajeriaHome gestorMensajeriaHome;
 	@In(create = true)
 	TipoHome tipoHome;
+	
+	@In(create=true)
+	GrupoCursoHome grupoCursoHome;
+	
+	
+	FacesContext facesContext;
+
 
 	public void setGestorMensajeriaIdMensaje(Long id) {
 		setId(id);
@@ -71,6 +89,34 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 	public List<NotaActividad> getNotaActividad() {
 		return getInstance() == null ? null : new ArrayList<NotaActividad>(
 				getInstance().getNotaActividad());
+	}
+	
+	@Factory("listaUsuarioCursos")
+	public List<SelectItem> listaUsuariosCurso(){
+		
+		
+		Query q = getEntityManager()
+				.createNamedQuery("usuarioPorGrupo");
+		
+		q.setParameter("parametro", grupoCursoHome.getInstance().getIdGrupo());
+		List<GrupoUsuarios> listaEntesUniversitarios = (List<GrupoUsuarios>)q.getResultList();
+		
+		
+		 
+		 List<SelectItem> sItems = new ArrayList<SelectItem>(); 
+	      for(GrupoUsuarios sObj : listaEntesUniversitarios){
+	    	  Usuario nuevo=sObj.getUserGrupoCurso();
+	    	  String var=nuevo.getPrimerNombre() +" "+nuevo.getApellidos();
+	          SelectItem sItem = new SelectItem(sObj, var);
+	          sItems.add(sItem);
+	         
+	      }
+		return sItems;
+	}
+	
+	
+	public String retornar(){
+		return "/GestorMensajeriaEdit.seam";
 	}
 
 }

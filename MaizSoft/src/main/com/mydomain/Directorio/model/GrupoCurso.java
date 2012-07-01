@@ -38,7 +38,10 @@ import org.jboss.seam.annotations.Name;
 @Entity(name="GrupoCurso")
 @Table(name= "grupo_curso")
 @Name("grupoCurso")
-@NamedQueries({ @NamedQuery(name="gruposPorCurso",query="select g from GrupoCurso g where g.cursoGrupo.codigo=:parametro")})
+@NamedQueries({ @NamedQuery(name="gruposPorCurso",query="select g from GrupoCurso g where g.cursoGrupo.codigo=:parametro")
+	 })
+
+
 public class GrupoCurso {
 
 	/**

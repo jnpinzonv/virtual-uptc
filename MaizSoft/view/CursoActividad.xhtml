@@ -68,10 +68,14 @@ function activaTab(unTab) {
 			<h:outputLabel value="Seleccione la cantidad de Semanas del Curso" />
 			<h:selectOneMenu
 					value="#{grupoCursoHome.instance.numeroTotal}"
-					id="num" required="true" rendered="true">
+					id="num" rendered="true">
 					<s:selectItems value="#{listaSemanaMaxima}" var="lista"
 						label="#{lista}" />
 				</h:selectOneMenu>
+			<h:commandButton value="Aceptar" />	
+			
+			<br/>	
+				
 			<h:outputLabel
 				value="Seleccione la semana del curso que desea modificar" />
 			<h:selectOneMenu >
@@ -114,13 +118,16 @@ function activaTab(unTab) {
 
 					</tr>
 					<tr class="filadiv">
-						<td colspan="6"
+						<td colspan="8"
 							style="padding: 0.4em; text-align: left; vertical-align: top;">
 							<div class="tabdiv" id="tabdiv-1"
-								style="background-color: rgb(235, 235, 225); display: none;">
+								style="background-color: rgb(235, 235, 225);display: none">
 								Contenido de la <b class="rojo">Primera pestaña</b>
 								<div align="right">
-									<h:commandButton  value="Crear" />
+									<h:form>
+									<h:commandButton  value="Crear" action="/ActividadEdit.seam"/>
+									<br/>
+									</h:form>
 								</div>	
 								<h:form>
 									<rich:panel>
@@ -191,6 +198,63 @@ function activaTab(unTab) {
 							<div class="tabdiv" id="tabdiv-6"
 								style="background-color: rgb(235, 235, 225); display: none;">
 								El último contenido de la <b class="azul">Pestaña 3</b>
+								
+								<div align="right">
+									<h:form>
+									<h:commandButton  value="Crear" action="/ActividadEdit.seam"/>
+									<br/>
+									</h:form>
+								</div>	
+								<h:form>
+									<rich:panel>
+										<rich:dataTable id="actividadList"
+											var="_actividadList"
+											rendered="#{not empty actividadList.resultList}"
+											value="#{actividadList}" rows="10"
+											width="675px">
+											<h:column>
+												<f:facet name="header">
+													<ui:include src="layout/sort.xhtml">
+														<ui:param name="entityList"
+															value="#{actividadList}" />
+														<ui:param name="propertyLabel" value="Id" />
+														<ui:param name="propertyPath"
+															value="#{actividadList.actividad.tipo.nombre}" />
+													</ui:include>
+												</f:facet>
+												<h:outputText
+													value="#{_actividadList.actividad.tipo.nombre}" />
+											</h:column>
+											<h:column width="220px">
+												<f:facet name="header">
+													<ui:include src="layout/sort.xhtml">
+														<ui:param name="entityList"
+															value="#{actividadList}" />
+														<ui:param name="propertyLabel" value="Nombre" />
+														<ui:param name="propertyPath"
+															value="#{actividadList.actividad.descripcionActividad}" />
+													</ui:include>
+												</f:facet>
+												<h:outputText
+													value="#{_actividadList.actividad.descripcionActividad}" />
+											</h:column>
+											<h:column width="250px">
+												<f:facet name="header">
+													<ui:include src="layout/sort.xhtml">
+														<ui:param name="entityList"
+															value="#{actividadList}" />
+														<ui:param name="propertyLabel" value="Descripción" />
+														<ui:param name="propertyPath"
+															value="#{actividadList.actividad.evaluable}" />
+													</ui:include>
+												</f:facet>
+												<h:outputText
+													value="#{_actividadList.actividad.evaluable}" />
+											</h:column>
+											</rich:dataTable>
+									</rich:panel>
+								</h:form>
+								
 							</div>
 							<div class="tabdiv" id="tabdiv-7"
 								style="background-color: rgb(235, 235, 225); display: none;">

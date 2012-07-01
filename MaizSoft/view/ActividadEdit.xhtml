@@ -20,16 +20,27 @@
 
         <rich:panel>
             <f:facet name="header">#{actividadHome.managed ? 'Editar' : 'Adicionar'} Actividad</f:facet>
-
+			
+			<h:selectOneMenu
+					value="#{actividadHome.instance.tipo}"
+					id="sobrenombre" required="true" rendered="true">
+					<s:selectItems value="#{listaTiposActividades}" var="lista"
+						label="#{lista.nombre}" noSelectionLabel="SELECCIONE..."/>
+					<a4j:support event="onchange" reRender="dos" />
+					<s:convertEntity />
+				</h:selectOneMenu>
+				
+				<br/><br/>
+			
             <s:decorate id="descripcionActividadField" template="layout/edit.xhtml" style="position:absolute;">
                 <ui:define name="label">Descripcion actividad</ui:define>
                 <h:inputTextarea id="descripcionActividad"
-                               cols="80"
-                               rows="3"
+                               cols="60"
+                               rows="5"
                               value="#{actividadHome.instance.descripcionActividad}"/>
             </s:decorate>
 
-			<br/><br />
+			<br/><br /><br/><br /><br/><br />
 			
 			
             <s:decorate id="evaluableField" template="layout/edit.xhtml" style="position:absolute;">
@@ -38,16 +49,9 @@
                                       value="#{actividadHome.instance.evaluable}"/>
             </s:decorate>
 
-			<br /> <br />
-
-			<h:selectOneMenu
-					value="#{actividadHome.instance.tipo}"
-					id="sobrenombre" required="true" rendered="true">
-					<s:selectItems value="#{listaTiposActividades}" var="lista"
-						label="#{lista.nombre}" noSelectionLabel="SELECCIONE..." />
-					<a4j:support event="onchange" reRender="dos" />
-					<s:convertEntity />
-				</h:selectOneMenu>
+			<br /><br />		
+				
+				
             <div style="clear:both">
                 <span class="required">*</span>
                 Campos Obligatorios

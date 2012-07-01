@@ -78,9 +78,9 @@
 					<div align="center">
 
 						<rich:datascroller align="left" for="usuarioList" 
-							page="#{usuarioList.pageCount}" reRender="sc2" id="sc1" />
+							page="#{usuarioList.pageCount}" reRender="sc2" id="sc1" maxPages="50"/>
 						<rich:dataTable id="usuarioList" var="_usuario"
-							value="#{usuarioList.resultList}" rows="10" width="700px"
+							value="#{usuarioList.resultList}" rows="15" width="700px"
 							>
 							<h:column width="100px">
 								<f:facet name="header">
@@ -159,7 +159,7 @@
 							</rich:column>
 						</rich:dataTable>
 						<rich:datascroller align="left" for="usuarioList"
-							page="#{usuarioList.pageCount}" id="sc2" reRender="sc1" />
+							page="#{usuarioList.pageCount}" id="sc2" reRender="sc1" maxPages="50"/>
 					</div>
 				</div>
 			</rich:panel>

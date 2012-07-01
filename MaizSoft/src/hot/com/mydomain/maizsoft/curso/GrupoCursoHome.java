@@ -1,13 +1,23 @@
 package com.mydomain.maizsoft.curso;
 
-import com.mydomain.Directorio.model.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.faces.context.FacesContext;
+import javax.persistence.Query;
 
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.datamodel.DataModel;
+import org.jboss.seam.annotations.datamodel.DataModelSelection;
 import org.jboss.seam.framework.EntityHome;
+
+import com.mydomain.Directorio.model.Curso;
+import com.mydomain.Directorio.model.GestorEnlacesExternos;
+import com.mydomain.Directorio.model.GrupoCurso;
+import com.mydomain.Directorio.model.GrupoUsuarios;
+import com.mydomain.Directorio.model.HistorialNotas;
 
 @Name("grupoCursoHome")
 public class GrupoCursoHome extends EntityHome<GrupoCurso> {
@@ -16,6 +26,15 @@ public class GrupoCursoHome extends EntityHome<GrupoCurso> {
 	
 	@In(create = true)
 	CursoHome cursoHome;
+	
+	@DataModel
+	List<GrupoCurso> listaGrupos;
+	
+	FacesContext facesContext;
+	
+	
+	@DataModelSelection
+	GrupoCurso seleccionado;
 
 	public void setGrupoCursoIdGrupo(Long id) {
 		setId(id);
@@ -79,6 +98,39 @@ public class GrupoCursoHome extends EntityHome<GrupoCurso> {
 		}
 		
 		return maximo;
+	}
+
+	@Factory("gruposTotalCurso")
+	public List<GrupoCurso> listaCursos(){
+		Query q = getEntityManager().createNamedQuery("gruposTotalCurso");
+		listaGrupos=q.getResultList();
+		return listaGrupos;
+	}
+	/**
+	 * Se obtiene el valor de seleccionado
+	 * @return El valor de seleccionado
+	 */
+	public GrupoCurso getSeleccionado() {
+		return seleccionado;
+	}
+
+	/**
+	 * Asigna el valor de seleccionado
+	 * @param seleccionado El valor por establecer para seleccionado
+	 */
+	public void setSeleccionado(GrupoCurso seleccionado) {
+		this.seleccionado = seleccionado;
+	}
+	
+	
+	public String selecionado(){
+		instance=seleccionado;
+		seleccionado=null;
+		System.out.println(instance.getIdGrupo()+ "hola mundooooooooooooooooooooo");
+		System.out.println(facesContext.getCurrentInstance().getExternalContext().getRequestMap().get("grupoCursoIdGrupo")+ "holooooooooooooooo");
+
+		return"/CuerpoCurso.xhtml";
+		
 	}
 	
 	

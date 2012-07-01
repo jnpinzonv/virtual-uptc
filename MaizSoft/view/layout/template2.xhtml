@@ -78,10 +78,9 @@
 									<h:outputText id="menuWelcomeId"
 										value="#{credentials.username}"
 										rendered="#{identity.loggedIn}" />
-										
-									<s:link id="menuLogoutId" 
-										action="#{identity.logout}" value="Salir"
-										style="color: white" view="/login.xhtml"/>
+
+									<s:link id="menuLogoutId" action="#{identity.logout}"
+										value="Salir" style="color: white" view="/login.xhtml" />
 								</h:form>
 								<br /> <br />
 								<form name="form_reloj">
@@ -117,9 +116,9 @@
 							style="float: left; background-image: url(images/MenuMiddle2.jpg); padding: 5px; width: 190px;">
 							<rich:panel>
 								<h:form id="form">
-									
-									<img src="css/images/gis.png" style="height: 80px"/>
-									<br/>
+
+									<img src="css/images/gis.png" style="height: 80px" />
+									<br />
 									<h:commandLink value="#{credentials.username}"
 										action="/UserAccountEdit.seam" />
 									<br />
@@ -138,8 +137,8 @@
 											submitMode="none">
 											<rich:panelMenuGroup label="Mensajes" style="color: #FFFFFF;">
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Crear" action="#{gestorMensajeriaHome.retornar()}"
-													
+													<s:link value="Crear"
+														action="#{gestorMensajeriaHome.retornar()}"
 														propagation="end"></s:link>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
@@ -187,8 +186,8 @@
 														propagation="end"></s:link>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Crear Grupo" action="/admin/GrupoCursoEdit.seam"
-														propagation="end"></s:link>
+													<s:link value="Crear Grupo"
+														action="/admin/GrupoCursoEdit.seam" propagation="end"></s:link>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Editar Grupo" action="/GrupoCursoList.seam"
@@ -233,75 +232,78 @@
 													<s:link value="Editar"
 														action="/GestorRepositoriosVirtualesList.seam"
 														propagation="end"></s:link>
-												</rich:panelMenuItem>												
+												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
-											<rich:panelMenuGroup label="Cursos"
-												style="color: #FFFFFF;" rendered="#{s:hasRole('estudiante')}">
-											<rich:panelMenuItem style="color: #045491;" icon="disc">
+											<rich:panelMenuGroup label="Cursos" style="color: #FFFFFF;"
+												rendered="#{s:hasRole('estudiante')}">
+												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Ingresar"
 														action="/GestorRepositoriosVirtualesEdit.seam"
-														propagation="end" ></s:link>
-											</rich:panelMenuItem>
-											<rich:panelMenuItem style="color: #045491;" icon="disc">
+														propagation="end"></s:link>
+												</rich:panelMenuItem>
+												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Consultar"
 														action="/GestorRepositoriosVirtualesEdit.seam"
-														propagation="end" ></s:link>
-											</rich:panelMenuItem>
+														propagation="end"></s:link>
+												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
-											<rich:panelMenuGroup label="Notas"
-												style="color: #FFFFFF;" rendered="#{s:hasRole('estudiante')}">
-											<rich:panelMenuItem style="color: #045491;" icon="disc">
+											<rich:panelMenuGroup label="Notas" style="color: #FFFFFF;"
+												rendered="#{s:hasRole('estudiante')}">
+												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Ver"
 														action="/GestorRepositoriosVirtualesEdit.seam"
-														propagation="end" ></s:link>
-											</rich:panelMenuItem>
+														propagation="end"></s:link>
+												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
-											
+
 											<rich:panelMenuGroup label="Enlaces Externos"
-												style="color: #FFFFFF;" rendered="#{s:hasRole('estudiante')}">
-											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												style="color: #FFFFFF;"
+												rendered="#{s:hasRole('estudiante')}">
+												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Consultar"
 														action="/GestorRepositoriosVirtualesEdit.seam"
-														propagation="end" ></s:link>
-											</rich:panelMenuItem>
+														propagation="end"></s:link>
+												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
-											
-											<rich:panelMenuGroup label="Noticias"
-												style="color: #FFFFFF;" rendered="#{s:hasRole('estudiante')}">
-											<rich:panelMenuItem style="color: #045491;" icon="disc">
+
+											<rich:panelMenuGroup label="Noticias" style="color: #FFFFFF;"
+												rendered="#{s:hasRole('estudiante')}">
+												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Consultar"
-													action="/GestorRepositoriosVirtualesEdit.seam"										propagation="end" ></s:link>
-											</rich:panelMenuItem>
-											</rich:panelMenuGroup>																					
-											<rich:panelMenuGroup label="Cursos"
-												style="color: #FFFFFF;" rendered="#{s:hasRole('docente')}">
-											<rich:panelMenuItem style="color: #045491;" icon="disc">
+														action="/GestorRepositoriosVirtualesEdit.seam"
+														propagation="end"></s:link>
+												</rich:panelMenuItem>
+											</rich:panelMenuGroup>
+											<rich:panelMenuGroup label="Cursos" style="color: #FFFFFF;"
+												rendered="#{s:hasRole('docente')}">
+												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Ingresar"
 														action="/GestorRepositoriosVirtualesEdit.seam"
-														propagation="end" ></s:link>
-											</rich:panelMenuItem>
-											<rich:panelMenuItem style="color: #045491;" icon="disc">
+														propagation="end"></s:link>
+												</rich:panelMenuItem>
+												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Consultar"
 														action="/GestorRepositoriosVirtualesEdit.seam"
-														propagation="end" ></s:link>
-											</rich:panelMenuItem>
+														propagation="end"></s:link>
+												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
-																					
+
 											<rich:panelMenuGroup label="Enlaces Externos"
 												style="color: #FFFFFF;" rendered="#{s:hasRole('docente')}">
-											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Consultar"
 														action="/GestorRepositoriosVirtualesEdit.seam"
-														propagation="end" ></s:link>
-											</rich:panelMenuItem>
+														propagation="end"></s:link>
+												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
-											
-											<rich:panelMenuGroup label="Noticias"
-												style="color: #FFFFFF;" rendered="#{s:hasRole('docente')}">
-											<rich:panelMenuItem style="color: #045491;" icon="disc">
+
+											<rich:panelMenuGroup label="Noticias" style="color: #FFFFFF;"
+												rendered="#{s:hasRole('docente')}">
+												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Consultar"
-													action="/GestorRepositoriosVirtualesEdit.seam"										propagation="end" ></s:link>
-											</rich:panelMenuItem>
+														action="/GestorRepositoriosVirtualesEdit.seam"
+														propagation="end"></s:link>
+												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
 										</rich:panelMenu>
 										<a4j:outputPanel ajaxRendered="true">
@@ -331,12 +333,12 @@
 											<h:outputText value="" style="color:red" />
 										</f:facet>
 									</rich:calendar>
-									<s:link value="Agenda" action="/GestorNoticiasList.seam" 
-									rendered="#{s:hasRole('docente')}" propagation="end" />
-									<s:link value="Agenda" action="/GestorNoticiasList.seam" 
-									rendered="#{s:hasRole('estudiante')}" propagation="end" />
-									<br />	
-									
+									<s:link value="Agenda" action="/GestorNoticiasList.seam"
+										rendered="#{s:hasRole('docente')}" propagation="end" />
+									<s:link value="Agenda" action="/GestorNoticiasList.seam"
+										rendered="#{s:hasRole('estudiante')}" propagation="end" />
+									<br />
+
 									<s:link value="Gestionar noticias"
 										action="/GestorNoticiasList.seam"
 										rendered="#{s:hasRole('admin')}" propagation="end" />
@@ -345,46 +347,49 @@
 									<s:link value="Ayuda" action="/CursoActividad.seam"
 										propagation="end" />
 									<br />
-									
-									
-									
-									<rich:panel>
-    <f:facet name="header">Resultados</f:facet>
-    <div class="results" id="grupoCursoList">
 
-     <h:outputText value="La busqueda no arrojo resultados."
-      rendered="#{empty grupoCursoList.resultList}" />
-     <div align="center">
-      
-      <rich:dataTable id="grupoCursoList" var="_grupoCurso"
-       value="#{grupoCursoList.resultList}" rows="10">
-       <h:column>
-        <f:facet name="header">
-        </f:facet>
-        <h:outputText value="#{_grupoCurso.idGrupo}" />
-       </h:column>
-       
-       <rich:column styleClass="action">
-        <f:facet name="header">Action</f:facet>
-        <s:link view="/CuerpoCurso.xhtml"
-         value="#{empty from ? 'Ver' : 'Seleccionar'}"
-         propagation="#{empty from ? 'none' : 'default'}"
-         id="grupoCursoViewId">
-         <f:param name="grupoCursoIdGrupo"
-          value="#{_grupoCurso.idGrupo}" />
-        </s:link>
-            #{' '}
-            <s:link view="/CuerpoCurso.xhtml" value="Editar"
-         propagation="none" id="grupoCursoEdit" rendered="#{grupoCursoHome.instance.idGrupo}">
-         <f:param name="grupoCursoIdGrupo" 
-          value="#{_grupoCurso.idGrupo}" />
-        </s:link>
-       </rich:column>
-      </rich:dataTable>
-      
-     </div>
-    </div>
-   </rich:panel>
+
+
+									<rich:panel>
+
+
+										<f:facet name="header">Resultados</f:facet>
+										<div class="results" id="grupoCursoList">
+
+											<h:outputText value="La busqueda no arrojo resultados."
+												rendered="#{empty grupoCursoList.resultList}" />
+											<div align="center">
+
+												<rich:dataTable id="grupoCursoList" var="_grupoCurso"
+													value="#{gruposTotalCurso}" rows="10">
+													<h:column>
+														<f:facet name="header">
+														</f:facet>
+														<h:outputText value="#{_grupoCurso.idGrupo}" />
+													</h:column>
+
+													<rich:column styleClass="action">
+														<f:facet name="header">Action</f:facet>
+														<s:link view="/CuerpoCurso.xhtml"
+															value="#{empty from ? 'Ver' : 'Seleccionar'}"
+															propagation="#{empty from ? 'none' : 'default'}"
+															id="grupoCursoViewId">
+															<f:param name="grupoCursoIdGrupo"
+																value="#{_grupoCurso.idGrupo}" />
+														</s:link>
+          												  #{' '}
+           											 <s:link view="#{grupoCursoHome.selecionado()}" value="Editar"
+															propagation="none" id="grupoCursoEdit">
+															<f:param name="grupoCursoIdGrupo"
+																value="#{_grupoCurso.idGrupo}" />
+																
+														</s:link>
+													</rich:column>
+												</rich:dataTable>
+
+											</div>
+										</div>
+									</rich:panel>
 								</rich:panel>
 
 							</h:form>

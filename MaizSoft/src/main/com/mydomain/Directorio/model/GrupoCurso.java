@@ -39,7 +39,7 @@ import org.jboss.seam.annotations.Name;
 @Table(name= "grupo_curso")
 @Name("grupoCurso")
 @NamedQueries({ @NamedQuery(name="gruposPorCurso",query="select g from GrupoCurso g where g.cursoGrupo.codigo=:parametro")
-	 })
+	,@NamedQuery(name="gruposTotalCurso",query="select g from GrupoCurso g") })
 
 
 public class GrupoCurso {

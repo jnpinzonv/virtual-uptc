@@ -41,5 +41,6 @@
 	<classpathentry kind="lib" path="lib/lucene-core.jar"/>
 	<classpathentry kind="lib" path="lib/jxl.jar"/>
 	<classpathentry kind="lib" path="lib/darkX-3.3.2.SR1.jar"/>
+	<classpathentry kind="lib" path="lib/jsf-impl.jar"/>
 	<classpathentry kind="output" path="test-build"/>
 </classpath>

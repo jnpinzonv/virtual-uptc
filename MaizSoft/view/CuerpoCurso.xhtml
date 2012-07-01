@@ -15,24 +15,141 @@
 	</ui:define>
 
 	<ui:define name="centroT">
-
-		
+<h:form id="grupoCurso" styleClass="edit">
 
         <rich:panel>
             <f:facet name="header">#{grupoCursoHome.managed ? 'Editar' : 'Adicionar'} Grupo curso</f:facet>
 
 
             <s:decorate id="idGrupoField" template="/layout/edit.xhtml" style="position:absolute;">
-                <ui:define name="label">Codigo grupo</ui:define>
+                <ui:define name="label">Código grupo</ui:define>
                 <h:inputText id="idGrupo"
                        required="true"
-                       disabled="#{grupoCursoHome.managed}"
+                       
                           value="#{grupoCursoHome.instance.codigoGrupo}">
                     <a:support event="onblur" reRender="idGrupoField" bypassUpdates="true" ajaxSingle="true"/>
                 </h:inputText>
             </s:decorate>
 
+			<br/> <br/>
+			
+            <s:decorate id="cuposField" template="/layout/edit.xhtml" style="position:absolute;">
+                <ui:define name="label">Cupos</ui:define>
+                <h:inputText id="cupos"
+                       required="true"
+                          value="#{grupoCursoHome.instance.cupos}">
+                    <a:support event="onblur" reRender="cuposField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+			<br/> <br/>
+
+
+            <s:decorate id="inscritosField" template="/layout/edit.xhtml" style="position:absolute;">
+                <ui:define name="label">Inscritos</ui:define>
+                <h:inputText id="inscritos"
+                       required="true"
+                          value="#{grupoCursoHome.instance.inscritos}">
+                    <a:support event="onblur" reRender="inscritosField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+			<br/> <br/>
+		
+            <s:decorate id="semestreField" template="/layout/edit.xhtml" style="position:absolute;">
+                <ui:define name="label">Semestre</ui:define>
+                <h:inputText id="semestre"
+                       required="true"
+                           size="20"
+                      maxlength="20"
+                          value="#{grupoCursoHome.instance.semestre}">
+                    <a:support event="onblur" reRender="semestreField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+			
+			<br/> <br/>
+			
+            <div style="clear:both; position:absolute;">
+                <span class="required">*</span>
+                Campos Obligatorios
+            </div>
+			<br/>
         </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Guardar"
+                         action="#{grupoCursoHome.persist}"
+                       disabled="#{!grupoCursoHome.wired}"
+                       rendered="#{!grupoCursoHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Guardar"
+                         action="#{grupoCursoHome.update}"
+                       rendered="#{grupoCursoHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Eliminar"
+                         action="#{grupoCursoHome.remove}"
+                      immediate="true"
+                       rendered="#{grupoCursoHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancelar"
+             propagation="end"
+                    view="/admin/GrupoCurso.xhtml"
+                rendered="#{grupoCursoHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancelar"
+             propagation="end"
+                    view="/admin/#{empty grupoCursoFrom ? 'GrupoCursoList' : grupoCursoFrom}.xhtml"
+                rendered="#{!grupoCursoHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Curso grupo *" labelClass="required">
+    <div class="association" id="cursoGrupoParent">
+
+        <h:outputText value="There is no cursoGrupo associated with this grupoCurso."
+                   rendered="#{grupoCursoHome.instance.cursoGrupo == null}"/>
+
+        <rich:dataTable var="_curso"
+                   value="#{grupoCursoHome.instance.cursoGrupo}"
+                rendered="#{grupoCursoHome.instance.cursoGrupo != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="cursoGrupoTable">
+            <h:column>
+                <f:facet name="header">Codigo</f:facet>
+                <h:outputText value="#{_curso.codigo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Ente universitario id ente universitario</f:facet>
+                <h:outputText value="#{_curso.enteUniversitario.idEnteUniversitario}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nombre asignatura</f:facet>
+                <h:outputText value="#{_curso.nombreAsignatura}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{grupoCursoHome.instance.cursoGrupo != null ? 'changeParentcursoGrupo' : 'selectParentcursoGrupo'}" value="#{grupoCursoHome.instance.cursoGrupo != null ? 'Cambiar' : 'Seleccionar'} cursoGrupo"
+                       view="/CursoList.xhtml">
+                <f:param name="from" value="GrupoCursoEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+  
+</rich:tabPanel>
+		
 	</ui:define>
 
 </ui:composition>

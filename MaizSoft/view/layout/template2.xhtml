@@ -138,7 +138,8 @@
 											submitMode="none">
 											<rich:panelMenuGroup label="Mensajes" style="color: #FFFFFF;">
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Crear" action="/GestorMensajeriaEdit.seam"
+													<s:link value="Crear" action="#{gestorMensajeriaHome.retornar()}"
+													
 														propagation="end"></s:link>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
@@ -348,7 +349,7 @@
 									
 									
 									<rich:panel>
-    <f:facet name="header">Resultados (#{empty grupoCursoList.resultList ? 0 : (grupoCursoList.paginated ? grupoCursoList.resultCount : grupoCursoList.resultList.size)})</f:facet>
+    <f:facet name="header">Resultados</f:facet>
     <div class="results" id="grupoCursoList">
 
      <h:outputText value="La busqueda no arrojo resultados."
@@ -359,18 +360,13 @@
        value="#{grupoCursoList.resultList}" rows="10">
        <h:column>
         <f:facet name="header">
-         <ui:include src="layout/sort.xhtml">
-          <ui:param name="entityList" value="#{grupoCursoList}" />
-          <ui:param name="propertyLabel" value="Id grupo" />
-          <ui:param name="propertyPath" value="grupoCurso.idGrupo" />
-         </ui:include>
         </f:facet>
         <h:outputText value="#{_grupoCurso.idGrupo}" />
        </h:column>
        
        <rich:column styleClass="action">
         <f:facet name="header">Action</f:facet>
-        <s:link view="/#{empty from ? 'GrupoCurso' : from}.xhtml"
+        <s:link view="/CuerpoCurso.xhtml"
          value="#{empty from ? 'Ver' : 'Seleccionar'}"
          propagation="#{empty from ? 'none' : 'default'}"
          id="grupoCursoViewId">
@@ -378,9 +374,9 @@
           value="#{_grupoCurso.idGrupo}" />
         </s:link>
             #{' '}
-            <s:link view="/admin/GrupoCursoEdit.xhtml" value="Editar"
-         propagation="none" id="grupoCursoEdit" rendered="#{empty from}">
-         <f:param name="grupoCursoIdGrupo"
+            <s:link view="/CuerpoCurso.xhtml" value="Editar"
+         propagation="none" id="grupoCursoEdit" rendered="#{grupoCursoHome.instance.idGrupo}">
+         <f:param name="grupoCursoIdGrupo" 
           value="#{_grupoCurso.idGrupo}" />
         </s:link>
        </rich:column>

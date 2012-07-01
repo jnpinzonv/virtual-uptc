@@ -80,5 +80,7 @@ public class GrupoCursoHome extends EntityHome<GrupoCurso> {
 		
 		return maximo;
 	}
+	
+	
 
 }

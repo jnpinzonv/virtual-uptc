@@ -3,7 +3,9 @@
  */
 package com.mydomain.Directorio.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -17,6 +19,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
@@ -92,6 +95,8 @@ public class GestorMensajeria {
 	 * Se instancia de la clase NotaActividad
 	 */
 	private Set<NotaActividad> notaActividad;
+	
+	private transient Set<Usuario> listaUsuarios;
 
 	/**
 	 * Se obtiene el valor de idMensaje
@@ -212,6 +217,10 @@ public class GestorMensajeria {
 	 */
 	@OneToMany(mappedBy="gestorMensajeria",cascade=CascadeType.ALL)
 	public Set<GestorMensajeria> getListaGestorMensajeria() {
+		if(listaGestorMensajeria==null){
+			listaGestorMensajeria=new HashSet<GestorMensajeria>();
+		}
+		
 		return listaGestorMensajeria;
 	}
 
@@ -257,5 +266,25 @@ public class GestorMensajeria {
 	public void setNotaActividad(Set<NotaActividad> notaActividad) {
 		this.notaActividad = notaActividad;
 	}
+
+	/**
+	 * Se obtiene el valor de listaUsuarios
+	 * @return El valor de listaUsuarios
+	 */
+	@Transient
+	public Set<Usuario> getListaUsuarios() {
+		return listaUsuarios;
+	}
+
+	/**
+	 * Asigna el valor de listaUsuarios
+	 * @param listaUsuarios El valor por establecer para listaUsuarios
+	 */
+	public void setListaUsuarios(Set<Usuario> listaUsuarios) {
+		this.listaUsuarios = listaUsuarios;
+	}
+	
+	
+	
 	
 }

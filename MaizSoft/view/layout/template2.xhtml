@@ -344,6 +344,51 @@
 									<s:link value="Ayuda" action="/CursoActividad.seam"
 										propagation="end" />
 									<br />
+									
+									
+									
+									<rich:panel>
+    <f:facet name="header">Resultados (#{empty grupoCursoList.resultList ? 0 : (grupoCursoList.paginated ? grupoCursoList.resultCount : grupoCursoList.resultList.size)})</f:facet>
+    <div class="results" id="grupoCursoList">
+
+     <h:outputText value="La busqueda no arrojo resultados."
+      rendered="#{empty grupoCursoList.resultList}" />
+     <div align="center">
+      
+      <rich:dataTable id="grupoCursoList" var="_grupoCurso"
+       value="#{grupoCursoList.resultList}" rows="10">
+       <h:column>
+        <f:facet name="header">
+         <ui:include src="layout/sort.xhtml">
+          <ui:param name="entityList" value="#{grupoCursoList}" />
+          <ui:param name="propertyLabel" value="Id grupo" />
+          <ui:param name="propertyPath" value="grupoCurso.idGrupo" />
+         </ui:include>
+        </f:facet>
+        <h:outputText value="#{_grupoCurso.idGrupo}" />
+       </h:column>
+       
+       <rich:column styleClass="action">
+        <f:facet name="header">Action</f:facet>
+        <s:link view="/#{empty from ? 'GrupoCurso' : from}.xhtml"
+         value="#{empty from ? 'Ver' : 'Seleccionar'}"
+         propagation="#{empty from ? 'none' : 'default'}"
+         id="grupoCursoViewId">
+         <f:param name="grupoCursoIdGrupo"
+          value="#{_grupoCurso.idGrupo}" />
+        </s:link>
+            #{' '}
+            <s:link view="/admin/GrupoCursoEdit.xhtml" value="Editar"
+         propagation="none" id="grupoCursoEdit" rendered="#{empty from}">
+         <f:param name="grupoCursoIdGrupo"
+          value="#{_grupoCurso.idGrupo}" />
+        </s:link>
+       </rich:column>
+      </rich:dataTable>
+      
+     </div>
+    </div>
+   </rich:panel>
 								</rich:panel>
 
 							</h:form>

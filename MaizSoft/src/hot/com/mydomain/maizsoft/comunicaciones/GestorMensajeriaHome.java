@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Out;
 import org.jboss.seam.framework.EntityHome;
 
 import com.mydomain.Directorio.model.GestorMensajeria;
@@ -31,11 +32,8 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 	@In(create = true)
 	TipoHome tipoHome;
 	
-	@In(create=true)
+	@In(create=true)	
 	GrupoCursoHome grupoCursoHome;
-	
-	
-	FacesContext facesContext;
 
 
 	public void setGestorMensajeriaIdMensaje(Long id) {
@@ -95,10 +93,10 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 	public List<SelectItem> listaUsuariosCurso(){
 		
 		
-		Query q = getEntityManager()
-				.createNamedQuery("usuarioPorGrupo");
+		Query q = getEntityManager().createQuery("select t from GrupoUsuarios t where t.grupoCurso.idGrupo=#{cursoActualBean.seleccionado.idGrupo}");
+				
 		
-		q.setParameter("parametro", grupoCursoHome.getInstance().getIdGrupo());
+		//q.setParameter("parametro", "#{cursoActualBean.seleccionado.idGrupo}"));
 		List<GrupoUsuarios> listaEntesUniversitarios = (List<GrupoUsuarios>)q.getResultList();
 		
 		
@@ -114,8 +112,8 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 		return sItems;
 	}
 	
-	
 	public String retornar(){
+		
 		return "/GestorMensajeriaEdit.seam";
 	}
 

@@ -137,9 +137,9 @@
 											submitMode="none">
 											<rich:panelMenuGroup label="Mensajes" style="color: #FFFFFF;">
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Crear"
-														action="#{gestorMensajeriaHome.retornar()}"
-														propagation="end"></s:link>
+													<s:link value="Crear" 
+														action="/GestorMensajeriaEdit.seam"																										
+														></s:link>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Ver" action="/GestorMensajeriaList.seam"
@@ -360,15 +360,15 @@
 												rendered="#{empty grupoCursoList.resultList}" />
 											<div align="center">
 
-												<rich:dataTable id="grupoCursoList" var="_grupoCurso"
-													value="#{gruposTotalCurso}" rows="10">
+												<h:dataTable id="grupoCursoList" var="_grupoCurso"
+													value="#{listaGrupos}" rows="10" >
 													<h:column>
 														<f:facet name="header">
 														</f:facet>
 														<h:outputText value="#{_grupoCurso.idGrupo}" />
 													</h:column>
 
-													<rich:column styleClass="action">
+													<h:column styleClass="action">
 														<f:facet name="header">Action</f:facet>
 														<s:link view="/CuerpoCurso.xhtml"
 															value="#{empty from ? 'Ver' : 'Seleccionar'}"
@@ -378,14 +378,14 @@
 																value="#{_grupoCurso.idGrupo}" />
 														</s:link>
           												  #{' '}
-           											 <s:link view="#{grupoCursoHome.selecionado()}" value="Editar"
-															propagation="none" id="grupoCursoEdit">
+           											 <s:link view="/CuerpoCurso.xhtml" value="Editar"
+															propagation="none" id="grupoCursoEdit" action="#{cursoActualBean.selecionado(_grupoCurso.idGrupo) }">
 															<f:param name="grupoCursoIdGrupo"
-																value="#{_grupoCurso.idGrupo}" />
+																value="{_grupoCurso.idGrupo}" />
 																
 														</s:link>
-													</rich:column>
-												</rich:dataTable>
+													</h:column>
+												</h:dataTable>
 
 											</div>
 										</div>

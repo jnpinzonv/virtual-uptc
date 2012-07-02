@@ -97,6 +97,9 @@ public class GestorMensajeria {
 	private Set<NotaActividad> notaActividad;
 	
 	private transient Set<Usuario> listaUsuarios;
+	
+	
+	private transient GrupoCurso grupoCurso;
 
 	/**
 	 * Se obtiene el valor de idMensaje
@@ -282,6 +285,23 @@ public class GestorMensajeria {
 	 */
 	public void setListaUsuarios(Set<Usuario> listaUsuarios) {
 		this.listaUsuarios = listaUsuarios;
+	}
+
+	/**
+	 * Se obtiene el valor de grupoCurso
+	 * @return El valor de grupoCurso
+	 */
+	@Transient
+	public GrupoCurso getGrupoCurso() {
+		return grupoCurso;
+	}
+
+	/**
+	 * Asigna el valor de grupoCurso
+	 * @param grupoCurso El valor por establecer para grupoCurso
+	 */
+	public void setGrupoCurso(GrupoCurso grupoCurso) {
+		this.grupoCurso = grupoCurso;
 	}
 	
 	

@@ -6,11 +6,15 @@ import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.persistence.Query;
 
+import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Out;
+import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.datamodel.DataModelSelection;
+import org.jboss.seam.annotations.datamodel.DataModelSelectionIndex;
 import org.jboss.seam.framework.EntityHome;
 
 import com.mydomain.Directorio.model.Curso;
@@ -20,6 +24,7 @@ import com.mydomain.Directorio.model.GrupoUsuarios;
 import com.mydomain.Directorio.model.HistorialNotas;
 
 @Name("grupoCursoHome")
+
 public class GrupoCursoHome extends EntityHome<GrupoCurso> {
 
 	public final static int MAX_SEMANAS=20;
@@ -27,8 +32,8 @@ public class GrupoCursoHome extends EntityHome<GrupoCurso> {
 	@In(create = true)
 	CursoHome cursoHome;
 	
-	@DataModel
-	List<GrupoCurso> listaGrupos;
+	@DataModel("listaGrupos")
+	private List<GrupoCurso> listaGrupos;
 	
 	FacesContext facesContext;
 	
@@ -100,8 +105,26 @@ public class GrupoCursoHome extends EntityHome<GrupoCurso> {
 		return maximo;
 	}
 
-	@Factory("gruposTotalCurso")
-	public List<GrupoCurso> listaCursos(){
+
+	/**
+	 * Se obtiene el valor de listaGrupos
+	 * @return El valor de listaGrupos
+	 */
+	public List<GrupoCurso> getListaGrupos() {
+		Query q = getEntityManager().createNamedQuery("gruposTotalCurso");
+		listaGrupos=q.getResultList();
+		return listaGrupos;
+	}
+
+	/**
+	 * Asigna el valor de listaGrupos
+	 * @param listaGrupos El valor por establecer para listaGrupos
+	 */
+	public void setListaGrupos(List<GrupoCurso> listaGrupos) {
+		this.listaGrupos = listaGrupos;
+	}
+
+	public List<GrupoCurso> listaGrupos(){
 		Query q = getEntityManager().createNamedQuery("gruposTotalCurso");
 		listaGrupos=q.getResultList();
 		return listaGrupos;
@@ -123,10 +146,11 @@ public class GrupoCursoHome extends EntityHome<GrupoCurso> {
 	}
 	
 	
-	public String selecionado(){
+	public String selecionado(long grupo){
+		
 		instance=seleccionado;
-		seleccionado=null;
-		System.out.println(instance.getIdGrupo()+ "hola mundooooooooooooooooooooo");
+		System.out.println(grupo+ "holaaaaaaaaaaaaaa");
+		//System.out.println(instance.getIdGrupo()+ "hola mundooooooooooooooooooooo");
 		System.out.println(facesContext.getCurrentInstance().getExternalContext().getRequestMap().get("grupoCursoIdGrupo")+ "holooooooooooooooo");
 
 		return"/CuerpoCurso.xhtml";

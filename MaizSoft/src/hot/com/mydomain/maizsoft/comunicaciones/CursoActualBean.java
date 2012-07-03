@@ -55,9 +55,7 @@ public class CursoActualBean implements ICursoActual{
 	@Out(required =false)
 	GrupoCurso seleccionado;
 	
-	@In(create=true)
-	@Out(required =false)
-	GrupoCurso grupoCurso;
+	
 	
 	
 	
@@ -106,8 +104,8 @@ public class CursoActualBean implements ICursoActual{
 	
 	public Long selecionado(long grupo){
 		//grupoCursoHome.setInstance(seleccionado);
-		grupoCurso=entityManager.find(GrupoCurso.class, seleccionado.getIdGrupo());
-		System.out.println(grupoCurso.getCupos()+ "holaaaaaaaaaaaaaa22");
+		//grupoCurso=entityManager.find(GrupoCurso.class, seleccionado.getIdGrupo());
+		//System.out.println(grupoCurso.getCupos()+ "holaaaaaaaaaaaaaa22");
 		//System.out.println(instance.getIdGrupo()+ "hola mundooooooooooooooooooooo");
 		//System.out.println(facesContext.getCurrentInstance().getExternalContext().getRequestMap().get("grupoCursoIdGrupo")+ "holooooooooooooooo");
 
@@ -117,38 +115,6 @@ public class CursoActualBean implements ICursoActual{
 	
 	
 	
-
-	/**
-	 * Se obtiene el valor de grupoCurso
-	 * @return El valor de grupoCurso
-	 */
-	public GrupoCurso getGrupoCurso() {
-		return grupoCurso;
-	}
-
-	/**
-	 * Asigna el valor de grupoCurso
-	 * @param grupoCurso El valor por establecer para grupoCurso
-	 */
-	public void setGrupoCurso(GrupoCurso grupoCurso) {
-		this.grupoCurso = grupoCurso;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.mydomain.maizsoft.comunicaciones.ICursoActual#listaUsuariosCurso()
-	 */
-	@Override
-	public List<SelectItem> listaUsuariosCurso() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
-public String retornar(){
-		
-		return "/GestorMensajeriaEdit.seam";
-	}
-
 	
 
 	

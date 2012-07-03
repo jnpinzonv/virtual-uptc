@@ -18,30 +18,18 @@
 	<h:form id="grupoCurso" styleClass="edit">
 
         <rich:panel>
-            <f:facet name="header">#{grupoCursoHome.managed ? 'Editar' : 'Adicionar'} Grupo curso</f:facet>
+            <f:facet name="header">#{cursoActualBean.seleccionado.idGrupo} Grupo curso</f:facet>
 
 
-            <s:decorate id="idGrupoField" template="/layout/edit.xhtml" style="position:absolute;">
-                <ui:define name="label">Código grupo</ui:define>
-                <h:inputText id="idGrupo"
-                       required="true"
-                       
-                          value="#{cursoActualBean.seleccionado.idGrupo}">
-                    <a:support event="onblur" reRender="idGrupoField" bypassUpdates="true" ajaxSingle="true"/>
-                </h:inputText>
-            </s:decorate>
-
-			<br/> <br/>
-			
-            <s:decorate id="cuposField" template="/layout/edit.xhtml" style="position:absolute;">
-                <ui:define name="label">Cupos</ui:define>
-                <h:inputText id="cupos"
-                       required="true"
-                          value="#{cursoActual.grupoCurso.codigoGrupo}">
-                    <a:support event="onblur" reRender="cuposField" bypassUpdates="true" ajaxSingle="true"/>
-                </h:inputText>
-            </s:decorate>
-
+          #{cursoActualBean.seleccionado.idGrupo}
+		 <div class="actionButtons">
+        <s:button
+               value="Editar Curso"
+                view="/ActividadEdit.xhtml">
+           
+            <f:param name="notaActividadFrom" value="Actividad"/>
+        </s:button>
+    </div>
 
 		</rich:panel>
 

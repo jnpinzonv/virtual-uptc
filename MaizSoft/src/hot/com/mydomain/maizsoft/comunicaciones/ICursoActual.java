@@ -32,19 +32,11 @@ public interface ICursoActual {
 	
 	public void setSeleccionado(GrupoCurso seleccionado);
 	
-	public Long selecionado(long grupo);
+	public Long selecionado(long grupo);	
 	
 	
-	public List<SelectItem> listaUsuariosCurso();
-	
-	public String retornar();
 
 	
-	public GrupoCurso getGrupoCurso() ;
+	
 
-	/**
-	 * Asigna el valor de grupoCurso
-	 * @param grupoCurso El valor por establecer para grupoCurso
-	 */
-	public void setGrupoCurso(GrupoCurso grupoCurso);
 }

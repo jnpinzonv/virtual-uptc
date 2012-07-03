@@ -7,7 +7,7 @@ import javax.ejb.Local;
 @Local
 public interface Taller {
 
-	public void crearResgistro();
+	public Long crearResgistro();
 	public void modificarResgistro();
 	public void eliminarResgistro();
 

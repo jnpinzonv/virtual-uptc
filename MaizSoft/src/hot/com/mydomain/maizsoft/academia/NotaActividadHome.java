@@ -75,4 +75,8 @@ public class NotaActividadHome extends EntityHome<NotaActividad> {
 		return isIdDefined() ? getInstance() : null;
 	}
 
+	
+	public void saveActividad(){
+		
+	}
 }

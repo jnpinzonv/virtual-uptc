@@ -36,7 +36,7 @@ public class Taller2 implements Taller {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void crearResgistro() {
+	public Long crearResgistro() {
 
 		/*UserAccount userA = new UserAccount();
 		 userA.setPrimerNombre("primerNombre");
@@ -157,6 +157,7 @@ public class Taller2 implements Taller {
 		}
 	
 */
+				return 1L;
 	}
 
 	public void eliminarResgistro() {

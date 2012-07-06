@@ -53,7 +53,7 @@ public class ConfiguracionesSistema {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id_configuraciones_sistema", unique = true, nullable = false, insertable = true, updatable = true)
+	@Column(name = "id_configuraciones_sistema", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getId() {
 		return id;
 	}

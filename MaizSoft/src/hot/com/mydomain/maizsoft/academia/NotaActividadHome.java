@@ -1,5 +1,7 @@
 package com.mydomain.maizsoft.academia;
 
+import javax.persistence.Query;
+
 import com.mydomain.Directorio.model.*;
 import com.mydomain.maizsoft.comunicaciones.GestorMensajeriaHome;
 import com.mydomain.maizsoft.curso.GrupoUsuariosHome;
@@ -77,6 +79,9 @@ public class NotaActividadHome extends EntityHome<NotaActividad> {
 
 	
 	public void saveActividad(){
+		
+		Query q = getEntityManager().createQuery("select c from GrupoCurso c where c.idGrupo = #{cursoActualBean.seleccionado.idGrupo}");
+		GrupoCurso nuevo= (GrupoCurso)q.getSingleResult();
 		
 	}
 }

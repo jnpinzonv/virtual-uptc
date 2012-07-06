@@ -446,8 +446,9 @@ public class Usuario {
 	@OneToMany(mappedBy="usuarios",cascade=CascadeType.ALL)
 	public Set<CuentasUsuario> getCuentasUsuario() {		
 		if(cuentasUsuario==null){
+			return new HashSet<CuentasUsuario>();
 	}
-		return new HashSet<CuentasUsuario>();
+		return cuentasUsuario;
 	}
 	
 	/**

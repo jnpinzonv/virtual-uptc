@@ -63,7 +63,7 @@
 
             <h:commandButton id="save"
                           value="Guardar"
-                         action="#{actividadHome.persist}"
+                         action="#{actividadHome.saveActividad()}"
                        disabled="#{!actividadHome.wired}"
                        rendered="#{!actividadHome.managed}"/>
 

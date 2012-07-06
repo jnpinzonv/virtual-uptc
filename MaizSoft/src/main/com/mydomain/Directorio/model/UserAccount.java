@@ -175,7 +175,6 @@ public class UserAccount implements Serializable {
 	 * @return El valor de cuentasUsuarios
 	 */
 	@OneToMany(mappedBy="userAccounts",cascade=CascadeType.ALL)
-	@JoinTable(name = "cuentas_usuario", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
 	public Set<CuentasUsuario> getCuentasUsuarios() {
 		if(cuentasUsuarios==null){
 			return new HashSet<CuentasUsuario>();

@@ -123,8 +123,7 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 
 		try {
 			saveUsuarios();
-			preCargaUsuarios.setUserActions(null);
-			preCargaUsuarios.setUsuarios(null);
+			
 		} catch (Exception e) {
 			
 			 log.info("Error " + e.getMessage() + " " + e.getCause()+ " NO ingreso por el Link de Carga");

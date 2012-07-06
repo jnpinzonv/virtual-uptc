@@ -6,6 +6,7 @@ package com.mydomain.Directorio.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -96,10 +97,10 @@ public class GestorMensajeria {
 	 */
 	private Set<NotaActividad> notaActividad;
 	
-	private transient Set<Usuario> listaUsuarios;
+	private transient List<Usuario> listaUsuarios;
 	
 	
-	private transient GrupoCurso grupoCurso;
+	
 
 	/**
 	 * Se obtiene el valor de idMensaje
@@ -182,7 +183,7 @@ public class GestorMensajeria {
 	 * @return El valor de fechaEnvio
 	 */
 	@NotNull	
-	@Column(name = "fecha_envio", unique = false, nullable = false, insertable = true, updatable = true)
+	@Column(name = "fecha_envio", unique = false, nullable = false, insertable = true, updatable = true,columnDefinition = "datetime")
 	public Date getFechaEnvio() {
 		return fechaEnvio;
 	}
@@ -275,7 +276,7 @@ public class GestorMensajeria {
 	 * @return El valor de listaUsuarios
 	 */
 	@Transient
-	public Set<Usuario> getListaUsuarios() {
+	public List<Usuario> getListaUsuarios() {
 		return listaUsuarios;
 	}
 
@@ -283,26 +284,11 @@ public class GestorMensajeria {
 	 * Asigna el valor de listaUsuarios
 	 * @param listaUsuarios El valor por establecer para listaUsuarios
 	 */
-	public void setListaUsuarios(Set<Usuario> listaUsuarios) {
+	public void setListaUsuarios(List<Usuario> listaUsuarios) {
 		this.listaUsuarios = listaUsuarios;
 	}
 
-	/**
-	 * Se obtiene el valor de grupoCurso
-	 * @return El valor de grupoCurso
-	 */
-	@Transient
-	public GrupoCurso getGrupoCurso() {
-		return grupoCurso;
-	}
-
-	/**
-	 * Asigna el valor de grupoCurso
-	 * @param grupoCurso El valor por establecer para grupoCurso
-	 */
-	public void setGrupoCurso(GrupoCurso grupoCurso) {
-		this.grupoCurso = grupoCurso;
-	}
+	
 	
 	
 	

@@ -6,15 +6,11 @@ import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.persistence.Query;
 
-import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
-import org.jboss.seam.annotations.Out;
-import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.datamodel.DataModelSelection;
-import org.jboss.seam.annotations.datamodel.DataModelSelectionIndex;
 import org.jboss.seam.framework.EntityHome;
 
 import com.mydomain.Directorio.model.Curso;

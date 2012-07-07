@@ -62,6 +62,8 @@ public class GrupoUsuarios {
 	 */
 	private Set<NotaActividad> notaActividades;
 	
+	private transient String role;
+	
 	/**
 	 * Variable que hace referencia a la informaci�n de la cuenta del usuario.
 	 * Instancia de la clase CuentasUsuario.
@@ -239,6 +241,22 @@ public class GrupoUsuarios {
 		this.curso = curso;
 	}
 	
+	/**
+	 * Se obtiene el valor de role
+	 * @return El valor de role
+	 */
+	@Transient
+	public String getRole() {
+		return role;
+	}
+	
+	/**
+	 * Asigna el valor de role
+	 * @param role El valor por establecer para role
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
 	
 	
 }

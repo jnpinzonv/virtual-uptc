@@ -197,7 +197,7 @@
 													<s:link value="Adicionar Estudiante" propagation="end"></s:link>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Carga Masiva Estudiantes" propagation="end"></s:link>
+													<s:link value="Matricular Usuarios" action="/admin/MatricularUsuarios.seam" propagation="end"></s:link>
 												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
 											<rich:panelMenuGroup label="Administrar Facultad y Escuela"
@@ -347,39 +347,26 @@
 									<s:link value="Ayuda" action="/CursoActividad.seam"
 										propagation="end" />
 									<br />
-
-
-
+									
+									<br/>
+									
 									<rich:panel>
 
-
-										<f:facet name="header">Resultados</f:facet>
+										<f:facet name="header">Cursos</f:facet>
 										<div class="results" id="grupoCursoList">
 
 											<h:outputText value="La busqueda no arrojo resultados."
 												rendered="#{empty grupoCursoList.resultList}" />
-											<div align="center">
+											<div>
 
 												<h:dataTable id="grupoCursoList" var="_grupoCurso"
-													value="#{listaGrupos}" rows="10" >
-													<h:column>
-														<f:facet name="header">
-														</f:facet>
-														<h:outputText value="#{_grupoCurso.idGrupo}" />
-													</h:column>
-
+													value="#{listaGrupos}">
+													
 													<h:column styleClass="action">
-														<f:facet name="header">Action</f:facet>
-														<s:link view="/CuerpoCurso.xhtml"
-															value="#{empty from ? 'Ver' : 'Seleccionar'}"
-															propagation="#{empty from ? 'none' : 'default'}"
-															id="grupoCursoViewId">
-															<f:param name="grupoCursoIdGrupo"
-																value="#{_grupoCurso.idGrupo}" />
-														</s:link>
-          												  #{' '}
-           											 <s:link view="/CuerpoCurso.xhtml" value="Editar"
-															propagation="none" id="grupoCursoEdit" action="#{cursoActualBean.selecionado(_grupoCurso.idGrupo) }">
+																												
+           											 <s:link view="/CuerpoCurso.xhtml" value="#{_grupoCurso.cursoGrupo.nombreAsignatura}"
+															propagation="none" id="grupoCursoEdit" action="#{cursoActualBean.selecionado(_grupoCurso.idGrupo) }"
+															>
 															<f:param name="grupoCursoIdGrupo"
 																value="{_grupoCurso.idGrupo}" />
 																

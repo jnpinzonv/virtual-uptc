@@ -16,10 +16,10 @@ package com.mydomain.Directorio.model;
 public interface ConsultasJpql {
 
 	String LISTA_MENSAJES_USUARIO = "SELECT g FROM ReceptorMensajes r, GestorMensajeria g, CuentasUsuario u, UserAccount ua"
-			+ " WHERE u.userAccount.id = ua.id"
-			+ " AND u.usuarios.id = r.usuarios.id"
+			+ " WHERE u.userAccounts.id = ua.id"
+			+ " AND u.usuarios.id = r.userAccount.id"
 			+ " AND r.gestorMensajeria.idMensaje = g.idMensaje"
-			+ " AND ua.username =:parametro";
+			+ " AND ua.username=:parametro";
 	
 	String USUARIO_POR_USERNAME = "select u from UserAccount ua, Usuario u, CuentasUsuario cu where ua.username =:parametro" +
 		    " and ua.id = cu.userAccounts.id" +

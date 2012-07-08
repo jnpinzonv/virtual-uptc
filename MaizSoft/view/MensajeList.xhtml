@@ -29,9 +29,7 @@
 				<f:facet name="header">Resultados de busqueda de usuario (#{empty usuarioList.resultList ? 0 : (usuarioList.paginated ? usuarioList.resultCount : usuarioList.resultList.size)})</f:facet>
 				<div class="results" id="mensajeList">
 
-					<h:outputText value="La busqueda de usuario no retorno resultados"
-						rendered="#{empty listaMensajesPorUsuario}" />
-					<div align="center">
+				
 					
 					
 						<rich:dataTable id="usuarioList" var="_listaMensajes"
@@ -45,7 +43,7 @@
 						
 						
 					</div>
-				</div>
+			
 			</rich:panel>
 
 			<div class="tableControl">

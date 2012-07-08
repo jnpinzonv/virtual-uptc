@@ -9,7 +9,7 @@
 
 
 	<ui:define name="head">
-		<link href="css/default.css" rel="stylesheet" type="text/css" />	
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
 	</ui:define>
 
 	<style>
@@ -29,11 +29,11 @@
 
 
 				<f:facet name="header">Matricula a Curso</f:facet>
-
+				
 				<h:outputText value="Seleccione Facultad: " />
 				<h:selectOneMenu
 					value="#{grupoUsuariosHome.instance.enteUniversitarioPadre}"
-					id="sobrenombres" rendered="true">
+					id="sobrenombres" rendered="true" required="true">
 					<s:selectItems value="#{listaEnteUniversitariosFacultades}"
 						var="lista" label="#{lista.nombreEnteUniversitario}"
 						noSelectionLabel="Seleccione ..." />
@@ -49,11 +49,11 @@
 					<h:outputText value="Seleccione Escuela: " />
 					<h:selectOneMenu
 						value="#{grupoUsuariosHome.instance.enteUniversitarioHijo}"
-						id="enteUniveristarios" rendered="true">
+						id="enteUniveristarios" rendered="true" required="true">
 						<s:selectItems value="#{listaEscuelasMatriculas}" var="listaE"
 							label="#{listaE.nombreEnteUniversitario}"
 							noSelectionLabel="Seleccione ..." />
-						<a4j:support event="onchange" reRender="tres,listaUsuario"
+						<a4j:support event="onchange" reRender="tres,rolesss,listaUsuario"
 							ajaxSingle="true" />
 						<s:convertEntity />
 					</h:selectOneMenu>
@@ -65,7 +65,7 @@
 				<a4j:outputPanel id="tres">
 					<h:outputText value="Seleccione curso:" />
 					<h:selectOneMenu value="#{grupoUsuariosHome.instance.curso}"
-						id="curso" rendered="true">
+						id="curso" rendered="true" required="true">
 						<s:selectItems value="#{listaCursoMatricula}" var="lis"
 							label="#{lis.nombreAsignatura}" noSelectionLabel="Seleccione ..." />
 						<a4j:support event="onchange" reRender="cuatro" ajaxSingle="true"
@@ -80,38 +80,41 @@
 				<a4j:outputPanel id="cuatro">
 					<h:outputText value="Seleccione grupo:" />
 					<h:selectOneMenu value="#{grupoUsuariosHome.instance.grupoCurso}"
-						id="grupos" rendered="true">
+						id="grupos" rendered="true" required="true">
 						<s:selectItems value="#{listaGruposPorCurso}" var="listaG"
 							label="#{listaG.codigoGrupo}" noSelectionLabel="Seleccione ..." />
 						<s:convertEntity />
 					</h:selectOneMenu>
+					</a4j:outputPanel>
+									
+					<h:selectOneRadio id="rolesss"
+				value="#{grupoUsuariosHome.instance.role}" layout="pageDirection"
+				styleClass="roles" required="true">
+
+				<s:selectItems value="#{identityManager.listGrantableRoles()}"
+					var="_role" label="#{_role}" />
+				<a4j:support event="onchange" reRender="listaUsuario"/>
+			</h:selectOneRadio>
+
+<!--  
+			<h:panelGrid columns="2">
+				<h:inputText id="myinputs"
+					value="#{grupoUsuariosHome.instance.codigo}">
+					<a4j:support event="onkeyup" reRender="outtexts,listaUsuario" />
+				</h:inputText>
+				<h:outputText id="outtexts"
+					value="#{grupoUsuariosHome.instance.codigo}" />
+			</h:panelGrid>-->
+									
 
 					<br />
 					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
 
-					<s:decorate id="rol" template="../layout/edit.xhtml"
-						style="position:absolute;">
-						<ui:define name="label">Seleccione Rol</ui:define>
-						<div class="selectOne">
-							<h:selectOneRadio id="roless" value="#{grupoUsuariosHome.instance.role}"
-								layout="pageDirection" styleClass="roles" required="true">
-
-
-								<s:selectItems value="#{identityManager.listGrantableRoles()}"
-									var="_role" label="#{_role}" />
-
-							</h:selectOneRadio>
-						</div>
-					</s:decorate>
-
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-				
 					<h:panelGrid columns="2" columnClasses="top, top">
 
 						<rich:pickList value="#{grupoUsuariosHome.instance.usuarios}"
@@ -120,15 +123,13 @@
 							<s:convertEntity />
 							<a4j:support event="onlistchanged" reRender="result" />
 						</rich:pickList>
-
-
 					</h:panelGrid>
-
-				</a4j:outputPanel>
+				
 
 			</rich:panel>
-
-
+						
+			
+			
 			<h:commandButton id="matricula" value="Matricular"
 				action="#{grupoUsuariosHome.saveMatricula()}" />
 		</h:form>

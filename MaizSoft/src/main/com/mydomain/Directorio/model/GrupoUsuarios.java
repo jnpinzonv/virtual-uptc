@@ -163,7 +163,7 @@ public class GrupoUsuarios {
 	 * @return El valor de userRole
 	 */
 
-	@ManyToOne
+	@OneToOne(mappedBy="grupoUsuarios")
 	@JoinColumn(name = "id_cuenta_usuario", unique = false, nullable = false, insertable = true, updatable = true)
 	public CuentasUsuario getUserRole() {
 		return userRole;
@@ -247,6 +247,9 @@ public class GrupoUsuarios {
 	 */
 	@Transient
 	public String getRole() {
+		if(role==null){
+			return role="estudiante";
+		}
 		return role;
 	}
 	

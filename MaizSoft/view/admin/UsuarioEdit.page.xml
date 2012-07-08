@@ -36,7 +36,7 @@
    <navigation from-action="#{usuarioHome.remove}">
       <rule if-outcome="removed">
          <end-conversation/>
-         <redirect view-id="/admin/UsuarioList.xhtml"/>
+         <redirect view-id="/UsuarioList.xhtml"/>
       </rule>
    </navigation>
    

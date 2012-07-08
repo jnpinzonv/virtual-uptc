@@ -29,9 +29,9 @@ import org.jboss.seam.annotations.Name;
 
 /**
 * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, 
-* en esta clase con lo referente al gestor de mensajería, se comunica con la base de datos
+* en esta clase con lo referente al gestor de mensajerï¿½a, se comunica con la base de datos
 * Modulo de Desarrollo :CU- ...
-* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -68,7 +68,7 @@ public class GestorMensajeria {
 	private String asunto;
 	
 	/**
-	 * Variable que almacena la fecha en la que se envía el mensaje
+	 * Variable que almacena la fecha en la que se envï¿½a el mensaje
 	 * Tipo de dato Date
 	 */
 	private Date fechaEnvio;
@@ -80,14 +80,14 @@ public class GestorMensajeria {
 	private Tipo tipo;
 	
 	/**
-	 * Variable que almacena un listado de gestores de mensajería
-	 * Se instancia de la clase GestorMensajería
+	 * Variable que almacena un listado de gestores de mensajerï¿½a
+	 * Se instancia de la clase GestorMensajerï¿½a
 	 */
 	private Set<GestorMensajeria> listaGestorMensajeria;
 	
 	/**
-	 * Variable que almacena los gestores de mensajería
-	 * Se instancia de la clase GestorMensajería 
+	 * Variable que almacena los gestores de mensajerï¿½a
+	 * Se instancia de la clase GestorMensajerï¿½a 
 	 */
 	private GestorMensajeria gestorMensajeria;
 	

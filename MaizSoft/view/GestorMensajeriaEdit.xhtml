@@ -7,14 +7,19 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich"
-	xmlns:a4j="http://richfaces.org/a4j" template="layout/template.xhtml">
+	xmlns:a4j="http://richfaces.org/a4j" 
+	template="layout/template2.xhtml">
 
-	<ui:define name="body">
+	<ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
+	</ui:define>
+
+	<ui:define name="centroT">
 
 		<h:form id="gestorMensajeria" styleClass="edit">
 
 			<rich:panel>
-				<f:facet name="header">#{gestorMensajeriaHome.managed ? 'Edit' : 'Add'} Gestor mensajeria</f:facet>
+				<f:facet name="header">#{gestorMensajeriaHome.managed ? 'Enviar' : 'Enviar'} Mensaje</f:facet>
 
 				<br />
 				<br />
@@ -27,19 +32,32 @@
 							bypassUpdates="true" ajaxSingle="true" />
 					</h:inputText>
 				</s:decorate>
-
-
-
-			
-
+				
+				<br/>
+				<br/>
+				
+				<s:decorate id="paraField" template="layout/edit.xhtml">
+				<ui:define name="label">Para:</ui:define>
+				<h:panelGrid columns="2" columnClasses="top, top"> 					
+					<rich:pickList value="#{gestorMensajeriaHome.instance.listaUsuarios}" var="_lista">
+						<f:selectItems value="#{listaUsuarioCursos}"/>
+						<s:convertEntity />
+						<a4j:support event="onlistchanged" reRender="result,save" />
+					</rich:pickList>
+				</h:panelGrid>
+				</s:decorate>
+				
+				<br/>
+				<br/>
 
 				<s:decorate id="mensajeField" template="layout/edit.xhtml">
 					<ui:define name="label">Mensaje</ui:define>
-					<h:inputText id="mensaje" required="true"
-						value="#{gestorMensajeriaHome.instance.mensaje}">
+					<h:inputTextarea id="mensaje" required="true"
+						value="#{gestorMensajeriaHome.instance.mensaje}"
+						cols="90" rows="10">
 						<a:support event="onblur" reRender="mensajeField"
 							bypassUpdates="true" ajaxSingle="true" />
-					</h:inputText>
+					</h:inputTextarea>
 				</s:decorate>
 
 
@@ -48,22 +66,16 @@
 					<span class="required">*</span> Campos Obligatorios
 				</div>
 				
-				<h:panelGrid columns="2" columnClasses="top, top">
-					<rich:pickList value="#{gestorMensajeriaHome.instance.listaUsuarios}">
-						<f:selectItems value="#{listaUsuarioCursos}" />
-						<s:convertEntity />
-						<a4j:support event="onlistchanged" reRender="result" />
-					</rich:pickList>
-				</h:panelGrid>
+				
 
 
 			</rich:panel>
 
 			<div class="actionButtons">
 				<br /> <br />
-				<h:commandButton id="save" value="Guardar"
+				<h:commandButton id="save" value="Enviar"
 					action="#{gestorMensajeriaHome.saveMensaje()}"
-					
+					disabled="#{empty _lista}"
 					rendered="#{!gestorMensajeriaHome.managed}" />
 
 				<h:commandButton id="update" value="Guardar"

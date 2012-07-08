@@ -1,0 +1,108 @@
+.top {    
+    background-color: #3B5999;
+    color: white;
+    padding: 5px;   
+}
+
+.topPrincipal {    
+    background-color: #3B5999;
+    float: right;
+}
+
+.down {    
+    background-color: #3B5999;
+    color: white;
+    margin-top: -20px;    
+}
+
+.left {
+    float: left;    
+    width: 210px;
+    border: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.right {
+    float: right;   
+    width: 210px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.center {    
+    background-color: #FFFFFF;
+    margin-top:120px;
+    height: 800px;
+    color: #000000;
+}
+
+.center2 {
+    background-color: #FFFFFF;  
+    height: 800px;
+    color: #FFFFFF; 
+}
+
+.center_content {    
+    background-color: #dddddd;
+    padding: 5px;
+}
+
+#top a:link, #top a:visited {
+  color: white;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+  color: black;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+
+.menuheaderNoticias{
+	width:210px;
+	height:34px;
+    background-image:url(images/MenuTopNoticias.jpg);
+	display:block;
+}
+
+.menuheaderguias{
+	width:210px;
+	height:34px;
+    background-image:url(images/MenuTopGuia.jpg);
+	display:block;
+}
+
+.menuheaderentrar{
+	width:210px;
+	height:34px;
+    background-image:url(images/MenuTopEntrar.jpg);
+	display:block;
+}
+
+.menuheadercalendario{
+	width:210px;
+	height:34px;
+    background-image:url(images/MenuTopCalendario.jpg);
+	display:block;
+}
+
+.menucontent{
+	width:200px;
+    background-image:url(images/MenuMiddle1.jpg);
+	padding-left: 6px;
+	padding-right: 16px;
+	background-repeat: repeat-y;
+}
+
+.menudown{
+	width:212px;
+        height:26px;
+        margin-right: 3px;
+        background-image:url(images/MenuDown1.jpg);
+	padding-top:10px;
+	display: block;
+}
+

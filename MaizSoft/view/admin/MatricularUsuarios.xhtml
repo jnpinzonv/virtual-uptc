@@ -33,7 +33,7 @@
 				<h:outputText value="Seleccione Facultad: " />
 				<h:selectOneMenu
 					value="#{grupoUsuariosHome.instance.enteUniversitarioPadre}"
-					id="sobrenombres" rendered="true" required="true">
+					id="sobrenombres" rendered="true" >
 					<s:selectItems value="#{listaEnteUniversitariosFacultades}"
 						var="lista" label="#{lista.nombreEnteUniversitario}"
 						noSelectionLabel="Seleccione ..." />
@@ -49,7 +49,7 @@
 					<h:outputText value="Seleccione Escuela: " />
 					<h:selectOneMenu
 						value="#{grupoUsuariosHome.instance.enteUniversitarioHijo}"
-						id="enteUniveristarios" rendered="true" required="true">
+						id="enteUniveristarios" rendered="true">
 						<s:selectItems value="#{listaEscuelasMatriculas}" var="listaE"
 							label="#{listaE.nombreEnteUniversitario}"
 							noSelectionLabel="Seleccione ..." />
@@ -65,7 +65,7 @@
 				<a4j:outputPanel id="tres">
 					<h:outputText value="Seleccione curso:" />
 					<h:selectOneMenu value="#{grupoUsuariosHome.instance.curso}"
-						id="curso" rendered="true" required="true">
+						id="curso" rendered="true">
 						<s:selectItems value="#{listaCursoMatricula}" var="lis"
 							label="#{lis.nombreAsignatura}" noSelectionLabel="Seleccione ..." />
 						<a4j:support event="onchange" reRender="cuatro" ajaxSingle="true"
@@ -80,7 +80,7 @@
 				<a4j:outputPanel id="cuatro">
 					<h:outputText value="Seleccione grupo:" />
 					<h:selectOneMenu value="#{grupoUsuariosHome.instance.grupoCurso}"
-						id="grupos" rendered="true" required="true">
+						id="grupos" rendered="true">
 						<s:selectItems value="#{listaGruposPorCurso}" var="listaG"
 							label="#{listaG.codigoGrupo}" noSelectionLabel="Seleccione ..." />
 						<s:convertEntity />

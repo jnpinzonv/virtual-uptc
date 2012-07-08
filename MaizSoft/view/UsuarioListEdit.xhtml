@@ -139,8 +139,8 @@
 
 							<rich:column styleClass="action">
 								<f:facet name="header">Acción</f:facet>
-								<s:link view="/#{empty from ? 'Usuario' : from}.xhtml"
-									value="#{empty from ? 'Editar' : 'Seleccionar'}"
+								<s:link view="/admin/#{empty from ? 'Usuario' : from}.xhtml"
+									value="#{empty from ? 'Ver' : 'Seleccionar'}"
 									propagation="#{empty from ? 'none' : 'default'}"
 									id="usuarioViewId">
 									<f:param name="usuarioId" value="#{_usuario.id}" />

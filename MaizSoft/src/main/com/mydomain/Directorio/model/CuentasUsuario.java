@@ -3,6 +3,9 @@
  */
 package com.mydomain.Directorio.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,7 +26,7 @@ import org.jboss.seam.annotations.Name;
 * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, 
 * en esta clase lo referente a las cuentas de usuario, se comunica con la base de datos
 * Modulo de Desarrollo :CU- ...
-* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+* @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -62,7 +66,7 @@ public class CuentasUsuario {
 	 * Variable la cual almacena los grupos de usuarios
 	 * Se instancia de la clase GrupoUsuarios
 	 */
-	private GrupoUsuarios grupoUsuarios;
+	private Set<GrupoUsuarios> grupoUsuarios;
 
 	/**
 	 * Se obtiene el valor de id
@@ -125,9 +129,9 @@ public class CuentasUsuario {
 	 * Se obtiene el valor de grupoUsuarios
 	 * @return El valor de grupoUsuarios
 	 */
-	@OneToOne
-	@JoinColumn(name = "id_grupo_usuarios", unique = false, nullable = true, insertable = true, updatable = true)
-	public GrupoUsuarios getGrupoUsuarios() {
+
+	@OneToMany(mappedBy="userRole",cascade=CascadeType.ALL)
+	public Set<GrupoUsuarios> getGrupoUsuarios() {
 		return grupoUsuarios;
 	}
 
@@ -135,7 +139,7 @@ public class CuentasUsuario {
 	 * Asigna el valor de grupoUsuarios
 	 * @param grupoUsuarios El valor por establecer para grupoUsuarios
 	 */
-	public void setGrupoUsuarios(GrupoUsuarios grupoUsuarios) {
+	public void setGrupoUsuarios(Set<GrupoUsuarios> grupoUsuarios) {
 		this.grupoUsuarios = grupoUsuarios;
 	}
 

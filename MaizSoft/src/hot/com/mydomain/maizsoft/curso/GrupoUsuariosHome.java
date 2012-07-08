@@ -217,12 +217,15 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 			nuevo.setGrupoCurso(gr);
 			Query q=getEntityManager().createNamedQuery("buscarCuentaPorUsuario");
 			q.setParameter("parametro", sObj.getDocumentoIdentidad());
-			 CuentasUsuario nueva=(CuentasUsuario)q.getSingleResult();
-			 nueva.setGrupoUsuarios(nuevo);
-
+			 CuentasUsuario nueva=(CuentasUsuario)q.getSingleResult();		
+			 nuevo.setUserRole(nueva);
 			getEntityManager().persist(nuevo);
-			getEntityManager().persist(nueva);
+			//getEntityManager().persist(nueva);
 		}
+	}
+	
+	public void prueba(){
+		System.out.println("sdfsdfsdfsdfds");
 	}
 
 }

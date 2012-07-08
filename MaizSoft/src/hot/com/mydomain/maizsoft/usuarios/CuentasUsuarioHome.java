@@ -40,9 +40,9 @@ public class CuentasUsuarioHome extends EntityHome<CuentasUsuario> {
 	public void wire() {
 		getInstance();
 		GrupoUsuarios grupoUsuarios = grupoUsuariosHome.getDefinedInstance();
-		if (grupoUsuarios != null) {
-			getInstance().setGrupoUsuarios(grupoUsuarios);
-		}
+//		if (grupoUsuarios != null) {
+//			getInstance().setGrupoUsuarios(grupoUsuarios);
+//		}
 		UserAccount userAccounts = userAccountHome.getDefinedInstance();
 		if (userAccounts != null) {
 			getInstance().setUserAccounts(userAccounts);

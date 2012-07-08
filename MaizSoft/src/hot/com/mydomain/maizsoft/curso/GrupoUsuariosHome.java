@@ -13,7 +13,6 @@ import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
-import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.framework.EntityHome;
 
 import com.mydomain.Directorio.model.ConfiguracionesSistema;
@@ -36,8 +35,6 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 	UsuarioHome usuarioHome;
 	@In(create = true)
 	CuentasUsuarioHome cuentasUsuarioHome;
-	
-
 
 	public void setGrupoUsuariosIdGrupoUsuarios(Long id) {
 		setId(id);
@@ -69,11 +66,12 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 		if (userGrupoCurso != null) {
 			getInstance().setUserGrupoCurso(userGrupoCurso);
 		}
+		/*
 		CuentasUsuario userRole = cuentasUsuarioHome.getDefinedInstance();
-		if (userRole != null) {
-			getInstance().setUserRole(userRole);
-		}
 		
+		 * if (userRole != null) { getInstance().setUserRole(userRole); }
+		 */
+
 	}
 
 	public boolean isWired() {
@@ -93,139 +91,166 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 
 	@Factory("listaEscuelasMatriculas")
 	public List<EnteUniversitario> listaEntesUniversitarios() {
-		
+
 		List<EnteUniversitario> listaEntesUniversitarios = new ArrayList<EnteUniversitario>();
 		Query q = getEntityManager().createNamedQuery(
 				"entesUniversitariosPorFacultad");
-		if (instance.getEnteUniversitarioPadre() == null) {		
-			ConfiguracionesSistema padre = getEntityManager().find(ConfiguracionesSistema.class, 3l);
-			
-			q.setParameter("parametro", Long.parseLong(padre.getDetallesPropiedad()));
-			
+		if (instance.getEnteUniversitarioPadre() == null) {
+			ConfiguracionesSistema padre = getEntityManager().find(
+					ConfiguracionesSistema.class, 3l);
+
+			q.setParameter("parametro",
+					Long.parseLong(padre.getDetallesPropiedad()));
+
 			listaEntesUniversitarios = (List<EnteUniversitario>) q
 					.getResultList();
 		} else {
-			
+
 			q.setParameter("parametro", instance.getEnteUniversitarioPadre()
 					.getIdEnteUniversitario());
-			
-			ConfiguracionesSistema padre = getEntityManager().find(ConfiguracionesSistema.class, 3l);			
+
+			ConfiguracionesSistema padre = getEntityManager().find(
+					ConfiguracionesSistema.class, 3l);
 			padre.setDetallesPropiedad(instance.getEnteUniversitarioPadre()
-					.getIdEnteUniversitario()+"");
+					.getIdEnteUniversitario() + "");
 			getEntityManager().merge(padre);
 			getEntityManager().flush();
-							
+
 			listaEntesUniversitarios = (List<EnteUniversitario>) q
 					.getResultList();
 		}
 		return listaEntesUniversitarios;
 	}
-	
+
 	@Factory("listaGruposPorCurso")
 	public List<GrupoCurso> listagGruposPorCurso() {
-	
-			
+
 		List<GrupoCurso> listaGruposPorCurso = new ArrayList<GrupoCurso>();
-		Query q = getEntityManager().createNamedQuery(
-				"gruposPorCurso");
-		if (instance.getCurso()== null) {
-			ConfiguracionesSistema curso = getEntityManager().find(ConfiguracionesSistema.class, 5l);
-			q.setParameter("parametro",Long.parseLong(curso.getDetallesPropiedad()));
-			listaGruposPorCurso = (List<GrupoCurso>) q
-					.getResultList();
+		Query q = getEntityManager().createNamedQuery("gruposPorCurso");
+		if (instance.getCurso() == null) {
+			ConfiguracionesSistema curso = getEntityManager().find(
+					ConfiguracionesSistema.class, 5l);
+			q.setParameter("parametro",
+					Long.parseLong(curso.getDetallesPropiedad()));
+			listaGruposPorCurso = (List<GrupoCurso>) q.getResultList();
 		} else {
-		
+
 			q.setParameter("parametro", instance.getCurso().getCodigo());
-			ConfiguracionesSistema padre = getEntityManager().find(ConfiguracionesSistema.class, 5l);			
-			padre.setDetallesPropiedad(instance.getCurso().getCodigo()+"");
+			ConfiguracionesSistema padre = getEntityManager().find(
+					ConfiguracionesSistema.class, 5l);
+			padre.setDetallesPropiedad(instance.getCurso().getCodigo() + "");
 			getEntityManager().merge(padre);
 			getEntityManager().flush();
-			listaGruposPorCurso = (List<GrupoCurso>) q
-					.getResultList();
+			listaGruposPorCurso = (List<GrupoCurso>) q.getResultList();
 		}
 		return listaGruposPorCurso;
 	}
 
 	@Factory("listaCursoMatricula")
 	public List<Curso> listaCursoMatricula() {
-		
+
 		List<Curso> listaCursoMatricula = new ArrayList<Curso>();
 		Query q = getEntityManager().createNamedQuery("cursosPorEscuela");
 		if (instance.getEnteUniversitarioHijo() == null) {
-			ConfiguracionesSistema hijo = getEntityManager().find(ConfiguracionesSistema.class, 4l);
-			q.setParameter("parametro", Long.parseLong(hijo.getDetallesPropiedad()));
+			ConfiguracionesSistema hijo = getEntityManager().find(
+					ConfiguracionesSistema.class, 4l);
+			q.setParameter("parametro",
+					Long.parseLong(hijo.getDetallesPropiedad()));
 			listaCursoMatricula = (List<Curso>) q.getResultList();
 		} else {
-			
+
 			q.setParameter("parametro", instance.getEnteUniversitarioHijo()
 					.getIdEnteUniversitario());
-			ConfiguracionesSistema padre = getEntityManager().find(ConfiguracionesSistema.class, 4l);			
+			ConfiguracionesSistema padre = getEntityManager().find(
+					ConfiguracionesSistema.class, 4l);
 			padre.setDetallesPropiedad(instance.getEnteUniversitarioHijo()
-					.getIdEnteUniversitario()+"");
+					.getIdEnteUniversitario() + "");
 			getEntityManager().merge(padre);
 			getEntityManager().flush();
 			listaCursoMatricula = (List<Curso>) q.getResultList();
 		}
 		return listaCursoMatricula;
 	}
-	
-	
-	
+
 	@Factory("listaUsuariosEscuela")
 	public List<SelectItem> listaUsuariosEscuela() {
-
-		List<Usuario> listaUsuariosEscuela = new ArrayList<Usuario>();
-		Query q = getEntityManager().createNamedQuery("usuariosPorEscuela");
-		if (instance.getEnteUniversitarioHijo() == null) {
-			ConfiguracionesSistema curso = getEntityManager().find(ConfiguracionesSistema.class, 4l);
-			q.setParameter("parametro", Long.parseLong(curso.getDetallesPropiedad()));
-			listaUsuariosEscuela = (List<Usuario>) q.getResultList();
-		} else {
-			q.setParameter("parametro", instance.getEnteUniversitarioHijo()
-					.getIdEnteUniversitario());
-			
-			ConfiguracionesSistema padre = getEntityManager().find(ConfiguracionesSistema.class, 4l);			
-			padre.setDetallesPropiedad(instance.getEnteUniversitarioHijo()
-					.getIdEnteUniversitario()+"");
-			getEntityManager().merge(padre);
-			getEntityManager().flush();
-			
-			listaUsuariosEscuela = (List<Usuario>) q.getResultList();
-		}
+		List<SelectItem> sItems = new ArrayList<SelectItem>();
 		
-		 List<Usuario> someObjects = listaUsuariosEscuela;
-	      List<SelectItem> sItems = new ArrayList<SelectItem>(); 
-	      for(Usuario sObj : someObjects){
-	    	  String var=sObj.getCodigoUsuarios()+ "   "+ sObj.getPrimerNombre() +" "+sObj.getApellidos();
-	          SelectItem sItem = new SelectItem(sObj, var);
-	          sItems.add(sItem);
-	         
-	      }
+			List<Usuario> listaUsuariosEscuela = new ArrayList<Usuario>();
+			Query q = getEntityManager()
+					.createQuery(
+							"SELECT us FROM UserAccount u JOIN u.roles r,EnteUniversitario e,Usuario us,CuentasUsuario c"
+									+ " where r.name=:roles"
+									+ " and u.id = c.id"
+									+ " and c.id = us.id"
+									+ " and us.enteUniversitarios.idEnteUniversitario = e.idEnteUniversitario"								
+									+ " and us.enteUniversitarios.idEnteUniversitario =:escuela");
+			
+			// getEntityManager().createNamedQuery("usuariosPorEscuela");
+			if (instance.getEnteUniversitarioHijo() == null) {
+				ConfiguracionesSistema curso = getEntityManager().find(
+						ConfiguracionesSistema.class, 4l);
+				ConfiguracionesSistema role = getEntityManager().find(
+						ConfiguracionesSistema.class, 7l);
+				q.setParameter("roles",instance.getRole());
+				
+				q.setParameter("escuela",
+						Long.parseLong(curso.getDetallesPropiedad()));
+				listaUsuariosEscuela = (List<Usuario>) q.getResultList();
+			} else {
+				ConfiguracionesSistema padre = getEntityManager().find(
+						ConfiguracionesSistema.class, 7l);
+				q.setParameter("roles",instance.getRole());
+				q.setParameter("escuela", instance.getEnteUniversitarioHijo()
+						.getIdEnteUniversitario());	
+			
+				
+				/*ConfiguracionesSistema role = getEntityManager().find(
+						ConfiguracionesSistema.class, 7l);
+				role.setDetallesPropiedad(instance.getRole());
+				getEntityManager().merge(role);
+				getEntityManager().flush();*/
+	
+				listaUsuariosEscuela = (List<Usuario>) q.getResultList();
+			}
+
+			List<Usuario> someObjects = listaUsuariosEscuela;
+			
+			for (Usuario sObj : someObjects) {
+				String var = sObj.getCodigoUsuarios() + "   "
+						+ sObj.getPrimerNombre() + " " + sObj.getApellidos();
+				SelectItem sItem = new SelectItem(sObj, var);
+				sItems.add(sItem);
+
+			}
+
+		
+	
 		
 		return sItems;
 	}
-	
-	
-	
-	
-	public void saveMatricula(){
-		List<Usuario> someObjects=instance.getUsuarios();
-		GrupoCurso gr=instance.getGrupoCurso();
-		 for(Usuario sObj : someObjects){		
-			 GrupoUsuarios nuevo= new GrupoUsuarios();
-			 nuevo.setUserGrupoCurso(sObj);
+
+	public void saveMatricula() {
+		List<Usuario> someObjects = instance.getUsuarios();
+		GrupoCurso gr = instance.getGrupoCurso();
+		System.out.println(instance.getRole()+ " sis sisos siso");
+		System.out.println(someObjects.size()+ "cunatos son>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..");
+		for (Usuario sObj : someObjects) {
+			GrupoUsuarios nuevo = new GrupoUsuarios();
+			nuevo.setUserGrupoCurso(sObj);
 			nuevo.setGrupoCurso(gr);
-			Query q=getEntityManager().createNamedQuery("buscarCuentaPorUsuario");
+			Query q = getEntityManager().createNamedQuery(
+					"buscarCuentaPorUsuario");
 			q.setParameter("parametro", sObj.getDocumentoIdentidad());
-			 CuentasUsuario nueva=(CuentasUsuario)q.getSingleResult();		
-			 nuevo.setUserRole(nueva);
+			CuentasUsuario nueva = (CuentasUsuario) q.getSingleResult();
+			nueva.setGrupoUsuarios(nuevo);
 			getEntityManager().persist(nuevo);
-			//getEntityManager().persist(nueva);
+			getEntityManager().persist(nueva);
 		}
+		
+		System.out.println(someObjects.size()+ "cunatos son>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..");
 	}
 	
-	public void prueba(){
-		System.out.println("sdfsdfsdfsdfds");
-	}
+
 
 }

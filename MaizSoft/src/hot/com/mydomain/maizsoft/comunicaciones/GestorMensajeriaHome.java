@@ -17,6 +17,7 @@ import org.jboss.seam.annotations.Out;
 import org.jboss.seam.framework.EntityHome;
 import org.jboss.seam.security.Credentials;
 
+import com.mydomain.Directorio.model.ConsultasJpql;
 import com.mydomain.Directorio.model.CuentasUsuario;
 import com.mydomain.Directorio.model.GestorMensajeria;
 import com.mydomain.Directorio.model.GrupoCurso;
@@ -140,6 +141,19 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 			getEntityManager().persist(nuevoG);
 			getEntityManager().persist(nuevo);
 		}
+	}
+	
+	@Factory ("listaMensajesPorUsuario")
+	public List<GestorMensajeria> listaMensajesPorUsuario(){
+		
+		Credentials cre=(Credentials)Component.getInstance(Credentials.class);
+		
+		Query q = getEntityManager().createQuery(ConsultasJpql.LISTA_MENSAJES_USUARIO);
+		q.setParameter("parametro", cre.getUsername());
+		
+		
+		
+		return (List<GestorMensajeria>)q.getResultList();
 	}
 
 }

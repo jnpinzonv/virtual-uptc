@@ -14,10 +14,10 @@ import org.hibernate.validator.NotNull;
 import org.jboss.seam.annotations.Name;
 
 /**
-* Descripcion: Esta Clase se encarga de guardar infomación sobre los
+* Descripcion: Esta Clase se encarga de guardar infomaciï¿½n sobre los
 * receptores de los mensajes enviados y porteriormente recibidos.
 * Modulo de Desarrollo :CU- ...
- * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+ * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
 * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
 * Grupo de Investigacion Ingenieria Software (GIS)
 * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -36,15 +36,17 @@ public class ReceptorMensajes {
 	private Long idReceptormenajes;
 	
 	/**
-	 * Variable en cargada de almacenar información con respecto
+	 * Variable en cargada de almacenar informaciï¿½n con respecto
 	 * a los usuarios del curso.
 	 * Instancia de la clase Usuario.
 	 */
 	private Usuario userAccount;
 	
+	
+	private boolean leido;
 	/**
-	 * Variable encargada de guardar información con respecto
-	 * al envío de mensajes en la plataformfa.
+	 * Variable encargada de guardar informaciï¿½n con respecto
+	 * al envï¿½o de mensajes en la plataformfa.
 	 */
 	private GestorMensajeria gestorMensajeria;
 	
@@ -100,5 +102,22 @@ public class ReceptorMensajes {
 	 */
 	public void setGestorMensajeria(GestorMensajeria gestorMensajeria) {
 		this.gestorMensajeria = gestorMensajeria;
+	}
+	
+	/**
+	 * Se obtiene el valor de leido
+	 * @return El valor de leido
+	 */
+	@Column(name = "leido", unique = false, nullable = false, insertable = true, updatable = true)
+	public boolean isLeido() {
+		return leido;
+	}
+	
+	/**
+	 * Asigna el valor de leido
+	 * @param leido El valor por establecer para leido
+	 */
+	public void setLeido(boolean leido) {
+		this.leido = leido;
 	}
 }

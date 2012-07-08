@@ -241,7 +241,7 @@ public class GestorMensajeria {
 	 * @return El valor de gestorMensajeria
 	 */
 	@ManyToOne
-	@JoinColumn(name = "id_gestor_mensajería", unique = false, nullable = true, insertable = true, updatable = true)
+	@JoinColumn(name = "id_gestor_mensajeria", unique = false, nullable = true, insertable = true, updatable = true)
 	public GestorMensajeria getGestorMensajeria() {
 		return gestorMensajeria;
 	}

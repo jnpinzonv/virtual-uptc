@@ -102,7 +102,7 @@ public class GestorAnuncios {
 	 */
 	@NotEmpty
 	@Length(max=300)
-	@Column(name = "descripción_anuncio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
+	@Column(name = "descripcion_anuncio", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDescripcion() {
 		return descripcion;
 	}

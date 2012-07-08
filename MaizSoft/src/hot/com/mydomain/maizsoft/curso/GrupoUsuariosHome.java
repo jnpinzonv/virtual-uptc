@@ -2,6 +2,7 @@ package com.mydomain.maizsoft.curso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
@@ -243,9 +244,9 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 					"buscarCuentaPorUsuario");
 			q.setParameter("parametro", sObj.getDocumentoIdentidad());
 			CuentasUsuario nueva = (CuentasUsuario) q.getSingleResult();
-			nueva.setGrupoUsuarios(nuevo);
+			nuevo.setUserRole(nueva);
 			getEntityManager().persist(nuevo);
-			getEntityManager().persist(nueva);
+			//getEntityManager().persist(nueva);
 		}
 		
 		System.out.println(someObjects.size()+ "cunatos son>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..");

@@ -2,10 +2,8 @@ package com.mydomain.maizsoft.comunicaciones;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.persistence.Query;
 
@@ -13,14 +11,11 @@ import org.jboss.seam.Component;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
-import org.jboss.seam.annotations.Out;
 import org.jboss.seam.framework.EntityHome;
 import org.jboss.seam.security.Credentials;
 
 import com.mydomain.Directorio.model.ConsultasJpql;
-import com.mydomain.Directorio.model.CuentasUsuario;
 import com.mydomain.Directorio.model.GestorMensajeria;
-import com.mydomain.Directorio.model.GrupoCurso;
 import com.mydomain.Directorio.model.GrupoUsuarios;
 import com.mydomain.Directorio.model.NotaActividad;
 import com.mydomain.Directorio.model.ReceptorMensajes;
@@ -128,6 +123,12 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 	public void saveMensaje() {
 		List<Usuario> someObjects = instance.getListaUsuarios();
 		GestorMensajeria nuevoG = instance;
+		Credentials cre=(Credentials)Component.getInstance(Credentials.class);
+		
+		Query q= getEntityManager().createQuery(ConsultasJpql.USUARIO_POR_USERNAME)
+				.setParameter("parametro", cre.getUsername());
+		Usuario deUsuario=(Usuario)q.getSingleResult();
+		nuevoG.setDeUsuario(deUsuario);
 		Calendar calendar = Calendar.getInstance();
 		
 		for (Usuario sObj : someObjects) {
@@ -135,8 +136,11 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 			nuevo.setUserAccount(sObj);
 			nuevoG.setTipo(getEntityManager().find(Tipo.class, 9L));
 			nuevo.setGestorMensajeria(nuevoG);
+			nuevo.setLeido(false);
 			nuevoG.setFechaEnvio(calendar.getTime());
-			nuevoG.setDeUsuario(sObj);
+			
+			
+			
 
 			getEntityManager().persist(nuevoG);
 			getEntityManager().persist(nuevo);
@@ -150,10 +154,10 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 		
 		Query q = getEntityManager().createQuery(ConsultasJpql.LISTA_MENSAJES_USUARIO);
 		q.setParameter("parametro", cre.getUsername());
+		List<GestorMensajeria> lista =(List<GestorMensajeria>)q.getResultList();
 		
 		
-		
-		return (List<GestorMensajeria>)q.getResultList();
+		return lista;
 	}
 
 }

@@ -20,9 +20,10 @@ public interface ConsultasJpql {
 			+ " AND u.usuarios.id = r.userAccount.id"
 			+ " AND r.gestorMensajeria.idMensaje = g.idMensaje"
 			+ " AND ua.username=:parametro";
-	
-	String USUARIO_POR_USERNAME = "select u from UserAccount ua, Usuario u, CuentasUsuario cu where ua.username =:parametro" +
-		    " and ua.id = cu.userAccounts.id" +
-		    " and cu.usuarios.id = u.id";
+
+	String USUARIO_POR_USERNAME = "select u from UserAccount ua, Usuario u, CuentasUsuario cu where ua.username =:parametro"
+			+ " and ua.id = cu.userAccounts.id" + " and cu.usuarios.id = u.id";
+
+	String GRUPO_USUARIOS_SELECIONADO = "select t from GrupoUsuarios t where t.grupoCurso.idGrupo=#{cursoActualBean.seleccionado.idGrupo}";
 
 }

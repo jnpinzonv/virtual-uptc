@@ -78,7 +78,9 @@ public class NotaActividad {
 	 * Variable encargada de guardar las notas o calificaciones
 	 * obtenidas por determinado usuario en una actividad dada.
 	 */
-	private Long nota;
+	private Double nota;
+	
+	private Usuario usuario;
 	
 
 	/**
@@ -215,7 +217,7 @@ public class NotaActividad {
 	 */
 	@NotNull
 	@Column(name = "nota", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(1)")
-	public Long getNota() {
+	public double getNota() {
 		return nota;
 	}
 
@@ -223,7 +225,28 @@ public class NotaActividad {
 	 * Asigna el valor de nota
 	 * @param nota El valor por establecer para nota
 	 */
-	public void setNota(Long nota) {
+	public void setNota(double nota) {
 		this.nota = nota;
 	}
+
+	/**
+	 * Se obtiene el valor de usuario
+	 * @return El valor de usuario
+	 */
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "id_usuario", unique = false, nullable = false, insertable = true, updatable = true)
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * Asigna el valor de usuario
+	 * @param usuario El valor por establecer para usuario
+	 */
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	
 }

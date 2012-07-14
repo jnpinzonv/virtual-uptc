@@ -287,10 +287,5 @@ public class GestorMensajeria {
 	public void setListaUsuarios(List<Usuario> listaUsuarios) {
 		this.listaUsuarios = listaUsuarios;
 	}
-
-	
-	
-	
-	
 	
 }

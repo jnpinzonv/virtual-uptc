@@ -3,8 +3,8 @@
  */
 package com.mydomain.Directorio.model;
 
+import java.util.Date;
 import java.util.HashSet;
-
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -21,6 +21,8 @@ import javax.persistence.Table;
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
 import org.jboss.seam.annotations.Name;
+
+import com.sun.org.apache.regexp.internal.recompile;
 
 /**
 * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, se comunica con la base de datos
@@ -79,6 +81,10 @@ public class Actividad {
 	 * Se instancia de la clase NumeroDivisiones
 	 */
 	private Set<NumeroDivisiones> numeroDivisiones;
+	
+	private Date fechaCreacion;
+	
+	private Date fechaFinalizacion;
 	
 	/**
 	 * Se obtiene el valor de tipo
@@ -143,6 +149,7 @@ public class Actividad {
 	 */
 	@Column(name = "evaluable", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "bit(1)")
 	public boolean isEvaluable() {
+		
 		return evaluable;
 	}
 
@@ -210,4 +217,42 @@ public class Actividad {
 		this.numeroDivisiones = numeroDivisiones;
 	}
 
+	/**
+	 * Se obtiene el valor de fechaCreacion
+	 * @return El valor de fechaCreacion
+	 */
+	@NotNull
+	@Column(name = "fecha_creacion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "datetime")
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	/**
+	 * Asigna el valor de fechaCreacion
+	 * @param fechaCreacion El valor por establecer para fechaCreacion
+	 */
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	/**
+	 * Se obtiene el valor de fechaFinalizacion
+	 * @return El valor de fechaFinalizacion
+	 */
+	@NotNull
+	@Column(name = "fecha_Finalizacion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "datetime")
+	public Date getFechaFinalizacion() {
+		return fechaFinalizacion;
+	}
+
+	/**
+	 * Asigna el valor de fechaFinalizacion
+	 * @param fechaFinalizacion El valor por establecer para fechaFinalizacion
+	 */
+	public void setFechaFinalizacion(Date fechaFinalizacion) {
+		this.fechaFinalizacion = fechaFinalizacion;
+	}
+
+	
+	
 }

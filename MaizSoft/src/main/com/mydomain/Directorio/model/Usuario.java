@@ -126,6 +126,9 @@ public class Usuario {
 	 * inscirto en el curso.
 	 */
 	private Tipo tipo;
+	
+	
+	private Set<NotaActividad> notaActividad;
 
 	/**
 	 * Se obtiene el valor de id
@@ -460,4 +463,23 @@ public class Usuario {
 	public void setCuentasUsuario(Set<CuentasUsuario> cuentasUsuario) {
 		this.cuentasUsuario = cuentasUsuario;
 	}
+
+	/**
+	 * Se obtiene el valor de notaActividad
+	 * @return El valor de notaActividad
+	 */
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	public Set<NotaActividad> getNotaActividad() {
+		return notaActividad;
+	}
+
+	/**
+	 * Asigna el valor de notaActividad
+	 * @param notaActividad El valor por establecer para notaActividad
+	 */
+	public void setNotaActividad(Set<NotaActividad> notaActividad) {
+		this.notaActividad = notaActividad;
+	}
+	
+	
 }

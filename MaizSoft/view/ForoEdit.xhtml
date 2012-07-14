@@ -1,0 +1,113 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" 
+	template="layout/template2.xhtml">
+
+	<ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
+	</ui:define>
+
+	<ui:define name="centroT">
+
+		<h:form id="gestorMensajeria" styleClass="edit">
+
+			<rich:panel>
+				<f:facet name="header">#{gestorMensajeriaHome.managed ? 'Enviar' : 'Enviar'} Mensaje</f:facet>
+
+				<br />
+				<br />
+
+				<s:decorate id="asuntoField" template="layout/edit.xhtml">
+					<ui:define name="label">Asunto</ui:define>
+					<h:inputText id="asunto" size="100" maxlength="100"
+						value="#{gestorMensajeriaHome.instance.asunto}">
+						<a:support event="onblur" reRender="asuntoField"
+							bypassUpdates="true" ajaxSingle="true" />
+					</h:inputText>
+				</s:decorate>
+				
+				<br/>
+				<br/>
+				
+				
+
+				<s:decorate id="mensajeField" template="layout/edit.xhtml">
+					<ui:define name="label">Mensaje</ui:define>
+					<h:inputTextarea id="mensaje" required="true"
+						value="#{gestorMensajeriaHome.instance.mensaje}"
+						cols="90" rows="10">
+						<a:support event="onblur" reRender="mensajeField"
+							bypassUpdates="true" ajaxSingle="true" />
+					</h:inputTextarea>
+				</s:decorate>
+
+				<br />
+				<br />
+
+				<s:decorate id="evaluableField" template="/layout/edit.xhtml"
+					style="position:absolute;">
+					<ui:define name="label">Evaluable</ui:define>
+					<h:selectBooleanCheckbox id="evaluable"
+						value="#{actividadHome.instance.evaluable}" />
+				</s:decorate>
+
+				<br />
+				<br />
+				
+				<s:decorate id="fechaCompromisoField" template="/layout/edit.xhtml"
+					style="position:absolute;">
+					<ui:define name="label">Fecha Compromiso</ui:define>
+					<rich:calendar id="fechaEnvio" required="true"
+						value="#{actividadHome.instance.fechaFinalizacion}"
+						datePattern="dd/MM/yyyy hh:mm" />
+					
+				</s:decorate>
+
+				<br />
+				<br />
+				
+
+				<div style="clear: both">
+					<span class="required">*</span> Campos Obligatorios
+				</div>				
+				
+
+
+			</rich:panel>
+
+			<div class="actionButtons">
+				<br /> <br />
+				<h:commandButton id="save" value="Enviar"
+					action="#{gestorMensajeriaHome.saveForo()}"
+					rendered="#{!gestorMensajeriaHome.managed}" />
+
+				<h:commandButton id="update" value="Guardar"
+					action="#{gestorMensajeriaHome.update}"
+					rendered="#{gestorMensajeriaHome.managed}" />
+
+				<h:commandButton id="delete" value="Eliminar"
+					action="#{gestorMensajeriaHome.remove}" immediate="true"
+					rendered="#{gestorMensajeriaHome.managed}" />
+
+				<s:button id="cancelEdit" value="Cancelar" propagation="end"
+					view="/GestorMensajeria.xhtml"
+					rendered="#{gestorMensajeriaHome.managed}" />
+
+				<s:button id="cancelAdd" value="Cancelar" propagation="end"
+					view="/#{empty gestorMensajeriaFrom ? 'GestorMensajeriaList' : gestorMensajeriaFrom}.xhtml"
+					rendered="#{!gestorMensajeriaHome.managed}" />
+
+			</div>
+		</h:form>
+
+		
+	</ui:define>
+
+</ui:composition>

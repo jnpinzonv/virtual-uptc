@@ -3,6 +3,7 @@
  */
 package com.mydomain.Directorio.model;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -86,6 +87,13 @@ public class Actividad {
 	
 	private Date fechaFinalizacion;
 	
+	private String urlExterna;
+	
+	private Usuario usuario;
+	
+	public Actividad(){
+		evaluable=true;
+	}
 	/**
 	 * Se obtiene el valor de tipo
 	 * @return El valor de tipo
@@ -242,6 +250,10 @@ public class Actividad {
 	@NotNull
 	@Column(name = "fecha_Finalizacion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "datetime")
 	public Date getFechaFinalizacion() {
+		if(fechaFinalizacion==null){
+			Calendar calendar= Calendar.getInstance();
+			return calendar.getTime();
+		}
 		return fechaFinalizacion;
 	}
 
@@ -252,7 +264,40 @@ public class Actividad {
 	public void setFechaFinalizacion(Date fechaFinalizacion) {
 		this.fechaFinalizacion = fechaFinalizacion;
 	}
+	/**
+	 * Se obtiene el valor de urlExterna
+	 * @return El valor de urlExterna
+	 */
+	@Column(name = "url_externa", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(300)")
+	public String getUrlExterna() {
+		return urlExterna;
+	}
+	/**
+	 * Asigna el valor de urlExterna
+	 * @param urlExterna El valor por establecer para urlExterna
+	 */
+	public void setUrlExterna(String urlExterna) {
+		this.urlExterna = urlExterna;
+	}
+	/**
+	 * Se obtiene el valor de usuario
+	 * @return El valor de usuario
+	 */
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "id_usuario", unique = false, nullable = false, insertable = true, updatable = true)
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	/**
+	 * Asigna el valor de usuario
+	 * @param usuario El valor por establecer para usuario
+	 */
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
+	
 	
 	
 }

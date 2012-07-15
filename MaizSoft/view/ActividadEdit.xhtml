@@ -25,12 +25,13 @@
 					id="sobrenombre" required="true" rendered="true">
 					<s:selectItems value="#{listaTiposActividades}" var="lista"
 						label="#{lista.nombre}" noSelectionLabel="SELECCIONE..." />
-					<a4j:support event="onchange" reRender="dos" />
+					<a4j:support event="onchange" reRender="tres, cuatro, cinco,dos" />
 					<s:convertEntity />
 				</h:selectOneMenu>
 
 				<br />
 				<br />
+				
 
 				<s:decorate id="descripcionActividadField"
 					template="/layout/edit.xhtml" style="position:absolute;">
@@ -45,7 +46,25 @@
 				<br />
 				<br />
 				<br />
-
+				
+				<br />
+				<br />
+				
+				<s:decorate id="fechaCompromisoField" template="/layout/edit.xhtml"
+					style="position:absolute;">
+					<ui:define name="label">Fecha Compromiso</ui:define>
+					<rich:calendar id="fechaEnvio" required="true"
+						value="#{actividadHome.instance.fechaFinalizacion}"
+						datePattern="dd/MM/yyyy hh:mm" />
+					
+				</s:decorate>
+<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				
 
 				<s:decorate id="evaluableField" template="layout/edit.xhtml"
 					style="position:absolute;">
@@ -54,9 +73,47 @@
 						value="#{actividadHome.instance.evaluable}" />
 				</s:decorate>
 
+				
 				<br />
 				<br />
-
+				<br />
+				<br />
+				
+		<a4j:outputPanel id="tres" >
+		<h:commandButton id ="foro" value="ir Foro" action="#{gestorMensajeriaHome.irForo()}" disabled="#{actividadHome.instance.tipo.idTipo!=11}"/>
+		</a4j:outputPanel>  
+		<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				
+		<a4j:outputPanel id="cuatro" >
+		<h:commandButton id ="carga" value="ir carga" action="#{gestorMensajeriaHome.irForo()}" disabled="#{actividadHome.instance.tipo.idTipo!=11}"/>
+		</a4j:outputPanel>
+		<br />
+				<br />
+				<br />
+				<br />
+			
+		<a4j:outputPanel id="cinco" >
+		<s:decorate id="urlExternaActividadField"
+					template="/layout/edit.xhtml" style="position:absolute;" >
+					<ui:define name="label">Url Externa</ui:define>
+					<br />
+				<br />
+				
+					<h:inputTextarea id="urlExterna" cols="60" rows="1"
+						value="#{actividadHome.instance.urlExterna}" disabled="#{actividadHome.instance.tipo.idTipo!=17}" />
+				</s:decorate>
+		</a4j:outputPanel>
+		<br />
+				<br />
+				<br />
+				<br />
+				
+				
 
 				<div style="clear: both">
 					<span class="required">*</span> Campos Obligatorios 

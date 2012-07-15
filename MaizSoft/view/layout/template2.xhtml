@@ -142,21 +142,18 @@
 														></s:link>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Ver" action="/GestorMensajeriaList.seam"
+													<s:link value="Ver" action="/MensajeList.seam"
 														propagation="end"></s:link>
-												</rich:panelMenuItem>
-												
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Crear Foro" 
-														action="#{gestorMensajeriaHome.irForo()}"	onclick=""																									
-														></s:link>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Ver Foro" action="/ForoEdit.seam" 
 														propagation="end"></s:link>
 												</rich:panelMenuItem>
+												<rich:panelMenuItem style="color: #045491;" icon="disc">
+													<s:link value="Mensaje Enviado" action="/MensajeListEnviado.seam" 
+														propagation="end"></s:link>
+												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
-											
 
 											<rich:panelMenuGroup label="Administrar Usuarios"
 												style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">

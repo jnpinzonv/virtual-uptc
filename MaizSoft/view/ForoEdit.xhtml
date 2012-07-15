@@ -19,13 +19,13 @@
 		<h:form id="gestorMensajeria" styleClass="edit">
 
 			<rich:panel>
-				<f:facet name="header">#{gestorMensajeriaHome.managed ? 'Enviar' : 'Enviar'} Mensaje</f:facet>
+				<f:facet name="header">#{gestorMensajeriaHome.managed ? 'Crear' : 'Crear'} Foro</f:facet>
 
 				<br />
 				<br />
 
 				<s:decorate id="asuntoField" template="layout/edit.xhtml">
-					<ui:define name="label">Asunto</ui:define>
+					<ui:define name="label">Nombre</ui:define>
 					<h:inputText id="asunto" size="100" maxlength="100"
 						value="#{gestorMensajeriaHome.instance.asunto}">
 						<a:support event="onblur" reRender="asuntoField"
@@ -39,7 +39,7 @@
 				
 
 				<s:decorate id="mensajeField" template="layout/edit.xhtml">
-					<ui:define name="label">Mensaje</ui:define>
+					<ui:define name="label">Descripción</ui:define>
 					<h:inputTextarea id="mensaje" required="true"
 						value="#{gestorMensajeriaHome.instance.mensaje}"
 						cols="90" rows="10">
@@ -48,6 +48,19 @@
 					</h:inputTextarea>
 				</s:decorate>
 
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
 				<br />
 				<br />
 
@@ -63,16 +76,17 @@
 				
 				<s:decorate id="fechaCompromisoField" template="/layout/edit.xhtml"
 					style="position:absolute;">
-					<ui:define name="label">Fecha Compromiso</ui:define>
+					<ui:define name="label">Fecha Cierre</ui:define>
 					<rich:calendar id="fechaEnvio" required="true"
 						value="#{actividadHome.instance.fechaFinalizacion}"
-						datePattern="dd/MM/yyyy HH:mm" />
-					
+						datePattern="dd/MM/yyyy HH:mm"
+						oncurrentdateselect="if ( '2012'> event.rich.date.getFullYear()){return false;}"/>					
 				</s:decorate>
 
 				<br />
 				<br />
-				
+				<br />
+				<br />				
 
 				<div style="clear: both">
 					<span class="required">*</span> Campos Obligatorios
@@ -84,7 +98,7 @@
 
 			<div class="actionButtons">
 				<br /> <br />
-				<h:commandButton id="save" value="Enviar"
+				<h:commandButton id="save" value="Crear"
 					action="#{gestorMensajeriaHome.saveForo()}"
 					rendered="#{!gestorMensajeriaHome.managed}" />
 

@@ -216,7 +216,7 @@ public class NotaActividad {
 	 * @return El valor de nota
 	 */
 	@NotNull
-	@Column(name = "nota", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(1)")
+	@Column(name = "nota", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(1,1)")
 	public double getNota() {
 		return nota;
 	}

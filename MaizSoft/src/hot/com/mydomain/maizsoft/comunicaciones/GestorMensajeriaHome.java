@@ -176,14 +176,8 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 	}
 	
 	public void saveForo(){
-		
-		
-
-		
 		List<GrupoUsuarios> listaEntesUniversitarios = listaGrupoUsuarios();
-		
-		System.out.println(listaEntesUniversitarios.size() + "tamanioooo");
-		
+				
 		GestorMensajeria nuevoG = instance;
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);

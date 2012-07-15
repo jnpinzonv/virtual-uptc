@@ -19,17 +19,16 @@
 		<h:form id="gestorMensajeriaSearch" styleClass="edit">
 
 				<rich:panel>
-					<f:facet name="header">Mensajes Recibidos</f:facet>
+					<f:facet name="header">Mensajes Enviados</f:facet>
 					<div class="results" id="mensajeList">
 
 						<rich:dataTable id="usuarioList" var="_listaMensajes"
-							value="#{listaMensajesPorUsuario}" rows="10" width="650px">
-							
+							value="#{listaMensajesEnviadosPorUsuario}" rows="10" width="650px">
 							<h:column>
-								<f:facet name="header">De							
+								<f:facet name="header">Para							
 								</f:facet>
 								<h:outputText
-									value="#{_listaMensajes.deUsuario.primerNombre} #{_listaMensajes.deUsuario.apellidos}" />
+									value="#{_listaMensajes.listaUsuarios}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">Asunto							

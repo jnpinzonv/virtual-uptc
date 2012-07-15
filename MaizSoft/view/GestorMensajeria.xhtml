@@ -1,332 +1,83 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:s="http://jboss.com/products/seam/taglib"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:rich="http://richfaces.org/rich"
-    template="layout/template.xhtml">
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
 
-<ui:define name="body">
+	<ui:define name="body">
 
-    <rich:panel>
-        <f:facet name="header">Gestor mensajeria Details</f:facet>
+		<rich:panel>
+			<f:facet name="header">Detalles del Mensaje</f:facet>
 
+			<s:decorate id="asunto" template="layout/display.xhtml">
+				<ui:define name="label">Asunto</ui:define>
+				<h:outputText value="#{gestorMensajeriaHome.instance.asunto}" />
+			</s:decorate>
 
-        <s:decorate id="asunto" template="layout/display.xhtml">
-            <ui:define name="label">Asunto</ui:define>
-            <h:outputText value="#{gestorMensajeriaHome.instance.asunto}"/>
-        </s:decorate>
+			<s:decorate id="fechaEnvio" template="layout/display.xhtml">
+				<ui:define name="label">Fecha envio</ui:define>
+				<h:outputText value="#{gestorMensajeriaHome.instance.fechaEnvio}">
+					<s:convertDateTime type="date" dateStyle="short" />
+				</h:outputText>
+			</s:decorate>
 
-        <s:decorate id="fechaEnvio" template="layout/display.xhtml">
-            <ui:define name="label">Fecha envio</ui:define>
-            <h:outputText value="#{gestorMensajeriaHome.instance.fechaEnvio}">
-                <s:convertDateTime type="date" dateStyle="short"/>
-            </h:outputText>
-        </s:decorate>
+			<s:decorate id="mensaje" template="layout/display.xhtml">
+				<ui:define name="label">Mensaje</ui:define>
+				<h:outputText value="#{gestorMensajeriaHome.instance.mensaje}" />
+			</s:decorate>
 
-        <s:decorate id="mensaje" template="layout/display.xhtml">
-            <ui:define name="label">Mensaje</ui:define>
-            <h:outputText value="#{gestorMensajeriaHome.instance.mensaje}"/>
-        </s:decorate>
+			<div style="clear: both" />
 
-        <div style="clear:both"/>
+		</rich:panel>
 
-    </rich:panel>
+		<rich:tabPanel switchType="ajax">
 
-    <div class="actionButtons">
+			<rich:tab>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:graphicImage value="/img/manytoone.gif"
+							style="vertical-align: middle; padding-right: 4px;" />Enviado Por:</h:panelGroup>
+				</f:facet>
+				<div class="association" id="deUsuarioParent">
 
-        <s:button view="/GestorMensajeriaEdit.xhtml"
-                    id="edit"
-                 value="Edit"/>
+					<h:outputText
+						value="There is no deUsuario associated with this gestorMensajeria."
+						rendered="#{gestorMensajeriaHome.instance.deUsuario == null}" />
 
-        <s:button view="/#{empty gestorMensajeriaFrom ? 'GestorMensajeriaList' : gestorMensajeriaFrom}.xhtml"
-                    id="done"
-                 value="Done"/>
+					<rich:dataTable var="_usuario"
+						value="#{gestorMensajeriaHome.instance.deUsuario}"
+						rendered="#{gestorMensajeriaHome.instance.deUsuario != null}"
+						rowClasses="rvgRowOne,rvgRowTwo" id="deUsuarioTable">
+						<h:column>
+							<f:facet name="header">Primer nombre</f:facet>
+							<h:outputText
+								value="#{_usuario.primerNombre} #{_usuario.segundoNombre}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Apellidos</f:facet>
+							<h:outputText value="#{_usuario.apellidos}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Correo electronico</f:facet>
+							<h:outputText value="#{_usuario.correoElectronico}" />
+						</h:column>
 
-    </div>
+					</rich:dataTable>
 
-    <rich:tabPanel switchType="ajax">
+				</div>
+			</rich:tab>
+		</rich:tabPanel>
 
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>De usuario</h:panelGroup>
-        </f:facet>
-    <div class="association" id="deUsuarioParent">
+		<div class="actionButtons">
 
-        <h:outputText value="There is no deUsuario associated with this gestorMensajeria."
-                   rendered="#{gestorMensajeriaHome.instance.deUsuario == null}"/>
+			<s:button
+				view="/#{empty gestorMensajeriaFrom ? 'MensajeList' : gestorMensajeriaFrom}.xhtml"
+				id="done" value="Aceptar" />
 
-        <rich:dataTable var="_usuario"
-                   value="#{gestorMensajeriaHome.instance.deUsuario}"
-                rendered="#{gestorMensajeriaHome.instance.deUsuario != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="deUsuarioTable">
-            <h:column>
-                <f:facet name="header">Id</f:facet>
-                <h:outputText value="#{_usuario.id}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Apellidos</f:facet>
-                <h:outputText value="#{_usuario.apellidos}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Correo electronico</f:facet>
-                <h:outputText value="#{_usuario.correoElectronico}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Documento identidad</f:facet>
-                <h:outputText value="#{_usuario.documentoIdentidad}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Ente universitarios id ente universitario</f:facet>
-                <h:outputText value="#{_usuario.enteUniversitarios.idEnteUniversitario}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Foto user</f:facet>
-                <h:outputText value="#{_usuario.fotoUser}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Primer nombre</f:facet>
-                <h:outputText value="#{_usuario.primerNombre}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Segundo nombre</f:facet>
-                <h:outputText value="#{_usuario.segundoNombre}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo id tipo</f:facet>
-                <h:outputText value="#{_usuario.tipo.idTipo}"/>
-            </h:column>
-            <h:column styleClass="action">
-                <f:facet name="header">Action</f:facet>
-                <s:link id="viewusuario"
-                     value="View"
-                      view="/Usuario.xhtml">
-                    <f:param name="usuarioId"
-                           value="#{_usuario.id}"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
-    </div>
-    </rich:tab>
-
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Gestor mensajeria</h:panelGroup>
-        </f:facet>
-    <div class="association" id="gestorMensajeriaParent">
-
-        <h:outputText value="There is no gestorMensajeria associated with this gestorMensajeria."
-                   rendered="#{gestorMensajeriaHome.instance.gestorMensajeria == null}"/>
-
-        <rich:dataTable var="_gestorMensajeria"
-                   value="#{gestorMensajeriaHome.instance.gestorMensajeria}"
-                rendered="#{gestorMensajeriaHome.instance.gestorMensajeria != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="gestorMensajeriaTable">
-            <h:column>
-                <f:facet name="header">Id mensaje</f:facet>
-                <h:outputText value="#{_gestorMensajeria.idMensaje}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Asunto</f:facet>
-                <h:outputText value="#{_gestorMensajeria.asunto}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">De usuario id</f:facet>
-                <h:outputText value="#{_gestorMensajeria.deUsuario.id}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Fecha envio</f:facet>
-                <h:outputText value="#{_gestorMensajeria.fechaEnvio}">
-                    <s:convertDateTime type="date" dateStyle="short"/>
-                </h:outputText>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Gestor mensajeria id mensaje</f:facet>
-                <h:outputText value="#{_gestorMensajeria.gestorMensajeria.idMensaje}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Mensaje</f:facet>
-                <h:outputText value="#{_gestorMensajeria.mensaje}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo id tipo</f:facet>
-                <h:outputText value="#{_gestorMensajeria.tipo.idTipo}"/>
-            </h:column>
-            <h:column styleClass="action">
-                <f:facet name="header">Action</f:facet>
-                <s:link id="viewgestorMensajeria"
-                     value="View"
-                      view="/GestorMensajeria.xhtml">
-                    <f:param name="gestorMensajeriaIdMensaje"
-                           value="#{_gestorMensajeria.idMensaje}"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
-    </div>
-    </rich:tab>
-
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Lista gestor mensajeria</h:panelGroup>
-        </f:facet>
-    <h:form styleClass="association" id="listaGestorMensajeriaChildren">
-
-        <h:outputText value="There are no listaGestorMensajeria associated with this gestorMensajeria."
-                   rendered="#{empty gestorMensajeriaHome.listaGestorMensajeria}"/>
-
-        <rich:dataTable value="#{gestorMensajeriaHome.listaGestorMensajeria}"
-                       var="_gestorMensajeria"
-                  rendered="#{not empty gestorMensajeriaHome.listaGestorMensajeria}"
-                rowClasses="rvgRowOne,rvgRowTwo"
-                        id="listaGestorMensajeriaTable">
-            <rich:column sortBy="#{_gestorMensajeria.idMensaje}">
-                <f:facet name="header">Id mensaje</f:facet>
-                <h:outputText value="#{_gestorMensajeria.idMensaje}"/>
-            </rich:column>
-            <rich:column sortBy="#{_gestorMensajeria.asunto}">
-                <f:facet name="header">Asunto</f:facet>
-                <h:outputText value="#{_gestorMensajeria.asunto}"/>
-            </rich:column>
-            <rich:column sortBy="#{_gestorMensajeria.fechaEnvio}">
-                <f:facet name="header">Fecha envio</f:facet>
-                <h:outputText value="#{_gestorMensajeria.fechaEnvio}">
-                    <s:convertDateTime type="date" dateStyle="short"/>
-                </h:outputText>
-            </rich:column>
-            <rich:column sortBy="#{_gestorMensajeria.mensaje}">
-                <f:facet name="header">Mensaje</f:facet>
-                <h:outputText value="#{_gestorMensajeria.mensaje}"/>
-            </rich:column>
-            <h:column>
-                <f:facet name="header">Action</f:facet>
-                <s:link id="selectgestorMensajeria"
-                     value="Select"
-                      view="/GestorMensajeria.xhtml">
-                    <f:param name="gestorMensajeriaIdMensaje"
-                            value="#{_gestorMensajeria.idMensaje}"/>
-                    <f:param name="gestorMensajeriaFrom" value="GestorMensajeria"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
-    </h:form>
-
-    <div class="actionButtons">
-        <s:button
-               value="Add gestorMensajeria"
-                view="/GestorMensajeriaEdit.xhtml">
-            <f:param name="gestorMensajeriaIdMensaje"
-                    value="#{gestorMensajeriaHome.instance.idMensaje}"/>
-            <f:param name="gestorMensajeriaFrom" value="GestorMensajeria"/>
-        </s:button>
-    </div>
-    </rich:tab>
-
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Nota actividad</h:panelGroup>
-        </f:facet>
-    <h:form styleClass="association" id="notaActividadChildren">
-
-        <h:outputText value="There are no notaActividad associated with this gestorMensajeria."
-                   rendered="#{empty gestorMensajeriaHome.notaActividad}"/>
-
-        <rich:dataTable value="#{gestorMensajeriaHome.notaActividad}"
-                       var="_notaActividad"
-                  rendered="#{not empty gestorMensajeriaHome.notaActividad}"
-                rowClasses="rvgRowOne,rvgRowTwo"
-                        id="notaActividadTable">
-            <rich:column sortBy="#{_notaActividad.idNotaActividad}">
-                <f:facet name="header">Id nota actividad</f:facet>
-                <h:outputText value="#{_notaActividad.idNotaActividad}"/>
-            </rich:column>
-            <rich:column sortBy="#{_notaActividad.estadoPendiente}">
-                <f:facet name="header">Estado pendiente</f:facet>
-                <h:outputText value="#{_notaActividad.estadoPendiente}"/>
-            </rich:column>
-            <rich:column sortBy="#{_notaActividad.justificacion}">
-                <f:facet name="header">Justificacion</f:facet>
-                <h:outputText value="#{_notaActividad.justificacion}"/>
-            </rich:column>
-            <rich:column sortBy="#{_notaActividad.nota}">
-                <f:facet name="header">Nota</f:facet>
-                <h:outputText value="#{_notaActividad.nota}"/>
-            </rich:column>
-            <h:column>
-                <f:facet name="header">Action</f:facet>
-                <s:link id="selectnotaActividad"
-                     value="Select"
-                      view="/NotaActividad.xhtml">
-                    <f:param name="notaActividadIdNotaActividad"
-                            value="#{_notaActividad.idNotaActividad}"/>
-                    <f:param name="notaActividadFrom" value="GestorMensajeria"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
-    </h:form>
-
-    <div class="actionButtons">
-        <s:button
-               value="Add notaActividad"
-                view="/NotaActividadEdit.xhtml">
-            <f:param name="gestorMensajeriaIdMensaje"
-                    value="#{gestorMensajeriaHome.instance.idMensaje}"/>
-            <f:param name="notaActividadFrom" value="GestorMensajeria"/>
-        </s:button>
-    </div>
-    </rich:tab>
-
-    <rich:tab>
-        <f:facet name="label">
-            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Tipo</h:panelGroup>
-        </f:facet>
-    <div class="association" id="tipoParent">
-
-        <h:outputText value="There is no tipo associated with this gestorMensajeria."
-                   rendered="#{gestorMensajeriaHome.instance.tipo == null}"/>
-
-        <rich:dataTable var="_tipo"
-                   value="#{gestorMensajeriaHome.instance.tipo}"
-                rendered="#{gestorMensajeriaHome.instance.tipo != null}"
-              rowClasses="rvgRowOne,rvgRowTwo"
-                      id="tipoTable">
-            <h:column>
-                <f:facet name="header">Id tipo</f:facet>
-                <h:outputText value="#{_tipo.idTipo}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Descripcion</f:facet>
-                <h:outputText value="#{_tipo.descripcion}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nombre</f:facet>
-                <h:outputText value="#{_tipo.nombre}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Tipo id tipo</f:facet>
-                <h:outputText value="#{_tipo.tipo.idTipo}"/>
-            </h:column>
-            <h:column styleClass="action">
-                <f:facet name="header">Action</f:facet>
-                <s:link id="viewtipo"
-                     value="View"
-                      view="/Tipo.xhtml">
-                    <f:param name="tipoIdTipo"
-                           value="#{_tipo.idTipo}"/>
-                </s:link>
-            </h:column>
-        </rich:dataTable>
-
-    </div>
-    </rich:tab>
-</rich:tabPanel>
-</ui:define>
+		</div>
+	</ui:define>
 
 </ui:composition>

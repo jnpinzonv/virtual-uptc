@@ -170,6 +170,22 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 		return lista;
 	}
 	
+	
+	@Factory("listaMensajesEnviadosPorUsuario")
+	public List<GestorMensajeria> listaMensajesEnviadosPorUsuario() {
+
+		Credentials cre = (Credentials) Component
+				.getInstance(Credentials.class);
+
+		Query q = getEntityManager().createQuery(
+				ConsultasJpql.LISTA_MENSAJES_ENVIADOS_USUARIO);
+		q.setParameter("parametro", cre.getUsername());
+		List<GestorMensajeria> lista = (List<GestorMensajeria>) q
+				.getResultList();
+
+		return lista;
+	}
+	
 	public String irForo(){
 		listaGrupoUsuarios();
 		return "/ForoEdit.seam";
@@ -214,8 +230,6 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 			getEntityManager().persist(nuevaNota);
 			
 		}
-		
-		
 		
 		
 		

@@ -16,10 +16,12 @@
 
 	<ui:define name="centroT">
 
-		<h:form id="actividad" styleClass="edit">
+		<h:form id="actividad" styleClass="edit" enctype="multipart/form-data">
 
 			<rich:panel>
 				<f:facet name="header">#{actividadHome.managed ? 'Editar' : 'Adicionar'} Actividad</f:facet>
+
+
 
 				<h:selectOneMenu value="#{actividadHome.instance.tipo}"
 					id="sobrenombre" required="true" rendered="true">
@@ -43,6 +45,15 @@
 				<br />
 				<br />
 				<br />
+				
+				
+				<s:decorate id="adjuntoField" template="/layout/edit.xhtml"
+					style="position:absolute;">
+					<ui:define name="label">Adjuntar Archivo</ui:define>
+					<h:selectBooleanCheckbox id="adjunto"
+						value="#{actividadHome.instance.adjuntarArchivo}" />
+						<a4j:support event="onchange" reRender="cuatro" />
+				</s:decorate>
 				<br />
 				<br />
 				<br />
@@ -89,9 +100,7 @@
 				<br />
 				<br />
 				
-		<a4j:outputPanel id="cuatro" >
-		<h:commandButton id ="carga" value="ir carga" action="#{gestorMensajeriaHome.irForo()}" disabled="#{actividadHome.instance.tipo.idTipo!=11}"/>
-		</a4j:outputPanel>
+		
 		<br />
 				<br />
 				<br />
@@ -112,7 +121,20 @@
 				<br />
 				<br />
 				<br />
-				
+				<a4j:outputPanel id="cuatro" >
+			<f:facet name="header">Adjuntar Archivo</f:facet>
+	
+
+				<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
+					accept="image/jpg" fileName="#{actividadHome.instance.nombreArchivo}" />
+
+				<h:commandButton id="upload" value="Subir !!"
+					action="#{cargaArchivosBean.handleUpload}" disabled="#{actividadHome.instance.adjuntarArchivo!=true}" />
+				  	
+				  	<s:button id="cancel" view="/login.xhtml"
+								value="Cancel" propagation="end" />
+			
+		</a4j:outputPanel>
 				
 
 				<div style="clear: both">
@@ -147,6 +169,8 @@
 				</div>
 			</a4j:outputPanel>
 		</h:form>
+		
+		
 
 		<rich:tabPanel switchType="ajax">
 

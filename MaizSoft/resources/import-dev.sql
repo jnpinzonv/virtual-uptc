@@ -35,8 +35,7 @@ insert into user_role (id_user_role, conditional, name) values (2, false, 'docen
 insert into user_role (id_user_role, conditional, name) values (3, false, 'estudiante');
 insert into user_role (id_user_role, conditional, name) values (4, true, 'visitante');
 insert into user_account_role (account_id, member_of_role) values (1, 1);
-insert into user_role_group (role_id, member_of_role) values (1, 2);
-insert into user_role_group (role_id, member_of_role) values (1, 3);
+
 
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(1,'C://archivos','pathArchivos');
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(2,'archivosCargasExcel','pathArchivosExcel');
@@ -45,6 +44,8 @@ insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propieda
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(4,'2','enteUniversiarioHijo');
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(5,'3','cursosEscuela');
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(6,'4','grupoCursos');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(7,'estudiante','Roles');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(8,'cargaArchivosCurso','pathArchivosCurso');
 
 --insert into ente_universitario(`idEnteUniversitario`,`descripcionEnteUniversitario`,`enteUniversitario_idEnteUniversitario`,`nombreEnteUniversitario`,`tipoEnteUniversitario_idTipo`) values (1,'Aplica cuando el usuario no pertenece a la Universidad',null,'No Aplica',1);
 

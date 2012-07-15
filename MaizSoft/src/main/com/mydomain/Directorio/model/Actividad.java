@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
@@ -91,8 +92,13 @@ public class Actividad {
 	
 	private Usuario usuario;
 	
+	private transient String nombreArchivo;
+	
+	private transient boolean adjuntarArchivo;
+	
 	public Actividad(){
 		evaluable=true;
+		adjuntarArchivo=false;
 	}
 	/**
 	 * Se obtiene el valor de tipo
@@ -296,8 +302,35 @@ public class Actividad {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
-	
+	/**
+	 * Se obtiene el valor de nombreArchivo
+	 * @return El valor de nombreArchivo
+	 */
+	@Transient
+	public String getNombreArchivo() {
+		return nombreArchivo;
+	}
+	/**
+	 * Asigna el valor de nombreArchivo
+	 * @param nombreArchivo El valor por establecer para nombreArchivo
+	 */
+	public void setNombreArchivo(String nombreArchivo) {
+		this.nombreArchivo = nombreArchivo;
+	}
+	/**
+	 * Se obtiene el valor de adjuntarArchivo
+	 * @return El valor de adjuntarArchivo
+	 */
+	public boolean isAdjuntarArchivo() {
+		return adjuntarArchivo;
+	}
+	/**
+	 * Asigna el valor de adjuntarArchivo
+	 * @param adjuntarArchivo El valor por establecer para adjuntarArchivo
+	 */
+	public void setAdjuntarArchivo(boolean adjuntarArchivo) {
+		this.adjuntarArchivo = adjuntarArchivo;
+	}	
 	
 	
 }

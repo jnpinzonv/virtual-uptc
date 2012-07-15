@@ -57,8 +57,12 @@ public class UploadHandler implements IUploadHandler {
 				ConfiguracionesSistema.class, 1l);
 		ConfiguracionesSistema pathExcel = entityManager.find(
 				ConfiguracionesSistema.class, 2l);
-		
-		File f = new File(path.getDetallesPropiedad()+"\\"+ pathExcel.getDetallesPropiedad(), nombreArchivo);
+		String pathFinal=path.getDetallesPropiedad()+"//"+ pathExcel.getDetallesPropiedad();
+		File directorio = new File(pathFinal);
+		if (!directorio.exists()) {
+			directorio.mkdirs();
+		} 
+		File f = new File(pathFinal, nombreArchivo);
 		log.info(f);
 		FileOutputStream fo = new FileOutputStream(f);
 		fo.write(file);

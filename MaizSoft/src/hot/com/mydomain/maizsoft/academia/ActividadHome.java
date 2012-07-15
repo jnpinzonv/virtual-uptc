@@ -113,6 +113,11 @@ public class ActividadHome extends EntityHome<Actividad> {
 			getEntityManager().persist(nuevaNota);
 			
 		}
+		if(instance.isAdjuntarArchivo()==true){
+			GestorCargaArchivos archivo=new GestorCargaArchivos();
+			archivo.setDescripcion(instance.getDescripcionActividad());
+			archivo.setRuta(instance.getNombreArchivo());
+		}
 	}
 	
 	

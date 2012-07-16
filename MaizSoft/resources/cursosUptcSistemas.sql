@@ -1,4 +1,4 @@
----- Cursos de Ingenieria de Sistemas y Computación
+-- Cursos de Ingenieria de Sistemas y Computación
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8107550,'Algoritmos y programacion',15);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
@@ -64,7 +64,7 @@ values(8105529,'Simulación por computador',15);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8108220,'Metodologia de la Investigacion y Diseño Experimental',15);
 
----- Grupos de Ingenieria de Sistemas y Computación
+-- Grupos de Ingenieria de Sistemas y Computación
 -- Grupo Algoritmos y programacion
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
 values (1,1,25,0,1,8107550,16);
@@ -174,9 +174,43 @@ values(8108101,'Botanica Taxonomica',19);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8105068,'Manejo Integral de Malezas',19);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8108107,'Fisiologia Vegetal I',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8108111,'Fisiologia Vegetal II',19);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8106257,'Fitomejoramiento',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8105065,'Fitopatologia',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8106258,'Fitoproteccion Biologica',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8108108,'Genesis y caracterizacion de suelos',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8105058,'Genetica Agricola',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8105066,'Hidraulica',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8107560,'Introduccion a las ciencias agrarias',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8105069,'Manejo Integral de Insectos',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8105070,'Manejo Integral de Enfermedades',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8106260,'Manejo Animal',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8105071,'Maquinaria y Mecanizacion Agricola',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8105081,'Manejo de Cuencas Hidrograficas',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8105089,'Manejo de Productos Fitosanitarios',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8105087,'Produccion de Hortalizas',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8105088,'Produccion de Frutas',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8108112,'Quimica y Fertilidad de suelos',19);
+insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
+values(8108114,'Reproduccion Vegetal',19);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8105063,'Entomologia',19);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
@@ -189,43 +223,93 @@ insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario)
 values(8106261,'Gerencia Empresarial Rural',19);
 
 ---- Grupos Ingeniería Agronómica
--- Grupo Mercadeo Agricola
+-- Grupo Introduccion a las ciencias agrarias
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (1,1,25,0,8,8105062,16);
--- Grupo Extension Rural
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (1,1,25,0,8,8105083,16);
--- Grupo Formulacion y Evaluacion de Proyectos
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (1,1,25,0,7,8105067,16);
--- Grupo Metodologia de la Investigacion
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (1,1,25,0,4,8108058,16);
+values (33,1,25,0,1,8107560,16);
 -- Grupo Botanica Taxonomica
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (1,1,25,0,2,8108101,16);
--- Grupo Manejo Integral de Malezas
+values (34,1,25,0,2,8108101,16);
+-- Grupo Genesis y caracterizacion de suelos
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (1,1,25,0,7,8105068,16);
--- Grupo Fisiologia Vegetal II
+values (35,1,25,0,3,8108108,16);
+-- Grupo Fisiologia Vegetal 1,2
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (1,1,25,0,4,8108111,16);
--- Grupo Manejo Integral de Insectos
+values (36,1,25,0,3,8108107,16);
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (1,1,25,0,7,8105069,16);
--- Grupo Entomologia
+values (37,1,25,0,4,8108111,16);
+-- Grupo Metodologia de la Investigacion
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (1,1,25,0,6,8105063,16);
+values (38,1,25,0,4,8108058,16);
+-- Grupo Quimica y Fertilidad de suelos
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (39,1,25,0,4,8108112,16);
+-- Grupo Reproducción Vegetal
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (40,1,25,0,4,8108114,16);
+-- Grupo Hidraulica
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (41,1,25,0,5,8105066,16);
 -- Grupo Bioestadistica y Diseño Experimental
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (1,1,25,0,5,8108110,16);
--- Grupo Administracion Empresas Agropecuarias
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (1,1,25,0,6,8105057,16);
+values (42,1,25,0,5,8108110,16);
 -- Grupo Economía agraría
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (1,1,25,0,5,8108054,16);
+values (43,1,25,0,5,8108054,16);
+-- Grupo Fitopatologia 
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (44,1,25,0,6,8105065,16);
+-- Grupo Administracion Empresas Agropecuarias
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (45,1,25,0,6,8105057,16);
+-- Grupo Entomologia
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (46,1,25,0,6,8105063,16);
+-- Grupo Fitoproteccion Biologica
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (47,1,25,0,6,8106258,16);
+-- Grupo 7enetica agricola
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (48,1,25,0,6,8105058,16);
+-- Grupo Formulacion y Evaluacion de Proyectos
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (49,1,25,0,7,8105067,16);
+-- Grupo Manejo Integral de Malezas
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (50,1,25,0,7,8105068,16);
+-- Grupo Fitomejoramiento
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (51,1,25,0,7,8106257,16);
+-- Grupo Mercadeo Agricola
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (52,1,25,0,8,8105062,16);
+-- Grupo Extension Rural
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (53,1,25,0,8,8105083,16);
+-- Grupo Manejo Integral de Insectos
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (54,1,25,0,7,8105069,16);
+-- Grupo Manejo Integral de Enfermedades
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (55,1,25,0,7,8105070,16);
+-- Grupo Manejo Animal
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (56,1,25,0,7,8106260,16);
+-- Grupo Manejo de Cuencas Hidrograficas
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (57,1,25,0,8,8105081,16);
+-- Grupo Manejo de Productos Fitosanitarios
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (58,1,25,0,8,8105089,16);
+-- Grupo Maquinaria y mecanizacion agricola
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (59,1,25,0,8,8105071,16);
 -- Grupo Gerencia Empresarial Rural
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
-values (1,1,25,0,9,8106261,16);
+values (60,1,25,0,9,8106261,16);
+-- Grupo Produccion Frutas
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (61,1,25,0,9,8105088,16);
+-- Grupo Produccion Hortalizas
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+values (62,1,25,0,9,8105087,16);
 

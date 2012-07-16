@@ -100,7 +100,7 @@ public class GestorCargaArchivos {
 	 * Se obtiene el valor de nombre
 	 * @return El valor de nombre
 	 */
-	@NotEmpty
+	@NotNull
 	@Length(max=100)
 	@Column(name = "nombre_archivo", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(100)")
 	public String getNombre() {
@@ -119,7 +119,7 @@ public class GestorCargaArchivos {
 	 * Se obtiene el valor de ruta
 	 * @return El valor de ruta
 	 */
-	@NotEmpty
+	@NotNull
 	@Column(name = "ruta_archivo", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getRuta() {
 		return ruta;

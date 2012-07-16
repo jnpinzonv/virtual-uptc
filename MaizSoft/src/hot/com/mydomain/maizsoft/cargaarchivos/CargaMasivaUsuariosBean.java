@@ -2,6 +2,7 @@ package com.mydomain.maizsoft.cargaarchivos;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.ejb.Stateless;
@@ -15,6 +16,7 @@ import jxl.read.biff.BiffException;
 
 import org.drools.common.PropagationContextImpl;
 import org.drools.spi.PropagationContext;
+import org.hibernate.exception.ConstraintViolationException;
 import org.jboss.seam.Component;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
@@ -44,8 +46,6 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 	@In(create = true)
 	private UserAction userAction;
 
-	
-
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -53,9 +53,9 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 	private PreCargaUsuarios preCargaUsuarios;
 
 	private String rutaCargaUsuarios;
-	
+
 	public void cargaMasivaUsuarios() {
-		
+
 		// implement your business logic here
 		log.info("CargaMasivaUsuarios.cargaMasivaUsuarios() action called");
 		statusMessages.add("cargaMasivaUsuarios");
@@ -107,8 +107,8 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 					preCargaUsuarios.getUserActions().add(action);
 
 				} catch (Exception e) {
-					log.info("Error " + e.getMessage() + " "+"linea #"+ x);
-					
+					log.info("Error " + e.getMessage() + " " + "linea #" + x);
+
 				}
 			}
 
@@ -123,60 +123,74 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 
 		try {
 			saveUsuarios();
-			
+
 		} catch (Exception e) {
-			
-			 log.info("Error " + e.getMessage() + " " + e.getCause()+ " NO ingreso por el Link de Carga");
-				statusMessages.add("NO ingreso por el Link de Carga");
-				preCargaUsuarios.setUserActions(null);
-				preCargaUsuarios.setUsuarios(null);
-		}
 
-	}
-
-	public void saveUsuarios() throws Exception{		
-			
-		
-		for (int i = 0; i < preCargaUsuarios.getUsuarios().size(); i++) {
-	try {
-			UserAction nuevoU =preCargaUsuarios.getUserActions().get(i);
-			userAction.setUsername(nuevoU.getUsername());
-			userAction.setPassword(nuevoU.getPassword());
-			userAction.setConfirm(nuevoU.getPassword());
-			userAction.setEnabled(true);
-			userAction.setRoles(nuevoU.getRoles());
-			userAction.save();
-			Usuario nuevo = preCargaUsuarios.getUsuarios().get(i);			
-			entityManager.persist(nuevo);
-			CuentasUsuario nuevoCuenta = new CuentasUsuario();
-			nuevoCuenta.setUsuarios(nuevo);
-		
-			
-			Query q = entityManager
-					.createQuery("select u from UserAccount u where u.username=:parametro");
-			q.setParameter("parametro", nuevoU.getUsername());
-			nuevoCuenta.setUserAccounts((UserAccount) q.getSingleResult());
-			entityManager.persist(nuevoCuenta);
-			
-		} catch (IdentityManagementException e) {
-			log.info("Error " + e.getMessage() + " " + e.getCause()+ " Dato Duplicado "+ "Usuario # "+ i+1);
-			statusMessages.add("Dato Duplicado "+ "Usuario # "+ (i+1));
+			log.info("Error " + e.getMessage() + " " + e.getCause()
+					+ " NO ingreso por el Link de Carga");
+			statusMessages.add("NO ingreso por el Link de Carga");
 			preCargaUsuarios.setUserActions(null);
 			preCargaUsuarios.setUsuarios(null);
-			break;
-			
 		}
-		}
-		
+
 	}
-	
+
+	public void saveUsuarios() throws Exception {
+
+		for (int i = 0; i < preCargaUsuarios.getUsuarios().size(); i++) {
+			try {
+				UserAction nuevoU = preCargaUsuarios.getUserActions().get(i);
+				userAction.setUsername(nuevoU.getUsername());
+				userAction.setPassword(nuevoU.getPassword());
+				userAction.setConfirm(nuevoU.getPassword());
+				userAction.setEnabled(true);
+				userAction.setRoles(nuevoU.getRoles());
+				userAction.save();
+				Usuario nuevo = preCargaUsuarios.getUsuarios().get(i);
+				try {
+					entityManager.persist(nuevo);
+				} catch (RuntimeException e) {
+					log.info("Error " + e.getMessage() + " " + e.getCause()
+							+ " Dato Duplicado " + "Usuario # " + (i + 1));
+					statusMessages.add("Dato Duplicado " + "Usuario # "
+							+ (i + 1) + " " +nuevo.getPrimerNombre()+" Ver log de servidor");
+					preCargaUsuarios.setUserActions(null);
+					preCargaUsuarios.setUsuarios(null);
+					i= preCargaUsuarios.getUsuarios().size();
+					break;
+				}
+				CuentasUsuario nuevoCuenta = new CuentasUsuario();
+				nuevoCuenta.setUsuarios(nuevo);
+
+				
+				Query q = entityManager
+						.createQuery("select u from UserAccount u where u.username=:parametro");
+				q.setParameter("parametro", nuevoU.getUsername());
+				nuevoCuenta.setUserAccounts((UserAccount) q.getSingleResult());
+				entityManager.persist(nuevoCuenta);
+
+			} catch (IdentityManagementException e) {
+				log.info("Error " + e.getMessage() + " " + e.getCause()
+						+ " Dato Duplicado " + "Usuario # " + (i + 1) );
+				statusMessages.add("Dato Duplicado " + "Usuario # " + (i + 1)
+						+ " Ver log de servidor"	);
+				preCargaUsuarios.setUserActions(null);
+				preCargaUsuarios.setUsuarios(null);
+				i= preCargaUsuarios.getUsuarios().size();
+				break;
+
+			}
+		}
+
+	}
+
 	public EnteUniversitario buscarEnteUniversitario(String parametro) {
 		Query q = entityManager
 				.createQuery("select t from EnteUniversitario t where t.codigoEnteUniversitario=:parametro");
 		q.setParameter("parametro", parametro);
 
 		return (EnteUniversitario) q.getSingleResult();
-		
+
 	}
 
 	public Tipo buscarTipoIdentificacion(String parametro) {
@@ -187,12 +201,12 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 		return (Tipo) q.getSingleResult();
 	}
 
-	
-	public String crearUsuario(){
-		
-		userAction.createUser();		
+	public String crearUsuario() {
+
+		userAction.createUser();
 		return "/admin/cargaMasivaUsuarios.xhtml";
 	}
+
 	/**
 	 * @return the rutaCargaUsuarios
 	 */

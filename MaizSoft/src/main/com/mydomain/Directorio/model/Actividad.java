@@ -24,7 +24,7 @@ import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
 import org.jboss.seam.annotations.Name;
 
-import com.sun.org.apache.regexp.internal.recompile;
+
 
 /**
 * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, se comunica con la base de datos
@@ -95,6 +95,8 @@ public class Actividad {
 	private transient String nombreArchivo;
 	
 	private transient boolean adjuntarArchivo;
+	
+	private transient String rutaArchivo;
 	
 	public Actividad(){
 		evaluable=true;
@@ -330,6 +332,21 @@ public class Actividad {
 	 */
 	public void setAdjuntarArchivo(boolean adjuntarArchivo) {
 		this.adjuntarArchivo = adjuntarArchivo;
+	}
+	/**
+	 * Se obtiene el valor de rutaArchivo
+	 * @return El valor de rutaArchivo
+	 */
+	@Transient
+	public String getRutaArchivo() {
+		return rutaArchivo;
+	}
+	/**
+	 * Asigna el valor de rutaArchivo
+	 * @param rutaArchivo El valor por establecer para rutaArchivo
+	 */
+	public void setRutaArchivo(String rutaArchivo) {
+		this.rutaArchivo = rutaArchivo;
 	}	
 	
 	

@@ -66,7 +66,7 @@
 					<ui:define name="label">Fecha Compromiso</ui:define>
 					<rich:calendar id="fechaEnvio" required="true"
 						value="#{actividadHome.instance.fechaFinalizacion}"
-						datePattern="dd/MM/yyyy hh:mm" />
+						datePattern="dd/MM/yyyy HH:mm" />
 					
 				</s:decorate>
 <br />
@@ -126,7 +126,7 @@
 	
 
 				<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
-					accept="image/jpg" fileName="#{actividadHome.instance.nombreArchivo}" />
+					accept="image/jpg" fileName="#{cargaArchivosBean.nombreArchivo}" />
 
 				<h:commandButton id="upload" value="Subir !!"
 					action="#{cargaArchivosBean.handleUpload}" disabled="#{actividadHome.instance.adjuntarArchivo!=true}" />
@@ -172,93 +172,7 @@
 		
 		
 
-		<rich:tabPanel switchType="ajax">
-
-			<rich:tab label="Gestor anuncios">
-				<h:form styleClass="association" id="gestorAnunciosChildren">
-
-					<h:outputText
-						value="There are no gestorAnuncios associated with this actividad."
-						rendered="#{empty actividadHome.gestorAnuncios}" />
-
-					<rich:dataTable value="#{actividadHome.gestorAnuncios}"
-						var="_gestorAnuncios"
-						rendered="#{not empty actividadHome.gestorAnuncios}"
-						rowClasses="rvgRowOne,rvgRowTwo" id="gestorAnunciosTable">
-						<rich:column sortBy="#{_gestorAnuncios.idGestorAnuncios}">
-							<f:facet name="header">Id gestor anuncios</f:facet>
-							<h:outputText value="#{_gestorAnuncios.idGestorAnuncios}" />
-						</rich:column>
-						<rich:column sortBy="#{_gestorAnuncios.descripcion}">
-							<f:facet name="header">Descripcion</f:facet>
-							<h:outputText value="#{_gestorAnuncios.descripcion}" />
-						</rich:column>
-						<rich:column sortBy="#{_gestorAnuncios.nombre}">
-							<f:facet name="header">Nombre</f:facet>
-							<h:outputText value="#{_gestorAnuncios.nombre}" />
-						</rich:column>
-					</rich:dataTable>
-
-				</h:form>
-
-				<f:subview rendered="#{actividadHome.managed}" id="gestorAnuncios">
-					<div class="actionButtons">
-						<s:button id="addgestorAnuncios" value="Add gestorAnuncios"
-							view="/GestorAnunciosEdit.xhtml" propagation="none">
-							<f:param name="actividadIdActividad"
-								value="#{actividadHome.instance.idActividad}" />
-							<f:param name="gestorAnunciosFrom" value="Actividad" />
-						</s:button>
-					</div>
-				</f:subview>
-			</rich:tab>
-
-			<rich:tab label="Lista nota actividades">
-				<h:form styleClass="association" id="listaNotaActividadesChildren">
-
-					<h:outputText
-						value="There are no listaNotaActividades associated with this actividad."
-						rendered="#{empty actividadHome.listaNotaActividades}" />
-
-					<rich:dataTable value="#{actividadHome.listaNotaActividades}"
-						var="_notaActividad"
-						rendered="#{not empty actividadHome.listaNotaActividades}"
-						rowClasses="rvgRowOne,rvgRowTwo" id="listaNotaActividadesTable">
-						<rich:column sortBy="#{_notaActividad.idNotaActividad}">
-							<f:facet name="header">Id nota actividad</f:facet>
-							<h:outputText value="#{_notaActividad.idNotaActividad}" />
-						</rich:column>
-						<rich:column sortBy="#{_notaActividad.estadoPendiente}">
-							<f:facet name="header">Estado pendiente</f:facet>
-							<h:outputText value="#{_notaActividad.estadoPendiente}" />
-						</rich:column>
-						<rich:column sortBy="#{_notaActividad.justificacion}">
-							<f:facet name="header">Justificacion</f:facet>
-							<h:outputText value="#{_notaActividad.justificacion}" />
-						</rich:column>
-						<rich:column sortBy="#{_notaActividad.nota}">
-							<f:facet name="header">Nota</f:facet>
-							<h:outputText value="#{_notaActividad.nota}" />
-						</rich:column>
-					</rich:dataTable>
-
-				</h:form>
-
-				<f:subview rendered="#{actividadHome.managed}"
-					id="listaNotaActividades">
-					<div class="actionButtons">
-						<s:button id="addnotaActividad" value="Add notaActividad"
-							view="/NotaActividadEdit.xhtml" propagation="none">
-							<f:param name="actividadIdActividad"
-								value="#{actividadHome.instance.idActividad}" />
-							<f:param name="notaActividadFrom" value="Actividad" />
-						</s:button>
-					</div>
-				</f:subview>
-			</rich:tab>
-
-
-		</rich:tabPanel>
+		
 	</ui:define>
 
 </ui:composition>

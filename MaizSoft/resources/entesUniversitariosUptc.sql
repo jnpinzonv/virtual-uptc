@@ -1,6 +1,7 @@
 -- Facultades de la Universidad Pedagógica Tecnólogica de Colombia
+
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
-values(1,'Ciencias Agropecurias','Ciencias Agropecurias',19,null,1001);
+values(76,'Ciencias Agropecurias','Ciencias Agropecurias',19,null,1001);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(2,'Ciencias Básicas','Ciencias Básicas',19,null,1002);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 

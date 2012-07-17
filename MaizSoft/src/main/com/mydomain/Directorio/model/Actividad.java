@@ -72,11 +72,7 @@ public class Actividad {
 	 */
 	private Tipo tipo;
 	
-	/**
-	 * Variable que se encarga de almacenar una lista de gestor de anuncios
-	 * Se instancia de la clase GestorAnuncios
-	 */
-	private Set<GestorAnuncios> gestorAnuncios;
+	
 	
 	/**
 	 * Variable que se encarga de almacenar una lista de numero de divisiones
@@ -91,6 +87,8 @@ public class Actividad {
 	private String urlExterna;
 	
 	private Usuario usuario;
+	
+	private Double porcentaje;
 	
 	private transient String nombreArchivo;
 	
@@ -198,26 +196,7 @@ public class Actividad {
 		this.listaNotaActividades = listaNotaActividades;
 	}
 
-	/**
-	 * Se obtiene el valor de gestorAnuncios
-	 * @return El valor de gestorAnuncios
-	 */
-	@OneToMany(mappedBy="actividad",cascade=CascadeType.ALL)
-	public Set<GestorAnuncios> getGestorAnuncios() {
-		if(gestorAnuncios==null){
-			return new HashSet<GestorAnuncios>();
-		}
-		return gestorAnuncios;
-	}
-
-	/**
-	 * Asigna el valor de gestorAnuncios
-	 * @param gestorAnuncios El valor por establecer para gestorAnuncios
-	 */
-	public void setGestorAnuncios(Set<GestorAnuncios> gestorAnuncios) {
-		this.gestorAnuncios = gestorAnuncios;
-	}
-
+	
 	/**
 	 * @return the numeroDivisiones
 	 */
@@ -347,7 +326,23 @@ public class Actividad {
 	 */
 	public void setRutaArchivo(String rutaArchivo) {
 		this.rutaArchivo = rutaArchivo;
-	}	
+	}
+	/**
+	 * Se obtiene el valor de porcentaje
+	 * @return El valor de porcentaje
+	 */
+	@NotNull
+	@Column(name = "porcentaje", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(3,3)")
+	public Double getPorcentaje() {
+		return porcentaje;
+	}
+	/**
+	 * Asigna el valor de porcentaje
+	 * @param porcentaje El valor por establecer para porcentaje
+	 */
+	public void setPorcentaje(Double porcentaje) {
+		this.porcentaje = porcentaje;
+	}
 	
 	
 }

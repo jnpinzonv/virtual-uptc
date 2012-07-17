@@ -34,6 +34,10 @@ insert into user_role (id_user_role, conditional, name) values (1, false, 'admin
 insert into user_role (id_user_role, conditional, name) values (2, false, 'docente');
 insert into user_role (id_user_role, conditional, name) values (3, false, 'estudiante');
 insert into user_role (id_user_role, conditional, name) values (4, true, 'visitante');
+insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
+values(1,'N/A','N/A',19,null,1000);
+insert into usuario(id_usuario,apellidos,codigo_usuarios,correo_electronico,primer_nombre,documento_identidad,id_tipo,id_ente_universitario) 
+values(1,'admin',000000,'admin@uptc.edu.co','admin',00000,3,1);
 insert into user_account_role (account_id, member_of_role) values (1, 1);
 
 

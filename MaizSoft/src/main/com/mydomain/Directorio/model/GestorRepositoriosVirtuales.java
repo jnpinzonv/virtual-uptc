@@ -29,9 +29,9 @@ import org.jboss.seam.annotations.Name;
  *         Colombia
  * @version 23/06/2012
  */
-@Entity(name = "GestorRepositorioVirtuales")
-@Table(name = "gestor_repositorio_virtuales")
-@Name("gestorRepositorioVirtuales")
+@Entity(name = "GestorRepositoriosVirtuales")
+@Table(name = "gestor_repositorios_virtuales")
+@Name("gestorRepositoriosVirtuales")
 public class GestorRepositoriosVirtuales {
 
 	/**

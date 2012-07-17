@@ -81,17 +81,16 @@ public class CargaArchivosBean implements ICargaArchivos {
 			directorio.mkdirs();
 		} 
 		
-		String nombre=actividadHome.getInstance().getNombreArchivo();
-		File f = new File(pathFinal,nombre);
+		File f = new File(pathFinal,nombreArchivo);
 		
 			log.info(f);
 			FileOutputStream fo = new FileOutputStream(f);
 			fo.write(file);
 			fo.flush();
 			fo.close();
-			System.out.println(nombre);
-			actividadHome.getInstance().setRutaArchivo(pathFinal+"//"+nombre);
-			actividadHome.getInstance().setNombreArchivo(nombre);
+			
+			actividadHome.getInstance().setRutaArchivo(pathFinal);
+			actividadHome.getInstance().setNombreArchivo(nombreArchivo);
 		
 		
 	}

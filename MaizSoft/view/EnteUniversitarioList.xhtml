@@ -13,44 +13,6 @@
 	</ui:define>
 
 	<ui:define name="centroT">
-		<!-- 	
-    <h:form id="enteUniversitarioSearch" styleClass="edit">
-
-        <rich:simpleTogglePanel label="Buscar Ente Universitario" switchType="ajax">
-
-            <s:decorate template="layout/display.xhtml" style="position:absolute;">
-                <ui:define name="label">Descripcion ente universitario</ui:define>
-                <h:inputText id="descripcionEnteUniversitario" value="#{enteUniversitarioList.enteUniversitario.descripcionEnteUniversitario}"/>
-            </s:decorate>
-            
-            <br/> <br/>	
-
-            <s:decorate template="layout/display.xhtml" style="position:absolute;">
-                <ui:define name="label">Nombre ente universitario</ui:define>
-                <h:inputText id="nombreEnteUniversitario" value="#{enteUniversitarioList.enteUniversitario.nombreEnteUniversitario}"/>
-            </s:decorate>
-			
-			<br/> <br/>
-			
-            <s:decorate template="layout/display.xhtml" style="position:absolute;">
-                <ui:define name="label">Buscar por campos:</ui:define>
-                <h:selectOneRadio id="logic" value="#{enteUniversitarioList.restrictionLogicOperator}" styleClass="radio">
-                    <f:selectItem itemLabel="Todos" itemValue="and"/>
-                    <f:selectItem itemLabel="Alguno" itemValue="or"/>
-                </h:selectOneRadio>
-            </s:decorate>
-			
-			<br/> <br/>
-			
-        </rich:simpleTogglePanel>
-
-        <div class="actionButtons">
-            <h:commandButton id="search" value="Buscar" action="/EnteUniversitarioList.xhtml"/>
-            <s:button id="reset" value="Limpiar Campos" includePageParams="false"/>
-        </div>
-
-    </h:form>
-     -->
 		<h:form>
 			<rich:panel>
 				<f:facet name="header">Entes Universitario (#{empty enteUniversitarioList.resultList ? 0 : (enteUniversitarioList.paginated ? enteUniversitarioList.resultCount : enteUniversitarioList.resultList.size)})</f:facet>
@@ -107,7 +69,8 @@
 							</h:column>
 							<rich:column styleClass="action">
 								<f:facet name="header">Acción</f:facet>
-								<s:link view="/#{empty from ? 'EnteUniversitario' : from}.xhtml"
+								<s:link
+									view="/admin//#{empty from ? 'EnteUniversitario' : from}.xhtml"
 									value="#{empty from ? 'Ver' : 'Seleccionar'}"
 									propagation="#{empty from ? 'none' : 'default'}"
 									id="enteUniversitarioViewId">
@@ -205,7 +168,7 @@
 						</rich:dataTable>
 						<rich:datascroller align="left" for="enteUniversitarioListE"
 							page="#{enteUniversitarioListE.pageCount}" id="sc22"
-							reRender="sc21"/>
+							reRender="sc21" />
 					</div>
 				</div>
 			</rich:panel>

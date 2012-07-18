@@ -30,7 +30,7 @@
    <navigation from-action="#{gestorNoticiasHome.remove}">
       <rule if-outcome="removed">
          <end-conversation/>
-         <redirect view-id="/admin/GestorNoticiasList.xhtml"/>
+         <redirect view-id="/GestorNoticiasList.xhtml"/>
       </rule>
    </navigation>
 

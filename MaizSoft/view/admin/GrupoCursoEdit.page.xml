@@ -39,7 +39,7 @@
    <navigation from-action="#{grupoCursoHome.remove}">
       <rule if-outcome="removed">
          <end-conversation/>
-         <redirect view-id="/admin/GrupoCursoList.xhtml"/>
+         <redirect view-id="/GrupoCursoList.xhtml"/>
       </rule>
    </navigation>
 

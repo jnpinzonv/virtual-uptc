@@ -26,7 +26,8 @@
 
 			<s:decorate id="mensaje" template="layout/display.xhtml">
 				<ui:define name="label">Mensaje</ui:define>
-				<h:outputText value="#{gestorMensajeriaHome.instance.mensaje}" />
+				<h:outputText value="#{gestorMensajeriaHome.instance.mensaje}"
+					escape="false" />
 			</s:decorate>
 
 			<div style="clear: both" />

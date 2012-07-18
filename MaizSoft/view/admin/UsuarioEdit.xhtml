@@ -242,10 +242,10 @@
 									rendered="#{usuarioHome.managed}" />
 
 								<s:button id="cancelEdit" value="Cancelar" propagation="end"
-									view="/admin/Usuario.xhtml" rendered="#{usuarioHome.managed}" />
+									view="/Usuario.xhtml" rendered="#{usuarioHome.managed}" />
 
 								<s:button id="cancelAdd" value="Cancelar" propagation="end"
-									view="/admin/#{empty usuarioFrom ? 'UsuarioList' : usuarioFrom}.xhtml"
+									view="/#{empty usuarioFrom ? 'UsuarioList' : usuarioFrom}.xhtml"
 									rendered="#{!usuarioHome.managed}"/>
 
 							</div>

@@ -33,7 +33,7 @@
    <navigation from-action="#{enteUniversitarioHome.remove}">
       <rule if-outcome="removed">
          <end-conversation/>
-         <redirect view-id="/admin/EnteUniversitarioList.xhtml"/>
+         <redirect view-id="/EnteUniversitarioList.xhtml"/>
       </rule>
    </navigation>
 

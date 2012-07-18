@@ -101,7 +101,7 @@
 				<br/> <br/>
 	
 	            <s:decorate id="divisionesField" template="../layout/edit.xhtml" style="position:absolute;">
-	                <ui:define name="label">Numero de Peridos</ui:define>
+	                <ui:define name="label">Número de Ciclos</ui:define>
 	                <h:inputText id="perido"
 	                       required="true"
 	                           size="20"
@@ -137,7 +137,7 @@
 						view="/admin/Curso.xhtml" rendered="#{cursoHome.managed}" />
 
 					<s:button id="cancelAdd" value="Cancelar" propagation="end"
-						view="/#{empty cursoFrom ? 'CursoList' : cursoFrom}.xhtml"
+						view="/admin/#{empty cursoFrom ? 'CursoList' : cursoFrom}.xhtml"
 						rendered="#{!cursoHome.managed}" />
 
 				</div>

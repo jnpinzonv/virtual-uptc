@@ -33,17 +33,8 @@
 				</h:selectOneMenu>
 
 				<br />
-				<br />
-
-				 <s:decorate id="idGrupoField" template="/layout/edit.xhtml" style="position:absolute;">
-                <ui:define name="label">Código grupo</ui:define>
-                <h:inputText id="idGrupo"
-                       required="true"
-                       
-                          value="#{seccionSeleccionadaBean.seccionSeleccionada}">
-                    <a:support event="onblur" reRender="idGrupoField" bypassUpdates="true" ajaxSingle="true"/>
-                </h:inputText>
-            </s:decorate>
+				<br />			
+		
 
 				<s:decorate id="mensajeField" template="layout/edit.xhtml">
 					<ui:define name="label">Descripcion actividad: </ui:define>

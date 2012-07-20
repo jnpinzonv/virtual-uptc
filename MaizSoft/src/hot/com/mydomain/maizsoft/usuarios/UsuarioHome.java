@@ -100,6 +100,9 @@ public class UsuarioHome extends EntityHome<Usuario> {
 	public String saveUsuario() {
 		
 		userAction.save();
+		List<String> nueva=new ArrayList<String>();
+		nueva.add(instance.getRole());
+		userAction.setRoles(nueva);
 		persist();
 		CuentasUsuario nuevoCuenta = new CuentasUsuario();
 		nuevoCuenta.setUsuarios(getInstance());

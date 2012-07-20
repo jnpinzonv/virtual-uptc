@@ -23,7 +23,6 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 	@In(create = true)
 	TipoHome tipoHome;
-	
 
 	public void setActividadIdActividad(Long id) {
 		setId(id);
@@ -88,8 +87,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 	public void saveActividad(int pasarSeccion) {
 
-		List<GrupoUsuarios> listaEntesUniversitarios = listaGrupoUsuarios();
-
+		List<GrupoUsuarios> listaGrupos = listaGrupoUsuarios();
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
 
@@ -101,6 +99,35 @@ public class ActividadHome extends EntityHome<Actividad> {
 		instance.setFechaCreacion(calendar.getTime());
 		Usuario usuario = (Usuario) q.getSingleResult();
 		instance.setUsuario(usuario);
+
+		crearNotaActividad(listaGrupos, usuario);
+
+		NumeroDivisiones division = new NumeroDivisiones();
+		division.setActividad(instance);
+		division.setGrupoCurso(listaGrupos.get(0).getGrupoCurso());
+		division.setNumeroDivision(pasarSeccion);
+		getEntityManager().persist(division);
+		
+		if(instance.getTipo().getIdTipo()==17){
+		crearGestorEnlaces(instance, listaGrupos.get(0).getGrupoCurso());
+		}
+
+	}
+	
+	public void crearGestorEnlaces(Actividad instance, GrupoCurso curso){
+		GestorEnlacesExternos nuevoGestor= new GestorEnlacesExternos();
+		nuevoGestor.setDescripcionEnlace(instance.getDescripcionActividad());
+		nuevoGestor.setGrupoCurso(curso);
+		nuevoGestor.setNombreEnlace(instance.getNombreEnlace());
+		nuevoGestor.setUrlEnlace(instance.getUrlExterna());
+		
+		getEntityManager().persist(nuevoGestor);
+	}
+	
+
+	public void crearNotaActividad(List<GrupoUsuarios> listaGrupos,
+			Usuario usuario) {
+
 		GestorCargaArchivos archivo = new GestorCargaArchivos();
 		if (instance.isAdjuntarArchivo() == true) {
 
@@ -112,29 +139,25 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 		}
 
-		for (GrupoUsuarios sObj : listaEntesUniversitarios) {
+		for (GrupoUsuarios sObj : listaGrupos) {
 
 			NotaActividad nuevaNota = new NotaActividad();
 			nuevaNota.setActividad(instance);
 			nuevaNota.setUsuario(sObj.getUserGrupoCurso());
 			nuevaNota.setGrupoCurso(sObj);
-			nuevaNota.setNota(3.3);
+			nuevaNota.setNota(0.0);
 
 			if ((instance.isAdjuntarArchivo() == true)
 					&& sObj.getUserGrupoCurso().getId() == usuario.getId()) {
 				nuevaNota.setGestorCargaArchivos(archivo);
+			}
+			if(instance.isEvaluable()==false){
+				instance.setPorcentaje(0.0);
 			}
 
 			getEntityManager().persist(instance);
 			getEntityManager().persist(nuevaNota);
 
 		}
-		 //curso=(CursoActualBean) Component.getInstance(CursoActualBean.class);
-		NumeroDivisiones division= new NumeroDivisiones();
-		division.setActividad(instance);
-		division.setGrupoCurso(listaEntesUniversitarios.get(0).getGrupoCurso());
-		division.setNumeroDivision(pasarSeccion);
-		getEntityManager().persist(division);
-
 	}
 }

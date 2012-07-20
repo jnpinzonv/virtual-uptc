@@ -13,8 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
-import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
+import org.hibernate.validator.Pattern;
 import org.jboss.seam.annotations.Name;
 
 
@@ -87,7 +87,8 @@ public class GestorEnlacesExternos {
 	 * Se obtiene el valor de urlEnlace
 	 * @return El valor de urlEnlace
 	 */
-	@NotEmpty
+	
+	
 	@Column(name = "url_enlace", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getUrlEnlace() {
 		return urlEnlace;
@@ -105,7 +106,7 @@ public class GestorEnlacesExternos {
 	 * Se obtiene el valor de nombreEnlace
 	 * @return El valor de nombreEnlace
 	 */
-	@NotEmpty
+
 	@Length(max=100)
 	@Column(name = "nombre_enlace", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getNombreEnlace() {

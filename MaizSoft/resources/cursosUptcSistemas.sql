@@ -66,97 +66,97 @@ values(8108220,'Metodologia de la Investigacion y Dise駉 Experimental',15);
 
 -- Grupos de Ingenieria de Sistemas y Computaci髇
 -- Grupo Algoritmos y programacion
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (1,1,25,0,1,8107550,16);
 -- Grupos Curso de programacion 1,2,3
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (2,1,25,0,2,8108255,16);
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (3,1,25,0,3,8108256,16);
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (4,1,25,0,4,8108257,16);
 -- Grupo Bases de datos 1,2
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (5,1,25,0,5,8108259,16);
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (6,1,25,0,6,8105534,16);
 -- Grupo Profundizaci髇 de Bases de datos
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (7,1,25,0,9,8106174,16);
 -- Grupo Investigaci贸n de Bases de datos
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (8,1,25,0,10,8106179,16);
 -- Grupo Ingenieria de Requisitos
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (9,1,25,0,5,8108258,16);
 -- Grupo Electr髇ica General
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (10,1,25,0,5,8108261,16);
 -- Grupo Comunicaciones
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (11,1,25,0,6,8105515,16);
 -- Grupo Microcontroladores
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (12,1,25,0,8,8105524,16);
 -- Grupo Teoria General de Sistemas
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (13,1,25,0,5,8108260,16);
 -- Grupo Matem醫icas Discretas
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (14,1,25,0,6,8105430,16);
 -- Grupo Investigacion de Operaciones
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (15,1,25,0,6,8105530,16);
 -- Grupo Ingenieria Software 1,2
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (16,1,25,0,6,8105517,16);
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (17,1,25,0,7,8105526,16);
 -- Grupo Profundizaci贸n de Software
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (18,1,25,0,9,8106173,16);
 -- Grupo Investigaci贸n de Software
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (19,1,25,0,10,8106178,16);
 -- Grupo Lenguajes Formales
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (20,1,25,0,7,8105518,16);
 -- Grupo Sistemas Operativos
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (21,1,25,0,7,8105523,16);
 -- Grupo Arquitectura de Computadores
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (22,1,25,0,8,8105519,16);
 -- Grupo Inteligencia Computacional
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (23,1,25,0,8,8106177,16);
 -- Grupo Transmision de Datos
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (24,1,25,0,7,8105528,16);
 -- Grupo Redes de Datos
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (25,1,25,0,8,8105531,16);
 -- Grupo Profundizaci贸n de Redes de Datos
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (26,1,25,0,9,8106175,16);
 -- Grupo Investigaci贸n de Redes de Datos
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (27,1,25,0,10,8106180,16);
 -- Grupo Auditoria de Sistemas
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (28,1,25,0,9,8106181,16);
 -- Grupo Gerencia Informatica
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (29,1,25,0,9,8106176,16);
 -- Grupo Seminario de Trabajo de Grado
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (30,1,25,0,9,8107230,16);
 -- Grupo Simulaci髇 por computador
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (31,1,25,0,9,8105529,16);
 -- Grupo Metodologia de la Investigacion y Dise駉 Experimental 
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (32,1,25,0,3,8108220,16);
 
 
@@ -224,92 +224,92 @@ values(8106261,'Gerencia Empresarial Rural',19);
 
 ---- Grupos Ingenier韆 Agron髆ica
 -- Grupo Introduccion a las ciencias agrarias
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (33,1,25,0,1,8107560,16);
 -- Grupo Botanica Taxonomica
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (34,1,25,0,2,8108101,16);
 -- Grupo Genesis y caracterizacion de suelos
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (35,1,25,0,3,8108108,16);
 -- Grupo Fisiologia Vegetal 1,2
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (36,1,25,0,3,8108107,16);
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (37,1,25,0,4,8108111,16);
 -- Grupo Metodologia de la Investigacion
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (38,1,25,0,4,8108058,16);
 -- Grupo Quimica y Fertilidad de suelos
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (39,1,25,0,4,8108112,16);
 -- Grupo Reproducci髇 Vegetal
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (40,1,25,0,4,8108114,16);
 -- Grupo Hidraulica
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (41,1,25,0,5,8105066,16);
 -- Grupo Bioestadistica y Dise駉 Experimental
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (42,1,25,0,5,8108110,16);
 -- Grupo Econom韆 agrar韆
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (43,1,25,0,5,8108054,16);
 -- Grupo Fitopatologia 
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (44,1,25,0,6,8105065,16);
 -- Grupo Administracion Empresas Agropecuarias
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (45,1,25,0,6,8105057,16);
 -- Grupo Entomologia
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (46,1,25,0,6,8105063,16);
 -- Grupo Fitoproteccion Biologica
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (47,1,25,0,6,8106258,16);
 -- Grupo 7enetica agricola
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (48,1,25,0,6,8105058,16);
 -- Grupo Formulacion y Evaluacion de Proyectos
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (49,1,25,0,7,8105067,16);
 -- Grupo Manejo Integral de Malezas
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (50,1,25,0,7,8105068,16);
 -- Grupo Fitomejoramiento
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (51,1,25,0,7,8106257,16);
 -- Grupo Mercadeo Agricola
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (52,1,25,0,8,8105062,16);
 -- Grupo Extension Rural
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (53,1,25,0,8,8105083,16);
 -- Grupo Manejo Integral de Insectos
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (54,1,25,0,7,8105069,16);
 -- Grupo Manejo Integral de Enfermedades
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (55,1,25,0,7,8105070,16);
 -- Grupo Manejo Animal
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (56,1,25,0,7,8106260,16);
 -- Grupo Manejo de Cuencas Hidrograficas
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (57,1,25,0,8,8105081,16);
 -- Grupo Manejo de Productos Fitosanitarios
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (58,1,25,0,8,8105089,16);
 -- Grupo Maquinaria y mecanizacion agricola
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (59,1,25,0,8,8105071,16);
 -- Grupo Gerencia Empresarial Rural
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (60,1,25,0,9,8106261,16);
 -- Grupo Produccion Frutas
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (61,1,25,0,9,8105088,16);
 -- Grupo Produccion Hortalizas
-insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total)
+insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (62,1,25,0,9,8105087,16);
 

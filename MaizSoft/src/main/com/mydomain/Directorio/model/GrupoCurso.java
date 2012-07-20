@@ -78,11 +78,11 @@ public class GrupoCurso {
 	 */
 	private String semestre;
 	
+	
+	
 	/**
 	 * Variable que almacena la lista de enlaces externos del grupo.
 	 */
-	private Integer numeroTotal;
-	
 	private Set<GestorEnlacesExternos> enlacesExternos;
 
 	/**
@@ -100,6 +100,11 @@ public class GrupoCurso {
 	 * divisiones del curso.
 	 */
 	private Set<NumeroDivisiones> numeroDivisiones;
+	
+	/**
+	 * Numero de divisiones o secciones que va a tener el curso
+	 */
+	private Integer numeroTotal;
 	
 	/**
 	 * Se obtiene el valor de codigoGrupo
@@ -275,17 +280,19 @@ public class GrupoCurso {
 
 	
 	
-		/**
-	 * @return the numeroTotal
+	/**
+	 * Se obtiene el valor de numeroTotal
+	 * @return El valor de numeroTotal
 	 */
-	@Column(name = "numero_total", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "numeric(4)")
+	@Column(name = "numero_total_divisiones", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "numeric(4)")
 	public Integer getNumeroTotal() {
 		return numeroTotal;
 	}
 
 
 	/**
-	 * @param numeroTotal the numeroTotal to set
+	 * Asigna el valor de numeroTotal
+	 * @param numeroTotal El valor por establecer para semestre
 	 */
 	public void setNumeroTotal(Integer numeroTotal) {
 		this.numeroTotal = numeroTotal;

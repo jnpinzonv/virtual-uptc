@@ -1,6 +1,8 @@
 package com.mydomain.maizsoft.academia;
 
 import com.mydomain.Directorio.model.*;
+import com.mydomain.maizsoft.comunicaciones.CursoActualBean;
+import com.mydomain.maizsoft.comunicaciones.ICursoActual;
 import com.mydomain.maizsoft.tipos.TipoHome;
 
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 	@In(create = true)
 	TipoHome tipoHome;
+	
 
 	public void setActividadIdActividad(Long id) {
 		setId(id);
@@ -83,7 +86,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 	}
 
-	public void saveActividad() {
+	public void saveActividad(int pasarSeccion) {
 
 		List<GrupoUsuarios> listaEntesUniversitarios = listaGrupoUsuarios();
 
@@ -115,7 +118,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 			nuevaNota.setActividad(instance);
 			nuevaNota.setUsuario(sObj.getUserGrupoCurso());
 			nuevaNota.setGrupoCurso(sObj);
-			nuevaNota.setNota(0.0);
+			nuevaNota.setNota(3.3);
 
 			if ((instance.isAdjuntarArchivo() == true)
 					&& sObj.getUserGrupoCurso().getId() == usuario.getId()) {
@@ -126,6 +129,12 @@ public class ActividadHome extends EntityHome<Actividad> {
 			getEntityManager().persist(nuevaNota);
 
 		}
+		 //curso=(CursoActualBean) Component.getInstance(CursoActualBean.class);
+		NumeroDivisiones division= new NumeroDivisiones();
+		division.setActividad(instance);
+		division.setGrupoCurso(listaEntesUniversitarios.get(0).getGrupoCurso());
+		division.setNumeroDivision(pasarSeccion);
+		getEntityManager().persist(division);
 
 	}
 }

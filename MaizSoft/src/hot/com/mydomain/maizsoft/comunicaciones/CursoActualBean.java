@@ -25,9 +25,11 @@ import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.datamodel.DataModelSelection;
 
+import com.mydomain.Directorio.model.ConsultasJpql;
 import com.mydomain.Directorio.model.GrupoCurso;
 import com.mydomain.Directorio.model.GrupoUsuarios;
 import com.mydomain.Directorio.model.Usuario;
+import com.mydomain.maizsoft.academia.ActividadHome;
 import com.mydomain.maizsoft.curso.GrupoCursoHome;
 
 /**
@@ -53,9 +55,10 @@ public class CursoActualBean implements ICursoActual{
 	
 	@DataModelSelection(value="listaGrupos")
 	@Out(required =false)
-	GrupoCurso seleccionado;
+	private GrupoCurso seleccionado;
 	
 	
+
 	
 	
 	
@@ -102,6 +105,9 @@ public class CursoActualBean implements ICursoActual{
 	}
 	
 	
+	
+	
+
 	public Long selecionado(long grupo){
 		//grupoCursoHome.setInstance(seleccionado);
 		//grupoCurso=entityManager.find(GrupoCurso.class, seleccionado.getIdGrupo());

@@ -17,6 +17,7 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
 
 import com.mydomain.Directorio.model.ConfiguracionesSistema;
+import com.mydomain.Directorio.model.ConsultasJpql;
 import com.mydomain.Directorio.model.CuentasUsuario;
 import com.mydomain.Directorio.model.Curso;
 import com.mydomain.Directorio.model.EnteUniversitario;
@@ -179,13 +180,7 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 		
 			List<Usuario> listaUsuariosEscuela = new ArrayList<Usuario>();
 			Query q = getEntityManager()
-					.createQuery(
-							"SELECT us FROM UserAccount u JOIN u.roles r,EnteUniversitario e,Usuario us,CuentasUsuario c"
-									+ " where r.name=:roles"
-									+ " and u.id = c.id"
-									+ " and c.id = us.id"
-									+ " and us.enteUniversitarios.idEnteUniversitario = e.idEnteUniversitario"								
-									+ " and us.enteUniversitarios.idEnteUniversitario =:escuela");
+					.createQuery(ConsultasJpql.USUARIOS_POR_ROL_Y_ENTEUNIVERSITARIO);
 			
 			// getEntityManager().createNamedQuery("usuariosPorEscuela");
 			if (instance.getEnteUniversitarioHijo() == null) {

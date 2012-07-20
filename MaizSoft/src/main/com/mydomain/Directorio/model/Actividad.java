@@ -22,6 +22,7 @@ import javax.persistence.Transient;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
+import org.hibernate.validator.Range;
 import org.jboss.seam.annotations.Name;
 
 
@@ -95,6 +96,8 @@ public class Actividad {
 	private transient boolean adjuntarArchivo;
 	
 	private transient String rutaArchivo;
+	
+	private transient String nombreEnlace;
 	
 	public Actividad(){
 		evaluable=true;
@@ -331,8 +334,9 @@ public class Actividad {
 	 * Se obtiene el valor de porcentaje
 	 * @return El valor de porcentaje
 	 */
-	@NotNull
-	@Column(name = "porcentaje", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(3,3)")
+
+	@Range(min=0, max=100)
+	@Column(name = "porcentaje", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "double")
 	public Double getPorcentaje() {
 		return porcentaje;
 	}
@@ -343,6 +347,22 @@ public class Actividad {
 	public void setPorcentaje(Double porcentaje) {
 		this.porcentaje = porcentaje;
 	}
+	/**
+	 * Se obtiene el valor de nombreEnlace
+	 * @return El valor de nombreEnlace
+	 */
+	@Transient
+	public String getNombreEnlace() {
+		return nombreEnlace;
+	}
+	/**
+	 * Asigna el valor de nombreEnlace
+	 * @param nombreEnlace El valor por establecer para nombreEnlace
+	 */
+	public void setNombreEnlace(String nombreEnlace) {
+		this.nombreEnlace = nombreEnlace;
+	}
+	
 	
 	
 }

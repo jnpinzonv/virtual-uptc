@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
+import org.hibernate.validator.Range;
 import org.jboss.seam.annotations.Name;
 
 /**
@@ -216,7 +217,8 @@ public class NotaActividad {
 	 * @return El valor de nota
 	 */
 	@NotNull
-	@Column(name = "nota", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(1,1)")
+	@Range(min=0, max=5)
+	@Column(name = "nota", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "double")
 	public double getNota() {
 		return nota;
 	}

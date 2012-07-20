@@ -137,22 +137,24 @@
 											submitMode="none">
 											<rich:panelMenuGroup label="Mensajes" style="color: #FFFFFF;">
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Crear" 
-														action="/GestorMensajeriaEdit.seam"																										
-														></s:link>
+													<s:link value="Crear" action="/GestorMensajeriaEdit.seam"></s:link>
 												</rich:panelMenuItem>
+												<rich:panelMenuGroup label="Ver" style="color: #045491;" icon="disc">
+													<rich:panelMenuItem style="color: #045491;" icon="disc">
+														<s:link value="Mensajes Recibidos"
+															action="/MensajeList.seam" propagation="end"></s:link>
+													</rich:panelMenuItem>
+													<rich:panelMenuItem style="color: #045491;" icon="disc">
+													<s:link value="Mensajes Enviados"
+														action="/MensajeListEnviado.seam" propagation="end"></s:link>
+												</rich:panelMenuItem>													
+												</rich:panelMenuGroup>
+
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Ver" action="/MensajeList.seam"
+													<s:link value="Ver Foro" action="/ForoEdit.seam"
 														propagation="end"></s:link>
 												</rich:panelMenuItem>
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Ver Foro" action="/ForoEdit.seam" 
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Mensaje Enviado" action="/MensajeListEnviado.seam" 
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
+												
 											</rich:panelMenuGroup>
 
 											<rich:panelMenuGroup label="Administrar Usuarios"
@@ -174,10 +176,7 @@
 													<s:link value="Editar" action="/UsuarioListEdit.seam"
 														propagation="end"></s:link>
 												</rich:panelMenuItem>
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Buscar" action="/UsuarioList.seam"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
+												
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Crear Cuenta" action="/UsuarioList.seam"
 														propagation="end"></s:link>
@@ -205,7 +204,8 @@
 													<s:link value="Adicionar Estudiante" propagation="end"></s:link>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Matricular Usuarios" action="/admin/MatricularUsuarios.seam" propagation="end"></s:link>
+													<s:link value="Matricular Usuarios"
+														action="/admin/MatricularUsuarios.seam" propagation="end"></s:link>
 												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
 											<rich:panelMenuGroup label="Administrar Facultad y Escuela"
@@ -355,9 +355,9 @@
 									<s:link value="Ayuda" action="/CursoActividad.seam"
 										propagation="end" />
 									<br />
-									
-									<br/>
-									
+
+									<br />
+
 									<rich:panel>
 
 										<f:facet name="header">Cursos</f:facet>
@@ -369,15 +369,16 @@
 
 												<h:dataTable id="grupoCursoList" var="_grupoCurso"
 													value="#{listaGrupos}">
-													
+
 													<h:column styleClass="action">
-																												
-           											 <s:link view="/CuerpoCurso.xhtml" value="#{_grupoCurso.cursoGrupo.nombreAsignatura}"
-															propagation="none" id="grupoCursoEdit" action="#{cursoActualBean.selecionado(_grupoCurso.idGrupo) }"
-															>
+
+														<s:link view="/CuerpoCurso.xhtml"
+															value="#{_grupoCurso.cursoGrupo.nombreAsignatura}"
+															propagation="none" id="grupoCursoEdit"
+															action="#{cursoActualBean.selecionado(_grupoCurso.idGrupo) }">
 															<f:param name="grupoCursoIdGrupo"
 																value="{_grupoCurso.idGrupo}" />
-																
+
 														</s:link>
 													</h:column>
 												</h:dataTable>

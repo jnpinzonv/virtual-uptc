@@ -1,7 +1,6 @@
 -- Facultades de la Universidad PedagÃ³gica TecnÃ³logica de Colombia
-
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
-values(76,'Ciencias Agropecurias','Ciencias Agropecurias',19,null,1001);
+values(1,'Ciencias Agropecurias','Ciencias Agropecurias',19,null,1001);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(2,'Ciencias BÃ¡sicas','Ciencias BÃ¡sicas',19,null,1002);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
@@ -44,7 +43,7 @@ values(18,'Medicina Veterinaria y Zootecnia','Medicina Veterinaria y Zootecnia',
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(19,'IngenierÃ­a AgronÃ³mica','IngenierÃ­a AgronÃ³mica',20,1,11);
 
--- Escuelas de Ciencias de la Educación
+-- Escuelas de Ciencias de la Educaciï¿½n
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(20,'Licenciatura en Artes Plasticas','Licenciatura en Artes Plasticas',20,3,40);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
@@ -72,7 +71,7 @@ values(31,'Licenciatura en MÃºsica','Licenciatura en MÃºsica',20,3,38);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(32,'Licenciatura en Psicopedagogia','Licenciatura en Psicopedagogia',20,3,32);
 
--- Escuelas de las Ciencias Básicas
+-- Escuelas de las Ciencias Bï¿½sicas
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(33,'Fisica','Fisica',20,2,16);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
@@ -82,7 +81,7 @@ values(35,'Quimica','Quimica',20,2,43);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(36,'Matematicas','Matematicas',20,2,30);
 
---Escuelas de Ciencias Economicas y Administrativas
+-- Escuelas de Ciencias Economicas y Administrativas
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(37,'Administracion de Empresas (D)','Administracion de Empresas (D)',20,4,63);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
@@ -94,7 +93,7 @@ values(40,'Economia (D)','Economia (D)',20,4,61);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(41,'Economia (N)','Economia (N)',20,4,62);
 
---Escuelas Ciencias de la Salud
+-- Escuelas Ciencias de la Salud
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(42,'Medicina','Medicina',20,5,19);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
@@ -102,11 +101,11 @@ values(43,'Enfermeria','Enfermeria',20,5,22);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(44,'Psicologia','Psicologia',20,5,14);
 
---Escuelas de Derecho y Ciencias Sociales
+-- Escuelas de Derecho y Ciencias Sociales
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(45,'Derecho','Derecho',20,6,6);
 
---Escuelas de Chiquinquira
+-- Escuelas de Chiquinquira
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(46,'Administracion de Empresas (N)','Administracion de Empresas (N)',20,8,70);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
@@ -114,7 +113,7 @@ values(47,'Contaduria Publica (D)','Contaduria Publica (D)',20,8,71);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(48,'Licenciatura en Educacion Fisica Recreacion y Deportes (D)','Licenciatura en Educacion Fisica Recreacion y Deportes (D)',20,8,94);
 
---Escuelas de Duitama
+-- Escuelas de Duitama
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(49,'Administracion de Empresas Agropecuarias','Administracion de Empresas Agropecuarias',20,9,68);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
@@ -122,15 +121,15 @@ values(50,'Administracion Industrial (D) ','Administracion Industrial (D) ',20,9
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(51,'Administracion Turistica y Hotelera (D)  ','Administracion Turistica y Hotelera (D)',20,9,67);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
-values(52,'Diseño Industrial (D)','Diseño Industrial (D)',20,9,74);
+values(52,'Diseï¿½o Industrial (D)','Diseï¿½o Industrial (D)',20,9,74);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(53,'Licenciatura en Tecnologia','Licenciatura en Tecnologia',20,9,5);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(54,'Ingenieria Electromecanica (D)','Ingenieria Electromecanica (D)',20,9,54);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
-values(55,'Licenciatura en Matemáticas y Estadística (N)','Licenciatura en Matemáticas y Estadística (N)',20,9,28);
+values(55,'Licenciatura en Matemï¿½ticas y Estadï¿½stica (N)','Licenciatura en Matemï¿½ticas y Estadï¿½stica (N)',20,9,28);
 
---Escuelas de Sogamoso
+-- Escuelas de Sogamoso
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(56,'Contaduria Publica (D)','Contaduria Publica (D)',20,10,65);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
@@ -140,17 +139,17 @@ values(58,'Ingenieria Electronica (D)','Ingenieria Electronica (D)',20,10,49);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(59,'Ingenieria de Minas (D)','Ingenieria de Minas (D)',20,10,52);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
-values(60,'Ingenieria Geologica (D)','Ingeniería Geologica (D)',20,10,50);
+values(60,'Ingenieria Geologica (D)','Ingenierï¿½a Geologica (D)',20,10,50);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
-values(61,'Ingenieria Industrial (D)','Ingeniería Industrial (D)',20,10,55);
+values(61,'Ingenieria Industrial (D)','Ingenierï¿½a Industrial (D)',20,10,55);
 
---Escuelas de FESAD
+-- Escuelas de FESAD
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
-values(62,'Licenciatura en Educación Basica con enfasis en Matematicas, Humanidades y Lengua Castellana','Licenciatura en Educación Basica con enfasis en Matematicas, Humanidades y Lengua Castellana',20,11,10484);
+values(62,'Licenciatura en Educaciï¿½n Basica con enfasis en Matematicas, Humanidades y Lengua Castellana','Licenciatura en Educaciï¿½n Basica con enfasis en Matematicas, Humanidades y Lengua Castellana',20,11,10484);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(63,'Mercadeo Agroindustrial','Mercadeo Agroindustrial',20,11,2653);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
-values(64,'Tecnología en Electricidad','Tecnología en Electricidad',20,11,14802);
+values(64,'Tecnologï¿½a en Electricidad','Tecnologï¿½a en Electricidad',20,11,14802);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(65,'Tecnologia en Gestion de Produccion y Transformacion del Acero','Tecnologia en Gestion de Produccion y Transformacion del Acero',20,11,90387);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 

@@ -73,7 +73,7 @@
                     <ui:param name="propertyPath" value="actividad.descripcionActividad"/>
                 </ui:include>
             </f:facet>
-            <h:outputText value="#{_actividad.descripcionActividad}"/>
+            <h:outputText value="#{_actividad.descripcionActividad}" escape="false"/>
         </h:column>
         <h:column>
             <f:facet name="header">

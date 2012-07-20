@@ -334,7 +334,7 @@ public class Actividad {
 	 * Se obtiene el valor de porcentaje
 	 * @return El valor de porcentaje
 	 */
-
+	@NotNull
 	@Range(min=0, max=100)
 	@Column(name = "porcentaje", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "double")
 	public Double getPorcentaje() {

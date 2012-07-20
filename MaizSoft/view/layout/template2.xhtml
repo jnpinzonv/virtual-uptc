@@ -76,7 +76,7 @@
 							<div style="margin-right: 10px">
 								<h:form>
 									<h:outputText id="menuWelcomeId"
-										value="#{credentials.username}"
+										value="#{userAccountHome.usuarioPorUsername()}"
 										rendered="#{identity.loggedIn}" />
 
 									<s:link id="menuLogoutId" action="#{identity.logout}"
@@ -119,7 +119,7 @@
 
 									<img src="css/images/gis.png" style="height: 80px" />
 									<br />
-									<h:commandLink value="#{credentials.username}"
+									<h:commandLink value="#{userAccountHome.usuarioPorUsername()}"
 										action="/UserAccountEdit.seam" />
 									<br />
 									<br />

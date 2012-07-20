@@ -100,6 +100,8 @@
 				<br />
 				<br />
 
+
+
 				<s:decorate id="fechaCompromisoField" template="/layout/edit.xhtml"
 					style="position:absolute;">
 					<ui:define name="label">Fecha Compromiso</ui:define>
@@ -119,15 +121,15 @@
 					<h:selectBooleanCheckbox id="evaluable"
 						value="#{actividadHome.instance.evaluable}" />
 				</s:decorate>
+				<br />
+				<br />
 				
-				<h:inputTextarea id="porcentaje" cols="60" rows="1"
-							value="#{actividadHome.instance.porcentaje}"
-							disabled="#{actividadHome.instance.evaluable!=true}" />
-					</s:decorate>
-					<br />
-					<br />
-				
-				<h:inputTextarea id="porcentaje" cols="60" rows="1"
+				<s:decorate id="porcentajeField"
+						template="/layout/edit.xhtml" style="position:absolute;"
+						rendered="#{actividadHome.instance.evaluable==true}">
+						<ui:define name="label">Valor sobre nota final</ui:define>
+
+						<h:inputTextarea id="porcentaje" cols="60" rows="1"
 							value="#{actividadHome.instance.porcentaje}"
 							disabled="#{actividadHome.instance.evaluable!=true}" />
 					</s:decorate>
@@ -153,7 +155,6 @@
 							value="#{actividadHome.instance.urlExterna}"
 							disabled="#{actividadHome.instance.tipo.idTipo!=17}" />
 					</s:decorate>
-					
 					<br />
 					<br />
 					

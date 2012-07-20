@@ -1,6 +1,5 @@
 -- Facultades de la Universidad Pedagógica Tecnólogica de Colombia
-insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
-values(1,'Ciencias Agropecurias','Ciencias Agropecurias',19,null,1001);
+
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(2,'Ciencias Básicas','Ciencias Básicas',19,null,1002);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
@@ -172,3 +171,5 @@ insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,
 values(74,'Tecnico Profesional en Produccion Obras Civiles','Tecnico Profesional en Produccion Obras Civiles',20,11,90411);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(75,'Tecnico Profesional en Instalacion y Mantenimiento de Redes y Computadores','Tecnico Profesional en Instalacion y Mantenimiento de Redes y Computadores',20,11,91344);
+insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
+values(76,'Ciencias Agropecurias','Ciencias Agropecurias',19,null,1001);

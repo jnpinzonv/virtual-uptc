@@ -34,12 +34,7 @@ insert into user_role (id_user_role, conditional, name) values (1, false, 'admin
 insert into user_role (id_user_role, conditional, name) values (2, false, 'docente');
 insert into user_role (id_user_role, conditional, name) values (3, false, 'estudiante');
 insert into user_role (id_user_role, conditional, name) values (4, true, 'visitante');
-insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
-values(1,'N/A','N/A',19,null,1000);
-insert into usuario(id_usuario,apellidos,codigo_usuarios,correo_electronico,primer_nombre,documento_identidad,id_tipo,id_ente_universitario) 
-values(1,'admin',000000,'admin@uptc.edu.co','admin',00000,3,1);
 insert into user_account_role (account_id, member_of_role) values (1, 1);
-
 
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(1,'C://archivos','pathArchivos');
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(2,'archivosCargasExcel','pathArchivosExcel');
@@ -48,8 +43,6 @@ insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propieda
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(4,'2','enteUniversiarioHijo');
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(5,'3','cursosEscuela');
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(6,'4','grupoCursos');
-insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(7,'estudiante','Roles');
-insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(8,'cargaArchivosCurso','pathArchivosCurso');
 
 --insert into ente_universitario(`idEnteUniversitario`,`descripcionEnteUniversitario`,`enteUniversitario_idEnteUniversitario`,`nombreEnteUniversitario`,`tipoEnteUniversitario_idTipo`) values (1,'Aplica cuando el usuario no pertenece a la Universidad',null,'No Aplica',1);
 

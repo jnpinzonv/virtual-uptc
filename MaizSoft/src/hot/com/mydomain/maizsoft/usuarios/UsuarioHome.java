@@ -97,7 +97,7 @@ public class UsuarioHome extends EntityHome<Usuario> {
 				getInstance().getUsuarioEmisor());
 	}
 
-	public void saveUsuario() {
+	public String saveUsuario() {
 		
 		userAction.save();
 		persist();
@@ -108,6 +108,8 @@ public class UsuarioHome extends EntityHome<Usuario> {
 						"select u from UserAccount u where u.username=#{userAction.username}");
 		nuevoCuenta.setUserAccounts((UserAccount) q.getSingleResult());
 		getEntityManager().persist(nuevoCuenta);
+		
+		return "/UsuarioList.seam";
 	}
 	
 	public String crearUsuario(){

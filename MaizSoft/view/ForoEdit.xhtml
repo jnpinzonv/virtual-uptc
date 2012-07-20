@@ -7,8 +7,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich"
-	xmlns:a4j="http://richfaces.org/a4j" 
-	template="layout/template2.xhtml">
+	xmlns:a4j="http://richfaces.org/a4j" template="layout/template2.xhtml">
 
 	<ui:define name="head">
 		<link href="css/default.css" rel="stylesheet" type="text/css" />
@@ -32,20 +31,39 @@
 							bypassUpdates="true" ajaxSingle="true" />
 					</h:inputText>
 				</s:decorate>
-				
-				<br/>
-				<br/>
-				
-				
+
+				<br />
+				<br />
 
 				<s:decorate id="mensajeField" template="layout/edit.xhtml">
 					<ui:define name="label">Descripción</ui:define>
-					<h:inputTextarea id="mensaje" required="true"
-						value="#{gestorMensajeriaHome.instance.mensaje}"
-						cols="90" rows="10">
-						<a:support event="onblur" reRender="mensajeField"
-							bypassUpdates="true" ajaxSingle="true" />
-					</h:inputTextarea>
+					<h:panelGrid style="margin-left:80px">
+						<h:panelGroup style="height:290px;width:800px;" layout="block">
+							<rich:editor id="editor"
+								value="#{gestorMensajeriaHome.instance.mensaje}"
+								style="margin-bottom: 1em" theme="advanced"
+								plugins="print,contextmenu,save,paste">
+
+								<f:param name="theme_advanced_buttons1"
+									value="newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontselect,fontsizeselect"></f:param>
+
+								<f:param name="theme_advanced_buttons2"
+									value="cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor"></f:param>
+								<f:param name="theme_advanced_buttons3"
+									value="sub,sup,|,charmap,emotions,iespell,media,advhr,|,print"></f:param>
+
+								<f:param name="theme_advanced_toolbar_location" value="top"></f:param>
+								<f:param name="theme_advanced_toolbar_align" value="left"></f:param>
+								<f:param name="theme_advanced_statusbar_location" value="bottom"></f:param>
+
+								<a4j:support event="onchange" ajaxSingle="true"
+									requestDelay="1000" />
+
+							</rich:editor>
+						</h:panelGroup>
+
+
+					</h:panelGrid>
 				</s:decorate>
 
 				<br />
@@ -59,6 +77,25 @@
 				<br />
 				<br />
 				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+
+				<br />
+				<br />
+
+				<s:decorate id="fechaCompromisoField" template="/layout/edit.xhtml"
+					style="position:absolute;">
+					<ui:define name="label">Fecha Cierre</ui:define>
+					<rich:calendar id="fechaEnvio" required="true"
+						value="#{actividadHome.instance.fechaFinalizacion}"
+						datePattern="dd/MM/yyyy HH:mm"
+						oncurrentdateselect="if ( '2012'> event.rich.date.getFullYear()){return false;}" />
+				</s:decorate>
+
 				<br />
 				<br />
 				<br />
@@ -71,27 +108,10 @@
 						value="#{actividadHome.instance.evaluable}" />
 				</s:decorate>
 
-				<br />
-				<br />
-				
-				<s:decorate id="fechaCompromisoField" template="/layout/edit.xhtml"
-					style="position:absolute;">
-					<ui:define name="label">Fecha Cierre</ui:define>
-					<rich:calendar id="fechaEnvio" required="true"
-						value="#{actividadHome.instance.fechaFinalizacion}"
-						datePattern="dd/MM/yyyy HH:mm"
-						oncurrentdateselect="if ( '2012'> event.rich.date.getFullYear()){return false;}"/>					
-				</s:decorate>
-
-				<br />
-				<br />
-				<br />
-				<br />				
-
 				<div style="clear: both">
 					<span class="required">*</span> Campos Obligatorios
-				</div>				
-				
+				</div>
+
 
 
 			</rich:panel>
@@ -121,7 +141,7 @@
 			</div>
 		</h:form>
 
-		
+
 	</ui:define>
 
 </ui:composition>

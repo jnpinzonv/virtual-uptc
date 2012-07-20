@@ -165,12 +165,14 @@
 								style="position:absolute;">
 								<ui:define name="label">Roles</ui:define>
 								<div class="selectOne">
-									<h:selectManyCheckbox id="roles" value="#{userAction.roles}"
-										layout="pageDirection" styleClass="roles" >
-										<s:selectItems value="#{identityManager.listGrantableRoles()}"
-											var="_role" label="#{_role}" />
-											
-									</h:selectManyCheckbox>
+									<h:selectOneRadio id="rolesss"
+						value="#{grupoUsuariosHome.instance.role}" layout="pageDirection"
+						styleClass="roles" required="true">
+
+						<s:selectItems value="#{identityManager.listGrantableRoles()}"
+							var="_role" label="#{_role}" />
+						
+					</h:selectOneRadio>
 								</div>
 							</s:decorate>
 							<br />

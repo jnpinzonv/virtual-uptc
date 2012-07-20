@@ -34,6 +34,16 @@
 
 				<br />
 				<br />
+				
+				     <s:decorate id="idGrupoField" template="/layout/edit.xhtml" style="position:absolute;">
+                <ui:define name="label">Código grupo</ui:define>
+                <h:inputText id="idGrupo"
+                       required="true"
+                       
+                          value="#{seccionSeleccionadaBean.seccionSeleccionada}">
+                    <a:support event="onblur" reRender="idGrupoField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
 
 				<s:decorate id="mensajeField" template="layout/edit.xhtml">
 					<ui:define name="label">Descripcion actividad: </ui:define>
@@ -100,6 +110,7 @@
 				<br />
 
 
+
 				<s:decorate id="fechaCompromisoField" template="/layout/edit.xhtml"
 					style="position:absolute;">
 					<ui:define name="label">Fecha Compromiso</ui:define>
@@ -119,6 +130,20 @@
 					<h:selectBooleanCheckbox id="evaluable"
 						value="#{actividadHome.instance.evaluable}" />
 				</s:decorate>
+				<br />
+				<br />
+				
+				<s:decorate id="porcentajeField"
+						template="/layout/edit.xhtml" style="position:absolute;"
+						rendered="#{actividadHome.instance.evaluable==true}">
+						<ui:define name="label">Valor sobre nota final</ui:define>
+
+						<h:inputTextarea id="porcentaje" cols="60" rows="1"
+							value="#{actividadHome.instance.porcentaje}"
+							disabled="#{actividadHome.instance.evaluable!=true}" />
+					</s:decorate>
+					<br />
+					<br />
 
 				<a4j:outputPanel id="tres">
 					<h:commandButton id="foro" value="ir Foro"
@@ -137,6 +162,18 @@
 
 						<h:inputTextarea id="urlExterna" cols="60" rows="1"
 							value="#{actividadHome.instance.urlExterna}"
+							disabled="#{actividadHome.instance.tipo.idTipo!=17}" />
+					</s:decorate>
+					<br />
+					<br />
+					
+					<s:decorate id="nombreUrlExternaActividadField"
+						template="/layout/edit.xhtml" style="position:absolute;"
+						rendered="#{actividadHome.instance.tipo.idTipo==17}">
+						<ui:define name="label">Nombre del Enlace:</ui:define>
+
+						<h:inputTextarea id="nombreUrlExterna" cols="60" rows="1"
+							value="#{actividadHome.instance.nombreEnlace}"
 							disabled="#{actividadHome.instance.tipo.idTipo!=17}" />
 					</s:decorate>
 				</a4j:outputPanel>
@@ -175,7 +212,7 @@
 				<div class="actionButtons">
 
 					<h:commandButton id="save" value="Guardar"
-						action="#{actividadHome.saveActividad()}"
+						action="#{actividadHome.saveActividad(seccionSeleccionadaBean.seccionSeleccionada)}"
 						disabled="#{!actividadHome.wired}"
 						rendered="#{!actividadHome.managed}" />
 

@@ -83,7 +83,7 @@ public class NumeroDivisiones {
 	 * Se obtiene el valor de numeroDivision
 	 * @return El valor de numeroDivision
 	 */
-	@Column(name = "id_numero_Division", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "numeric(4)")
+	@Column(name = "numero_division", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "numeric(4)")
 	public Integer getNumeroDivision() {
 		return numeroDivision;
 	}

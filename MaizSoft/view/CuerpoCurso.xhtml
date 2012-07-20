@@ -30,6 +30,18 @@
             <f:param name="notaActividadFrom" value="Actividad"/>
         </s:button>
     </div>
+    
+    <s:decorate id="seccionSeleccionadaField" template="/layout/edit.xhtml" style="position:absolute;">
+				<h:selectOneMenu value="#{seccionSeleccionadaBean.seccionSeleccionada}"
+					id="seccionSeleccionada" required="true" rendered="true">
+					<s:selectItems value="#{listaSeccionesCurso}" var="lista" 
+						label="#{lista}" noSelectionLabel="SELECCIONE..." />
+					<a4j:support event="onchange" reRender="4"
+						ajaxSingle="true" />
+				
+				</h:selectOneMenu>
+				
+     		 </s:decorate>
 
 		</rich:panel>
 

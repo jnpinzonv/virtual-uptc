@@ -17,6 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.Email;
 import org.hibernate.validator.Length;
@@ -131,6 +132,8 @@ public class Usuario {
 	private Set<NotaActividad> notaActividad;
 	
 	private Set<Actividad> actividad;
+	
+	private transient String role;
 
 	/**
 	 * Se obtiene el valor de id
@@ -500,7 +503,25 @@ public class Usuario {
 		this.actividad = actividad;
 	}
 	
+	/**
+	 * Se obtiene el valor de role
+	 * @return El valor de role
+	 */
+	@Transient
+	public String getRole() {
+		if(role==null){
+			return role="estudiante";
+		}
+		return role;
+	}
 	
+	/**
+	 * Asigna el valor de role
+	 * @param role El valor por establecer para role
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
 	
 	
 }

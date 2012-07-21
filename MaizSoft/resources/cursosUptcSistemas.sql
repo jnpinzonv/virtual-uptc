@@ -1,4 +1,4 @@
--- Cursos de Ingenieria de Sistemas y Computación
+-- Cursos de Ingenieria de Sistemas y Computaciï¿½n
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8107550,'Algoritmos y programacion',15);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
@@ -26,7 +26,7 @@ values(8105524,'Microcontroladores',15);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8108260,'Teoria General de Sistemas',15);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105430,'Matemáticas Discretas',15);
+values(8105430,'Matemï¿½ticas Discretas',15);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8105530,'Investigacion de Operaciones',15);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
@@ -60,11 +60,11 @@ values(8106176,'Gerencia Informatica',15);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8107230,'Seminario de Trabajo de Grado',15);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105529,'Simulación por computador',15);
+values(8105529,'Simulaciï¿½n por computador',15);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108220,'Metodologia de la Investigacion y Diseño Experimental',15);
+values(8108220,'Metodologia de la Investigacion y Diseï¿½o Experimental',15);
 
--- Grupos de Ingenieria de Sistemas y Computación
+-- Grupos de Ingenieria de Sistemas y Computaciï¿½n
 -- Grupo Algoritmos y programacion
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (1,1,25,0,1,8107550,16);
@@ -80,7 +80,7 @@ insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, i
 values (5,1,25,0,5,8108259,16);
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (6,1,25,0,6,8105534,16);
--- Grupo Profundización de Bases de datos
+-- Grupo Profundizaciï¿½n de Bases de datos
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (7,1,25,0,9,8106174,16);
 -- Grupo InvestigaciÃ³n de Bases de datos
@@ -89,11 +89,10 @@ values (8,1,25,0,10,8106179,16);
 -- Grupo Ingenieria de Requisitos
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (9,1,25,0,5,8108258,16);
--- Grupo Electrónica General
+-- Grupo Electrï¿½nica General
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (10,1,25,0,5,8108261,16);
 -- Grupo Comunicaciones
-insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (11,1,25,0,6,8105515,16);
 -- Grupo Microcontroladores
@@ -102,7 +101,7 @@ values (12,1,25,0,8,8105524,16);
 -- Grupo Teoria General de Sistemas
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (13,1,25,0,5,8108260,16);
--- Grupo Matemáticas Discretas
+-- Grupo Matemï¿½ticas Discretas
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (14,1,25,0,6,8105430,16);
 -- Grupo Investigacion de Operaciones
@@ -152,15 +151,15 @@ values (29,1,25,0,9,8106176,16);
 -- Grupo Seminario de Trabajo de Grado
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (30,1,25,0,9,8107230,16);
--- Grupo Simulación por computador
+-- Grupo Simulaciï¿½n por computador
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (31,1,25,0,9,8105529,16);
--- Grupo Metodologia de la Investigacion y Diseño Experimental 
+-- Grupo Metodologia de la Investigacion y Diseï¿½o Experimental 
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (32,1,25,0,3,8108220,16);
 
 
----- Cursos Ingeniería Agronómica
+-- Cursos Ingenierï¿½a Agronï¿½mica
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8105062,'Mercadeo Agricola',19);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
@@ -214,15 +213,15 @@ values(8108114,'Reproduccion Vegetal',19);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8105063,'Entomologia',19);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108110,'Bioestadistica y Diseño Experimental',19);
+values(8108110,'Bioestadistica y Diseï¿½o Experimental',19);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8105057,'Administracion Empresas Agropecuarias',19);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108054,'Economía agraría',19);
+values(8108054,'Economï¿½a agrarï¿½a',19);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8106261,'Gerencia Empresarial Rural',19);
 
----- Grupos Ingeniería Agronómica
+-- Grupos Ingenierï¿½a Agronï¿½mica
 -- Grupo Introduccion a las ciencias agrarias
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (33,1,25,0,1,8107560,16);
@@ -243,16 +242,16 @@ values (38,1,25,0,4,8108058,16);
 -- Grupo Quimica y Fertilidad de suelos
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (39,1,25,0,4,8108112,16);
--- Grupo Reproducción Vegetal
+-- Grupo Reproducciï¿½n Vegetal
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (40,1,25,0,4,8108114,16);
 -- Grupo Hidraulica
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (41,1,25,0,5,8105066,16);
--- Grupo Bioestadistica y Diseño Experimental
+-- Grupo Bioestadistica y Diseï¿½o Experimental
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (42,1,25,0,5,8108110,16);
--- Grupo Economía agraría
+-- Grupo Economï¿½a agrarï¿½a
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (43,1,25,0,5,8108054,16);
 -- Grupo Fitopatologia 
@@ -312,4 +311,3 @@ values (61,1,25,0,9,8105088,16);
 -- Grupo Produccion Hortalizas
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (62,1,25,0,9,8105087,16);
-

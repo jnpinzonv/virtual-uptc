@@ -70,7 +70,7 @@
 							<rich:column styleClass="action">
 								<f:facet name="header">Acción</f:facet>
 								<s:link
-									view="/admin//#{empty from ? 'EnteUniversitario' : from}.xhtml"
+									view="/#{empty from ? 'EnteUniversitario' : from}.xhtml"
 									value="#{empty from ? 'Ver' : 'Seleccionar'}"
 									propagation="#{empty from ? 'none' : 'default'}"
 									id="enteUniversitarioViewId">

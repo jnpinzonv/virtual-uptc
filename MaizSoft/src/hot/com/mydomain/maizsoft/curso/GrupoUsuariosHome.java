@@ -226,7 +226,7 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 		return sItems;
 	}
 
-	public void saveMatricula() {
+	public String saveMatricula() {
 		List<Usuario> someObjects = instance.getUsuarios();
 		GrupoCurso gr = instance.getGrupoCurso();
 		
@@ -243,7 +243,7 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 			//getEntityManager().persist(nueva);
 		}
 		
-		
+		return "/CursoList.xhtml";
 	}
 	
 

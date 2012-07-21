@@ -84,53 +84,7 @@
 				id="done" value="Aceptar" />
 
 		</div>
-
-		<rich:tabPanel switchType="ajax">
-
-			<rich:tab>
-				<f:facet name="label">
-					<h:panelGroup>
-						<h:graphicImage value="/img/manytoone.gif"
-							style="vertical-align: middle; padding-right: 4px;" />Tipo</h:panelGroup>
-				</f:facet>
-				<div class="association" id="tiposParent">
-
-					<h:outputText
-						value="There is no tipos associated with this gestorRepositoriosVirtuales."
-						rendered="#{gestorRepositoriosVirtualesHome.instance.tipos == null}" />
-
-					<rich:dataTable var="_tipo"
-						value="#{gestorRepositoriosVirtualesHome.instance.tipos}"
-						rendered="#{gestorRepositoriosVirtualesHome.instance.tipos != null}"
-						rowClasses="rvgRowOne,rvgRowTwo" id="tiposTable">
-						<h:column>
-							<f:facet name="header">Id tipo</f:facet>
-							<h:outputText value="#{_tipo.idTipo}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Descripcion</f:facet>
-							<h:outputText value="#{_tipo.descripcion}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Nombre</f:facet>
-							<h:outputText value="#{_tipo.nombre}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Tipo id tipo</f:facet>
-							<h:outputText value="#{_tipo.tipo.idTipo}" />
-						</h:column>
-						<h:column styleClass="action">
-							<f:facet name="header">Acción</f:facet>
-							<s:link id="viewtipo" value="Ver" view="/Tipo.xhtml">
-								<f:param name="tipoIdTipo" value="#{_tipo.idTipo}" />
-							</s:link>
-						</h:column>
-					</rich:dataTable>
-
-				</div>
-			</rich:tab>
-		</rich:tabPanel>
-		
+				
 	</ui:define>
 
 </ui:composition>

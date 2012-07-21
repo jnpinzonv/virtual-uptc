@@ -99,6 +99,8 @@ public class Actividad {
 	
 	private transient String nombreEnlace;
 	
+	private transient boolean alertaMail;
+	
 	public Actividad(){
 		evaluable=true;
 		adjuntarArchivo=false;
@@ -361,6 +363,21 @@ public class Actividad {
 	 */
 	public void setNombreEnlace(String nombreEnlace) {
 		this.nombreEnlace = nombreEnlace;
+	}
+	/**
+	 * Se obtiene el valor de alertaMail
+	 * @return El valor de alertaMail
+	 */
+	@Transient
+	public boolean isAlertaMail() {
+		return alertaMail;
+	}
+	/**
+	 * Asigna el valor de alertaMail
+	 * @param alertaMail El valor por establecer para alertaMail
+	 */
+	public void setAlertaMail(boolean alertaMail) {
+		this.alertaMail = alertaMail;
 	}
 	
 	

@@ -76,6 +76,13 @@ public class UserAccount implements Serializable {
 
 	private Set<CuentasUsuario> cuentasUsuarios;
 
+	
+	/**
+	 * Constructor de la clase
+	 */
+	public UserAccount(){
+		enabled=true;
+	}
 	/**
 	 * Se obtiene el valor de id
 	 * @return El valor de id

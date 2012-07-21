@@ -2,19 +2,24 @@ package com.mydomain.maizsoft.academia;
 
 import com.mydomain.Directorio.model.*;
 import com.mydomain.maizsoft.comunicaciones.CursoActualBean;
+import com.mydomain.maizsoft.comunicaciones.GestorEnvioCorreoElectronico;
 import com.mydomain.maizsoft.comunicaciones.ICursoActual;
 import com.mydomain.maizsoft.tipos.TipoHome;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.persistence.Query;
 
 import org.jboss.seam.Component;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.faces.FacesMessages;
 import org.jboss.seam.framework.EntityHome;
 import org.jboss.seam.security.Credentials;
 
@@ -107,23 +112,94 @@ public class ActividadHome extends EntityHome<Actividad> {
 		division.setGrupoCurso(listaGrupos.get(0).getGrupoCurso());
 		division.setNumeroDivision(pasarSeccion);
 		getEntityManager().persist(division);
-		
-		if(instance.getTipo().getIdTipo()==17){
-		crearGestorEnlaces(instance, listaGrupos.get(0).getGrupoCurso());
+
+		if (instance.getTipo().getIdTipo() == 17) {
+			crearGestorEnlaces(instance, listaGrupos.get(0).getGrupoCurso());
+		}
+
+		if (instance.isAlertaMail() == true) {
+			enviarEmail(listaGrupos, instance);
 		}
 
 	}
-	
-	public void crearGestorEnlaces(Actividad instance, GrupoCurso curso){
-		GestorEnlacesExternos nuevoGestor= new GestorEnlacesExternos();
+
+	public GestorEnvioCorreoElectronico crearConfiguracion(Actividad actividad) {
+
+		GestorEnvioCorreoElectronico nuevo = new GestorEnvioCorreoElectronico();
+		nuevo.setAsunto("Notificación de nueva Actividad en Plataforma virtual ");
+
+		String mensaje = "Senor(a): Usuario /n"
+				+ "Se a creado una nueva actividad o recurso en su plataforma Virtual de Aprendizaje /n"
+				+ "realizado por: " + actividad.getUsuario().getPrimerNombre()
+				+ " " + actividad.getUsuario().getPrimerNombre() + "/n"
+				+ "fecha de creación: " + actividad.getFechaCreacion();
+		nuevo.setCuerpoMensaje(mensaje);
+		nuevo.setUsernameCorreo(getConfiguracion("correoElectronico")
+				.getDetallesPropiedad());
+		nuevo.setPasswordCorreo(getConfiguracion("contraseniaCorreo")
+				.getDetallesPropiedad());
+		nuevo.setRemite(getConfiguracion("correoElectronico")
+				.getDetallesPropiedad());
+
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", getConfiguracion("mail.smtp.auth")
+				.getDetallesPropiedad());
+		props.put("mail.smtp.starttls.enable",
+				getConfiguracion("mail.smtp.starttls.enable")
+						.getDetallesPropiedad());
+		props.put("mail.smtp.host", getConfiguracion("mail.smtp.host")
+				.getDetallesPropiedad());
+		props.put("mail.smtp.port", getConfiguracion("mail.smtp.port")
+				.getDetallesPropiedad());
+
+		nuevo.setProps(props);
+
+		return nuevo;
+	}
+
+	public void enviarEmail(List<GrupoUsuarios> usuarios, Actividad actividad) {
+
+		GestorEnvioCorreoElectronico nuevo = crearConfiguracion(actividad);
+
+		for (GrupoUsuarios grupoUsuarios : usuarios) {
+			try {
+				nuevo.setPara(grupoUsuarios.getUserGrupoCurso()
+						.getCorreoElectronico());
+				nuevo.enviarEmail();
+
+			} catch (AddressException e) {
+				FacesMessages mensaje = (FacesMessages) Component
+						.getInstance(FacesMessages.class);
+				mensaje.add("No es posible enviar Alerta al Usuario:"
+						+ grupoUsuarios.getUserGrupoCurso().getCodigoUsuarios()
+						+ " posible causa: La dirección correo no es valida :(");
+			} catch (MessagingException e) {
+				FacesMessages mensaje = (FacesMessages) Component
+						.getInstance(FacesMessages.class);
+				mensaje.add("Se produjo un error técnico :(");
+			}
+		}
+
+	}
+
+	public ConfiguracionesSistema getConfiguracion(String nombrePropiedad) {
+
+		Query q = getEntityManager().createQuery(
+				ConsultasJpql.CONFIGURACIONES_SISTEMA_POR_PROPIEDAD);
+		q.setParameter("parametro", nombrePropiedad);
+
+		return (ConfiguracionesSistema) q.getSingleResult();
+	}
+
+	public void crearGestorEnlaces(Actividad instance, GrupoCurso curso) {
+		GestorEnlacesExternos nuevoGestor = new GestorEnlacesExternos();
 		nuevoGestor.setDescripcionEnlace(instance.getDescripcionActividad());
 		nuevoGestor.setGrupoCurso(curso);
 		nuevoGestor.setNombreEnlace(instance.getNombreEnlace());
 		nuevoGestor.setUrlEnlace(instance.getUrlExterna());
-		
+
 		getEntityManager().persist(nuevoGestor);
 	}
-	
 
 	public void crearNotaActividad(List<GrupoUsuarios> listaGrupos,
 			Usuario usuario) {
@@ -151,7 +227,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 					&& sObj.getUserGrupoCurso().getId() == usuario.getId()) {
 				nuevaNota.setGestorCargaArchivos(archivo);
 			}
-			if(instance.isEvaluable()==false){
+			if (instance.isEvaluable() == false) {
 				instance.setPorcentaje(0.0);
 			}
 

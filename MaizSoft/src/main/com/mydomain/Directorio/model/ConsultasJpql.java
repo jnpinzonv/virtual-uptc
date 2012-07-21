@@ -52,11 +52,28 @@ public interface ConsultasJpql {
 	 * 
 	 */
 	String USUARIOS_POR_ROL_Y_ENTEUNIVERSITARIO="SELECT us FROM UserAccount u JOIN u.roles r,EnteUniversitario e,Usuario us,CuentasUsuario c"
-			+ " where r.name=:roles"
-			+ " and u.id = c.id"
-			+ " and c.id = us.id"
-			+ " and us.enteUniversitarios.idEnteUniversitario = e.idEnteUniversitario"								
-			+ " and us.enteUniversitarios.idEnteUniversitario =:escuela";
+												+ " where r.name=:roles"
+												+ " and u.id = c.id"
+												+ " and c.id = us.id"
+												+ " and us.enteUniversitarios.idEnteUniversitario = e.idEnteUniversitario"								
+												+ " and us.enteUniversitarios.idEnteUniversitario =:escuela";
+	
+	/**
+	 * 
+	 */
+	String GRUPOS_CURSOS_POR_USUARIO ="select gr from GrupoUsuarios g , GrupoCurso gr where g.userGrupoCurso.id=:parametro" 
+									+" and g.grupoCurso.idGrupo=gr.idGrupo";
+	
+	/**
+	 * 
+	 */
+	String CONFIGURACIONES_SISTEMA_POR_PROPIEDAD="select c from ConfiguracionesSistema c where c.nombrePropiedad=:parametro";
+	
+	
+	/**
+	 * 
+	 */
+	String USUARIO_POR_MAIL= "select u from Usuario u where u.correoElectronico=:parametro";
 	
 	
 

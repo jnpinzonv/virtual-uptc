@@ -51,6 +51,18 @@ insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propieda
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(6,'4','grupoCursos');
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(7,'estudiante','Roles');		
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(8,'cargaArchivosCurso','pathArchivosCurso');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(9,'lordnipin@gmail.com','correoElectronico');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(10,'870317','contraseniaCorreo');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(11,'true','mail.smtp.auth');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(12,'true','mail.smtp.starttls.enable');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(13,'smtp.gmail.com','mail.smtp.host');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(14,'587','mail.smtp.port');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(15,'Recuperación de Contraseña','asuntoMail');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(16,'Cordial saludo. 
+Señor(a):  Usuario.  
+Su nueva contraseña es su numero de identificación personal. 
+Por favor no devolver ningún mensaje a este correo, este medio es administrado
+por el servidor de la plataforma.','cuerpoMensaje');
 
 
 

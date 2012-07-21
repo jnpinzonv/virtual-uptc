@@ -9,9 +9,11 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.jboss.seam.Component;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.faces.FacesMessages;
 import org.jboss.seam.framework.EntityHome;
 import org.jboss.seam.security.management.action.UserAction;
 
@@ -22,11 +24,10 @@ public class UsuarioHome extends EntityHome<Usuario> {
 	EnteUniversitarioHome enteUniversitarioHome;
 	@In(create = true)
 	TipoHome tipoHome;
-	
+
 	@In(create = true)
 	UserAction userAction;
-	
-	
+
 	public void setUsuarioId(Long id) {
 		setId(id);
 	}
@@ -98,24 +99,30 @@ public class UsuarioHome extends EntityHome<Usuario> {
 	}
 
 	public String saveUsuario() {
-		
-		userAction.save();
-		List<String> nueva=new ArrayList<String>();
-		nueva.add(instance.getRole());
-		userAction.setRoles(nueva);
-		persist();
-		CuentasUsuario nuevoCuenta = new CuentasUsuario();
-		nuevoCuenta.setUsuarios(getInstance());
-		Query q = getEntityManager()
-				.createQuery(
-						"select u from UserAccount u where u.username=#{userAction.username}");
-		nuevoCuenta.setUserAccounts((UserAccount) q.getSingleResult());
-		getEntityManager().persist(nuevoCuenta);
-		
+
+		try {
+			List<String> nueva = new ArrayList<String>();	
+			nueva.add(instance.getRole());
+			userAction.setRoles(nueva);
+			userAction.save();			
+			persist();
+			CuentasUsuario nuevoCuenta = new CuentasUsuario();
+			nuevoCuenta.setUsuarios(getInstance());
+			Query q = getEntityManager()
+					.createQuery(
+							"select u from UserAccount u where u.username=#{userAction.username}");
+			nuevoCuenta.setUserAccounts((UserAccount) q.getSingleResult());
+			getEntityManager().persist(nuevoCuenta);
+		} catch (RuntimeException e) {
+			FacesMessages mensaje = (FacesMessages) Component
+					.getInstance(FacesMessages.class);
+			mensaje.add("Se produjo un error al guardar el Usuario, posible causa: El usuario ya existe en el sistema");
+			return "";
+		}
 		return "/UsuarioList.seam";
 	}
-	
-	public String crearUsuario(){
+
+	public String crearUsuario() {
 		userAction.createUser();
 		return "/admin/UsuarioEdit.xhtml";
 	}
@@ -130,18 +137,16 @@ public class UsuarioHome extends EntityHome<Usuario> {
 		return listaEntesUniversitarios;
 
 	}
-		
-	
+
 	@Factory("listaTiposDocumento")
 	public List<Tipo> listaTiposEntesUniversitarios() {
 
-		Query q = getEntityManager()
-				.createQuery("select t from Tipo t where t.tipo=2");
-		List<Tipo> listaTiposEnteUniversitarios = (List<Tipo>)q.getResultList();
-	
+		Query q = getEntityManager().createQuery(
+				"select t from Tipo t where t.tipo=2");
+		List<Tipo> listaTiposEnteUniversitarios = (List<Tipo>) q
+				.getResultList();
+
 		return listaTiposEnteUniversitarios;
 	}
-	
-	
 
 }

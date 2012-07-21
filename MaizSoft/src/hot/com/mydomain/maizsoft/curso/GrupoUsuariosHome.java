@@ -14,6 +14,7 @@ import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.faces.FacesMessages;
 import org.jboss.seam.framework.EntityHome;
 
 import com.mydomain.Directorio.model.ConfiguracionesSistema;
@@ -69,8 +70,8 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 			getInstance().setUserGrupoCurso(userGrupoCurso);
 		}
 		/*
-		CuentasUsuario userRole = cuentasUsuarioHome.getDefinedInstance();
-		
+		 * CuentasUsuario userRole = cuentasUsuarioHome.getDefinedInstance();
+		 * 
 		 * if (userRole != null) { getInstance().setUserRole(userRole); }
 		 */
 
@@ -177,75 +178,63 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 	@Factory("listaUsuariosEscuela")
 	public List<SelectItem> listaUsuariosEscuela() {
 		List<SelectItem> sItems = new ArrayList<SelectItem>();
-		
-			List<Usuario> listaUsuariosEscuela = new ArrayList<Usuario>();
-			Query q = getEntityManager()
-					.createQuery(ConsultasJpql.USUARIOS_POR_ROL_Y_ENTEUNIVERSITARIO);
-			
-			// getEntityManager().createNamedQuery("usuariosPorEscuela");
-			if (instance.getEnteUniversitarioHijo() == null) {
-				ConfiguracionesSistema curso = getEntityManager().find(
-						ConfiguracionesSistema.class, 4l);
-				ConfiguracionesSistema role = getEntityManager().find(
-						ConfiguracionesSistema.class, 7l);
-				q.setParameter("roles",instance.getRole());
-				
-				q.setParameter("escuela",
-						Long.parseLong(curso.getDetallesPropiedad()));
-				listaUsuariosEscuela = (List<Usuario>) q.getResultList();
-			} else {
-				ConfiguracionesSistema padre = getEntityManager().find(
-						ConfiguracionesSistema.class, 7l);
-				q.setParameter("roles",instance.getRole());
-				q.setParameter("escuela", instance.getEnteUniversitarioHijo()
-						.getIdEnteUniversitario());	
-			
-				
-				/*ConfiguracionesSistema role = getEntityManager().find(
-						ConfiguracionesSistema.class, 7l);
-				role.setDetallesPropiedad(instance.getRole());
-				getEntityManager().merge(role);
-				getEntityManager().flush();*/
-	
-				listaUsuariosEscuela = (List<Usuario>) q.getResultList();
-			}
+		List<Usuario> listaUsuariosEscuela = new ArrayList<Usuario>();
+		Query q = getEntityManager().createQuery(
+				ConsultasJpql.USUARIOS_POR_ROL_Y_ENTEUNIVERSITARIO);
+		if (instance.getEnteUniversitarioHijo() == null) {
+			ConfiguracionesSistema curso = getEntityManager().find(
+					ConfiguracionesSistema.class, 4l);
+			ConfiguracionesSistema role = getEntityManager().find(
+					ConfiguracionesSistema.class, 7l);
+			q.setParameter("roles", instance.getRole());
 
-			List<Usuario> someObjects = listaUsuariosEscuela;
-			
-			for (Usuario sObj : someObjects) {
-				String var = sObj.getCodigoUsuarios() + "   "
-						+ sObj.getPrimerNombre() + " " + sObj.getApellidos();
-				SelectItem sItem = new SelectItem(sObj, var);
-				sItems.add(sItem);
+			q.setParameter("escuela",
+					Long.parseLong(curso.getDetallesPropiedad()));
+			listaUsuariosEscuela = (List<Usuario>) q.getResultList();
+		} else {
+			ConfiguracionesSistema padre = getEntityManager().find(
+					ConfiguracionesSistema.class, 7l);
+			q.setParameter("roles", instance.getRole());
+			q.setParameter("escuela", instance.getEnteUniversitarioHijo()
+					.getIdEnteUniversitario());
 
-			}
-
-		
-	
-		
+			listaUsuariosEscuela = (List<Usuario>) q.getResultList();
+		}
+		List<Usuario> someObjects = listaUsuariosEscuela;
+		for (Usuario sObj : someObjects) {
+			String var = sObj.getCodigoUsuarios() + "   "
+					+ sObj.getPrimerNombre() + " " + sObj.getApellidos();
+			SelectItem sItem = new SelectItem(sObj, var);
+			sItems.add(sItem);
+		}
 		return sItems;
 	}
 
 	public String saveMatricula() {
-		List<Usuario> someObjects = instance.getUsuarios();
-		GrupoCurso gr = instance.getGrupoCurso();
-		
-		for (Usuario sObj : someObjects) {
-			GrupoUsuarios nuevo = new GrupoUsuarios();
-			nuevo.setUserGrupoCurso(sObj);
-			nuevo.setGrupoCurso(gr);
-			Query q = getEntityManager().createNamedQuery(
-					"buscarCuentaPorUsuario");
-			q.setParameter("parametro", sObj.getDocumentoIdentidad());
-			CuentasUsuario nueva = (CuentasUsuario) q.getSingleResult();
-			nuevo.setUserRole(nueva);
-			getEntityManager().persist(nuevo);
-			//getEntityManager().persist(nueva);
+
+		if (instance.getUsuarios().size() > 0) {
+			List<Usuario> someObjects = instance.getUsuarios();
+			GrupoCurso gr = instance.getGrupoCurso();
+			for (Usuario sObj : someObjects) {
+				GrupoUsuarios nuevo = new GrupoUsuarios();
+				nuevo.setUserGrupoCurso(sObj);
+				nuevo.setGrupoCurso(gr);
+				Query q = getEntityManager().createNamedQuery(
+						"buscarCuentaPorUsuario");
+				q.setParameter("parametro", sObj.getDocumentoIdentidad());
+				CuentasUsuario nueva = (CuentasUsuario) q.getSingleResult();
+				nuevo.setUserRole(nueva);
+				getEntityManager().persist(nuevo);
+			}
 		}
+		else{
+			FacesMessages mensaje = (FacesMessages) Component
+					.getInstance(FacesMessages.class);
+			mensaje.add("Se produjo un error al matricular el Usuario, posible causa: no existe ningún usuario seleccionado");
+		}
+
 		
 		return "/CursoList.xhtml";
 	}
-	
-
 
 }

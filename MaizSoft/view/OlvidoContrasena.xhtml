@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
+	xmlns:rich="http://richfaces.org/rich" template="/layout/template.xhtml">
 
 	<ui:define name="head">
 		<link href="css/cssLayoutAutenticar.css" rel="stylesheet"
@@ -71,15 +71,15 @@
 						<br />
 						<br />
 						<h:outputLabel value="Nombre de Usuario: " />
-						<h:inputText value=""/>
+						<h:inputText value="#{userAccount.username}"/>
 						<br />
 						<br />
 						<h:outputLabel value="Correo Electrónico: " />
-						<h:inputText value=""/>
+						<h:inputText value="#{usuario.correoElectronico}"/>
 						<br />
 						<br />
 					
-						<h:commandButton value="Aceptar" action="/login.seam"/>
+						<h:commandButton value="Aceptar" action="#{gestionarOlvidoContraseniaBean.usuarioValido()}"/>
 						<h:commandButton value="Cancelar" action="/login.seam" />
 					</h:form>
 				</div>

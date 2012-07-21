@@ -9,7 +9,7 @@
 
 
 	<ui:define name="head">
-		<link href="css/default.css" rel="stylesheet" type="text/css" />
+		<link href="../css/default.css" rel="stylesheet" type="text/css" />
 	</ui:define>
 
 	<style>
@@ -135,17 +135,20 @@
 					
 					<h:outputLabel value="Seleccionar usuarios:" />
 					<rich:pickList value="#{grupoUsuariosHome.instance.usuarios}"
-						id="listaUsuario" var="liss">
+						id="listaUsuario">
 						<f:selectItems value="#{listaUsuariosEscuela}" var="listas"/>
 						<s:convertEntity />
 						<a4j:support event="onlistchanged" reRender="result,matricula" />
 					</rich:pickList>
 					
 				</h:panelGrid>
+			
+
 
 			</rich:panel>
 
-			<h:commandButton id="matricula" value="Matricular"
+
+			<h:commandButton id="matricula" value="Matricular" 
 				action="#{grupoUsuariosHome.saveMatricula()}"/>
 		</h:form>
 	</ui:define>

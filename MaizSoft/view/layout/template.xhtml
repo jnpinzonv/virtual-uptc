@@ -18,13 +18,16 @@
       <ui:insert name="reloj"/>
    </head>
    <body style="background-color: #cccccc; font-size: 12px; font-family: Verdana, Arial, lucida, sans-serif; margin: auto;">
-      <ui:include src="menu.xhtml">
-         <ui:param name="projectName" value="MaizSoft"/>
-      </ui:include>
+     
       <div class="body">
+      
          <h:messages id="messages" globalOnly="true" styleClass="message"
             errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"
+               
             rendered="#{showGlobalMessages != 'false'}"/>
+           <ui:include src="menu.xhtml">
+         <ui:param name="projectName" value="MaizSoft"/>
+      </ui:include>  
          <ui:insert name="body"/>
       </div>
    </body>

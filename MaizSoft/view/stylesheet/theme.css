@@ -81,10 +81,12 @@ select {
 
 .message li.errormsg {
 	background-image: url(../img/msgerror.png);
+	color: red;
 }
 
 .message li.warnmsg {
 	background-image: url(../img/msgwarn.png);
+	color: green;
 }
 
 .name {

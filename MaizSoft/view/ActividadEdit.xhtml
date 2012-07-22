@@ -27,14 +27,14 @@
 					id="sobrenombre" required="true" rendered="true">
 					<s:selectItems value="#{listaTiposActividades}" var="lista"
 						label="#{lista.nombre}" noSelectionLabel="SELECCIONE..." />
-					<a4j:support event="onchange" reRender="tres, cuatro, cinco,dos"
+					<a4j:support event="onchange" reRender="cuatro, cinco,dos"
 						ajaxSingle="true" />
 					<s:convertEntity />
 				</h:selectOneMenu>
 
 				<br />
-				<br />			
-		
+				<br />
+
 
 				<s:decorate id="mensajeField" template="layout/edit.xhtml">
 					<ui:define name="label">Descripcion actividad: </ui:define>
@@ -86,26 +86,25 @@
 				<br />
 				<br />
 				<br />
-
-
+				<br />
+				<!-- 
 				<s:decorate id="adjuntoField" template="/layout/edit.xhtml"
 					style="position:absolute;">
 					<ui:define name="label">Adjuntar Archivo</ui:define>
 					<h:selectBooleanCheckbox id="adjunto"
 						value="#{actividadHome.instance.adjuntarArchivo}" />
-					<a4j:support event="onchange" reRender="cuatro" 
-					bypassUpdates="true" ajaxSingle="true"/>
+					<a4j:support event="onchange" reRender="cuatro" ajaxSingle="true"/>
 				</s:decorate>
 				<br />
 				<br />
 				<br />
-
+				 -->
 				<s:decorate id="alertaMailField" template="/layout/edit.xhtml"
 					style="position:absolute;">
-					<ui:define name="label">Aaerta Por Mail</ui:define>
+					<ui:define name="label">Alerta Por Mail</ui:define>
 					<h:selectBooleanCheckbox id="adjunto"
 						value="#{actividadHome.instance.alertaMail}" />
-					
+
 				</s:decorate>
 				<br />
 				<br />
@@ -132,19 +131,22 @@
 				</s:decorate>
 				<br />
 				<br />
-				
-				<s:decorate id="porcentajeField"
-						template="/layout/edit.xhtml" style="position:absolute;"
-						rendered="#{actividadHome.instance.evaluable==true}">
-						<ui:define name="label">Valor sobre nota final</ui:define>
 
-						<h:inputTextarea id="porcentaje" cols="60" rows="1"
-							value="#{actividadHome.instance.porcentaje}"
-							disabled="#{actividadHome.instance.evaluable!=true}" />
-					</s:decorate>
-					<br />
-					<br />
+				<s:decorate id="porcentajeField" template="/layout/edit.xhtml"
+					style="position:absolute;"
+					rendered="#{actividadHome.instance.evaluable==true}">
+					<ui:define name="label">Valor sobre nota final</ui:define>
 
+					<h:inputTextarea id="porcentaje" cols="5" rows="1"
+						value="#{actividadHome.instance.porcentaje}"
+						disabled="#{actividadHome.instance.evaluable!=true}"
+						required="true" />
+				</s:decorate>
+				<br />
+				<br />
+				<br />
+				<br />
+				<!--  
 				<a4j:outputPanel id="tres">
 					<h:commandButton id="foro" value="ir Foro"
 						action="#{gestorMensajeriaHome.irForo()}"
@@ -152,7 +154,7 @@
 				</a4j:outputPanel>
 				<br />
 				<br />
-
+-->
 
 				<a4j:outputPanel id="cinco">
 					<s:decorate id="urlExternaActividadField"
@@ -166,7 +168,7 @@
 					</s:decorate>
 					<br />
 					<br />
-					
+
 					<s:decorate id="nombreUrlExternaActividadField"
 						template="/layout/edit.xhtml" style="position:absolute;"
 						rendered="#{actividadHome.instance.tipo.idTipo==17}">
@@ -179,22 +181,16 @@
 				</a4j:outputPanel>
 				<br />
 				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-
 				<a4j:outputPanel id="cuatro">
-					<h:panelGrid
-						rendered="#{actividadHome.instance.adjuntarArchivo==true}">
+					<h:panelGrid>
 						<f:facet name="header">Adjuntar Archivo</f:facet>
 
 						<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
-					accept="image/jpg" fileName="#{cargaArchivosBean.nombreArchivo}" />
-					
+							accept="image/jpg" fileName="#{cargaArchivosBean.nombreArchivo}" />
+
 						<h:commandButton id="upload" value="Subir !!"
 							action="#{cargaArchivosBean.handleUpload}"
-							disabled="#{actividadHome.instance.adjuntarArchivo!=true}" />
+							/>
 
 						<s:button id="cancel" view="/login.xhtml" value="Cancel"
 							propagation="end" />

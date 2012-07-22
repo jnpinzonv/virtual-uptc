@@ -42,72 +42,11 @@
 </script>
 	</ui:define>
 
-
-
 	<ui:define name="body">
+		
 		<body onload="mueveReloj()">
-			<div>
-				<ui:insert name="cabezoteT">
-					<div id="cabezote"
-						style="position: relative; background-color: #315E9F; color: white; height: 80px;">
-
-						<div id="topLogo"
-							style="position: relative; float: left; background-color: #315E9F; height: 30px; margin-top: 4px;">
-							<h:form>
-								<h:outputText value="MaizSoft"></h:outputText>
-								<h:outputText value="..." style="color:#315E9F"></h:outputText>
-								<h:commandButton image="/css/images/calendario.png"
-									style="width:30px" />
-								<h:outputText value=".." style="color:#315E9F"></h:outputText>
-								<h:commandButton action="/GestorMensajeriaEdit.xhtml"
-									image="/css/images/mensajes.png" style="width:30px" />
-								<h:outputText value=".." style="color:#315E9F"></h:outputText>
-								<h:commandButton image="/css/images/actualizacion.png"
-									style="width:30px" />
-								<br />
-								<br />
-								<h:outputText value="Navegar"></h:outputText>
-							</h:form>
-						</div>
-
-
-						<div id="topPrincipal"
-							style="position: relative; float: right; background-color: #315E9F; height: 30px; margin-top: 4px">
-							<div style="margin-right: 10px">
-								<h:form>
-									<h:outputText id="menuWelcomeId"
-										value="#{userAccountHome.usuarioPorUsername()}"
-										rendered="#{identity.loggedIn}" />
-
-									<s:link id="menuLogoutId" action="#{identity.logout}"
-										value="Salir" style="color: white" view="/login.xhtml" />
-								</h:form>
-								<br /> <br />
-								<form name="form_reloj">
-
-									<input type="text" name="reloj" size="17"
-										style="color: #FFFFFF; background: #315E9F; text-align: center"
-										onfocus="window.document.form_reloj.reloj.blur()" />
-								</form>
-							</div>
-						</div>
-
-						<div id="topSearch"
-							style="position: relative; height: 30px; float: inherit; margin-top: 37px; margin-left: 350px; vertical-align: middle;">
-
-							<form class="searchform">
-								<input class="searchfield" type="text" value="Buscar..."
-									onFocus="if (this.value == 'Buscar...') {this.value = '';}"
-									onBlur="if (this.value == '') {this.value = 'Buscar...';}" />
-
-								<h:commandButton class="searchbutton"
-									image="/css/images/buscar.png" style="width:24px" />
-							</form>
-						</div>
-
-					</div>
-				</ui:insert>
-
+				
+				
 				<div id="medio"
 					style="float: left; background-color: #FFFFFF; color: #000000; width: 100%;">
 					<ui:insert name="izquierdaT">
@@ -430,8 +369,9 @@
 
 					</div>
 				</ui:insert>
-			</div>
+		
 		</body>
+		
 	</ui:define>
 
 </ui:composition>

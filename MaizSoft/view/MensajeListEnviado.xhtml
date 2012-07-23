@@ -23,19 +23,19 @@
 				<div class="results" id="mensajeList">
 
 					<rich:dataTable id="usuarioList" var="_listaMensajes"
-						value="#{listaMensajesEnviadosPorUsuario}" rows="10" width="650px">
+						value="#{listaMensajesEnviadosPorUsuario}" rows="10" width="650px" height="20px">
 						<h:column>
 							<f:facet name="header">Para							
 								</f:facet>
 							<h:outputText value="#{_listaMensajes.listaUsuarios}" />
 						</h:column>
-						<h:column>
+						<h:column height="20px">
 							<f:facet name="header">Asunto							
 								</f:facet>
 							<h:outputText value="#{_listaMensajes.asunto}" />
 						</h:column>
 
-						<h:column>
+						<h:column >
 							<f:facet name="header">Mensaje							
 								</f:facet>
 							<h:outputText value="#{_listaMensajes.mensaje}" escape="false" />

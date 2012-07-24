@@ -3,6 +3,8 @@
  */
 package com.mydomain.Directorio.model;
 
+import com.mydomain.Directorio.chat.StringEncoder64;
+
 /**
  * Descripcion: Esta Clase se encarga de ... Modulo de Desarrollo :CU- ...
  * 
@@ -74,5 +76,11 @@ public interface ConsultasJpql {
 	 * 
 	 */
 	String USERACCOUNT_POR_USERNAME = "select u from UserAccount u where u.username=:parametro";
+	
+	String ACTIVIADES_POR_DIVISION ="select a from Actividad a, NumeroDivision m"+
+									"where m.numeroDivision =: #{seccionSeleccionadaBean.seccionSeleccionada}"+
+									"and m.idGrupo=#{cursoActualBean.seleccionado.idGrupo}"+
+									"and m.actividad.idActividad= a.idActividad"+
+									"and a.tipo.idTipo =: parametro";
 
 }

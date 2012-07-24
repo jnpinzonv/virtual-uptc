@@ -3,6 +3,8 @@
  */
 package com.mydomain.Directorio.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +34,12 @@ import org.jboss.seam.annotations.Name;
 @Entity(name = "GestorRepositoriosVirtuales")
 @Table(name = "gestor_repositorios_virtuales")
 @Name("gestorRepositoriosVirtuales")
-public class GestorRepositoriosVirtuales {
+public class GestorRepositoriosVirtuales implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Variable que se encarga de crear un identificador de un repositorio, Tipo

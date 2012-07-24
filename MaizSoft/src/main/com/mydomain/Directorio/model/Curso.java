@@ -3,8 +3,7 @@
  */
 package com.mydomain.Directorio.model;
 
-
-
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -22,54 +21,58 @@ import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 import org.jboss.seam.annotations.Name;
 
-
 /**
-* Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, 
-* en esta clase con lo referente a los cursos, se comunica con la base de datos
-* Modulo de Desarrollo :CU- ...
-* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
-* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
-* Grupo de Investigacion Ingenieria Software (GIS)
-* Semillero de Investigacion Moviles Sabatt (SIMS)
-* Universidad Pedagogica y Tecnologica de Colombia
-* @version 23/06/2012 
-*/
-@Entity(name="Curso")
-@Table(name="curso")
+ * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos,
+ * en esta clase con lo referente a los cursos, se comunica con la base de datos
+ * Modulo de Desarrollo :CU- ...
+ * 
+ * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+ * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com Grupo de
+ *         Investigacion Ingenieria Software (GIS) Semillero de Investigacion
+ *         Moviles Sabatt (SIMS) Universidad Pedagogica y Tecnologica de
+ *         Colombia
+ * @version 23/06/2012
+ */
+@Entity(name = "Curso")
+@Table(name = "curso")
 @Name("curso")
-@NamedQuery(name="cursosPorEscuela",query="select c from Curso c where c.enteUniversitario.idEnteUniversitario=:parametro")
-public class Curso {
+@NamedQuery(name = "cursosPorEscuela", query = "select c from Curso c where c.enteUniversitario.idEnteUniversitario=:parametro")
+public class Curso implements Serializable {
 
 	/**
-	 * Variable que almacena el código del curso
-	 * Tipo de dato Long
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Variable que almacena el código del curso Tipo de dato Long
 	 */
 	private Long codigo;
-	
+
 	/**
-	 * Variable que almacena el nombre de la asignatura
-	 * Tipo de dato String
+	 * Variable que almacena el nombre de la asignatura Tipo de dato String
 	 */
-	private String nombreAsignatura;	
-	
+	private String nombreAsignatura;
+
 	/**
-	 * Variable que almacena los grupos de los cursos
-	 * Se instancia de la clase GrupoCursos
+	 * Variable que almacena los grupos de los cursos Se instancia de la clase
+	 * GrupoCursos
 	 */
 	private Set<GrupoCurso> grupoCursos;
-	
+
 	/**
-	 * Variable que almacena el ente universitario al cual pertenece el curso
-	 * Se instancia de la clase EnteUniversitario
+	 * Variable que almacena el ente universitario al cual pertenece el curso Se
+	 * instancia de la clase EnteUniversitario
 	 */
 	private EnteUniversitario enteUniversitario;
 
 	/**
 	 * Se obtiene el valor de codigo
+	 * 
 	 * @return El valor de codigo
 	 */
 	@Id
-	@NotNull	
+	@NotNull
 	@Column(name = "codigo_curso", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public Long getCodigo() {
 		return codigo;
@@ -77,7 +80,9 @@ public class Curso {
 
 	/**
 	 * Asigna el valor de codigo
-	 * @param codigo El valor por establecer para codigo
+	 * 
+	 * @param codigo
+	 *            El valor por establecer para codigo
 	 */
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
@@ -85,10 +90,11 @@ public class Curso {
 
 	/**
 	 * Se obtiene el valor de nombreAsignatura
+	 * 
 	 * @return El valor de nombreAsignatura
 	 */
 	@NotEmpty
-	@Length(max=300)
+	@Length(max = 300)
 	@Column(name = "nombre_asignatura", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getNombreAsignatura() {
 		return nombreAsignatura;
@@ -96,7 +102,9 @@ public class Curso {
 
 	/**
 	 * Asigna el valor de nombreAsignatura
-	 * @param nombreAsignatura El valor por establecer para nombreAsignatura
+	 * 
+	 * @param nombreAsignatura
+	 *            El valor por establecer para nombreAsignatura
 	 */
 	public void setNombreAsignatura(String nombreAsignatura) {
 		this.nombreAsignatura = nombreAsignatura;
@@ -104,16 +112,19 @@ public class Curso {
 
 	/**
 	 * Se obtiene el valor de grupoCursos
+	 * 
 	 * @return El valor de grupoCursos
 	 */
-	@OneToMany(mappedBy="cursoGrupo", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "cursoGrupo", cascade = CascadeType.ALL)
 	public Set<GrupoCurso> getGrupoCursos() {
 		return grupoCursos;
 	}
 
 	/**
 	 * Asigna el valor de grupoCursos
-	 * @param grupoCursos El valor por establecer para grupoCursos
+	 * 
+	 * @param grupoCursos
+	 *            El valor por establecer para grupoCursos
 	 */
 	public void setGrupoCursos(Set<GrupoCurso> grupoCursos) {
 		this.grupoCursos = grupoCursos;
@@ -121,6 +132,7 @@ public class Curso {
 
 	/**
 	 * Se obtiene el valor de enteUniversitario
+	 * 
 	 * @return El valor de enteUniversitario
 	 */
 	@NotNull
@@ -132,7 +144,9 @@ public class Curso {
 
 	/**
 	 * Asigna el valor de enteUniversitario
-	 * @param enteUniversitario El valor por establecer para enteUniversitario
+	 * 
+	 * @param enteUniversitario
+	 *            El valor por establecer para enteUniversitario
 	 */
 	public void setEnteUniversitario(EnteUniversitario enteUniversitario) {
 		this.enteUniversitario = enteUniversitario;

@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	template="/layout/template.xhtml">
+
+	<ui:define name="head">
+		<link href="css/cssLayoutPrincipal.css" rel="stylesheet"
+			type="text/css" />
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
+
+		<script language="JavaScript"> 
+
+    	function mueveReloj(){ 
+    	   	momentoActual = new Date()
+    	   	hora = momentoActual.getHours() 
+   			minuto = momentoActual.getMinutes() 
+   			segundo = momentoActual.getSeconds() 
+
+   			str_segundo = new String (segundo) 
+   			if (str_segundo.length == 1) 
+      	 		segundo = "0" + segundo 
+
+   			str_minuto = new String (minuto) 
+   			if (str_minuto.length == 1) 
+      	 		minuto = "0" + minuto 
+
+   			str_hora = new String (hora) 
+   			if (str_hora.length == 1) 
+	      	 	hora = "0" + hora 
+
+   			horaImprimible = "hora: "+hora + " : " + minuto + " : " + segundo 
+
+   			document.form_reloj.reloj.value = horaImprimible 
+
+   			setTimeout("mueveReloj()",1000) 
+} 
+</script>
+
+	</ui:define>
+
+	<ui:define name="body">
+		
+			
+
+				<div id="content" class="right_content">
+					<h:form id="userForm">
+
+						<rich:panel styleClass="useradmin">
+							<ui:remove>
+								<s:decorate id="firstnameField" template="/layout/edit.xhtml">
+									<ui:define name="label">First name</ui:define>
+									<h:inputText id="firstname" value="#{userAction.firstname}" />
+								</s:decorate>
+
+								<s:decorate id="lastnameField" template="/layout/edit.xhtml">
+									<ui:define name="label">Last name</ui:define>
+									<h:inputText id="lastname" value="#{userAction.lastname}" />
+								</s:decorate>
+							</ui:remove>
+
+							<s:decorate id="usernameField" template="/layout/edit.xhtml">
+								<ui:define name="label">Username</ui:define>
+								<h:inputText id="username" value="#{userAction.username}"
+									readonly="#{identityManager.userExists(userAction.username)}" />
+							</s:decorate>
+
+							<s:decorate id="passwordField" template="/layout/edit.xhtml">
+								<ui:define name="label">Password</ui:define>
+								<h:inputSecret id="password" value="#{userAction.password}" />
+							</s:decorate>
+
+							<s:decorate id="confirmField" template="/layout/edit.xhtml">
+								<ui:define name="label">Confirm password</ui:define>
+								<h:inputSecret id="confirm" value="#{userAction.confirm}" />
+							</s:decorate>
+
+							<s:decorate id="rolesField" template="/layout/edit.xhtml">
+								<ui:define name="label">Member of roles</ui:define>
+								<div class="selectMany">
+									<h:selectManyCheckbox id="roles" value="#{userAction.roles}"
+										layout="pageDirection" styleClass="roles">
+										<s:selectItems value="#{identityManager.listGrantableRoles()}"
+											var="_role" label="#{_role}" />
+									</h:selectManyCheckbox>
+								</div>
+							</s:decorate>
+
+							<s:decorate id="enabledField" template="/layout/edit.xhtml">
+								<ui:define name="label">Account enabled</ui:define>
+								<h:selectBooleanCheckbox id="enabled"
+									value="#{userAction.enabled}" />
+							</s:decorate>
+
+							<div style="clear: both" />
+
+						</rich:panel>
+
+						<div class="actionButtons">
+							<h:commandButton id="save" value="Save"
+								action="#{userAction.save()}" />
+							<s:button id="cancel" view="/useradmin/usermanager.xhtml"
+								value="Cancel" propagation="end" />
+						</div>
+
+					</h:form>
+				</div>
+
+
+				<div class="left" style="height: 500px; margin-top: -427px">
+					
+				</div>
+
+				
+
+
+
+				
+
+					<img src="/css/images/uptc.png"
+						style="height: 80px; margin-left: -430px" />
+
+					<div style="margin-top: -90px">
+						<pre>Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
+            Facultad de Ingenier&#237;a            
+   Ingenier&#237;a de Sistemas y Computaci&#243;n
+Grupo de Investigaci&#243;n en Ingenier&#237;a del Software
+Correo:gis@uptc.edu.co
+</pre>
+
+					</div>
+			
+		
+
+		
+	</ui:define>
+
+</ui:composition>

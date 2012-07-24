@@ -3,6 +3,8 @@
  */
 package com.mydomain.Directorio.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,50 +16,50 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
-import org.hibernate.validator.Pattern;
 import org.jboss.seam.annotations.Name;
 
-
 /**
-* Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, 
-* en esta clase con lo referente al gestor de enlaces externos, se comunica con la base de datos
-* Modulo de Desarrollo :CU- ...
-* @author Edwin Jose Hernandez Ni�o edwher.123@hotmail.com
-* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
-* Grupo de Investigacion Ingenieria Software (GIS)
-* Semillero de Investigacion Moviles Sabatt (SIMS)
-* Universidad Pedagogica y Tecnologica de Colombia
-* @version 23/06/2012 
-*/
-@Entity(name= "GestorEnlacesExternos")
-@Table(name= "gestor_enlaces_externos")
+ * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos,
+ * en esta clase con lo referente al gestor de enlaces externos, se comunica con
+ * la base de datos Modulo de Desarrollo :CU- ...
+ * 
+ * @author Edwin Jose Hernandez Ni�o edwher.123@hotmail.com
+ * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com Grupo de
+ *         Investigacion Ingenieria Software (GIS) Semillero de Investigacion
+ *         Moviles Sabatt (SIMS) Universidad Pedagogica y Tecnologica de
+ *         Colombia
+ * @version 23/06/2012
+ */
+@Entity(name = "GestorEnlacesExternos")
+@Table(name = "gestor_enlaces_externos")
 @Name("gestorEnlacesExternos")
-public class GestorEnlacesExternos {
-	
+public class GestorEnlacesExternos implements Serializable {
+
 	/**
-	 * Variable que almacena el identificador de los enlaces
-	 * Tipo de Dato Long
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Variable que almacena el identificador de los enlaces Tipo de Dato Long
 	 */
 	private Long idEnlace;
-	
+
 	/**
-	 * Variable que almacena la url del enlace
-	 * Tipo de Dato String
+	 * Variable que almacena la url del enlace Tipo de Dato String
 	 */
 	private String urlEnlace;
-	
+
 	/**
-	 * Variable que almacena el nombre del enlace
-	 * Tipo de Dato String
+	 * Variable que almacena el nombre del enlace Tipo de Dato String
 	 */
 	private String nombreEnlace;
-	
+
 	/**
-	 * Variable que almacena la descripci�n del enlace
-	 * Tipo de Dato String
+	 * Variable que almacena la descripci�n del enlace Tipo de Dato String
 	 */
 	private String descripcionEnlace;
-	
+
 	/**
 	 * Variable que almacena el grupo del cujrso en el que se maneja el enlace
 	 * Se instancia de la clase GrupoCurso
@@ -66,10 +68,11 @@ public class GestorEnlacesExternos {
 
 	/**
 	 * Se obtiene el valor de idEnlace
+	 * 
 	 * @return El valor de idEnlace
 	 */
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_enlace", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdEnlace() {
 		return idEnlace;
@@ -77,7 +80,9 @@ public class GestorEnlacesExternos {
 
 	/**
 	 * Asigna el valor de idEnlace
-	 * @param idEnlace El valor por establecer para idEnlace
+	 * 
+	 * @param idEnlace
+	 *            El valor por establecer para idEnlace
 	 */
 	public void setIdEnlace(Long idEnlace) {
 		this.idEnlace = idEnlace;
@@ -85,10 +90,10 @@ public class GestorEnlacesExternos {
 
 	/**
 	 * Se obtiene el valor de urlEnlace
+	 * 
 	 * @return El valor de urlEnlace
 	 */
-	
-	
+
 	@Column(name = "url_enlace", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getUrlEnlace() {
 		return urlEnlace;
@@ -96,7 +101,9 @@ public class GestorEnlacesExternos {
 
 	/**
 	 * Asigna el valor de urlEnlace
-	 * @param urlEnlace El valor por establecer para urlEnlace
+	 * 
+	 * @param urlEnlace
+	 *            El valor por establecer para urlEnlace
 	 */
 	public void setUrlEnlace(String urlEnlace) {
 		this.urlEnlace = urlEnlace;
@@ -104,10 +111,11 @@ public class GestorEnlacesExternos {
 
 	/**
 	 * Se obtiene el valor de nombreEnlace
+	 * 
 	 * @return El valor de nombreEnlace
 	 */
 
-	@Length(max=100)
+	@Length(max = 100)
 	@Column(name = "nombre_enlace", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
 	public String getNombreEnlace() {
 		return nombreEnlace;
@@ -115,7 +123,9 @@ public class GestorEnlacesExternos {
 
 	/**
 	 * Asigna el valor de nombreEnlace
-	 * @param nombreEnlace El valor por establecer para nombreEnlace
+	 * 
+	 * @param nombreEnlace
+	 *            El valor por establecer para nombreEnlace
 	 */
 	public void setNombreEnlace(String nombreEnlace) {
 		this.nombreEnlace = nombreEnlace;
@@ -123,9 +133,10 @@ public class GestorEnlacesExternos {
 
 	/**
 	 * Se obtiene el valor de descripcionEnlace
+	 * 
 	 * @return El valor de descripcionEnlace
-	 */	
-	@Length(max=300)
+	 */
+	@Length(max = 300)
 	@Column(name = "descripcion_enlace", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDescripcionEnlace() {
 		return descripcionEnlace;
@@ -133,7 +144,9 @@ public class GestorEnlacesExternos {
 
 	/**
 	 * Asigna el valor de descripcionEnlace
-	 * @param descripcionEnlace El valor por establecer para descripcionEnlace
+	 * 
+	 * @param descripcionEnlace
+	 *            El valor por establecer para descripcionEnlace
 	 */
 	public void setDescripcionEnlace(String descripcionEnlace) {
 		this.descripcionEnlace = descripcionEnlace;
@@ -141,6 +154,7 @@ public class GestorEnlacesExternos {
 
 	/**
 	 * Se obtiene el valor de grupoCurso
+	 * 
 	 * @return El valor de grupoCurso
 	 */
 	@NotNull
@@ -152,10 +166,12 @@ public class GestorEnlacesExternos {
 
 	/**
 	 * Asigna el valor de grupoCurso
-	 * @param grupoCurso El valor por establecer para grupoCurso
+	 * 
+	 * @param grupoCurso
+	 *            El valor por establecer para grupoCurso
 	 */
 	public void setGrupoCurso(GrupoCurso grupoCurso) {
 		this.grupoCurso = grupoCurso;
-	}	
-	
+	}
+
 }

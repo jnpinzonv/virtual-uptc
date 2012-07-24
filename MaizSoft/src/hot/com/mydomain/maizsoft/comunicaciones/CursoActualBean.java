@@ -122,7 +122,21 @@ public class CursoActualBean implements ICursoActual {
 		// "hola mundooooooooooooooooooooo");
 		// System.out.println(facesContext.getCurrentInstance().getExternalContext().getRequestMap().get("grupoCursoIdGrupo")+
 		// "holooooooooooooooo");
-		System.out.println(seleccionado.getCodigoGrupo());
+		System.out.println("holaaaaaaaaaaaa datoz"+ grupo);
+		return grupo;
+
+	}
+	
+	public String selecionadoDos(String grupo) {
+		// grupoCursoHome.setInstance(seleccionado);
+		// grupoCurso=entityManager.find(GrupoCurso.class,
+		// seleccionado.getIdGrupo());
+		// System.out.println(grupoCurso.getCupos()+ "holaaaaaaaaaaaaaa22");
+		// System.out.println(instance.getIdGrupo()+
+		// "hola mundooooooooooooooooooooo");
+		// System.out.println(facesContext.getCurrentInstance().getExternalContext().getRequestMap().get("grupoCursoIdGrupo")+
+		// "holooooooooooooooo");
+		System.out.println("holaaaaaaaaaaaa dato "+ grupo);
 		return grupo;
 
 	}

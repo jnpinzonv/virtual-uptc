@@ -6,14 +6,8 @@ package com.mydomain.maizsoft.usuarios;
 import java.util.Properties;
 
 import javax.ejb.Stateless;
-import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -21,7 +15,10 @@ import javax.persistence.Query;
 import org.jboss.seam.Component;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.security.Restrict;
 import org.jboss.seam.faces.FacesMessages;
+import org.jboss.seam.security.management.action.UserAction;
+import org.jboss.seam.security.management.action.UserSearch;
 
 import com.mydomain.Directorio.model.ConfiguracionesSistema;
 import com.mydomain.Directorio.model.ConsultasJpql;
@@ -52,20 +49,42 @@ public class GestionarOlvidoContraseniaBean implements IGestionarOlvidoContrasen
 	@In(create=true)
 	private Usuario usuario;
 	
+	@In(create=true)
+	UserAction userAction;
 	
-	public String usuarioValido(){
-		
+	
+	
+
+	
+	
+	public  long aleatorio(int max,int min){
+		return (long)(Math.random()*(max-min))+min;		
+}
+	
+	public String usuarioValido(){	
+	
+				
 		Query q =entityManager.createQuery(ConsultasJpql.USUARIO_POR_MAIL);
 		q.setParameter("parametro",usuario.getCorreoElectronico());
 		
 		Query q1 =entityManager.createQuery(ConsultasJpql.USUARIO_POR_USERNAME);
 		q1.setParameter("parametro",userAccount.getUsername());
 		
+		
+		userAction.setPassword("11");
+		userAction.setConfirm("11");
+		userAction.save();
+		
 		Usuario u1= (Usuario) q.getSingleResult();
-		Usuario u2= (Usuario) q.getSingleResult();
+		Usuario u2= (Usuario) q1.getSingleResult();
 		
 		if(u1.equals(u2)){
-			enviarEmail(u1.getCorreoElectronico());			
+			Query q3 =entityManager.createQuery(ConsultasJpql.USERACCOUNT_POR_USERNAME);
+			q3.setParameter("parametro",userAccount.getUsername());
+		
+			
+			
+			//enviarEmail(u1.getCorreoElectronico(), cs.getNombrePropiedad());			
 		}
 		else{
 			
@@ -74,7 +93,13 @@ public class GestionarOlvidoContraseniaBean implements IGestionarOlvidoContrasen
 			mensaje.add("Los parametros NO son validos, por favor intente de nuevo :)");
 			return "";
 		}
-		
+		try {
+		} catch (RuntimeException e) {
+			FacesMessages mensaje = (FacesMessages) Component
+					.getInstance(FacesMessages.class);
+			mensaje.add("Los parametros NO existen, por favor intente de nuevo :)");
+			return "";
+		}
 		return "/login.seam";
 		
 	}
@@ -82,11 +107,11 @@ public class GestionarOlvidoContraseniaBean implements IGestionarOlvidoContrasen
 	 * @see com.mydomain.maizsoft.usuarios.IGestionarOlvidoContrasenia#enviarEmail()
 	 */
 	
-	public void enviarEmail(String para) {
+	public void enviarEmail(String para, String clave) {
 	
 		GestorEnvioCorreoElectronico nuevo= new GestorEnvioCorreoElectronico();
 		nuevo.setAsunto(getConfiguracion("asuntoMail").getDetallesPropiedad());
-		nuevo.setCuerpoMensaje(getConfiguracion("cuerpoMensaje").getDetallesPropiedad());
+		nuevo.setCuerpoMensaje(getConfiguracion("cuerpoMensaje").getDetallesPropiedad() + clave);
 		nuevo.setUsernameCorreo(getConfiguracion("correoElectronico").getDetallesPropiedad());
 		nuevo.setPasswordCorreo(getConfiguracion("contraseniaCorreo").getDetallesPropiedad());
 		nuevo.setRemite(getConfiguracion("correoElectronico").getDetallesPropiedad());
@@ -102,6 +127,9 @@ public class GestionarOlvidoContraseniaBean implements IGestionarOlvidoContrasen
 		
 		try {
 			nuevo.enviarEmail();
+			FacesMessages mensaje = (FacesMessages) Component
+					.getInstance(FacesMessages.class);
+			mensaje.add("Mensaje Enviado... :)");
 		} catch (AddressException e) {
 			FacesMessages mensaje = (FacesMessages) Component
 					.getInstance(FacesMessages.class);

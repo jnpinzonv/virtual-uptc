@@ -1,5 +1,6 @@
 package com.mydomain.Directorio.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -15,41 +16,44 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.hibernate.validator.NotNull;
 import org.jboss.seam.annotations.Name;
 
 /**
-* Descripcion: Esta Clase se encarga de indicar y almacenar informaci�n
-* relacionada con los usuarios de los grupos.
-* Modulo de Desarrollo :CU- ...
-* @author Edwin Jose Hernandez Ni�o edwher.123@hotmail.com
-* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
-* Grupo de Investigacion Ingenieria Software (GIS)
-* Semillero de Investigacion Moviles Sabatt (SIMS)
-* Universidad Pedagogica y Tecnologica de Colombia
-* @version 22/06/2012 
-*/
-@Entity(name="GrupoUsuarios")
-@Table(name ="grupo_usuarios")
+ * Descripcion: Esta Clase se encarga de indicar y almacenar informaci�n
+ * relacionada con los usuarios de los grupos. Modulo de Desarrollo :CU- ...
+ * 
+ * @author Edwin Jose Hernandez Ni�o edwher.123@hotmail.com
+ * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com Grupo de
+ *         Investigacion Ingenieria Software (GIS) Semillero de Investigacion
+ *         Moviles Sabatt (SIMS) Universidad Pedagogica y Tecnologica de
+ *         Colombia
+ * @version 22/06/2012
+ */
+@Entity(name = "GrupoUsuarios")
+@Table(name = "grupo_usuarios")
 @Name("grupoUsuarios")
-@NamedQuery(name="usuarioPorGrupo", query="select t from GrupoUsuarios t where t.grupoCurso.idGrupo=:parametro")
-public class GrupoUsuarios {
+@NamedQuery(name = "usuarioPorGrupo", query = "select t from GrupoUsuarios t where t.grupoCurso.idGrupo=:parametro")
+public class GrupoUsuarios implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Variable que almacena la identificación del grupo de usuarios del curso.
 	 */
 	private Long idGrupoUsuarios;
-	
+
 	/**
 	 * Variable encargada de almacenar los datos de los usuarios del curso.
 	 * Instancia de la clase Usuario.
 	 */
 	private Usuario userGrupoCurso;
-	
+
 	/**
 	 * Variable encargada de hacer referencia a la información del grupo.
 	 * Instancia de la clase GrupoCurso.
@@ -57,34 +61,30 @@ public class GrupoUsuarios {
 	private GrupoCurso grupoCurso;
 
 	/**
-	 * Variable que almacena la lista de las notas de las actividades
-	 * obtenidas por los usuarios del grupo.
+	 * Variable que almacena la lista de las notas de las actividades obtenidas
+	 * por los usuarios del grupo.
 	 */
 	private Set<NotaActividad> notaActividades;
-	
+
 	private transient String role;
-	
+
 	/**
 	 * Variable que hace referencia a la informaci�n de la cuenta del usuario.
 	 * Instancia de la clase CuentasUsuario.
 	 */
 	private CuentasUsuario userRole;
-	
+
 	private transient EnteUniversitario enteUniversitarioPadre;
-	
+
 	private transient EnteUniversitario enteUniversitarioHijo;
-	
-	private  transient List <Usuario> usuarios;
-	
+
+	private transient List<Usuario> usuarios;
+
 	private transient Curso curso;
-	
-	
-	
-	
-	
-	
+
 	/**
 	 * Se obtiene el valor de userGrupoCurso
+	 * 
 	 * @return El valor de userGrupoCurso
 	 */
 	@ManyToOne
@@ -95,10 +95,11 @@ public class GrupoUsuarios {
 
 	/**
 	 * Se obtiene el valor de idGrupoUsuarios
+	 * 
 	 * @return El valor de idGrupoUsuarios
 	 */
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_grupo_usuarios", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdGrupoUsuarios() {
 		return idGrupoUsuarios;
@@ -106,14 +107,17 @@ public class GrupoUsuarios {
 
 	/**
 	 * Asigna el valor de idGrupoUsuarios
-	 * @param idGrupoUsuarios El valor por establecer para idGrupoUsuarios
+	 * 
+	 * @param idGrupoUsuarios
+	 *            El valor por establecer para idGrupoUsuarios
 	 */
 	public void setIdGrupoUsuarios(Long idGrupoUsuarios) {
 		this.idGrupoUsuarios = idGrupoUsuarios;
 	}
-	
+
 	/**
 	 * Se obtiene el valor de grupoCurso
+	 * 
 	 * @return El valor de grupoCurso
 	 */
 	@ManyToOne
@@ -124,7 +128,9 @@ public class GrupoUsuarios {
 
 	/**
 	 * Asigna el valor de grupoCurso
-	 * @param grupoCurso El valor por establecer para grupoCurso
+	 * 
+	 * @param grupoCurso
+	 *            El valor por establecer para grupoCurso
 	 */
 	public void setGrupoCurso(GrupoCurso grupoCurso) {
 		this.grupoCurso = grupoCurso;
@@ -132,7 +138,9 @@ public class GrupoUsuarios {
 
 	/**
 	 * Asigna el valor de userGrupoCurso
-	 * @param userGrupoCurso El valor por establecer para userGrupoCurso
+	 * 
+	 * @param userGrupoCurso
+	 *            El valor por establecer para userGrupoCurso
 	 */
 	public void setUserGrupoCurso(Usuario userGrupoCurso) {
 		this.userGrupoCurso = userGrupoCurso;
@@ -140,11 +148,12 @@ public class GrupoUsuarios {
 
 	/**
 	 * Se obtiene el valor de notaActividades
+	 * 
 	 * @return El valor de notaActividades
 	 */
-	@OneToMany(mappedBy="grupoCurso",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "grupoCurso", cascade = CascadeType.ALL)
 	public Set<NotaActividad> getNotaActividades() {
-		if(notaActividades==null){
+		if (notaActividades == null) {
 			return new HashSet<NotaActividad>();
 		}
 		return notaActividades;
@@ -152,14 +161,17 @@ public class GrupoUsuarios {
 
 	/**
 	 * Asigna el valor de notaActividades
-	 * @param notaActividades El valor por establecer para notaActividades
+	 * 
+	 * @param notaActividades
+	 *            El valor por establecer para notaActividades
 	 */
 	public void setNotaActividades(Set<NotaActividad> notaActividades) {
 		this.notaActividades = notaActividades;
 	}
-	
+
 	/**
 	 * Se obtiene el valor de userRole
+	 * 
 	 * @return El valor de userRole
 	 */
 
@@ -171,39 +183,44 @@ public class GrupoUsuarios {
 
 	/**
 	 * Asigna el valor de userRole
-	 * @param userRole El valor por establecer para userRole
+	 * 
+	 * @param userRole
+	 *            El valor por establecer para userRole
 	 */
 	public void setUserRole(CuentasUsuario userRole) {
 		this.userRole = userRole;
 	}
-	
+
 	/**
 	 * @return the enteUniversitarioPadre
 	 */
 	@Transient
 	public EnteUniversitario getEnteUniversitarioPadre() {
-		
+
 		return enteUniversitarioPadre;
 	}
 
 	/**
-	 * @param enteUniversitarioPadre the enteUniversitarioPadre to set
+	 * @param enteUniversitarioPadre
+	 *            the enteUniversitarioPadre to set
 	 */
-	public void setEnteUniversitarioPadre(EnteUniversitario enteUniversitarioPadre) {
+	public void setEnteUniversitarioPadre(
+			EnteUniversitario enteUniversitarioPadre) {
 		this.enteUniversitarioPadre = enteUniversitarioPadre;
 	}
 
 	/**
 	 * @return the enteUniversitarioHijo
 	 */
-	
+
 	@Transient
-	public EnteUniversitario getEnteUniversitarioHijo() {		
+	public EnteUniversitario getEnteUniversitarioHijo() {
 		return enteUniversitarioHijo;
 	}
 
 	/**
-	 * @param enteUniversitarioHijo the enteUniversitarioHijo to set
+	 * @param enteUniversitarioHijo
+	 *            the enteUniversitarioHijo to set
 	 */
 	public void setEnteUniversitarioHijo(EnteUniversitario enteUniversitarioHijo) {
 		this.enteUniversitarioHijo = enteUniversitarioHijo;
@@ -214,13 +231,14 @@ public class GrupoUsuarios {
 	 */
 	@Transient
 	public List<Usuario> getUsuarios() {
-		if(usuarios==null)
+		if (usuarios == null)
 			return new ArrayList<Usuario>();
 		return usuarios;
 	}
 
 	/**
-	 * @param usuarios the usuarios to set
+	 * @param usuarios
+	 *            the usuarios to set
 	 */
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
@@ -235,31 +253,34 @@ public class GrupoUsuarios {
 	}
 
 	/**
-	 * @param curso the curso to set
+	 * @param curso
+	 *            the curso to set
 	 */
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
-	
+
 	/**
 	 * Se obtiene el valor de role
+	 * 
 	 * @return El valor de role
 	 */
 	@Transient
 	public String getRole() {
-		if(role==null){
-			return role="estudiante";
+		if (role == null) {
+			return role = "estudiante";
 		}
 		return role;
 	}
-	
+
 	/**
 	 * Asigna el valor de role
-	 * @param role El valor por establecer para role
+	 * 
+	 * @param role
+	 *            El valor por establecer para role
 	 */
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
-	
+
 }

@@ -3,7 +3,7 @@
  */
 package com.mydomain.Directorio.model;
 
-
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -23,84 +23,90 @@ import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 import org.jboss.seam.annotations.Name;
 
-
 /**
-* Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos, 
-* en esta clase con lo referente a los entes universitarios, se comunica con la base de datos
-* Modulo de Desarrollo :CU- ...
-* @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
-* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
-* Grupo de Investigacion Ingenieria Software (GIS)
-* Semillero de Investigacion Moviles Sabatt (SIMS)
-* Universidad Pedagogica y Tecnologica de Colombia
-* @version 23/06/2012 
-*/
-@Entity(name="EnteUniversitario")
-@Table(name="ente_universitario")
+ * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos,
+ * en esta clase con lo referente a los entes universitarios, se comunica con la
+ * base de datos Modulo de Desarrollo :CU- ...
+ * 
+ * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+ * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com Grupo de
+ *         Investigacion Ingenieria Software (GIS) Semillero de Investigacion
+ *         Moviles Sabatt (SIMS) Universidad Pedagogica y Tecnologica de
+ *         Colombia
+ * @version 23/06/2012
+ */
+@Entity(name = "EnteUniversitario")
+@Table(name = "ente_universitario")
 @Name("enteUniversitario")
-@NamedQuery(name="entesUniversitariosPorFacultad",query="select t from EnteUniversitario t where t.enteUniversitario.idEnteUniversitario=:parametro")
-public class EnteUniversitario {
-	
+@NamedQuery(name = "entesUniversitariosPorFacultad", query = "select t from EnteUniversitario t where t.enteUniversitario.idEnteUniversitario=:parametro")
+public class EnteUniversitario implements Serializable {
+
 	/**
-	 * Variable que almacena el identificador del ente universitario
-	 * Tipo de dato Long
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Variable que almacena el identificador del ente universitario Tipo de
+	 * dato Long
 	 */
 	private Long idEnteUniversitario;
-	
+
 	/**
-	 * Variable que almacena el nombre del ente universitario
-	 * Tipo de dato String 
+	 * Variable que almacena el nombre del ente universitario Tipo de dato
+	 * String
 	 */
-	private  String nombreEnteUniversitario;
-	
+	private String nombreEnteUniversitario;
+
 	/**
-	 * Variable que almacena la descripción del ente universitario
-	 * Tipo de dato String
+	 * Variable que almacena la descripción del ente universitario Tipo de dato
+	 * String
 	 */
 	private String descripcionEnteUniversitario;
-		
+
 	/**
-	 * Variable que almacena el ente universitario
-	 * Se instanica de la clase EnteUniversitario
+	 * Variable que almacena el ente universitario Se instanica de la clase
+	 * EnteUniversitario
 	 */
 	private EnteUniversitario enteUniversitario;
-	
+
 	/**
-	 * Variable que almacena el código del ente universitario
-	 * Tipo de dato String
+	 * Variable que almacena el código del ente universitario Tipo de dato
+	 * String
 	 */
 	private String codigoEnteUniversitario;
-	
+
 	/**
-	 * Variable que almacena el listado de entes universitarios
-	 * Se instancia de la clase EnteUniversitario
+	 * Variable que almacena el listado de entes universitarios Se instancia de
+	 * la clase EnteUniversitario
 	 */
 	private Set<EnteUniversitario> listaEnteUniversitarios;
-	
+
 	/**
-	 * Variable que almacena el tipo de ente universitario
-	 * Se instancia de la clase Tipo
+	 * Variable que almacena el tipo de ente universitario Se instancia de la
+	 * clase Tipo
 	 */
 	private Tipo tipoEnteUniversitario;
-	
+
 	/**
-	 * Variable que almacena la lista de cursos ofrecidos
-	 * Se instancia de la clase Curso
+	 * Variable que almacena la lista de cursos ofrecidos Se instancia de la
+	 * clase Curso
 	 */
 	private Set<Curso> listaCursosOfrecidos;
-	
+
 	/**
-	 * Variable que almacena la lista de cuentas de usuarios 
-	 * Se instancia de la clase Usuario
+	 * Variable que almacena la lista de cuentas de usuarios Se instancia de la
+	 * clase Usuario
 	 */
 	private Set<Usuario> listaUserAccounts;
 
 	/**
 	 * Se obtiene el valor de idEnteUniversitario
+	 * 
 	 * @return El valor de idEnteUniversitario
 	 */
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdEnteUniversitario() {
 		return idEnteUniversitario;
@@ -108,7 +114,9 @@ public class EnteUniversitario {
 
 	/**
 	 * Asigna el valor de idEnteUniversitario
-	 * @param idEnteUniversitario El valor por establecer para idEnteUniversitario
+	 * 
+	 * @param idEnteUniversitario
+	 *            El valor por establecer para idEnteUniversitario
 	 */
 	public void setIdEnteUniversitario(Long idEnteUniversitario) {
 		this.idEnteUniversitario = idEnteUniversitario;
@@ -116,10 +124,11 @@ public class EnteUniversitario {
 
 	/**
 	 * Se obtiene el valor de nombreEnteUniversitario
+	 * 
 	 * @return El valor de nombreEnteUniversitario
 	 */
 	@NotEmpty
-	@Length(max=200)
+	@Length(max = 200)
 	@Column(name = "nombre_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(60)")
 	public String getNombreEnteUniversitario() {
 		return nombreEnteUniversitario;
@@ -127,7 +136,9 @@ public class EnteUniversitario {
 
 	/**
 	 * Asigna el valor de nombreEnteUniversitario
-	 * @param nombreEnteUniversitario El valor por establecer para nombreEnteUniversitario
+	 * 
+	 * @param nombreEnteUniversitario
+	 *            El valor por establecer para nombreEnteUniversitario
 	 */
 	public void setNombreEnteUniversitario(String nombreEnteUniversitario) {
 		this.nombreEnteUniversitario = nombreEnteUniversitario;
@@ -135,9 +146,10 @@ public class EnteUniversitario {
 
 	/**
 	 * Se obtiene el valor de descripcionEnteUniversitario
+	 * 
 	 * @return El valor de descripcionEnteUniversitario
 	 */
-	@Length(max=300)
+	@Length(max = 300)
 	@Column(name = "descripcion_ente_universitario", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(300)")
 	public String getDescripcionEnteUniversitario() {
 		return descripcionEnteUniversitario;
@@ -145,14 +157,18 @@ public class EnteUniversitario {
 
 	/**
 	 * Asigna el valor de descripcionEnteUniversitario
-	 * @param descripcionEnteUniversitario El valor por establecer para descripcionEnteUniversitario
+	 * 
+	 * @param descripcionEnteUniversitario
+	 *            El valor por establecer para descripcionEnteUniversitario
 	 */
-	public void setDescripcionEnteUniversitario(String descripcionEnteUniversitario) {
+	public void setDescripcionEnteUniversitario(
+			String descripcionEnteUniversitario) {
 		this.descripcionEnteUniversitario = descripcionEnteUniversitario;
 	}
 
 	/**
 	 * Se obtiene el valor de enteUniversitario
+	 * 
 	 * @return El valor de enteUniversitario
 	 */
 	@ManyToOne
@@ -163,7 +179,9 @@ public class EnteUniversitario {
 
 	/**
 	 * Asigna el valor de enteUniversitario
-	 * @param enteUniversitario El valor por establecer para enteUniversitario
+	 * 
+	 * @param enteUniversitario
+	 *            El valor por establecer para enteUniversitario
 	 */
 	public void setEnteUniversitario(EnteUniversitario enteUniversitario) {
 		this.enteUniversitario = enteUniversitario;
@@ -171,6 +189,7 @@ public class EnteUniversitario {
 
 	/**
 	 * Se obtiene el valor de codigoEnteUniversitario
+	 * 
 	 * @return El valor de codigoEnteUniversitario
 	 */
 	@Column(name = "codigo_ente_universitario", unique = true, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(30)")
@@ -180,7 +199,9 @@ public class EnteUniversitario {
 
 	/**
 	 * Asigna el valor de codigoEnteUniversitario
-	 * @param codigoEnteUniversitario El valor por establecer para codigoEnteUniversitario
+	 * 
+	 * @param codigoEnteUniversitario
+	 *            El valor por establecer para codigoEnteUniversitario
 	 */
 	public void setCodigoEnteUniversitario(String codigoEnteUniversitario) {
 		this.codigoEnteUniversitario = codigoEnteUniversitario;
@@ -188,16 +209,19 @@ public class EnteUniversitario {
 
 	/**
 	 * Se obtiene el valor de listaEnteUniversitarios
+	 * 
 	 * @return El valor de listaEnteUniversitarios
 	 */
-	@OneToMany(mappedBy="enteUniversitario", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "enteUniversitario", cascade = CascadeType.ALL)
 	public Set<EnteUniversitario> getListaEnteUniversitarios() {
 		return listaEnteUniversitarios;
 	}
 
 	/**
 	 * Asigna el valor de listaEnteUniversitarios
-	 * @param listaEnteUniversitarios El valor por establecer para listaEnteUniversitarios
+	 * 
+	 * @param listaEnteUniversitarios
+	 *            El valor por establecer para listaEnteUniversitarios
 	 */
 	public void setListaEnteUniversitarios(
 			Set<EnteUniversitario> listaEnteUniversitarios) {
@@ -206,6 +230,7 @@ public class EnteUniversitario {
 
 	/**
 	 * Se obtiene el valor de tipoEnteUniversitario
+	 * 
 	 * @return El valor de tipoEnteUniversitario
 	 */
 	@NotNull
@@ -217,7 +242,9 @@ public class EnteUniversitario {
 
 	/**
 	 * Asigna el valor de tipoEnteUniversitario
-	 * @param tipoEnteUniversitario El valor por establecer para tipoEnteUniversitario
+	 * 
+	 * @param tipoEnteUniversitario
+	 *            El valor por establecer para tipoEnteUniversitario
 	 */
 	public void setTipoEnteUniversitario(Tipo tipoEnteUniversitario) {
 		this.tipoEnteUniversitario = tipoEnteUniversitario;
@@ -225,16 +252,19 @@ public class EnteUniversitario {
 
 	/**
 	 * Se obtiene el valor de listaCursosOfrecidos
+	 * 
 	 * @return El valor de listaCursosOfrecidos
 	 */
-	@OneToMany(mappedBy="enteUniversitario",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "enteUniversitario", cascade = CascadeType.ALL)
 	public Set<Curso> getListaCursosOfrecidos() {
 		return listaCursosOfrecidos;
 	}
 
 	/**
 	 * Asigna el valor de listaCursosOfrecidos
-	 * @param listaCursosOfrecidos El valor por establecer para listaCursosOfrecidos
+	 * 
+	 * @param listaCursosOfrecidos
+	 *            El valor por establecer para listaCursosOfrecidos
 	 */
 	public void setListaCursosOfrecidos(Set<Curso> listaCursosOfrecidos) {
 		this.listaCursosOfrecidos = listaCursosOfrecidos;
@@ -242,17 +272,20 @@ public class EnteUniversitario {
 
 	/**
 	 * Se obtiene el valor de listaUserAccounts
+	 * 
 	 * @return El valor de listaUserAccounts
 	 */
 
-	@OneToMany(mappedBy="enteUniversitarios",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "enteUniversitarios", cascade = CascadeType.ALL)
 	public Set<Usuario> getListaUserAccounts() {
 		return listaUserAccounts;
 	}
 
 	/**
 	 * Asigna el valor de listaUserAccounts
-	 * @param listaUserAccounts El valor por establecer para listaUserAccounts
+	 * 
+	 * @param listaUserAccounts
+	 *            El valor por establecer para listaUserAccounts
 	 */
 	public void setListaUserAccounts(Set<Usuario> listaUserAccounts) {
 		this.listaUserAccounts = listaUserAccounts;

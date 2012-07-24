@@ -1,5 +1,6 @@
 package com.mydomain.Directorio.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,8 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -37,12 +36,16 @@ import org.jboss.seam.annotations.Name;
  *         Colombia
  * @version 22/06/2012
  */
-@Entity(name="Usuario")
-@Table(name="usuario")
+@Entity(name = "Usuario")
+@Table(name = "usuario")
 @Name("usuario")
-@NamedQueries({
-		@NamedQuery(name = "usuariosPorEscuela", query = "select s from Usuario s where s.enteUniversitarios.idEnteUniversitario=:parametro")})
-public class Usuario {
+@NamedQueries({ @NamedQuery(name = "usuariosPorEscuela", query = "select s from Usuario s where s.enteUniversitarios.idEnteUniversitario=:parametro") })
+public class Usuario implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Variable que almacena el número de identificación del usuario.
@@ -50,8 +53,8 @@ public class Usuario {
 	private Long id;
 
 	/**
-	 * Variable que se encarga de almacenar el número del documento de identidad
-	 * del usuario.
+	 * Variable que se encarga de almacenar el número del documento de
+	 * identidad del usuario.
 	 */
 	private Long documentoIdentidad;
 
@@ -117,8 +120,8 @@ public class Usuario {
 	private EnteUniversitario enteUniversitarios;
 
 	/**
-	 * Variable encargada de almacenar el c�digo de los usuarios, el cual puede
-	 * tener letras y n�meros.
+	 * Variable encargada de almacenar el c�digo de los usuarios, el cual
+	 * puede tener letras y n�meros.
 	 */
 	private String codigoUsuarios;
 
@@ -127,12 +130,11 @@ public class Usuario {
 	 * inscirto en el curso.
 	 */
 	private Tipo tipo;
-	
-	
+
 	private Set<NotaActividad> notaActividad;
-	
+
 	private Set<Actividad> actividad;
-	
+
 	private transient String role;
 
 	/**
@@ -451,14 +453,14 @@ public class Usuario {
 	 * 
 	 * @return El valor de cuentasUsuario
 	 */
-	@OneToMany(mappedBy="usuarios",cascade=CascadeType.ALL)
-	public Set<CuentasUsuario> getCuentasUsuario() {		
-		if(cuentasUsuario==null){
+	@OneToMany(mappedBy = "usuarios", cascade = CascadeType.ALL)
+	public Set<CuentasUsuario> getCuentasUsuario() {
+		if (cuentasUsuario == null) {
 			return new HashSet<CuentasUsuario>();
-	}
+		}
 		return cuentasUsuario;
 	}
-	
+
 	/**
 	 * Asigna el valor de cuentasUsuario
 	 * 
@@ -471,6 +473,7 @@ public class Usuario {
 
 	/**
 	 * Se obtiene el valor de notaActividad
+	 * 
 	 * @return El valor de notaActividad
 	 */
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
@@ -480,7 +483,9 @@ public class Usuario {
 
 	/**
 	 * Asigna el valor de notaActividad
-	 * @param notaActividad El valor por establecer para notaActividad
+	 * 
+	 * @param notaActividad
+	 *            El valor por establecer para notaActividad
 	 */
 	public void setNotaActividad(Set<NotaActividad> notaActividad) {
 		this.notaActividad = notaActividad;
@@ -488,6 +493,7 @@ public class Usuario {
 
 	/**
 	 * Se obtiene el valor de actividad
+	 * 
 	 * @return El valor de actividad
 	 */
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
@@ -497,31 +503,35 @@ public class Usuario {
 
 	/**
 	 * Asigna el valor de actividad
-	 * @param actividad El valor por establecer para actividad
+	 * 
+	 * @param actividad
+	 *            El valor por establecer para actividad
 	 */
 	public void setActividad(Set<Actividad> actividad) {
 		this.actividad = actividad;
 	}
-	
+
 	/**
 	 * Se obtiene el valor de role
+	 * 
 	 * @return El valor de role
 	 */
 	@Transient
 	public String getRole() {
-		if(role==null){
-			return role="estudiante";
+		if (role == null) {
+			return role = "estudiante";
 		}
 		return role;
 	}
-	
+
 	/**
 	 * Asigna el valor de role
-	 * @param role El valor por establecer para role
+	 * 
+	 * @param role
+	 *            El valor por establecer para role
 	 */
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
-	
+
 }

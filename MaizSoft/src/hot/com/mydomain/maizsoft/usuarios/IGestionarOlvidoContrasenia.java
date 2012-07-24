@@ -18,7 +18,7 @@ import javax.ejb.Local;
 @Local
 public interface IGestionarOlvidoContrasenia {
 	
-	public void enviarEmail(String para);
+	public void enviarEmail(String para,String clave);
 	
 	public String usuarioValido();
 

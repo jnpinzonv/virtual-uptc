@@ -3,6 +3,7 @@
  */
 package com.mydomain.Directorio.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -30,7 +31,7 @@ import org.jboss.seam.annotations.Name;
  * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos,
  * se comunica con la base de datos Modulo de Desarrollo :CU- ...
  * 
- * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
+ * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
  * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com Grupo de
  *         Investigacion Ingenieria Software (GIS) Semillero de Investigacion
  *         Moviles Sabatt (SIMS) Universidad Pedagogica y Tecnologica de
@@ -40,7 +41,12 @@ import org.jboss.seam.annotations.Name;
 @Entity(name = "Actividad")
 @Table(name = "actividad")
 @Name("actividad")
-public class Actividad {
+public class Actividad implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Variable que se encarga de crear un identificador de una actividad, se
@@ -50,12 +56,12 @@ public class Actividad {
 
 	/**
 	 * Variable que se encarga de crear un campo en la base de datos para el
-	 * manejo de descripciï¿½n de la actividad, se designa con tipo de dato String
+	 * manejo de descripción de la actividad, se designa con tipo de dato String
 	 */
 	private String descripcionActividad;
 
 	/**
-	 * Variable que se encarga de informar el estado de evaluaciï¿½n de la
+	 * Variable que se encarga de informar el estado de evaluación de la
 	 * acividad, como se manejan estados se designa bajo el tipo de dato boolean
 	 */
 	private boolean evaluable;
@@ -129,7 +135,6 @@ public class Actividad {
 		return tipo;
 	}
 
-	
 	/**
 	 * Asigna el valor de tipo
 	 * 
@@ -357,8 +362,6 @@ public class Actividad {
 	 * @return El valor de adjuntarArchivo
 	 */
 	public boolean isAdjuntarArchivo() {
-		System.out.println("sad");
-		System.out.println(adjuntarArchivo);
 		return adjuntarArchivo;
 	}
 
@@ -441,7 +444,6 @@ public class Actividad {
 	 */
 	@Transient
 	public boolean isAlertaMail() {
-		System.out.println(alertaMail + " s");
 		return alertaMail;
 	}
 

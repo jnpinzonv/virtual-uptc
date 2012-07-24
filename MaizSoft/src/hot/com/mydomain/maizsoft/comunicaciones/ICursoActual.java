@@ -33,6 +33,8 @@ public interface ICursoActual {
 	public void setSeleccionado(GrupoCurso seleccionado);
 	
 	public Long selecionado(long grupo);	
+	
+	public String selecionadoDos(String grupo);	
 
 	
 

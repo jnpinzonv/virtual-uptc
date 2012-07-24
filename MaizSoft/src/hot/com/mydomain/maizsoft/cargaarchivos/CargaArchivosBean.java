@@ -13,11 +13,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
-import org.jboss.seam.annotations.Scope;
+
 import org.jboss.seam.log.Log;
 import org.jboss.seam.security.Credentials;
 
@@ -38,7 +37,6 @@ import com.mydomain.maizsoft.academia.ActividadHome;
  */
 @Name("cargaArchivosBean")
 @Stateless
-@Scope(ScopeType.EVENT)
 public class CargaArchivosBean implements ICargaArchivos {
 
 	@Logger
@@ -53,10 +51,9 @@ public class CargaArchivosBean implements ICargaArchivos {
 
 	@In(create = true)
 	private Credentials credentials;
-	
-	@In(create=true)
+
+	@In(create = true)
 	ActividadHome actividadHome;
-	
 
 	public List<GrupoUsuarios> listaGrupoUsuarios() {
 		Query q = entityManager
@@ -79,20 +76,19 @@ public class CargaArchivosBean implements ICargaArchivos {
 		File directorio = new File(pathFinal);
 		if (!directorio.exists()) {
 			directorio.mkdirs();
-		} 
-		
-		File f = new File(pathFinal,nombreArchivo);
-		
-			log.info(f);
-			FileOutputStream fo = new FileOutputStream(f);
-			fo.write(file);
-			fo.flush();
-			fo.close();
-			
-			actividadHome.getInstance().setRutaArchivo(pathFinal);
-			actividadHome.getInstance().setNombreArchivo(nombreArchivo);
-		
-		
+		}
+
+		File f = new File(pathFinal, nombreArchivo);
+
+		log.info(f);
+		FileOutputStream fo = new FileOutputStream(f);
+		fo.write(file);
+		fo.flush();
+		fo.close();
+
+		actividadHome.getInstance().setRutaArchivo(pathFinal);
+		actividadHome.getInstance().setNombreArchivo(nombreArchivo);
+
 	}
 
 	public byte[] getFile() {

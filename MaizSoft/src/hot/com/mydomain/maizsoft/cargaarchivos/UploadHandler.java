@@ -29,7 +29,6 @@ import com.mydomain.Directorio.model.ConfiguracionesSistema;
  */
 @Name("uploadHandler")
 @Stateless
-@Scope(ScopeType.EVENT)
 public class UploadHandler implements IUploadHandler {
 
 	@Logger

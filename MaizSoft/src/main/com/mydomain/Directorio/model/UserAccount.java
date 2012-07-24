@@ -14,7 +14,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import org.hibernate.validator.NotNull;
 import org.jboss.seam.ScopeType;
@@ -26,17 +25,18 @@ import org.jboss.seam.annotations.security.management.UserPrincipal;
 import org.jboss.seam.annotations.security.management.UserRoles;
 
 /**
-* Descripcion: Esta Clase se encarga de almacenar la informaci�n perteneciente
-* a las cuentas de los usuarios de la plataforma.
-* Modulo de Desarrollo :CU- ...
+ * Descripcion: Esta Clase se encarga de almacenar la informaci�n
+ * perteneciente a las cuentas de los usuarios de la plataforma. Modulo de
+ * Desarrollo :CU- ...
+ * 
  * @author Edwin Jose Hernandez Ni�o edwher.123@hotmail.com
-* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
-* Grupo de Investigacion Ingenieria Software (GIS)
-* Semillero de Investigacion Moviles Sabatt (SIMS)
-* Universidad Pedagogica y Tecnologica de Colombia
-* @version 23/06/2012 
-*/
-@Entity(name="UserAccount")
+ * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com Grupo de
+ *         Investigacion Ingenieria Software (GIS) Semillero de Investigacion
+ *         Moviles Sabatt (SIMS) Universidad Pedagogica y Tecnologica de
+ *         Colombia
+ * @version 23/06/2012
+ */
+@Entity(name = "UserAccount")
 @Name("userAccount")
 @Table(name = "user_account")
 @Scope(ScopeType.SESSION)
@@ -60,7 +60,7 @@ public class UserAccount implements Serializable {
 	 * Contrasenia de usuario para logueo de la plataforma
 	 */
 	private String passwordHash;
-	
+
 	/**
 	 * Representa el estado de la cuenta activa/inactiva
 	 */
@@ -76,15 +76,16 @@ public class UserAccount implements Serializable {
 
 	private Set<CuentasUsuario> cuentasUsuarios;
 
-	
 	/**
 	 * Constructor de la clase
 	 */
-	public UserAccount(){
-		enabled=true;
+	public UserAccount() {
+		enabled = true;
 	}
+
 	/**
 	 * Se obtiene el valor de id
+	 * 
 	 * @return El valor de id
 	 */
 	@Id
@@ -96,7 +97,9 @@ public class UserAccount implements Serializable {
 
 	/**
 	 * Asigna el valor de id
-	 * @param id El valor por establecer para id
+	 * 
+	 * @param id
+	 *            El valor por establecer para id
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -104,6 +107,7 @@ public class UserAccount implements Serializable {
 
 	/**
 	 * Se obtiene el valor de username
+	 * 
 	 * @return El valor de usuername
 	 */
 
@@ -116,7 +120,9 @@ public class UserAccount implements Serializable {
 
 	/**
 	 * Asigna el valor de username
-	 * @param username El valor por establecer para id
+	 * 
+	 * @param username
+	 *            El valor por establecer para id
 	 */
 	public void setUsername(String username) {
 		this.username = username;
@@ -124,6 +130,7 @@ public class UserAccount implements Serializable {
 
 	/**
 	 * Se obtiene el valor de passwordHash
+	 * 
 	 * @return El valor de passwordHash
 	 */
 	@UserPassword(hash = "SHA")
@@ -134,7 +141,9 @@ public class UserAccount implements Serializable {
 
 	/**
 	 * Asigna el valor de passwordHash
-	 * @param passwordHash El valor por establecer para passwordHash
+	 * 
+	 * @param passwordHash
+	 *            El valor por establecer para passwordHash
 	 */
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
@@ -142,6 +151,7 @@ public class UserAccount implements Serializable {
 
 	/**
 	 * Se obtiene el valor de enabled
+	 * 
 	 * @return El valor de enabled
 	 */
 	@UserEnabled
@@ -152,14 +162,17 @@ public class UserAccount implements Serializable {
 
 	/**
 	 * Asigna el valor de enabled
-	 * @param enabled El valor por establecer para enabled
+	 * 
+	 * @param enabled
+	 *            El valor por establecer para enabled
 	 */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	
+
 	/**
 	 * Se obtiene el valor de roles
+	 * 
 	 * @return El valor de roles
 	 */
 	@UserRoles
@@ -171,7 +184,9 @@ public class UserAccount implements Serializable {
 
 	/**
 	 * Asigna el valor de roles
-	 * @param roles El valor por establecer para roles
+	 * 
+	 * @param roles
+	 *            El valor por establecer para roles
 	 */
 	public void setRoles(Set<UserRole> roles) {
 		this.roles = roles;
@@ -179,11 +194,12 @@ public class UserAccount implements Serializable {
 
 	/**
 	 * Se obtiene el valor de cuentasUsuarios
+	 * 
 	 * @return El valor de cuentasUsuarios
 	 */
-	@OneToMany(mappedBy="userAccounts",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "userAccounts", cascade = CascadeType.ALL)
 	public Set<CuentasUsuario> getCuentasUsuarios() {
-		if(cuentasUsuarios==null){
+		if (cuentasUsuarios == null) {
 			return new HashSet<CuentasUsuario>();
 		}
 		return cuentasUsuarios;
@@ -191,7 +207,9 @@ public class UserAccount implements Serializable {
 
 	/**
 	 * Asigna el valor de cuentasUsuarios
-	 * @param cuentasUsuarios El valor por establecer para cuentasUsuarios
+	 * 
+	 * @param cuentasUsuarios
+	 *            El valor por establecer para cuentasUsuarios
 	 */
 	public void setCuentasUsuarios(Set<CuentasUsuario> cuentasUsuarios) {
 		this.cuentasUsuarios = cuentasUsuarios;

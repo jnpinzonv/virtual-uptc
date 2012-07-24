@@ -18,13 +18,18 @@ import javax.persistence.Query;
 import org.jboss.seam.Component;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
+import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.faces.FacesMessages;
 import org.jboss.seam.framework.EntityHome;
+import org.jboss.seam.log.Log;
 import org.jboss.seam.security.Credentials;
 
 @Name("actividadHome")
 public class ActividadHome extends EntityHome<Actividad> {
+
+	@Logger
+	private Log log;
 
 	@In(create = true)
 	TipoHome tipoHome;
@@ -121,6 +126,8 @@ public class ActividadHome extends EntityHome<Actividad> {
 			enviarEmail(listaGrupos, instance);
 		}
 
+		crearLog(listaGrupos.get(0).getGrupoCurso());
+
 	}
 
 	public GestorEnvioCorreoElectronico crearConfiguracion(Actividad actividad) {
@@ -128,10 +135,10 @@ public class ActividadHome extends EntityHome<Actividad> {
 		GestorEnvioCorreoElectronico nuevo = new GestorEnvioCorreoElectronico();
 		nuevo.setAsunto("Notificación de nueva Actividad en Plataforma virtual ");
 
-		String mensaje = "Senor(a): Usuario /n"
-				+ "Se a creado una nueva actividad o recurso en su plataforma Virtual de Aprendizaje /n"
+		String mensaje = "Senor(a): Usuario \n"
+				+ "Se a creado una nueva actividad o recurso en su plataforma Virtual de Aprendizaje \n"
 				+ "realizado por: " + actividad.getUsuario().getPrimerNombre()
-				+ " " + actividad.getUsuario().getPrimerNombre() + "/n"
+				+ " " + actividad.getUsuario().getPrimerNombre() + "\n"
 				+ "fecha de creación: " + actividad.getFechaCreacion();
 		nuevo.setCuerpoMensaje(mensaje);
 		nuevo.setUsernameCorreo(getConfiguracion("correoElectronico")
@@ -235,5 +242,26 @@ public class ActividadHome extends EntityHome<Actividad> {
 			getEntityManager().persist(nuevaNota);
 
 		}
+	}
+
+	private void crearLog(GrupoCurso grupo) {
+		Calendar calendar = Calendar.getInstance();
+		EstadisticasGenerales nueva = new EstadisticasGenerales();
+		Credentials cre = (Credentials) Component
+				.getInstance(Credentials.class);
+		log.info("<--" + "[" + ConstantesLog.NOMBRE_PLATAFORMA + "]"
+				+ "Acción:" + "[" + ConstantesLog.CREAR_ACTIVIDAD + "]"
+				+ "Tipo:" + "[" + instance.getTipo().getNombre() + "]"
+				+ "Sobre el grupo con ID:" + "[" + grupo.getIdGrupo() + "]"
+				+ "Realizada por:" + "[" + cre.getUsername() + "]"
+				+ "en la fecha:" + "[" + calendar.getTime() + "]" + "-->",
+				cre.getUsername());
+
+		nueva.setAccionElemento(ConstantesLog.CREAR_ACTIVIDAD);
+		nueva.setFechaSuceso(calendar.getTime());
+		nueva.setLogin(cre.getUsername());
+		nueva.setTipo(instance.getTipo().getNombre());
+		nueva.setIdGrupoCurso(grupo.getIdGrupo());
+		getEntityManager().persist(nueva);
 	}
 }

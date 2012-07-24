@@ -19,37 +19,34 @@ import org.jboss.seam.annotations.security.management.RoleGroups;
 import org.jboss.seam.annotations.security.management.RoleName;
 
 /**
-* Descripcion: Esta Clase se encarga de almacenar información referente
-* a los roles de los usuarios.
-* Modulo de Desarrollo :CU- ...
+ * Descripcion: Esta Clase se encarga de almacenar información referente a los
+ * roles de los usuarios. Modulo de Desarrollo :CU- ...
+ * 
  * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
-* @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
-* Grupo de Investigacion Ingenieria Software (GIS)
-* Semillero de Investigacion Moviles Sabatt (SIMS)
-* Universidad Pedagogica y Tecnologica de Colombia
-* @version 23/06/2012 
-*/
-@Entity(name="UserRole")
-@Table(name="user_role")
+ * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com Grupo de
+ *         Investigacion Ingenieria Software (GIS) Semillero de Investigacion
+ *         Moviles Sabatt (SIMS) Universidad Pedagogica y Tecnologica de
+ *         Colombia
+ * @version 23/06/2012
+ */
+@Entity(name = "UserRole")
+@Table(name = "user_role")
 @Name("userRole")
 public class UserRole implements Serializable {
 	private static final long serialVersionUID = 9177366120789064801L;
 
 	/**
-	 * Variable que almacena el identificar del rol 
-	 * del usuario.
+	 * Variable que almacena el identificar del rol del usuario.
 	 */
 	private Long id;
-	
+
 	/**
-	 * Variable que almacena el nombre
-	 * del rol del usuario.
+	 * Variable que almacena el nombre del rol del usuario.
 	 */
 	private String name;
-	
+
 	/**
-	 * Variable que da a conocer si el usuario
-	 * posee un rol o no.
+	 * Variable que da a conocer si el usuario posee un rol o no.
 	 */
 	private boolean conditional;
 
@@ -57,9 +54,10 @@ public class UserRole implements Serializable {
 	 * Variable encargada de almacenar la lista de roles de usuario.
 	 */
 	private Set<UserRole> groups;
-	
+
 	/**
 	 * Se obtiene el valor de id
+	 * 
 	 * @return El valor de id
 	 */
 	@Id
@@ -71,14 +69,17 @@ public class UserRole implements Serializable {
 
 	/**
 	 * Asigna el valor de id
-	 * @param id El valor por establecer para id
+	 * 
+	 * @param id
+	 *            El valor por establecer para id
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
-	 
+
 	/**
 	 * Se obtiene el valor de name
+	 * 
 	 * @return El valor de name
 	 */
 	@RoleName
@@ -90,7 +91,9 @@ public class UserRole implements Serializable {
 
 	/**
 	 * Asigna el valor de name
-	 * @param name El valor por establecer para name
+	 * 
+	 * @param name
+	 *            El valor por establecer para name
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -98,18 +101,21 @@ public class UserRole implements Serializable {
 
 	/**
 	 * Se obtiene el valor de groups
+	 * 
 	 * @return El valor de groups
 	 */
 	@RoleGroups
 	@ManyToMany
 	@JoinTable(name = "user_role_group", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "member_of_role"))
-		public Set<UserRole> getGroups() {
+	public Set<UserRole> getGroups() {
 		return groups;
 	}
 
 	/**
 	 * Asigna el valor de groups
-	 * @param groups El valor por establecer para groups
+	 * 
+	 * @param groups
+	 *            El valor por establecer para groups
 	 */
 	public void setGroups(Set<UserRole> groups) {
 		this.groups = groups;
@@ -117,6 +123,7 @@ public class UserRole implements Serializable {
 
 	/**
 	 * Se obtiene el valor de conditional
+	 * 
 	 * @return El valor de conditional
 	 */
 	@RoleConditional
@@ -127,13 +134,12 @@ public class UserRole implements Serializable {
 
 	/**
 	 * Asigna el valor de conditional
-	 * @param conditional El valor por establecer para conditional
+	 * 
+	 * @param conditional
+	 *            El valor por establecer para conditional
 	 */
 	public void setConditional(boolean conditional) {
 		this.conditional = conditional;
 	}
-	
 
-	
-	
 }

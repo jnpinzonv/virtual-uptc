@@ -244,7 +244,22 @@ public class ActividadHome extends EntityHome<Actividad> {
 		}
 	}
 
-	private void crearLog(GrupoCurso grupo) {
+	public List<Actividad> getListaActividadesDivision(Long idTipo) {
+
+		Query q = null;
+		try {
+			q = getEntityManager().createQuery(
+					ConsultasJpql.ACTIVIADES_POR_DIVISION);
+			q.setParameter("parametro", idTipo);
+		} catch (Exception e) {
+			return null;
+		}
+
+		return q.getResultList();
+
+	}
+
+	public void crearLog(GrupoCurso grupo) {
 		Calendar calendar = Calendar.getInstance();
 		EstadisticasGenerales nueva = new EstadisticasGenerales();
 		Credentials cre = (Credentials) Component

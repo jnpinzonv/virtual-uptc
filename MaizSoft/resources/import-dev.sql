@@ -29,15 +29,15 @@ insert into `tipo` (`id_tipo`,`descripcion`,`nombre`,`id_tipo_padre`) values (21
 insert into `tipo` (`id_tipo`,`descripcion`,`nombre`,`id_tipo_padre`) values (22,'Tipo Repositorio de Objetos de Aprendizaje' ,'Objeto de Aprendizaje',21);
 insert into `tipo` (`id_tipo`,`descripcion`,`nombre`,`id_tipo_padre`) values (23,'Tipo Repositorio de Bibliotecas Virtuales' ,'Biblioteca Virtual',21);
 
-insert into user_account (id_user_account, enabled, password_hash, username) values (1, 1, 'Ss/jICpf9c9GeJj8WKqx1hUClEE=', 'admin');
+insert into user_account (id_user_account, enabled, password_hash, username, fecha_creacion) values (1, 1, 'Ss/jICpf9c9GeJj8WKqx1hUClEE=', 'admin','2012-07-23');
 insert into user_role (id_user_role, conditional, name) values (1, false, 'admin');
 insert into user_role (id_user_role, conditional, name) values (2, false, 'docente');
 insert into user_role (id_user_role, conditional, name) values (3, false, 'estudiante');
 insert into user_role (id_user_role, conditional, name) values (4, true, 'visitante');
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario)		
 values(1,'No Aplica','Aplica cuando el usuario no pertenece a la Universidad',19,null,1000);		
-insert into usuario(id_usuario,apellidos,codigo_usuarios,correo_electronico,primer_nombre,documento_identidad,id_tipo,id_ente_universitario)		
-values(1,'admin',000000,'admin@uptc.edu.co','admin',00000,3,1);
+insert into usuario(id_usuario,apellidos,codigo_usuarios,correo_electronico,primer_nombre,documento_identidad,id_tipo,id_ente_universitario, fecha_creacion)		
+values(1,'admin',000000,'admin@uptc.edu.co','admin',00000,3,1,'2012-07-23');
 insert into cuentas_usuario(id_usuarios,id_user_account,id_cuenta_usuario) values (1,1,1);
 
 insert into user_account_role (account_id, member_of_role) values (1, 1);
@@ -60,9 +60,10 @@ insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propieda
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(15,'Recuperación de Contraseña','asuntoMail');
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(16,'Cordial saludo. 
 Señor(a):  Usuario.  
-Su nueva contraseña es su numero de identificación personal. 
-Por favor no devolver ningún mensaje a este correo, este medio es administrado
-por el servidor de la plataforma.','cuerpoMensaje');
+
+Por favor no devolver ningún mensaje a este correo, este medio es administrado por el servidor de la plataforma.
+
+Su contraseña es: ' ,'cuerpoMensaje');
 
 
 

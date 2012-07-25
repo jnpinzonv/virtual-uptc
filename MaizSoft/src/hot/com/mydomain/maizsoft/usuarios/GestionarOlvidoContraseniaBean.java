@@ -20,7 +20,9 @@ import org.jboss.seam.faces.FacesMessages;
 import org.jboss.seam.security.management.action.UserAction;
 import org.jboss.seam.security.management.action.UserSearch;
 
+import com.mydomain.Directorio.action.StringEncrypter;
 import com.mydomain.Directorio.model.ConfiguracionesSistema;
+import com.mydomain.Directorio.model.ConstantesLog;
 import com.mydomain.Directorio.model.ConsultasJpql;
 import com.mydomain.Directorio.model.UserAccount;
 import com.mydomain.Directorio.model.Usuario;
@@ -70,21 +72,24 @@ public class GestionarOlvidoContraseniaBean implements IGestionarOlvidoContrasen
 		Query q1 =entityManager.createQuery(ConsultasJpql.USUARIO_POR_USERNAME);
 		q1.setParameter("parametro",userAccount.getUsername());
 		
-		
-		userAction.setPassword("11");
-		userAction.setConfirm("11");
-		userAction.save();
+	
 		
 		Usuario u1= (Usuario) q.getSingleResult();
 		Usuario u2= (Usuario) q1.getSingleResult();
 		
 		if(u1.equals(u2)){
+			
 			Query q3 =entityManager.createQuery(ConsultasJpql.USERACCOUNT_POR_USERNAME);
 			q3.setParameter("parametro",userAccount.getUsername());
-		
+			UserAccount u =(UserAccount)q3.getSingleResult();
+			  String passPhrase   = ConstantesLog.NOMBRE_PLATAFORMA;
+		        // Create encrypter/decrypter class
+		        StringEncrypter desEncrypter = new StringEncrypter(passPhrase);
+		     
+		        // Decrypt the string
+		        String desDecrypted       = desEncrypter.decrypt(u.getCampoGenerarPassword());
 			
-			
-			//enviarEmail(u1.getCorreoElectronico(), cs.getNombrePropiedad());			
+		        enviarEmail(u1.getCorreoElectronico(), desDecrypted);			
 		}
 		else{
 			

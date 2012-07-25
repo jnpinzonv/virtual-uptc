@@ -27,7 +27,7 @@ import org.jboss.seam.annotations.Name;
  */
 @Entity(name = "NumeroDivisiones")
 @Name("numeroDivisiones")
-@Table(name = "numero_divisones")
+@Table(name = "numero_divisiones")
 public class NumeroDivisiones implements Serializable {
 
 	/**

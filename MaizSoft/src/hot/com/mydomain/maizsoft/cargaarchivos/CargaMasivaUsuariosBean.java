@@ -2,8 +2,8 @@ package com.mydomain.maizsoft.cargaarchivos;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -14,21 +14,16 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
-import org.drools.common.PropagationContextImpl;
-import org.drools.spi.PropagationContext;
-import org.hibernate.exception.ConstraintViolationException;
-import org.jboss.seam.Component;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
-import org.jboss.seam.contexts.Context;
-import org.jboss.seam.core.ConversationPropagation;
-import org.jboss.seam.core.PropagationType;
 import org.jboss.seam.international.StatusMessages;
 import org.jboss.seam.log.Log;
 import org.jboss.seam.security.management.IdentityManagementException;
 import org.jboss.seam.security.management.action.UserAction;
 
+import com.mydomain.Directorio.action.StringEncrypter;
+import com.mydomain.Directorio.model.ConstantesLog;
 import com.mydomain.Directorio.model.CuentasUsuario;
 import com.mydomain.Directorio.model.EnteUniversitario;
 import com.mydomain.Directorio.model.Tipo;
@@ -92,6 +87,8 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 					Tipo tipo = buscarTipoIdentificacion(sheet.getCell(6, x)
 							.getContents());
 					nuevo.setTipo(tipo);
+					
+					
 
 					UserAction action = new UserAction();
 					action.setUsername(sheet.getCell(7, x).getContents());
@@ -139,6 +136,7 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 
 		for (int i = 0; i < preCargaUsuarios.getUsuarios().size(); i++) {
 			try {
+				Calendar calendar = Calendar.getInstance();
 				UserAction nuevoU = preCargaUsuarios.getUserActions().get(i);
 				userAction.setUsername(nuevoU.getUsername());
 				userAction.setPassword(nuevoU.getPassword());
@@ -147,6 +145,7 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 				userAction.setRoles(nuevoU.getRoles());
 				userAction.save();
 				Usuario nuevo = preCargaUsuarios.getUsuarios().get(i);
+				nuevo.setFechaCreacion(calendar.getTime());
 				try {
 					entityManager.persist(nuevo);
 				} catch (RuntimeException e) {
@@ -166,7 +165,19 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 				Query q = entityManager
 						.createQuery("select u from UserAccount u where u.username=:parametro");
 				q.setParameter("parametro", nuevoU.getUsername());
-				nuevoCuenta.setUserAccounts((UserAccount) q.getSingleResult());
+				UserAccount nuevo2= (UserAccount) q.getSingleResult();
+				nuevo2.setFechaCreacion(calendar.getTime());
+				String secretString = nuevoU.getPassword();
+		        String passPhrase   = ConstantesLog.NOMBRE_PLATAFORMA;
+
+		        // Create encrypter/decrypter class
+		        StringEncrypter desEncrypter = new StringEncrypter(passPhrase);
+
+		        // Encrypt the string
+		        String desEncrypted       = desEncrypter.encrypt(secretString);
+				nuevo2.setCampoGenerarPassword(desEncrypted);
+				entityManager.merge(nuevo2);
+				nuevoCuenta.setUserAccounts(nuevo2);
 				entityManager.persist(nuevoCuenta);
 
 			} catch (IdentityManagementException e) {

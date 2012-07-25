@@ -78,7 +78,7 @@ public class StringEncrypter {
      * @param algorithm  Which algorithm to use for creating the encrypter and
      *                   decrypter instances.
      */
-    StringEncrypter(SecretKey key, String algorithm) {
+    public StringEncrypter(SecretKey key, String algorithm) {
         try {
             ecipher = Cipher.getInstance(algorithm);
             dcipher = Cipher.getInstance(algorithm);
@@ -100,7 +100,7 @@ public class StringEncrypter {
      * @param passPhrase Pass Phrase used to initialize both the encrypter and
      *                   decrypter instances.
      */
-    StringEncrypter(String passPhrase) {
+    public StringEncrypter(String passPhrase) {
 
         // 8-bytes Salt
         byte[] salt = {
@@ -265,14 +265,14 @@ public class StringEncrypter {
         System.out.println("+----------------------------------------+");
         System.out.println();
 
-        String secretString = "Attack at dawn!";
-        String passPhrase   = "My Pass Phrase";
+        String secretString = "1051954156";
+        String passPhrase   = "MaizSoft";
 
         // Create encrypter/decrypter class
         StringEncrypter desEncrypter = new StringEncrypter(passPhrase);
 
         // Encrypt the string
-        String desEncrypted       = desEncrypter.encrypt(secretString);
+        String desEncrypted       = "VI1+YryZFDJiABFCXl2i8g==";
 
         // Decrypt the string
         String desDecrypted       = desEncrypter.decrypt(desEncrypted);

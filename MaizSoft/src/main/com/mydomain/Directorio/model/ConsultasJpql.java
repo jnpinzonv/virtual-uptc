@@ -82,5 +82,7 @@ public interface ConsultasJpql {
 									"and m.idGrupo=#{cursoActualBean.seleccionado.idGrupo}"+
 									"and m.actividad.idActividad= a.idActividad"+
 									"and a.tipo.idTipo =: parametro";
+	
+	String GRUPO_SELECCIONDADO = "select g from GrupoCurso g where g.idGrupo=#{cursoActualBean.seleccionado.idGrupo}";
 
 }

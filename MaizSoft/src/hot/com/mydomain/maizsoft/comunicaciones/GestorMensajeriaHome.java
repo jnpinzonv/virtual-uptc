@@ -11,6 +11,7 @@ import org.jboss.seam.Component;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.faces.FacesMessages;
 import org.jboss.seam.framework.EntityHome;
 import org.jboss.seam.security.Credentials;
 
@@ -101,23 +102,29 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 	public List<GrupoUsuarios> listaGrupoUsuarios(){
 		Query q = getEntityManager().createQuery(
 				ConsultasJpql.GRUPO_USUARIOS_SELECIONADO);
-		return (List<GrupoUsuarios>) q
-				.getResultList();
+		
+		List<GrupoUsuarios> nuevo=(List<GrupoUsuarios>) q
+		.getResultList();
+		return nuevo;
 		
 	}
 	
 	@Factory("listaUsuarioCursos")
-	public List<SelectItem> listaUsuariosCurso() {
-
-		
+	public List<SelectItem> listaUsuariosCurso() {		
 
 		// q.setParameter("parametro",
 		// "#{cursoActualBean.seleccionado.idGrupo}"));
-		List<GrupoUsuarios> listaEntesUniversitarios = listaGrupoUsuarios();
-
+		List<GrupoUsuarios> listaGruposUsuarios = listaGrupoUsuarios();
+		
+		if(listaGruposUsuarios.size()==0){
+			FacesMessages mensaje = (FacesMessages) Component
+					.getInstance(FacesMessages.class);
+					mensaje.add("Algo malo a sucedido :-( por favor vuelva a seleccionar el curso");
+		}
+		
 		List<SelectItem> sItems = new ArrayList<SelectItem>();
 		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
-		for (GrupoUsuarios sObj : listaEntesUniversitarios) {
+		for (GrupoUsuarios sObj : listaGruposUsuarios) {
 			listaUsuarios.add(sObj.getUserGrupoCurso());
 		}
 

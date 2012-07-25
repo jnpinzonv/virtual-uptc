@@ -1,6 +1,7 @@
 package com.mydomain.Directorio.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -75,6 +76,11 @@ public class UserAccount implements Serializable {
 	 */
 
 	private Set<CuentasUsuario> cuentasUsuarios;
+	
+	
+	private String campoGenerarPassword;
+	
+	private Date fechaCreacion;
 
 	/**
 	 * Constructor de la clase
@@ -214,4 +220,42 @@ public class UserAccount implements Serializable {
 	public void setCuentasUsuarios(Set<CuentasUsuario> cuentasUsuarios) {
 		this.cuentasUsuarios = cuentasUsuarios;
 	}
+
+	/**
+	 * Se obtiene el valor de campoGenerarPasswaord
+	 * @return El valor de campoGenerarPasswaord
+	 */
+	@Column(name = "campo_generar_password", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "varchar(60)")
+	public String getCampoGenerarPassword() {
+		return campoGenerarPassword;
+	}
+
+	/**
+	 * Asigna el valor de campoGenerarPasswaord
+	 * @param campoGenerarPasswaord El valor por establecer para campoGenerarPasswaord
+	 */
+	public void setCampoGenerarPassword(String campoGenerarPasswaord) {
+		this.campoGenerarPassword = campoGenerarPasswaord;
+	}
+
+	/**
+	 * Se obtiene el valor de fechaCreacion
+	 * @return El valor de fechaCreacion
+	 */
+	@Column(name = "fecha_creacion", unique = false, nullable = true, insertable = true, updatable = true, columnDefinition = "datetime")
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	/**
+	 * Asigna el valor de fechaCreacion
+	 * @param fechaCreacion El valor por establecer para fechaCreacion
+	 */
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+	
+	
+	
+	
 }

@@ -78,7 +78,7 @@ public class CursoActualBean implements ICursoActual {
 				.createQuery(ConsultasJpql.GRUPOS_CURSOS_POR_USUARIO);
 		q.setParameter("parametro", us.getId());
 		listaGrupos = q.getResultList();
-
+		
 		return listaGrupos;
 	}
 

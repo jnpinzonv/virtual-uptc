@@ -1,6 +1,7 @@
 package com.mydomain.Directorio.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -136,6 +137,8 @@ public class Usuario implements Serializable {
 	private Set<Actividad> actividad;
 
 	private transient String role;
+	
+	private Date fechaCreacion;
 
 	/**
 	 * Se obtiene el valor de id
@@ -533,5 +536,24 @@ public class Usuario implements Serializable {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+	
+	/**
+	 * Se obtiene el valor de fechaCreacion
+	 * @return El valor de fechaCreacion
+	 */
+	@Column(name = "fecha_creacion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "datetime")
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	/**
+	 * Asigna el valor de fechaCreacion
+	 * @param fechaCreacion El valor por establecer para fechaCreacion
+	 */
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+	
 
 }

@@ -11,13 +11,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.jboss.seam.Component;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Out;
 import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.datamodel.DataModelSelection;
+import org.jboss.seam.faces.FacesMessages;
 
 import com.mydomain.Directorio.model.ConsultasJpql;
+import com.mydomain.Directorio.model.GrupoCurso;
 import com.mydomain.Directorio.model.GrupoUsuarios;
 
 /**
@@ -53,14 +56,25 @@ public class SeccionSeleccionadaBean implements ISeccionSeleccionada {
 	@Factory("listaSeccionesCurso")
 	public List<Integer> getListaSeccionesCurso() {
 		
-		Query q = entityManager.createQuery(ConsultasJpql.GRUPO_USUARIOS_SELECIONADO);
-		List<GrupoUsuarios> nuevo =(List<GrupoUsuarios>)q.getResultList();
+		try {
+			
+		
+		Query q = entityManager.createQuery(ConsultasJpql.GRUPO_SELECCIONDADO);
+		GrupoCurso nuevo =(GrupoCurso)q.getSingleResult();
 		List< Integer> nue= new ArrayList<Integer>();
-		for (int i = 0; i <nuevo.get(0).getGrupoCurso().getNumeroTotal(); i++) {
+		for (int i = 0; i <nuevo.getNumeroTotal(); i++) {
 			nue.add((i+1));			
-		}		
+		}	
 		
 		listaSeccionesCurso=nue;
+		
+		} catch (RuntimeException e) {
+			FacesMessages mensaje = (FacesMessages) Component
+					.getInstance(FacesMessages.class);
+			mensaje.add("Algo malo a sucedido :-(  por favor vuelva a seleccionar el curso");
+		}
+		
+		
 		return listaSeccionesCurso;
 	}
 

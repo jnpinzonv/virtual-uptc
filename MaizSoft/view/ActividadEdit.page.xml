@@ -19,21 +19,21 @@
    <navigation from-action="#{actividadHome.persist}">
       <rule if-outcome="persisted">
          <end-conversation/>
-         <redirect view-id="/Actividad.xhtml"/>
+         <redirect view-id="/CuerpoCurso.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{actividadHome.update}">
       <rule if-outcome="updated">
          <end-conversation/>
-         <redirect view-id="/Actividad.xhtml"/>
+         <redirect view-id="/CuerpoCurso.xhtml"/>
       </rule>
    </navigation>
 
    <navigation from-action="#{actividadHome.remove}">
       <rule if-outcome="removed">
          <end-conversation/>
-         <redirect view-id="/ActividadList.xhtml"/>
+         <redirect view-id="/CuerpoCurso.xhtml"/>
       </rule>
    </navigation>
 

@@ -28,7 +28,8 @@
 						id="seccionSeleccionada" required="true" rendered="true">
 						<s:selectItems value="#{listaSeccionesCurso}" var="lista"
 							label="#{lista}" noSelectionLabel="SELECCIONE..." />
-						<a4j:support event="onchange" reRender="4" ajaxSingle="true" />
+						<a4j:support event="onchange" reRender="actividades"
+							ajaxSingle="true" />
 
 					</h:selectOneMenu>
 
@@ -49,14 +50,10 @@
 
 				<br />
 				<br />
-				<rich:tabPanel switchType="client">
+				<rich:tabPanel switchType="client" id="actividades">
 					<rich:tab label="foro">
-						<h:outputText value="The actividad search returned no results."
-							rendered="#{empty actividadList.resultList}" />
-
 						<rich:dataTable id="actividadList" var="_actividad"
-							value="#{actividadList.resultList}"
-							rendered="#{not empty actividadList.resultList}">
+							value="#{actividadHome.getListaActividadesDivision(11)}">
 
 							<h:column>
 								<f:facet name="header">
@@ -115,28 +112,511 @@
 						</rich:dataTable>
 					</rich:tab>
 					<rich:tab label="Autoevaluación">
-            Here is tab #3
-        </rich:tab>
+						<rich:dataTable id="actividadListAutoevaluacion"
+							var="_actividadListAutoevaluacion"
+							value="#{actividadHome.getListaActividadesDivision(13)}">
+
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Descripcion actividad" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.descripcionActividad" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_actividadListAutoevaluacion.descripcionActividad}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Fecha" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.fechaFinalizacion" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_actividadListAutoevaluacion.fechaFinalizacion}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Porcentaje Nota" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.porcentaje" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListAutoevaluacion.porcentaje}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Adjunto" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.rutaArchivo" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_actividadListAutoevaluacion.rutaArchivo}"
+									escape="false" />
+							</h:column>
+							<rich:column styleClass="action">
+								<f:facet name="header">Acción</f:facet>
+								<s:link view="/ActividadEdit.xhtml" value="Editar"
+									propagation="none" id="actividadEdit2" rendered="#{empty from}">
+									<f:param name="actividadIdActividad"
+										value="#{_actividadListAutoevaluacion.idActividad}" />
+								</s:link>
+
+							</rich:column>
+
+						</rich:dataTable>
+
+					</rich:tab>
+
 					<rich:tab label="Anuncios">
-            Here is tab #3
-        </rich:tab>
+						<rich:dataTable id="actividadListAnuncios"
+							var="_actividadListAnuncios"
+							value="#{actividadHome.getListaActividadesDivision(16)}">
+
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Descripcion actividad" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.descripcionActividad" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_actividadListAnuncios.descripcionActividad}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Fecha" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.fechaFinalizacion" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_actividadListAnuncios.fechaFinalizacion}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Porcentaje Nota" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.porcentaje" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListAnuncios.porcentaje}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Adjunto" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.rutaArchivo" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListAnuncios.rutaArchivo}"
+									escape="false" />
+							</h:column>
+							<rich:column styleClass="action">
+								<f:facet name="header">Acción</f:facet>
+								<s:link view="/ActividadEdit.xhtml" value="Editar"
+									propagation="none" id="actividadEdit3" rendered="#{empty from}">
+									<f:param name="actividadIdActividad"
+										value="#{_actividadListAnuncios.idActividad}" />
+								</s:link>
+
+							</rich:column>
+
+						</rich:dataTable>
+
+
+
+
+					</rich:tab>
 					<rich:tab label="Cargar Archivos">
-            Here is tab #2
-        </rich:tab>
+						<rich:dataTable id="actividadListCargaArchivo"
+							var="_actividadListCargaArchivo"
+							value="#{actividadHome.getListaActividadesDivision(12)}">
+
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Descripcion actividad" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.descripcionActividad" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_actividadListCargaArchivo.descripcionActividad}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Fecha" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.fechaFinalizacion" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_actividadListCargaArchivo.fechaFinalizacion}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Porcentaje Nota" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.porcentaje" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListCargaArchivo.porcentaje}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Adjunto" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.rutaArchivo" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListCargaArchivo.rutaArchivo}"
+									escape="false" />
+							</h:column>
+							<rich:column styleClass="action">
+								<f:facet name="header">Acción</f:facet>
+								<s:link view="/ActividadEdit.xhtml" value="Editar"
+									propagation="none" id="actividadEdit4" rendered="#{empty from}">
+									<f:param name="actividadIdActividad"
+										value="#{_actividadListCargaArchivo.idActividad}" />
+								</s:link>
+
+							</rich:column>
+
+						</rich:dataTable>
+
+					</rich:tab>
 
 					<rich:tab label="Video Conferencia">
-            Here is tab #4
-        </rich:tab>
+
+						<rich:dataTable id="actividadListVideo" var="_actividadListVideo"
+							value="#{actividadHome.getListaActividadesDivision(14)}">
+
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Descripcion actividad" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.descripcionActividad" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_actividadListVideo.descripcionActividad}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Fecha" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.fechaFinalizacion" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListVideo.fechaFinalizacion}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Porcentaje Nota" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.porcentaje" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListVideo.porcentaje}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Adjunto" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.rutaArchivo" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListVideo.rutaArchivo}"
+									escape="false" />
+							</h:column>
+							<rich:column styleClass="action">
+								<f:facet name="header">Acción</f:facet>
+								<s:link view="/ActividadEdit.xhtml" value="Editar"
+									propagation="none" id="actividadEdit5" rendered="#{empty from}">
+									<f:param name="actividadIdActividad"
+										value="#{_actividadListVideo.idActividad}" />
+								</s:link>
+
+							</rich:column>
+
+						</rich:dataTable>
+
+					</rich:tab>
 					<rich:tab label="Audio Conferencia">
-            Here is tab #3
-        </rich:tab>
+						<rich:dataTable id="actividadListAudio" var="_actividadListAudio"
+							value="#{actividadHome.getListaActividadesDivision(15)}">
+
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Descripcion actividad" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.descripcionActividad" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_actividadListAudio.descripcionActividad}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Fecha" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.fechaFinalizacion" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListAudio.fechaFinalizacion}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Porcentaje Nota" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.porcentaje" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListAudio.porcentaje}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Adjunto" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.rutaArchivo" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListAudio.rutaArchivo}"
+									escape="false" />
+							</h:column>
+							<rich:column styleClass="action">
+								<f:facet name="header">Acción</f:facet>
+								<s:link view="/ActividadEdit.xhtml" value="Editar"
+									propagation="none" id="actividadEdit6" rendered="#{empty from}">
+									<f:param name="actividadIdActividad"
+										value="#{_actividadListAudio.idActividad}" />
+								</s:link>
+
+							</rich:column>
+
+						</rich:dataTable>
+
+					</rich:tab>
 
 					<rich:tab label="Enlaces Externos">
-            Here is tab #3
-        </rich:tab>
+						<rich:dataTable id="actividadListEnlaces"
+							var="_actividadListEnlaces"
+							value="#{actividadHome.getListaActividadesDivision(17)}">
+
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Descripcion actividad" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.descripcionActividad" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_actividadListEnlaces.descripcionActividad}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Fecha" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.fechaFinalizacion" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListEnlaces.fechaFinalizacion}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Porcentaje Nota" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.porcentaje" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListEnlaces.porcentaje}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Adjunto" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.rutaArchivo" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListEnlaces.rutaArchivo}"
+									escape="false" />
+							</h:column>
+							<rich:column styleClass="action">
+								<f:facet name="header">Acción</f:facet>
+								<s:link view="/ActividadEdit.xhtml" value="Editar"
+									propagation="none" id="actividadEdit7" rendered="#{empty from}">
+									<f:param name="actividadIdActividad"
+										value="#{_actividadListEnlaces.idActividad}" />
+								</s:link>
+
+							</rich:column>
+
+						</rich:dataTable>
+
+					</rich:tab>
 					<rich:tab label="Objetos de Aprendizaje">
-            Here is tab #3
-        </rich:tab>
+						<rich:dataTable id="actividadListObjeto"
+							var="_actividadListObjeto"
+							value="#{actividadHome.getListaActividadesDivision(18)}">
+
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Descripcion actividad" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.descripcionActividad" />
+									</ui:include>
+								</f:facet>
+								<h:outputText
+									value="#{_actividadListObjeto.descripcionActividad}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Fecha" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.fechaFinalizacion" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListObjeto.fechaFinalizacion}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Porcentaje Nota" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.porcentaje" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListObjeto.porcentaje}"
+									escape="false" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<ui:include src="layout/sort.xhtml">
+										<ui:param name="entityList"
+											value="#{actividadListAutoevaluacion}" />
+										<ui:param name="propertyLabel" value="Adjunto" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.rutaArchivo" />
+									</ui:include>
+								</f:facet>
+								<h:outputText value="#{_actividadListObjeto.rutaArchivo}"
+									escape="false" />
+							</h:column>
+							<rich:column styleClass="action">
+								<f:facet name="header">Acción</f:facet>
+								<s:link view="/ActividadEdit.xhtml" value="Editar"
+									propagation="none" id="actividadEdit8" rendered="#{empty from}">
+									<f:param name="actividadIdActividad"
+										value="#{_actividadListObjeto.idActividad}" />
+								</s:link>
+
+							</rich:column>
+
+						</rich:dataTable>
+
+					</rich:tab>
 				</rich:tabPanel>
 
 

@@ -6,7 +6,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:s="http://jboss.com/products/seam/taglib"
-	template="../layout/template.xhtml">
+	template="../layout/template2.xhtml">
 
 	<ui:define name="head">
 		<link href="css/cssLayoutPrincipal.css" rel="stylesheet"
@@ -43,14 +43,13 @@
 
 	</ui:define>
 
-	<ui:define name="body">
+	<ui:define name="centroT">
 		
-			
-
 				<div id="content" class="right_content">
 					<h:form id="userForm">
 
 						<rich:panel styleClass="useradmin">
+							<f:facet name="header">Editar Cuenta de Usuario</f:facet>
 							<ui:remove>
 								<s:decorate id="firstnameField" template="../layout/edit.xhtml">
 									<ui:define name="label">First name</ui:define>
@@ -101,42 +100,16 @@
 						</rich:panel>
 
 						<div class="actionButtons">
-							<h:commandButton id="save" value="Save"
-								action="#{userAction.save()}" />
-							<s:button id="cancel" view="/useradmin/usermanager.xhtml"
-								value="Cancel" propagation="end" />
+							<h:commandButton id="save" value="Guardar"
+								action="#{userAction.save()}" 
+								/>
+							<s:button id="cancel" view="/UsuarioList.xhtml"
+								value="Cancelar" propagation="end" />
 						</div>
 
 					</h:form>
 				</div>
 
-
-				<div class="left" style="height: 500px; margin-top: -427px">
-					
-				</div>
-
-				
-
-
-
-				
-
-					<img src="css/images/uptc.png"
-						style="height: 80px; margin-left: -430px" />
-
-					<div style="margin-top: -90px">
-						<pre>Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
-            Facultad de Ingenier&#237;a            
-   Ingenier&#237;a de Sistemas y Computaci&#243;n
-Grupo de Investigaci&#243;n en Ingenier&#237;a del Software
-Correo:gis@uptc.edu.co
-</pre>
-
-					</div>
-			
-		
-
-		
-	</ui:define>
+			</ui:define>
 
 </ui:composition>

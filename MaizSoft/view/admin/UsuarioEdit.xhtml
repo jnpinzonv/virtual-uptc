@@ -130,47 +130,50 @@
 							<br />
 							<br />
 							<s:decorate id="usernameField" template="../layout/edit.xhtml"
-								style="position:absolute;">
+								style="position:absolute;" rendered="#{!usuarioHome.managed}">
 								<ui:define name="label">Username</ui:define>
 								<h:inputText id="username" value="#{userAction.username}"
-									required="true" size="30" maxlength="35" />
+									required="true" size="30" maxlength="35" 
+									rendered="#{!usuarioHome.managed}"/>
 							</s:decorate>
 							<br />
 							<br />
 							<s:decorate id="passwordField" template="../layout/edit.xhtml"
-								style="position:absolute;">
+								style="position:absolute;" rendered="#{!usuarioHome.managed}">
 								<ui:define name="label">Password</ui:define>
 								<h:inputSecret id="password" value="#{userAction.password}"
-									required="true" size="30" maxlength="35" />
+									required="true" size="30" maxlength="35" 
+									rendered="#{!usuarioHome.managed}"/>
 							</s:decorate>
 							<br />
 							<br />
 							<s:decorate id="confirmField" template="../layout/edit.xhtml"
-								style="position:absolute;">
+								style="position:absolute;" rendered="#{!usuarioHome.managed}">
 								<ui:define name="label">Confirmar password</ui:define>
 								<h:inputSecret id="confirm" value="#{userAction.confirm}"
-									required="true" size="30" maxlength="35" />
+									required="true" size="30" maxlength="35" 
+									rendered="#{!usuarioHome.managed}"/>
 							</s:decorate>
 							<br />
 							<br />
 							<br />
-							<s:decorate id="enabledField" template="../layout/edit.xhtml" style="position:absolute;">
+							<s:decorate id="enabledField" template="../layout/edit.xhtml" style="position:absolute;" rendered="#{!usuarioHome.managed}">
 								<ui:define name="label">Habilitar Usuario</ui:define>
 								<h:selectBooleanCheckbox id="enabled"
-									value="#{userAction.enabled}" />
+									value="#{userAction.enabled}" rendered="#{!usuarioHome.managed}"/>
 							</s:decorate>
 							<br />
 							<br />
 							<s:decorate id="rolesField" template="../layout/edit.xhtml"
-								style="position:absolute;">
+								style="position:absolute;" rendered="#{!usuarioHome.managed}">
 								<ui:define name="label">Roles</ui:define>
 								<div class="selectOne">
 									<h:selectOneRadio id="rolesss"
 						value="#{usuarioHome.instance.role}" layout="pageDirection"
-						styleClass="roles" required="true">
+						styleClass="roles" required="true" rendered="#{!usuarioHome.managed}">
 
 						<s:selectItems value="#{identityManager.listGrantableRoles()}"
-							var="_role" label="#{_role}" />
+							var="_role" label="#{_role}"/>
 						
 					</h:selectOneRadio>
 								</div>
@@ -242,9 +245,13 @@
 								<h:commandButton id="delete" value="Borrar"
 									action="#{usuarioHome.remove}" immediate="true"
 									rendered="#{usuarioHome.managed}" />
+									
+								<h:commandButton id="cuentas" value="Cuentas de Usuario"
+									action="/useradmin/usermanager.seam" immediate="true"
+									rendered="#{usuarioHome.managed}" />	
 
 								<s:button id="cancelEdit" value="Cancelar" propagation="end"
-									view="/Usuario.xhtml" rendered="#{usuarioHome.managed}" />
+									view="/UsuarioList.xhtml" rendered="#{usuarioHome.managed}" />
 
 								<s:button id="cancelAdd" value="Cancelar" propagation="end"
 									view="/#{empty usuarioFrom ? 'UsuarioList' : usuarioFrom}.xhtml"

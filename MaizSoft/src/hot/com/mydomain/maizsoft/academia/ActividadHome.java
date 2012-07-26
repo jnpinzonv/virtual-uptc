@@ -95,11 +95,8 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 	}
 
-	public void saveActividad(int pasarSeccion)  {
+	public void saveActividad(int pasarSeccion) {
 
-		try {
-			
-		
 		List<GrupoUsuarios> listaGrupos = listaGrupoUsuarios();
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
@@ -131,11 +128,6 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 		crearLog(listaGrupos.get(0).getGrupoCurso());
 
-		} catch (RuntimeException e) {
-			FacesMessages mensaje = (FacesMessages) Component
-			.getInstance(FacesMessages.class);
-			mensaje.add("Algo malo a sucedido :-(  por favor vuelva a seleccionar el curso");
-		}
 	}
 
 	public GestorEnvioCorreoElectronico crearConfiguracion(Actividad actividad) {

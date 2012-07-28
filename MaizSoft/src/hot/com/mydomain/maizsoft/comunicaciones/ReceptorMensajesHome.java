@@ -1,11 +1,21 @@
 package com.mydomain.maizsoft.comunicaciones;
 
-import com.mydomain.Directorio.model.*;
-import com.mydomain.maizsoft.usuarios.UsuarioHome;
+import java.util.List;
 
+import javax.persistence.Query;
+
+import org.jboss.seam.Component;
+import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
+import org.jboss.seam.security.Credentials;
+
+import com.mydomain.Directorio.model.ConsultasJpql;
+import com.mydomain.Directorio.model.GestorMensajeria;
+import com.mydomain.Directorio.model.ReceptorMensajes;
+import com.mydomain.Directorio.model.Usuario;
+import com.mydomain.maizsoft.usuarios.UsuarioHome;
 
 @Name("receptorMensajesHome")
 public class ReceptorMensajesHome extends EntityHome<ReceptorMensajes> {
@@ -58,6 +68,23 @@ public class ReceptorMensajesHome extends EntityHome<ReceptorMensajes> {
 
 	public ReceptorMensajes getDefinedInstance() {
 		return isIdDefined() ? getInstance() : null;
+	}
+	
+	@Factory("listaMensajesNoLeidos")
+	public List<GestorMensajeria> listaMensajesNoLeidos(){
+		
+
+		Credentials cre = (Credentials) Component
+				.getInstance(Credentials.class);
+		Query q = getEntityManager()
+				.createQuery(ConsultasJpql.USUARIO_POR_USERNAME);
+		q.setParameter("parametro", cre.getUsername());
+		Usuario nuevo = (Usuario) q.getSingleResult();
+		
+		Query q2 = getEntityManager()
+				.createQuery(ConsultasJpql.MENSAJES_NO_LEIDOS);
+		q2.setParameter("parametro", nuevo.getId());
+		return q.getResultList();
 	}
 
 }

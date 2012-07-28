@@ -23,7 +23,8 @@ public interface ConsultasJpql {
 			+ " WHERE u.userAccounts.id = ua.id"
 			+ " AND u.usuarios.id = r.userAccount.id"
 			+ " AND r.gestorMensajeria.idMensaje = g.idMensaje"
-			+ " AND ua.username=:parametro" + " AND g.tipo.idTipo = 9";
+			+ " AND ua.username=:parametro"
+			+ " AND g.tipo.idTipo = 9";
 
 	/**
 	 * 
@@ -32,7 +33,8 @@ public interface ConsultasJpql {
 			+ " where g.deUsuario.id = u.usuarios.id"
 			+ " AND u.usuarios.id = usu.id"
 			+ " AND u.userAccounts.id = ua.id"
-			+ " AND ua.username=:parametro" + " AND g.tipo.idTipo = 9";
+			+ " AND ua.username=:parametro"  
+			+ " AND g.tipo.idTipo = 9";
 
 	/**
 	 * 
@@ -43,7 +45,7 @@ public interface ConsultasJpql {
 	/**
 	 * 
 	 */
-	String GRUPO_USUARIOS_SELECIONADO = "select t from GrupoUsuarios t where t.grupoCurso.idGrupo=#{cursoActualBean.seleccionado.idGrupo}";
+	String GRUPO_USUARIOS_SELECIONADO = "select t from GrupoUsuarios t where t.grupoCurso.idGrupo=#{cursoActualBean.select()}";
 
 	/**
 	 * 
@@ -78,16 +80,13 @@ public interface ConsultasJpql {
 	
 	String ACTIVIADES_POR_DIVISION ="select a from Actividad a, NumeroDivisiones m"+
 									" where m.numeroDivision = #{seccionSeleccionadaBean.seccionSeleccionada}"+
-									" and m.idGrupo=#{cursoActualBean.seleccionado.idGrupo}"+
+									" and m.grupoCurso.idGrupo=#{cursoActualBean.select()}"+
 									" and m.actividad.idActividad= a.idActividad"+
 									" and a.tipo.idTipo =:parametro";
 	
-	String GRUPO_SELECCIONDADO = "select g from GrupoCurso g where g.idGrupo=#{cursoActualBean.seleccionado.idGrupo}";
+	String GRUPO_SELECCIONDADO = "select g from GrupoCurso g where g.idGrupo=#{cursoActualBean.select()}";
 	
-	String PORCENTAJE_TOTAL_ACTIVIDAD ="SELECT c.nota*a.porcentaje FROM nota_actividad c, actividad a, grupo_usuarios us"
-										+" WHERE c.id_grupo_curso= us.id_grupo_usuarios"
-										+" and a.id_actividad=c.id_nota_actividad"
-										+" and us.id_grupo_curso=13";
+	String PORCENTAJE_TOTAL_ACTIVIDAD ="SELECT a.porcentaje*c.nota FROM nota_actividad c, actividad a WHERE c.id_grupo_curso = 13 and a.id_actividad=c.`id_actividad`";
 	
 	String MENSAJES_NO_LEIDOS ="select men from GestorMensageria men, ReceptorMensajes re, join re.userAccount us" +
 								" where re.idReceptormenajes=men.idMensaje" +

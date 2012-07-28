@@ -104,6 +104,8 @@ public class Actividad implements Serializable {
 	private transient String nombreEnlace;
 
 	private transient boolean alertaMail;
+	
+	private transient long idCursoSeleccionado;
 
 	public Actividad() {
 		evaluable = true;
@@ -127,7 +129,7 @@ public class Actividad implements Serializable {
 					FacesContext contex = FacesContext.getCurrentInstance();
 		            contex.getExternalContext().redirect( "/MaizSoft/ForoEdit.seam" );
 				} catch (Exception e) {
-					// TODO: handle exception
+					
 				}
 				
 			}
@@ -275,7 +277,7 @@ public class Actividad implements Serializable {
 	 * @return El valor de fechaFinalizacion
 	 */
 	@NotNull
-	@Column(name = "fecha_Finalizacion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "datetime")
+	@Column(name = "fecha_finalizacion", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "datetime")
 	public Date getFechaFinalizacion() {
 		if (fechaFinalizacion == null) {
 			Calendar calendar = Calendar.getInstance();
@@ -361,6 +363,7 @@ public class Actividad implements Serializable {
 	 * 
 	 * @return El valor de adjuntarArchivo
 	 */
+	@Transient
 	public boolean isAdjuntarArchivo() {
 		return adjuntarArchivo;
 	}
@@ -456,5 +459,29 @@ public class Actividad implements Serializable {
 	public void setAlertaMail(boolean alertaMail) {
 		this.alertaMail = alertaMail;
 	}
+
+	/**
+	 * Se obtiene el valor de idCursoSeleccionado
+	 * @return El valor de idCursoSeleccionado
+	 */
+	@Transient
+	public long getIdCursoSeleccionado() {
+		return idCursoSeleccionado;
+	}
+
+	/**
+	 * Asigna el valor de idCursoSeleccionado
+	 * @param idCursoSeleccionado El valor por establecer para idCursoSeleccionado
+	 */
+	public void setIdCursoSeleccionado(long idCursoSeleccionado) {
+		this.idCursoSeleccionado = idCursoSeleccionado;
+	}
+	
+	
+	public void adaptarCurso(long id){
+		this.idCursoSeleccionado = id;
+	}
+	
+	
 
 }

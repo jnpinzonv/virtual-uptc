@@ -34,7 +34,10 @@ public interface ICursoActual {
 	
 	public Long selecionado(long grupo);	
 	
-	public String selecionadoDos(String grupo);	
+	public String selecionadoDos(long grupo);
+	
+	
+	public Long select();
 
 	
 

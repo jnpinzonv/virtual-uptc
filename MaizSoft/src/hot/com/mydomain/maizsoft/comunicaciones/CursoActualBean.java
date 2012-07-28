@@ -48,6 +48,8 @@ import com.mydomain.maizsoft.curso.GrupoCursoHome;
 @Stateless
 public class CursoActualBean implements ICursoActual {
 
+	
+	public static Long select =-1L;
 	@PersistenceContext
 	EntityManager entityManager;
 
@@ -57,7 +59,7 @@ public class CursoActualBean implements ICursoActual {
 	@DataModelSelection(value = "listaGrupos")
 	@Out(required = false)
 	private GrupoCurso seleccionado;
-
+	
 	/**
 	 * Se obtiene el valor de listaGrupos
 	 * 
@@ -114,31 +116,28 @@ public class CursoActualBean implements ICursoActual {
 	}
 
 	public Long selecionado(long grupo) {
-		// grupoCursoHome.setInstance(seleccionado);
-		// grupoCurso=entityManager.find(GrupoCurso.class,
-		// seleccionado.getIdGrupo());
-		// System.out.println(grupoCurso.getCupos()+ "holaaaaaaaaaaaaaa22");
-		// System.out.println(instance.getIdGrupo()+
-		// "hola mundooooooooooooooooooooo");
-		// System.out.println(facesContext.getCurrentInstance().getExternalContext().getRequestMap().get("grupoCursoIdGrupo")+
-		// "holooooooooooooooo");
-		System.out.println("holaaaaaaaaaaaa datoz"+ grupo);
+		
+		if(grupo!=0)
+		select=grupo;
+		
 		return grupo;
 
 	}
 	
-	public String selecionadoDos(String grupo) {
-		// grupoCursoHome.setInstance(seleccionado);
-		// grupoCurso=entityManager.find(GrupoCurso.class,
-		// seleccionado.getIdGrupo());
-		// System.out.println(grupoCurso.getCupos()+ "holaaaaaaaaaaaaaa22");
-		// System.out.println(instance.getIdGrupo()+
-		// "hola mundooooooooooooooooooooo");
-		// System.out.println(facesContext.getCurrentInstance().getExternalContext().getRequestMap().get("grupoCursoIdGrupo")+
-		// "holooooooooooooooo");
-		System.out.println("holaaaaaaaaaaaa dato "+ grupo);
-		return grupo;
+	public String selecionadoDos(long grupo) {
+		
+		return "";
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mydomain.maizsoft.comunicaciones.ICursoActual#select()
+	 */
+	@Override
+	public Long select() {
+		
+		return select;
+	}
+
+	
 }

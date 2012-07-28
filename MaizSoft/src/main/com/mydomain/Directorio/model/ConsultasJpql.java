@@ -83,5 +83,15 @@ public interface ConsultasJpql {
 									" and a.tipo.idTipo =:parametro";
 	
 	String GRUPO_SELECCIONDADO = "select g from GrupoCurso g where g.idGrupo=#{cursoActualBean.seleccionado.idGrupo}";
+	
+	String PORCENTAJE_TOTAL_ACTIVIDAD ="SELECT c.nota*a.porcentaje FROM nota_actividad c, actividad a, grupo_usuarios us"
+										+" WHERE c.id_grupo_curso= us.id_grupo_usuarios"
+										+" and a.id_actividad=c.id_nota_actividad"
+										+" and us.id_grupo_curso=13";
+	
+	String MENSAJES_NO_LEIDOS ="select men from GestorMensageria men, ReceptorMensajes re, join re.userAccount us" +
+								" where re.idReceptormenajes=men.idMensaje" +
+								" and re.leido=0" +
+								" and us.id=:parametro";
 
 }

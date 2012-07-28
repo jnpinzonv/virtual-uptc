@@ -22,7 +22,32 @@
 		<div class="left">
             <ui:insert name="top">
                 <div class="menuheaderNoticias"></div>
-                <div class="menucontent"></div>
+                <div class="menucontent">
+                <h:form>
+                <h:outputText value="La busqueda no retorno resultados"
+						rendered="#{empty gestorNoticiasList.resultList}" />
+					<div align="center">
+						
+						<rich:dataTable id="gestorNoticiasList" var="_gestorNoticias"
+							value="#{gestorNoticiasList.resultList}"
+							rendered="#{not empty gestorNoticiasList.resultList}" rows="6"
+							width="180px">
+							
+							<h:column width="160px">
+								<s:link view="/admin/#{empty from ? 'GestorNoticias' : from}.xhtml"
+									value="#{_gestorNoticias.nombreNoticia}"
+									propagation="none"
+									id="gestorNoticiasViewId">
+									<f:param name="gestorNoticiasIdNoticia"
+										value="#{_gestorNoticias.idNoticia}" />
+								</s:link>
+							</h:column>
+							</rich:dataTable>
+						<rich:datascroller align="center" for="gestorNoticiasList"
+							page="#{gestorNoticiasList.pageCount}" id="sc112" reRender="sc111"/>
+					</div>					
+                </h:form>
+                </div>
                 <div class="menucontent"></div>
                 <div class="menucontent"></div>
                 <div class="menucontent"></div>

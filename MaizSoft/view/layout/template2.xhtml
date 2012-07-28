@@ -58,9 +58,7 @@
 
 								<img src="css/images/gis.png" style="height: 80px" />
 								<br />
-								<rich:panel>
-
-									
+								
 									<div class="results" id="usuarioSelect">
 
 										<h:outputText value="La busqueda no arrojo resultados."
@@ -85,7 +83,7 @@
 
 										</div>
 									</div>
-								</rich:panel>
+								
 
 								<br />
 								<br />
@@ -101,8 +99,10 @@
 										itemChangeListener="#{panelMenuBean.updateCurrent}"
 										expandSingle="true" showDelay="250" hideDelay="0"
 										submitMode="none">
-										<rich:panelMenuGroup label="Mensajes" style="color: #FFFFFF;">
-											<rich:panelMenuItem style="color: #045491;" icon="disc">
+										<rich:panelMenuGroup label="Mensajes" style="color: #FFFFFF;" 
+										rendered="#{s:hasRole('estudiante') || s:hasRole('docente')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc"  
+											rendered="#{not empty cursoActualBean.selecionado(_grupoCurso.idGrupo)}">
 												<s:link value="Crear" action="/GestorMensajeriaEdit.seam"></s:link>
 											</rich:panelMenuItem>
 											<rich:panelMenuGroup label="Ver" style="color: #045491;"
@@ -217,7 +217,7 @@
 											style="color: #FFFFFF;" rendered="#{s:hasRole('estudiante')}">
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
 												<s:link value="Consultar"
-													action="/GestorRepositoriosVirtualesEdit.seam"
+													action="/GestorRepositoriosVirtualesList.seam"
 													propagation="end"></s:link>
 											</rich:panelMenuItem>
 										</rich:panelMenuGroup>
@@ -226,7 +226,7 @@
 											rendered="#{s:hasRole('estudiante')}">
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
 												<s:link value="Consultar"
-													action="/GestorRepositoriosVirtualesEdit.seam"
+													action="/GestorNoticiasList.seam"
 													propagation="end"></s:link>
 											</rich:panelMenuItem>
 										</rich:panelMenuGroup>
@@ -236,7 +236,7 @@
 											style="color: #FFFFFF;" rendered="#{s:hasRole('docente')}">
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
 												<s:link value="Consultar"
-													action="/GestorRepositoriosVirtualesEdit.seam"
+													action="/GestorRepositoriosVirtualesList.seam"
 													propagation="end"></s:link>
 											</rich:panelMenuItem>
 										</rich:panelMenuGroup>
@@ -245,8 +245,19 @@
 											rendered="#{s:hasRole('docente')}">
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
 												<s:link value="Consultar"
-													action="/GestorRepositoriosVirtualesEdit.seam"
+													action="/GestorNoticiasList.seam"
 													propagation="end"></s:link>
+											</rich:panelMenuItem>
+										
+										</rich:panelMenuGroup>
+										
+										<rich:panelMenuGroup label="Altas de Cursos" style="color: #FFFFFF;"
+											rendered="#{s:hasRole('docente')}">
+										<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<a href="css/images/FormatoCurso.doc">Formato para curso</a>
+											</rich:panelMenuItem>
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<a href="css/images/FormatoCurso.doc">Formato para Usuarios</a>
 											</rich:panelMenuItem>
 										</rich:panelMenuGroup>
 									</rich:panelMenu>
@@ -294,7 +305,7 @@
 
 								<br />
 
-								<rich:panel>
+								<rich:panel rendered="#{s:hasRole('estudiante') || s:hasRole('docente')}">
 
 									<f:facet name="header">Cursos</f:facet>
 									<div class="results" id="grupoCursoList">
@@ -311,10 +322,10 @@
 													<s:link view="/CuerpoCurso.xhtml"
 														value="#{_grupoCurso.cursoGrupo.nombreAsignatura}"
 														propagation="none" id="grupoCursoEdit"
-														action="#{cursoActualBean.selecionado(_grupoCurso.idGrupo) }">
+														>
 														<f:param name="grupoCursoIdGrupo"
 															value="{_grupoCurso.idGrupo}" />
-
+															<a4j:support event="onchange" immediate="true" action="#{cursoActualBean.selecionado(_grupoCurso.idGrupo)}"/>
 													</s:link>
 												</h:column>
 											</h:dataTable>

@@ -38,7 +38,8 @@
 
         <s:button view="/ActividadEdit.xhtml"
                     id="edit"
-                 value="Editar"/>
+                 value="Editar"
+                 rendered="#{s:hasRole('admin')}"/>
 
         <s:button view="/#{empty actividadFrom ? 'ActividadList' : actividadFrom}.xhtml"
                     id="done"

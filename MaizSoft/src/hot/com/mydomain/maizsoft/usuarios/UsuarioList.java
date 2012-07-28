@@ -20,8 +20,7 @@ public class UsuarioList extends EntityQuery<Usuario> {
 
 	public UsuarioList() {
 		setEjbql(EJBQL);
-		setRestrictionExpressionStrings(Arrays.asList(RESTRICTIONS));
-		setMaxResults(25);
+		setRestrictionExpressionStrings(Arrays.asList(RESTRICTIONS));		
 	}
 
 	public Usuario getUsuario() {

@@ -17,7 +17,6 @@ public class GestorNoticiasList extends EntityQuery<GestorNoticias> {
 	public GestorNoticiasList() {
 		setEjbql(EJBQL);
 		setRestrictionExpressionStrings(Arrays.asList(RESTRICTIONS));
-		setMaxResults(25);
 	}
 
 	public GestorNoticias getGestorNoticias() {

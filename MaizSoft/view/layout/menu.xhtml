@@ -6,114 +6,33 @@
 	xmlns:rich="http://richfaces.org/rich">
 	<rich:toolBarGroup>
 		<h:outputText value="#{projectName}:" />
-		<s:link id="menuHomeId" view="/home.xhtml" value="Home"
+		<s:link id="menuHomeId" view="/login.xhtml" value="Home"
 			propagation="none" />
 		<h:form>
 
 			<h:commandButton image="/css/images/calendario.png"
-				style="width:30px" />
+				style="width:30px" rendered="#{s:hasRole('admin') || s:hasRole('estudiante') || s:hasRole('docente')}"/>
 			<h:outputLabel value="  " />
 			<h:commandButton action="/GestorMensajeriaEdit.xhtml"
-				image="/css/images/mensajes.png" style="width:30px" />
+				image="/css/images/mensajes.png" style="width:30px" rendered="#{s:hasRole('admin') || s:hasRole('estudiante') || s:hasRole('docente')}"/>
 			<h:outputLabel value="  " />
 			<h:commandButton image="/css/images/actualizacion.png"
-				style="width:30px" />
+				style="width:30px" rendered="#{s:hasRole('admin') || s:hasRole('estudiante') || s:hasRole('docente')}"/>
+				<h:outputLabel value="  " />
+			<h:commandButton image="/css/images/buscar.png"
+			action="/ActividadList.xhtml"
+				style="width:30px" 
+				rendered="#{s:hasRole('admin') || s:hasRole('estudiante') || s:hasRole('docente')}"/>	
 
 		</h:form>
 
 
 	</rich:toolBarGroup>
+	
+	<rich:toolBarGroup location="center">
+		<h:outputLabel value="#{cursoActualBean.seleccionado.cursoGrupo.nombreAsignatura}" />
+	</rich:toolBarGroup>
 
-	<rich:dropDownMenu showDelay="250" hideDelay="0" submitMode="none">
-		<f:facet name="label">Browse data</f:facet>
-		<rich:menuItem>
-			<s:link view="/GestorEnlacesExternosList.xhtml"
-				value="GestorEnlacesExternos List" id="GestorEnlacesExternosId"
-				includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/ActividadList.xhtml" value="Actividad List"
-				id="ActividadId" includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/CursoList.xhtml" value="Curso List" id="CursoId"
-				includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/UsuarioList.xhtml" value="Usuario List" id="UsuarioId"
-				includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/HistorialNotasList.xhtml" value="HistorialNotas List"
-				id="HistorialNotasId" includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/GestorRepositoriosVirtualesList.xhtml"
-				value="GestorRepositoriosVirtuales List"
-				id="GestorRepositoriosVirtualesId" includePageParams="false"
-				propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/UserRoleList.xhtml" value="UserRole List"
-				id="UserRoleId" includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/GestorAnunciosList.xhtml" value="GestorAnuncios List"
-				id="GestorAnunciosId" includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/CuentasUsuarioList.xhtml" value="CuentasUsuario List"
-				id="CuentasUsuarioId" includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/TipoList.xhtml" value="Tipo List" id="TipoId"
-				includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/GestorCargaArchivosList.xhtml"
-				value="GestorCargaArchivos List" id="GestorCargaArchivosId"
-				includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/NotaActividadList.xhtml" value="NotaActividad List"
-				id="NotaActividadId" includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/GestorMensajeriaList.xhtml"
-				value="GestorMensajeria List" id="GestorMensajeriaId"
-				includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/GrupoCursoList.xhtml" value="GrupoCurso List"
-				id="GrupoCursoId" includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/EnteUniversitarioList.xhtml"
-				value="EnteUniversitario List" id="EnteUniversitarioId"
-				includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/GestorNoticiasList.xhtml" value="GestorNoticias List"
-				id="GestorNoticiasId" includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/ReceptorMensajesList.xhtml"
-				value="ReceptorMensajes List" id="ReceptorMensajesId"
-				includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/UserAccountList.xhtml" value="UserAccount List"
-				id="UserAccountId" includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/GrupoUsuariosList.xhtml" value="GrupoUsuarios List"
-				id="GrupoUsuariosId" includePageParams="false" propagation="none" />
-		</rich:menuItem>
-		<rich:menuItem>
-			<s:link view="/UserPermissionList.xhtml" value="UserPermission List"
-				id="UserPermissionId" includePageParams="false" propagation="none" />
-		</rich:menuItem>
-	</rich:dropDownMenu>
 	<!-- @newMenuItem@ -->
 	<rich:toolBarGroup location="right">
 		<h:outputText id="menuWelcomeId"

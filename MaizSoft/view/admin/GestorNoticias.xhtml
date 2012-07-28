@@ -51,7 +51,7 @@
 		<div class="actionButtons">
 
 			<s:button view="/admin/GestorNoticiasEdit.xhtml" id="edit"
-				value="Editar" />
+				value="Editar" rendered="#{s:hasRole('admin')}"/>
 
 			<s:button
 				view="/#{empty gestorNoticiasFrom ? 'GestorNoticiasList' : gestorNoticiasFrom}.xhtml"

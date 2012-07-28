@@ -5,16 +5,196 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:rich="http://richfaces.org/rich"
-	template="layout/template2.xhtml">
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich" template="/layout/template2.xhtml">
 
 	<ui:define name="head">
-		<link href="/css/default.css" rel="stylesheet" type="text/css" />
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
 	</ui:define>
 
 	<ui:define name="centroT">
 	
-		<h:outputLabel value="#{usuarioSeleccionadoBean.usuarioSeleccionado.primerNombre}" />
+		
+		<h:form id="usuario" styleClass="edit">
+
+						<rich:panel>
+							<f:facet name="header">Editar Usuario</f:facet>
+
+							<s:decorate id="primerNombreField" template="/layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Primer nombre</ui:define>
+								<h:inputText id="primerNombre" required="true" size="30"
+									maxlength="35" value="#{usuarioSeleccionadoBean.usuarioSeleccionado.primerNombre}">
+									<a:support event="onblur" reRender="primerNombreField"
+										bypassUpdates="true" ajaxSingle="true" />
+								</h:inputText>
+							</s:decorate>
+
+							<br />
+							<br />
+							<s:decorate id="segundoNombreField" template="/layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Segundo nombre</ui:define>
+								<h:inputText id="segundoNombre" size="30" maxlength="35"
+									value="#{usuarioSeleccionadoBean.usuarioSeleccionado.segundoNombre}">
+									<a:support event="onblur" reRender="segundoNombreField"
+										bypassUpdates="true" ajaxSingle="true" />
+								</h:inputText>
+							</s:decorate>
+							<br />
+							<br />
+
+
+							<s:decorate id="apellidosField" template="/layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Apellidos</ui:define>
+								<h:inputText id="apellidos" required="true" size="30"
+									maxlength="35" value="#{usuarioSeleccionadoBean.usuarioSeleccionado.apellidos}">
+									<a:support event="onblur" reRender="apellidosField"
+										bypassUpdates="true" ajaxSingle="true" />
+								</h:inputText>
+							</s:decorate>
+
+							<br />
+							<br />
+							<s:decorate id="tipoDocumento" template="/layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Tipo Documento identidad</ui:define>
+								<h:selectOneMenu value="#{usuarioSeleccionadoBean.usuarioSeleccionado.tipo}"
+									id="tipoDocumento" rendered="true" disabled="true">
+									<s:selectItems value="#{listaTiposDocumento}" var="listaE"
+										label="#{listaE.nombre}"/>
+									<s:convertEntity />
+									<a4j:support event="onchange" reRender="dos" />
+								</h:selectOneMenu>
+							</s:decorate>
+
+
+							<br />
+							<br />
+
+							<s:decorate id="documentoIdentidadField"
+								template="/layout/edit.xhtml" style="position:absolute;">
+								<ui:define name="label">Documento identidad</ui:define>
+								<h:inputText id="documentoIdentidad" required="true" size="30"
+									maxlength="35" disabled="true" 
+									value="#{usuarioSeleccionadoBean.usuarioSeleccionado.documentoIdentidad}">
+									<a:support event="onblur" reRender="documentoIdentidadField"
+										bypassUpdates="true" ajaxSingle="true" />
+								</h:inputText>
+							</s:decorate>
+
+
+							<br />
+							<br />
+
+							<s:decorate id="correoElectronicoField"
+								template="/layout/edit.xhtml" style="position:absolute;">
+								<ui:define name="label">Correo electronico</ui:define>
+								<h:inputText id="correoElectronico" required="true" size="30"
+									maxlength="35"
+									value="#{usuarioSeleccionadoBean.usuarioSeleccionado.correoElectronico}">
+									<a:support event="onblur" reRender="correoElectronicoField"
+										bypassUpdates="true" ajaxSingle="true" />
+								</h:inputText>
+							</s:decorate>
+							<br />
+							<br />
+
+
+							<s:decorate id="codigoField" template="/layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Código</ui:define>
+								<h:inputText id="apellidos" required="true" size="30" disabled="true"
+									maxlength="35" value="#{usuarioSeleccionadoBean.usuarioSeleccionado.codigoUsuarios}">
+									<a:support event="onblur" reRender="apellidosField"
+										bypassUpdates="true" ajaxSingle="true" />
+								</h:inputText>
+							</s:decorate>
+
+							<br />
+							<br />
+							<s:decorate id="facultad" template="/layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Escuela</ui:define>
+								<h:selectOneMenu
+									value="#{usuarioSeleccionadoBean.usuarioSeleccionado.enteUniversitarios}"
+									id="enteUniversitario" required="true" rendered="true" disabled="true">
+									<s:selectItems value="#{listaEntesUniversitariosEscuelas}" var="lista"
+										label="#{lista.nombreEnteUniversitario}"/>
+									<a4j:support event="onchange" reRender="dos" />
+									<s:convertEntity />
+								</h:selectOneMenu>
+							</s:decorate>
+
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<s:decorate id="fotoUserField" template="/layout/edit.xhtml"
+								style="position:absolute;">
+								<ui:define name="label">Foto:</ui:define>
+								<br />
+
+							</s:decorate>
+							<br />
+							<br />
+							
+								<h:panelGrid columns="1" columnClasses="top">
+									<rich:fileUpload
+										fileUploadListener="#{fileUploadBean.listener}" id="upload"
+										acceptedTypes="jpg, gif, png, bmp"
+										ontyperejected="alert('Only JPG, GIF, PNG and BMP files are accepted');"
+										maxFilesQuantity="1">
+									</rich:fileUpload>
+									<h:panelGroup id="info" layout="block">
+										<rich:panel bodyClass="info">
+
+											<h:outputText value="No files currently uploaded"
+												rendered="#{fileUploadBean.size==0}" />
+											<rich:dataGrid columns="1" value="#{fileUploadBean.files}"
+												var="file" rowKeyVar="row">
+												<rich:panel bodyClass="rich-laguna-panel-no-header">
+													<h:panelGrid columns="1">
+														<a4j:mediaOutput element="img" mimeType="image/jpeg"
+															createContent="#{fileUploadBean.paint}" value="#{row}"
+															style="width:10px; height:10px;" cacheable="false">
+															<f:param value="#{fileUploadBean.timeStamp}" name="time" />
+														</a4j:mediaOutput>
+
+													</h:panelGrid>
+												</rich:panel>
+											</rich:dataGrid>
+										</rich:panel>
+										<br />
+
+									</h:panelGroup>
+							</h:panelGrid>
+
+							<div style="clear: both; position: absolute;">
+								<span class="required">*</span> Campos Obligatorios
+							</div>
+							<br />
+							<br />
+						</rich:panel>
+
+						<a4j:outputPanel id="dos">
+							<div class="actionButtons">
+
+								<h:commandButton id="update" value="Guardar"
+									action="#{usuarioHome.update}"/>
+
+								<s:button id="cancelEdit" value="Cancelar" propagation="end"
+									view="/UsuarioList.xhtml"/>
+
+							</div>
+
+						</a4j:outputPanel>
+					</h:form>
+		
 	</ui:define>
 
 		

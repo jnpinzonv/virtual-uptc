@@ -43,305 +43,331 @@
 	</ui:define>
 
 	<ui:define name="body">
-		
+
 		<body onload="mueveReloj()">
-				
-				
-				<div id="medio"
-					style="float: left; background-color: #FFFFFF; color: #000000; width: 100%;">
-					<ui:insert name="izquierdaT">
 
-						<div id="izquierda"
-							style="float: left; background-image: url(images/MenuMiddle2.jpg); padding: 5px; width: 190px;">
-							<rich:panel>
-								<h:form id="form">
 
-									<img src="css/images/gis.png" style="height: 80px" />
-									<br />
-									<h:commandLink value="#{userAccountHome.usuarioPorUsername()}"
-										action="/UserAccountEdit.seam" />
-									<br />
-									<br />
-									<rich:separator height="2" lineType="dotted" />
-									<br />
+			<div id="medio"
+				style="float: left; background-color: #FFFFFF; color: #000000; width: 100%;">
+				<ui:insert name="izquierdaT">
 
-									<h:panelGrid columns="2" columnClasses="cols,cols" width="400">
-										<rich:panelMenu style="width:150px;" itemMode="ajax"
-											groupMode="ajax" groupExpandedLeftIcon="triangleUp"
-											groupCollapsedLeftIcon="triangleDown"
-											topGroupExpandedRightIcon="chevronUp"
-											topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc"
-											itemChangeListener="#{panelMenuBean.updateCurrent}"
-											expandSingle="true" showDelay="250" hideDelay="0"
-											submitMode="none">
-											<rich:panelMenuGroup label="Mensajes" style="color: #FFFFFF;">
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Crear" action="/GestorMensajeriaEdit.seam"></s:link>
-												</rich:panelMenuItem>
-												<rich:panelMenuGroup label="Ver" style="color: #045491;" icon="disc">
-													<rich:panelMenuItem style="color: #045491;" icon="disc">
-														<s:link value="Mensajes Recibidos"
-															action="/MensajeList.seam" propagation="end"></s:link>
-													</rich:panelMenuItem>
-													<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Mensajes Enviados"
-														action="/MensajeListEnviado.seam" propagation="end"></s:link>
-												</rich:panelMenuItem>													
-												</rich:panelMenuGroup>
-											</rich:panelMenuGroup>
+					<div id="izquierda"
+						style="float: left; background-image: url(images/MenuMiddle2.jpg); padding: 5px; width: 190px;">
+						<rich:panel>
+							<h:form id="form">
 
-											<rich:panelMenuGroup label="Administrar Usuarios"
-												style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Adicionar"
-														action="#{usuarioHome.crearUsuario}"
-														rendered="#{s:hasPermission('seam.user', 'create')}"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Carga Masiva"
-														action="#{cargaMasivaUsuariosBean.crearUsuario}"
-														rendered="#{s:hasPermission('seam.user', 'create')}"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Editar" action="/UsuarioListEdit.seam"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-												
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Crear Cuenta" action="/UsuarioList.seam"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-											</rich:panelMenuGroup>
-											<rich:panelMenuGroup label="Administrar Curso"
-												style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Crear Curso" action="/admin/CursoEdit.seam"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Editar Curso" action="/CursoList.seam"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Crear Grupo"
-														action="/admin/GrupoCursoEdit.seam" propagation="end"></s:link>
-												</rich:panelMenuItem>
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Editar Grupo" action="/GrupoCursoList.seam"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Adicionar Estudiante" propagation="end"></s:link>
-												</rich:panelMenuItem>
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Matricular Usuarios"
-														action="/admin/MatricularUsuarios.seam" propagation="end"></s:link>
-												</rich:panelMenuItem>
-											</rich:panelMenuGroup>
-											<rich:panelMenuGroup label="Administrar Facultad y Escuela"
-												style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Crear"
-														action="/admin/EnteUniversitarioEdit.seam"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Editar" action="/EnteUniversitarioList.seam"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-											</rich:panelMenuGroup>
-											<rich:panelMenuGroup label="Generar Informe"
-												style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Generar" propagation="end"></s:link>
-												</rich:panelMenuItem>
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Ver" propagation="end"></s:link>
-												</rich:panelMenuItem>
-											</rich:panelMenuGroup>
-											<rich:panelMenuGroup label="Administrar Repositorio"
-												style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Crear"
-														action="/GestorRepositoriosVirtualesEdit.seam"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Editar"
-														action="/GestorRepositoriosVirtualesList.seam"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-											</rich:panelMenuGroup>
-											
-											<rich:panelMenuGroup label="Notas" style="color: #FFFFFF;"
-												rendered="#{s:hasRole('estudiante')}">
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Ver"
-														action="/GestorRepositoriosVirtualesEdit.seam"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-											</rich:panelMenuGroup>
-
-											<rich:panelMenuGroup label="Enlaces Externos"
-												style="color: #FFFFFF;"
-												rendered="#{s:hasRole('estudiante')}">
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Consultar"
-														action="/GestorRepositoriosVirtualesEdit.seam"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-											</rich:panelMenuGroup>
-
-											<rich:panelMenuGroup label="Noticias" style="color: #FFFFFF;"
-												rendered="#{s:hasRole('estudiante')}">
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Consultar"
-														action="/GestorRepositoriosVirtualesEdit.seam"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-											</rich:panelMenuGroup>
-											
-
-											<rich:panelMenuGroup label="Enlaces Externos"
-												style="color: #FFFFFF;" rendered="#{s:hasRole('docente')}">
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Consultar"
-														action="/GestorRepositoriosVirtualesEdit.seam"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-											</rich:panelMenuGroup>
-
-											<rich:panelMenuGroup label="Noticias" style="color: #FFFFFF;"
-												rendered="#{s:hasRole('docente')}">
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Consultar"
-														action="/GestorRepositoriosVirtualesEdit.seam"
-														propagation="end"></s:link>
-												</rich:panelMenuItem>
-											</rich:panelMenuGroup>
-										</rich:panelMenu>
-										<a4j:outputPanel ajaxRendered="true">
-											<rich:panel rendered="#{not empty panelMenuBean.current}">
-												<h:outputText value="#{panelMenuBean.current} selected"
-													id="current" />
-											</rich:panel>
-										</a4j:outputPanel>
-									</h:panelGrid>
-
-								</h:form>
-
-							</rich:panel>
-
-						</div>
-					</ui:insert>
-					<ui:insert name="derechaT">
-						<div id="derecha"
-							style="float: right; background-image: url(images/MenuMiddle2_1.jpg); padding: 5px; width: 190px;">
-							<h:form>
-
+								<img src="css/images/gis.png" style="height: 80px" />
+								<br />
 								<rich:panel>
 
+									
+									<div class="results" id="usuarioSelect">
 
-									<rich:calendar popup="false">
-										<f:facet name="weekNumber">
-											<h:outputText value="" style="color:red" />
-										</f:facet>
-									</rich:calendar>
-									<s:link value="Agenda" action="/GestorNoticiasList.seam"
-										rendered="#{s:hasRole('docente')}" propagation="end" />
-									<s:link value="Agenda" action="/Calendario.seam"
-										rendered="#{s:hasRole('estudiante')}" propagation="end" />
-									<br />
+										<h:outputText value="La busqueda no arrojo resultados."
+											rendered="#{empty listaUsuarioSeleccionado}" />
+										<div>
 
-									<s:link value="Gestionar noticias"
-										action="/GestorNoticiasList.seam"
-										rendered="#{s:hasRole('admin')}" propagation="end" />
-									<br />
-									<br />
-									<s:link value="Ayuda" action="/CursoActividad.seam"
-										propagation="end" />
-									<br />
+											<h:dataTable id="grupoCursoList" var="usuario"
+												value="#{listaUsuarioSeleccionado}">
 
-									<br />
+												<h:column styleClass="action">
 
-									<rich:panel>
+													<s:link 
+														value="#{usuario.primerNombre}  #{usuario.apellidos}"
+														propagation="none" id="usuarioEdit"
+														action="#{usuarioSeleccionadoBean.setSeleccion()}">
+														<f:param name="usuarioId"
+															value="#{usuario.id}" />
 
-										<f:facet name="header">Cursos</f:facet>
-										<div class="results" id="grupoCursoList">
+													</s:link>
+												</h:column>
+											</h:dataTable>
 
-											<h:outputText value="La busqueda no arrojo resultados."
-												rendered="#{empty listaGrupos}" />
-											<div>
-
-												<h:dataTable id="grupoCursoList" var="_grupoCurso"
-													value="#{listaGrupos}">
-
-													<h:column styleClass="action">
-
-														<s:link view="/CuerpoCurso.xhtml"
-															value="#{_grupoCurso.cursoGrupo.nombreAsignatura}"
-															propagation="none" id="grupoCursoEdit"
-															action="#{cursoActualBean.selecionado(_grupoCurso.idGrupo) }">
-															<f:param name="grupoCursoIdGrupo"
-																value="{_grupoCurso.idGrupo}" />
-
-														</s:link>
-													</h:column>
-												</h:dataTable>
-
-											</div>
 										</div>
-									</rich:panel>
+									</div>
 								</rich:panel>
+
+								<br />
+								<br />
+								<rich:separator height="2" lineType="dotted" />
+								<br />
+
+								<h:panelGrid columns="2" columnClasses="cols,cols" width="400">
+									<rich:panelMenu style="width:150px;" itemMode="ajax"
+										groupMode="ajax" groupExpandedLeftIcon="triangleUp"
+										groupCollapsedLeftIcon="triangleDown"
+										topGroupExpandedRightIcon="chevronUp"
+										topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc"
+										itemChangeListener="#{panelMenuBean.updateCurrent}"
+										expandSingle="true" showDelay="250" hideDelay="0"
+										submitMode="none">
+										<rich:panelMenuGroup label="Mensajes" style="color: #FFFFFF;">
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Crear" action="/GestorMensajeriaEdit.seam"></s:link>
+											</rich:panelMenuItem>
+											<rich:panelMenuGroup label="Ver" style="color: #045491;"
+												icon="disc">
+												<rich:panelMenuItem style="color: #045491;" icon="disc">
+													<s:link value="Mensajes Recibidos"
+														action="/MensajeList.seam" propagation="end"></s:link>
+												</rich:panelMenuItem>
+												<rich:panelMenuItem style="color: #045491;" icon="disc">
+													<s:link value="Mensajes Enviados"
+														action="/MensajeListEnviado.seam" propagation="end"></s:link>
+												</rich:panelMenuItem>
+											</rich:panelMenuGroup>
+										</rich:panelMenuGroup>
+
+										<rich:panelMenuGroup label="Administrar Usuarios"
+											style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Adicionar"
+													action="#{usuarioHome.crearUsuario}"
+													rendered="#{s:hasPermission('seam.user', 'create')}"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Carga Masiva"
+													action="#{cargaMasivaUsuariosBean.crearUsuario}"
+													rendered="#{s:hasPermission('seam.user', 'create')}"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Editar" action="/UsuarioListEdit.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Crear Cuenta" action="/UsuarioList.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+										</rich:panelMenuGroup>
+										<rich:panelMenuGroup label="Administrar Curso"
+											style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Crear Curso" action="/admin/CursoEdit.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Editar Curso" action="/CursoList.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Crear Grupo"
+													action="/admin/GrupoCursoEdit.seam" propagation="end"></s:link>
+											</rich:panelMenuItem>
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Editar Grupo" action="/GrupoCursoList.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Adicionar Estudiante" propagation="end"></s:link>
+											</rich:panelMenuItem>
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Matricular Usuarios"
+													action="/admin/MatricularUsuarios.seam" propagation="end"></s:link>
+											</rich:panelMenuItem>
+										</rich:panelMenuGroup>
+										<rich:panelMenuGroup label="Administrar Facultad y Escuela"
+											style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Crear"
+													action="/admin/EnteUniversitarioEdit.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Editar" action="/EnteUniversitarioList.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+										</rich:panelMenuGroup>
+										<rich:panelMenuGroup label="Generar Informe"
+											style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Generar" propagation="end"></s:link>
+											</rich:panelMenuItem>
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Ver" propagation="end"></s:link>
+											</rich:panelMenuItem>
+										</rich:panelMenuGroup>
+										<rich:panelMenuGroup label="Administrar Repositorio"
+											style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Crear"
+													action="/GestorRepositoriosVirtualesEdit.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Editar"
+													action="/GestorRepositoriosVirtualesList.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+										</rich:panelMenuGroup>
+
+										<rich:panelMenuGroup label="Notas" style="color: #FFFFFF;"
+											rendered="#{s:hasRole('estudiante')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Ver"
+													action="/GestorRepositoriosVirtualesEdit.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+										</rich:panelMenuGroup>
+
+										<rich:panelMenuGroup label="Enlaces Externos"
+											style="color: #FFFFFF;" rendered="#{s:hasRole('estudiante')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Consultar"
+													action="/GestorRepositoriosVirtualesEdit.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+										</rich:panelMenuGroup>
+
+										<rich:panelMenuGroup label="Noticias" style="color: #FFFFFF;"
+											rendered="#{s:hasRole('estudiante')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Consultar"
+													action="/GestorRepositoriosVirtualesEdit.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+										</rich:panelMenuGroup>
+
+
+										<rich:panelMenuGroup label="Enlaces Externos"
+											style="color: #FFFFFF;" rendered="#{s:hasRole('docente')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Consultar"
+													action="/GestorRepositoriosVirtualesEdit.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+										</rich:panelMenuGroup>
+
+										<rich:panelMenuGroup label="Noticias" style="color: #FFFFFF;"
+											rendered="#{s:hasRole('docente')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Consultar"
+													action="/GestorRepositoriosVirtualesEdit.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+										</rich:panelMenuGroup>
+									</rich:panelMenu>
+									<a4j:outputPanel ajaxRendered="true">
+										<rich:panel rendered="#{not empty panelMenuBean.current}">
+											<h:outputText value="#{panelMenuBean.current} selected"
+												id="current" />
+										</rich:panel>
+									</a4j:outputPanel>
+								</h:panelGrid>
 
 							</h:form>
 
-						</div>
-					</ui:insert>
-
-					<div id="centro"
-						style="float: center; margin-left: 210px; margin-right: 210px; overflow: hidden">
-						<ui:insert name="centroT">
-							<h1>CENTRO</h1>
-
-						</ui:insert>
-
-					</div>
-
-				</div>
-
-				<ui:insert name="footerT">
-
-					<div id="footer" style="overflow: hidden; float: center;"
-						align="center">
-						<rich:separator height="4" />
-						<br />
-						<div style="float: left; margin-left: 270px">
-							<img src="css/images/uptc.png" style="height: 80px" />
-						</div>
-
-						<div style="float: right; margin-right: 270px">
-							<img src="css/images/gis.png" style="height: 80px" />
-						</div>
-						<div style="position: relative;">
-							<p>
-								Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia
-								(UPTC) <br /> Facultad de Ingenier&#237;a <br />
-								Ingenier&#237;a de Sistemas y Computaci&#243;n <br /> Grupo de
-								Investigaci&#243;n en Ingenier&#237;a del Software <br />
-								Correo:gis@uptc.edu.co
-							</p>
-						</div>
-
+						</rich:panel>
 
 					</div>
 				</ui:insert>
-		
+				<ui:insert name="derechaT">
+					<div id="derecha"
+						style="float: right; background-image: url(images/MenuMiddle2_1.jpg); padding: 5px; width: 190px;">
+						<h:form>
+
+							<rich:panel>
+
+
+								<rich:calendar popup="false">
+									<f:facet name="weekNumber">
+										<h:outputText value="" style="color:red" />
+									</f:facet>
+								</rich:calendar>
+								<s:link value="Agenda" action="/GestorNoticiasList.seam"
+									rendered="#{s:hasRole('docente')}" propagation="end" />
+								<s:link value="Agenda" action="/Calendario.seam"
+									rendered="#{s:hasRole('estudiante')}" propagation="end" />
+								<br />
+
+								<s:link value="Gestionar noticias"
+									action="/GestorNoticiasList.seam"
+									rendered="#{s:hasRole('admin')}" propagation="end" />
+								<br />
+								<br />
+								<s:link value="Ayuda" action="/CursoActividad.seam"
+									propagation="end" />
+								<br />
+
+								<br />
+
+								<rich:panel>
+
+									<f:facet name="header">Cursos</f:facet>
+									<div class="results" id="grupoCursoList">
+
+										<h:outputText value="La busqueda no arrojo resultados."
+											rendered="#{empty listaGrupos}" />
+										<div>
+
+											<h:dataTable id="grupoCursoList" var="_grupoCurso"
+												value="#{listaGrupos}">
+
+												<h:column styleClass="action">
+
+													<s:link view="/CuerpoCurso.xhtml"
+														value="#{_grupoCurso.cursoGrupo.nombreAsignatura}"
+														propagation="none" id="grupoCursoEdit"
+														action="#{cursoActualBean.selecionado(_grupoCurso.idGrupo) }">
+														<f:param name="grupoCursoIdGrupo"
+															value="{_grupoCurso.idGrupo}" />
+
+													</s:link>
+												</h:column>
+											</h:dataTable>
+
+										</div>
+									</div>
+								</rich:panel>
+							</rich:panel>
+
+						</h:form>
+
+					</div>
+				</ui:insert>
+
+				<div id="centro"
+					style="float: center; margin-left: 210px; margin-right: 210px; overflow: hidden">
+					<ui:insert name="centroT">
+						<h1>CENTRO</h1>
+
+					</ui:insert>
+
+				</div>
+
+			</div>
+
+			<ui:insert name="footerT">
+
+				<div id="footer" style="overflow: hidden; float: center;"
+					align="center">
+					<rich:separator height="4" />
+					<br />
+					<div style="float: left; margin-left: 270px">
+						<img src="css/images/uptc.png" style="height: 80px" />
+					</div>
+
+					<div style="float: right; margin-right: 270px">
+						<img src="css/images/gis.png" style="height: 80px" />
+					</div>
+					<div style="position: relative;">
+						<p>
+							Universidad Pedag&#243;gica y Tecnol&#243;gica de Colombia (UPTC)
+							<br /> Facultad de Ingenier&#237;a <br /> Ingenier&#237;a de
+							Sistemas y Computaci&#243;n <br /> Grupo de Investigaci&#243;n
+							en Ingenier&#237;a del Software <br /> Correo:gis@uptc.edu.co
+						</p>
+					</div>
+
+
+				</div>
+			</ui:insert>
+
 		</body>
-		
+
 	</ui:define>
 
 </ui:composition>

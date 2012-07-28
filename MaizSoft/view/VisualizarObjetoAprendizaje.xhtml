@@ -1,0 +1,37 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	template="layout/template2.xhtml">
+
+	<ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
+	</ui:define>
+
+	<ui:define name="centroT">
+
+
+		<h:outputText value="Video de youtube" />
+		<object width="425" height="350" type="application/x-shockwave-flash"
+			data="http://www.youtube.com/v/PsRkU7FV4aw">
+			<param name="movie" value="http://www.youtube.com/v/PsRkU7FV4aw" />
+			<param name="wmode" value="transparent" />
+		</object>
+		
+		<iframe src="http://localhost/html_single/" 
+		></iframe>
+		
+		
+		
+
+
+	</ui:define>
+
+</ui:composition>
+

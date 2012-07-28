@@ -17,7 +17,7 @@ public class CursoList extends EntityQuery<Curso> {
 	public CursoList() {
 		setEjbql(EJBQL);
 		setRestrictionExpressionStrings(Arrays.asList(RESTRICTIONS));
-		setMaxResults(25);
+		
 	}
 
 	public Curso getCurso() {

@@ -22,7 +22,6 @@ public class GestorEnlacesExternosList
 	public GestorEnlacesExternosList() {
 		setEjbql(EJBQL);
 		setRestrictionExpressionStrings(Arrays.asList(RESTRICTIONS));
-		setMaxResults(25);
 	}
 
 	public GestorEnlacesExternos getGestorEnlacesExternos() {

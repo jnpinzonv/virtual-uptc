@@ -60,8 +60,7 @@
 					<h:outputText value="La busqueda no arrojo resultados."
 						rendered="#{empty grupoCursoList.resultList}" />
 					<div align="center">
-						<rich:datascroller align="left" for="grupoCursoList"
-							page="#{grupoCursoList.pageCount}" reRender="sc7" id="sc8" />
+						
 						<rich:dataTable id="grupoCursoList" var="_grupoCurso"
 							value="#{grupoCursoList.resultList}" rows="10">
 							<h:column>
@@ -132,7 +131,7 @@
 								</s:link>
 							</rich:column>
 						</rich:dataTable>
-						<rich:datascroller align="left" for="grupoCursoList"
+						<rich:datascroller align="center" for="grupoCursoList"
 							page="#{grupoCursoList.pageCount}" id="sc7" reRender="sc8" />
 					</div>
 				</div>

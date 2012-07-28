@@ -19,7 +19,6 @@ public class EnteUniversitarioList extends EntityQuery<EnteUniversitario> {
 	public EnteUniversitarioList() {
 		setEjbql(EJBQL);
 		setRestrictionExpressionStrings(Arrays.asList(RESTRICTIONS));
-		setMaxResults(25);
 	}
 
 	public EnteUniversitario getEnteUniversitario() {

@@ -98,7 +98,7 @@ public class GrupoCurso implements Serializable {
 	 */
 	private Set<HistorialNotas> listaHistorialNotas;
 	/**
-	 * Variable encargada de guardar la lista del número de divisiones del
+	 * Variable encargada de guardar la lista del nï¿½mero de divisiones del
 	 * curso.
 	 */
 	private Set<NumeroDivisiones> numeroDivisiones;
@@ -138,6 +138,7 @@ public class GrupoCurso implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_grupo", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdGrupo() {
+		System.out.println("sdsd" + idGrupo);
 		return idGrupo;
 	}
 

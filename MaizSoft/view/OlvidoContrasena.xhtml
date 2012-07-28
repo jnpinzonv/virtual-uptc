@@ -23,7 +23,32 @@
 				<ui:insert name="top">
 					<div class="menuheaderNoticias"></div>
 					<div class="menucontent"></div>
-					<div class="menucontent"></div>
+					<div class="menucontent">
+					<h:form>
+                <h:outputText value="La busqueda no retorno resultados"
+						rendered="#{empty gestorNoticiasList.resultList}" />
+					<div align="center">
+						
+						<rich:dataTable id="gestorNoticiasList" var="_gestorNoticias"
+							value="#{gestorNoticiasList.resultList}"
+							rendered="#{not empty gestorNoticiasList.resultList}" rows="6"
+							width="180px">
+							
+							<h:column width="160px">
+								<s:link view="/admin/#{empty from ? 'GestorNoticias' : from}.xhtml"
+									value="#{_gestorNoticias.nombreNoticia}"
+									propagation="none"
+									id="gestorNoticiasViewId">
+									<f:param name="gestorNoticiasIdNoticia"
+										value="#{_gestorNoticias.idNoticia}" />
+								</s:link>
+							</h:column>
+							</rich:dataTable>
+						<rich:datascroller align="left" for="gestorNoticiasList"
+							page="#{gestorNoticiasList.pageCount}" id="sc112" reRender="sc111"/>
+					</div>
+                </h:form>
+					</div>
 					<div class="menucontent"></div>
 					<div class="menucontent"></div>
 					<div class="menudown"></div>
@@ -59,7 +84,7 @@
 			</div>
 
 
-			<div class="center2" style="color: #000000; height: 350px">
+			<div class="center2" style="color: #000000; height: 400px">
 				<div align="center">
 					<h:form>
 						<h3>¿Olvido su contraseña?</h3>
@@ -78,9 +103,12 @@
 						<h:inputText value="#{usuario.correoElectronico}"/>
 						<br />
 						<br />
+						<br />
+						
 					
 						<h:commandButton  value="Aceptar"   action="#{gestionarOlvidoContraseniaBean.usuarioValido()}"/>
 						<h:commandButton value="Cancelar" action="/login.seam" />
+					
 					</h:form>
 				</div>
 			</div>

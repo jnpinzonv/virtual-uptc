@@ -24,7 +24,6 @@ public class GestorRepositoriosVirtualesList
 	public GestorRepositoriosVirtualesList() {
 		setEjbql(EJBQL);
 		setRestrictionExpressionStrings(Arrays.asList(RESTRICTIONS));
-		setMaxResults(25);
 	}
 
 	public GestorRepositoriosVirtuales getGestorRepositoriosVirtuales() {

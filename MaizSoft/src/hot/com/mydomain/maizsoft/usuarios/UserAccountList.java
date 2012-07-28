@@ -19,7 +19,6 @@ public class UserAccountList extends EntityQuery<UserAccount> {
 	public UserAccountList() {
 		setEjbql(EJBQL);
 		setRestrictionExpressionStrings(Arrays.asList(RESTRICTIONS));
-		setMaxResults(25);
 	}
 
 	public UserAccount getUserAccount() {

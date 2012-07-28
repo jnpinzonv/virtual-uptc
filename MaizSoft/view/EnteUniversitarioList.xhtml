@@ -24,9 +24,7 @@
 
 					<div align="center">
 						<h3>Facultades:</h3>
-						<rich:datascroller align="left" for="enteUniversitarioList"
-							page="#{enteUniversitarioList.pageCount}" id="sc17"
-							reRender="sc18" />
+						
 						<rich:dataTable id="enteUniversitarioList"
 							var="_enteUniversitario"
 							rendered="#{not empty enteUniversitarioList.resultList}"
@@ -86,15 +84,13 @@
 								</s:link>
 							</rich:column>
 						</rich:dataTable>
-						<rich:datascroller align="left" for="enteUniversitarioList"
+						<rich:datascroller align="center" for="enteUniversitarioList"
 							page="#{enteUniversitarioList.pageCount}" id="sc2" reRender="sc1" />
 
 						<br />
 
 						<h3>Escuelas:</h3>
-						<rich:datascroller align="left" for="enteUniversitarioListE"
-							page="#{enteUniversitarioListE.pageCount}" id="sc21"
-							reRender="sc22" />
+						
 						<rich:dataTable id="enteUniversitarioListE"
 							var="_enteUniversitario"
 							rendered="#{not empty enteUniversitarioList.resultList}"
@@ -166,7 +162,7 @@
 								</s:link>
 							</rich:column>
 						</rich:dataTable>
-						<rich:datascroller align="left" for="enteUniversitarioListE"
+						<rich:datascroller align="center" for="enteUniversitarioListE"
 							page="#{enteUniversitarioListE.pageCount}" id="sc22"
 							reRender="sc21" />
 					</div>

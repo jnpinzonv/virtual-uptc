@@ -17,7 +17,6 @@ public class GestorMensajeriaList extends EntityQuery<GestorMensajeria> {
 	public GestorMensajeriaList() {
 		setEjbql(EJBQL);
 		setRestrictionExpressionStrings(Arrays.asList(RESTRICTIONS));
-		setMaxResults(25);
 	}
 
 	public GestorMensajeria getGestorMensajeria() {

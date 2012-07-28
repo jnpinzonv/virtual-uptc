@@ -77,7 +77,7 @@
 		<div class="actionButtons">
 
 			<s:button view="/GestorRepositoriosVirtualesEdit.xhtml" id="edit"
-				value="Editar" />
+				value="Editar" rendered="#{s:hasRole('admin')}"/>
 
 			<s:button
 				view="/#{empty gestorRepositoriosVirtualesFrom ? 'GestorRepositoriosVirtualesList' : gestorRepositoriosVirtualesFrom}.xhtml"

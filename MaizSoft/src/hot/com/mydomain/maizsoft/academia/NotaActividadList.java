@@ -17,7 +17,6 @@ public class NotaActividadList extends EntityQuery<NotaActividad> {
 	public NotaActividadList() {
 		setEjbql(EJBQL);
 		setRestrictionExpressionStrings(Arrays.asList(RESTRICTIONS));
-		setMaxResults(25);
 	}
 
 	public NotaActividad getNotaActividad() {

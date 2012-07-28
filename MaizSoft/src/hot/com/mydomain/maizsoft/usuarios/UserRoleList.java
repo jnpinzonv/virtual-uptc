@@ -17,7 +17,6 @@ public class UserRoleList extends EntityQuery<UserRole> {
 	public UserRoleList() {
 		setEjbql(EJBQL);
 		setRestrictionExpressionStrings(Arrays.asList(RESTRICTIONS));
-		setMaxResults(25);
 	}
 
 	public UserRole getUserRole() {

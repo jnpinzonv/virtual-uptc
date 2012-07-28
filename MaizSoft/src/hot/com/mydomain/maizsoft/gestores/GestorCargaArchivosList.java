@@ -20,7 +20,6 @@ public class GestorCargaArchivosList extends EntityQuery<GestorCargaArchivos> {
 	public GestorCargaArchivosList() {
 		setEjbql(EJBQL);
 		setRestrictionExpressionStrings(Arrays.asList(RESTRICTIONS));
-		setMaxResults(25);
 	}
 
 	public GestorCargaArchivos getGestorCargaArchivos() {

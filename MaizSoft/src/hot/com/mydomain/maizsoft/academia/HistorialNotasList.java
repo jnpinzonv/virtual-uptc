@@ -17,7 +17,6 @@ public class HistorialNotasList extends EntityQuery<HistorialNotas> {
 	public HistorialNotasList() {
 		setEjbql(EJBQL);
 		setRestrictionExpressionStrings(Arrays.asList(RESTRICTIONS));
-		setMaxResults(25);
 	}
 
 	public HistorialNotas getHistorialNotas() {

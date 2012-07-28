@@ -3,16 +3,9 @@
  */
 package com.mydomain.maizsoft.usuarios;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
-import javax.persistence.Query;
-
-import org.jboss.seam.Component;
-import org.jboss.seam.faces.FacesMessages;
-import org.jboss.seam.security.Credentials;
-
-import com.mydomain.Directorio.model.ConsultasJpql;
 import com.mydomain.Directorio.model.Usuario;
 
 /**
@@ -51,5 +44,7 @@ public interface IUsuarioSeleccionado {
 	
 	
 	String setSeleccion();
+	
+	void updateUsuario();
 
 }

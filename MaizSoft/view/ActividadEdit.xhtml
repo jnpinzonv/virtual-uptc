@@ -20,7 +20,7 @@
 
 			<rich:panel>
 				<f:facet name="header">#{actividadHome.managed ? 'Editar' : 'Adicionar'} Actividad</f:facet>
-
+<h:outputLabel value="#{seccionSeleccionadaBean.seccionSeleccionada}" />
 
 				<h:outputLabel value="Actividad:" for="sobrenombre" />
 				<h:selectOneMenu value="#{actividadHome.instance.tipo}"
@@ -206,9 +206,9 @@
 			</rich:panel>
 			<a4j:outputPanel id="dos">
 				<div class="actionButtons">
-
+					<h:outputLabel value="#{cursoActualBean.seleccionado.cursoGrupo.codigo}" />
 					<h:commandButton id="save" value="Guardar"
-						action="#{actividadHome.saveActividad(seccionSeleccionadaBean.seccionSeleccionada)}"
+						action="#{actividadHome.saveActividad(seccionSeleccionadaBean.seccionSeleccionada,cursoActualBean.select())}"
 						disabled="#{!actividadHome.wired}"
 						rendered="#{!actividadHome.managed}" />
 

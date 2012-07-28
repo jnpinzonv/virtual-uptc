@@ -1,11 +1,5 @@
 package com.mydomain.maizsoft.academia;
 
-import com.mydomain.Directorio.model.*;
-import com.mydomain.maizsoft.comunicaciones.CursoActualBean;
-import com.mydomain.maizsoft.comunicaciones.GestorEnvioCorreoElectronico;
-import com.mydomain.maizsoft.comunicaciones.ICursoActual;
-import com.mydomain.maizsoft.tipos.TipoHome;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -25,6 +19,22 @@ import org.jboss.seam.framework.EntityHome;
 import org.jboss.seam.log.Log;
 import org.jboss.seam.security.Credentials;
 
+import com.mydomain.Directorio.model.Actividad;
+import com.mydomain.Directorio.model.ConfiguracionesSistema;
+import com.mydomain.Directorio.model.ConstantesLog;
+import com.mydomain.Directorio.model.ConsultasJpql;
+import com.mydomain.Directorio.model.EstadisticasGenerales;
+import com.mydomain.Directorio.model.GestorCargaArchivos;
+import com.mydomain.Directorio.model.GestorEnlacesExternos;
+import com.mydomain.Directorio.model.GrupoCurso;
+import com.mydomain.Directorio.model.GrupoUsuarios;
+import com.mydomain.Directorio.model.NotaActividad;
+import com.mydomain.Directorio.model.NumeroDivisiones;
+import com.mydomain.Directorio.model.Tipo;
+import com.mydomain.Directorio.model.Usuario;
+import com.mydomain.maizsoft.comunicaciones.GestorEnvioCorreoElectronico;
+import com.mydomain.maizsoft.tipos.TipoHome;
+
 @Name("actividadHome")
 public class ActividadHome extends EntityHome<Actividad> {
 
@@ -33,6 +43,9 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 	@In(create = true)
 	TipoHome tipoHome;
+	
+	
+	Long idCurso;
 
 	public void setActividadIdActividad(Long id) {
 		setId(id);
@@ -88,20 +101,41 @@ public class ActividadHome extends EntityHome<Actividad> {
 		return listaTiposEnteUniversitarios;
 	}
 
-	public List<GrupoUsuarios> listaGrupoUsuarios() {
+	public List<GrupoUsuarios> listaGrupoUsuarios(Long param) {
 		Query q = getEntityManager().createQuery(
 				ConsultasJpql.GRUPO_USUARIOS_SELECIONADO);
+		//q.setParameter("parametro",param);
 		return (List<GrupoUsuarios>) q.getResultList();
 
 	}
-
-	public void saveActividad(int pasarSeccion)  {
-
-		
+	
+	
+	public String grupoSelecionado() {
+		GrupoCurso g=null;
 		try {
 			
 		
-		List<GrupoUsuarios> listaGrupos = listaGrupoUsuarios();
+		Query q = getEntityManager().createQuery(
+				ConsultasJpql.GRUPO_SELECCIONDADO);
+			g=(GrupoCurso) q.getSingleResult();
+		} catch (Exception e) {
+			return "";
+		}
+		//q.setParameter("parametro",param);
+		return g.getCursoGrupo().getNombreAsignatura();
+
+	}
+
+	public void saveActividad(int pasarSeccion, long idCursoSeleccionado)  {
+		/*Query q5 = getEntityManager().createQuery(
+				ConsultasJpql.PORCENTAJE_TOTAL_ACTIVIDAD);
+		
+		System.out.println(q5.getResultList().size()+ "hola seccion...............");
+		*/
+		
+		try {
+			
+		List<GrupoUsuarios> listaGrupos = listaGrupoUsuarios(idCursoSeleccionado);
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
 
@@ -117,7 +151,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		crearNotaActividad(listaGrupos, usuario);
 
 		NumeroDivisiones division = new NumeroDivisiones();
-		division.setActividad(instance);
+		division.setActividad(instance);		
 		division.setGrupoCurso(listaGrupos.get(0).getGrupoCurso());
 		division.setNumeroDivision(pasarSeccion);
 		getEntityManager().persist(division);
@@ -256,15 +290,19 @@ public class ActividadHome extends EntityHome<Actividad> {
 	public List<Actividad> getListaActividadesDivision(Long idTipo) {
 
 		Query q = null;
-		try {
+		List<Actividad> nueva=null;
 			q = getEntityManager().createQuery(
 					ConsultasJpql.ACTIVIADES_POR_DIVISION);
 			q.setParameter("parametro", idTipo);
+						
+		nueva=(List<Actividad>)q.getResultList();
+		System.out.println(nueva.size()+ "holaaaaaaaaaa");
+			try {
 		} catch (Exception e) {
 			return null;
 		}
 
-		return q.getResultList();
+		return nueva;
 
 	}
 
@@ -288,4 +326,32 @@ public class ActividadHome extends EntityHome<Actividad> {
 		nueva.setIdGrupoCurso(grupo.getIdGrupo());
 		getEntityManager().persist(nueva);
 	}
+	
+	
+	public String cursoActual(Long actual){
+		System.out.println("holaaaaaaaa");
+		System.out.println(actual+ "holaaaaaaaa");
+		instance.setIdCursoSeleccionado(actual);
+		
+		return "/ActividadEdit.xhtml";
+	}
+
+	/**
+	 * Se obtiene el valor de idCurso
+	 * @return El valor de idCurso
+	 */
+	public Long getIdCurso() {
+		return idCurso;
+	}
+
+	/**
+	 * Asigna el valor de idCurso
+	 * @param idCurso El valor por establecer para idCurso
+	 */
+	public void masIdCurso(Long idCurso) {
+		this.idCurso = idCurso;
+	}
+	
+	
+	
 }

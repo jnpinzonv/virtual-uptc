@@ -110,5 +110,10 @@ public class UsuarioSeleccionadoBean implements IUsuarioSeleccionado {
 		
 		return "/UsuarioEdit2.xhtml";
 	}
+	
+	
+	public void updateUsuario(){
+		entityManager.merge(usuarioSeleccionado);
+	}
 
 }

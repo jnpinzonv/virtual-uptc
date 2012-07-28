@@ -28,8 +28,9 @@
 						id="seccionSeleccionada" required="true" rendered="true">
 						<s:selectItems value="#{listaSeccionesCurso}" var="lista"
 							label="#{lista}" noSelectionLabel="SELECCIONE..." />
-						<a4j:support event="onchange" reRender="actividades"
-							ajaxSingle="true" />
+							
+						<a4j:support event="onchange" reRender="actividadess" ajaxSingle="true" />
+						
 
 					</h:selectOneMenu>
 
@@ -41,15 +42,15 @@
 				<br />
 
 				<div class="actionButtons" style="margin-left: 550px">
-					<s:button value="Agregar Actividad" view="/ActividadEdit.xhtml">
-
-						<f:param name="notaActividadFrom" value="Actividad" />
+					<s:button  view="/ActividadEdit.xhtml" value="Agregar Actividad" >
+					<f:param name="notaActividadFrom" value="Actividad"/>	
 					</s:button>
 
 				</div>
 
 				<br />
 				<br />
+				<a4j:outputPanel id="actividadess" ajaxRendered="true">
 				<rich:tabPanel switchType="client" id="actividades">
 					<rich:tab label="foro">
 						<rich:dataTable id="actividadList" var="_actividad"
@@ -485,9 +486,7 @@
 									<ui:include src="layout/sort.xhtml">
 										<ui:param name="entityList"
 											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Descripcion actividad" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.descripcionActividad" />
+										
 									</ui:include>
 								</f:facet>
 								<h:outputText
@@ -618,7 +617,7 @@
 
 					</rich:tab>
 				</rich:tabPanel>
-
+	</a4j:outputPanel>
 
 
 

@@ -3,36 +3,26 @@
  */
 package com.mydomain.maizsoft.comunicaciones;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Remove;
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
-import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.jboss.seam.Component;
-import org.jboss.seam.ScopeType;
-import org.jboss.seam.annotations.Destroy;
 import org.jboss.seam.annotations.Factory;
-import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Out;
-import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.datamodel.DataModelSelection;
 import org.jboss.seam.security.Credentials;
 
 import com.mydomain.Directorio.model.ConsultasJpql;
 import com.mydomain.Directorio.model.GrupoCurso;
-import com.mydomain.Directorio.model.GrupoUsuarios;
 import com.mydomain.Directorio.model.Usuario;
-import com.mydomain.maizsoft.academia.ActividadHome;
-import com.mydomain.maizsoft.curso.GrupoCursoHome;
+
+
 
 /**
  * Descripcion: Esta Clase se encarga de ... Modulo de Desarrollo :CU- ...
@@ -116,10 +106,10 @@ public class CursoActualBean implements ICursoActual {
 	}
 
 	public Long selecionado(long grupo) {
-		
+
 		if(grupo!=0)
 		select=grupo;
-		
+	
 		return grupo;
 
 	}
@@ -133,9 +123,7 @@ public class CursoActualBean implements ICursoActual {
 	/* (non-Javadoc)
 	 * @see com.mydomain.maizsoft.comunicaciones.ICursoActual#select()
 	 */
-	@Override
-	public Long select() {
-		
+	public Long select() {	
 		return select;
 	}
 

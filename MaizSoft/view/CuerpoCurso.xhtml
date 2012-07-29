@@ -42,8 +42,8 @@
 				<br />
 
 				<div class="actionButtons" style="margin-left: 550px">
-					<s:button  view="/ActividadEdit.xhtml" value="Agregar Actividad" >
-					<f:param name="notaActividadFrom" value="Actividad"/>	
+					<s:button value="Agregar Actividad" view="/ActividadEdit.xhtml" rendered="#{s:hasRole('docente')}">
+						<f:param name="notaActividadFrom" value="Actividad" />
 					</s:button>
 
 				</div>
@@ -51,8 +51,8 @@
 				<br />
 				<br />
 				<a4j:outputPanel id="actividadess" ajaxRendered="true">
-				<rich:tabPanel switchType="client" id="actividades">
-					<rich:tab label="foro">
+				<rich:tabPanel switchType="client" id="actividades" >
+					<rich:tab label="foro" >
 						<rich:dataTable id="actividadList" var="_actividad"
 							value="#{actividadHome.getListaActividadesDivision(11)}">
 
@@ -103,10 +103,19 @@
 							<rich:column styleClass="action">
 								<f:facet name="header">Acción</f:facet>
 								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit" rendered="#{empty from}">
+									propagation="none" id="actividadEdit" 
+									rendered="#{s:hasRole('docente')}">
 									<f:param name="actividadIdActividad"
 										value="#{_actividad.idActividad}" />
 								</s:link>
+								#{' '}
+								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+							value="#{empty from ? 'Ver' : 'Seleccionar'}"
+							propagation="#{empty from ? 'none' : 'default'}"
+							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
+							<f:param name="actividadIdActividad"
+								value="#{_actividad.idActividad}" />
+						</s:link>
 
 							</rich:column>
 
@@ -175,10 +184,20 @@
 							<rich:column styleClass="action">
 								<f:facet name="header">Acción</f:facet>
 								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit2" rendered="#{empty from}">
+									propagation="none" id="actividadEdit2" rendered="#{s:hasRole('docente')}">
 									<f:param name="actividadIdActividad"
 										value="#{_actividadListAutoevaluacion.idActividad}" />
 								</s:link>
+								#{' '}
+								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+							value="#{empty from ? 'Ver' : 'Seleccionar'}"
+							propagation="#{empty from ? 'none' : 'default'}"
+							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
+							<f:param name="actividadIdActividad"
+								value="#{_actividadListAutoevaluacion.idActividad}" />
+						</s:link>
+					
+								
 
 							</rich:column>
 
@@ -248,10 +267,18 @@
 							<rich:column styleClass="action">
 								<f:facet name="header">Acción</f:facet>
 								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit3" rendered="#{empty from}">
+									propagation="none" id="actividadEdit3" rendered="#{s:hasRole('docente')}">
 									<f:param name="actividadIdActividad"
 										value="#{_actividadListAnuncios.idActividad}" />
 								</s:link>
+								#{' '}
+								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+							value="#{empty from ? 'Ver' : 'Seleccionar'}"
+							propagation="#{empty from ? 'none' : 'default'}"
+							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
+							<f:param name="actividadIdActividad"
+								value="#{_actividadListAnuncios.idActividad}" />
+						</s:link>
 
 							</rich:column>
 
@@ -323,10 +350,18 @@
 							<rich:column styleClass="action">
 								<f:facet name="header">Acción</f:facet>
 								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit4" rendered="#{empty from}">
+									propagation="none" id="actividadEdit4" rendered="#{s:hasRole('docente')}">
 									<f:param name="actividadIdActividad"
 										value="#{_actividadListCargaArchivo.idActividad}" />
 								</s:link>
+								#{' '}
+								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+							value="#{empty from ? 'Ver' : 'Seleccionar'}"
+							propagation="#{empty from ? 'none' : 'default'}"
+							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
+							<f:param name="actividadIdActividad"
+								value="#{_actividadListCargaArchivo.idActividad}" />
+						</s:link>
 
 							</rich:column>
 
@@ -395,10 +430,18 @@
 							<rich:column styleClass="action">
 								<f:facet name="header">Acción</f:facet>
 								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit5" rendered="#{empty from}">
+									propagation="none" id="actividadEdit5" rendered="#{s:hasRole('docente')}">
 									<f:param name="actividadIdActividad"
 										value="#{_actividadListVideo.idActividad}" />
 								</s:link>
+								#{' '}
+								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+							value="#{empty from ? 'Ver' : 'Seleccionar'}"
+							propagation="#{empty from ? 'none' : 'default'}"
+							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
+							<f:param name="actividadIdActividad"
+								value="#{_actividadListVideo.idActividad}" />
+						</s:link>
 
 							</rich:column>
 
@@ -465,10 +508,19 @@
 							<rich:column styleClass="action">
 								<f:facet name="header">Acción</f:facet>
 								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit6" rendered="#{empty from}">
+									propagation="none" id="actividadEdit6" 
+									rendered="#{s:hasRole('docente')}">
 									<f:param name="actividadIdActividad"
 										value="#{_actividadListAudio.idActividad}" />
 								</s:link>
+								#{' '}
+								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+							value="#{empty from ? 'Ver' : 'Seleccionar'}"
+							propagation="#{empty from ? 'none' : 'default'}"
+							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
+							<f:param name="actividadIdActividad"
+								value="#{_actividadListAudio.idActividad}" />
+						</s:link>
 
 							</rich:column>
 
@@ -486,7 +538,9 @@
 									<ui:include src="layout/sort.xhtml">
 										<ui:param name="entityList"
 											value="#{actividadListAutoevaluacion}" />
-										
+										<ui:param name="propertyLabel" value="Descripcion actividad" />
+										<ui:param name="propertyPath"
+											value="actividadAutoevaluacion.descripcionActividad" />
 									</ui:include>
 								</f:facet>
 								<h:outputText
@@ -535,10 +589,18 @@
 							<rich:column styleClass="action">
 								<f:facet name="header">Acción</f:facet>
 								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit7" rendered="#{empty from}">
+									propagation="none" id="actividadEdit7" rendered="#{s:hasRole('docente')}">
 									<f:param name="actividadIdActividad"
 										value="#{_actividadListEnlaces.idActividad}" />
 								</s:link>
+								#{' '}
+								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+							value="#{empty from ? 'Ver' : 'Seleccionar'}"
+							propagation="#{empty from ? 'none' : 'default'}"
+							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
+							<f:param name="actividadIdActividad"
+								value="#{_actividadListEnlaces.idActividad}" />
+						</s:link>
 
 							</rich:column>
 
@@ -606,10 +668,19 @@
 							<rich:column styleClass="action">
 								<f:facet name="header">Acción</f:facet>
 								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit8" rendered="#{empty from}">
+									propagation="none" id="actividadEdit8" 
+									rendered="#{s:hasRole('docente')}">
 									<f:param name="actividadIdActividad"
 										value="#{_actividadListObjeto.idActividad}" />
 								</s:link>
+								#{' '}
+								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+							value="#{empty from ? 'Ver' : 'Seleccionar'}"
+							propagation="#{empty from ? 'none' : 'default'}"
+							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
+							<f:param name="actividadIdActividad"
+								value="#{_actividadListObjeto.idActividad}" />
+						</s:link>
 
 							</rich:column>
 
@@ -618,6 +689,7 @@
 					</rich:tab>
 				</rich:tabPanel>
 	</a4j:outputPanel>
+
 
 
 

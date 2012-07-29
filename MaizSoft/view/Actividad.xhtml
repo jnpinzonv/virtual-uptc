@@ -1,52 +1,123 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:s="http://jboss.com/products/seam/taglib"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:rich="http://richfaces.org/rich"
-    template="layout/template2.xhtml">
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" template="layout/template2.xhtml">
 
 	<ui:define name="head">
 		<link href="css/default.css" rel="stylesheet" type="text/css" />
-			
+
 	</ui:define>
 
-<ui:define name="centroT">
-	
-    <rich:panel>
-        <f:facet name="header">Detalles de Actividad</f:facet>
+	<ui:define name="centroT">
 
-        <s:decorate id="descripcionActividad" template="layout/display.xhtml" style="position:absolute;">
-            <ui:define name="label">Descripción actividad</ui:define>
-            <h:outputText value="#{actividadHome.instance.descripcionActividad}" escape="false"/>
-        </s:decorate>
+		<rich:panel>
+			<f:facet name="header">Detalles de Actividad</f:facet>
 
-		<br /> <br /> 
-		
-        <s:decorate id="evaluable" template="layout/display.xhtml">
-            <ui:define name="label">Evaluable</ui:define>
-            <h:outputText value="#{actividadHome.instance.evaluable}"/>
-        </s:decorate>
+			<s:decorate id="tipoActividad" template="layout/display.xhtml"
+				style="position:absolute;">
+				<ui:define name="label">Tipo de actividad:</ui:define>
+				<h:outputText value="#{actividadHome.instance.tipo.descripcion}"
+					escape="false" />
+			</s:decorate>
 
-        <div style="clear:both"/>
+			<br />
+			<br />
 
-    </rich:panel>
+			<s:decorate id="descripcionActividad" template="layout/display.xhtml"
+				style="position:absolute;">
+				<ui:define name="label">Descripción actividad:</ui:define>
+				<h:outputText value="#{actividadHome.instance.descripcionActividad}"
+					escape="false" />
+			</s:decorate>
 
-    <div class="actionButtons">
+			<br />
+			<br />
+			<br />
 
-        <s:button view="/ActividadEdit.xhtml"
-                    id="edit"
-                 value="Editar"
-                 rendered="#{s:hasRole('admin')}"/>
+			<s:decorate id="fecha" template="layout/display.xhtml"
+				style="position:absolute;">
+				<ui:define name="label">Fecha máxima de entrega::</ui:define>
+				<h:outputText value="#{actividadHome.instance.fechaFinalizacion}"
+					escape="false" />
+			</s:decorate>
 
-        <s:button view="/#{empty actividadFrom ? 'ActividadList' : actividadFrom}.xhtml"
-                    id="done"
-                 value="Aceptar"/>
+			<br />
+			<br />
 
-    </div>
+			<br />
+			<s:decorate id="autoevaluacionJustificación"
+				template="layout/display.xhtml"
+				rendered="#{actividadHome.instance.tipo.idTipo==13}">
+				<ui:define name="label">Justificación:</ui:define>
+				<h:inputTextarea cols="80" rows="3" />
+				<br />
+				<br />
+			</s:decorate>
+			<s:decorate id="nombreUrl" template="layout/display.xhtml"
+				rendered="#{actividadHome.instance.tipo.idTipo==17}">
+				<ui:define name="label">Nombre:</ui:define>
+				<h:outputLabel value="#{actividadHome.instance.rutaArchivo}" />
+				<br />
+				<br />
+			</s:decorate>
 
-    </ui:define>
+			<s:decorate id="enlaceUrl" template="layout/display.xhtml"
+				rendered="#{actividadHome.instance.tipo.idTipo==17}">
+				<ui:define name="label">URL:</ui:define>
+				<a href="//#{actividadHome.instance.urlExterna}" target="_blank">#{actividadHome.instance.urlExterna}</a>
+			</s:decorate>
+
+			<s:decorate id="autoevaluacionNota" template="layout/display.xhtml"
+				rendered="#{actividadHome.instance.tipo.idTipo==13}">
+				<ui:define name="label">Nota:</ui:define>
+				<h:inputText size="4" />
+				<rich:toolTip value="La nota debe estar entre 0 y 5.0"
+					for="autoevaluacionNota" id="tool" followMouse="true"
+					direction="top-right" showDelay="500"></rich:toolTip>
+			</s:decorate>
+
+			<s:decorate id="cargarArchivos" template="layout/display.xhtml"
+				rendered="#{actividadHome.instance.tipo.idTipo==12}">
+				<ui:define name="label">Adjuntar Archivo:</ui:define>
+				<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
+					accept="image/jpg" fileName="#{cargaArchivosBean.nombreArchivo}" />
+
+				<h:commandButton id="upload" value="Subir !!"
+					action="#{cargaArchivosBean.handleUpload}" />
+
+				<s:button id="cancel" view="/login.xhtml" value="Cancel"
+					propagation="end" />
+
+				<br />
+				<h:outputLabel value="Nombre del arcivo adjunto:"
+					rendered="#{not empty cargaArchivosBean.nombreArchivo}" />
+				<h:outputLabel value="#{cargaArchivosBean.nombreArchivo}" />
+
+				<h:outputLabel value="No se ha adjuntado ningún archivo"
+					rendered="#{empty cargaArchivosBean.nombreArchivo}" />
+
+			</s:decorate>
+
+			<div style="clear: both" />
+
+		</rich:panel>
+
+		<div class="actionButtons">
+
+			<s:button view="/ActividadEdit.xhtml" id="edit" value="Editar"
+				rendered="#{s:hasRole('admin')}" />
+
+			<s:button
+				view="/#{empty actividadFrom ? 'ActividadList' : actividadFrom}.xhtml"
+				id="done" value="Aceptar" />
+
+		</div>
+
+	</ui:define>
 
 </ui:composition>

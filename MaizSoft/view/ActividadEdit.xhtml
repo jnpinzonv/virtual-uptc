@@ -20,7 +20,7 @@
 
 			<rich:panel>
 				<f:facet name="header">#{actividadHome.managed ? 'Editar' : 'Adicionar'} Actividad</f:facet>
-<h:outputLabel value="#{seccionSeleccionadaBean.seccionSeleccionada}" />
+
 
 				<h:outputLabel value="Actividad:" for="sobrenombre" />
 				<h:selectOneMenu value="#{actividadHome.instance.tipo}"
@@ -87,18 +87,18 @@
 				<br />
 				<br />
 				<br />
-				<!-- 
+
 				<s:decorate id="adjuntoField" template="/layout/edit.xhtml"
 					style="position:absolute;">
 					<ui:define name="label">Adjuntar Archivo</ui:define>
 					<h:selectBooleanCheckbox id="adjunto"
 						value="#{actividadHome.instance.adjuntarArchivo}" />
-					<a4j:support event="onchange" reRender="cuatro" ajaxSingle="true"/>
+					<a4j:support event="onchange" reRender="cuatros" ajaxSingle="true" />
 				</s:decorate>
 				<br />
 				<br />
 				<br />
-				 -->
+
 				<s:decorate id="alertaMailField" template="/layout/edit.xhtml"
 					style="position:absolute;">
 					<ui:define name="label">Alerta Por Mail</ui:define>
@@ -181,22 +181,31 @@
 				</a4j:outputPanel>
 				<br />
 				<br />
-				<a4j:outputPanel id="cuatro">
-					<h:panelGrid>
-						<f:facet name="header">Adjuntar Archivo</f:facet>
+				<a4j:outputPanel id="cuatros" ajaxRendered="true">
 
+					<s:decorate id="cargarArchivos"
+						rendered="#{!actividadHome.instance.adjuntarArchivo}">
+						<ui:define name="label">Adjuntar Archivo:</ui:define>
 						<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
 							accept="image/jpg" fileName="#{cargaArchivosBean.nombreArchivo}" />
 
 						<h:commandButton id="upload" value="Subir !!"
-							action="#{cargaArchivosBean.handleUpload}"
-							/>
+							action="#{cargaArchivosBean.handleUpload}" />
 
 						<s:button id="cancel" view="/login.xhtml" value="Cancel"
 							propagation="end" />
-					</h:panelGrid>
+						<br />
+						<h:outputLabel value="Nombre del arcivo adjunto:"
+							rendered="#{not empty cargaArchivosBean.nombreArchivo}" />
+						<h:outputLabel value="#{cargaArchivosBean.nombreArchivo}" />
+
+						<h:outputLabel value="No se ha adjuntado ningún archivo" rendered="#{empty cargaArchivosBean.nombreArchivo}"/>
+					</s:decorate>
+
 				</a4j:outputPanel>
 
+				<br />
+				<br />
 
 				<div style="clear: both">
 					<span class="required">*</span> Campos Obligatorios
@@ -204,9 +213,11 @@
 
 
 			</rich:panel>
+
+
 			<a4j:outputPanel id="dos">
 				<div class="actionButtons">
-					<h:outputLabel value="#{cursoActualBean.seleccionado.cursoGrupo.codigo}" />
+
 					<h:commandButton id="save" value="Guardar"
 						action="#{actividadHome.saveActividad(seccionSeleccionadaBean.seccionSeleccionada,cursoActualBean.select())}"
 						disabled="#{!actividadHome.wired}"
@@ -224,8 +235,7 @@
 						view="/CuerpoCurso.xhtml" rendered="#{actividadHome.managed}" />
 
 					<s:button id="cancelAdd" value="Cancelar" propagation="end"
-						view="/CuerpoCurso.xhtml"
-						rendered="#{!actividadHome.managed}" />
+						view="/CuerpoCurso.xhtml" rendered="#{!actividadHome.managed}" />
 
 				</div>
 			</a4j:outputPanel>

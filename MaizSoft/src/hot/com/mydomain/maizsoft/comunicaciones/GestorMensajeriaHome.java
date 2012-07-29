@@ -37,7 +37,7 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 	GestorMensajeriaHome gestorMensajeriaHome;
 	@In(create = true)
 	TipoHome tipoHome;
-	
+
 	@In(create = true)
 	ActividadHome actividadHome;
 
@@ -98,30 +98,28 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 				getInstance().getNotaActividad());
 	}
 
-	
-	public List<GrupoUsuarios> listaGrupoUsuarios(){
+	public List<GrupoUsuarios> listaGrupoUsuarios() {
 		Query q = getEntityManager().createQuery(
 				ConsultasJpql.GRUPO_USUARIOS_SELECIONADO);
-		
-		List<GrupoUsuarios> nuevo=(List<GrupoUsuarios>) q
-		.getResultList();
+
+		List<GrupoUsuarios> nuevo = (List<GrupoUsuarios>) q.getResultList();
 		return nuevo;
-		
+
 	}
-	
+
 	@Factory("listaUsuarioCursos")
-	public List<SelectItem> listaUsuariosCurso() {		
+	public List<SelectItem> listaUsuariosCurso() {
 
 		// q.setParameter("parametro",
 		// "#{cursoActualBean.seleccionado.idGrupo}"));
 		List<GrupoUsuarios> listaGruposUsuarios = listaGrupoUsuarios();
-		
-		if(listaGruposUsuarios.size()==0){
+
+		if (listaGruposUsuarios.size() == 0) {
 			FacesMessages mensaje = (FacesMessages) Component
 					.getInstance(FacesMessages.class);
-					mensaje.add("Algo malo a sucedido :-( por favor vuelva a seleccionar el curso");
+			mensaje.add("Algo malo a sucedido :-( por favor vuelva a seleccionar el curso");
 		}
-		
+
 		List<SelectItem> sItems = new ArrayList<SelectItem>();
 		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
 		for (GrupoUsuarios sObj : listaGruposUsuarios) {
@@ -139,6 +137,8 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 	public void saveMensaje() {
 		List<Usuario> someObjects = instance.getListaUsuarios();
 		GestorMensajeria nuevoG = instance;
+		nuevoG.setMensaje(prepocesar(nuevoG.getMensaje(),40));
+		nuevoG.setAsunto(prepocesar(nuevoG.getAsunto(), 10));
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
 
@@ -176,8 +176,7 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 
 		return lista;
 	}
-	
-	
+
 	@Factory("listaMensajesEnviadosPorUsuario")
 	public List<GestorMensajeria> listaMensajesEnviadosPorUsuario() {
 
@@ -192,15 +191,38 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 
 		return lista;
 	}
-	
-	public String irForo(){
+
+	public String irForo() {
 		listaGrupoUsuarios();
 		return "/ForoEdit.seam";
 	}
-	
-	public void saveForo(){
+
+	public String prepocesar(String nuevo, int maximo) {
+
+		int subFinal = maximo;
+
+		StringBuffer mensaje = new StringBuffer();
+		int i = 0;
+
+		while (i < nuevo.length()) {
+
+			if (subFinal > nuevo.length())
+				subFinal = nuevo.length();
+
+			String nuw = nuevo.substring(i, subFinal);
+
+			mensaje.append(nuw);
+			mensaje.append("</br>");
+			i = subFinal;
+			subFinal += 30;
+
+		}
+		return mensaje.toString();
+	}
+
+	public void saveForo() {
 		List<GrupoUsuarios> listaEntesUniversitarios = listaGrupoUsuarios();
-				
+
 		GestorMensajeria nuevoG = instance;
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
@@ -211,11 +233,12 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 		Usuario deUsuario = (Usuario) q.getSingleResult();
 		nuevoG.setDeUsuario(deUsuario);
 		Calendar calendar = Calendar.getInstance();
-		Actividad nuevaActividad= actividadHome.getInstance();
+		Actividad nuevaActividad = actividadHome.getInstance();
 		nuevaActividad.setTipo(getEntityManager().find(Tipo.class, 11L));
-		nuevaActividad.setDescripcionActividad(gestorMensajeriaHome.instance.getMensaje());
+		nuevaActividad.setDescripcionActividad(gestorMensajeriaHome.instance
+				.getMensaje());
 		nuevaActividad.setFechaCreacion(calendar.getTime());
-		
+
 		for (GrupoUsuarios sObj : listaEntesUniversitarios) {
 			ReceptorMensajes nuevo = new ReceptorMensajes();
 			nuevo.setUserAccount(sObj.getUserGrupoCurso());
@@ -224,22 +247,20 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 			nuevo.setLeido(false);
 			nuevoG.setFechaEnvio(calendar.getTime());
 
-			NotaActividad nuevaNota= new NotaActividad();
+			NotaActividad nuevaNota = new NotaActividad();
 			nuevaNota.setActividad(nuevaActividad);
 			nuevaNota.setGestorMensajeria(nuevoG);
 			nuevaNota.setUsuario(sObj.getUserGrupoCurso());
 			nuevaNota.setGrupoCurso(sObj);
 			nuevaNota.setNota(4.3);
-			
+
 			getEntityManager().persist(nuevoG);
 			getEntityManager().persist(nuevo);
 			getEntityManager().persist(nuevaActividad);
 			getEntityManager().persist(nuevaNota);
-			
+
 		}
-		
-		
-		
+
 	}
 
 }

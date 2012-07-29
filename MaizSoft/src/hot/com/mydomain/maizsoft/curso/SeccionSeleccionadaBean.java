@@ -38,12 +38,11 @@ import com.mydomain.Directorio.model.GrupoUsuarios;
 public class SeccionSeleccionadaBean implements ISeccionSeleccionada {
 
 	
-	@DataModel(value="listaSeccionesCurso")
+	
 	private List<Integer> listaSeccionesCurso;
 	
-	@DataModelSelection(value="listaSeccionesCurso")
-	@Out(required =false)
-	private Integer seccionSeleccionada;
+	
+	private static int seccionSeleccionada =1;
 	
 	
 	@PersistenceContext
@@ -91,8 +90,7 @@ public class SeccionSeleccionadaBean implements ISeccionSeleccionada {
 	 * @return El valor de seccionSeleccionada
 	 */
 	public int getSeccionSeleccionada() {
-	 	if(seccionSeleccionada==null)
-	 		return 1;
+	 	
 		return seccionSeleccionada;
 	}
 

@@ -42,7 +42,7 @@ insert into cuentas_usuario(id_usuarios,id_user_account,id_cuenta_usuario) value
 
 insert into user_account_role (account_id, member_of_role) values (1, 1);
 
-insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(1,'C://archivos','pathArchivos');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(1,'C://xampp//htdocs//archivos','pathArchivos');
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(2,'archivosCargasExcel','pathArchivosExcel');
 
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(3,'1','enteUniversiarioPadre');
@@ -64,6 +64,10 @@ Señor(a):  Usuario.
 Por favor no devolver ningún mensaje a este correo, este medio es administrado por el servidor de la plataforma.
 
 Su contraseña es: ' ,'cuerpoMensaje');
+
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(17,'imagenesUsario','imagenUsuario');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(18,'objetosAprendizaje','objetoUsuario');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(19,'http://localhost//archivos//','rutaServidorLocal');
 
 
 

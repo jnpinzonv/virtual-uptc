@@ -146,6 +146,7 @@ public class CargaMasivaUsuariosBean implements ICargaMasivaUsuarios {
 				userAction.save();
 				Usuario nuevo = preCargaUsuarios.getUsuarios().get(i);
 				nuevo.setFechaCreacion(calendar.getTime());
+				nuevo.setFotoUser("css/images/gis.png");
 				try {
 					entityManager.persist(nuevo);
 				} catch (RuntimeException e) {

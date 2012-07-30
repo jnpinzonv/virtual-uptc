@@ -186,7 +186,7 @@
 							accept="image/jpg" fileName="#{cargaArchivosBean.nombreArchivo}" />
 
 						<h:commandButton id="upload" value="Subir !!"
-							action="#{cargaArchivosBean.handleUpload}" />
+							action="#{cargaArchivosBean.cargarArchivoAdjuntoActividad()}" />
 
 						<s:button id="cancel" view="/login.xhtml" value="Cancel"
 							propagation="end" />
@@ -236,6 +236,27 @@
 				</div>
 			</a4j:outputPanel>
 		</h:form>
+		
+		
+			<f:facet name="header">ObjetoAprendizaje</f:facet>
+
+			<h:form id="fooForm2" enctype="multipart/form-data" >
+
+				<s:fileUpload id="file2" data="#{preCarga.file}"
+					accept="image/jpg" fileName="#{preCarga.nombreArchivo}"/>
+
+				<h:commandButton id="upload2" value="Subir !!"
+					action="#{preCarga.cargarObjetoAprendizaje()}"/>
+				  		<a4j:support event="onchange" reRender="actividadess" ajaxSingle="true" />
+				  	<s:button id="cancel2" view="/login.xhtml"
+								value="Cancel" propagation="end" />
+			</h:form>
+
+			<a4j:outputPanel id="actividadess2" ajaxRendered="true">
+			<h:outputLabel value="#{gestorCargaArchivos.ruta}" />
+			<iframe src="#{gestorCargaArchivos.ruta}"></iframe>
+		
+		</a4j:outputPanel>
 
 
 

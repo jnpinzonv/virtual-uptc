@@ -91,6 +91,7 @@ public class NotaActividadHome extends EntityHome<NotaActividad> {
 	
 	@Factory("notasActividad")
 	public List<NotaActividad> listanotasActividad(Long idActividad) {
+		System.out.println("holaaaaaaaaaaaaaaa"+ idActividad);
 		Query q = null;
 		List<NotaActividad> nueva=null;
 			q = getEntityManager().createQuery(

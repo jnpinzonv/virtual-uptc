@@ -1,10 +1,8 @@
 package com.mydomain.maizsoft.usuarios;
 
-import com.mydomain.Directorio.action.StringEncrypter;
-import com.mydomain.Directorio.model.*;
-import com.mydomain.maizsoft.academia.EnteUniversitarioHome;
-import com.mydomain.maizsoft.tipos.TipoHome;
-
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,7 +16,23 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.faces.FacesMessages;
 import org.jboss.seam.framework.EntityHome;
+import org.jboss.seam.security.Credentials;
 import org.jboss.seam.security.management.action.UserAction;
+
+import com.mydomain.Directorio.action.StringEncrypter;
+import com.mydomain.Directorio.model.ConstantesLog;
+import com.mydomain.Directorio.model.ConsultasJpql;
+import com.mydomain.Directorio.model.CuentasUsuario;
+import com.mydomain.Directorio.model.EnteUniversitario;
+import com.mydomain.Directorio.model.GestorMensajeria;
+import com.mydomain.Directorio.model.GrupoUsuarios;
+import com.mydomain.Directorio.model.HistorialNotas;
+import com.mydomain.Directorio.model.ReceptorMensajes;
+import com.mydomain.Directorio.model.Tipo;
+import com.mydomain.Directorio.model.UserAccount;
+import com.mydomain.Directorio.model.Usuario;
+import com.mydomain.maizsoft.academia.EnteUniversitarioHome;
+import com.mydomain.maizsoft.tipos.TipoHome;
 
 @Name("usuarioHome")
 public class UsuarioHome extends EntityHome<Usuario> {
@@ -103,36 +117,36 @@ public class UsuarioHome extends EntityHome<Usuario> {
 
 	public String saveUsuario() {
 
+		Calendar calendar = Calendar.getInstance();
+		List<String> nueva = new ArrayList<String>();
+		nueva.add(instance.getRole());
+		Date fecha = calendar.getTime();
+		instance.setFechaCreacion(fecha);
+		userAction.setRoles(nueva);
+		userAction.save();
+		persist();
+		CuentasUsuario nuevoCuenta = new CuentasUsuario();
+		nuevoCuenta.setUsuarios(getInstance());
+		Query q = getEntityManager()
+				.createQuery(
+						"select u from UserAccount u where u.username=#{userAction.username}");
+
+		UserAccount nuevo2 = (UserAccount) q.getSingleResult();
+		nuevo2.setFechaCreacion(fecha);
+		String secretString = userAction.getPassword();
+		String passPhrase = ConstantesLog.NOMBRE_PLATAFORMA;
+
+		// Create encrypter/decrypter class
+		StringEncrypter desEncrypter = new StringEncrypter(passPhrase);
+
+		// Encrypt the string
+		String desEncrypted = desEncrypter.encrypt(secretString);
+		nuevo2.setCampoGenerarPassword(desEncrypted);
+		getEntityManager().merge(nuevo2);
+		nuevoCuenta.setUserAccounts((UserAccount) q.getSingleResult());
+		getEntityManager().persist(nuevoCuenta);
+
 		try {
-			
-			Calendar calendar = Calendar.getInstance();
-			List<String> nueva = new ArrayList<String>();	
-			nueva.add(instance.getRole());
-			Date fecha=calendar.getTime();
-			instance.setFechaCreacion(fecha);
-			userAction.setRoles(nueva);
-			userAction.save();			
-			persist();
-			CuentasUsuario nuevoCuenta = new CuentasUsuario();
-			nuevoCuenta.setUsuarios(getInstance());
-			Query q = getEntityManager()
-					.createQuery(
-							"select u from UserAccount u where u.username=#{userAction.username}");
-			
-			UserAccount nuevo2= (UserAccount) q.getSingleResult();
-			nuevo2.setFechaCreacion(fecha);
-			String secretString = userAction.getPassword();
-	        String passPhrase   = ConstantesLog.NOMBRE_PLATAFORMA;
-
-	        // Create encrypter/decrypter class
-	        StringEncrypter desEncrypter = new StringEncrypter(passPhrase);
-
-	        // Encrypt the string
-	        String desEncrypted       = desEncrypter.encrypt(secretString);
-			nuevo2.setCampoGenerarPassword(desEncrypted);
-			getEntityManager().merge(nuevo2);
-			nuevoCuenta.setUserAccounts((UserAccount) q.getSingleResult());
-			getEntityManager().persist(nuevoCuenta);
 		} catch (RuntimeException e) {
 			FacesMessages mensaje = (FacesMessages) Component
 					.getInstance(FacesMessages.class);
@@ -167,6 +181,35 @@ public class UsuarioHome extends EntityHome<Usuario> {
 				.getResultList();
 
 		return listaTiposEnteUniversitarios;
+	}
+
+	public File rutaImagen() {
+
+		String nueva = "css/images/gis.png";
+		File nuevoi =null;
+		URL nu=null;
+		try {
+
+			Credentials cre = (Credentials) Component
+					.getInstance(Credentials.class);
+			Query q = getEntityManager().createQuery(
+					ConsultasJpql.USUARIO_POR_USERNAME);
+			q.setParameter("parametro", cre.getUsername());
+			Usuario nuevo = (Usuario) q.getSingleResult();
+			if (nuevo.getFotoUser() == null)
+				nueva = "css/images/gis.png";
+			else{
+				nueva = nuevo.getFotoUser();
+				nuevoi = new File(nueva);
+			}
+		} catch (RuntimeException e) {
+			FacesMessages mensaje = (FacesMessages) Component
+					.getInstance(FacesMessages.class);
+			mensaje.add("Algo malo a sucedido :-( ");
+		}
+
+		return nuevoi;
+
 	}
 
 }

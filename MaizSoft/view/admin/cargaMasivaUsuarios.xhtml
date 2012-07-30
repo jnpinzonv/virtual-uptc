@@ -30,11 +30,11 @@
 
 			<h:form id="fooForm" enctype="multipart/form-data" >
 
-				<s:fileUpload id="file" data="#{uploadHandler.file}"
-					accept="image/jpg" fileName="#{uploadHandler.nombreArchivo}"/>
+				<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
+					accept="image/jpg" fileName="#{cargaArchivosBean.nombreArchivo}"/>
 
 				<h:commandButton id="upload" value="Subir !!"
-					action="#{uploadHandler.handleUpload}"/>
+					action="#{cargaArchivosBean.cargarExcelArchivo()}"/>
 				  	
 				  	<s:button id="cancel" view="/login.xhtml"
 								value="Cancel" propagation="end" />

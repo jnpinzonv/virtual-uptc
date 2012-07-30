@@ -44,6 +44,9 @@ public class ActividadHome extends EntityHome<Actividad> {
 	@In(create = true)
 	TipoHome tipoHome;
 	
+	@In(create = true)
+	GestorCargaArchivos gestorCargaArchivos;
+	
 	
 	Long idCurso;
 
@@ -163,6 +166,10 @@ public class ActividadHome extends EntityHome<Actividad> {
 		if (instance.isAlertaMail() == true) {
 			enviarEmail(listaGrupos, instance);
 		}
+		
+		if(instance.getTipo().getIdTipo()==18){
+			
+		}
 
 		crearLog(listaGrupos.get(0).getGrupoCurso());
 
@@ -173,6 +180,8 @@ public class ActividadHome extends EntityHome<Actividad> {
 		}
 	}
 
+	
+	
 	public GestorEnvioCorreoElectronico crearConfiguracion(Actividad actividad) {
 
 		GestorEnvioCorreoElectronico nuevo = new GestorEnvioCorreoElectronico();
@@ -264,6 +273,14 @@ public class ActividadHome extends EntityHome<Actividad> {
 			getEntityManager().persist(archivo);
 
 		}
+		
+		if(instance.getTipo().getIdTipo()==18){			
+			archivo.setDescripcion(instance.getDescripcionActividad());
+			archivo.setNombre(gestorCargaArchivos.getNombre());
+			archivo.setRuta(gestorCargaArchivos.getRuta());
+			archivo.setTipo(getEntityManager().find(Tipo.class, 12L));
+			getEntityManager().persist(archivo);
+		}
 
 		for (GrupoUsuarios sObj : listaGrupos) {
 
@@ -277,6 +294,10 @@ public class ActividadHome extends EntityHome<Actividad> {
 					&& sObj.getUserGrupoCurso().getId() == usuario.getId()) {
 				nuevaNota.setGestorCargaArchivos(archivo);
 			}
+			if(instance.getTipo().getIdTipo()==18){
+				nuevaNota.setGestorCargaArchivos(archivo);
+			}
+				
 			if (instance.isEvaluable() == false) {
 				instance.setPorcentaje(0.0);
 			}
@@ -296,7 +317,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 			q.setParameter("parametro", idTipo);
 						
 		nueva=(List<Actividad>)q.getResultList();
-		System.out.println(nueva.size()+ "holaaaaaaaaaa");
+		
 			try {
 		} catch (Exception e) {
 			return null;
@@ -329,8 +350,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 	
 	
 	public String cursoActual(Long actual){
-		System.out.println("holaaaaaaaa");
-		System.out.println(actual+ "holaaaaaaaa");
+		
 		instance.setIdCursoSeleccionado(actual);
 		
 		return "/ActividadEdit.xhtml";

@@ -3,8 +3,6 @@
  */
 package com.mydomain.maizsoft.cargaarchivos;
 
-import java.io.IOException;
-
 import javax.ejb.Local;
 
 /**
@@ -15,14 +13,12 @@ import javax.ejb.Local;
  * Grupo de Investigacion Ingenieria Software (GIS)
  * Semillero de Investigacion Moviles Sabatt (SIMS)
  * Universidad Pedagogica y Tecnologica de Colombia
- * @version 15/07/2012 
+ * @version 29/07/2012 
  */
 @Local
-public interface ICargaArchivos {
+public interface IPreCarga {
 	
-public void handleUpload(String pathFinal) throws IOException;
-	
-	public byte[] getFile();
+public byte[] getFile();
 	
 	public void setFile(byte[] file);
 	
@@ -30,15 +26,9 @@ public void handleUpload(String pathFinal) throws IOException;
 	
 	public void setNombreArchivo(String nombreArchivo);
 	
-	void cargarExcelArchivo();
 	
-	void cargarArchivoAdjuntoActividad();
-	
-	void cargarFotoUsuario();
 	
 	void cargarObjetoAprendizaje();
-	
-	
 	
 
 }

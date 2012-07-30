@@ -194,12 +194,7 @@
 							<br />
 							
 								<h:panelGrid columns="1" columnClasses="top">
-									<rich:fileUpload
-										fileUploadListener="#{fileUploadBean.listener}" id="upload"
-										acceptedTypes="jpg, gif, png, bmp"
-										ontyperejected="alert('Only JPG, GIF, PNG and BMP files are accepted');"
-										maxFilesQuantity="1">
-									</rich:fileUpload>
+									
 									<h:panelGroup id="info" layout="block">
 										<rich:panel bodyClass="info">
 
@@ -261,6 +256,19 @@
 
 						</a4j:outputPanel>
 					</h:form>
+					
+					
+			<h:form id="fooForm" enctype="multipart/form-data" >
+
+				<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
+					accept="image/jpg" fileName="#{cargaArchivosBean.nombreArchivo}"/>
+
+				<h:commandButton id="upload" value="Subir !!"
+					action="#{cargaArchivosBean.cargarFotoUsuario()}"/>
+				  	
+				  	<s:button id="cancel" view="/login.xhtml"
+								value="Cancel" propagation="end" />
+			</h:form>
 
 				
 	</ui:define>

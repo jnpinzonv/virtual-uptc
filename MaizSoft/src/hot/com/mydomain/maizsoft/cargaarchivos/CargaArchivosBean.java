@@ -24,6 +24,8 @@ import com.mydomain.Directorio.model.ConfiguracionesSistema;
 import com.mydomain.Directorio.model.ConsultasJpql;
 import com.mydomain.Directorio.model.GrupoUsuarios;
 import com.mydomain.maizsoft.academia.ActividadHome;
+import com.mydomain.maizsoft.gestores.GestorCargaArchivosHome;
+import com.mydomain.maizsoft.usuarios.UsuarioHome;
 
 /**
  * Descripcion: Esta Clase se encarga de ... Modulo de Desarrollo :CU- ...
@@ -55,6 +57,15 @@ public class CargaArchivosBean implements ICargaArchivos {
 	@In(create = true)
 	ActividadHome actividadHome;
 
+	@In(create = true)
+	private ICargaMasivaUsuarios cargaMasivaUsuariosBean;
+	
+	@In(create = true)
+	private UsuarioHome usuarioHome;
+	
+	@In(create = true)
+	private GestorCargaArchivosHome gestorCargaArchivosHome;
+
 	public List<GrupoUsuarios> listaGrupoUsuarios() {
 		Query q = entityManager
 				.createQuery(ConsultasJpql.GRUPO_USUARIOS_SELECIONADO);
@@ -62,17 +73,8 @@ public class CargaArchivosBean implements ICargaArchivos {
 
 	}
 
-	public void handleUpload() throws IOException {
+	public void handleUpload(String pathFinal) throws IOException {
 
-		// System.out.println(identity.);
-		ConfiguracionesSistema path = entityManager.find(
-				ConfiguracionesSistema.class, 1l);
-		ConfiguracionesSistema pathArchivos = entityManager.find(
-				ConfiguracionesSistema.class, 8l);
-		String pathFinal = path.getDetallesPropiedad() + "//"
-				+ pathArchivos.getDetallesPropiedad() + "//"
-				+ listaGrupoUsuarios().get(0).getGrupoCurso().getCodigoGrupo()
-				+ "//" + credentials.getUsername();
 		File directorio = new File(pathFinal);
 		if (!directorio.exists()) {
 			directorio.mkdirs();
@@ -85,9 +87,6 @@ public class CargaArchivosBean implements ICargaArchivos {
 		fo.write(file);
 		fo.flush();
 		fo.close();
-
-		actividadHome.getInstance().setRutaArchivo(pathFinal);
-		actividadHome.getInstance().setNombreArchivo(nombreArchivo);
 
 	}
 
@@ -112,5 +111,119 @@ public class CargaArchivosBean implements ICargaArchivos {
 	 */
 	public void setNombreArchivo(String nombreArchivo) {
 		this.nombreArchivo = nombreArchivo;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.mydomain.maizsoft.cargaarchivos.ICargaArchivos#cargarExcel()
+	 */
+
+	public void cargarExcelArchivo() {
+
+		try {
+			ConfiguracionesSistema path = entityManager.find(
+					ConfiguracionesSistema.class, 1l);
+			ConfiguracionesSistema pathExcel = entityManager.find(
+					ConfiguracionesSistema.class, 2l);
+			String pathFinal = path.getDetallesPropiedad() + "//"
+					+ pathExcel.getDetallesPropiedad();
+
+			handleUpload(pathFinal);
+
+			cargaMasivaUsuariosBean.setRutaCargaUsuarios(pathFinal + "//"
+					+ nombreArchivo);
+
+			cargaMasivaUsuariosBean.cargaMasivaUsuarios();
+		} catch (IOException e) {
+
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.mydomain.maizsoft.cargaarchivos.ICargaArchivos#
+	 * cargarArchivoAdjuntoActividad()
+	 */
+
+	public void cargarArchivoAdjuntoActividad() {
+
+		try {
+			ConfiguracionesSistema path = entityManager.find(
+					ConfiguracionesSistema.class, 1l);
+			ConfiguracionesSistema pathArchivos = entityManager.find(
+					ConfiguracionesSistema.class, 8l);
+			String pathFinal = path.getDetallesPropiedad()
+					+ "//"
+					+ pathArchivos.getDetallesPropiedad()
+					+ "//"
+					+ listaGrupoUsuarios().get(0).getGrupoCurso()
+							.getCodigoGrupo() + "//"
+					+ credentials.getUsername();
+			
+			handleUpload(pathFinal);
+
+			actividadHome.getInstance().setRutaArchivo(pathFinal);
+			actividadHome.getInstance().setNombreArchivo(nombreArchivo);
+			actividadHome.getInstance().setAdjuntarArchivo(true);
+		} catch (IOException e) {
+
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.mydomain.maizsoft.cargaarchivos.ICargaArchivos#cargarFotoUsuario()
+	 */
+	public void cargarFotoUsuario() {
+
+		try {
+			ConfiguracionesSistema path = entityManager.find(
+					ConfiguracionesSistema.class, 1l);
+			ConfiguracionesSistema pathImagenes = entityManager.find(
+					ConfiguracionesSistema.class, 17l);
+			String pathFinal = path.getDetallesPropiedad() + "//"
+					+ pathImagenes.getDetallesPropiedad() + "//"
+					+ credentials.getUsername();
+			handleUpload(pathFinal);
+			usuarioHome.getInstance().setFotoUser(pathFinal+ "//"+nombreArchivo);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	/* (non-Javadoc)
+	 * @see com.mydomain.maizsoft.cargaarchivos.ICargaArchivos#cargarObjetoAprendizaje()
+	 */
+
+	public void cargarObjetoAprendizaje() {
+		
+
+			ConfiguracionesSistema path = entityManager.find(
+					ConfiguracionesSistema.class, 1l);
+			ConfiguracionesSistema pathOA = entityManager.find(
+					ConfiguracionesSistema.class, 18l);
+			String pathFinal = path.getDetallesPropiedad() + "//"
+					+ pathOA.getDetallesPropiedad() + "//"
+					+ credentials.getUsername();
+		
+			
+			String rutaRelativa =  pathOA.getDetallesPropiedad() + "//"
+					+ credentials.getUsername();
+			//gestorCargaArchivosHome.getInstance().setNombre(nombreArchivo);
+			//gestorCargaArchivosHome.getInstance().setRuta("http://localhost/"+rutaRelativa);
+			
+			try {
+				handleUpload(pathFinal);
+		} catch (IOException e) {
+
+			System.out.println(e.getMessage());
+		}
+		
 	}
 }

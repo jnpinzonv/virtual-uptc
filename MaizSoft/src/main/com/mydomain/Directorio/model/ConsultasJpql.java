@@ -92,5 +92,8 @@ public interface ConsultasJpql {
 								" where re.idReceptormenajes=men.idMensaje" +
 								" and re.leido=0" +
 								" and us.id=:parametro";
+	
+	String NOTAS_ACTIVIDAD ="select n from NotaActividad n" +
+			" where n.actividad.idActividad=:parametro";
 
 }

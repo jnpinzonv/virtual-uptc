@@ -34,8 +34,14 @@
 
 				<br />
 				<br />
-
-
+				<s:decorate id="nombreActividad" template="layout/edit.xhtml">
+					<ui:define name="label">Nombre actividad: </ui:define>
+					<h:inputText id="nombreAc" size="27" maxlength="25"
+						value="#{actividadHome.instance.nombreActividad}"						
+						required="true" />
+				</s:decorate>				
+				<br />
+				<br />	
 				<s:decorate id="mensajeField" template="layout/edit.xhtml">
 					<ui:define name="label">Descripcion actividad: </ui:define>
 					<h:panelGrid style="margin-left:80px">
@@ -88,17 +94,7 @@
 				<br />
 				<br />
 
-				<s:decorate id="adjuntoField" template="/layout/edit.xhtml"
-					style="position:absolute;">
-					<ui:define name="label">Adjuntar Archivo</ui:define>
-					<h:selectBooleanCheckbox id="adjunto"
-						value="#{actividadHome.instance.adjuntarArchivo}" />
-					<a4j:support event="onchange" reRender="cuatros" ajaxSingle="true" />
-				</s:decorate>
-				<br />
-				<br />
-				<br />
-
+				
 				<s:decorate id="alertaMailField" template="/layout/edit.xhtml"
 					style="position:absolute;">
 					<ui:define name="label">Alerta Por Mail</ui:define>
@@ -181,10 +177,10 @@
 				</a4j:outputPanel>
 				<br />
 				<br />
-				<a4j:outputPanel id="cuatros" ajaxRendered="true">
+				<a4j:outputPanel>
 
 					<s:decorate id="cargarArchivos"
-						rendered="#{!actividadHome.instance.adjuntarArchivo}">
+						>
 						<ui:define name="label">Adjuntar Archivo:</ui:define>
 						<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
 							accept="image/jpg" fileName="#{cargaArchivosBean.nombreArchivo}" />

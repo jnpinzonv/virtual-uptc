@@ -1,0 +1,46 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
+
+	<ui:define name="body">
+
+
+		<rich:panel>
+			<f:facet name="header">NotaActividad Search Results</f:facet>
+			<div class="results">
+					
+				<rich:dataTable id="notaActividadList" var="_notaActividad"
+				
+					value="#{notaActividadHome.listanotasActividad(17)}">
+
+					<h:column>
+						<f:facet name="header">
+            			   Usuario:
+			            </f:facet>
+						<h:outputText
+							value="#{_notaActividad.usuario.primerNombre} #{_notaActividad.usuario.segundoNombre} #{_notaActividad.usuario.apellidos}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							¿Actividad Realizada?
+						</f:facet>
+						<h:outputText value="#{_notaActividad.estadoPendiente}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+                			Nombre Actividad:
+            			</f:facet>
+						<h:outputText value="#{_notaActividad.actividad.nombreActividad}" />
+					</h:column>
+				</rich:dataTable>
+			</div>
+		</rich:panel>
+
+	</ui:define>
+
+</ui:composition>

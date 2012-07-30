@@ -16,7 +16,7 @@
 	<ui:define name="centroT">
 
 		<rich:panel>
-			<f:facet name="header">Detalles de Actividad</f:facet>
+			<f:facet name="header">Detalles de Actividad #{actividadHome.instance.nombreActividad}</f:facet>
 
 			<s:decorate id="tipoActividad" template="layout/display.xhtml"
 				style="position:absolute;">
@@ -41,20 +41,30 @@
 
 			<s:decorate id="fecha" template="layout/display.xhtml"
 				style="position:absolute;">
-				<ui:define name="label">Fecha máxima de entrega::</ui:define>
+				<ui:define name="label">Fecha máxima de entrega:</ui:define>
 				<h:outputText value="#{actividadHome.instance.fechaFinalizacion}"
 					escape="false" />
 			</s:decorate>
 
 			<br />
 			<br />
+			
+			<s:decorate id="adjunto" template="layout/display.xhtml"
+				style="position:absolute;" rendered="#{not empty actividadHome.instance.nombreArchivo}">
+				<ui:define name="label">Archivo Adjunto:</ui:define>
+				<h:outputText value="#{actividadHome.instance.nombreArchivo}"
+					/>
+			<br />
+			<br />
+			</s:decorate>
 
 			<br />
 			<s:decorate id="autoevaluacionJustificación"
 				template="layout/display.xhtml"
-				rendered="#{actividadHome.instance.tipo.idTipo==13}">
+				rendered="#{actividadHome.instance.tipo.idTipo==13}"
+				>
 				<ui:define name="label">Justificación:</ui:define>
-				<h:inputTextarea cols="80" rows="3" />
+				<h:inputTextarea cols="80" rows="3"/>
 				<br />
 				<br />
 			</s:decorate>
@@ -114,7 +124,11 @@
 
 			<s:button
 				view="/#{empty actividadFrom ? 'ActividadList' : actividadFrom}.xhtml"
-				id="done" value="Aceptar" />
+				rendered="#{s:hasRole('estudiante')}" id="done" value="Aceptar" />
+				
+			<s:button
+				view="/CuerpoCurso.xhtml"
+				rendered="#{s:hasRole('docente')}" id="done2" value="Aceptar" />	
 
 		</div>
 

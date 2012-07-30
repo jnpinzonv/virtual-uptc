@@ -1,0 +1,69 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	template="layout/template2.xhtml">
+
+	<ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
+	</ui:define>
+
+	<ui:define name="centroT">
+
+		<h:form id="usuarioSearch" styleClass="edit">
+
+			<rich:panel>
+
+				<div class="results" id="usuarioList" style="margin-left: -12px">
+
+					<rich:dataTable id="usuarioList" var="_usuario"
+						value="#{usuarioList.resultList}" rows="10" width="700px">
+						<h:column width="100px">
+							<f:facet name="header">
+								<ui:include src="layout/sort.xhtml">
+									<ui:param name="entityList" value="#{usuarioList}" />
+									<ui:param name="propertyLabel" value="Detalles" />
+									<ui:param name="propertyPath"
+										value="usuario.documentoIdentidad" />
+								</ui:include>
+							</f:facet>
+							<h:outputText
+								value="#{_usuario.tipo.nombre}" />
+						</h:column>
+						<h:column width="140px">
+							<f:facet name="header">
+								<ui:include src="layout/sort.xhtml">
+									<ui:param name="entityList" value="#{usuarioList}" />
+									<ui:param name="propertyLabel" value="nombre" />
+									<ui:param name="propertyPath" value="Nombre" />
+								</ui:include>
+							</f:facet>
+							<h:outputText
+								value="#{_usuario.apellidos}" />
+						</h:column>
+
+						
+					</rich:dataTable>
+					<rich:datascroller align="center" for="usuarioList"
+						page="#{usuarioList.pageCount}" id="sc2" reRender="sc1" />
+				
+				</div>
+
+
+
+
+			</rich:panel>
+			
+			<h:commandButton value="Guardar"/>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+

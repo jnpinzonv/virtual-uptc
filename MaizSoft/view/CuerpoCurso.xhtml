@@ -28,9 +28,10 @@
 						id="seccionSeleccionada" required="true" rendered="true">
 						<s:selectItems value="#{listaSeccionesCurso}" var="lista"
 							label="#{lista}" noSelectionLabel="SELECCIONE..." />
-							
-						<a4j:support event="onchange" reRender="actividadess" ajaxSingle="true" />
-						
+
+						<a4j:support event="onchange" reRender="actividadess"
+							ajaxSingle="true" />
+
 
 					</h:selectOneMenu>
 
@@ -42,7 +43,8 @@
 				<br />
 
 				<div class="actionButtons" style="margin-left: 550px">
-					<s:button value="Agregar Actividad" view="/ActividadEdit.xhtml" rendered="#{s:hasRole('docente')}">
+					<s:button value="Agregar Actividad" view="/ActividadEdit.xhtml"
+						rendered="#{s:hasRole('docente')}">
 						<f:param name="notaActividadFrom" value="Actividad" />
 					</s:button>
 
@@ -51,644 +53,503 @@
 				<br />
 				<br />
 				<a4j:outputPanel id="actividadess" ajaxRendered="true">
-				<rich:tabPanel switchType="client" id="actividades" >
-					<rich:tab label="foro" >
-						<rich:dataTable id="actividadList" var="_actividad"
-							value="#{actividadHome.getListaActividadesDivision(11)}">
+					<rich:tabPanel switchType="client" id="actividades">
+						<rich:tab label="foro">
 
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList" value="#{actividadList}" />
-										<ui:param name="propertyLabel" value="Descripcion actividad" />
-										<ui:param name="propertyPath"
-											value="actividad.descripcionActividad" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividad.descripcionActividad}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList" value="#{actividadList}" />
-										<ui:param name="propertyLabel" value="Fecha" />
-										<ui:param name="propertyPath"
-											value="actividad.fechaFinalizacion" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividad.fechaFinalizacion}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList" value="#{actividadList}" />
-										<ui:param name="propertyLabel" value="Porcentaje Nota" />
-										<ui:param name="propertyPath" value="actividad.porcentaje" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividad.porcentaje}" escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList" value="#{actividadList}" />
-										<ui:param name="propertyLabel" value="Adjunto" />
-										<ui:param name="propertyPath" value="actividad.rutaArchivo" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividad.rutaArchivo}" escape="false" />
-							</h:column>
-							<rich:column styleClass="action">
-								<f:facet name="header">Acción</f:facet>
-								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit" 
-									rendered="#{s:hasRole('docente')}">
-									<f:param name="actividadIdActividad"
-										value="#{_actividad.idActividad}" />
-								</s:link>
-								#{' '}
-								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
-							value="#{empty from ? 'Ver' : 'Seleccionar'}"
-							propagation="#{empty from ? 'none' : 'default'}"
-							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
-							<f:param name="actividadIdActividad"
-								value="#{_actividad.idActividad}" />
-						</s:link>
+							<rich:dataTable var="_actividad"
+								value="#{actividadHome.getListaActividadesDivision(11)}">
 
-							</rich:column>
+								<rich:column>
+									<f:facet name="header">Actividades
+										
+									</f:facet>
+									<h:graphicImage url="/css/images/calendario.png"
+										style="width:25px" />
 
-						</rich:dataTable>
-					</rich:tab>
-					<rich:tab label="Autoevaluación">
-						<rich:dataTable id="actividadListAutoevaluacion"
-							var="_actividadListAutoevaluacion"
-							value="#{actividadHome.getListaActividadesDivision(13)}">
-
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Descripcion actividad" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.descripcionActividad" />
-									</ui:include>
-								</f:facet>
-								<h:outputText
-									value="#{_actividadListAutoevaluacion.descripcionActividad}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Fecha" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.fechaFinalizacion" />
-									</ui:include>
-								</f:facet>
-								<h:outputText
-									value="#{_actividadListAutoevaluacion.fechaFinalizacion}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Porcentaje Nota" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.porcentaje" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListAutoevaluacion.porcentaje}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Adjunto" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.rutaArchivo" />
-									</ui:include>
-								</f:facet>
-								<h:outputText
-									value="#{_actividadListAutoevaluacion.rutaArchivo}"
-									escape="false" />
-							</h:column>
-							<rich:column styleClass="action">
-								<f:facet name="header">Acción</f:facet>
-								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit2" rendered="#{s:hasRole('docente')}">
-									<f:param name="actividadIdActividad"
-										value="#{_actividadListAutoevaluacion.idActividad}" />
-								</s:link>
-								#{' '}
-								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
-							value="#{empty from ? 'Ver' : 'Seleccionar'}"
-							propagation="#{empty from ? 'none' : 'default'}"
-							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
-							<f:param name="actividadIdActividad"
-								value="#{_actividadListAutoevaluacion.idActividad}" />
-						</s:link>
-					
+									<h:outputLabel value="Nombre Actividad: " />
+									<b> <h:outputText value="#{_actividad.nombreActividad}" />
+									</b>
 								
+									#{' '}
+									<p>&nbsp;&nbsp; &nbsp;&nbsp;</p>
 
-							</rich:column>
+									<h:outputLabel value="Fecha Finalización: " />
+									<b> <h:outputText value="#{_actividad.fechaFinalizacion}" />
+									</b>
+									<div align="right">
+										<s:link view="/ActividadEdit.xhtml" value="Editar"
+											propagation="none" id="actividadEdit2"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividad.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('estudiante')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividad.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Vista Previa' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividad.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividad.idActividad}" />
+										</s:link>
+									</div>
 
-						</rich:dataTable>
+								</rich:column>
 
-					</rich:tab>
+							</rich:dataTable>
 
-					<rich:tab label="Anuncios">
-						<rich:dataTable id="actividadListAnuncios"
-							var="_actividadListAnuncios"
-							value="#{actividadHome.getListaActividadesDivision(16)}">
+						</rich:tab>
+						<rich:tab label="Autoevaluación">
 
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Descripcion actividad" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.descripcionActividad" />
-									</ui:include>
-								</f:facet>
-								<h:outputText
-									value="#{_actividadListAnuncios.descripcionActividad}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Fecha" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.fechaFinalizacion" />
-									</ui:include>
-								</f:facet>
-								<h:outputText
-									value="#{_actividadListAnuncios.fechaFinalizacion}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Porcentaje Nota" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.porcentaje" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListAnuncios.porcentaje}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Adjunto" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.rutaArchivo" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListAnuncios.rutaArchivo}"
-									escape="false" />
-							</h:column>
-							<rich:column styleClass="action">
-								<f:facet name="header">Acción</f:facet>
-								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit3" rendered="#{s:hasRole('docente')}">
-									<f:param name="actividadIdActividad"
-										value="#{_actividadListAnuncios.idActividad}" />
-								</s:link>
-								#{' '}
-								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
-							value="#{empty from ? 'Ver' : 'Seleccionar'}"
-							propagation="#{empty from ? 'none' : 'default'}"
-							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
-							<f:param name="actividadIdActividad"
-								value="#{_actividadListAnuncios.idActividad}" />
-						</s:link>
+							<rich:dataTable var="_actividadListAutoevaluacion"
+								value="#{actividadHome.getListaActividadesDivision(13)}">
 
-							</rich:column>
+								<rich:column>
+									<f:facet name="header">Actividades
+										
+									</f:facet>
+									<h:graphicImage url="/css/images/calendario.png"
+										style="width:25px" />
 
-						</rich:dataTable>
+									<h:outputLabel value="Nombre Actividad: " />
+									<b> <h:outputText
+											value="#{_actividadListAutoevaluacion.nombreActividad}" />
+									</b>
+								
+									#{' '}
+									<p>&nbsp;&nbsp; &nbsp;&nbsp;</p>
+
+									<h:outputLabel value="Fecha Finalización: " />
+									<b> <h:outputText
+											value="#{_actividadListAutoevaluacion.fechaFinalizacion}" />
+									</b>
+									<div align="right">
+										<s:link view="/ActividadEdit.xhtml" value="Editar"
+											propagation="none" id="actividadEdit2"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListAutoevaluacion.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListAutoevaluacion.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Vista Previa' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											id="actividadViewId2" rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListAutoevaluacion.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											id="actividadViewIde" rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListAutoevaluacion.idActividad}" />
+										</s:link>
+									</div>
+
+								</rich:column>
+
+							</rich:dataTable>
+						</rich:tab>
+
+						<rich:tab label="Anuncios">
+							<rich:dataTable id="actividadListAnuncios"
+								var="_actividadListAnuncios"
+								value="#{actividadHome.getListaActividadesDivision(16)}">
+
+								<rich:column>
+									<f:facet name="header">Actividades
+										
+									</f:facet>
+									<h:graphicImage url="/css/images/calendario.png"
+										style="width:25px" />
+
+									<h:outputLabel value="Nombre Actividad: " />
+									<b> <h:outputText
+											value="#{_actividadListAnuncios.nombreActividad}" />
+									</b>
+								
+									#{' '}
+									<p>&nbsp;&nbsp; &nbsp;&nbsp;</p>
+
+									<h:outputLabel value="Fecha Finalización: " />
+									<b> <h:outputText
+											value="#{_actividadListAnuncios.fechaFinalizacion}" />
+									</b>
+									<div align="right">
+										<s:link view="/ActividadEdit.xhtml" value="Editar"
+											propagation="none" id="actividadEdit2"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListAnuncios.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('estudiante')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListAnuncios.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Vista Previa' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListAnuncios.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListAnuncios.idActividad}" />
+										</s:link>
+									</div>
+
+								</rich:column>
+
+							</rich:dataTable>
 
 
 
 
-					</rich:tab>
-					<rich:tab label="Cargar Archivos">
-						<rich:dataTable id="actividadListCargaArchivo"
-							var="_actividadListCargaArchivo"
-							value="#{actividadHome.getListaActividadesDivision(12)}">
+						</rich:tab>
+						<rich:tab label="Cargar Archivos">
+							<rich:dataTable id="actividadListCargaArchivo"
+								var="_actividadListCargaArchivo"
+								value="#{actividadHome.getListaActividadesDivision(12)}">
 
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Descripcion actividad" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.descripcionActividad" />
-									</ui:include>
-								</f:facet>
-								<h:outputText
-									value="#{_actividadListCargaArchivo.descripcionActividad}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Fecha" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.fechaFinalizacion" />
-									</ui:include>
-								</f:facet>
-								<h:outputText
-									value="#{_actividadListCargaArchivo.fechaFinalizacion}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Porcentaje Nota" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.porcentaje" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListCargaArchivo.porcentaje}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Adjunto" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.rutaArchivo" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListCargaArchivo.rutaArchivo}"
-									escape="false" />
-							</h:column>
-							<rich:column styleClass="action">
-								<f:facet name="header">Acción</f:facet>
-								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit4" rendered="#{s:hasRole('docente')}">
-									<f:param name="actividadIdActividad"
-										value="#{_actividadListCargaArchivo.idActividad}" />
-								</s:link>
-								#{' '}
-								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
-							value="#{empty from ? 'Ver' : 'Seleccionar'}"
-							propagation="#{empty from ? 'none' : 'default'}"
-							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
-							<f:param name="actividadIdActividad"
-								value="#{_actividadListCargaArchivo.idActividad}" />
-						</s:link>
+								<rich:column>
+									<f:facet name="header">Actividades
+										
+									</f:facet>
+									<h:graphicImage url="/css/images/calendario.png"
+										style="width:25px" />
 
-							</rich:column>
+									<h:outputLabel value="Nombre Actividad: " />
+									<b> <h:outputText
+											value="#{_actividadListCargaArchivo.nombreActividad}" />
+									</b>
+								
+									#{' '}
+									<p>&nbsp;&nbsp; &nbsp;&nbsp;</p>
 
-						</rich:dataTable>
+									<h:outputLabel value="Fecha Finalización: " />
+									<b> <h:outputText
+											value="#{_actividadListCargaArchivo.fechaFinalizacion}" />
+									</b>
+									<div align="right">
+										<s:link view="/ActividadEdit.xhtml" value="Editar"
+											propagation="none" id="actividadEdit2"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListCargaArchivo.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('estudiante')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListCargaArchivo.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Vista Previa' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListCargaArchivo.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListCargaArchivo.idActividad}" />
+										</s:link>
+									</div>
 
-					</rich:tab>
+								</rich:column>
+							</rich:dataTable>
 
-					<rich:tab label="Video Conferencia">
+						</rich:tab>
 
-						<rich:dataTable id="actividadListVideo" var="_actividadListVideo"
-							value="#{actividadHome.getListaActividadesDivision(14)}">
+						<rich:tab label="Video Conferencia">
 
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Descripcion actividad" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.descripcionActividad" />
-									</ui:include>
-								</f:facet>
-								<h:outputText
-									value="#{_actividadListVideo.descripcionActividad}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Fecha" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.fechaFinalizacion" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListVideo.fechaFinalizacion}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Porcentaje Nota" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.porcentaje" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListVideo.porcentaje}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Adjunto" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.rutaArchivo" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListVideo.rutaArchivo}"
-									escape="false" />
-							</h:column>
-							<rich:column styleClass="action">
-								<f:facet name="header">Acción</f:facet>
-								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit5" rendered="#{s:hasRole('docente')}">
-									<f:param name="actividadIdActividad"
-										value="#{_actividadListVideo.idActividad}" />
-								</s:link>
-								#{' '}
-								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
-							value="#{empty from ? 'Ver' : 'Seleccionar'}"
-							propagation="#{empty from ? 'none' : 'default'}"
-							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
-							<f:param name="actividadIdActividad"
-								value="#{_actividadListVideo.idActividad}" />
-						</s:link>
+							<rich:dataTable id="actividadListVideo" var="_actividadListVideo"
+								value="#{actividadHome.getListaActividadesDivision(14)}">
 
-							</rich:column>
+								<rich:column>
+									<f:facet name="header">Actividades
+										
+									</f:facet>
+									<h:graphicImage url="/css/images/calendario.png"
+										style="width:25px" />
 
-						</rich:dataTable>
+									<h:outputLabel value="Nombre Actividad: " />
+									<b> <h:outputText
+											value="#{_actividadListVideo.nombreActividad}" />
+									</b>
+								
+									#{' '}
+									<p>&nbsp;&nbsp; &nbsp;&nbsp;</p>
 
-					</rich:tab>
-					<rich:tab label="Audio Conferencia">
-						<rich:dataTable id="actividadListAudio" var="_actividadListAudio"
-							value="#{actividadHome.getListaActividadesDivision(15)}">
+									<h:outputLabel value="Fecha Finalización: " />
+									<b> <h:outputText
+											value="#{_actividadListVideo.fechaFinalizacion}" />
+									</b>
+									<div align="right">
+										<s:link view="/ActividadEdit.xhtml" value="Editar"
+											propagation="none" id="actividadEdit2"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListVideo.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('estudiante')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListVideo.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Vista Previa' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListVideo.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListVideo.idActividad}" />
+										</s:link>
+									</div>
 
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Descripcion actividad" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.descripcionActividad" />
-									</ui:include>
-								</f:facet>
-								<h:outputText
-									value="#{_actividadListAudio.descripcionActividad}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Fecha" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.fechaFinalizacion" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListAudio.fechaFinalizacion}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Porcentaje Nota" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.porcentaje" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListAudio.porcentaje}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Adjunto" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.rutaArchivo" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListAudio.rutaArchivo}"
-									escape="false" />
-							</h:column>
-							<rich:column styleClass="action">
-								<f:facet name="header">Acción</f:facet>
-								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit6" 
-									rendered="#{s:hasRole('docente')}">
-									<f:param name="actividadIdActividad"
-										value="#{_actividadListAudio.idActividad}" />
-								</s:link>
-								#{' '}
-								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
-							value="#{empty from ? 'Ver' : 'Seleccionar'}"
-							propagation="#{empty from ? 'none' : 'default'}"
-							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
-							<f:param name="actividadIdActividad"
-								value="#{_actividadListAudio.idActividad}" />
-						</s:link>
+								</rich:column>
+							</rich:dataTable>
 
-							</rich:column>
+						</rich:tab>
+						<rich:tab label="Audio Conferencia">
+							<rich:dataTable id="actividadListAudio" var="_actividadListAudio"
+								value="#{actividadHome.getListaActividadesDivision(15)}">
 
-						</rich:dataTable>
+								<rich:column>
+									<f:facet name="header">Actividades
+										
+									</f:facet>
+									<h:graphicImage url="/css/images/calendario.png"
+										style="width:25px" />
 
-					</rich:tab>
+									<h:outputLabel value="Nombre Actividad: " />
+									<b> <h:outputText
+											value="#{_actividadListAudio.nombreActividad}" />
+									</b>
+								
+									#{' '}
+									<p>&nbsp;&nbsp; &nbsp;&nbsp;</p>
 
-					<rich:tab label="Enlaces Externos">
-						<rich:dataTable id="actividadListEnlaces"
-							var="_actividadListEnlaces"
-							value="#{actividadHome.getListaActividadesDivision(17)}">
+									<h:outputLabel value="Fecha Finalización: " />
+									<b> <h:outputText
+											value="#{_actividadListAudio.fechaFinalizacion}" />
+									</b>
+									<div align="right">
+										<s:link view="/ActividadEdit.xhtml" value="Editar"
+											propagation="none" id="actividadEdit2"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListAudio.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('estudiante')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListAudio.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Vista Previa' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListAudio.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListAudio.idActividad}" />
+										</s:link>
+									</div>
 
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Descripcion actividad" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.descripcionActividad" />
-									</ui:include>
-								</f:facet>
-								<h:outputText
-									value="#{_actividadListEnlaces.descripcionActividad}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Fecha" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.fechaFinalizacion" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListEnlaces.fechaFinalizacion}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Porcentaje Nota" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.porcentaje" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListEnlaces.porcentaje}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Adjunto" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.rutaArchivo" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListEnlaces.rutaArchivo}"
-									escape="false" />
-							</h:column>
-							<rich:column styleClass="action">
-								<f:facet name="header">Acción</f:facet>
-								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit7" rendered="#{s:hasRole('docente')}">
-									<f:param name="actividadIdActividad"
-										value="#{_actividadListEnlaces.idActividad}" />
-								</s:link>
-								#{' '}
-								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
-							value="#{empty from ? 'Ver' : 'Seleccionar'}"
-							propagation="#{empty from ? 'none' : 'default'}"
-							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
-							<f:param name="actividadIdActividad"
-								value="#{_actividadListEnlaces.idActividad}" />
-						</s:link>
+								</rich:column>
+							</rich:dataTable>
 
-							</rich:column>
+						</rich:tab>
 
-						</rich:dataTable>
+						<rich:tab label="Enlaces Externos">
+							<rich:dataTable id="actividadListEnlaces"
+								var="_actividadListEnlaces"
+								value="#{actividadHome.getListaActividadesDivision(17)}">
 
-					</rich:tab>
-					<rich:tab label="Objetos de Aprendizaje">
-						<rich:dataTable id="actividadListObjeto"
-							var="_actividadListObjeto"
-							value="#{actividadHome.getListaActividadesDivision(18)}">
+								<rich:column>
+									<f:facet name="header">Actividades
+										
+									</f:facet>
+									<h:graphicImage url="/css/images/calendario.png"
+										style="width:25px" />
 
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Descripcion actividad" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.descripcionActividad" />
-									</ui:include>
-								</f:facet>
-								<h:outputText
-									value="#{_actividadListObjeto.descripcionActividad}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Fecha" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.fechaFinalizacion" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListObjeto.fechaFinalizacion}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Porcentaje Nota" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.porcentaje" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListObjeto.porcentaje}"
-									escape="false" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<ui:include src="layout/sort.xhtml">
-										<ui:param name="entityList"
-											value="#{actividadListAutoevaluacion}" />
-										<ui:param name="propertyLabel" value="Adjunto" />
-										<ui:param name="propertyPath"
-											value="actividadAutoevaluacion.rutaArchivo" />
-									</ui:include>
-								</f:facet>
-								<h:outputText value="#{_actividadListObjeto.rutaArchivo}"
-									escape="false" />
-							</h:column>
-							<rich:column styleClass="action">
-								<f:facet name="header">Acción</f:facet>
-								<s:link view="/ActividadEdit.xhtml" value="Editar"
-									propagation="none" id="actividadEdit8" 
-									rendered="#{s:hasRole('docente')}">
-									<f:param name="actividadIdActividad"
-										value="#{_actividadListObjeto.idActividad}" />
-								</s:link>
-								#{' '}
-								<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
-							value="#{empty from ? 'Ver' : 'Seleccionar'}"
-							propagation="#{empty from ? 'none' : 'default'}"
-							id="actividadViewId" rendered="#{s:hasRole('estudiante')}">
-							<f:param name="actividadIdActividad"
-								value="#{_actividadListObjeto.idActividad}" />
-						</s:link>
+									<h:outputLabel value="Nombre Actividad: " />
+									<b> <h:outputText
+											value="#{_actividadListEnlaces.nombreActividad}" />
+									</b>
+								
+									#{' '}
+									<p>&nbsp;&nbsp; &nbsp;&nbsp;</p>
 
-							</rich:column>
+									<h:outputLabel value="Fecha Finalización: " />
+									<b> <h:outputText
+											value="#{_actividadListEnlaces.fechaFinalizacion}" />
+									</b>
+									<div align="right">
+										<s:link view="/ActividadEdit.xhtml" value="Editar"
+											propagation="none" id="actividadEdit2"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListEnlaces.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('estudiante')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListEnlaces.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Vista Previa' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListEnlaces.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListEnlaces.idActividad}" />
+										</s:link>
+									</div>
 
-						</rich:dataTable>
+								</rich:column>
+							</rich:dataTable>
 
-					</rich:tab>
-				</rich:tabPanel>
-	</a4j:outputPanel>
+						</rich:tab>
+						<rich:tab label="Objetos de Aprendizaje">
+							<rich:dataTable id="actividadListObjeto"
+								var="_actividadListObjeto"
+								value="#{actividadHome.getListaActividadesDivision(18)}">
+
+
+								<rich:column>
+									<f:facet name="header">Actividades
+										
+									</f:facet>
+									<h:graphicImage url="/css/images/calendario.png"
+										style="width:25px" />
+
+									<h:outputLabel value="Nombre Actividad: " />
+									<b> <h:outputText
+											value="#{_actividadListObjeto.nombreActividad}" />
+									</b>
+								
+									#{' '}
+									<p>&nbsp;&nbsp; &nbsp;&nbsp;</p>
+
+									<h:outputLabel value="Fecha Finalización: " />
+									<b> <h:outputText
+											value="#{_actividadListObjeto.fechaFinalizacion}" />
+									</b>
+									<div align="right">
+										<s:link view="/ActividadEdit.xhtml" value="Editar"
+											propagation="none" id="actividadEdit2"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListObjeto.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('estudiante')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListObjeto.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Vista Previa' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListObjeto.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividadListObjeto.idActividad}" />
+										</s:link>
+									</div>
+
+								</rich:column>
+							</rich:dataTable>
+
+						</rich:tab>
+					</rich:tabPanel>
+				</a4j:outputPanel>
 
 
 

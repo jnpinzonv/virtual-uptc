@@ -31,7 +31,7 @@ import org.jboss.seam.annotations.Name;
  * Descripcion: Esta Clase se encarga de gestionar el almacenamiento de datos,
  * se comunica con la base de datos Modulo de Desarrollo :CU- ...
  * 
- * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+ * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
  * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com Grupo de
  *         Investigacion Ingenieria Software (GIS) Semillero de Investigacion
  *         Moviles Sabatt (SIMS) Universidad Pedagogica y Tecnologica de
@@ -54,14 +54,20 @@ public class Actividad implements Serializable {
 	 */
 	private Long idActividad;
 
+	
 	/**
 	 * Variable que se encarga de crear un campo en la base de datos para el
-	 * manejo de descripción de la actividad, se designa con tipo de dato String
+	 * manejo de  nombre de la actividad, se designa con tipo de dato String
+	 */
+	private String nombreActividad;
+	/**
+	 * Variable que se encarga de crear un campo en la base de datos para el
+	 * manejo de descripciï¿½n de la actividad, se designa con tipo de dato String
 	 */
 	private String descripcionActividad;
 
 	/**
-	 * Variable que se encarga de informar el estado de evaluación de la
+	 * Variable que se encarga de informar el estado de evaluaciï¿½n de la
 	 * acividad, como se manejan estados se designa bajo el tipo de dato boolean
 	 */
 	private boolean evaluable;
@@ -156,6 +162,7 @@ public class Actividad implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_actividad", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdActividad() {
+		System.out.println(idActividad);
 		return idActividad;
 	}
 
@@ -482,6 +489,23 @@ public class Actividad implements Serializable {
 		this.idCursoSeleccionado = id;
 	}
 	
+	/**
+	 * Se obtiene el valor de nombreActividad
+	 * @return El valor de nombreActividad
+	 */
+	@Length(max = 25)
+	@Column(name = "nombre_actividad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	public String getNombreActividad() {
+		return nombreActividad;
+	}
+	
+	/**
+	 * Asigna el valor de nombreActividad
+	 * @param nombreActividad El valor por establecer para nombreActividad
+	 */
+	public void setNombreActividad(String nombreActividad) {
+		this.nombreActividad = nombreActividad;
+	}
 	
 
 }

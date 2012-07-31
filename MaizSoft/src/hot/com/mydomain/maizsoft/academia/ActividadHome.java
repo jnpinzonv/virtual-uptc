@@ -130,14 +130,14 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 	}
 
-	public void saveActividad(int pasarSeccion, long idCursoSeleccionado)  {
+	public String saveActividad(int pasarSeccion, long idCursoSeleccionado)  {
 		/*Query q5 = getEntityManager().createQuery(
 				ConsultasJpql.PORCENTAJE_TOTAL_ACTIVIDAD);
 		
 		System.out.println(q5.getResultList().size()+ "hola seccion...............");
 		*/
 		
-		try {
+	
 			
 		List<GrupoUsuarios> listaGrupos = listaGrupoUsuarios(idCursoSeleccionado);
 		Credentials cre = (Credentials) Component
@@ -171,14 +171,18 @@ public class ActividadHome extends EntityHome<Actividad> {
 		if(instance.getTipo().getIdTipo()==18){
 			
 		}
-
+		try {
 		crearLog(listaGrupos.get(0).getGrupoCurso());
 
 		} catch (RuntimeException e) {
 			FacesMessages mensaje = (FacesMessages) Component
 			.getInstance(FacesMessages.class);
 			mensaje.add("Algo malo a sucedido :-(  por favor vuelva a seleccionar el curso");
+			return "";
 		}
+		
+		instance = null;
+		return "/CuerpoCurso.xhtml";
 	}
 
 	
@@ -186,13 +190,13 @@ public class ActividadHome extends EntityHome<Actividad> {
 	public GestorEnvioCorreoElectronico crearConfiguracion(Actividad actividad) {
 
 		GestorEnvioCorreoElectronico nuevo = new GestorEnvioCorreoElectronico();
-		nuevo.setAsunto("Notificación de nueva Actividad en Plataforma virtual ");
+		nuevo.setAsunto("Notificaciï¿½n de nueva Actividad en Plataforma virtual ");
 
 		String mensaje = "Senor(a): Usuario \n"
 				+ "Se a creado una nueva actividad o recurso en su plataforma Virtual de Aprendizaje \n"
 				+ "realizado por: " + actividad.getUsuario().getPrimerNombre()
 				+ " " + actividad.getUsuario().getPrimerNombre() + "\n"
-				+ "fecha de creación: " + actividad.getFechaCreacion();
+				+ "fecha de creaciï¿½n: " + actividad.getFechaCreacion();
 		nuevo.setCuerpoMensaje(mensaje);
 		nuevo.setUsernameCorreo(getConfiguracion("correoElectronico")
 				.getDetallesPropiedad());
@@ -232,11 +236,11 @@ public class ActividadHome extends EntityHome<Actividad> {
 						.getInstance(FacesMessages.class);
 				mensaje.add("No es posible enviar Alerta al Usuario:"
 						+ grupoUsuarios.getUserGrupoCurso().getCodigoUsuarios()
-						+ " posible causa: La dirección correo no es valida :(");
+						+ " posible causa: La direcciï¿½n correo no es valida :(");
 			} catch (MessagingException e) {
 				FacesMessages mensaje = (FacesMessages) Component
 						.getInstance(FacesMessages.class);
-				mensaje.add("Se produjo un error técnico :(");
+				mensaje.add("Se produjo un error tï¿½cnico :(");
 			}
 		}
 
@@ -278,8 +282,19 @@ public class ActividadHome extends EntityHome<Actividad> {
 		if(instance.getTipo().getIdTipo()==18){			
 			archivo.setDescripcion(instance.getDescripcionActividad());
 			archivo.setNombre(gestorCargaArchivosHome.getInstance().getNombre());
-			archivo.setRuta(gestorCargaArchivosHome.getInstance().getRuta());
+			
 			archivo.setTipo(getEntityManager().find(Tipo.class, 18L));
+			if(instance.getTipoObjeto().equals("1")){
+				archivo.setRuta(instance.getUrlExterna());
+			}
+			else if(instance.getTipoObjeto().equals("Archivo")){
+			archivo.setRuta(gestorCargaArchivosHome.getInstance().getRuta());
+			}
+			else{
+				//Falta metodo de descomprimir
+				archivo.setRuta(gestorCargaArchivosHome.getInstance().getRuta());
+			}
+				
 			getEntityManager().persist(archivo);
 		}
 
@@ -334,7 +349,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
 		log.info("<--" + "[" + ConstantesLog.NOMBRE_PLATAFORMA + "]"
-				+ "Acción:" + "[" + ConstantesLog.CREAR_ACTIVIDAD + "]"
+				+ "Acciï¿½n:" + "[" + ConstantesLog.CREAR_ACTIVIDAD + "]"
 				+ "Tipo:" + "[" + instance.getTipo().getNombre() + "]"
 				+ "Sobre el grupo con ID:" + "[" + grupo.getIdGrupo() + "]"
 				+ "Realizada por:" + "[" + cre.getUsername() + "]"

@@ -112,6 +112,8 @@ public class Actividad implements Serializable {
 	private transient boolean alertaMail;
 	
 	private transient long idCursoSeleccionado;
+	
+	private transient String tipoObjeto;
 
 	public Actividad() {
 		evaluable = true;
@@ -505,6 +507,23 @@ public class Actividad implements Serializable {
 	 */
 	public void setNombreActividad(String nombreActividad) {
 		this.nombreActividad = nombreActividad;
+	}
+	
+	/**
+	 * Se obtiene el valor de tipoObjeto
+	 * @return El valor de tipoObjeto
+	 */
+	@Transient
+	public String getTipoObjeto() {
+		return tipoObjeto;
+	}
+	
+	/**
+	 * Asigna el valor de tipoObjeto
+	 * @param tipoObjeto El valor por establecer para tipoObjeto
+	 */
+	public void setTipoObjeto(String tipoObjeto) {
+		this.tipoObjeto = tipoObjeto;
 	}
 	
 

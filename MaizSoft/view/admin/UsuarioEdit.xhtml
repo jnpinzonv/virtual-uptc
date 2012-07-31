@@ -61,7 +61,7 @@
 								style="position:absolute;">
 								<ui:define name="label">Tipo Documento identidad</ui:define>
 								<h:selectOneMenu value="#{usuarioHome.instance.tipo}"
-									id="tipoDocumento" rendered="true">
+									id="tipoDocumento">
 									<s:selectItems value="#{listaTiposDocumento}" var="listaE"
 										label="#{listaE.nombre}"/>
 									<s:convertEntity />
@@ -119,7 +119,7 @@
 								<ui:define name="label">Escuela</ui:define>
 								<h:selectOneMenu
 									value="#{usuarioHome.instance.enteUniversitarios}"
-									id="enteUniversitario" required="true" rendered="true">
+									id="enteUniversitario">
 									<s:selectItems value="#{listaEntesUniversitariosEscuelas}" var="lista"
 										label="#{lista.nombreEnteUniversitario}"/>
 									<a4j:support event="onchange" reRender="dos" />

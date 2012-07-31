@@ -286,13 +286,16 @@ public class ActividadHome extends EntityHome<Actividad> {
 			archivo.setTipo(getEntityManager().find(Tipo.class, 18L));
 			if(instance.getTipoObjeto().equals("1")){
 				archivo.setRuta(instance.getUrlExterna());
+				archivo.setNombre(instance.getNombreActividad());
 			}
 			else if(instance.getTipoObjeto().equals("Archivo")){
 			archivo.setRuta(gestorCargaArchivosHome.getInstance().getRuta());
+			archivo.setNombre(instance.getNombreArchivo());
 			}
 			else{
 				//Falta metodo de descomprimir
 				archivo.setRuta(gestorCargaArchivosHome.getInstance().getRuta());
+				
 			}
 				
 			getEntityManager().persist(archivo);
@@ -328,13 +331,14 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 		Query q = null;
 		List<Actividad> nueva=null;
+		try {
 			q = getEntityManager().createQuery(
 					ConsultasJpql.ACTIVIADES_POR_DIVISION);
 			q.setParameter("parametro", idTipo);
 						
 		nueva=(List<Actividad>)q.getResultList();
 		
-			try {
+			
 		} catch (Exception e) {
 			return null;
 		}

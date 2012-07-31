@@ -56,7 +56,7 @@
 						<rich:tab label="foro">
 
 							<rich:dataTable var="_actividad"
-								value="#{actividadHome.getListaActividadesDivision(11)}">
+								value="#{actividadSeleccionadaBean.getListaActividadesDivision(11)}">
 
 								<rich:column>
 									<f:facet name="header">Actividades
@@ -116,7 +116,7 @@
 						<rich:tab label="Autoevaluación">
 
 							<rich:dataTable var="_actividadListAutoevaluacion"
-								value="#{actividadHome.getListaActividadesDivision(13)}">
+								value="#{actividadSeleccionadaBean.getListaActividadesDivision(13)}">
 
 								<rich:column>
 									<f:facet name="header">Actividades
@@ -166,7 +166,7 @@
 											propagation="#{empty from ? 'none' : 'default'}"
 											id="actividadViewIde" rendered="#{s:hasRole('docente')}">
 											<f:param name="actividadIdActividad"
-												value="#{_actividadListAutoevaluacion.idActividad}" />
+												value="#{actividadSeleccionadaBean.addActividadSeleccionada(_actividadListAutoevaluacion.idActividad)}" />
 										</s:link>
 									</div>
 
@@ -178,7 +178,7 @@
 						<rich:tab label="Anuncios">
 							<rich:dataTable id="actividadListAnuncios"
 								var="_actividadListAnuncios"
-								value="#{actividadHome.getListaActividadesDivision(16)}">
+								value="#{actividadSeleccionadaBean.getListaActividadesDivision(16)}">
 
 								<rich:column>
 									<f:facet name="header">Actividades
@@ -243,7 +243,7 @@
 						<rich:tab label="Cargar Archivos">
 							<rich:dataTable id="actividadListCargaArchivo"
 								var="_actividadListCargaArchivo"
-								value="#{actividadHome.getListaActividadesDivision(12)}">
+								value="#{actividadSeleccionadaBean.getListaActividadesDivision(12)}">
 
 								<rich:column>
 									<f:facet name="header">Actividades
@@ -305,7 +305,7 @@
 						<rich:tab label="Video Conferencia">
 
 							<rich:dataTable id="actividadListVideo" var="_actividadListVideo"
-								value="#{actividadHome.getListaActividadesDivision(14)}">
+								value="#{actividadSeleccionadaBean.getListaActividadesDivision(14)}">
 
 								<rich:column>
 									<f:facet name="header">Actividades
@@ -365,7 +365,7 @@
 						</rich:tab>
 						<rich:tab label="Audio Conferencia">
 							<rich:dataTable id="actividadListAudio" var="_actividadListAudio"
-								value="#{actividadHome.getListaActividadesDivision(15)}">
+								value="#{actividadSeleccionadaBean.getListaActividadesDivision(15)}">
 
 								<rich:column>
 									<f:facet name="header">Actividades
@@ -427,7 +427,7 @@
 						<rich:tab label="Enlaces Externos">
 							<rich:dataTable id="actividadListEnlaces"
 								var="_actividadListEnlaces"
-								value="#{actividadHome.getListaActividadesDivision(17)}">
+								value="#{actividadSeleccionadaBean.getListaActividadesDivision(17)}">
 
 								<rich:column>
 									<f:facet name="header">Actividades
@@ -488,7 +488,7 @@
 						<rich:tab label="Objetos de Aprendizaje">
 							<rich:dataTable id="actividadListObjeto"
 								var="_actividadListObjeto"
-								value="#{actividadHome.getListaActividadesDivision(18)}">
+								value="#{actividadSeleccionadaBean.getListaActividadesDivision(18)}">
 
 
 								<rich:column>

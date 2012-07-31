@@ -8,7 +8,7 @@ import java.util.Arrays;
 @Name("usuarioList")
 public class UsuarioList extends EntityQuery<Usuario> {
 
-	private static final String EJBQL = "select usuario from Usuario usuario where usuario.id=1";
+	private static final String EJBQL = "select usuario from Usuario usuario";
 
 	private static final String[] RESTRICTIONS = {
 			"lower(usuario.apellidos) like lower(concat(#{usuarioList.usuario.apellidos},'%'))",

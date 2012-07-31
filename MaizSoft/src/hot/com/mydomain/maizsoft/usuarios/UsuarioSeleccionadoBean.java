@@ -13,6 +13,7 @@ import javax.persistence.Query;
 
 import org.jboss.seam.Component;
 import org.jboss.seam.annotations.Factory;
+import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Out;
 import org.jboss.seam.annotations.datamodel.DataModel;
@@ -38,15 +39,18 @@ import com.mydomain.Directorio.model.Usuario;
 @Name("usuarioSeleccionadoBean")
 public class UsuarioSeleccionadoBean implements IUsuarioSeleccionado {
 
-	@DataModel(value = "listaUsuarioSeleccionado")
+
 	private List<Usuario> listaUsuarioSeleccionado;
 
-	@DataModelSelection(value = "listaUsuarioSeleccionado")
-	@Out(required = false)
+	
 	private Usuario usuarioSeleccionado;
 
 	@PersistenceContext
 	EntityManager entityManager;
+	
+	@In(create =true)
+	UsuarioHome usuarioHome;
+	
 
 
 	/* (non-Javadoc)
@@ -83,6 +87,7 @@ public class UsuarioSeleccionadoBean implements IUsuarioSeleccionado {
 	 * @see com.mydomain.maizsoft.usuarios.IUsuarioSeleccionado#getUsuarioSeleccionado()
 	 */
 	public Usuario getUsuarioSeleccionado() {
+		
 		return usuarioSeleccionado;
 	}
 
@@ -107,13 +112,27 @@ public class UsuarioSeleccionadoBean implements IUsuarioSeleccionado {
 	 * @see com.mydomain.maizsoft.usuarios.IUsuarioSeleccionado#setSeleccion()
 	 */
 	public String setSeleccion() {
-		
+		if(usuarioSeleccionado!=null){
+			usuarioHome.setInstance(usuarioSeleccionado);
+			System.out.println(usuarioHome.getInstance().getPrimerNombre()+ "holaaaaaaaaaaaa");
+		}
 		return "/UsuarioEdit2.xhtml";
 	}
 	
 	
 	public void updateUsuario(){
-		entityManager.merge(usuarioSeleccionado);
+		entityManager.merge(usuarioHome.getInstance());
+		entityManager.flush();
+	}
+
+
+	/* (non-Javadoc)
+	 * @see com.mydomain.maizsoft.usuarios.IUsuarioSeleccionado#usuarioHome()
+	 */
+
+	public UsuarioHome usuarioHome() {
+		
+		return usuarioHome;
 	}
 
 }

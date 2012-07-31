@@ -56,34 +56,33 @@
 						<rich:panel>
 							<h:form id="form">
 
-								<img src="http://localhost/Penguins.jpg" style="height: 80px" />
+								<img src="#{usuarioHome.rutaImagen()}" style="height: 80px" />
 								<br />
-								
-									<div class="results" id="usuarioSelect">
 
-										<h:outputText value="La busqueda no arrojo resultados."
-											rendered="#{empty listaUsuarioSeleccionado}" />
-										<div>
+								<div class="results" id="usuarioSelect">
 
-											<h:dataTable id="grupoCursoList" var="usuario"
-												value="#{listaUsuarioSeleccionado}">
+									<h:outputText value="La busqueda no arrojo resultados."
+										rendered="#{empty listaUsuarioSeleccionado}" />
+									<div>
 
-												<h:column styleClass="action">
+										<h:dataTable id="grupoCursoList" var="usuario"
+											value="#{listaUsuarioSeleccionado}">
 
-													<s:link 
-														value="#{usuario.primerNombre}  #{usuario.apellidos}"
-														propagation="none" id="usuarioEdit"
-														action="#{usuarioSeleccionadoBean.setSeleccion()}">
-														<f:param name="usuarioId"
-															value="#{usuario.id}" />
+											<h:column styleClass="action">
 
-													</s:link>
-												</h:column>
-											</h:dataTable>
+												<s:link
+													view="/UsuarioEdit2.xhtml"
+													value="#{usuario.primerNombre}  #{usuario.apellidos}"
+													propagation="none" id="usuarioEdit">
+													<f:param name="usuarioId" value="#{usuario.id}" />
 
-										</div>
+												</s:link>
+											</h:column>
+										</h:dataTable>
+
 									</div>
-								
+								</div>
+
 
 								<br />
 								<br />
@@ -99,10 +98,10 @@
 										itemChangeListener="#{panelMenuBean.updateCurrent}"
 										expandSingle="true" showDelay="250" hideDelay="0"
 										submitMode="none">
-										<rich:panelMenuGroup label="Mensajes" style="color: #FFFFFF;" 
-										rendered="#{s:hasRole('estudiante') || s:hasRole('docente')}">
-											<rich:panelMenuItem style="color: #045491;" icon="disc"  
-											rendered="#{not empty cursoActualBean.selecionado(_grupoCurso.idGrupo)}">
+										<rich:panelMenuGroup label="Mensajes" style="color: #FFFFFF;"
+											rendered="#{s:hasRole('estudiante') || s:hasRole('docente')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc"
+												rendered="#{not empty cursoActualBean.selecionado(_grupoCurso.idGrupo)}">
 												<s:link value="Crear" action="/GestorMensajeriaEdit.seam"></s:link>
 											</rich:panelMenuItem>
 											<rich:panelMenuGroup label="Ver" style="color: #045491;"
@@ -225,8 +224,7 @@
 										<rich:panelMenuGroup label="Noticias" style="color: #FFFFFF;"
 											rendered="#{s:hasRole('estudiante')}">
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
-												<s:link value="Consultar"
-													action="/GestorNoticiasList.seam"
+												<s:link value="Consultar" action="/GestorNoticiasList.seam"
 													propagation="end"></s:link>
 											</rich:panelMenuItem>
 										</rich:panelMenuGroup>
@@ -244,20 +242,20 @@
 										<rich:panelMenuGroup label="Noticias" style="color: #FFFFFF;"
 											rendered="#{s:hasRole('docente')}">
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
-												<s:link value="Consultar"
-													action="/GestorNoticiasList.seam"
+												<s:link value="Consultar" action="/GestorNoticiasList.seam"
 													propagation="end"></s:link>
 											</rich:panelMenuItem>
-										
+
 										</rich:panelMenuGroup>
-										
-										<rich:panelMenuGroup label="Altas de Cursos" style="color: #FFFFFF;"
-											rendered="#{s:hasRole('docente')}">
-										<rich:panelMenuItem style="color: #045491;" icon="disc">
+
+										<rich:panelMenuGroup label="Altas de Cursos"
+											style="color: #FFFFFF;" rendered="#{s:hasRole('docente')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
 												<a href="css/images/FormatoCurso.doc">Formato para curso</a>
 											</rich:panelMenuItem>
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
-												<a href="css/images/FormatoCurso.doc">Formato para Usuarios</a>
+												<a href="css/images/FormatoCurso.doc">Formato para
+													Usuarios</a>
 											</rich:panelMenuItem>
 										</rich:panelMenuGroup>
 									</rich:panelMenu>
@@ -305,7 +303,8 @@
 
 								<br />
 
-								<rich:panel rendered="#{s:hasRole('estudiante') || s:hasRole('docente')}">
+								<rich:panel
+									rendered="#{s:hasRole('estudiante') || s:hasRole('docente')}">
 
 									<f:facet name="header">Cursos</f:facet>
 									<div class="results" id="grupoCursoList">
@@ -321,11 +320,11 @@
 
 													<s:link view="/CuerpoCurso.xhtml"
 														value="#{_grupoCurso.cursoGrupo.nombreAsignatura}"
-														propagation="none" id="grupoCursoEdit"
-														>
+														propagation="none" id="grupoCursoEdit">
 														<f:param name="grupoCursoIdGrupo"
 															value="{_grupoCurso.idGrupo}" />
-															<a4j:support event="onchange" immediate="true" action="#{cursoActualBean.selecionado(_grupoCurso.idGrupo)}"/>
+														<a4j:support event="onchange" immediate="true"
+															action="#{cursoActualBean.selecionado(_grupoCurso.idGrupo)}" />
 													</s:link>
 												</h:column>
 											</h:dataTable>

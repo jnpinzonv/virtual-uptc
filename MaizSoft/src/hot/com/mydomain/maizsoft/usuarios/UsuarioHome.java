@@ -183,11 +183,10 @@ public class UsuarioHome extends EntityHome<Usuario> {
 		return listaTiposEnteUniversitarios;
 	}
 
-	public File rutaImagen() {
+	public String rutaImagen() {
 
 		String nueva = "css/images/gis.png";
-		File nuevoi =null;
-		URL nu=null;
+		
 		try {
 
 			Credentials cre = (Credentials) Component
@@ -199,8 +198,7 @@ public class UsuarioHome extends EntityHome<Usuario> {
 			if (nuevo.getFotoUser() == null)
 				nueva = "css/images/gis.png";
 			else{
-				nueva = nuevo.getFotoUser();
-				nuevoi = new File(nueva);
+				nueva = nuevo.getFotoUser();				
 			}
 		} catch (RuntimeException e) {
 			FacesMessages mensaje = (FacesMessages) Component
@@ -208,7 +206,7 @@ public class UsuarioHome extends EntityHome<Usuario> {
 			mensaje.add("Algo malo a sucedido :-( ");
 		}
 
-		return nuevoi;
+		return nueva;
 
 	}
 

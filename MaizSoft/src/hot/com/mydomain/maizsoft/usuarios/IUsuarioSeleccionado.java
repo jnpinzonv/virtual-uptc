@@ -46,5 +46,8 @@ public interface IUsuarioSeleccionado {
 	String setSeleccion();
 	
 	void updateUsuario();
+	
+	
+	UsuarioHome usuarioHome();
 
 }

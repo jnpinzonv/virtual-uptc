@@ -185,11 +185,16 @@ public class CargaArchivosBean implements ICargaArchivos {
 					ConfiguracionesSistema.class, 1l);
 			ConfiguracionesSistema pathImagenes = entityManager.find(
 					ConfiguracionesSistema.class, 17l);
+			ConfiguracionesSistema rutaSer = entityManager.find(
+					ConfiguracionesSistema.class, 19l);			
 			String pathFinal = path.getDetallesPropiedad() + "//"
 					+ pathImagenes.getDetallesPropiedad() + "//"
 					+ credentials.getUsername();
 			handleUpload(pathFinal);
-			usuarioHome.getInstance().setFotoUser(pathFinal+ "//"+nombreArchivo);
+			String rutaRelativa= rutaSer.getDetallesPropiedad() 
+					+ pathImagenes.getDetallesPropiedad() + "//"
+					+ credentials.getUsername();
+			usuarioHome.getInstance().setFotoUser(rutaRelativa+ "//"+nombreArchivo);
 		} catch (IOException e) {
 
 			e.printStackTrace();

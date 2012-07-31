@@ -33,6 +33,7 @@ import com.mydomain.Directorio.model.NumeroDivisiones;
 import com.mydomain.Directorio.model.Tipo;
 import com.mydomain.Directorio.model.Usuario;
 import com.mydomain.maizsoft.comunicaciones.GestorEnvioCorreoElectronico;
+import com.mydomain.maizsoft.gestores.GestorCargaArchivosHome;
 import com.mydomain.maizsoft.tipos.TipoHome;
 
 @Name("actividadHome")
@@ -45,7 +46,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 	TipoHome tipoHome;
 	
 	@In(create = true)
-	GestorCargaArchivos gestorCargaArchivos;
+	GestorCargaArchivosHome gestorCargaArchivosHome;
 	
 	
 	Long idCurso;
@@ -276,9 +277,9 @@ public class ActividadHome extends EntityHome<Actividad> {
 		
 		if(instance.getTipo().getIdTipo()==18){			
 			archivo.setDescripcion(instance.getDescripcionActividad());
-			archivo.setNombre(gestorCargaArchivos.getNombre());
-			archivo.setRuta(gestorCargaArchivos.getRuta());
-			archivo.setTipo(getEntityManager().find(Tipo.class, 12L));
+			archivo.setNombre(gestorCargaArchivosHome.getInstance().getNombre());
+			archivo.setRuta(gestorCargaArchivosHome.getInstance().getRuta());
+			archivo.setTipo(getEntityManager().find(Tipo.class, 18L));
 			getEntityManager().persist(archivo);
 		}
 

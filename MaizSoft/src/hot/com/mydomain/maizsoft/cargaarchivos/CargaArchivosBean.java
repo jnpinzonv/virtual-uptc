@@ -204,26 +204,41 @@ public class CargaArchivosBean implements ICargaArchivos {
 	public void cargarObjetoAprendizaje() {
 		
 
-			ConfiguracionesSistema path = entityManager.find(
-					ConfiguracionesSistema.class, 1l);
-			ConfiguracionesSistema pathOA = entityManager.find(
-					ConfiguracionesSistema.class, 18l);
-			String pathFinal = path.getDetallesPropiedad() + "//"
-					+ pathOA.getDetallesPropiedad() + "//"
-					+ credentials.getUsername();
+		ConfiguracionesSistema path = entityManager.find(
+				ConfiguracionesSistema.class, 1l);
+		ConfiguracionesSistema pathOA = entityManager.find(
+				ConfiguracionesSistema.class, 18l);
+		ConfiguracionesSistema rutaSer = entityManager.find(
+				ConfiguracionesSistema.class, 19l);
+		String pathFinal = path.getDetallesPropiedad() + "//"
+				+ pathOA.getDetallesPropiedad() + "//"
+				+ credentials.getUsername();
+	
 		
-			
-			String rutaRelativa =  pathOA.getDetallesPropiedad() + "//"
-					+ credentials.getUsername();
-			//gestorCargaArchivosHome.getInstance().setNombre(nombreArchivo);
-			//gestorCargaArchivosHome.getInstance().setRuta("http://localhost/"+rutaRelativa);
-			
-			try {
-				handleUpload(pathFinal);
-		} catch (IOException e) {
+		String rutaRelativa =  pathOA.getDetallesPropiedad() + "//"
+				+ credentials.getUsername();
+	gestorCargaArchivosHome.getInstance().setNombre(nombreArchivo);
+	gestorCargaArchivosHome.getInstance().setRuta(rutaSer.getDetallesPropiedad()+rutaRelativa + "//"+nombreArchivo);
+		
+		try {
+			handleUpload(pathFinal);
+	} catch (IOException e) {
 
-			System.out.println(e.getMessage());
-		}
+		System.out.println(e.getMessage());
+	}
+	
+}
+
+	/* (non-Javadoc)
+	 * @see com.mydomain.maizsoft.cargaarchivos.ICargaArchivos#seleccionOAAA()
+	 */
+	public void seleccionOAAA() {
 		
+		if(actividadHome.getInstance().getTipo().getIdTipo()==18){
+			cargarObjetoAprendizaje();
+		}
+		else{
+			cargarArchivoAdjuntoActividad();
+		}
 	}
 }

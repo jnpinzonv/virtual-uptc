@@ -37,11 +37,10 @@
 				<s:decorate id="nombreActividad" template="layout/edit.xhtml">
 					<ui:define name="label">Nombre actividad: </ui:define>
 					<h:inputText id="nombreAc" size="27" maxlength="25"
-						value="#{actividadHome.instance.nombreActividad}"						
-						required="true" />
-				</s:decorate>				
+						value="#{actividadHome.instance.nombreActividad}" required="true" />
+				</s:decorate>
 				<br />
-				<br />	
+				<br />
 				<s:decorate id="mensajeField" template="layout/edit.xhtml">
 					<ui:define name="label">Descripcion actividad: </ui:define>
 					<h:panelGrid style="margin-left:80px">
@@ -94,7 +93,7 @@
 				<br />
 				<br />
 
-				
+
 				<s:decorate id="alertaMailField" template="/layout/edit.xhtml"
 					style="position:absolute;">
 					<ui:define name="label">Alerta Por Mail</ui:define>
@@ -179,15 +178,15 @@
 				<br />
 				<a4j:outputPanel>
 
-					<s:decorate id="cargarArchivos"
-						>
+					<s:decorate id="cargarArchivos">
 						<ui:define name="label">Adjuntar Archivo:</ui:define>
 						<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
-							accept="image/jpg" fileName="#{cargaArchivosBean.nombreArchivo}" />
+							fileName="#{cargaArchivosBean.nombreArchivo}" />
 
 						<h:commandButton id="upload" value="Subir !!"
-							action="#{cargaArchivosBean.cargarArchivoAdjuntoActividad()}" />
-
+							action="#{cargaArchivosBean.seleccionOAAA()}" />
+						<a4j:support event="onchange" reRender="actividade2"
+							ajaxSingle="true" />
 						<s:button id="cancel" view="/login.xhtml" value="Cancel"
 							propagation="end" />
 						<br />
@@ -195,8 +194,15 @@
 							rendered="#{not empty cargaArchivosBean.nombreArchivo}" />
 						<h:outputLabel value="#{cargaArchivosBean.nombreArchivo}" />
 
-						<h:outputLabel value="No se ha adjuntado ningún archivo" rendered="#{empty cargaArchivosBean.nombreArchivo}"/>
+						<h:outputLabel value="No se ha adjuntado ningún archivo"
+							rendered="#{empty cargaArchivosBean.nombreArchivo}" />
 					</s:decorate>
+
+					<a4j:outputPanel id="actividade2" ajaxRendered="true">
+						<h:outputLabel value="#{gestorCargaArchivosHome.instance.ruta}" />
+						<iframe src="#{gestorCargaArchivosHome.instance.ruta}"></iframe>
+
+					</a4j:outputPanel>
 
 				</a4j:outputPanel>
 
@@ -236,27 +242,11 @@
 				</div>
 			</a4j:outputPanel>
 		</h:form>
-		
-		
-			<f:facet name="header">ObjetoAprendizaje</f:facet>
 
-			<h:form id="fooForm2" enctype="multipart/form-data" >
 
-				<s:fileUpload id="file2" data="#{preCarga.file}"
-					accept="image/jpg" fileName="#{preCarga.nombreArchivo}"/>
 
-				<h:commandButton id="upload2" value="Subir !!"
-					action="#{preCarga.cargarObjetoAprendizaje()}"/>
-				  		<a4j:support event="onchange" reRender="actividadess" ajaxSingle="true" />
-				  	<s:button id="cancel2" view="/login.xhtml"
-								value="Cancel" propagation="end" />
-			</h:form>
 
-			<a4j:outputPanel id="actividadess2" ajaxRendered="true">
-			<h:outputLabel value="#{gestorCargaArchivos.ruta}" />
-			<iframe src="#{gestorCargaArchivos.ruta}"></iframe>
-		
-		</a4j:outputPanel>
+
 
 
 

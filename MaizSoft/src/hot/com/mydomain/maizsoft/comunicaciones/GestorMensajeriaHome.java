@@ -191,7 +191,7 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 
 		return lista;
 	}
-
+	
 	public String irForo() {
 		listaGrupoUsuarios();
 		return "/ForoEdit.seam";

@@ -22,7 +22,7 @@
 				<f:facet name="header">Mensajes Enviados</f:facet>
 				<div class="results" id="mensajeList">
 
-					<rich:dataTable id="usuarioList" var="_listaMensajes"
+					<rich:dataTable id="mensajeList" var="_listaMensajes"
 						value="#{listaMensajesEnviadosPorUsuario}" rows="10" width="650px" height="20px">
 						<h:column>
 							<f:facet name="header">Para							
@@ -58,6 +58,8 @@
 							</s:link>
 						</rich:column>
 					</rich:dataTable>
+					<rich:datascroller align="center" for="mensajeList"
+							page="#{mensajeList.pageCount}" id="sc204" reRender="sc205" />
 				</div>
 
 			</rich:panel>

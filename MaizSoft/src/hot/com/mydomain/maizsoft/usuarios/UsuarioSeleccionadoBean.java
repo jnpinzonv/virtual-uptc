@@ -47,9 +47,8 @@ public class UsuarioSeleccionadoBean implements IUsuarioSeleccionado {
 
 	@PersistenceContext
 	EntityManager entityManager;
+
 	
-	@In(create =true)
-	UsuarioHome usuarioHome;
 	
 
 
@@ -108,31 +107,31 @@ public class UsuarioSeleccionadoBean implements IUsuarioSeleccionado {
 		this.listaUsuarioSeleccionado = listaUsuarioSeleccionado;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.mydomain.maizsoft.usuarios.IUsuarioSeleccionado#setSeleccion()
-	 */
-	public String setSeleccion() {
-		if(usuarioSeleccionado!=null){
-			usuarioHome.setInstance(usuarioSeleccionado);
-			System.out.println(usuarioHome.getInstance().getPrimerNombre()+ "holaaaaaaaaaaaa");
-		}
-		return "/UsuarioEdit2.xhtml";
-	}
-	
-	
-	public void updateUsuario(){
-		entityManager.merge(usuarioHome.getInstance());
-		entityManager.flush();
-	}
+	public String rutaImagen() {
 
-
-	/* (non-Javadoc)
-	 * @see com.mydomain.maizsoft.usuarios.IUsuarioSeleccionado#usuarioHome()
-	 */
-
-	public UsuarioHome usuarioHome() {
+		String nueva = "css/images/gis.png";
 		
-		return usuarioHome;
-	}
+		try {
 
+			Credentials cre = (Credentials) Component
+					.getInstance(Credentials.class);
+			Query q = entityManager.createQuery(
+					ConsultasJpql.USUARIO_POR_USERNAME);
+			q.setParameter("parametro", cre.getUsername());
+			Usuario nuevo = (Usuario) q.getSingleResult();
+			if (nuevo.getFotoUser() == null)
+				nueva = "css/images/gis.png";
+			else{
+				nueva = nuevo.getFotoUser();				
+			}
+		} catch (RuntimeException e) {
+			FacesMessages mensaje = (FacesMessages) Component
+					.getInstance(FacesMessages.class);
+			mensaje.add("Algo malo a sucedido :-( ");
+		}
+
+		return nueva;
+
+	}
+	
 }

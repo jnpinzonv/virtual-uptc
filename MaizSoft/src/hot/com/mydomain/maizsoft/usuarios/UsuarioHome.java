@@ -1,8 +1,6 @@
 package com.mydomain.maizsoft.usuarios;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,6 +37,7 @@ public class UsuarioHome extends EntityHome<Usuario> {
 
 	@In(create = true)
 	EnteUniversitarioHome enteUniversitarioHome;
+	
 	@In(create = true)
 	TipoHome tipoHome;
 
@@ -183,31 +182,6 @@ public class UsuarioHome extends EntityHome<Usuario> {
 		return listaTiposEnteUniversitarios;
 	}
 
-	public String rutaImagen() {
 
-		String nueva = "css/images/gis.png";
-		
-		try {
-
-			Credentials cre = (Credentials) Component
-					.getInstance(Credentials.class);
-			Query q = getEntityManager().createQuery(
-					ConsultasJpql.USUARIO_POR_USERNAME);
-			q.setParameter("parametro", cre.getUsername());
-			Usuario nuevo = (Usuario) q.getSingleResult();
-			if (nuevo.getFotoUser() == null)
-				nueva = "css/images/gis.png";
-			else{
-				nueva = nuevo.getFotoUser();				
-			}
-		} catch (RuntimeException e) {
-			FacesMessages mensaje = (FacesMessages) Component
-					.getInstance(FacesMessages.class);
-			mensaje.add("Algo malo a sucedido :-( ");
-		}
-
-		return nueva;
-
-	}
 
 }

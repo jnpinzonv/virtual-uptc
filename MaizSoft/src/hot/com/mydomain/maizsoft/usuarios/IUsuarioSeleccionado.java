@@ -42,12 +42,8 @@ public interface IUsuarioSeleccionado {
 	 */
 	public void setListaUsuarioSeleccionado(List<Usuario> listaUsuarioSeleccionado) ;
 	
-	
-	String setSeleccion();
-	
-	void updateUsuario();
-	
-	
-	UsuarioHome usuarioHome();
-
+	/**
+	 * @return
+	 */
+	String rutaImagen();
 }

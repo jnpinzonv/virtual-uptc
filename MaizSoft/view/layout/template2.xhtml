@@ -56,7 +56,7 @@
 						<rich:panel>
 							<h:form id="form">
 
-								<img src="#{usuarioHome.rutaImagen()}" style="height: 80px" />
+								<img src="#{usuarioSeleccionadoBean.rutaImagen()}" style="height: 80px" />
 								<br />
 
 								<div class="results" id="usuarioSelect">
@@ -109,10 +109,6 @@
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Mensajes Recibidos"
 														action="/MensajeList.seam" propagation="end"></s:link>
-												</rich:panelMenuItem>
-												<rich:panelMenuItem style="color: #045491;" icon="disc">
-													<s:link value="Mensajes no leidos"
-														action="/MensajeListNoLeido.seam" propagation="end"></s:link>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem style="color: #045491;" icon="disc">
 													<s:link value="Mensajes Enviados"

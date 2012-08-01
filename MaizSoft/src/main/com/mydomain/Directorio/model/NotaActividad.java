@@ -203,7 +203,7 @@ public class NotaActividad implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_grupo_curso", unique = false, nullable = false, insertable = true, updatable = true)
 	public GrupoUsuarios getGrupoCurso() {
-		return grupoCurso;
+		return grupoCurso.getGrupoCurso();
 	}
 
 	/**

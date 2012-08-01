@@ -116,6 +116,7 @@ public class UsuarioHome extends EntityHome<Usuario> {
 
 	public String saveUsuario() {
 
+		try {
 		Calendar calendar = Calendar.getInstance();
 		List<String> nueva = new ArrayList<String>();
 		nueva.add(instance.getRole());
@@ -145,12 +146,16 @@ public class UsuarioHome extends EntityHome<Usuario> {
 		nuevoCuenta.setUserAccounts((UserAccount) q.getSingleResult());
 		getEntityManager().persist(nuevoCuenta);
 
-		try {
+			instance=null;
 		} catch (RuntimeException e) {
 			FacesMessages mensaje = (FacesMessages) Component
 					.getInstance(FacesMessages.class);
-			mensaje.add("Se produjo un error al guardar el Usuario, posible causa: El usuario ya existe en el sistema");
-			return "";
+			mensaje.add("Se produjo un error al guardar el Usuario, posible causa: " +
+					" 1) El usuario ya existe en el sistema." +
+					" 2) NO se ingreso por el link de crear Usuario.");
+			userAction=null;
+			instance=null;
+			return "/UsuarioList.seam";
 		}
 		return "/UsuarioList.seam";
 	}

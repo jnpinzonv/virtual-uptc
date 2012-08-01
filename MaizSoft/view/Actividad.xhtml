@@ -52,8 +52,8 @@
 			<s:decorate id="adjunto" template="layout/display.xhtml"
 				style="position:absolute;" rendered="#{not empty actividadHome.instance.nombreArchivo}">
 				<ui:define name="label">Archivo Adjunto:</ui:define>
-				<h:outputText value="#{actividadHome.instance.nombreArchivo}"
-					/>
+				<h:outputText value="#{actividadHome.instance.nombreArchivo}"/>
+			
 			<br />
 			<br />
 			</s:decorate>
@@ -64,10 +64,8 @@
 				rendered="#{actividadHome.instance.tipo.idTipo==13}"
 				>
 				<ui:define name="label">Justificación:</ui:define>
-				<h:inputTextarea cols="80" rows="3"/>
-				<br />
-				<br />
-			</s:decorate>
+				<h:inputTextarea cols="80" rows="3" />
+				</s:decorate>
 			<s:decorate id="nombreUrl" template="layout/display.xhtml"
 				rendered="#{actividadHome.instance.tipo.idTipo==17}">
 				<ui:define name="label">Nombre:</ui:define>
@@ -131,6 +129,8 @@
 				rendered="#{s:hasRole('docente')}" id="done2" value="Aceptar" />	
 
 		</div>
+		
+		
 
 	</ui:define>
 

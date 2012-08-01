@@ -99,7 +99,7 @@
 												value="#{_actividad.idActividad}" />
 										</s:link>
 										#{' '}
-										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
 											value="#{empty from ? 'Ver' : 'Seleccionar'}"
 											propagation="#{empty from ? 'none' : 'default'}"
 											rendered="#{s:hasRole('docente')}">
@@ -288,7 +288,7 @@
 												value="#{_actividadListCargaArchivo.idActividad}" />
 										</s:link>
 										#{' '}
-										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
 											value="#{empty from ? 'Ver' : 'Seleccionar'}"
 											propagation="#{empty from ? 'none' : 'default'}"
 											rendered="#{s:hasRole('docente')}">
@@ -350,7 +350,7 @@
 												value="#{_actividadListVideo.idActividad}" />
 										</s:link>
 										#{' '}
-										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
 											value="#{empty from ? 'Ver' : 'Seleccionar'}"
 											propagation="#{empty from ? 'none' : 'default'}"
 											rendered="#{s:hasRole('docente')}">
@@ -410,7 +410,7 @@
 												value="#{_actividadListAudio.idActividad}" />
 										</s:link>
 										#{' '}
-										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
 											value="#{empty from ? 'Ver' : 'Seleccionar'}"
 											propagation="#{empty from ? 'none' : 'default'}"
 											rendered="#{s:hasRole('docente')}">
@@ -472,7 +472,7 @@
 												value="#{_actividadListEnlaces.idActividad}" />
 										</s:link>
 										#{' '}
-										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
 											value="#{empty from ? 'Ver' : 'Seleccionar'}"
 											propagation="#{empty from ? 'none' : 'default'}"
 											rendered="#{s:hasRole('docente')}">
@@ -486,6 +486,7 @@
 
 						</rich:tab>
 						<rich:tab label="Objetos de Aprendizaje">
+						
 							<rich:dataTable id="actividadListObjeto"
 								var="_actividadListObjeto"
 								value="#{actividadSeleccionadaBean.getListaActividadesDivision(18)}">
@@ -534,7 +535,7 @@
 												value="#{_actividadListObjeto.idActividad}" />
 										</s:link>
 										#{' '}
-										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
 											value="#{empty from ? 'Ver' : 'Seleccionar'}"
 											propagation="#{empty from ? 'none' : 'default'}"
 											rendered="#{s:hasRole('docente')}">

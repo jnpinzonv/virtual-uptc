@@ -16,7 +16,7 @@
 
 	<ui:define name="centroT">
 
-
+		<rich:panel>
 		<h:form id="usuario" styleClass="edit">
 
 			<rich:panel>
@@ -168,8 +168,9 @@
 			</a4j:outputPanel>
 		</h:form>
 		
-		<h:form id="fooForm" enctype="multipart/form-data" >
-
+		<div align="right">
+		<h:form id="fooForm" enctype="multipart/form-data">
+				<h:outputLabel value="Cargar Foto: " for="file"/>
 				<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
 					accept="image/jpg" fileName="#{cargaArchivosBean.nombreArchivo}"/>
 
@@ -179,6 +180,8 @@
 				  	<s:button id="cancel" view="/login.xhtml"
 								value="Cancel" propagation="end" />
 			</h:form>
+			</div>
+			</rich:panel>
 
 	</ui:define>
 

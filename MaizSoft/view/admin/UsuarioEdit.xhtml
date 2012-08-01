@@ -15,6 +15,7 @@
 
 	<ui:define name="centroT">
 		
+					<rich:panel>
 					<h:form id="usuario" styleClass="edit">
 
 						<rich:panel>
@@ -193,31 +194,7 @@
 							<br />
 							<br />
 							
-								<h:panelGrid columns="1" columnClasses="top">
-									
-									<h:panelGroup id="info" layout="block">
-										<rich:panel bodyClass="info">
-
-											<h:outputText value="No files currently uploaded"
-												rendered="#{fileUploadBean.size==0}" />
-											<rich:dataGrid columns="1" value="#{fileUploadBean.files}"
-												var="file" rowKeyVar="row">
-												<rich:panel bodyClass="rich-laguna-panel-no-header">
-													<h:panelGrid columns="1">
-														<a4j:mediaOutput element="img" mimeType="image/jpeg"
-															createContent="#{fileUploadBean.paint}" value="#{row}"
-															style="width:10px; height:10px;" cacheable="false">
-															<f:param value="#{fileUploadBean.timeStamp}" name="time" />
-														</a4j:mediaOutput>
-
-													</h:panelGrid>
-												</rich:panel>
-											</rich:dataGrid>
-										</rich:panel>
-										<br />
-
-									</h:panelGroup>
-							</h:panelGrid>
+								 
 
 							<div style="clear: both; position: absolute;">
 								<span class="required">*</span> Campos Obligatorios
@@ -257,9 +234,9 @@
 						</a4j:outputPanel>
 					</h:form>
 					
-					
+			<div align="right">					
 			<h:form id="fooForm" enctype="multipart/form-data" >
-
+				<h:outputLabel value="Cargar Foto: " for="file"/>
 				<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
 					accept="image/jpg" fileName="#{cargaArchivosBean.nombreArchivo}"/>
 
@@ -269,8 +246,8 @@
 				  	<s:button id="cancel" view="/login.xhtml"
 								value="Cancel" propagation="end" />
 			</h:form>
-
-				
+			</div>
+	</rich:panel>				
 	</ui:define>
 
 </ui:composition>

@@ -73,18 +73,16 @@ public class ReceptorMensajesHome extends EntityHome<ReceptorMensajes> {
 	@Factory("listaMensajesNoLeidos")
 	public List<GestorMensajeria> listaMensajesNoLeidos(){
 		
-
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
-		Query q = getEntityManager()
-				.createQuery(ConsultasJpql.USUARIO_POR_USERNAME);
-		q.setParameter("parametro", cre.getUsername());
-		Usuario nuevo = (Usuario) q.getSingleResult();
 		
-		Query q2 = getEntityManager()
-				.createQuery(ConsultasJpql.MENSAJES_NO_LEIDOS);
-		q2.setParameter("parametro", nuevo.getId());
-		return q.getResultList();
+		Query q = getEntityManager().createQuery(
+				ConsultasJpql.MENSAJES_NO_LEIDOS);
+		q.setParameter("parametro", cre.getUsername());
+		List<GestorMensajeria> lista = (List<GestorMensajeria>) q
+				.getResultList();
+		
+		return lista;
 	}
 
 }

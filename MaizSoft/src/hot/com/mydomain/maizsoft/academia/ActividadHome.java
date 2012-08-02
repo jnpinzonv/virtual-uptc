@@ -26,12 +26,15 @@ import com.mydomain.Directorio.model.ConsultasJpql;
 import com.mydomain.Directorio.model.EstadisticasGenerales;
 import com.mydomain.Directorio.model.GestorCargaArchivos;
 import com.mydomain.Directorio.model.GestorEnlacesExternos;
+import com.mydomain.Directorio.model.GestorMensajeria;
 import com.mydomain.Directorio.model.GrupoCurso;
 import com.mydomain.Directorio.model.GrupoUsuarios;
 import com.mydomain.Directorio.model.NotaActividad;
 import com.mydomain.Directorio.model.NumeroDivisiones;
+import com.mydomain.Directorio.model.ReceptorMensajes;
 import com.mydomain.Directorio.model.Tipo;
 import com.mydomain.Directorio.model.Usuario;
+import com.mydomain.maizsoft.cargaarchivos.EstractorArchivos;
 import com.mydomain.maizsoft.comunicaciones.GestorEnvioCorreoElectronico;
 import com.mydomain.maizsoft.gestores.GestorCargaArchivosHome;
 import com.mydomain.maizsoft.tipos.TipoHome;
@@ -44,11 +47,10 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 	@In(create = true)
 	TipoHome tipoHome;
-	
+
 	@In(create = true)
 	GestorCargaArchivosHome gestorCargaArchivosHome;
-	
-	
+
 	Long idCurso;
 
 	public void setActividadIdActividad(Long id) {
@@ -108,37 +110,35 @@ public class ActividadHome extends EntityHome<Actividad> {
 	public List<GrupoUsuarios> listaGrupoUsuarios(Long param) {
 		Query q = getEntityManager().createQuery(
 				ConsultasJpql.GRUPO_USUARIOS_SELECIONADO);
-		//q.setParameter("parametro",param);
+		// q.setParameter("parametro",param);
 		return (List<GrupoUsuarios>) q.getResultList();
 
 	}
-	
-	
+
 	public String grupoSelecionado() {
-		GrupoCurso g=null;
+		GrupoCurso g = null;
 		try {
-			
-		
-		Query q = getEntityManager().createQuery(
-				ConsultasJpql.GRUPO_SELECCIONDADO);
-			g=(GrupoCurso) q.getSingleResult();
+
+			Query q = getEntityManager().createQuery(
+					ConsultasJpql.GRUPO_SELECCIONDADO);
+			g = (GrupoCurso) q.getSingleResult();
 		} catch (Exception e) {
 			return "";
 		}
-		//q.setParameter("parametro",param);
+		// q.setParameter("parametro",param);
 		return g.getCursoGrupo().getNombreAsignatura();
 
 	}
 
-	public String saveActividad(int pasarSeccion, long idCursoSeleccionado)  {
-		/*Query q5 = getEntityManager().createQuery(
-				ConsultasJpql.PORCENTAJE_TOTAL_ACTIVIDAD);
-		
-		System.out.println(q5.getResultList().size()+ "hola seccion...............");
-		*/
-		
-	
-			
+	public String saveActividad(int pasarSeccion, long idCursoSeleccionado) {
+		/*
+		 * Query q5 = getEntityManager().createQuery(
+		 * ConsultasJpql.PORCENTAJE_TOTAL_ACTIVIDAD);
+		 * 
+		 * System.out.println(q5.getResultList().size()+
+		 * "hola seccion...............");
+		 */
+
 		List<GrupoUsuarios> listaGrupos = listaGrupoUsuarios(idCursoSeleccionado);
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
@@ -155,7 +155,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		crearNotaActividad(listaGrupos, usuario);
 
 		NumeroDivisiones division = new NumeroDivisiones();
-		division.setActividad(instance);		
+		division.setActividad(instance);
 		division.setGrupoCurso(listaGrupos.get(0).getGrupoCurso());
 		division.setNumeroDivision(pasarSeccion);
 		getEntityManager().persist(division);
@@ -168,25 +168,46 @@ public class ActividadHome extends EntityHome<Actividad> {
 			enviarEmail(listaGrupos, instance);
 		}
 		
-		if(instance.getTipo().getIdTipo()==18){
-			
+		if(instance.getTipo().getIdTipo() == 11){
+			crearForo(listaGrupos,usuario);
 		}
+		
+
 		try {
-		crearLog(listaGrupos.get(0).getGrupoCurso());
+			crearLog(listaGrupos.get(0).getGrupoCurso());
 
 		} catch (RuntimeException e) {
 			FacesMessages mensaje = (FacesMessages) Component
-			.getInstance(FacesMessages.class);
+					.getInstance(FacesMessages.class);
 			mensaje.add("Algo malo a sucedido :-(  por favor vuelva a seleccionar el curso");
 			return "";
 		}
-		
+
 		instance = null;
 		return "/CuerpoCurso.xhtml";
 	}
 
 	
 	
+	public void crearForo(List<GrupoUsuarios> usuarios,Usuario usuario){
+		
+		GestorMensajeria nuevoG= new GestorMensajeria();
+		nuevoG.setAsunto(instance.getNombreActividad());
+		nuevoG.setMensaje(instance.getDescripcionActividad());
+		nuevoG.setDeUsuario(usuario);
+		Calendar calendar = Calendar.getInstance();
+		for (GrupoUsuarios sObj : usuarios) {
+			ReceptorMensajes nuevo = new ReceptorMensajes();
+			nuevo.setUserAccount(sObj.getUserGrupoCurso());
+			nuevoG.setTipo(getEntityManager().find(Tipo.class, 7L));
+			nuevo.setGestorMensajeria(nuevoG);
+			nuevo.setLeido(false);
+			nuevoG.setFechaEnvio(calendar.getTime());	
+
+			getEntityManager().persist(nuevoG);
+			getEntityManager().persist(nuevo);		
+		}
+	}
 	public GestorEnvioCorreoElectronico crearConfiguracion(Actividad actividad) {
 
 		GestorEnvioCorreoElectronico nuevo = new GestorEnvioCorreoElectronico();
@@ -195,7 +216,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		String mensaje = "Senor(a): Usuario \n"
 				+ "Se a creado una nueva actividad o recurso en su plataforma Virtual de Aprendizaje \n"
 				+ "realizado por: " + actividad.getUsuario().getPrimerNombre()
-				+ " " + actividad.getUsuario().getPrimerNombre() + "\n"
+				+ " " + actividad.getUsuario().getApellidos() + "\n"
 				+ "fecha de creaci�n: " + actividad.getFechaCreacion();
 		nuevo.setCuerpoMensaje(mensaje);
 		nuevo.setUsernameCorreo(getConfiguracion("correoElectronico")
@@ -278,26 +299,26 @@ public class ActividadHome extends EntityHome<Actividad> {
 			getEntityManager().persist(archivo);
 
 		}
-		
-		if(instance.getTipo().getIdTipo()==18){			
+
+		if (instance.getTipo().getIdTipo() == 18) {
 			archivo.setDescripcion(instance.getDescripcionActividad());
 			archivo.setNombre(gestorCargaArchivosHome.getInstance().getNombre());
-			
+
 			archivo.setTipo(getEntityManager().find(Tipo.class, 18L));
-			if(instance.getTipoObjeto().equals("1")){
+			if (instance.getTipoObjeto().equals("1")) {
 				archivo.setRuta(instance.getUrlExterna());
 				archivo.setNombre(instance.getNombreActividad());
-			}
-			else if(instance.getTipoObjeto().equals("Archivo")){
-			archivo.setRuta(gestorCargaArchivosHome.getInstance().getRuta());
-			archivo.setNombre(instance.getNombreArchivo());
-			}
-			else{
-				//Falta metodo de descomprimir
+			} else if (instance.getTipoObjeto().equals("Archivo")) {
 				archivo.setRuta(gestorCargaArchivosHome.getInstance().getRuta());
-				
+				archivo.setNombre(instance.getNombreArchivo());
+			} else {
+				EstractorArchivos exArchivos = new EstractorArchivos();
+				exArchivos.descomprimirArchivoZip(rutaObjetosAprendizaje(),
+						gestorCargaArchivosHome.getInstance().getNombre());
+				archivo.setRuta(gestorCargaArchivosHome.getInstance().getRuta());
+
 			}
-				
+
 			getEntityManager().persist(archivo);
 		}
 
@@ -313,10 +334,10 @@ public class ActividadHome extends EntityHome<Actividad> {
 					&& sObj.getUserGrupoCurso().getId() == usuario.getId()) {
 				nuevaNota.setGestorCargaArchivos(archivo);
 			}
-			if(instance.getTipo().getIdTipo()==18){
+			if (instance.getTipo().getIdTipo() == 18) {
 				nuevaNota.setGestorCargaArchivos(archivo);
 			}
-				
+
 			if (instance.isEvaluable() == false) {
 				instance.setPorcentaje(0.0);
 			}
@@ -327,18 +348,32 @@ public class ActividadHome extends EntityHome<Actividad> {
 		}
 	}
 
+	public String rutaObjetosAprendizaje() {
+
+		ConfiguracionesSistema path = getEntityManager().find(
+				ConfiguracionesSistema.class, 1l);
+		ConfiguracionesSistema pathOA = getEntityManager().find(
+				ConfiguracionesSistema.class, 18l);
+		Credentials credentials = (Credentials) Component
+				.getInstance(Credentials.class);
+
+		String pathFinal = path.getDetallesPropiedad() + "//"
+				+ pathOA.getDetallesPropiedad() + "//"
+				+ credentials.getUsername();
+		return pathFinal;
+	}
+
 	public List<Actividad> getListaActividadesDivision(Long idTipo) {
 
 		Query q = null;
-		List<Actividad> nueva=null;
+		List<Actividad> nueva = null;
 		try {
 			q = getEntityManager().createQuery(
 					ConsultasJpql.ACTIVIADES_POR_DIVISION);
 			q.setParameter("parametro", idTipo);
-						
-		nueva=(List<Actividad>)q.getResultList();
-		
-			
+
+			nueva = (List<Actividad>) q.getResultList();
+
 		} catch (Exception e) {
 			return null;
 		}
@@ -367,17 +402,17 @@ public class ActividadHome extends EntityHome<Actividad> {
 		nueva.setIdGrupoCurso(grupo.getIdGrupo());
 		getEntityManager().persist(nueva);
 	}
-	
-	
-	public String cursoActual(Long actual){
-		
+
+	public String cursoActual(Long actual) {
+
 		instance.setIdCursoSeleccionado(actual);
-		
+
 		return "/ActividadEdit.xhtml";
 	}
 
 	/**
 	 * Se obtiene el valor de idCurso
+	 * 
 	 * @return El valor de idCurso
 	 */
 	public Long getIdCurso() {
@@ -386,12 +421,12 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 	/**
 	 * Asigna el valor de idCurso
-	 * @param idCurso El valor por establecer para idCurso
+	 * 
+	 * @param idCurso
+	 *            El valor por establecer para idCurso
 	 */
 	public void masIdCurso(Long idCurso) {
 		this.idCurso = idCurso;
 	}
-	
-	
-	
+
 }

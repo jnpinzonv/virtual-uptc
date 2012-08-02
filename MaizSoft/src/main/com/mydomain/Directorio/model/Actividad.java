@@ -131,17 +131,17 @@ public class Actividad implements Serializable {
 	public Tipo getTipo() {
 		
 	
-		if (tipo != null) {
-			if (tipo.getIdTipo() == 11) {
-				try {
-					FacesContext contex = FacesContext.getCurrentInstance();
-		            contex.getExternalContext().redirect( "/MaizSoft/ForoEdit.seam" );
-				} catch (Exception e) {
-					
-				}
-				
-			}
-		}	
+//		if (tipo != null) {
+//			if (tipo.getIdTipo() == 11) {
+//				try {
+//					FacesContext contex = FacesContext.getCurrentInstance();
+//		            contex.getExternalContext().redirect( "/MaizSoft/ForoEdit.seam" );
+//				} catch (Exception e) {
+//					
+//				}
+//				
+//			}
+//		}	
 		return tipo;
 	}
 
@@ -294,6 +294,8 @@ public class Actividad implements Serializable {
 		}
 		return fechaFinalizacion;
 	}
+	
+	
 
 	/**
 	 * Asigna el valor de fechaFinalizacion

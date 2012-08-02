@@ -233,11 +233,12 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 		Usuario deUsuario = (Usuario) q.getSingleResult();
 		nuevoG.setDeUsuario(deUsuario);
 		Calendar calendar = Calendar.getInstance();
-		Actividad nuevaActividad = actividadHome.getInstance();
-		nuevaActividad.setTipo(getEntityManager().find(Tipo.class, 11L));
-		nuevaActividad.setDescripcionActividad(gestorMensajeriaHome.instance
-				.getMensaje());
-		nuevaActividad.setFechaCreacion(calendar.getTime());
+//		Actividad nuevaActividad = actividadHome.getInstance();
+//		nuevaActividad.setTipo(getEntityManager().find(Tipo.class, 11L));
+//		nuevaActividad.setDescripcionActividad(gestorMensajeriaHome.instance
+//				.getMensaje());
+//		nuevaActividad.setFechaCreacion(calendar.getTime());
+//		nuevaActividad.setNombreActividad(nuevoG.getAsunto());
 
 		for (GrupoUsuarios sObj : listaEntesUniversitarios) {
 			ReceptorMensajes nuevo = new ReceptorMensajes();
@@ -248,15 +249,15 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 			nuevoG.setFechaEnvio(calendar.getTime());
 
 			NotaActividad nuevaNota = new NotaActividad();
-			nuevaNota.setActividad(nuevaActividad);
+			nuevaNota.setActividad(actividadHome.getInstance());
 			nuevaNota.setGestorMensajeria(nuevoG);
 			nuevaNota.setUsuario(sObj.getUserGrupoCurso());
 			nuevaNota.setGrupoCurso(sObj);
-			nuevaNota.setNota(4.3);
+			nuevaNota.setNota(0.0);
 
 			getEntityManager().persist(nuevoG);
 			getEntityManager().persist(nuevo);
-			getEntityManager().persist(nuevaActividad);
+			getEntityManager().persist(actividadHome.getInstance());
 			getEntityManager().persist(nuevaNota);
 
 		}

@@ -43,7 +43,9 @@
 				style="position:absolute;">
 				<ui:define name="label">Fecha máxima de entrega:</ui:define>
 				<h:outputText value="#{actividadHome.instance.fechaFinalizacion}"
-					escape="false" />
+					escape="false">
+					<f:convertDateTime datePattern="dd/MM/yyyy" type="date" />
+				</h:outputText>	
 			</s:decorate>
 
 			<br />

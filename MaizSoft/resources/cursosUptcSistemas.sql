@@ -1,68 +1,68 @@
 -- Cursos de Ingenieria de Sistemas y Computaci�n
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8107550,'Algoritmos y programacion',15);
+values(8107550,'Algoritmos y programacion',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108255,'Programacion I',15);
+values(8108255,'Programacion I',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108256,'Programacion II',15);
+values(8108256,'Programacion II',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108257,'Programacion III',15);
+values(8108257,'Programacion III',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108259,'Bases de datos I',15);
+values(8108259,'Bases de datos I',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105534,'Bases de datos II',15);
+values(8105534,'Bases de datos II',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106174,'Profundización de Bases de datos',15);
+values(8106174,'Profundización de Bases de datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106179,'Investigación de Bases de datos',15);
+values(8106179,'Investigación de Bases de datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108258,'Ingenieria de Requisitos',15);
+values(8108258,'Ingenieria de Requisitos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108261,'Electronica General',15);
+values(8108261,'Electronica General',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105515,'Comunicaciones',15);
+values(8105515,'Comunicaciones',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105524,'Microcontroladores',15);
+values(8105524,'Microcontroladores',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108260,'Teoria General de Sistemas',15);
+values(8108260,'Teoria General de Sistemas',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105430,'Matem�ticas Discretas',15);
+values(8105430,'Matem�ticas Discretas',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105530,'Investigacion de Operaciones',15);
+values(8105530,'Investigacion de Operaciones',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105517,'Ingenieria de Software I',15);
+values(8105517,'Ingenieria de Software I',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105526,'Ingenieria de Software II',15);
+values(8105526,'Ingenieria de Software II',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106173,'Profundización de Software',15);
+values(8106173,'Profundización de Software',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106178,'Investigación de Software',15);
+values(8106178,'Investigación de Software',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105518,'Lenguajes Formales',15);
+values(8105518,'Lenguajes Formales',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105523,'Sistemas Operativos',15);
+values(8105523,'Sistemas Operativos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105519,'Arquitectura de Computadores',15);
+values(8105519,'Arquitectura de Computadores',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106177,'Inteligencia Computacional',15);
+values(8106177,'Inteligencia Computacional',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105528,'Transmision de Datos',15);
+values(8105528,'Transmision de Datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105531,'Redes de Datos',15);
+values(8105531,'Redes de Datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106175,'Profundización de Redes de Datos',15);
+values(8106175,'Profundización de Redes de Datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106180,'Investigación de Redes de Datos',15);
+values(8106180,'Investigación de Redes de Datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106181,'Auditoria de Sistemas',15);
+values(8106181,'Auditoria de Sistemas',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106176,'Gerencia Informatica',15);
+values(8106176,'Gerencia Informatica',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8107230,'Seminario de Trabajo de Grado',15);
+values(8107230,'Seminario de Trabajo de Grado',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105529,'Simulaci�n por computador',15);
+values(8105529,'Simulaci�n por computador',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108220,'Metodologia de la Investigacion y Dise�o Experimental',15);
+values(8108220,'Metodologia de la Investigacion y Dise�o Experimental',16);
 
 -- Grupos de Ingenieria de Sistemas y Computaci�n
 -- Grupo Algoritmos y programacion
@@ -161,65 +161,65 @@ values (32,1,25,0,3,8108220,16);
 
 -- Cursos Ingenier�a Agron�mica
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105062,'Mercadeo Agricola',19);
+values(8105062,'Mercadeo Agricola',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105083,'Extension Rural',19);
+values(8105083,'Extension Rural',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105067,'Formulacon y Evaluacion de Proyectos',19);
+values(8105067,'Formulacon y Evaluacion de Proyectos',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108058,'Metodologia de la Investigacion',19);
+values(8108058,'Metodologia de la Investigacion',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108101,'Botanica Taxonomica',19);
+values(8108101,'Botanica Taxonomica',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105068,'Manejo Integral de Malezas',19);
+values(8105068,'Manejo Integral de Malezas',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108107,'Fisiologia Vegetal I',19);
+values(8108107,'Fisiologia Vegetal I',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108111,'Fisiologia Vegetal II',19);
+values(8108111,'Fisiologia Vegetal II',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106257,'Fitomejoramiento',19);
+values(8106257,'Fitomejoramiento',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105065,'Fitopatologia',19);
+values(8105065,'Fitopatologia',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106258,'Fitoproteccion Biologica',19);
+values(8106258,'Fitoproteccion Biologica',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108108,'Genesis y caracterizacion de suelos',19);
+values(8108108,'Genesis y caracterizacion de suelos',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105058,'Genetica Agricola',19);
+values(8105058,'Genetica Agricola',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105066,'Hidraulica',19);
+values(8105066,'Hidraulica',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8107560,'Introduccion a las ciencias agrarias',19);
+values(8107560,'Introduccion a las ciencias agrarias',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105069,'Manejo Integral de Insectos',19);
+values(8105069,'Manejo Integral de Insectos',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105070,'Manejo Integral de Enfermedades',19);
+values(8105070,'Manejo Integral de Enfermedades',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106260,'Manejo Animal',19);
+values(8106260,'Manejo Animal',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105071,'Maquinaria y Mecanizacion Agricola',19);
+values(8105071,'Maquinaria y Mecanizacion Agricola',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105081,'Manejo de Cuencas Hidrograficas',19);
+values(8105081,'Manejo de Cuencas Hidrograficas',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105089,'Manejo de Productos Fitosanitarios',19);
+values(8105089,'Manejo de Productos Fitosanitarios',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105087,'Produccion de Hortalizas',19);
+values(8105087,'Produccion de Hortalizas',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105088,'Produccion de Frutas',19);
+values(8105088,'Produccion de Frutas',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108112,'Quimica y Fertilidad de suelos',19);
+values(8108112,'Quimica y Fertilidad de suelos',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108114,'Reproduccion Vegetal',19);
+values(8108114,'Reproduccion Vegetal',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105063,'Entomologia',19);
+values(8105063,'Entomologia',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108110,'Bioestadistica y Dise�o Experimental',19);
+values(8108110,'Bioestadistica y Dise�o Experimental',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105057,'Administracion Empresas Agropecuarias',19);
+values(8105057,'Administracion Empresas Agropecuarias',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108054,'Econom�a agrar�a',19);
+values(8108054,'Econom�a agrar�a',20);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106261,'Gerencia Empresarial Rural',19);
+values(8106261,'Gerencia Empresarial Rural',20);
 
 -- Grupos Ingenier�a Agron�mica
 -- Grupo Introduccion a las ciencias agrarias

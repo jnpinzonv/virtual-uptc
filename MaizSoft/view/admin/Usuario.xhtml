@@ -43,7 +43,7 @@
 						<s:decorate id="tipoDocumentoIdentidad"
 							template="../layout/display.xhtml" style="position:absolute;">
 							<ui:define name="label">Tipo Documento</ui:define>
-							<h:outputText value="#{usuarioHome.instance.tipo}" />
+							<h:outputText value="#{usuarioHome.instance.tipo.nombre}" />
 						</s:decorate>
 						<br />
 						<br />
@@ -68,7 +68,7 @@
 						<br />
 						<s:decorate id="facultad" template="../layout/display.xhtml" style="position:absolute;">
 							<ui:define name="label">Facultad</ui:define>
-							<h:outputText value="#{usuarioHome.instance.enteUniversitarios}" />
+							<h:outputText value="#{usuarioHome.instance.enteUniversitarios.nombreEnteUniversitario}" />
 						</s:decorate>
 						<br />
 						<br />

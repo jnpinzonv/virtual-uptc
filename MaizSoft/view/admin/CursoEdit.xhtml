@@ -61,10 +61,10 @@
 				<br />
 				<br />
 				
-				<h:outputText value="Datos de Grupo" />
+				<h:outputText value="Datos de Grupo" rendered="#{!cursoHome.managed}"/>
 					<br />
 					<br />
-					 <s:decorate id="idGrupoField" template="../layout/edit.xhtml" style="position:absolute;">
+					 <s:decorate id="idGrupoField" template="../layout/edit.xhtml" style="position:absolute;" rendered="#{!cursoHome.managed}">
 	                <ui:define name="label">Código grupo</ui:define>
 	                <h:inputText id="idGrupo"
 	                       required="true"
@@ -76,7 +76,7 @@
 	
 				<br/> <br/>
 	
-	            <s:decorate id="cuposField" template="../layout/edit.xhtml" style="position:absolute;">
+	            <s:decorate id="cuposField" template="../layout/edit.xhtml" style="position:absolute;" rendered="#{!cursoHome.managed}">
 	                <ui:define name="label">Cupos</ui:define>
 	                <h:inputText id="cupos"
 	                       required="true"
@@ -87,7 +87,7 @@
 	
 				<br/> <br/>
 	
-	            <s:decorate id="semestreField" template="../layout/edit.xhtml" style="position:absolute;">
+	            <s:decorate id="semestreField" template="../layout/edit.xhtml" style="position:absolute;" rendered="#{!cursoHome.managed}">
 	                <ui:define name="label">Semestre</ui:define>
 	                <h:inputText id="semestre"
 	                       required="true"
@@ -100,7 +100,7 @@
 	
 				<br/> <br/>
 	
-	            <s:decorate id="divisionesField" template="../layout/edit.xhtml" style="position:absolute;">
+	            <s:decorate id="divisionesField" template="../layout/edit.xhtml" style="position:absolute;" rendered="#{!cursoHome.managed}">
 	                <ui:define name="label">Número de Ciclos</ui:define>
 	                <h:inputText id="perido"
 	                       required="true"

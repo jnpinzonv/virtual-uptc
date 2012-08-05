@@ -66,11 +66,12 @@ public class CursoHome extends EntityHome<Curso> {
 				getInstance().getGrupoCursos());
 	}
 	
-	public void saveCurso(){
+	public String saveCurso(){
 		persist();
 		grupoCursoHome.getInstance().setCursoGrupo(getInstance());
 		grupoCursoHome.getInstance().setInscritos(0);
 		grupoCursoHome.persist();
+		return "/CursoList.xhtml";
 	}
 	
 	@Factory("listaEscuelas")

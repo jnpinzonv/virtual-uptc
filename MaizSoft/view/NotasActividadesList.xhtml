@@ -5,41 +5,70 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	template="layout/template2.xhtml">
 
-	<ui:define name="body">
+	<ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
+	</ui:define>
+
+	<ui:define name="centroT">
+
+		<h:form id="idT">
+			<rich:panel>
 
 
-		<rich:panel>
-			<f:facet name="header">NotaActividad Search Results</f:facet>
-			<div class="results">
-					
-				<rich:dataTable id="notaActividadList" var="_notaActividad"
-				
-					value="#{SeleccionadanotaActividadHome.listanotasActividad(actividadSeleccionadaBean.actividad)}">
+			
 
-					<h:column>
-						<f:facet name="header">
+
+				<f:facet name="header">Actividades</f:facet>
+				<div class="results">
+
+					<rich:dataTable id="notaActividadList" var="_notaActividad"
+						value="#{notaActividadHome.listanotasActividad(1)}">
+
+						<h:column>
+							<f:facet name="header">
             			   Usuario:
 			            </f:facet>
-						<h:outputText
-							value="#{_notaActividad.usuario.primerNombre} #{_notaActividad.usuario.segundoNombre} #{_notaActividad.usuario.apellidos}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">
+							<h:outputText
+								value="#{_notaActividad.usuario.primerNombre} #{_notaActividad.usuario.segundoNombre} #{_notaActividad.usuario.apellidos}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
 							¿Actividad Realizada?
 						</f:facet>
-						<h:outputText value="#{_notaActividad.estadoPendiente}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">
+							<h:outputText value="#{_notaActividad.estadoPendiente}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
                 			Nombre Actividad:
             			</f:facet>
-						<h:outputText value="#{_notaActividad.actividad.nombreActividad}" />
-					</h:column>
-				</rich:dataTable>
-			</div>
-		</rich:panel>
+							<s:link view="/Actividad.xhtml"
+								value="#{_notaActividad.actividad.nombreActividad}"
+								propagation="none" id="actividadViewId">
+								<f:param name="actividadIdActividad"
+									value="#{_notaActividad.actividad.idActividad}" />
+							</s:link>
+
+
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+                			Nota:
+            			</f:facet>
+							<h:inputText value="#{_notaActividad.nota}" />
+							<h:commandButton value="Calificar" 
+							action="#{notaActividadHome.actualizarNota(_notaActividad.idNotaActividad,_notaActividad.nota)}"/>
+
+						</h:column>
+					</rich:dataTable>
+				</div>
+
+			</rich:panel>
+		</h:form>
 
 	</ui:define>
 

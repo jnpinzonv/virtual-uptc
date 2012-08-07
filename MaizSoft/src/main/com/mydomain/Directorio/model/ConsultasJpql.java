@@ -84,11 +84,12 @@ public interface ConsultasJpql {
 	String GRUPO_SELECCIONDADO = "select g from GrupoCurso g where g.idGrupo=#{cursoActualBean.select()}";
 
 	String PORCENTAJE_TOTAL_ACTIVIDAD = "SELECT a.porcentaje*c.nota FROM nota_actividad c, actividad a WHERE c.id_grupo_curso = 13 and a.id_actividad=c.`id_actividad`";
-
 	
-
-	String NOTAS_ACTIVIDAD = "select n from NotaActividad n"
-			+ " where n.actividad.idActividad=:parametro";
+	String NOTAS_ACTIVIDAD = "select n from NotaActividad n, CuentasUsuario c, UserAccount u JOIN u.roles r"
+			+ " where n.actividad.idActividad=:parametro" +
+			" and n.usuario.id = c.usuarios.id" +
+			" and c.userAccounts.id = u.id" +			
+			" and r.name='estudiante'";
 
 	String NOTA_ESTUDIANTE_ACTIVIDAD = "SELECT n FROM  NotaActividad n,UserAccount u JOIN u.roles r"
 			+ " where n.usuario.id=:parametro"

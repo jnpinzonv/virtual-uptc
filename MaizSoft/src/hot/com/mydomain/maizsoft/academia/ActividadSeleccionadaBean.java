@@ -12,8 +12,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.jboss.seam.Component;
+import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.faces.FacesMessages;
 
 import com.mydomain.Directorio.model.Actividad;
@@ -23,7 +25,7 @@ import com.mydomain.Directorio.model.GrupoCurso;
 /**
  * Descripcion: Esta Clase se encarga de ...
  * Modulo de Desarrollo :CU- ...
- * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+ * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
  * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
  * Grupo de Investigacion Ingenieria Software (GIS)
  * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -32,6 +34,7 @@ import com.mydomain.Directorio.model.GrupoCurso;
  */
 @Stateless
 @Name("actividadSeleccionadaBean")
+@Scope(ScopeType.SESSION)
 public class ActividadSeleccionadaBean implements IActividadSeleccionada{
 	
 

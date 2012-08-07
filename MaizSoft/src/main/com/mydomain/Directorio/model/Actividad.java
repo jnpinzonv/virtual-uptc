@@ -498,8 +498,9 @@ public class Actividad implements Serializable {
 	 * @return El valor de nombreActividad
 	 */
 	@Length(max = 25)
-	@Column(name = "nombre_actividad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(20)")
+	@Column(name = "nombre_actividad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(25)")
 	public String getNombreActividad() {
+		System.out.println("Pasooo" + nombreActividad);
 		return nombreActividad;
 	}
 	

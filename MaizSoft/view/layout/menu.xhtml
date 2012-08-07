@@ -6,7 +6,7 @@
 	xmlns:rich="http://richfaces.org/rich">
 	<rich:toolBarGroup>
 		<h:outputText value="#{projectName}:" />
-		<s:link id="menuHomeId" view="/login.xhtml" value="Home"
+		<s:link id="menuHomeId" view="/login.xhtml" value="Login"
 			propagation="none" />
 		<h:form>
 
@@ -29,7 +29,7 @@
 	</rich:toolBarGroup>
 	
 	<rich:toolBarGroup location="center">
-		<h:outputLabel value="#{actividadHome.grupoSelecionado()}" />
+		<h:outputLabel value="#{actividadHome.grupoSelecionado()}" rendered="#{s:hasRole('admin') || s:hasRole('estudiante') || s:hasRole('docente')}"/>
 	</rich:toolBarGroup>
 
 	<!-- @newMenuItem@ -->

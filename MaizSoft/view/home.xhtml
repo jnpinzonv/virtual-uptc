@@ -7,20 +7,31 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
+	
+	<ui:define name="head">
+	<link href="css/cssLayoutAutenticar.css" rel="stylesheet" type="text/css"/>
+    	<link href="css/default.css" rel="stylesheet" type="text/css" />	
+	</ui:define>
 
 	<ui:define name="body">
 		<h:form id="homeForm">
-			<h1>Gracias por visitar nuestra plataforma!</h1>
+			<h1 style="color: blue">Gracias por visitar MaizSoft!</h1>
 			<rich:panel>
 				<h:panelGrid columns="2">
-					<h:graphicImage value="/img/seamlogo.png" alt="Seam logo" />
+					
 					<s:div styleClass="info">
+						<h:graphicImage value="/css/images/logoMaizsoft.png" alt="Seam logo" style="width:100px"/>
 						<p>
 							<strong>Vuelve Pronto</strong>
 						</p>
+						<br/>
+						<div align="right" style="margin-left: 260px">
+						<h:graphicImage value="/css/images/uptc.jpg"/>
+						</div>
 					</s:div>
 				</h:panelGrid>
 
 			</rich:panel>
 		</h:form>	</ui:define>
+	
 </ui:composition>

@@ -102,4 +102,11 @@ public class NotaActividadHome extends EntityHome<NotaActividad> {
 			
 		return nueva;	
 		}
+	
+	public void actualizarNota(Long idActividad,double nota){
+		
+		NotaActividad notaActividad = getEntityManager().find(NotaActividad.class, idActividad);
+		notaActividad.setNota(nota);
+		getEntityManager().merge(notaActividad);
+	}
 }

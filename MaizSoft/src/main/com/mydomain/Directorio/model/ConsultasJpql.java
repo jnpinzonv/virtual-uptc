@@ -98,7 +98,7 @@ public interface ConsultasJpql {
 	
 	String ACTIVIDADES_NO_VENCIDAS_ESTUDIANTE = "select a FROM UserAccount u JOIN u.roles r, Actividad a" +
 			" where r.name=estudiante" +			
-			" and a.fechaFinalizacion > :parametro";
+			" and a.fechaFinalizacion >:parametro";
 
 	
 	String MENSAJES_NO_LEIDOS ="select men from GestorMensajeria men, ReceptorMensajes re, CuentasUsuario u, UserAccount ua, Usuario usu" +
@@ -108,6 +108,15 @@ public interface ConsultasJpql {
 								+ " AND u.usuarios.id = :parametro";
 								
 	
-	
+	String NOTAS_ESTUDIANTE = "SELECT c.nombre_asignatura, sum((n.nota * a.porcentaje)/100)" +
+				" FROM cuentas_usuario cu, user_account ua, user_account_role uar, nota_actividad n, actividad a,grupo_curso gc, curso c" +
+				" where n.id_usuario = cu.id_usuarios and ua.id_user_account = cu.id_user_account" +
+				" and uar.account_id=ua.id_user_account" +
+				" and uar.member_of_role= 3" +
+				" and gc.id_grupo= n.id_grupo_usuarios" +
+				" and gc.id_curso_grupo = c.codigo_curso" +
+				" and n.id_actividad = a.id_actividad" +
+				" and n.id_usuario=:parametro" +
+				" group by c.nombre_asignatura";
 
 }

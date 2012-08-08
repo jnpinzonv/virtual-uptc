@@ -4,6 +4,7 @@ import com.mydomain.Directorio.model.*;
 import com.mydomain.maizsoft.tipos.TipoHome;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,10 +12,14 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.hibernate.persister.entity.EntityPersister;
+import org.jboss.seam.Component;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
+import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
+import org.jboss.seam.log.Log;
+import org.jboss.seam.security.Credentials;
 
 @Name("enteUniversitarioHome")
 public class EnteUniversitarioHome extends EntityHome<EnteUniversitario> {
@@ -24,7 +29,9 @@ public class EnteUniversitarioHome extends EntityHome<EnteUniversitario> {
 	@In(create = true)
 	TipoHome tipoHome;
 	
-	
+	@Logger
+	private Log log;
+
 
 	
 	public void setEnteUniversitarioIdEnteUniversitario(Long id) {
@@ -99,6 +106,24 @@ public class EnteUniversitarioHome extends EntityHome<EnteUniversitario> {
 	
 		return listaEntesUniversitarios;
 	
+	}
+	
+	public void saveEnteUniversitario(){
+		persist();
+		crearLog();
+	}
+	
+	public void crearLog() {
+		Calendar calendar = Calendar.getInstance();
+		Credentials cre = (Credentials) Component
+				.getInstance(Credentials.class);
+		log.info("<--" + "[" + ConstantesLog.NOMBRE_PLATAFORMA + "]"
+				+ "Acci�n:" + "[" + ConstantesLog.CREAR_ENTE + "]"
+				+ "Tipo:" + "[" + instance.getTipoEnteUniversitario().getNombre() + "]"
+				+ "Sobre el grupo con ID:" + "[N/A]"
+				+ "Realizada por:" + "[" + cre.getUsername() + "]"
+				+ "en la fecha:" + "[" + calendar.getTime() + "]" + "-->",
+				cre.getUsername());
 	}
 
 

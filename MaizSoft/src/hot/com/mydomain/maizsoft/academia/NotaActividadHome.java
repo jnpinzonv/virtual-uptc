@@ -1,6 +1,7 @@
 package com.mydomain.maizsoft.academia;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -11,10 +12,12 @@ import com.mydomain.maizsoft.comunicaciones.GestorMensajeriaHome;
 import com.mydomain.maizsoft.curso.GrupoUsuariosHome;
 import com.mydomain.maizsoft.gestores.GestorCargaArchivosHome;
 
+import org.jboss.seam.Component;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
+import org.jboss.seam.security.Credentials;
 
 @Name("notaActividadHome")
 public class NotaActividadHome extends EntityHome<NotaActividad> {
@@ -109,4 +112,29 @@ public class NotaActividadHome extends EntityHome<NotaActividad> {
 		notaActividad.setNota(nota);
 		getEntityManager().merge(notaActividad);
 	}
+	
+	@Factory("notasUsuario")
+	public List<NotasUsuario> listaNotas(){
+		Query q = null;
+		List<NotasUsuario> nueva=new ArrayList<NotasUsuario>();
+		Credentials crede = (Credentials) Component.getInstance(Credentials.class);
+		Query q1 = getEntityManager().createQuery(ConsultasJpql.USUARIO_POR_USERNAME);
+		q1.setParameter("parametro", crede.getUsername());
+		Usuario usu = (Usuario) q1.getSingleResult();
+		q = getEntityManager().createNativeQuery(ConsultasJpql.NOTAS_ESTUDIANTE);
+		q.setParameter("parametro", usu.getId());	
+		
+		Iterator results =q.getResultList().iterator();
+			
+		while ( results.hasNext() ) {
+		Object[] row = (Object[]) results.next();
+		NotasUsuario nuevoA=new NotasUsuario();
+		nuevoA.setNombreAsignatura((String) row[0]);
+		nuevoA.setNota((Double) row[1]);
+		
+		nueva.add(nuevoA);		
+	}
+		return nueva;
+}
+
 }

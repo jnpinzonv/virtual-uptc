@@ -56,7 +56,8 @@
 						<rich:panel>
 							<h:form id="form">
 
-								<img src="#{usuarioSeleccionadoBean.rutaImagen()}" style="height: 80px" />
+								<img src="#{usuarioSeleccionadoBean.rutaImagen()}"
+									style="height: 80px" />
 								<br />
 
 								<div class="results" id="usuarioSelect">
@@ -70,8 +71,7 @@
 
 											<h:column styleClass="action">
 
-												<s:link
-													view="/UsuarioEdit2.xhtml"
+												<s:link view="/UsuarioEdit2.xhtml"
 													value="#{usuario.primerNombre}  #{usuario.apellidos}"
 													propagation="none" id="usuarioEdit">
 													<f:param name="usuarioId" value="#{usuario.id}" />
@@ -206,8 +206,7 @@
 										<rich:panelMenuGroup label="Notas" style="color: #FFFFFF;"
 											rendered="#{s:hasRole('estudiante')}">
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
-												<s:link value="Ver"
-													action="/GestorRepositoriosVirtualesEdit.seam"
+												<s:link value="Ver" action="/NotasUsuario.seam"
 													propagation="end"></s:link>
 											</rich:panelMenuItem>
 										</rich:panelMenuGroup>
@@ -296,12 +295,7 @@
 									action="/GestorNoticiasList.seam"
 									rendered="#{s:hasRole('admin')}" propagation="end" />
 								<br />
-								<br />
-								<s:link value="Ayuda" action="/CursoActividad.seam"
-									propagation="end" />
-								<br />
 
-								<br />
 
 								<rich:panel
 									rendered="#{s:hasRole('estudiante') || s:hasRole('docente')}">
@@ -331,11 +325,40 @@
 
 										</div>
 									</div>
+
+
 								</rich:panel>
+								<h:panelGrid rendered="#{s:hasRole('admin')}">
+								<h:commandButton image="/css/images/pdf.jpg"
+									style="width:100px; margin-left:25px"
+									rendered="#{s:hasRole('admin')}" />
+								
+								<h:outputLabel value="Manual de Administrador"
+									style="color:black; margin-left:20px" rendered="#{s:hasRole('admin')}" />
+								<br />
+								<br />
+								</h:panelGrid>
+								<h:panelGrid rendered="#{s:hasRole('docente')}">
+								<h:commandButton image="/css/images/pdf.jpg"
+									style="width:100px; margin-left:25px"
+									rendered="#{s:hasRole('docente')}" />
+							
+								<h:outputLabel value="Manual de Docente" style="color:black; margin-left:20px"
+									rendered="#{s:hasRole('docente')}" />
+								<br />
+								<br />
+								</h:panelGrid>
+								<h:panelGrid rendered="#{s:hasRole('estudiante')}">
+								<h:commandButton image="/css/images/pdf.jpg"
+									style="width:100px; margin-left:25px"
+									rendered="#{s:hasRole('estudiante')}" />
+								
+								<h:outputLabel value="Manual de Estudiante" style="color:black; margin-left:20px"
+									rendered="#{s:hasRole('estudiante')}" />
+									</h:panelGrid>
 							</rich:panel>
 
 						</h:form>
-
 					</div>
 				</ui:insert>
 

@@ -120,4 +120,9 @@ public interface ConsultasJpql {
 				" group by c.nombre_asignatura";
 
 	String LISTA_TIPOS_ACTIVIDADES ="select t from Tipo t where t.tipo=10";
+	
+	String ACTIVIDADES_POR_DIVISION = "select a from Actividad a, NumeroDivisiones m"
+			+ " where m.numeroDivision = #{seccionSeleccionadaBean.seccionSeleccionada}"
+			+ " and m.grupoCurso.idGrupo=#{cursoActualBean.select()}"
+			+ " and m.actividad.idActividad= a.idActividad";
 }

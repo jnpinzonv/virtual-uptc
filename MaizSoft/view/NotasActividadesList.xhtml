@@ -17,108 +17,120 @@
 	<ui:define name="centroT">
 
 		<h:form id="idT">
-		
-		
-		
-		
+			<h:dataTable id="grupoCurso" var="_grupoCurs"
+				value="#{listaActividades}">
 
-							
-							<h:dataTable id="grupoCurso" var="_grupoCurs"
-												value="#{listaActividades}">
-												
-												
-												
+				<h:column styleClass="action">
 
-												<h:column styleClass="action">
+					<s:link value="#{_grupoCurs.idActividad}" propagation="none"
+						id="grupoCursoE">
+						<f:param name="grupoCursoIdGrupo"
+							value="#{_grupoCurs.idActividad}" />
+						<a4j:support event="onchange" immediate="true"
+							action="#{notaActividadHome.placebo(_grupoCurs.idActividad)}" />
+					</s:link>
+				</h:column>
 
-													<s:link 
-														value="#{_grupoCurs.idActividad}"
-														propagation="none" id="grupoCursoE">
-														<f:param name="grupoCursoIdGrupo"
-															value="#{_grupoCurs.idActividad}" />
-														<a4j:support event="onchange" immediate="true"
-															action="#{notaActividadHome.placebo(_grupoCurs.idActividad)}" />
-													</s:link>
-												</h:column>
-												
-												<h:column styleClass="action">
+				<h:column styleClass="action">
 
-													<s:link 
-														value="#{_grupoCurs.nombreActividad}"
-														propagation="none" id="grupoCurE">
-														<f:param name="grupoCursoIdGrupo"
-															value="#{_grupoCurs.idActividad}" />
-														
-													</s:link>
-												</h:column>
-							</h:dataTable>
-							
-		
-								
+					<s:link value="#{_grupoCurs.nombreActividad}" propagation="none"
+						id="grupoCurE">
+						<f:param name="grupoCursoIdGrupo"
+							value="#{_grupoCurs.idActividad}" />
 
-				<br />
-				<br />
-				
-				
+					</s:link>
+				</h:column>
+			</h:dataTable>
+
+
 			
-				
-				
-						
-							<h:inputText value="#{actividadSeleccionadaBean.idForo}" />
-							
-						<a4j:commandButton id="save" value="Guardar" action="#{actividadSeleccionadaBean.addFor(7)}" reRender="exito" 				
-						 />
-				
 
-				<a4j:outputPanel id="exito">
+			<rich:dataTable var="_actividad"
+				value="#{actividadSeleccionadaBean.getListaActividadesDivisiones()}">
+
+			<rich:column>
+				<f:facet name="header">Codigo Actividad
+										
+					</f:facet>
+				<b> <h:outputText value="#{_actividad.idActividad}" />
+				</b>
+			</rich:column>
+
+			<rich:column>
+			<f:facet name="header">Nombre Actividad
+										
+					</f:facet>
+				<b> <h:outputText value="#{_actividad.nombreActividad}" />
+				</b>
+			</rich:column>
+			<rich:column>
+			<f:facet name="header">Tipo Actividad
+										
+					</f:facet>
+				
+				<b> <h:outputText value="#{_actividad.tipo.nombre}" />
+				</b>
+			</rich:column>
+			<rich:column>
+			<f:facet name="header">Fecha Finalizacion
+										
+					</f:facet>
+				<b> <h:outputText value="#{_actividad.fechaFinalizacion}" />
+				</b>
+
+			</rich:column>
 			
-				<h:outputLabel value="#{actividadSeleccionadaBean.idForo}" />
 
-				<f:facet name="header">Actividades</f:facet>
-				<div class="results">
+			</rich:dataTable>
+			<br />
+			<br />
+			<h:outputLabel value="Codigo Actividad:" for="cod" />
+			<h:inputText value="#{actividadSeleccionadaBean.idForo}" id="cod" />
+			<h:commandButton id="save" value="Buscar"
+				action="#{actividadSeleccionadaBean.addFor(7)}" />
 
-					<rich:dataTable id="notaActividadList" var="_notaActividad"
-						value="#{listaNotasCurso}">
+			<rich:dataTable var="_notaActividad" id="tabla"
+				value="#{actividadSeleccionadaBean.listaNotaActi()}">
 
-						<h:column>
-							<f:facet name="header">
+				<h:column>
+					<f:facet name="header">
             			   Usuario:
 			            </f:facet>
-							<h:outputText
-								value="#{_notaActividad.usuario.primerNombre} #{_notaActividad.usuario.segundoNombre} #{_notaActividad.usuario.apellidos}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-							¿Actividad Realizada?
+					<h:outputText
+						value="#{_notaActividad.usuario.primerNombre} #{_notaActividad.usuario.segundoNombre} #{_notaActividad.usuario.apellidos}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+							Actividad Realizada?
 						</f:facet>
-							<h:outputText value="#{_notaActividad.estadoPendiente}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
+					<h:outputText value="#{_notaActividad.estadoPendiente}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
                 			Nombre Actividad:
             			</f:facet>
-							<s:link view="/Actividad.xhtml"
-								value="#{_notaActividad.actividad.nombreActividad}"
-								propagation="none" id="actividadViewId">
-								<f:param name="actividadIdActividad"
-									value="#{_notaActividad.actividad.idActividad}" />
-							</s:link>
+					<s:link view="/Actividad.xhtml"
+						value="#{_notaActividad.actividad.nombreActividad}"
+						propagation="none" id="actividadViewId">
+						<f:param name="actividadIdActividad"
+							value="#{_notaActividad.actividad.idActividad}" />
+					</s:link>
 
 
-						</h:column>
-						<h:column>
-							<f:facet name="header">
+				</h:column>
+				<h:column>
+					<f:facet name="header">
                 			Nota:
             			</f:facet>
-							<h:inputText value="#{_notaActividad.nota}" />
-							<h:commandButton value="Calificar" 
-							action="#{notaActividadHome.actualizarNota(_notaActividad.idNotaActividad,_notaActividad.nota)}"/>
+					<h:inputText value="#{_notaActividad.nota}" />
+					<h:commandButton value="Calificar"
+						action="#{notaActividadHome.actualizarNota(_notaActividad.idNotaActividad,_notaActividad.nota)}" />
 
-						</h:column>
-					</rich:dataTable>
-				</div>
+				</h:column>
 
-			</a4j:outputPanel>
+			</rich:dataTable>
+
+
 		</h:form>
 
 	</ui:define>

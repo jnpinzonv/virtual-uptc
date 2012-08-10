@@ -16,7 +16,8 @@
 
 	<ui:define name="centroT">
 
-		<h:form id="usuarioSearch" styleClass="edit">
+		<h:form id="usuarioSearch" styleClass="edit"
+			rendered="#{s:hasRole('admin')}">
 
 			<rich:simpleTogglePanel label="Buscar Usuario">
 
@@ -173,10 +174,44 @@
     </rich:simpleTogglePanel>
 			</ui:repeat>
 			-->
-			
-			
+
+
 
 		</h:form>
+		<h:form>
+			<rich:panel
+				rendered="#{s:hasRole('estudiante') || s:hasRole('docente')}">
+
+				<f:facet name="header">Cursos</f:facet>
+				<div class="results" id="grupoCursoList">
+
+					<h:outputText value="La busqueda no arrojo resultados."
+						rendered="#{empty listaGrupos}" />
+					<div>
+
+						<h:dataTable id="grupoCursoList" var="_grupoCurso"
+							value="#{listaGrupos}">
+
+							<h:column styleClass="action">
+
+								<s:link view="/CuerpoCurso.xhtml"
+									value="#{_grupoCurso.cursoGrupo.nombreAsignatura} ..... Codigo:#{_grupoCurso.cursoGrupo.codigo}  Grupo: #{_grupoCurso.codigoGrupo}" 
+									
+									propagation="none" id="grupoCursoEdit">
+									<f:param name="grupoCursoIdGrupo" value="{_grupoCurso.idGrupo}" />
+									<a4j:support event="onchange" immediate="true"
+										action="#{cursoActualBean.selecionado(_grupoCurso.idGrupo)}" />
+								</s:link>
+							</h:column>
+						</h:dataTable>
+
+					</div>
+				</div>
+
+
+			</rich:panel>
+		</h:form>
+
 	</ui:define>
 
 </ui:composition>

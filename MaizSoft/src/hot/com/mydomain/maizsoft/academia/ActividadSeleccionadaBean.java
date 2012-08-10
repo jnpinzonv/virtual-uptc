@@ -13,6 +13,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.jboss.seam.Component;
+import org.jboss.seam.Instance;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
@@ -91,6 +92,27 @@ public class ActividadSeleccionadaBean implements IActividadSeleccionada{
 		
 		return listaActividadesCurso;
 	}
+	
+	
+	
+	public List<Actividad> getListaActividadesDivisiones() {	
+		
+		
+		Query q = entityManager.createQuery(
+				ConsultasJpql.ACTIVIDADES_POR_DIVISION);
+					
+		 listaActividadesCurso=(List<Actividad>)q.getResultList();
+		 try {
+	
+	} catch (RuntimeException e) {
+		FacesMessages mensaje = (FacesMessages) Component
+				.getInstance(FacesMessages.class);
+		mensaje.add("Algo malo a sucedido :-(  por favor vuelva a seleccionar el curso");
+	}
+	
+	
+	return listaActividadesCurso;
+}
 
 	
 
@@ -303,9 +325,7 @@ public class ActividadSeleccionadaBean implements IActividadSeleccionada{
 	 * Se obtiene el valor de idForo
 	 * @return El valor de idForo
 	 */
-	public long getIdForo() {
-		//listaNotaActi();
-		
+	public long getIdForo() {		
 		return idForo;
 	}
 

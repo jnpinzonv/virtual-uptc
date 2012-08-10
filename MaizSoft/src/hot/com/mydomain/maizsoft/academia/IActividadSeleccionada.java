@@ -43,7 +43,7 @@ public interface IActividadSeleccionada {
 	
 
 	
-	
+	public List<Actividad> getListaActividadesDivisiones();
 
 
 

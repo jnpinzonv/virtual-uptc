@@ -119,4 +119,5 @@ public interface ConsultasJpql {
 				" and n.id_usuario=:parametro" +
 				" group by c.nombre_asignatura";
 
+	String LISTA_TIPOS_ACTIVIDADES ="select t from Tipo t where t.tipo=10";
 }

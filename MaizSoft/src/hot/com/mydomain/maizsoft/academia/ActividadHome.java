@@ -261,7 +261,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 			} catch (MessagingException e) {
 				FacesMessages mensaje = (FacesMessages) Component
 						.getInstance(FacesMessages.class);
-				mensaje.add("Se produjo un error tï¿½cnico :(");
+				mensaje.add("Se produjo un error técnico :(");
 			}
 		}
 
@@ -312,9 +312,8 @@ public class ActividadHome extends EntityHome<Actividad> {
 				archivo.setRuta(gestorCargaArchivosHome.getInstance().getRuta());
 				archivo.setNombre(instance.getNombreArchivo());
 			} else {
-				EstractorArchivos exArchivos = new EstractorArchivos();
-				exArchivos.descomprimirArchivoZip(rutaObjetosAprendizaje(),
-						gestorCargaArchivosHome.getInstance().getNombre());
+				
+				
 				archivo.setRuta(gestorCargaArchivosHome.getInstance().getRuta());
 
 			}

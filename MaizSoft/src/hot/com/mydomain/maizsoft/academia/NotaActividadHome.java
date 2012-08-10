@@ -16,6 +16,7 @@ import org.jboss.seam.Component;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.faces.FacesMessages;
 import org.jboss.seam.framework.EntityHome;
 import org.jboss.seam.security.Credentials;
 
@@ -85,26 +86,41 @@ public class NotaActividadHome extends EntityHome<NotaActividad> {
 		return isIdDefined() ? getInstance() : null;
 	}
 
-	
-	
-	public void saveActividad(){		
-		Query q = getEntityManager().createQuery("select c from GrupoCurso c where c.idGrupo = #{cursoActualBean.seleccionado.idGrupo}");
-		GrupoCurso nuevo= (GrupoCurso)q.getSingleResult();		
-	}
-	
 	@Factory("notasActividad")
 	public List<NotaActividad> listanotasActividad(Long idActividad) {
-		System.out.println("holaaaaaaaaaaaaaaa"+ idActividad);
+
 		Query q = null;
-		List<NotaActividad> nueva=null;
-			q = getEntityManager().createQuery(
-					ConsultasJpql.NOTAS_ACTIVIDAD);
-			q.setParameter("parametro",idActividad);
-						
-		nueva=(List<NotaActividad>)q.getResultList();
-			
-		return nueva;	
+		List<NotaActividad> nueva = null;
+		q = getEntityManager().createQuery(ConsultasJpql.NOTAS_ACTIVIDAD);
+		q.setParameter("parametro", idActividad);
+
+		nueva = (List<NotaActividad>) q.getResultList();
+
+		return nueva;
+	}
+		@Factory("listaActividadesDes")
+	public List<Actividad> getListaActividadesDivision() {
+			Query q =null;
+			try {
+				
+			System.out.println(instance.getTipo().getIdTipo()+ "hola Tipo");
+		 q = getEntityManager().createQuery(
+				ConsultasJpql.ACTIVIADES_POR_DIVISION);
+		q.setParameter("parametro", instance.getTipo().getIdTipo());
+			} catch (Exception e) {
+				return new ArrayList<Actividad>();
+			}
+		return (List<Actividad>) q.getResultList();
+	}
+		
+		
+		
+		
+		public String placebo(Long id){
+			System.out.println(id+ "id actividad");
+			return"";
 		}
+		
 	
 	public void actualizarNota(Long idActividad,double nota){
 		

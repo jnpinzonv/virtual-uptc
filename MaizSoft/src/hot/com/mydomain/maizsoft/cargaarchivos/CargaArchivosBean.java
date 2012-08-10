@@ -13,9 +13,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.jboss.seam.Component;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.faces.FacesMessages;
 
 import org.jboss.seam.log.Log;
 import org.jboss.seam.security.Credentials;
@@ -226,7 +228,30 @@ public class CargaArchivosBean implements ICargaArchivos {
 	gestorCargaArchivosHome.getInstance().setRuta(rutaSer.getDetallesPropiedad()+rutaRelativa + "//"+nombreArchivo);
 		
 		try {
+			
+			
+			if (actividadHome.getInstance().getTipoObjeto().equals("ObjetoComprimido")){	
+				String exte=nombreArchivo.substring((nombreArchivo.length()-3), nombreArchivo.length());
+				if(exte.equalsIgnoreCase("zip")){
+					
+			
 			handleUpload(pathFinal);
+			EstractorArchivos exArchivos = new EstractorArchivos();
+			String arvhivo= nombreArchivo.substring(0,(nombreArchivo.length()-4));
+			exArchivos.descomprimirArchivoZip(pathFinal+"\\"+arvhivo,
+					pathFinal+"\\"+nombreArchivo);
+			gestorCargaArchivosHome.getInstance().setRuta(rutaSer.getDetallesPropiedad()+rutaRelativa + "//"+arvhivo);
+				}
+				else{
+					FacesMessages mensaje = (FacesMessages) Component
+							.getInstance(FacesMessages.class);
+					mensaje.add("Recuerde que solo se puede cargar archivos compresos extensión .zip :(");
+				}
+			}
+			else{
+				handleUpload(pathFinal);
+			}
+				
 	} catch (IOException e) {
 
 		System.out.println(e.getMessage());

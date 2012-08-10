@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
@@ -87,6 +88,13 @@ public class NotaActividad implements Serializable {
 	private Double nota;
 
 	private Usuario usuario;
+	
+	private transient Tipo tipo;
+	
+	private transient Actividad actividad2;
+	
+	
+	private static transient Long idActivida =1L;
 
 	/**
 	 * Se obtiene el valor de idNotaActividad
@@ -280,5 +288,66 @@ public class NotaActividad implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	/**
+	 * Se obtiene el valor de tipo
+	 * @return El valor de tipo
+	 */
+	@Transient
+	public Tipo getTipo() {
+		if(tipo==null)
+			return new Tipo();
+		return tipo;
+	}
+
+	/**
+	 * Asigna el valor de tipo
+	 * @param tipo El valor por establecer para tipo
+	 */
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
+	}
+
+	/**
+	 * Se obtiene el valor de actividad2
+	 * @return El valor de actividad2
+	 */
+	@Transient
+	public Actividad getActividad2() {
+		if(actividad2!=null)
+			idActivida=actividad2.getIdActividad();
+		System.out.println(idActivida +"ID ACTIVIDAD");
+		return actividad2;
+	}
+
+	/**
+	 * Asigna el valor de actividad2
+	 * @param actividad2 El valor por establecer para actividad2
+	 */
+	public void setActividad2(Actividad actividad2) {
+		this.actividad2 = actividad2;
+	}
+
+	/**
+	 * Se obtiene el valor de idActivida
+	 * @return El valor de idActivida
+	 */
+	@Transient
+	public static Long getIdActivida() {
+		return idActivida;
+	}
+
+	/**
+	 * Asigna el valor de idActivida
+	 * @param idActivida El valor por establecer para idActivida
+	 */
+	public static void setIdActivida(Long idActivida) {
+		NotaActividad.idActivida = idActivida;
+	}
+
+	
+	
+	
+	
 
 }

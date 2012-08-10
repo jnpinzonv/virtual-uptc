@@ -38,6 +38,9 @@ public interface ICursoActual {
 	
 	
 	public Long select();
+	
+	
+	public void crearScromIMS();
 
 	
 

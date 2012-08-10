@@ -17,17 +17,68 @@
 	<ui:define name="centroT">
 
 		<h:form id="idT">
-			<rich:panel>
+		
+		
+		
+		
 
+							
+							<h:dataTable id="grupoCurso" var="_grupoCurs"
+												value="#{listaActividades}">
+												
+												
+												
 
+												<h:column styleClass="action">
+
+													<s:link 
+														value="#{_grupoCurs.idActividad}"
+														propagation="none" id="grupoCursoE">
+														<f:param name="grupoCursoIdGrupo"
+															value="#{_grupoCurs.idActividad}" />
+														<a4j:support event="onchange" immediate="true"
+															action="#{notaActividadHome.placebo(_grupoCurs.idActividad)}" />
+													</s:link>
+												</h:column>
+												
+												<h:column styleClass="action">
+
+													<s:link 
+														value="#{_grupoCurs.nombreActividad}"
+														propagation="none" id="grupoCurE">
+														<f:param name="grupoCursoIdGrupo"
+															value="#{_grupoCurs.idActividad}" />
+														
+													</s:link>
+												</h:column>
+							</h:dataTable>
+							
+		
+								
+
+				<br />
+				<br />
+				
+				
 			
+				
+				
+						
+							<h:inputText value="#{actividadSeleccionadaBean.idForo}" />
+							
+						<a4j:commandButton id="save" value="Guardar" action="#{actividadSeleccionadaBean.addFor(7)}" reRender="exito" 				
+						 />
+				
 
+				<a4j:outputPanel id="exito">
+			
+				<h:outputLabel value="#{actividadSeleccionadaBean.idForo}" />
 
 				<f:facet name="header">Actividades</f:facet>
 				<div class="results">
 
 					<rich:dataTable id="notaActividadList" var="_notaActividad"
-						value="#{notaActividadHome.listanotasActividad(1)}">
+						value="#{listaNotasCurso}">
 
 						<h:column>
 							<f:facet name="header">
@@ -67,7 +118,7 @@
 					</rich:dataTable>
 				</div>
 
-			</rich:panel>
+			</a4j:outputPanel>
 		</h:form>
 
 	</ui:define>

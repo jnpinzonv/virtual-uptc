@@ -166,7 +166,7 @@
 											propagation="#{empty from ? 'none' : 'default'}"
 											id="actividadViewIde" rendered="#{s:hasRole('docente')}">
 											<f:param name="actividadIdActividad"
-												value="#{actividadSeleccionadaBean.addActividadSeleccionada(_actividadListAutoevaluacion.idActividad)}" />
+												value="_actividadListAutoevaluacion.idActividad)}" />
 										</s:link>
 									</div>
 

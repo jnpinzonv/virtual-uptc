@@ -3,6 +3,7 @@
  */
 package com.mydomain.maizsoft.comunicaciones;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -17,6 +18,9 @@ import org.jboss.seam.annotations.Out;
 import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.datamodel.DataModelSelection;
 import org.jboss.seam.security.Credentials;
+
+
+
 
 import com.mydomain.Directorio.model.ConsultasJpql;
 import com.mydomain.Directorio.model.GrupoCurso;
@@ -36,7 +40,7 @@ import com.mydomain.Directorio.model.Usuario;
  */
 @Name("cursoActualBean")
 @Stateless
-public class CursoActualBean implements ICursoActual {
+public class CursoActualBean  implements ICursoActual  {
 
 	
 	public static Long select =-1L;
@@ -125,6 +129,16 @@ public class CursoActualBean implements ICursoActual {
 	 */
 	public Long select() {	
 		return select;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.mydomain.maizsoft.comunicaciones.ICursoActual#crearScromIMS()
+	 */
+	@Override
+	public void crearScromIMS() {
+		//EditorFrame nuevo =new EditorFrame();
+		//setVisible(true);
+		
 	}
 
 	

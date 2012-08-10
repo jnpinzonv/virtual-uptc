@@ -59,11 +59,11 @@
 	<security:remember-me enabled="true" />
 
 	<web:multipart-filter create-temp-files="true"
-		max-request-size="1000000" url-pattern="*.seam" />
+		max-request-size="1073741824" url-pattern="*.seam" />
 
 	<event type="org.jboss.seam.postAuthenticate">
 		<action execute="#{authenticator.returnTo}" />
 	</event>
 
-
+	
 </components>

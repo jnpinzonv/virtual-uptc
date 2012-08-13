@@ -67,6 +67,8 @@ public class CargaArchivosBean implements ICargaArchivos {
 	
 	@In(create = true)
 	private GestorCargaArchivosHome gestorCargaArchivosHome;
+	
+	private String rutaFinal;
 
 	public List<GrupoUsuarios> listaGrupoUsuarios() {
 		Query q = entityManager
@@ -81,7 +83,7 @@ public class CargaArchivosBean implements ICargaArchivos {
 		if (!directorio.exists()) {
 			directorio.mkdirs();
 		}
-
+		
 		File f = new File(pathFinal, nombreArchivo);
 
 		log.info(f);
@@ -169,6 +171,7 @@ public class CargaArchivosBean implements ICargaArchivos {
 			actividadHome.getInstance().setRutaArchivo(pathFinal);
 			actividadHome.getInstance().setNombreArchivo(nombreArchivo);
 			actividadHome.getInstance().setAdjuntarArchivo(true);
+			rutaFinal=pathFinal;
 		} catch (IOException e) {
 
 		}
@@ -268,7 +271,26 @@ public class CargaArchivosBean implements ICargaArchivos {
 			cargarObjetoAprendizaje();
 		}
 		else{
-			cargarArchivoAdjuntoActividad();
+				cargarArchivoAdjuntoActividad();
 		}
 	}
+
+	/**
+	 * Se obtiene el valor de rutaFinal
+	 * @return El valor de rutaFinal
+	 */
+	public String getRutaFinal() {
+		return rutaFinal;
+	}
+
+	/**
+	 * Asigna el valor de rutaFinal
+	 * @param rutaFinal El valor por establecer para rutaFinal
+	 */
+	public void setRutaFinal(String rutaFinal) {
+		this.rutaFinal = rutaFinal;
+	}
+	
+	
+	
 }

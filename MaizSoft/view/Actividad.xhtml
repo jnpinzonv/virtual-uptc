@@ -14,11 +14,11 @@
 	</ui:define>
 
 	<ui:define name="centroT">
-
+	<h:form id="idActividad" enctype="multipart/form-data">
 		<rich:panel>
 			<f:facet name="header">Detalles de Actividad #{actividadHome.instance.nombreActividad}</f:facet>
 
-			<s:decorate id="tipoActividad" template="layout/display.xhtml"
+			<s:decorate id="tipoActividad" template="layout/edit.xhtml"
 				style="position:absolute;">
 				<ui:define name="label">Tipo de actividad:</ui:define>
 				<h:outputText value="#{actividadHome.instance.tipo.descripcion}"
@@ -26,9 +26,18 @@
 			</s:decorate>
 
 			<br />
+			<br /> 
+			
+		<s:decorate id="idActividad" template="layout/edit.xhtml"
+				style="position:absolute;" rendered="true">
+				<ui:define name="label">Tipo de actividad:</ui:define>
+				<h:outputText value="#{actividadHome.instance.idActividad}"
+					escape="false" />
+			</s:decorate>
+			<br />
 			<br />
 
-			<s:decorate id="descripcionActividad" template="layout/display.xhtml"
+			<s:decorate id="descripcionActividad" template="layout/edit.xhtml"
 				style="position:absolute;">
 				<ui:define name="label">Descripción actividad:</ui:define>
 				<h:outputText value="#{actividadHome.instance.descripcionActividad}"
@@ -39,7 +48,7 @@
 			<br />
 			<br />
 
-			<s:decorate id="fecha" template="layout/display.xhtml"
+			<s:decorate id="fecha" template="layout/edit.xhtml"
 				style="position:absolute;">
 				<ui:define name="label">Fecha máxima de entrega:</ui:define>
 				<h:outputText value="#{actividadHome.instance.fechaFinalizacion}"
@@ -51,7 +60,7 @@
 			<br />
 			<br />
 			
-			<s:decorate id="adjunto" template="layout/display.xhtml"
+			<s:decorate id="adjunto" template="layout/edit.xhtml"
 				style="position:absolute;" rendered="#{not empty actividadHome.instance.nombreArchivo}">
 				<ui:define name="label">Archivo Adjunto:</ui:define>
 				<h:outputText value="#{actividadHome.instance.nombreArchivo}"/>
@@ -61,14 +70,41 @@
 			</s:decorate>
 
 			<br />
-			<s:decorate id="autoevaluacionJustificación"
-				template="layout/display.xhtml"
-				rendered="#{actividadHome.instance.tipo.idTipo==13}"
-				>
-				<ui:define name="label">Justificación:</ui:define>
-				<h:inputTextarea cols="80" rows="3" />
+					
+				<s:decorate id="autoevaluacionJustificación"
+				template="layout/edit.xhtml"
+				rendered="#{actividadHome.instance.tipo.idTipo==13}">
+					<ui:define name="label">Justificación: </ui:define>
+					<h:panelGrid style="margin-left:80px">
+						<h:panelGroup style="height:400px;width:800px;" layout="block">
+							<rich:editor id="editor"
+								value="#{actividadHome.instance.justificacion}"
+								style="margin-bottom: 1em" theme="advanced"
+								plugins="print,contextmenu,save,paste">
+
+								<f:param name="theme_advanced_buttons1"
+									value="newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontselect,fontsizeselect"></f:param>
+
+								<f:param name="theme_advanced_buttons2"
+									value="cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor"></f:param>
+								<f:param name="theme_advanced_buttons3"
+									value="sub,sup,|,charmap,emotions,iespell,media,advhr,|,print"></f:param>
+
+								<f:param name="theme_advanced_toolbar_location" value="top"></f:param>
+								<f:param name="theme_advanced_toolbar_align" value="left"></f:param>
+								<f:param name="theme_advanced_statusbar_location" value="bottom"></f:param>
+
+								<a4j:support event="onchange" ajaxSingle="true"
+									requestDelay="1000" />
+
+							</rich:editor>
+						</h:panelGroup>
+
+
+					</h:panelGrid>
 				</s:decorate>
-			<s:decorate id="nombreUrl" template="layout/display.xhtml"
+				
+			<s:decorate id="nombreUrl" template="layout/edit.xhtml"
 				rendered="#{actividadHome.instance.tipo.idTipo==17}">
 				<ui:define name="label">Nombre:</ui:define>
 				<h:outputLabel value="#{actividadHome.instance.rutaArchivo}" />
@@ -76,13 +112,13 @@
 				<br />
 			</s:decorate>
 
-			<s:decorate id="enlaceUrl" template="layout/display.xhtml"
+			<s:decorate id="enlaceUrl" template="layout/edit.xhtml"
 				rendered="#{actividadHome.instance.tipo.idTipo==17}">
 				<ui:define name="label">URL:</ui:define>
 				<a href="//#{actividadHome.instance.urlExterna}" target="_blank">#{actividadHome.instance.urlExterna}</a>
 			</s:decorate>
 
-			<s:decorate id="autoevaluacionNota" template="layout/display.xhtml"
+			<s:decorate id="autoevaluacionNota" template="layout/edit.xhtml"
 				rendered="#{actividadHome.instance.tipo.idTipo==13}">
 				<ui:define name="label">Nota:</ui:define>
 				<h:inputText size="4" />
@@ -90,28 +126,11 @@
 					for="autoevaluacionNota" id="tool" followMouse="true"
 					direction="top-right" showDelay="500"></rich:toolTip>
 			</s:decorate>
+			
+			
+			
+				
 
-			<s:decorate id="cargarArchivos" template="layout/display.xhtml"
-				rendered="#{actividadHome.instance.tipo.idTipo==12}">
-				<ui:define name="label">Adjuntar Archivo:</ui:define>
-				<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
-					accept="image/jpg" fileName="#{cargaArchivosBean.nombreArchivo}" />
-
-				<h:commandButton id="upload" value="Subir !!"
-					action="#{cargaArchivosBean.handleUpload}" />
-
-				<s:button id="cancel" view="/login.xhtml" value="Cancel"
-					propagation="end" />
-
-				<br />
-				<h:outputLabel value="Nombre del arcivo adjunto:"
-					rendered="#{not empty cargaArchivosBean.nombreArchivo}" />
-				<h:outputLabel value="#{cargaArchivosBean.nombreArchivo}" />
-
-				<h:outputLabel value="No se ha adjuntado ningún archivo"
-					rendered="#{empty cargaArchivosBean.nombreArchivo}" />
-
-			</s:decorate>
 
 			<div style="clear: both" />
 
@@ -122,9 +141,9 @@
 			<s:button view="/ActividadEdit.xhtml" id="edit" value="Editar"
 				rendered="#{s:hasRole('admin')}" />
 
-			<s:button
-				view="/#{empty actividadFrom ? 'ActividadList' : actividadFrom}.xhtml"
-				rendered="#{s:hasRole('estudiante')}" id="done" value="Aceptar" />
+			<h:commandButton				
+				rendered="#{s:hasRole('estudiante')}" id="guardar" value="Aceptar" 
+				actionListener="#{actividadHome.saveActividadEstudiante()}"/>
 				
 			<s:button
 				view="/CuerpoCurso.xhtml"
@@ -132,8 +151,31 @@
 
 		</div>
 		
+		</h:form>
 		
+		<h:form enctype="multipart/form-data">
+		<s:decorate id="cargarArchivos" template="layout/edit.xhtml"
+				rendered="#{actividadHome.instance.tipo.idTipo==12}">
+						<ui:define name="label">Adjuntar Archivo:</ui:define>
+						<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
+							fileName="#{cargaArchivosBean.nombreArchivo}" />
 
+						<h:commandButton id="upload" value="Subir !!"
+							action="#{cargaArchivosBean.seleccionOAAA()}" />
+												<s:button id="cancel" view="/login.xhtml" value="Cancel"
+							propagation="end" />
+						<br />
+						<h:outputLabel value="Nombre del arcivo adjunto:"
+							rendered="#{not empty cargaArchivosBean.nombreArchivo}" />
+						<h:outputLabel value="#{actividadHome.instance.nombreArchivo}" />
+
+						<h:outputLabel value="No se ha adjuntado ningún archivo"
+							rendered="#{empty cargaArchivosBean.nombreArchivo}" />
+					
+					</s:decorate>
+		</h:form>
+		
+	
 	</ui:define>
 
 </ui:composition>

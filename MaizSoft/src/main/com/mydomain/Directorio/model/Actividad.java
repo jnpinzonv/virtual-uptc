@@ -114,6 +114,8 @@ public class Actividad implements Serializable {
 	private transient long idCursoSeleccionado;
 	
 	private transient String tipoObjeto;
+	
+	private transient String justificacion;
 
 	public Actividad() {
 		evaluable = true;
@@ -164,7 +166,7 @@ public class Actividad implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_actividad", unique = false, nullable = false, insertable = true, updatable = true)
 	public Long getIdActividad() {
-		System.out.println(idActividad);
+		
 		return idActividad;
 	}
 
@@ -500,7 +502,7 @@ public class Actividad implements Serializable {
 	@Length(max = 25)
 	@Column(name = "nombre_actividad", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(25)")
 	public String getNombreActividad() {
-		System.out.println("Pasooo" + nombreActividad);
+		
 		return nombreActividad;
 	}
 	
@@ -527,6 +529,23 @@ public class Actividad implements Serializable {
 	 */
 	public void setTipoObjeto(String tipoObjeto) {
 		this.tipoObjeto = tipoObjeto;
+	}
+
+	/**
+	 * Se obtiene el valor de justificacion
+	 * @return El valor de justificacion
+	 */
+	@Transient
+	public String getJustificacion() {
+		return justificacion;
+	}
+
+	/**
+	 * Asigna el valor de justificacion
+	 * @param justificacion El valor por establecer para justificacion
+	 */
+	public void setJustificacion(String justificacion) {
+		this.justificacion = justificacion;
 	}
 	
 

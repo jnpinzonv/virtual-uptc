@@ -103,7 +103,7 @@ public class NotaActividadHome extends EntityHome<NotaActividad> {
 			Query q =null;
 			try {
 				
-			System.out.println(instance.getTipo().getIdTipo()+ "hola Tipo");
+			
 		 q = getEntityManager().createQuery(
 				ConsultasJpql.ACTIVIADES_POR_DIVISION);
 		q.setParameter("parametro", instance.getTipo().getIdTipo());
@@ -117,7 +117,7 @@ public class NotaActividadHome extends EntityHome<NotaActividad> {
 		
 		
 		public String placebo(Long id){
-			System.out.println(id+ "id actividad");
+			
 			return"";
 		}
 		

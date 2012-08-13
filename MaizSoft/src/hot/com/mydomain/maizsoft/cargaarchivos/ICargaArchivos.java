@@ -40,6 +40,19 @@ public void handleUpload(String pathFinal) throws IOException;
 	
 	void seleccionOAAA();	
 	
+
+	/**
+	 * Se obtiene el valor de rutaFinal
+	 * @return El valor de rutaFinal
+	 */
+	public String getRutaFinal();
+
+	/**
+	 * Asigna el valor de rutaFinal
+	 * @param rutaFinal El valor por establecer para rutaFinal
+	 */
+	public void setRutaFinal(String rutaFinal);
+	
 	
 
 }

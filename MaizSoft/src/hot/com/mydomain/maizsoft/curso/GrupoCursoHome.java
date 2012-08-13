@@ -145,10 +145,10 @@ public class GrupoCursoHome extends EntityHome<GrupoCurso> {
 	public String selecionado(long grupo){
 		
 		instance=seleccionado;
-		System.out.println(grupo+ "holaaaaaaaaaaaaaa");
+		/*System.out.println(grupo+ "holaaaaaaaaaaaaaa");
 		//System.out.println(instance.getIdGrupo()+ "hola mundooooooooooooooooooooo");
 		System.out.println(facesContext.getCurrentInstance().getExternalContext().getRequestMap().get("grupoCursoIdGrupo")+ "holooooooooooooooo");
-
+*/
 		return"/CuerpoCurso.xhtml";
 		
 	}

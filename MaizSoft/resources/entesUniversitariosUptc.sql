@@ -87,7 +87,7 @@ insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,
 values(38,'Administracion de Empresas (D)','Administracion de Empresas (D)',20,5,63);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(39,'Administracion de Empresas (N)','Administracion de Empresas (N)',20,5,64);
-insert into ente_universitario (id_ente_universitario,nombre_ente_universitariodescripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
+insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(40,'Contaduria Publica','Contaduria Publica',20,5,79);
 insert into ente_universitario (id_ente_universitario,nombre_ente_universitario,descripcion_ente_universitario,id_tipo_ente_universitario,id_ente_universitario_padre,codigo_ente_universitario) 
 values(41,'Economia (D)','Economia (D)',20,5,61);

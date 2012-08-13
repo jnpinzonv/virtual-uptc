@@ -125,4 +125,8 @@ public interface ConsultasJpql {
 			+ " where m.numeroDivision = #{seccionSeleccionadaBean.seccionSeleccionada}"
 			+ " and m.grupoCurso.idGrupo=#{cursoActualBean.select()}"
 			+ " and m.actividad.idActividad= a.idActividad";
+	
+	
+	String AGREGAR_ACTIVIDAD_PARA_NOTA="select n from NotaActividad n where n.usuario.id=:parametro" +
+						" and n.actividad.idActividad=:parametro2";
 }

@@ -34,7 +34,8 @@ import com.mydomain.Directorio.model.NumeroDivisiones;
 import com.mydomain.Directorio.model.ReceptorMensajes;
 import com.mydomain.Directorio.model.Tipo;
 import com.mydomain.Directorio.model.Usuario;
-import com.mydomain.maizsoft.cargaarchivos.EstractorArchivos;
+import com.mydomain.maizsoft.cargaarchivos.CargaArchivosBean;
+import com.mydomain.maizsoft.cargaarchivos.ICargaArchivos;
 import com.mydomain.maizsoft.comunicaciones.GestorEnvioCorreoElectronico;
 import com.mydomain.maizsoft.gestores.GestorCargaArchivosHome;
 import com.mydomain.maizsoft.tipos.TipoHome;
@@ -50,6 +51,9 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 	@In(create = true)
 	GestorCargaArchivosHome gestorCargaArchivosHome;
+	
+	@In(create = true)
+	ICargaArchivos cargaArchivosBean;
 
 	Long idCurso;
 
@@ -131,13 +135,6 @@ public class ActividadHome extends EntityHome<Actividad> {
 	}
 
 	public String saveActividad(int pasarSeccion, long idCursoSeleccionado) {
-		/*
-		 * Query q5 = getEntityManager().createQuery(
-		 * ConsultasJpql.PORCENTAJE_TOTAL_ACTIVIDAD);
-		 * 
-		 * System.out.println(q5.getResultList().size()+
-		 * "hola seccion...............");
-		 */
 
 		List<GrupoUsuarios> listaGrupos = listaGrupoUsuarios(idCursoSeleccionado);
 		Credentials cre = (Credentials) Component
@@ -167,11 +164,10 @@ public class ActividadHome extends EntityHome<Actividad> {
 		if (instance.isAlertaMail() == true) {
 			enviarEmail(listaGrupos, instance);
 		}
-		
-		if(instance.getTipo().getIdTipo() == 11){
-			crearForo(listaGrupos,usuario);
+
+		if (instance.getTipo().getIdTipo() == 11) {
+			crearForo(listaGrupos, usuario);
 		}
-		
 
 		try {
 			crearLog(listaGrupos.get(0).getGrupoCurso());
@@ -187,11 +183,9 @@ public class ActividadHome extends EntityHome<Actividad> {
 		return "/CuerpoCurso.xhtml";
 	}
 
-	
-	
-	public void crearForo(List<GrupoUsuarios> usuarios,Usuario usuario){
-		
-		GestorMensajeria nuevoG= new GestorMensajeria();
+	public void crearForo(List<GrupoUsuarios> usuarios, Usuario usuario) {
+
+		GestorMensajeria nuevoG = new GestorMensajeria();
 		nuevoG.setAsunto(instance.getNombreActividad());
 		nuevoG.setMensaje(instance.getDescripcionActividad());
 		nuevoG.setDeUsuario(usuario);
@@ -202,12 +196,13 @@ public class ActividadHome extends EntityHome<Actividad> {
 			nuevoG.setTipo(getEntityManager().find(Tipo.class, 7L));
 			nuevo.setGestorMensajeria(nuevoG);
 			nuevo.setLeido(false);
-			nuevoG.setFechaEnvio(calendar.getTime());	
+			nuevoG.setFechaEnvio(calendar.getTime());
 
 			getEntityManager().persist(nuevoG);
-			getEntityManager().persist(nuevo);		
+			getEntityManager().persist(nuevo);
 		}
 	}
+
 	public GestorEnvioCorreoElectronico crearConfiguracion(Actividad actividad) {
 
 		GestorEnvioCorreoElectronico nuevo = new GestorEnvioCorreoElectronico();
@@ -312,8 +307,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 				archivo.setRuta(gestorCargaArchivosHome.getInstance().getRuta());
 				archivo.setNombre(instance.getNombreArchivo());
 			} else {
-				
-				
+
 				archivo.setRuta(gestorCargaArchivosHome.getInstance().getRuta());
 
 			}
@@ -428,4 +422,45 @@ public class ActividadHome extends EntityHome<Actividad> {
 		this.idCurso = idCurso;
 	}
 
+	public String saveActividadEstudiante() {
+
+		Credentials cre = (Credentials) Component
+				.getInstance(Credentials.class);
+
+		Query q2 = getEntityManager().createQuery(
+				ConsultasJpql.USUARIO_POR_USERNAME).setParameter("parametro",
+				cre.getUsername());
+		Usuario usuario = (Usuario) q2.getSingleResult();
+		Query q = getEntityManager().createQuery(
+				ConsultasJpql.AGREGAR_ACTIVIDAD_PARA_NOTA);
+		q.setParameter("parametro", usuario.getId());
+		q.setParameter("parametro2", instance.getIdActividad());
+
+		NotaActividad notaActividad = (NotaActividad) q.getSingleResult();
+		System.out.println("pepos"+instance.getNombreArchivo());
+		if (instance.getTipo().getIdTipo() == 11) {
+			
+		}
+
+		else if (instance.getTipo().getIdTipo() == 12) {
+			
+			
+			GestorCargaArchivos archivo = new GestorCargaArchivos();
+			archivo.setDescripcion(instance.getDescripcionActividad());
+			archivo.setNombre(cargaArchivosBean.getNombreArchivo());
+			archivo.setRuta(cargaArchivosBean.getRutaFinal());
+			archivo.setTipo(getEntityManager().find(Tipo.class, 12L));
+			getEntityManager().persist(archivo);
+			notaActividad.setGestorCargaArchivos(archivo);
+		}
+
+		else if (instance.getTipo().getIdTipo() == 13) {
+			notaActividad.setJustificacion(instance.getJustificacion());
+		}
+		
+		getEntityManager().merge(notaActividad);
+		getEntityManager().flush();
+
+		return "/CuerpoCurso.xhtml";
+	}
 }

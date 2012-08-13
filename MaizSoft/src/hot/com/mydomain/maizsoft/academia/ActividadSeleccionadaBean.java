@@ -253,7 +253,7 @@ public class ActividadSeleccionadaBean implements IActividadSeleccionada{
 	public List<Actividad> getListaActividades() {
 		Query q =null;
 		
-			System.out.println("Lamaddooooooooooooooooooooooooooooo");
+			
 		
 	 q = entityManager.createQuery(
 			ConsultasJpql.ACTIVIADES_POR_DIVISION);
@@ -345,7 +345,7 @@ public class ActividadSeleccionadaBean implements IActividadSeleccionada{
 		Query q = null;
 		
 			
-		System.out.println(idForo + "hola mundo");
+		
 		List<NotaActividad> nueva=null;
 			q = entityManager.createQuery(
 					ConsultasJpql.NOTAS_ACTIVIDAD);
@@ -358,7 +358,7 @@ public class ActividadSeleccionadaBean implements IActividadSeleccionada{
 	}
 	
 	public String addFor(Long id){
-			System.out.println(idForo + "hola HIO");
+			
 			listaNotaActi();
 		return "";
 	}

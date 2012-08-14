@@ -358,6 +358,7 @@ public class Actividad implements Serializable {
 	 */
 	@Transient
 	public String getNombreArchivo() {
+				
 		return nombreArchivo;
 	}
 

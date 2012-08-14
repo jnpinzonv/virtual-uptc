@@ -126,13 +126,21 @@
 					for="autoevaluacionNota" id="tool" followMouse="true"
 					direction="top-right" showDelay="500"></rich:toolTip>
 			</s:decorate>
-			
-			
-			
-				
 
 
-			<div style="clear: both" />
+				<h:panelGrid rendered="#{actividadHome.instance.tipo.idTipo==11}">
+				<ui:repeat var="_usuario" value="#{actividadHome.getListaReceptoresForos(actividadHome.instance.idActividad)}" 
+				>
+					<rich:simpleTogglePanel switchType="client" opened="false"
+						label="#{_usuario.userAccount.primerNombre}" >
+						<h:outputLabel value="#{_usuario.gestorMensajeria.mensaje}" escape="false"/>
+                
+    </rich:simpleTogglePanel>
+				</ui:repeat>
+
+			</h:panelGrid>
+
+				<div style="clear: both" />
 
 		</rich:panel>
 

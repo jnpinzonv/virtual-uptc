@@ -105,7 +105,7 @@ public interface ConsultasJpql {
 								" where re.gestorMensajeria=men.idMensaje" +
 								" and re.leido=0" 
 								+ " AND re.userAccount.id = u.usuarios.id"
-								+ " AND u.usuarios.id = :parametro";
+								+ " AND u.usuarios.id =:parametro";
 								
 	
 	String NOTAS_ESTUDIANTE = "SELECT c.nombre_asignatura, sum((n.nota * a.porcentaje)/100)" +
@@ -129,4 +129,17 @@ public interface ConsultasJpql {
 	
 	String AGREGAR_ACTIVIDAD_PARA_NOTA="select n from NotaActividad n where n.usuario.id=:parametro" +
 						" and n.actividad.idActividad=:parametro2";
+	
+	
+
+	
+	String LISTA_FOROS_POR_PARTICIPACION="select m from ReceptorMensajes m, GestorMensajeria gm" 
+										+" where m.gestorMensajeria.idMensaje=gm.idMensaje" 
+										+" and gm.idMensaje =:parametro" 
+										+" and m.leido=true";
+	
+	String ACTIVIDAD_NOTA_ACTIVIDAD= "select n.gestorMensajeria.idMensaje from NotaActividad n " 
+								   +" where n.actividad.idActividad=:parametro";
+
+	
 }

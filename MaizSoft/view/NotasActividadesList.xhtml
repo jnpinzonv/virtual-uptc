@@ -18,7 +18,7 @@
 
 		<h:form id="idT">
 			<h:dataTable id="grupoCurso" var="_grupoCurs"
-				value="#{listaActividades}">
+				value="#{listaActividades}">	
 
 				<h:column styleClass="action">
 
@@ -103,7 +103,7 @@
 					<f:facet name="header">
 							Actividad Realizada?
 						</f:facet>
-					<h:outputText value="#{_notaActividad.estadoPendiente}" />
+					<h:outputText value="#{_notaActividad.estadoPendiente==true?'Si':'No'}" />
 				</h:column>
 				<h:column>
 					<f:facet name="header">

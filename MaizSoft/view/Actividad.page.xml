@@ -9,6 +9,4 @@
    <param name="tipoFrom"/>
    <param name="tipoIdTipo" value="#{tipoHome.tipoIdTipo}"/>
 
-
-
 </page>

@@ -51,7 +51,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 	@In(create = true)
 	GestorCargaArchivosHome gestorCargaArchivosHome;
-	
+
 	@In(create = true)
 	ICargaArchivos cargaArchivosBean;
 
@@ -165,10 +165,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 			enviarEmail(listaGrupos, instance);
 		}
 
-		if (instance.getTipo().getIdTipo() == 11) {
-			crearForo(listaGrupos, usuario);
-		}
-
+		
 		try {
 			crearLog(listaGrupos.get(0).getGrupoCurso());
 
@@ -183,7 +180,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		return "/CuerpoCurso.xhtml";
 	}
 
-	public void crearForo(List<GrupoUsuarios> usuarios, Usuario usuario) {
+	public GestorMensajeria crearForo(List<GrupoUsuarios> usuarios, Usuario usuario) {
 
 		GestorMensajeria nuevoG = new GestorMensajeria();
 		nuevoG.setAsunto(instance.getNombreActividad());
@@ -201,6 +198,8 @@ public class ActividadHome extends EntityHome<Actividad> {
 			getEntityManager().persist(nuevoG);
 			getEntityManager().persist(nuevo);
 		}
+		
+		return nuevoG;
 	}
 
 	public GestorEnvioCorreoElectronico crearConfiguracion(Actividad actividad) {
@@ -314,7 +313,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 			getEntityManager().persist(archivo);
 		}
-
+		
 		for (GrupoUsuarios sObj : listaGrupos) {
 
 			NotaActividad nuevaNota = new NotaActividad();
@@ -334,6 +333,11 @@ public class ActividadHome extends EntityHome<Actividad> {
 			if (instance.isEvaluable() == false) {
 				instance.setPorcentaje(0.0);
 			}
+			
+			if (instance.getTipo().getIdTipo() == 11) {
+				nuevaNota.setGestorMensajeria(crearForo(listaGrupos, usuario));
+			}
+
 
 			getEntityManager().persist(instance);
 			getEntityManager().persist(nuevaNota);
@@ -437,14 +441,13 @@ public class ActividadHome extends EntityHome<Actividad> {
 		q.setParameter("parametro2", instance.getIdActividad());
 
 		NotaActividad notaActividad = (NotaActividad) q.getSingleResult();
-		System.out.println("pepos"+instance.getNombreArchivo());
+		System.out.println("pepos" + instance.getNombreArchivo());
 		if (instance.getTipo().getIdTipo() == 11) {
-			
+
 		}
 
 		else if (instance.getTipo().getIdTipo() == 12) {
-			
-			
+
 			GestorCargaArchivos archivo = new GestorCargaArchivos();
 			archivo.setDescripcion(instance.getDescripcionActividad());
 			archivo.setNombre(cargaArchivosBean.getNombreArchivo());
@@ -457,10 +460,11 @@ public class ActividadHome extends EntityHome<Actividad> {
 		else if (instance.getTipo().getIdTipo() == 13) {
 			notaActividad.setJustificacion(instance.getJustificacion());
 		}
-		
+
 		getEntityManager().merge(notaActividad);
 		getEntityManager().flush();
 
+		System.out.println("pasooooooooooooooooooooooooo");
 		return "/CuerpoCurso.xhtml";
 	}
 }

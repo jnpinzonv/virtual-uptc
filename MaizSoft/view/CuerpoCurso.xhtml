@@ -137,6 +137,14 @@
 									<b> <h:outputText
 											value="#{_actividadListAutoevaluacion.fechaFinalizacion}" />
 									</b>
+									
+									#{' '}
+									<p>&nbsp;&nbsp; &nbsp;&nbsp;</p>
+
+									<h:outputLabel value="Archivo Adjunto: " />
+									<b> <h:outputText
+											value="#{_actividadListAutoevaluacion.nombreArchivo}" />
+									</b>
 									<div align="right">
 										<s:link view="/ActividadEdit.xhtml" value="Editar"
 											propagation="none" id="actividadEdit2"

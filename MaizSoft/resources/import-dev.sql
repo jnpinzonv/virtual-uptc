@@ -42,7 +42,7 @@ insert into cuentas_usuario(id_usuarios,id_user_account,id_cuenta_usuario) value
 
 insert into user_account_role (account_id, member_of_role) values (1, 1);
 
-insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(1,'C://xampp//htdocs//archivos','pathArchivos');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(1,'C://Program Files (x86)//xampp//htdocs//archivos','pathArchivos');
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(2,'archivosCargasExcel','pathArchivosExcel');
 
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(3,'1','enteUniversiarioPadre');

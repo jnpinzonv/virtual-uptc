@@ -181,23 +181,27 @@ public class ActividadHome extends EntityHome<Actividad> {
 	}
 
 	public GestorMensajeria crearForo(List<GrupoUsuarios> usuarios, Usuario usuario) {
-
+		System.out.println("Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		Calendar calendar = Calendar.getInstance();
 		GestorMensajeria nuevoG = new GestorMensajeria();
 		nuevoG.setAsunto(instance.getNombreActividad());
 		nuevoG.setMensaje(instance.getDescripcionActividad());
 		nuevoG.setDeUsuario(usuario);
-		Calendar calendar = Calendar.getInstance();
+		nuevoG.setTipo(getEntityManager().find(Tipo.class, 7L));
+		nuevoG.setFechaEnvio(calendar.getTime());
+		getEntityManager().persist(nuevoG);
+		
 		for (GrupoUsuarios sObj : usuarios) {
 			ReceptorMensajes nuevo = new ReceptorMensajes();
-			nuevo.setUserAccount(sObj.getUserGrupoCurso());
-			nuevoG.setTipo(getEntityManager().find(Tipo.class, 7L));
+			nuevo.setUserAccount(sObj.getUserGrupoCurso());			
 			nuevo.setGestorMensajeria(nuevoG);
-			nuevo.setLeido(false);
-			nuevoG.setFechaEnvio(calendar.getTime());
-
-			getEntityManager().persist(nuevoG);
-			getEntityManager().persist(nuevo);
+			if(usuario.getId()==sObj.getUserGrupoCurso().getId())
+			nuevo.setLeido(true);
+			else
+			nuevo.setLeido(false);						
+			getEntityManager().persist(nuevo);		
 		}
+		
 		
 		return nuevoG;
 	}
@@ -313,6 +317,9 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 			getEntityManager().persist(archivo);
 		}
+		GestorMensajeria nuevo=null;
+		if (instance.getTipo().getIdTipo() == 11) 
+	    nuevo=crearForo(listaGrupos, usuario);
 		
 		for (GrupoUsuarios sObj : listaGrupos) {
 
@@ -335,7 +342,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 			}
 			
 			if (instance.getTipo().getIdTipo() == 11) {
-				nuevaNota.setGestorMensajeria(crearForo(listaGrupos, usuario));
+				nuevaNota.setGestorMensajeria(nuevo);
 			}
 
 
@@ -441,7 +448,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		q.setParameter("parametro2", instance.getIdActividad());
 
 		NotaActividad notaActividad = (NotaActividad) q.getSingleResult();
-		System.out.println("pepos" + instance.getNombreArchivo());
+		
 		if (instance.getTipo().getIdTipo() == 11) {
 
 		}
@@ -464,7 +471,18 @@ public class ActividadHome extends EntityHome<Actividad> {
 		getEntityManager().merge(notaActividad);
 		getEntityManager().flush();
 
-		System.out.println("pasooooooooooooooooooooooooo");
 		return "/CuerpoCurso.xhtml";
+	}
+	
+	
+	public List<ReceptorMensajes> getListaReceptoresForos(Long idActividad){
+		Query q = getEntityManager().createQuery(ConsultasJpql.ACTIVIDAD_NOTA_ACTIVIDAD);
+		q.setParameter("parametro", idActividad);
+		List<Long> n= q.getResultList();
+		
+		Query q2 = getEntityManager().createQuery(ConsultasJpql.LISTA_FOROS_POR_PARTICIPACION);
+		q2.setParameter("parametro", n.get(0));
+		
+		return q2.getResultList();
 	}
 }

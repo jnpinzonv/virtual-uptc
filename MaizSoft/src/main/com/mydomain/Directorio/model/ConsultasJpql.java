@@ -132,10 +132,14 @@ public interface ConsultasJpql {
 	
 
 	
-	String LISTA_FOROS_POR_PARTICIPACION="select m from ReceptorMensajes m, GestorMensajeria gm" 
-										+" where m.gestorMensajeria.idMensaje=gm.idMensaje" 
-										+" and gm.idMensaje =:parametro" 
-										+" and m.leido=true";
+	String LISTA_FOROS_POR_PARTICIPACION="SELECT rm FROM  ReceptorMensajes rm" 
+										+" where rm.gestorMensajeria.idMensaje in (" 
+										+" select gm.idMensaje" 
+										+" from GestorMensajeria gm" 
+										+" where gm.idMensaje =:parametro" 
+										+" or gm.gestorMensajeria.idMensaje=:parametro)"
+										+" and rm.leido=true";
+	
 	
 	String ACTIVIDAD_NOTA_ACTIVIDAD= "select n.gestorMensajeria.idMensaje from NotaActividad n " 
 								   +" where n.actividad.idActividad=:parametro";

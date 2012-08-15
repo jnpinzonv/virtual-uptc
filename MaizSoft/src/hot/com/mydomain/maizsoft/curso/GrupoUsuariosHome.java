@@ -230,7 +230,7 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 		else{
 			FacesMessages mensaje = (FacesMessages) Component
 					.getInstance(FacesMessages.class);
-			mensaje.add("Se produjo un error al matricular el Usuario, posible causa: no existe ningún usuario seleccionado");
+			mensaje.add("Se produjo un error al matricular el Usuario, posible causa: no existe ningï¿½n usuario seleccionado");
 		}
 
 		

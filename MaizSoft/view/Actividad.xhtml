@@ -14,66 +14,68 @@
 	</ui:define>
 
 	<ui:define name="centroT">
-	<h:form id="idActividad" enctype="multipart/form-data">
-		<rich:panel>
-			<f:facet name="header">Detalles de Actividad #{actividadHome.instance.nombreActividad}</f:facet>
+		<h:form id="idActividad" enctype="multipart/form-data">
+			<rich:panel>
+				<f:facet name="header">Detalles de Actividad #{actividadHome.instance.nombreActividad}</f:facet>
 
-			<s:decorate id="tipoActividad" template="layout/edit.xhtml"
-				style="position:absolute;">
-				<ui:define name="label">Tipo de actividad:</ui:define>
-				<h:outputText value="#{actividadHome.instance.tipo.descripcion}"
-					escape="false" />
-			</s:decorate>
+				<s:decorate id="tipoActividad" template="layout/edit.xhtml"
+					style="position:absolute;">
+					<ui:define name="label">Tipo de actividad:</ui:define>
+					<h:outputText value="#{actividadHome.instance.tipo.descripcion}"
+						escape="false" />
+				</s:decorate>
 
-			<br />
-			<br /> 
-			
-		<s:decorate id="idActividad" template="layout/edit.xhtml"
-				style="position:absolute;" rendered="true">
-				<ui:define name="label">Tipo de actividad:</ui:define>
-				<h:outputText value="#{actividadHome.instance.idActividad}"
-					escape="false" />
-			</s:decorate>
-			<br />
-			<br />
+				<br />
+				<br />
 
-			<s:decorate id="descripcionActividad" template="layout/edit.xhtml"
-				style="position:absolute;">
-				<ui:define name="label">Descripción actividad:</ui:define>
-				<h:outputText value="#{actividadHome.instance.descripcionActividad}"
-					escape="false" />
-			</s:decorate>
+				<s:decorate id="idActividad" template="layout/edit.xhtml"
+					style="position:absolute;" rendered="true">
+					<ui:define name="label">Id actividad:</ui:define>
+					<h:outputText value="#{actividadHome.instance.idActividad}"
+						escape="false" />
+				</s:decorate>
+				<br />
+				<br />
 
-			<br />
-			<br />
-			<br />
+				<s:decorate id="descripcionActividad" template="layout/edit.xhtml"
+					style="position:absolute;">
+					<ui:define name="label">Descripción actividad:</ui:define>
+					<h:outputText
+						value="#{actividadHome.instance.descripcionActividad}"
+						escape="false" />
+				</s:decorate>
 
-			<s:decorate id="fecha" template="layout/edit.xhtml"
-				style="position:absolute;">
-				<ui:define name="label">Fecha máxima de entrega:</ui:define>
-				<h:outputText value="#{actividadHome.instance.fechaFinalizacion}"
-					escape="false">
-					<f:convertDateTime datePattern="dd/MM/yyyy" type="date" />
-				</h:outputText>	
-			</s:decorate>
+				<br />
+				<br />
+				<br />
 
-			<br />
-			<br />
-			
-			<s:decorate id="adjunto" template="layout/edit.xhtml"
-				style="position:absolute;" rendered="#{not empty actividadHome.instance.nombreArchivo}">
-				<ui:define name="label">Archivo Adjunto:</ui:define>
-				<h:outputText value="#{actividadHome.instance.nombreArchivo}"/>
-			
-			<br />
-			<br />
-			</s:decorate>
+				<s:decorate id="fecha" template="layout/edit.xhtml"
+					style="position:absolute;">
+					<ui:define name="label">Fecha máxima de entrega:</ui:define>
+					<h:outputText value="#{actividadHome.instance.fechaFinalizacion}"
+						escape="false">
+						<f:convertDateTime datePattern="dd/MM/yyyy" type="date" />
+					</h:outputText>
+				</s:decorate>
 
-			<br />
-					
+				<br />
+				<br />
+
+				<s:decorate id="adjunto" template="layout/edit.xhtml"
+					style="position:absolute;"
+					rendered="#{not empty actividadHome.instance.nombreArchivo}">
+					<ui:define name="label">Archivo Adjunto:</ui:define>
+					<h:outputText value="#{actividadHome.instance.nombreArchivo}" />
+
+					<br />
+					<br />
+				</s:decorate>
+
+				<br />
+
 				<s:decorate id="autoevaluacionJustificación"
-				template="layout/edit.xhtml"
-				rendered="#{actividadHome.instance.tipo.idTipo==13}">
+					template="layout/edit.xhtml"
+					rendered="#{actividadHome.instance.tipo.idTipo==13}">
 					<ui:define name="label">Justificación: </ui:define>
 					<h:panelGrid style="margin-left:80px">
 						<h:panelGroup style="height:400px;width:800px;" layout="block">
@@ -103,87 +105,90 @@
 
 					</h:panelGrid>
 				</s:decorate>
-				
-			<s:decorate id="nombreUrl" template="layout/edit.xhtml"
-				rendered="#{actividadHome.instance.tipo.idTipo==17}">
-				<ui:define name="label">Nombre:</ui:define>
-				<h:outputLabel value="#{actividadHome.instance.rutaArchivo}" />
-				<br />
-				<br />
-			</s:decorate>
 
-			<s:decorate id="enlaceUrl" template="layout/edit.xhtml"
-				rendered="#{actividadHome.instance.tipo.idTipo==17}">
-				<ui:define name="label">URL:</ui:define>
-				<a href="//#{actividadHome.instance.urlExterna}" target="_blank">#{actividadHome.instance.urlExterna}</a>
-			</s:decorate>
+				<s:decorate id="nombreUrl" template="layout/edit.xhtml"
+					rendered="#{actividadHome.instance.tipo.idTipo==17}">
+					<ui:define name="label">Nombre:</ui:define>
+					<h:outputLabel value="#{actividadHome.instance.rutaArchivo}" />
+					<br />
+					<br />
+				</s:decorate>
 
-			<s:decorate id="autoevaluacionNota" template="layout/edit.xhtml"
-				rendered="#{actividadHome.instance.tipo.idTipo==13}">
-				<ui:define name="label">Nota:</ui:define>
-				<h:inputText size="4" />
-				<rich:toolTip value="La nota debe estar entre 0 y 5.0"
-					for="autoevaluacionNota" id="tool" followMouse="true"
-					direction="top-right" showDelay="500"></rich:toolTip>
-			</s:decorate>
+				<s:decorate id="enlaceUrl" template="layout/edit.xhtml"
+					rendered="#{actividadHome.instance.tipo.idTipo==17}">
+					<ui:define name="label">URL:</ui:define>
+					<a href="//#{actividadHome.instance.urlExterna}" target="_blank">#{actividadHome.instance.urlExterna}</a>
+				</s:decorate>
 
+				<s:decorate id="autoevaluacionNota" template="layout/edit.xhtml"
+					rendered="#{actividadHome.instance.tipo.idTipo==13}">
+					<ui:define name="label">Nota:</ui:define>
+					<h:inputText size="4" />
+					<rich:toolTip value="La nota debe estar entre 0 y 5.0"
+						for="autoevaluacionNota" id="tool" followMouse="true"
+						direction="top-right" showDelay="500"></rich:toolTip>
+				</s:decorate>
 
-				<h:panelGrid rendered="#{actividadHome.instance.tipo.idTipo==11}">
-				<ui:repeat var="_usuario" value="#{actividadHome.getListaReceptoresForos(actividadHome.instance.idActividad)}" 
-				>
-					<rich:simpleTogglePanel switchType="client" opened="false"
-						label="#{_usuario.userAccount.primerNombre}" >
-						<h:outputLabel value="#{_usuario.gestorMensajeria.mensaje}" escape="false"/>
-                
-    </rich:simpleTogglePanel>
-				</ui:repeat>
+				<div align="center">
+					<h:panelGrid rendered="#{actividadHome.instance.tipo.idTipo==11}">
+						<ui:repeat var="_usuario"
+							value="#{actividadHome.getListaReceptoresForos(actividadHome.instance.idActividad)}">
+							<rich:simpleTogglePanel switchType="client" opened="false"
+								label="#{_usuario.userAccount.primerNombre}">
+								<h:outputLabel value="#{_usuario.gestorMensajeria.mensaje}"
+									escape="false" />
 
-			</h:panelGrid>
+							</rich:simpleTogglePanel>
+						</ui:repeat>
 
+						<h:inputTextarea cols="50" rows="3" />
+
+						<h:commandButton value="Contestar" />
+
+					</h:panelGrid>
+				</div>
 				<div style="clear: both" />
 
-		</rich:panel>
+			</rich:panel>
 
-		<div class="actionButtons">
+			<div class="actionButtons">
 
-			<s:button view="/ActividadEdit.xhtml" id="edit" value="Editar"
-				rendered="#{s:hasRole('admin')}" />
+				<s:button view="/ActividadEdit.xhtml" id="edit" value="Editar"
+					rendered="#{s:hasRole('admin')}" />
 
-			<h:commandButton				
-				rendered="#{s:hasRole('estudiante')}" id="guardar" value="Aceptar" 
-				action="#{actividadHome.saveActividadEstudiante()}"/>
-				
-			<s:button
-				view="/CuerpoCurso.xhtml"
-				rendered="#{s:hasRole('docente')}" id="done2" value="Aceptar" />	
+				<h:commandButton rendered="#{s:hasRole('estudiante')}" id="guardar"
+					value="Aceptar" action="#{actividadHome.saveActividadEstudiante()}" />
 
-		</div>
-		
+				<s:button view="/CuerpoCurso.xhtml"
+					rendered="#{s:hasRole('docente')}" id="done2" value="Aceptar" />
+
+			</div>
+
 		</h:form>
-		
+
 		<h:form enctype="multipart/form-data">
-		<s:decorate id="cargarArchivos" template="layout/edit.xhtml"
+			<s:decorate id="cargarArchivos" template="layout/edit.xhtml"
 				rendered="#{actividadHome.instance.tipo.idTipo==12}">
-						<ui:define name="label">Adjuntar Archivo:</ui:define>
-						<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
-							fileName="#{cargaArchivosBean.nombreArchivo}" />
+				<ui:define name="label">Adjuntar Archivo:</ui:define>
+				<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
+					fileName="#{cargaArchivosBean.nombreArchivo}" />
 
-						<h:commandButton id="upload" value="Subir !!"
-							action="#{cargaArchivosBean.seleccionOAAA()}" />
-												<s:button id="cancel" view="/login.xhtml" value="Cancel"
-							propagation="end" />
-						<br />
-						<h:outputLabel value="Nombre del arcivo adjunto:"
-							rendered="#{not empty cargaArchivosBean.nombreArchivo}" />
-						<h:outputLabel value="#{actividadHome.instance.nombreArchivo}" />
+				<h:commandButton id="upload" value="Subir !!"
+					action="#{cargaArchivosBean.seleccionOAAA()}" />
+				<s:button id="cancel" view="/login.xhtml" value="Cancel"
+					propagation="end" />
+				<br />
+				<h:outputLabel value="Nombre del arcivo adjunto:"
+					rendered="#{not empty cargaArchivosBean.nombreArchivo}" />
+				<h:outputLabel value="#{actividadHome.instance.nombreArchivo}" />
 
-						<h:outputLabel value="No se ha adjuntado ningún archivo"
-							rendered="#{empty cargaArchivosBean.nombreArchivo}" />
-					
-					</s:decorate>
+				<h:outputLabel value="No se ha adjuntado ningún archivo"
+					rendered="#{empty cargaArchivosBean.nombreArchivo}" />
+
+			</s:decorate>
 		</h:form>
-		
-	
+
+
 	</ui:define>
 
 </ui:composition>

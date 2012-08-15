@@ -48,8 +48,7 @@ public interface ConsultasJpql {
 	 * 
 	 */
 	String USUARIOS_POR_ROL_Y_ENTEUNIVERSITARIO = "SELECT us FROM UserAccount u JOIN u.roles r,EnteUniversitario e,Usuario us,CuentasUsuario c"
-			+ " where r.name=:roles"
-			+ " and u.id = c.id"
+			+ " where u.id = c.id"			
 			+ " and c.id = us.id"
 			+ " and us.enteUniversitarios.idEnteUniversitario = e.idEnteUniversitario"
 			+ " and us.enteUniversitarios.idEnteUniversitario =:escuela";
@@ -140,6 +139,14 @@ public interface ConsultasJpql {
 	
 	String ACTIVIDAD_NOTA_ACTIVIDAD= "select n.gestorMensajeria.idMensaje from NotaActividad n " 
 								   +" where n.actividad.idActividad=:parametro";
-
+	
+	String ACTIVIDAD_NOTA_ACTIVIDAD_ESTU= "select n from NotaActividad n " 
+			   +" where n.actividad.idActividad=:parametro" 
+			   +" and n.usuario.id=:parametro2";
+	
+	String RECEPTOR_FORO="select m from ReceptorMensajes m"
+			            +" where m.gestorMensajeria.idMensaje=:parametro" 
+			            +" and m.userAccount.id=:parametro2";
+			
 	
 }

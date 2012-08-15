@@ -37,6 +37,7 @@ import com.mydomain.Directorio.model.Usuario;
 import com.mydomain.maizsoft.cargaarchivos.CargaArchivosBean;
 import com.mydomain.maizsoft.cargaarchivos.ICargaArchivos;
 import com.mydomain.maizsoft.comunicaciones.GestorEnvioCorreoElectronico;
+import com.mydomain.maizsoft.comunicaciones.GestorMensajeriaHome;
 import com.mydomain.maizsoft.gestores.GestorCargaArchivosHome;
 import com.mydomain.maizsoft.tipos.TipoHome;
 
@@ -54,8 +55,11 @@ public class ActividadHome extends EntityHome<Actividad> {
 
 	@In(create = true)
 	ICargaArchivos cargaArchivosBean;
+	
+	@In(create = true)
+	GestorMensajeriaHome gestorMensajeriaHome;
 
-	Long idCurso;
+
 
 	public void setActividadIdActividad(Long id) {
 		setId(id);
@@ -181,7 +185,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 	}
 
 	public GestorMensajeria crearForo(List<GrupoUsuarios> usuarios, Usuario usuario) {
-		System.out.println("Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		
 		Calendar calendar = Calendar.getInstance();
 		GestorMensajeria nuevoG = new GestorMensajeria();
 		nuevoG.setAsunto(instance.getNombreActividad());
@@ -414,25 +418,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		return "/ActividadEdit.xhtml";
 	}
 
-	/**
-	 * Se obtiene el valor de idCurso
-	 * 
-	 * @return El valor de idCurso
-	 */
-	public Long getIdCurso() {
-		return idCurso;
-	}
-
-	/**
-	 * Asigna el valor de idCurso
-	 * 
-	 * @param idCurso
-	 *            El valor por establecer para idCurso
-	 */
-	public void masIdCurso(Long idCurso) {
-		this.idCurso = idCurso;
-	}
-
+	
 	public String saveActividadEstudiante() {
 
 		Credentials cre = (Credentials) Component
@@ -484,5 +470,38 @@ public class ActividadHome extends EntityHome<Actividad> {
 		q2.setParameter("parametro", n.get(0));
 		
 		return q2.getResultList();
+	}
+	
+	public void agregarForoEstudiante(Long idActividad){
+		Credentials cre = (Credentials) Component
+				.getInstance(Credentials.class);
+		Query q2 = getEntityManager().createQuery(
+				ConsultasJpql.USUARIO_POR_USERNAME).setParameter("parametro",
+				cre.getUsername());
+		
+		Usuario usu=(Usuario) q2.getSingleResult();
+		
+		Query q = getEntityManager().createQuery(ConsultasJpql.ACTIVIDAD_NOTA_ACTIVIDAD_ESTU);
+		q.setParameter("parametro", idActividad);
+		q.setParameter("parametro2", usu.getId());
+		NotaActividad n= (NotaActividad) q.getSingleResult();
+		
+
+		
+		Calendar calendar = Calendar.getInstance();
+		GestorMensajeria nuevoG = gestorMensajeriaHome.getInstance();
+		nuevoG.setDeUsuario(usu);
+		nuevoG.setTipo(getEntityManager().find(Tipo.class, 7L));
+		nuevoG.setFechaEnvio(calendar.getTime());
+		nuevoG.setGestorMensajeria(n.getGestorMensajeria());
+		getEntityManager().persist(nuevoG);
+		
+		Query q3 = getEntityManager().createQuery(ConsultasJpql.RECEPTOR_FORO);
+		q3.setParameter("parametro", n.getGestorMensajeria().getIdMensaje());
+		q3.setParameter("parametro2", usu.getId());
+		
+		ReceptorMensajes r= (ReceptorMensajes) q3.getSingleResult();
+		r.setLeido(true);
+		getEntityManager().merge(r);
 	}
 }

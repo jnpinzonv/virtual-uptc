@@ -40,7 +40,8 @@
 						<s:selectItems value="#{listaEnteUniversitariosFacultades}"
 							var="lista" label="#{lista.nombreEnteUniversitario}"
 							noSelectionLabel="Seleccione ..." />
-						<a4j:support event="onchange" reRender="enteUniveristarios" ajaxSingle="true" />
+						<a4j:support event="onchange" reRender="enteUniveristarios"
+							ajaxSingle="true" />
 						<s:convertEntity />
 
 					</h:selectOneMenu>
@@ -48,32 +49,32 @@
 
 				<br />
 				<br />
-
-
+				<br />
+				<br />
 				
-					<s:decorate id="confirmEscuela" template="../layout/edit.xhtml"
-						style="position:absolute;">
-						<ui:define name="label">Seleccione escuela</ui:define>
-						<h:selectOneMenu
-							value="#{grupoUsuariosHome.instance.enteUniversitarioHijo}"
-							id="enteUniveristarios" rendered="true" required="true">
-							<s:selectItems value="#{listaEscuelasMatriculas}" var="listaE"
-								label="#{listaE.nombreEnteUniversitario}"
-								noSelectionLabel="Seleccione ..." />
-							<a4j:support event="onchange"
-								reRender="tres,cuatro,rolesss,listaUsuario" ajaxSingle="true" />
-							<s:convertEntity />
-						</h:selectOneMenu>
+				<s:decorate id="confirmEscuela" template="../layout/edit.xhtml"
+					style="position:absolute;">
+					<ui:define name="label">Seleccione escuela</ui:define>
+					<h:selectOneMenu
+						value="#{grupoUsuariosHome.instance.enteUniversitarioHijo}"
+						id="enteUniveristarios" rendered="true" required="true">
+						<s:selectItems value="#{listaEscuelasMatriculas}" var="listaE"
+							label="#{listaE.nombreEnteUniversitario}"
+							noSelectionLabel="Seleccione ..." />
+						<a4j:support event="onchange"
+							reRender="tres,cuatro,rolesss,listaUsuario" ajaxSingle="true" />
+						<s:convertEntity />
+					</h:selectOneMenu>
 
-					</s:decorate>
-			
+				</s:decorate>
+
 				<br />
 				<br />
 
 
 				<a4j:outputPanel id="tres">
 					<s:decorate id="confirmCurso" template="../layout/edit.xhtml"
-						style="position:absolute;" >
+						style="position:absolute;">
 						<ui:define name="label">Seleccione Curso</ui:define>
 
 						<h:selectOneMenu value="#{grupoUsuariosHome.instance.curso}"
@@ -107,49 +108,29 @@
 				</a4j:outputPanel>
 				<br />
 				<br />
-
-				<s:decorate id="camporoles" template="../layout/edit.xhtml"
-					style="position:absolute;">
-					<ui:define name="label">Seleccione rol</ui:define>
-					<h:selectOneRadio id="rolesss"
-						value="#{grupoUsuariosHome.instance.role}" layout="pageDirection"
-						styleClass="roles">
-						
-						<s:selectItems value="#{identityManager.listGrantableRoles()}"
-							var="_role" label="#{_role}" />
-						<a4j:support event="onchange" reRender="listaUsuario" ajaxSingle="true" />
-					</h:selectOneRadio>	
-				</s:decorate>
-
-
-
-				<br />
-				<br />
-				<br />
-				<br />
 				<br />
 				<br />
 				<br />
 
 				<h:panelGrid columns="2" columnClasses="top, top">
-					
+
 					<h:outputLabel value="Seleccionar usuarios:" />
 					<rich:pickList value="#{grupoUsuariosHome.instance.usuarios}"
 						id="listaUsuario">
-						<f:selectItems value="#{listaUsuariosEscuela}" var="listas"/>
+						<f:selectItems value="#{listaUsuariosEscuela}" var="listas" />
 						<s:convertEntity />
-						<a4j:support event="onlistchanged"/>
+						<a4j:support event="onlistchanged" />
 					</rich:pickList>
-					
+
 				</h:panelGrid>
-			
+
 
 
 			</rich:panel>
 
 
-			<h:commandButton id="matricula" value="Matricular" 
-				action="#{grupoUsuariosHome.saveMatricula()}"/>
+			<h:commandButton id="matricula" value="Matricular"
+				action="#{grupoUsuariosHome.saveMatricula()}" />
 		</h:form>
 	</ui:define>
 </ui:composition>

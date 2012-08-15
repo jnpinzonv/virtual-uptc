@@ -1,5 +1,6 @@
 package com.mydomain.maizsoft.comunicaciones;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -81,6 +82,7 @@ public class ReceptorMensajesHome extends EntityHome<ReceptorMensajes> {
 		q.setParameter("parametro", cre.getUsername());
 		List<GestorMensajeria> lista = (List<GestorMensajeria>) q
 				.getResultList();
+	
 		
 		return lista;
 	}

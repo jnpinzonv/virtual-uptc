@@ -113,12 +113,12 @@
 					<ui:define name="label">Seleccione rol</ui:define>
 					<h:selectOneRadio id="rolesss"
 						value="#{grupoUsuariosHome.instance.role}" layout="pageDirection"
-						styleClass="roles" required="true">
-
+						styleClass="roles">
+						
 						<s:selectItems value="#{identityManager.listGrantableRoles()}"
 							var="_role" label="#{_role}" />
-						
-					</h:selectOneRadio>
+						<a4j:support event="onchange" reRender="listaUsuario" ajaxSingle="true" />
+					</h:selectOneRadio>	
 				</s:decorate>
 
 
@@ -138,7 +138,7 @@
 						id="listaUsuario">
 						<f:selectItems value="#{listaUsuariosEscuela}" var="listas"/>
 						<s:convertEntity />
-						<a4j:support event="onlistchanged" reRender="result,matricula" />
+						<a4j:support event="onlistchanged"/>
 					</rich:pickList>
 					
 				</h:panelGrid>

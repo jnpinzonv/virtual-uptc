@@ -231,6 +231,7 @@ public class GrupoUsuarios implements Serializable {
 	 */
 	@Transient
 	public List<Usuario> getUsuarios() {
+		
 		if (usuarios == null)
 			return new ArrayList<Usuario>();
 		return usuarios;
@@ -270,6 +271,9 @@ public class GrupoUsuarios implements Serializable {
 		if (role == null) {
 			return role = "estudiante";
 		}
+		System.out.println("hhhh"+role);
+		
+		
 		return role;
 	}
 

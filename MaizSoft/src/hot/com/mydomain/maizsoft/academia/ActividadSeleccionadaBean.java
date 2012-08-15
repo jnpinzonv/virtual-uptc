@@ -40,7 +40,6 @@ import com.mydomain.maizsoft.tipos.TipoHome;
  */
 @Stateless
 @Name("actividadSeleccionadaBean")
-@Scope(ScopeType.SESSION)
 public class ActividadSeleccionadaBean implements IActividadSeleccionada{
 	
 

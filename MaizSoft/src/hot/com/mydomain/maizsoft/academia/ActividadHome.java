@@ -469,6 +469,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		Query q2 = getEntityManager().createQuery(ConsultasJpql.LISTA_FOROS_POR_PARTICIPACION);
 		q2.setParameter("parametro", n.get(0));
 		
+		
 		return q2.getResultList();
 	}
 	
@@ -501,7 +502,17 @@ public class ActividadHome extends EntityHome<Actividad> {
 		q3.setParameter("parametro2", usu.getId());
 		
 		ReceptorMensajes r= (ReceptorMensajes) q3.getSingleResult();
+		if(r.isLeido()==false){
 		r.setLeido(true);
 		getEntityManager().merge(r);
+		}
+		else{
+			ReceptorMensajes nuMensajes= new ReceptorMensajes();
+			nuMensajes.setGestorMensajeria(nuevoG);
+			nuMensajes.setLeido(true);
+			nuMensajes.setUserAccount(usu);
+			getEntityManager().persist(nuMensajes);
+		}
+		
 	}
 }

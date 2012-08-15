@@ -184,17 +184,14 @@ public class GrupoUsuariosHome extends EntityHome<GrupoUsuarios> {
 		if (instance.getEnteUniversitarioHijo() == null) {
 			ConfiguracionesSistema curso = getEntityManager().find(
 					ConfiguracionesSistema.class, 4l);
-			ConfiguracionesSistema role = getEntityManager().find(
-					ConfiguracionesSistema.class, 7l);
-			q.setParameter("roles", instance.getRole());
+			
 
 			q.setParameter("escuela",
 					Long.parseLong(curso.getDetallesPropiedad()));
 			listaUsuariosEscuela = (List<Usuario>) q.getResultList();
 		} else {
-			ConfiguracionesSistema padre = getEntityManager().find(
-					ConfiguracionesSistema.class, 7l);
-			q.setParameter("roles", instance.getRole());
+			
+			
 			q.setParameter("escuela", instance.getEnteUniversitarioHijo()
 					.getIdEnteUniversitario());
 

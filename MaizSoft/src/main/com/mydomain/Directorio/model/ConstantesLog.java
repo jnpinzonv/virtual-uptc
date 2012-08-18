@@ -24,7 +24,20 @@ public interface ConstantesLog {
 	String CREAR_ACTIVIDAD = "CrearActividad";
 	
 	
-	String CREAR_ENTE = "CrearEnte";
+	String CREAR_ENTE = "Crear Entesuniversitarios";
+	
+	
+	String CARGA_MASIVA = "Carga masiva de usuarios";
+	
+	String CARGA_ARCHIVO_ADJUNTO= "Carga Archivo adjunto Activida";
+	
+	String CARGA_FOTO= "Carga de foto de usuario";
+	
+	String CARGA_OBJETO ="Carga Obejto Aprendizaje";
+	
+	String CURSO_VISITADO ="Curso Visitado";
+	
+	String OBJETO_VISITADO="Objeto Visitado";
 	
 	
 }

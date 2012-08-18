@@ -4,6 +4,7 @@
 package com.mydomain.maizsoft.comunicaciones;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -13,20 +14,19 @@ import javax.persistence.Query;
 
 import org.jboss.seam.Component;
 import org.jboss.seam.annotations.Factory;
+import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Out;
 import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.datamodel.DataModelSelection;
+import org.jboss.seam.log.Log;
 import org.jboss.seam.security.Credentials;
 
-
-
-
+import com.mydomain.Directorio.model.ConstantesLog;
 import com.mydomain.Directorio.model.ConsultasJpql;
+import com.mydomain.Directorio.model.EstadisticasGenerales;
 import com.mydomain.Directorio.model.GrupoCurso;
 import com.mydomain.Directorio.model.Usuario;
-
-
 
 /**
  * Descripcion: Esta Clase se encarga de ... Modulo de Desarrollo :CU- ...
@@ -40,10 +40,12 @@ import com.mydomain.Directorio.model.Usuario;
  */
 @Name("cursoActualBean")
 @Stateless
-public class CursoActualBean  implements ICursoActual  {
+public class CursoActualBean implements ICursoActual {
 
-	
-	public static Long select =-1L;
+	@Logger
+	private Log log;
+
+	public static Long select = -1L;
 	@PersistenceContext
 	EntityManager entityManager;
 
@@ -53,7 +55,7 @@ public class CursoActualBean  implements ICursoActual  {
 	@DataModelSelection(value = "listaGrupos")
 	@Out(required = false)
 	private GrupoCurso seleccionado;
-	
+
 	/**
 	 * Se obtiene el valor de listaGrupos
 	 * 
@@ -74,7 +76,7 @@ public class CursoActualBean  implements ICursoActual  {
 				.createQuery(ConsultasJpql.GRUPOS_CURSOS_POR_USUARIO);
 		q.setParameter("parametro", us.getId());
 		listaGrupos = q.getResultList();
-		
+
 		return listaGrupos;
 	}
 
@@ -111,35 +113,60 @@ public class CursoActualBean  implements ICursoActual  {
 
 	public Long selecionado(long grupo) {
 
-		if(grupo!=0)
-		select=grupo;
-	
+		if (grupo != 0)
+			select = grupo;
+
+		crearLog(grupo);
+
 		return grupo;
 
 	}
-	
+
+	public void crearLog(long grupo) {
+		Calendar calendar = Calendar.getInstance();
+		EstadisticasGenerales nueva = new EstadisticasGenerales();
+		Credentials cre = (Credentials) Component
+				.getInstance(Credentials.class);
+		log.info(
+				"<--" + "[" + ConstantesLog.NOMBRE_PLATAFORMA + "]" + "Acción:"
+						+ "[" + ConstantesLog.CREAR_ACTIVIDAD + "]" + "Tipo:"
+						+ "[" + "N/A" + "]" + "Sobre el grupo con ID:" + "["
+						+ grupo + "]" + "Realizada por:" + "["
+						+ cre.getUsername() + "]" + "en la fecha:" + "["
+						+ calendar.getTime() + "]" + "-->", cre.getUsername());
+
+		nueva.setAccionElemento(ConstantesLog.CURSO_VISITADO);
+		nueva.setFechaSuceso(calendar.getTime());
+		nueva.setLogin(cre.getUsername());
+		nueva.setIdGrupoCurso(grupo);
+		entityManager.persist(nueva);
+	}
+
 	public String selecionadoDos(long grupo) {
-		
+
 		return "";
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.mydomain.maizsoft.comunicaciones.ICursoActual#select()
 	 */
-	public Long select() {	
+	public Long select() {
 		return select;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.mydomain.maizsoft.comunicaciones.ICursoActual#crearScromIMS()
 	 */
 	@Override
 	public void crearScromIMS() {
-		//EditorFrame nuevo =new EditorFrame();
-		//setVisible(true);
-		
+		// EditorFrame nuevo =new EditorFrame();
+		// setVisible(true);
+
 	}
 
-	
 }

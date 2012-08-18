@@ -267,7 +267,36 @@
 			</a4j:outputPanel>
 		</h:form>
 
+<h:form enctype="multipart/form-data">
 
+<s:decorate id="cargarArchivos" rendered="#{actividadHome.instance.tipoObjeto!='1'}" >
+						<ui:define name="label">Adjuntar Archivo:</ui:define>
+						<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
+							fileName="#{cargaArchivosBean.nombreArchivo}" />
+
+						<h:commandButton id="upload" value="Subir !!"
+							action="#{cargaArchivosBean.seleccionOAAA()}" />
+						<a4j:support event="onchange" reRender="actividade2"
+							ajaxSingle="true" />
+						<s:button id="cancel" view="/login.xhtml" value="Cancel"
+							propagation="end" />
+						<br />
+						<h:outputLabel value="Nombre del arcivo adjunto:"
+							rendered="#{not empty cargaArchivosBean.nombreArchivo}" />
+						<h:outputLabel value="#{cargaArchivosBean.nombreArchivo}" />
+
+						<h:outputLabel value="No se ha adjuntado ningún archivo"
+							rendered="#{empty cargaArchivosBean.nombreArchivo}" />
+					
+
+					<a4j:outputPanel id="actividade2" ajaxRendered="true">
+						<h:outputLabel value="#{gestorCargaArchivosHome.instance.ruta}" />
+						<iframe src="#{gestorCargaArchivosHome.instance.ruta}"></iframe>
+					</a4j:outputPanel>
+					</s:decorate>
+
+</h:form>
+		
 
 
 

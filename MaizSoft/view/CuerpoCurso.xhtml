@@ -527,12 +527,12 @@
 												value="#{_actividadListObjeto.idActividad}" />
 										</s:link>
 										#{' '}
-										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+										<s:link view="/Actividad.xhtml"
 											value="#{empty from ? 'Ver' : 'Seleccionar'}"
 											propagation="#{empty from ? 'none' : 'default'}"
 											rendered="#{s:hasRole('estudiante')}">
 											<f:param name="actividadIdActividad"
-												value="#{_actividadListObjeto.idActividad}" />
+												value="#{actividadHome.redireccionar(_actividadListObjeto.idActividad)}" />
 										</s:link>
 										#{' '}
 										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"

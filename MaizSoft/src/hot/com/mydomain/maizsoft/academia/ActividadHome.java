@@ -139,7 +139,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 	}
 
 	public String saveActividad(int pasarSeccion, long idCursoSeleccionado) {
-
+	
 		List<GrupoUsuarios> listaGrupos = listaGrupoUsuarios(idCursoSeleccionado);
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
@@ -170,9 +170,9 @@ public class ActividadHome extends EntityHome<Actividad> {
 		}
 
 		
-		try {
+		
 			crearLog(listaGrupos.get(0).getGrupoCurso());
-
+			try {
 		} catch (RuntimeException e) {
 			FacesMessages mensaje = (FacesMessages) Component
 					.getInstance(FacesMessages.class);
@@ -305,14 +305,14 @@ public class ActividadHome extends EntityHome<Actividad> {
 		if (instance.getTipo().getIdTipo() == 18) {
 			archivo.setDescripcion(instance.getDescripcionActividad());
 			archivo.setNombre(gestorCargaArchivosHome.getInstance().getNombre());
-
 			archivo.setTipo(getEntityManager().find(Tipo.class, 18L));
+			
 			if (instance.getTipoObjeto().equals("1")) {
 				archivo.setRuta(instance.getUrlExterna());
 				archivo.setNombre(instance.getNombreActividad());
 			} else if (instance.getTipoObjeto().equals("Archivo")) {
 				archivo.setRuta(gestorCargaArchivosHome.getInstance().getRuta());
-				archivo.setNombre(instance.getNombreArchivo());
+				
 			} else {
 
 				archivo.setRuta(gestorCargaArchivosHome.getInstance().getRuta());
@@ -389,6 +389,20 @@ public class ActividadHome extends EntityHome<Actividad> {
 		return nueva;
 
 	}
+	
+	
+	public void crearLog() {
+		Calendar calendar = Calendar.getInstance();		
+		Credentials cre = (Credentials) Component
+				.getInstance(Credentials.class);
+		log.info("<--" + "[" + ConstantesLog.NOMBRE_PLATAFORMA + "]"
+				+ "Acción:" + "[" + ConstantesLog.CREAR_ACTIVIDAD + "]"
+				+ "Tipo:" + "[" + instance.getTipo().getNombre() + "]"
+				+ "Sobre el grupo con ID:" + "[" + "N/A" + "]"
+				+ "Realizada por:" + "[" + cre.getUsername() + "]"
+				+ "en la fecha:" + "[" + calendar.getTime() + "]" + "-->",
+				cre.getUsername());		
+	}
 
 	public void crearLog(GrupoCurso grupo) {
 		Calendar calendar = Calendar.getInstance();
@@ -396,7 +410,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
 		log.info("<--" + "[" + ConstantesLog.NOMBRE_PLATAFORMA + "]"
-				+ "Acciï¿½n:" + "[" + ConstantesLog.CREAR_ACTIVIDAD + "]"
+				+ "Acción:" + "[" + ConstantesLog.CREAR_ACTIVIDAD + "]"
 				+ "Tipo:" + "[" + instance.getTipo().getNombre() + "]"
 				+ "Sobre el grupo con ID:" + "[" + grupo.getIdGrupo() + "]"
 				+ "Realizada por:" + "[" + cre.getUsername() + "]"
@@ -457,6 +471,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		getEntityManager().merge(notaActividad);
 		getEntityManager().flush();
 
+		crearLog();
 		return "/CuerpoCurso.xhtml";
 	}
 	
@@ -514,5 +529,32 @@ public class ActividadHome extends EntityHome<Actividad> {
 			getEntityManager().persist(nuMensajes);
 		}
 		
+		
+		
+		
+	}
+	
+	public long redireccionar(Long id){
+		
+		if(id!=0 || id!=null){
+		Calendar calendar = Calendar.getInstance();		
+		Credentials cre = (Credentials) Component
+				.getInstance(Credentials.class);
+		log.info("<--" + "[" + ConstantesLog.NOMBRE_PLATAFORMA + "]"
+				+ "Acción:" + "[" + ConstantesLog.OBJETO_VISITADO + "]"
+				+ "Tipo:" + "[" + "N/A" + "]"
+				+ "Sobre el grupo con ID:" + "[" +"N/A" + "]"
+				+ "Realizada por:" + "[" + cre.getUsername() + "]"
+				+ "en la fecha:" + "[" + calendar.getTime() + "]" + "-->",
+				cre.getUsername());
+		
+		EstadisticasGenerales nueva = new EstadisticasGenerales();
+		nueva.setAccionElemento(ConstantesLog.OBJETO_VISITADO);
+		nueva.setFechaSuceso(calendar.getTime());
+		nueva.setLogin(cre.getUsername());			
+		nueva.setIdOA(id);
+		getEntityManager().persist(nueva);
+		}
+		return id;
 	}
 }

@@ -6,6 +6,7 @@ package com.mydomain.maizsoft.cargaarchivos;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -14,15 +15,18 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.jboss.seam.Component;
+import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.faces.FacesMessages;
 
 import org.jboss.seam.log.Log;
 import org.jboss.seam.security.Credentials;
 
 import com.mydomain.Directorio.model.ConfiguracionesSistema;
+import com.mydomain.Directorio.model.ConstantesLog;
 import com.mydomain.Directorio.model.ConsultasJpql;
 import com.mydomain.Directorio.model.GrupoUsuarios;
 import com.mydomain.maizsoft.academia.ActividadHome;
@@ -139,8 +143,11 @@ public class CargaArchivosBean implements ICargaArchivos {
 					+ nombreArchivo);
 
 			cargaMasivaUsuariosBean.cargaMasivaUsuarios();
+			crearLog(ConstantesLog.CARGA_MASIVA);
 		} catch (IOException e) {
-
+			FacesMessages mensaje = (FacesMessages) Component
+					.getInstance(FacesMessages.class);
+			mensaje.add("Se produjo un error técnico :(");
 		}
 	}
 
@@ -172,8 +179,11 @@ public class CargaArchivosBean implements ICargaArchivos {
 			actividadHome.getInstance().setNombreArchivo(nombreArchivo);
 			actividadHome.getInstance().setAdjuntarArchivo(true);
 			rutaFinal=pathFinal;
+			crearLog(ConstantesLog.CARGA_ARCHIVO_ADJUNTO);
 		} catch (IOException e) {
-
+			FacesMessages mensaje = (FacesMessages) Component
+					.getInstance(FacesMessages.class);
+			mensaje.add("Se produjo un error técnico :(");
 		}
 	}
 
@@ -200,9 +210,11 @@ public class CargaArchivosBean implements ICargaArchivos {
 					+ pathImagenes.getDetallesPropiedad() + "//"
 					+ credentials.getUsername();
 			usuarioHome.getInstance().setFotoUser(rutaRelativa+ "//"+nombreArchivo);
+			crearLog(ConstantesLog.CARGA_FOTO);
 		} catch (IOException e) {
-
-			e.printStackTrace();
+			FacesMessages mensaje = (FacesMessages) Component
+					.getInstance(FacesMessages.class);
+			mensaje.add("Se produjo un error técnico :(");
 		}
 
 	}
@@ -254,10 +266,13 @@ public class CargaArchivosBean implements ICargaArchivos {
 			else{
 				handleUpload(pathFinal);
 			}
+			
+			crearLog(ConstantesLog.CARGA_OBJETO);
 				
 	} catch (IOException e) {
-
-		System.out.println(e.getMessage());
+		FacesMessages mensaje = (FacesMessages) Component
+				.getInstance(FacesMessages.class);
+		mensaje.add("Se produjo un error técnico :(");
 	}
 	
 }
@@ -289,6 +304,20 @@ public class CargaArchivosBean implements ICargaArchivos {
 	 */
 	public void setRutaFinal(String rutaFinal) {
 		this.rutaFinal = rutaFinal;
+	}
+	
+	
+	public void crearLog(String accion) {
+		Calendar calendar = Calendar.getInstance();		
+		Credentials cre = (Credentials) Component
+				.getInstance(Credentials.class);
+		log.info("<--" + "[" + ConstantesLog.NOMBRE_PLATAFORMA + "]"
+				+ "Acción:" + "[" + accion + "]"
+				+ "Tipo:" + "[" + "N/A" + "]"
+				+ "Sobre el grupo con ID:" + "[" + "N/A" + "]"
+				+ "Realizada por:" + "[" + cre.getUsername() + "]"
+				+ "en la fecha:" + "[" + calendar.getTime() + "]" + "-->",
+				cre.getUsername());		
 	}
 	
 	

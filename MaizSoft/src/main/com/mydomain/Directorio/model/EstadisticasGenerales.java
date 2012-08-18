@@ -46,6 +46,8 @@ public class EstadisticasGenerales implements Serializable {
 	private Long idGrupoCurso;
 	
 	private String tipo;
+	
+	private Long idOA;
 
 	/**
 	 * Se obtiene el valor de id
@@ -166,6 +168,24 @@ public class EstadisticasGenerales implements Serializable {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
+	/**
+	 * Se obtiene el valor de idOA
+	 * @return El valor de idOA
+	 */
+	public Long getIdOA() {
+		return idOA;
+	}
+
+	/**
+	 * Asigna el valor de idOA
+	 * @param idOA El valor por establecer para idOA
+	 */
+	public void setIdOA(Long idOA) {
+		this.idOA = idOA;
+	}
+	
+	
 	
 	
 

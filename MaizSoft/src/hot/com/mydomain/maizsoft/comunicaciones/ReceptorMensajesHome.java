@@ -80,11 +80,11 @@ public class ReceptorMensajesHome extends EntityHome<ReceptorMensajes> {
 		Query q = getEntityManager().createQuery(
 				ConsultasJpql.MENSAJES_NO_LEIDOS);
 		q.setParameter("parametro", cre.getUsername());
-		List<GestorMensajeria> lista = (List<GestorMensajeria>) q
-				.getResultList();
-	
+//		List<GestorMensajeria> lista = (List<GestorMensajeria>) q
+//				.getResultList();
+//	
 		
-		return lista;
+		return q.getResultList();
 	}
 
 }

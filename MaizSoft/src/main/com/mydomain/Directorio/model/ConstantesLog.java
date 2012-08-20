@@ -39,5 +39,7 @@ public interface ConstantesLog {
 	
 	String OBJETO_VISITADO="Objeto Visitado";
 	
+	String INGRESO_PLATAFORMA="Ingreso Plataforma";
+	
 	
 }

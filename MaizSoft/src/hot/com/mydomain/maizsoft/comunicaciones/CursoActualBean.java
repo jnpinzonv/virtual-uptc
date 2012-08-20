@@ -31,7 +31,7 @@ import com.mydomain.Directorio.model.Usuario;
 /**
  * Descripcion: Esta Clase se encarga de ... Modulo de Desarrollo :CU- ...
  * 
- * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+ * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
  * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com Grupo de
  *         Investigacion Ingenieria Software (GIS) Semillero de Investigacion
  *         Moviles Sabatt (SIMS) Universidad Pedagogica y Tecnologica de
@@ -80,6 +80,8 @@ public class CursoActualBean implements ICursoActual {
 		return listaGrupos;
 	}
 
+
+
 	/**
 	 * Asigna el valor de listaGrupos
 	 * 
@@ -116,6 +118,7 @@ public class CursoActualBean implements ICursoActual {
 		if (grupo != 0)
 			select = grupo;
 
+		
 		crearLog(grupo);
 
 		return grupo;
@@ -128,7 +131,7 @@ public class CursoActualBean implements ICursoActual {
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
 		log.info(
-				"<--" + "[" + ConstantesLog.NOMBRE_PLATAFORMA + "]" + "Acción:"
+				"<--" + "[" + ConstantesLog.NOMBRE_PLATAFORMA + "]" + "Acciï¿½n:"
 						+ "[" + ConstantesLog.CREAR_ACTIVIDAD + "]" + "Tipo:"
 						+ "[" + "N/A" + "]" + "Sobre el grupo con ID:" + "["
 						+ grupo + "]" + "Realizada por:" + "["

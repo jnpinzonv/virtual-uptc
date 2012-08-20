@@ -1,15 +1,16 @@
 /**
  * 
  */
-package com.mydomain.maizsoft.comunicaciones;
+package com.mydomain.maizsoft.estadisticas;
 
 
 
 import java.util.List;
 
 import javax.ejb.Local;
+import com.mydomain.Directorio.model.EstadisticasGenerales;
+import com.mydomain.Directorio.model.ReutilizacionOA;
 
-import com.mydomain.Directorio.model.GrupoCurso;
 
 /**
  * Descripcion: Esta Clase se encarga de ...
@@ -22,28 +23,9 @@ import com.mydomain.Directorio.model.GrupoCurso;
  * @version 2/07/2012 
  */
 @Local
-public interface ICursoActual {
+public interface IEstadisticasGenerales {
 
+	public List<EstadisticasGenerales> getEstadisticasAccion(String accion);
 	
-	public GrupoCurso getSeleccionado();
-	
-	public List<GrupoCurso> getListaGrupos();
-	
-	public void setSeleccionado(GrupoCurso seleccionado);
-	
-	public Long selecionado(long grupo);	
-	
-	public String selecionadoDos(long grupo);
-	
-	
-	public Long select();
-	
-	
-	public void crearScromIMS();
-
-	
-
-	
-	
-
+	public List<ReutilizacionOA> listaReutilizacionOA();
 }

@@ -151,6 +151,15 @@ public interface ConsultasJpql {
 	String RECEPTOR_FORO="select m from ReceptorMensajes m"
 			            +" where m.gestorMensajeria.idMensaje=:parametro" 
 			            +" and m.userAccount.id=:parametro2";
+	
+	String ESTADISTICAS_ACCION="Select p from EstadisticasGenerales p" +
+			" where p.accionElemento=:parametro" +
+			" and p.idGrupoCurso>0" +
+			" group by p.fechaSuceso, p.accionElemento";
+	
+	String REUTILIZACION_OA="Select p.idOA, COUNT(p) FROM EstadisticasGenerales p" +
+			" where p.accionElemento='CrearActividad'" +
+			" group by p.idOA";
 			
 	
 }

@@ -144,6 +144,7 @@
 
 						<br />
 						<br />
+						<br />
 
 						<s:decorate id="asuntoField" template="layout/edit.xhtml">
 							<ui:define name="label">Nombre</ui:define>
@@ -202,10 +203,24 @@
 						<br />
 						<br />
 
-						<h:commandButton value="Contestar" action="#{actividadHome.agregarForoEstudiante(actividadHome.instance.idActividad)}"/>
+						<h:commandButton value="Contestar"
+							action="#{actividadHome.agregarForoEstudiante(actividadHome.instance.idActividad)}" />
 
 					</h:panelGrid>
 				</div>
+
+				<h:panelGrid rendered="#{actividadHome.instance.tipo.idTipo==14 || actividadHome.instance.tipo.idTipo==15}">
+					
+					<h:outputLabel value="Para Ingresar a la video Conferencia dele clicl a Ir" />
+					<s:link value="Ir" view="/Videoconferencia.xhtml"/>
+					<br/>
+					<h:outputLabel value="Para acceder ingrese con los siguientes datos:" />
+					
+					<h:outputLabel value="Nombre: #{credentials.username}" />
+					<h:outputLabel value="Id Curso: #{cursoActualBean.seleccionado.cursoGrupo.codigo} #{cursoActualBean.seleccionado.codigoGrupo}" />
+				
+				</h:panelGrid>
+
 				<div style="clear: both" />
 
 			</rich:panel>
@@ -246,6 +261,7 @@
 
 			</s:decorate>
 		</h:form>
+
 
 
 	</ui:define>

@@ -134,9 +134,9 @@
 				<s:decorate id="obejtoAprendizajeList"
 					template="layout/edit.xhtml"
 					rendered="#{actividadHome.instance.tipo.idTipo==18}">
-					<ui:define name="label">Justificación: </ui:define>
-					<h:panelGrid style="margin-left:80px">
-						<iframe src="#{actividadHome.rutaObjetoAprendizaje(actividadHome.instance.idActividad)}" scrolling="auto"></iframe>
+					<ui:define name="label">Objeto de Aprendizaje: </ui:define>
+					<h:panelGrid style="margin-left:10px">
+						<iframe width="500px" height="500px" src="#{actividadHome.rutaObjetoAprendizaje(actividadHome.instance.idActividad)}" scrolling="auto"></iframe>
 					</h:panelGrid>
 				</s:decorate>
 
@@ -171,7 +171,7 @@
 						<s:decorate id="mensajeField" template="layout/edit.xhtml">
 							<ui:define name="label">Descripción</ui:define>
 							<h:panelGrid style="margin-left:80px">
-								<h:panelGroup style="height:290px;width:800px;" layout="block">
+								<h:panelGroup layout="block">
 									<rich:editor id="editor"
 										value="#{gestorMensajeriaHome.instance.mensaje}"
 										style="margin-bottom: 1em" theme="advanced"
@@ -199,19 +199,6 @@
 
 							</h:panelGrid>
 						</s:decorate>
-
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
 
 						<h:commandButton value="Contestar"
 							action="#{actividadHome.agregarForoEstudiante(actividadHome.instance.idActividad)}" />

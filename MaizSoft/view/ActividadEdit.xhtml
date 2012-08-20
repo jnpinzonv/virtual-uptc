@@ -227,10 +227,13 @@
 							rendered="#{empty cargaArchivosBean.nombreArchivo}" />
 
 
-						<a4j:outputPanel id="actividade2" ajaxRendered="true">
-							<h:outputLabel value="#{gestorCargaArchivosHome.instance.ruta}" />
+						<h:panelGrid rendered="#{not empty cargaArchivosBean.nombreArchivo}">
+						<a4j:outputPanel id="actividade2" ajaxRendered="true"
+						>
+							
 							<iframe src="#{gestorCargaArchivosHome.instance.ruta}"></iframe>
 						</a4j:outputPanel>
+						</h:panelGrid>
 					</s:decorate>
 
 

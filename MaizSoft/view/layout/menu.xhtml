@@ -10,12 +10,12 @@
 			propagation="none" />
 		<h:form>
 
-			<h:commandButton image="/css/images/calendario.png"
+			<h:commandButton image="#{usuarioSeleccionadoBean.hayActividadesPendientes()}"
 				action="/Calendario.xhtml"
 				style="width:30px" rendered="#{s:hasRole('admin') || s:hasRole('estudiante') || s:hasRole('docente')}"/>
 			<h:outputLabel value="  " />
 			<h:commandButton action="/GestorMensajeriaEdit.xhtml"
-				image="/css/images/mensajes.png" style="width:30px" rendered="#{s:hasRole('admin') || s:hasRole('estudiante') || s:hasRole('docente')}"/>
+				image="#{usuarioSeleccionadoBean.hayMensajes()}" style="width:30px" rendered="#{s:hasRole('admin') || s:hasRole('estudiante') || s:hasRole('docente')}"/>
 			<h:outputLabel value="  " />
 			 
 			<h:commandButton image="/css/images/actualizacion.png"

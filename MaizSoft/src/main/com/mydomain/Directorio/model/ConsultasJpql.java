@@ -74,39 +74,63 @@ public interface ConsultasJpql {
 	 */
 	String USERACCOUNT_POR_USERNAME = "select u from UserAccount u where u.username=:parametro";
 
+	/**
+	 * 
+	 */
 	String ACTIVIADES_POR_DIVISION = "select a from Actividad a, NumeroDivisiones m"
 			+ " where m.numeroDivision = #{seccionSeleccionadaBean.seccionSeleccionada}"
 			+ " and m.grupoCurso.idGrupo=#{cursoActualBean.select()}"
 			+ " and m.actividad.idActividad= a.idActividad"
 			+ " and a.tipo.idTipo =:parametro";
 
+	/**
+	 * 
+	 */
 	String GRUPO_SELECCIONDADO = "select g from GrupoCurso g where g.idGrupo=#{cursoActualBean.select()}";
 
+	/**
+	 * 
+	 */
 	String PORCENTAJE_TOTAL_ACTIVIDAD = "SELECT a.porcentaje*c.nota FROM nota_actividad c, actividad a WHERE c.id_grupo_curso = 13 and a.id_actividad=c.`id_actividad`";
 	
+	/**
+	 * 
+	 */
 	String NOTAS_ACTIVIDAD = "select n from NotaActividad n, CuentasUsuario c, UserAccount u JOIN u.roles r"
 			+ " where n.actividad.idActividad=:parametro" +
 			" and n.usuario.id = c.usuarios.id" +
 			" and c.userAccounts.id = u.id" +			
 			" and r.name='estudiante'";
 
+	/**
+	 * 
+	 */
 	String NOTA_ESTUDIANTE_ACTIVIDAD = "SELECT n FROM  NotaActividad n,UserAccount u JOIN u.roles r"
 			+ " where n.usuario.id=:parametro"
 			+ " and  r.name=estudiante"
 			+ " and n.grupoCurso.grupoCurso.idGrupo=:parametro2";
 	
+	/**
+	 * 
+	 */
 	String ACTIVIDADES_NO_VENCIDAS_ESTUDIANTE = "select a FROM UserAccount u JOIN u.roles r, Actividad a" +
-			" where r.name=estudiante" +			
-			" and a.fechaFinalizacion >:parametro";
+			" where r.name='estudiante'" +			
+			" and a.fechaFinalizacion >?" +
+			" and a.usuario.id=?";
 
 	
-	String MENSAJES_NO_LEIDOS ="select men from GestorMensajeria men, ReceptorMensajes re, CuentasUsuario u, UserAccount ua, Usuario usu" +
+	/**
+	 * 
+	 */
+	String MENSAJES_NO_LEIDOS ="select men from GestorMensajeria men, ReceptorMensajes re" +
 								" where re.gestorMensajeria=men.idMensaje" +
-								" and re.leido=0" 
-								+ " AND re.userAccount.id = u.usuarios.id"
-								+ " AND u.usuarios.id =:parametro";
+								" and re.leido=0" +
+								" and re.userAccount.id =:parametro";
 								
 	
+	/**
+	 * 
+	 */
 	String NOTAS_ESTUDIANTE = "SELECT c.nombre_asignatura, sum((n.nota * a.porcentaje)/100)" +
 				" FROM cuentas_usuario cu, user_account ua, user_account_role uar, nota_actividad n, actividad a,grupo_curso gc, curso c" +
 				" where n.id_usuario = cu.id_usuarios and ua.id_user_account = cu.id_user_account" +
@@ -118,20 +142,30 @@ public interface ConsultasJpql {
 				" and n.id_usuario=:parametro" +
 				" group by c.nombre_asignatura";
 
+	/**
+	 * 
+	 */
 	String LISTA_TIPOS_ACTIVIDADES ="select t from Tipo t where t.tipo=10";
 	
+	/**
+	 * 
+	 */
 	String ACTIVIDADES_POR_DIVISION = "select a from Actividad a, NumeroDivisiones m"
 			+ " where m.numeroDivision = #{seccionSeleccionadaBean.seccionSeleccionada}"
 			+ " and m.grupoCurso.idGrupo=#{cursoActualBean.select()}"
 			+ " and m.actividad.idActividad= a.idActividad";
 	
 	
+	/**
+	 * 
+	 */
 	String AGREGAR_ACTIVIDAD_PARA_NOTA="select n from NotaActividad n where n.usuario.id=:parametro" +
 						" and n.actividad.idActividad=:parametro2";
-	
-	
 
 	
+	/**
+	 * 
+	 */
 	String LISTA_FOROS_POR_PARTICIPACION="SELECT rm FROM  ReceptorMensajes rm" 
 										+" where rm.gestorMensajeria.idMensaje in (" 
 										+" select gm.idMensaje" 
@@ -141,13 +175,22 @@ public interface ConsultasJpql {
 										+" and rm.leido=true";
 	
 	
+	/**
+	 * 
+	 */
 	String ACTIVIDAD_NOTA_ACTIVIDAD= "select n.gestorMensajeria.idMensaje from NotaActividad n " 
 								   +" where n.actividad.idActividad=:parametro";
 	
+	/**
+	 * 
+	 */
 	String ACTIVIDAD_NOTA_ACTIVIDAD_ESTU= "select n from NotaActividad n " 
 			   +" where n.actividad.idActividad=:parametro" 
 			   +" and n.usuario.id=:parametro2";
 	
+	/**
+	 * 
+	 */
 	String RECEPTOR_FORO="select m from ReceptorMensajes m"
 			            +" where m.gestorMensajeria.idMensaje=:parametro" 
 			            +" and m.userAccount.id=:parametro2";

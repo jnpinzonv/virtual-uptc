@@ -27,25 +27,28 @@
 					id="sobrenombre" required="true" rendered="true">
 					<s:selectItems value="#{listaTiposActividades}" var="lista"
 						label="#{lista.nombre}" noSelectionLabel="SELECCIONE..." />
-					<a4j:support event="onchange"
-						reRender="tiposs,cuatro, cinco,dos" ajaxSingle="true" />
+					<a4j:support event="onchange" reRender="tiposs,cuatro, cinco,dos"
+						ajaxSingle="true" />
 					<s:convertEntity />
 				</h:selectOneMenu>
 
 				<br />
 				<br />
 				<a4j:outputPanel id="tiposs">
-				<h:outputLabel value="Tipo de Objeto:" for="tipoObjeto" rendered="#{actividadHome.instance.tipo.idTipo==18}"/>
-				<h:selectOneMenu value="#{actividadHome.instance.tipoObjeto}" rendered="#{actividadHome.instance.tipo.idTipo==18}"
-					id="tipoObjeto" >
-					
-					<f:selectItem  itemValue="Archivo" itemLabel="Archivo"/>
-					<f:selectItem itemValue="1" itemLabel="Url"/>
-					<f:selectItem  itemValue="ObjetoComprimido"  itemLabel="Objeto Comprimido"/>					
-					<a4j:support event="onchange"
-						reRender="tipoUrl,cargarArchivo" ajaxSingle="true"/>
-				</h:selectOneMenu>
-				
+					<h:outputLabel value="Tipo de Objeto:" for="tipoObjeto"
+						rendered="#{actividadHome.instance.tipo.idTipo==18}" />
+					<h:selectOneMenu value="#{actividadHome.instance.tipoObjeto}"
+						rendered="#{actividadHome.instance.tipo.idTipo==18}"
+						id="tipoObjeto">
+
+						<f:selectItem itemValue="Archivo" itemLabel="Archivo" />
+						<f:selectItem itemValue="1" itemLabel="Url" />
+						<f:selectItem itemValue="ObjetoComprimido"
+							itemLabel="Objeto Comprimido" />
+						<a4j:support event="onchange" reRender="tipoUrl,cargarArchivo"
+							ajaxSingle="true" />
+					</h:selectOneMenu>
+
 				</a4j:outputPanel>
 
 				<s:decorate id="nombreActividad" template="layout/edit.xhtml">
@@ -54,9 +57,9 @@
 						value="#{actividadHome.instance.nombreActividad}" required="true" />
 				</s:decorate>
 				<br />
-				<br /> 
-				
-				
+				<br />
+
+
 				<s:decorate id="mensajeField" template="layout/edit.xhtml">
 					<ui:define name="label">Descripcion actividad: </ui:define>
 					<h:panelGrid style="margin-left:80px">
@@ -166,13 +169,15 @@
 				<br />
 				<br />
 -->
-				
-				<a4j:outputPanel id="tipoUrl" >
-				<h:outputLabel value="Url de objeto de Aprendizaje:" rendered="#{actividadHome.instance.tipoObjeto=='1'}"/>
-				<h:inputText id="urlExterna2" size="50"
-							value="#{actividadHome.instance.urlExterna}" rendered="#{actividadHome.instance.tipoObjeto=='1'}"/>
+
+				<a4j:outputPanel id="tipoUrl">
+					<h:outputLabel value="Url de objeto de Aprendizaje:"
+						rendered="#{actividadHome.instance.tipoObjeto=='1'}" />
+					<h:inputText id="urlExterna2" size="50"
+						value="#{actividadHome.instance.urlExterna}"
+						rendered="#{actividadHome.instance.tipoObjeto=='1'}" />
 				</a4j:outputPanel>
-					
+
 				<a4j:outputPanel id="cinco">
 					<s:decorate id="urlExternaActividadField"
 						template="/layout/edit.xhtml" style="position:absolute;"
@@ -198,10 +203,11 @@
 				</a4j:outputPanel>
 				<br />
 				<br />
-				
+
 				<a4j:outputPanel id="cargarArchivo">
-				
-					<s:decorate id="cargarArchivos" rendered="#{actividadHome.instance.tipoObjeto!='1'}">
+
+					<s:decorate id="cargarArchivos"
+						rendered="#{actividadHome.instance.tipoObjeto!='1'}">
 						<ui:define name="label">Adjuntar Archivo:</ui:define>
 						<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
 							fileName="#{cargaArchivosBean.nombreArchivo}" />
@@ -219,14 +225,14 @@
 
 						<h:outputLabel value="No se ha adjuntado ningún archivo"
 							rendered="#{empty cargaArchivosBean.nombreArchivo}" />
-					
 
-					<a4j:outputPanel id="actividade2" ajaxRendered="true">
-						<h:outputLabel value="#{gestorCargaArchivosHome.instance.ruta}" />
-						<iframe src="#{gestorCargaArchivosHome.instance.ruta}"></iframe>
-					</a4j:outputPanel>
+
+						<a4j:outputPanel id="actividade2" ajaxRendered="true">
+							<h:outputLabel value="#{gestorCargaArchivosHome.instance.ruta}" />
+							<iframe src="#{gestorCargaArchivosHome.instance.ruta}"></iframe>
+						</a4j:outputPanel>
 					</s:decorate>
-					
+
 
 				</a4j:outputPanel>
 
@@ -266,43 +272,5 @@
 				</div>
 			</a4j:outputPanel>
 		</h:form>
-
-<h:form enctype="multipart/form-data">
-
-<s:decorate id="cargarArchivos" rendered="#{actividadHome.instance.tipoObjeto!='1'}" >
-						<ui:define name="label">Adjuntar Archivo:</ui:define>
-						<s:fileUpload id="file" data="#{cargaArchivosBean.file}"
-							fileName="#{cargaArchivosBean.nombreArchivo}" />
-
-						<h:commandButton id="upload" value="Subir !!"
-							action="#{cargaArchivosBean.seleccionOAAA()}" />
-						<a4j:support event="onchange" reRender="actividade2"
-							ajaxSingle="true" />
-						<s:button id="cancel" view="/login.xhtml" value="Cancel"
-							propagation="end" />
-						<br />
-						<h:outputLabel value="Nombre del arcivo adjunto:"
-							rendered="#{not empty cargaArchivosBean.nombreArchivo}" />
-						<h:outputLabel value="#{cargaArchivosBean.nombreArchivo}" />
-
-						<h:outputLabel value="No se ha adjuntado ningún archivo"
-							rendered="#{empty cargaArchivosBean.nombreArchivo}" />
-					
-
-					<a4j:outputPanel id="actividade2" ajaxRendered="true">
-						<h:outputLabel value="#{gestorCargaArchivosHome.instance.ruta}" />
-						<iframe src="#{gestorCargaArchivosHome.instance.ruta}"></iframe>
-					</a4j:outputPanel>
-					</s:decorate>
-
-</h:form>
-		
-
-
-
-
-
-
 	</ui:define>
-
 </ui:composition>

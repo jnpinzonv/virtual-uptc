@@ -46,4 +46,8 @@ public interface IUsuarioSeleccionado {
 	 * @return
 	 */
 	String rutaImagen();
+	
+	String hayMensajes();
+	
+	String hayActividadesPendientes();
 }

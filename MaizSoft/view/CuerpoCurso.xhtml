@@ -52,8 +52,8 @@
 				<br />
 				<br />
 				<a4j:outputPanel id="actividadess" ajaxRendered="true">
-					<rich:tabPanel switchType="client" id="actividades">
-						<rich:tab label="foro">
+					<rich:tabPanel switchType="client" id="actividades" >
+						<rich:tab label="foro" rendered="#{actividadSeleccionadaBean.getListaActividadesDivision(11).size()>0}">
 
 							<rich:dataTable var="_actividad"
 								value="#{actividadSeleccionadaBean.getListaActividadesDivision(11)}">
@@ -113,7 +113,7 @@
 							</rich:dataTable>
 
 						</rich:tab>
-						<rich:tab label="Autoevaluación">
+						<rich:tab label="Autoevaluación" rendered="#{actividadSeleccionadaBean.getListaActividadesDivision(13).size()>0}">
 
 							<rich:dataTable var="_actividadListAutoevaluacion"
 								value="#{actividadSeleccionadaBean.getListaActividadesDivision(13)}">
@@ -183,7 +183,7 @@
 							</rich:dataTable>
 						</rich:tab>
 
-						<rich:tab label="Anuncios">
+						<rich:tab label="Anuncios" rendered="#{actividadSeleccionadaBean.getListaActividadesDivision(16).size()>0}">
 							<rich:dataTable id="actividadListAnuncios"
 								var="_actividadListAnuncios"
 								value="#{actividadSeleccionadaBean.getListaActividadesDivision(16)}">
@@ -248,7 +248,7 @@
 
 
 						</rich:tab>
-						<rich:tab label="Cargar Archivos">
+						<rich:tab label="Cargar Archivos" rendered="#{actividadSeleccionadaBean.getListaActividadesDivision(12).size()>0}">
 							<rich:dataTable id="actividadListCargaArchivo"
 								var="_actividadListCargaArchivo"
 								value="#{actividadSeleccionadaBean.getListaActividadesDivision(12)}">
@@ -310,7 +310,7 @@
 
 						</rich:tab>
 
-						<rich:tab label="Video Conferencia">
+						<rich:tab label="Video Conferencia" rendered="#{actividadSeleccionadaBean.getListaActividadesDivision(14).size()>0}">
 
 							<rich:dataTable id="actividadListVideo" var="_actividadListVideo"
 								value="#{actividadSeleccionadaBean.getListaActividadesDivision(14)}">
@@ -371,7 +371,7 @@
 							</rich:dataTable>
 
 						</rich:tab>
-						<rich:tab label="Audio Conferencia">
+						<rich:tab label="Audio Conferencia" rendered="#{actividadSeleccionadaBean.getListaActividadesDivision(15).size()>0}">
 							<rich:dataTable id="actividadListAudio" var="_actividadListAudio"
 								value="#{actividadSeleccionadaBean.getListaActividadesDivision(15)}">
 
@@ -432,7 +432,7 @@
 
 						</rich:tab>
 
-						<rich:tab label="Enlaces Externos">
+						<rich:tab label="Enlaces Externos" rendered="#{actividadSeleccionadaBean.getListaActividadesDivision(17).size()>0}">
 							<rich:dataTable id="actividadListEnlaces"
 								var="_actividadListEnlaces"
 								value="#{actividadSeleccionadaBean.getListaActividadesDivision(17)}">
@@ -493,7 +493,7 @@
 							</rich:dataTable>
 
 						</rich:tab>
-						<rich:tab label="Objetos de Aprendizaje">
+						<rich:tab label="Objetos de Aprendizaje" rendered="#{actividadSeleccionadaBean.getListaActividadesDivision(18).size()>0}">
 						
 							<rich:dataTable id="actividadListObjeto"
 								var="_actividadListObjeto"

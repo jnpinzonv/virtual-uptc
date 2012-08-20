@@ -46,6 +46,12 @@
 					<s:button value="Agregar Actividad" view="/ActividadEdit.xhtml"
 						rendered="#{s:hasRole('docente')}">						
 					</s:button>
+					
+					<br/>
+					
+					<s:button value="Calificar Actividades" view="/NotasActividadesList.xhtml"
+						rendered="#{s:hasRole('docente')}">						
+					</s:button>
 
 				</div>
 
@@ -98,14 +104,7 @@
 											<f:param name="actividadIdActividad"
 												value="#{_actividad.idActividad}" />
 										</s:link>
-										#{' '}
-										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
-											value="#{empty from ? 'Ver' : 'Seleccionar'}"
-											propagation="#{empty from ? 'none' : 'default'}"
-											rendered="#{s:hasRole('docente')}">
-											<f:param name="actividadIdActividad"
-												value="#{_actividad.idActividad}" />
-										</s:link>
+										
 									</div>
 
 								</rich:column>
@@ -168,14 +167,7 @@
 											<f:param name="actividadIdActividad"
 												value="#{_actividadListAutoevaluacion.idActividad}" />
 										</s:link>
-										#{' '}
-										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
-											value="#{empty from ? 'Ver' : 'Seleccionar'}"
-											propagation="#{empty from ? 'none' : 'default'}"
-											id="actividadViewIde" rendered="#{s:hasRole('docente')}">
-											<f:param name="actividadIdActividad"
-												value="_actividadListAutoevaluacion.idActividad)}" />
-										</s:link>
+										
 									</div>
 
 								</rich:column>
@@ -230,14 +222,7 @@
 											<f:param name="actividadIdActividad"
 												value="#{_actividadListAnuncios.idActividad}" />
 										</s:link>
-										#{' '}
-										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
-											value="#{empty from ? 'Ver' : 'Seleccionar'}"
-											propagation="#{empty from ? 'none' : 'default'}"
-											rendered="#{s:hasRole('docente')}">
-											<f:param name="actividadIdActividad"
-												value="#{_actividadListAnuncios.idActividad}" />
-										</s:link>
+										
 									</div>
 
 								</rich:column>
@@ -295,14 +280,7 @@
 											<f:param name="actividadIdActividad"
 												value="#{_actividadListCargaArchivo.idActividad}" />
 										</s:link>
-										#{' '}
-										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
-											value="#{empty from ? 'Ver' : 'Seleccionar'}"
-											propagation="#{empty from ? 'none' : 'default'}"
-											rendered="#{s:hasRole('docente')}">
-											<f:param name="actividadIdActividad"
-												value="#{_actividadListCargaArchivo.idActividad}" />
-										</s:link>
+										
 									</div>
 
 								</rich:column>
@@ -357,14 +335,7 @@
 											<f:param name="actividadIdActividad"
 												value="#{_actividadListVideo.idActividad}" />
 										</s:link>
-										#{' '}
-										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
-											value="#{empty from ? 'Ver' : 'Seleccionar'}"
-											propagation="#{empty from ? 'none' : 'default'}"
-											rendered="#{s:hasRole('docente')}">
-											<f:param name="actividadIdActividad"
-												value="#{_actividadListVideo.idActividad}" />
-										</s:link>
+										
 									</div>
 
 								</rich:column>
@@ -417,14 +388,7 @@
 											<f:param name="actividadIdActividad"
 												value="#{_actividadListAudio.idActividad}" />
 										</s:link>
-										#{' '}
-										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
-											value="#{empty from ? 'Ver' : 'Seleccionar'}"
-											propagation="#{empty from ? 'none' : 'default'}"
-											rendered="#{s:hasRole('docente')}">
-											<f:param name="actividadIdActividad"
-												value="#{_actividadListAudio.idActividad}" />
-										</s:link>
+										
 									</div>
 
 								</rich:column>
@@ -479,14 +443,7 @@
 											<f:param name="actividadIdActividad"
 												value="#{_actividadListEnlaces.idActividad}" />
 										</s:link>
-										#{' '}
-										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
-											value="#{empty from ? 'Ver' : 'Seleccionar'}"
-											propagation="#{empty from ? 'none' : 'default'}"
-											rendered="#{s:hasRole('docente')}">
-											<f:param name="actividadIdActividad"
-												value="#{_actividadListEnlaces.idActividad}" />
-										</s:link>
+										
 									</div>
 
 								</rich:column>
@@ -542,14 +499,7 @@
 											<f:param name="actividadIdActividad"
 												value="#{_actividadListObjeto.idActividad}" />
 										</s:link>
-										#{' '}
-										<s:link view="/#{empty from ? 'NotasActividadesList' : from}.xhtml"
-											value="#{empty from ? 'Ver' : 'Seleccionar'}"
-											propagation="#{empty from ? 'none' : 'default'}"
-											rendered="#{s:hasRole('docente')}">
-											<f:param name="actividadIdActividad"
-												value="#{_actividadListObjeto.idActividad}" />
-										</s:link>
+										
 									</div>
 
 								</rich:column>

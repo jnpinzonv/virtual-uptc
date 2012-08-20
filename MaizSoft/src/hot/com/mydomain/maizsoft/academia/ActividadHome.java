@@ -557,4 +557,22 @@ public class ActividadHome extends EntityHome<Actividad> {
 		}
 		return id;
 	}
+	
+	
+	public String rutaObjetoAprendizaje(Long idActividad){
+		Credentials cre = (Credentials) Component
+				.getInstance(Credentials.class);
+		Query q2 = getEntityManager().createQuery(
+				ConsultasJpql.USUARIO_POR_USERNAME).setParameter("parametro",
+				cre.getUsername());
+		
+		Usuario usu=(Usuario) q2.getSingleResult();
+		
+		Query q = getEntityManager().createQuery(ConsultasJpql.ACTIVIDAD_NOTA_ACTIVIDAD_ESTU);
+		q.setParameter("parametro", idActividad);
+		q.setParameter("parametro2", usu.getId());
+		NotaActividad n= (NotaActividad) q.getSingleResult();	 		
+		
+		return n.getGestorCargaArchivos().getRuta();
+	}
 }

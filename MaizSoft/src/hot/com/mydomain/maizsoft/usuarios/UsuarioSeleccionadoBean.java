@@ -4,6 +4,7 @@
 package com.mydomain.maizsoft.usuarios;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -21,7 +22,9 @@ import org.jboss.seam.annotations.datamodel.DataModelSelection;
 import org.jboss.seam.faces.FacesMessages;
 import org.jboss.seam.security.Credentials;
 
+import com.mydomain.Directorio.model.Actividad;
 import com.mydomain.Directorio.model.ConsultasJpql;
+import com.mydomain.Directorio.model.GestorMensajeria;
 import com.mydomain.Directorio.model.GrupoCurso;
 import com.mydomain.Directorio.model.Usuario;
 
@@ -132,6 +135,68 @@ public class UsuarioSeleccionadoBean implements IUsuarioSeleccionado {
 
 		return nueva;
 
+	}
+	
+	
+	public String hayMensajes(){
+		List<GestorMensajeria> nuevo=new ArrayList<GestorMensajeria>();
+		
+		try {
+		Credentials cre = (Credentials) Component
+				.getInstance(Credentials.class);
+		Query q = entityManager.createQuery(
+				ConsultasJpql.USUARIO_POR_USERNAME);
+		q.setParameter("parametro", cre.getUsername());
+		Usuario nuev = (Usuario) q.getSingleResult();
+		
+		
+		Query q2 = entityManager.createQuery(
+				ConsultasJpql.MENSAJES_NO_LEIDOS);
+		q2.setParameter("parametro", nuev.getId());
+			nuevo = (List<GestorMensajeria>) q2.getResultList();
+		
+				
+		} catch (Exception e) {
+			return "/css/images/mensajes.png";
+		}
+		
+		if(nuevo.size()!=0){
+		
+			return "/css/images/mensajes2.png";
+			
+		}			
+		return "/css/images/mensajes.png";
+	}
+	
+	
+	public String hayActividadesPendientes(){
+		
+		List<Actividad> nuev = new ArrayList<Actividad>();		
+			
+			Credentials cre = (Credentials) Component
+					.getInstance(Credentials.class);
+			Query q2 = entityManager.createQuery(
+					ConsultasJpql.USUARIO_POR_USERNAME);
+			q2.setParameter("parametro", cre.getUsername());
+			Usuario nuevo = (Usuario) q2.getSingleResult();
+			
+		Query q = entityManager.createQuery(
+				ConsultasJpql.ACTIVIDADES_NO_VENCIDAS_ESTUDIANTE);
+		Calendar calendar = Calendar.getInstance();		
+		q.setParameter(1,calendar.getTime());
+		q.setParameter(2, nuevo.getId());
+		 nuev = (List<Actividad>) q.getResultList();
+		
+		if(nuev.size()==0){
+			return "/css/images/calendario.png";
+		}
+		try{
+		} catch (Exception e) {
+			return "/css/images/calendario.png";
+		}
+		
+		System.out.println("holaaaaaaa"+ nuev.size());
+			return "/css/images/calendario2.png";
 	}
 	
 }

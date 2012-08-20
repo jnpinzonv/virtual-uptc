@@ -74,13 +74,13 @@ public class ActividadSeleccionadaBean implements IActividadSeleccionada{
 
 	public List<Actividad> getListaActividadesDivision(Long idTipo) {	
 		
-			
+		 try {	
 			Query q = entityManager.createQuery(
 					ConsultasJpql.ACTIVIADES_POR_DIVISION);
 			q.setParameter("parametro", idTipo);
 						
 			 listaActividadesCurso=(List<Actividad>)q.getResultList();
-			 try {
+		
 		
 		} catch (RuntimeException e) {
 			FacesMessages mensaje = (FacesMessages) Component

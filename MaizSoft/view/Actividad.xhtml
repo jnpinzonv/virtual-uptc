@@ -129,6 +129,16 @@
 						for="autoevaluacionNota" id="tool" followMouse="true"
 						direction="top-right" showDelay="500"></rich:toolTip>
 				</s:decorate>
+				
+				
+				<s:decorate id="obejtoAprendizajeList"
+					template="layout/edit.xhtml"
+					rendered="#{actividadHome.instance.tipo.idTipo==18}">
+					<ui:define name="label">Justificación: </ui:define>
+					<h:panelGrid style="margin-left:80px">
+						<iframe src="#{actividadHome.rutaObjetoAprendizaje(actividadHome.instance.idActividad)}" scrolling="auto"></iframe>
+					</h:panelGrid>
+				</s:decorate>
 
 				<div align="center">
 					<h:panelGrid rendered="#{actividadHome.instance.tipo.idTipo==11}">

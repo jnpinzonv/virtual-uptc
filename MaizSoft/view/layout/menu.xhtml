@@ -4,10 +4,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:s="http://jboss.com/products/seam/taglib"
 	xmlns:rich="http://richfaces.org/rich">
+	
 	<rich:toolBarGroup>
 		<h:outputText value="#{projectName}:" />
 		<s:link id="menuHomeId" view="/login.xhtml" value="Login"
-			propagation="none" />
+			propagation="none" style="color:#FFFFFF"/>
 		<h:form>
 
 			<h:commandButton image="#{usuarioSeleccionadoBean.hayActividadesPendientes()}"
@@ -19,7 +20,7 @@
 			<h:outputLabel value="  " />
 			 
 			<h:commandButton image="/css/images/actualizacion.png"
-				style="width:30px" />
+				style="width:30px" rendered="#{s:hasRole('admin') || s:hasRole('estudiante') || s:hasRole('docente')}"/>
 				<h:outputLabel value="  " /> 
 			<h:commandButton image="/css/images/buscar.png"
 			action="/ActividadList.xhtml"
@@ -40,9 +41,9 @@
 			value="#{userAccountHome.usuarioPorUsername()}"
 			rendered="#{identity.loggedIn}" />
 		<s:link id="menuLoginId" view="/login.xhtml" value="Entrar"
-			rendered="#{not identity.loggedIn}" propagation="none" />
+			rendered="#{not identity.loggedIn}" propagation="none" style="color:#FFFFFF"/>
 		<s:link id="menuLogoutId" view="/home.xhtml"
 			action="#{identity.logout}" value="Salir"
-			rendered="#{identity.loggedIn}" propagation="none" />
+			rendered="#{identity.loggedIn}" propagation="none" style="color:#FFFFFF"/>
 	</rich:toolBarGroup>
 </rich:toolBar>

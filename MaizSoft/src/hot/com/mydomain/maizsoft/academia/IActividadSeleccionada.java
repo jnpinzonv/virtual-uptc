@@ -17,6 +17,7 @@ import com.mydomain.Directorio.model.Actividad;
 import com.mydomain.Directorio.model.ConsultasJpql;
 import com.mydomain.Directorio.model.NotaActividad;
 import com.mydomain.Directorio.model.Tipo;
+import com.mydomain.Directorio.model.Usuario;
 
 /**
  * Descripcion: Esta Clase se encarga de ...
@@ -173,10 +174,8 @@ public interface IActividadSeleccionada {
 		
 		public List<NotaActividad> listaNotaActi();
 
-
+		public String rutaAdjunto(long idActividad);	
 		
-		
-
-	 
+		public List<Usuario> getListaDocentes();
 	
 }

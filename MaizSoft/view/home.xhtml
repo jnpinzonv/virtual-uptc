@@ -7,31 +7,125 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
-	
+
 	<ui:define name="head">
-	<link href="css/cssLayoutAutenticar.css" rel="stylesheet" type="text/css"/>
-    	<link href="css/default.css" rel="stylesheet" type="text/css" />	
+		<link href="css/cssLayoutAutenticar.css" rel="stylesheet"
+			type="text/css" />
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
 	</ui:define>
 
 	<ui:define name="body">
-		<h:form id="homeForm">
-			<h1 style="color: blue">Gracias por visitar MaizSoft!</h1>
-			<rich:panel>
-				<h:panelGrid columns="2">
-					
-					<s:div styleClass="info">
-						<h:graphicImage value="/css/images/logoMaizsoft.png" alt="Seam logo" style="width:100px"/>
-						<p>
-							<strong>Vuelve Pronto</strong>
-						</p>
-						<br/>
-						<div align="right" style="margin-left: 260px">
-						<h:graphicImage value="/css/images/uptc.jpg"/>
-						</div>
-					</s:div>
-				</h:panelGrid>
 
-			</rich:panel>
-		</h:form>	</ui:define>
-	
+
+		<h:form id="homeForm">
+
+			<div class="center2">
+
+				<div class="left">
+					<ui:insert name="top">
+						<div class="menuheaderNoticias"></div>
+						<div class="menucontent">
+							<h:form>
+								<h:outputText value="La busqueda no retorno resultados"
+									rendered="#{empty gestorNoticiasList.resultList}" />
+								<div align="center">
+
+									<rich:dataTable id="gestorNoticiasList" var="_gestorNoticias"
+										value="#{gestorNoticiasList.resultList}"
+										rendered="#{not empty gestorNoticiasList.resultList}" rows="6"
+										width="180px">
+
+										<h:column width="160px">
+											<s:link
+												view="/admin/#{empty from ? 'GestorNoticias' : from}.xhtml"
+												value="#{_gestorNoticias.nombreNoticia}" propagation="none"
+												id="gestorNoticiasViewId">
+												<f:param name="gestorNoticiasIdNoticia"
+													value="#{_gestorNoticias.idNoticia}" />
+											</s:link>
+										</h:column>
+									</rich:dataTable>
+									<rich:datascroller align="center" for="gestorNoticiasList"
+										page="#{gestorNoticiasList.pageCount}" id="sc112"
+										reRender="sc111" />
+								</div>
+							</h:form>
+						</div>
+						<div class="menucontent"></div>
+						<div class="menucontent"></div>
+						<div class="menucontent"></div>
+						<div class="menudown"></div>
+					</ui:insert>
+					<pre></pre>
+					<ui:insert name="centers">
+						<div class="menuheaderguias"></div>
+						<div class="menucontent"></div>
+						<div class="menucontent">
+							<h:commandButton image="/css/images/pdf.jpg"
+								style="width:100px; margin-left:45px" />
+							<br />
+							<h:outputLabel value="Manual de Administrador"
+								style="color:black; margin-left:30px" />
+							<br /> <br />
+							<h:commandButton image="/css/images/pdf.jpg"
+								style="width:100px; margin-left:45px" />
+							<br />
+							<h:outputLabel value="Manual de Docente"
+								style="color:black; margin-left:40px" />
+							<br /> <br />
+							<h:commandButton image="/css/images/pdf.jpg"
+								style="width:100px; margin-left:45px" />
+							<br />
+							<h:outputLabel value="Manual de Estudiante"
+								style="color:black; margin-left:40px" />
+							<br />
+
+						</div>
+						<div class="menucontent"></div>
+						<div class="menucontent"></div>
+						<div class="menudown"></div>
+					</ui:insert>
+				</div>
+
+				<div class="right">
+					<ui:insert name="right">
+
+						<div class="menuheadercalendario"></div>
+						<div class="menucontent">
+							<rich:panel>
+								<!--  <rich:calendar popup="false"/>-->
+								<rich:calendar popup="false">
+									<f:facet name="weekNumber">
+										<h:outputText value="" style="color:red" />
+									</f:facet>
+								</rich:calendar>
+
+							</rich:panel>
+							<br />
+
+						</div>
+						<div class="menudown"></div>
+					</ui:insert>
+				</div>
+
+				<div class="center2">
+						<br /> 
+						<div align="center">
+							<h1 style="color: black">Gracias por visitar MaizSoft!</h1>
+							<p>
+
+								<strong style="color: black">Vuelve Pronto</strong>
+							</p>							
+						</div>
+						<br /> 
+						<div align="center">
+							<h:graphicImage value="/css/images/uptc.jpg" />
+						</div>
+					
+
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
 </ui:composition>

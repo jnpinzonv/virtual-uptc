@@ -11,8 +11,15 @@
                  http://jboss.com/products/seam/security http://jboss.com/products/seam/security-2.1.xsd
                  http://jboss.com/products/seam/mail http://jboss.com/products/seam/mail-2.1.xsd
                  http://jboss.com/products/seam/web http://jboss.com/products/seam/web-2.1.xsd
-                 http://jboss.com/products/seam/components http://jboss.com/products/seam/components-2.1.xsd">
-
+                 http://jboss.com/products/seam/components http://jboss.com/products/seam/components-2.1.xsd
+                 http://jboss.com/products/seam/document http://jboss.com/products/seam/document-2.1.xsd
+					http://jboss.com/products/seam/excel http://jboss.com/products/seam/excel-2.1.xsd"
+	xmlns:excel="http://jboss.com/products/seam/excel" 
+	xmlns:document="http://jboss.com/products/seam/document"
+	>
+	
+	
+	
 	<core:init debug="@debug@" jndi-pattern="@jndiPattern@" />
 
 	<core:manager concurrent-request-timeout="500"
@@ -65,5 +72,6 @@
 		<action execute="#{authenticator.returnTo}" />
 	</event>
 
-	
+
 </components>
+

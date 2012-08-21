@@ -213,6 +213,7 @@ public interface ConsultasJpql {
 	
 	String REUTILIZACION_OA="Select p.idOA, COUNT(p) FROM EstadisticasGenerales p" +
 			" where p.accionElemento='CrearActividad'" +
+			" and p.idOA>0" +
 			" group by p.idOA";
 	
 	String ACTIVIDAD_NOTAS_ESTUDIANTE= "select n from NotaActividad n, CuentasUsuario c, UserAccount ua, GrupoUsuarios g" +

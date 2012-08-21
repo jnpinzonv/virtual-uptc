@@ -8,6 +8,7 @@
 	xmlns:a="http://richfaces.org/a4j"
 	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
 	xmlns:rich="http://richfaces.org/rich"
+	xmlns:e="http://jboss.com/products/seam/excel"
 	template="layout/template2.xhtml">
 
 	<ui:define name="head">
@@ -222,9 +223,16 @@
 			</rich:panel>
 
 			<div class="tableControl">
+				<h:commandLink value="Informe Cursos Visitados"                           
+                action="#{org.jboss.seam.excel.exporter.excelExporter.export('searchForm:estadisticasCurso')}"/>
+                <h:commandLink value="Informe Objetos Visitados"                           
+                action="#{org.jboss.seam.excel.exporter.excelExporter.export('searchForm:estadisticasOA')}"/>
+                <h:commandLink value="Informe Actividades"                           
+                action="#{org.jboss.seam.excel.exporter.excelExporter.export('searchForm:estadisticasActividades')}"/>
+                <h:commandLink value="Informe OAs"                           
+                action="#{org.jboss.seam.excel.exporter.excelExporter.export('searchForm:reutilizacionOAs')}"/>  				
+			</div> 
 			
-				
-			</div>
 
 		</h:form>
 	</ui:define>

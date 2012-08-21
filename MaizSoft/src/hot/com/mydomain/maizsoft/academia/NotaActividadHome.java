@@ -98,7 +98,8 @@ public class NotaActividadHome extends EntityHome<NotaActividad> {
 
 		return nueva;
 	}
-		@Factory("listaActividadesDes")
+	
+	@Factory("listaActividadesDes")
 	public List<Actividad> getListaActividadesDivision() {
 			Query q =null;
 			try {
@@ -153,4 +154,11 @@ public class NotaActividadHome extends EntityHome<NotaActividad> {
 		return nueva;
 }
 
+	public List<NotaActividad> listaNotasActividad(){
+		Credentials crede = (Credentials) Component.getInstance(Credentials.class);
+		Query q1 = getEntityManager().createQuery(ConsultasJpql.ACTIVIDAD_NOTAS_ESTUDIANTE);
+		q1.setParameter("parametro", crede.getUsername());
+		
+		return q1.getResultList();
+	}
 }

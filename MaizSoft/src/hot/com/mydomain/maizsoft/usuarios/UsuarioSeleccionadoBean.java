@@ -175,16 +175,13 @@ public class UsuarioSeleccionadoBean implements IUsuarioSeleccionado {
 			
 			Credentials cre = (Credentials) Component
 					.getInstance(Credentials.class);
-			Query q2 = entityManager.createQuery(
-					ConsultasJpql.USUARIO_POR_USERNAME);
-			q2.setParameter("parametro", cre.getUsername());
-			Usuario nuevo = (Usuario) q2.getSingleResult();
+		
 			
-		Query q = entityManager.createQuery(
-				ConsultasJpql.ACTIVIDADES_NO_VENCIDAS_ESTUDIANTE);
-		Calendar calendar = Calendar.getInstance();		
-		q.setParameter(1,calendar.getTime());
-		q.setParameter(2, nuevo.getId());
+		Query q = entityManager.createNativeQuery(
+				ConsultasJpql.ACTIVIDADES_NO_VENCIDAS_ESTUDIANTE2);
+			
+		q.setParameter(1,cre.getUsername());
+	//	q.setParameter(2, nuevo.getId());
 		 nuev = (List<Actividad>) q.getResultList();
 		
 		if(nuev.size()==0){

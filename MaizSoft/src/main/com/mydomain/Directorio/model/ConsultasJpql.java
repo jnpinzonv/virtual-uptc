@@ -113,11 +113,22 @@ public interface ConsultasJpql {
 	/**
 	 * 
 	 */
-	String ACTIVIDADES_NO_VENCIDAS_ESTUDIANTE = "select a FROM UserAccount u JOIN u.roles r, Actividad a" +
-			" where r.name='estudiante'" +			
-			" and a.fechaFinalizacion >?" +
-			" and a.usuario.id=?";
-
+	String ACTIVIDADES_NO_VENCIDAS_ESTUDIANTE = "SELECT * FROM actividad,user_account_role uar"+
+			" WHERE fecha_finalizacion> now()"+
+			" and uar.member_of_role= 3";
+			
+	
+	String ACTIVIDADES_NO_VENCIDAS_ESTUDIANTE2 = "select a.*"+
+			" FROM cuentas_usuario c, user_account ua, user_account_role uar, actividad a, nota_actividad n"+
+			" where a.id_actividad = n.id_actividad"+
+			" and n.id_usuario = c.id_usuarios"+
+			" and ua.username=?"+
+			" and a.fecha_Finalizacion > now()"+
+			" and ua.id_user_account = c.id_user_account"+
+			" and uar.account_id=ua.id_user_account"+
+			" and uar.member_of_role= 3"+
+			" and n.estado_pendiente=0";
+			
 	
 	/**
 	 * 

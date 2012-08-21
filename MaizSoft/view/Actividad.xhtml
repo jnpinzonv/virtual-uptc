@@ -135,7 +135,11 @@
 					template="layout/edit.xhtml"
 					rendered="#{actividadHome.instance.tipo.idTipo==18}">
 					<ui:define name="label">Objeto de Aprendizaje: </ui:define>
-					<h:panelGrid style="margin-left:10px">
+					<h:panelGrid style="margin-left:10px" rendered="#{actividadHome.instance.urlExterna!=null}">
+						<iframe width="500px" height="500px" src="#{actividadHome.instance.urlExterna}" scrolling="auto"></iframe>
+					</h:panelGrid>
+					
+					<h:panelGrid style="margin-left:10px" rendered="#{actividadHome.instance.urlExterna==null}">
 						<iframe width="500px" height="500px" src="#{actividadHome.rutaObjetoAprendizaje(actividadHome.instance.idActividad)}" scrolling="auto"></iframe>
 					</h:panelGrid>
 				</s:decorate>

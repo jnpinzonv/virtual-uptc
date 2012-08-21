@@ -337,6 +337,10 @@ public class ActividadHome extends EntityHome<Actividad> {
 					&& sObj.getUserGrupoCurso().getId() == usuario.getId()) {
 				nuevaNota.setGestorCargaArchivos(archivo);
 			}
+			
+			if(sObj.getUserGrupoCurso().getId() == usuario.getId()){
+				nuevaNota.setEstadoPendiente(true);
+			}
 			if (instance.getTipo().getIdTipo() == 18) {
 				nuevaNota.setGestorCargaArchivos(archivo);
 			}
@@ -448,7 +452,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		q.setParameter("parametro2", instance.getIdActividad());
 
 		NotaActividad notaActividad = (NotaActividad) q.getSingleResult();
-		
+		notaActividad.setEstadoPendiente(true);
 		if (instance.getTipo().getIdTipo() == 11) {
 
 		}
@@ -501,7 +505,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		q.setParameter("parametro", idActividad);
 		q.setParameter("parametro2", usu.getId());
 		NotaActividad n= (NotaActividad) q.getSingleResult();
-		
+		n.setEstadoPendiente(true);
 
 		
 		Calendar calendar = Calendar.getInstance();
@@ -510,6 +514,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		nuevoG.setTipo(getEntityManager().find(Tipo.class, 7L));
 		nuevoG.setFechaEnvio(calendar.getTime());
 		nuevoG.setGestorMensajeria(n.getGestorMensajeria());
+		
 		getEntityManager().persist(nuevoG);
 		
 		Query q3 = getEntityManager().createQuery(ConsultasJpql.RECEPTOR_FORO);
@@ -529,7 +534,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 			getEntityManager().persist(nuMensajes);
 		}
 		
-		
+		getEntityManager().merge(n);
 		
 		
 	}

@@ -26,6 +26,7 @@ import com.mydomain.Directorio.model.ConsultasJpql;
 import com.mydomain.Directorio.model.GrupoCurso;
 import com.mydomain.Directorio.model.NotaActividad;
 import com.mydomain.Directorio.model.Tipo;
+import com.mydomain.Directorio.model.Usuario;
 import com.mydomain.maizsoft.tipos.TipoHome;
 
 /**
@@ -61,6 +62,8 @@ public class ActividadSeleccionadaBean implements IActividadSeleccionada{
 	//@DataModelSelection(value = "listaActividades")
 	//@Out(required = false)
 	private Actividad selectActividades;	
+	
+	
 	
 
 	
@@ -361,6 +364,30 @@ public class ActividadSeleccionadaBean implements IActividadSeleccionada{
 			listaNotaActi();
 		return "";
 	}
+
+	public String rutaAdjunto(long idActividad){
+		Usuario nuevo = getListaDocentes().get(0);
+		System.out.println(idActividad+"holaa"+nuevo.getId());
+		Query q1 = entityManager.createNativeQuery(ConsultasJpql.BUSCAR_ADJUNTO);
+		q1.setParameter(1,idActividad);
+		q1.setParameter(2,nuevo.getId());
+		
+		NotaActividad nota =  (NotaActividad) q1.getSingleResult();
+		
+		if(nota.getGestorCargaArchivos()==null)
+			return "No hay archivo adjunto";
+		else
+			return  nota.getGestorCargaArchivos().getRuta();
+	}
+	
+
+	public List<Usuario> getListaDocentes(){
+		Query q1 = entityManager.createNativeQuery(ConsultasJpql.DOCENTE_ASIGNATURA);
+		
+		return q1.getResultList();
+	}
+	
+	
 
 
 }

@@ -136,7 +136,8 @@ public interface ConsultasJpql {
 	String MENSAJES_NO_LEIDOS ="select men from GestorMensajeria men, ReceptorMensajes re" +
 								" where re.gestorMensajeria=men.idMensaje" +
 								" and re.leido=0" +
-								" and re.userAccount.id =:parametro";
+								" and re.userAccount.id =:parametro" +
+								" AND men.tipo.idTipo = 9";
 								
 	
 	/**
@@ -223,5 +224,16 @@ public interface ConsultasJpql {
 			" and n.grupoCurso.idGrupoUsuarios=g.idGrupoUsuarios" +
 			" and g.grupoCurso.idGrupo=#{cursoActualBean.select()}";
 	
-
+	String DOCENTE_ASIGNATURA="select u.* from grupo_curso gc, grupo_usuarios gu, user_account_role uar, cuentas_usuario cu, usuario u" +
+			" where gu.id_grupo_curso=gc.id_grupo" +
+			" and gc.id_grupo=?" +
+			" and gu.id_usuario=cu.id_usuarios" +
+			" and cu.id_usuarios=u.id_usuario" +
+			" and cu.id_user_account=uar.account_id" +
+			" and uar.member_of_role=2";
+	
+	
+	String BUSCAR_ADJUNTO="SELECT n FROM nota_actividad n WHERE n.id_actividad=?" +
+			" and n.id_usuario=?";
+	
 }

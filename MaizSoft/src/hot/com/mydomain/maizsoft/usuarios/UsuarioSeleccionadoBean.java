@@ -172,7 +172,7 @@ public class UsuarioSeleccionadoBean implements IUsuarioSeleccionado {
 	public String hayActividadesPendientes(){
 		
 		List<Actividad> nuev = new ArrayList<Actividad>();		
-			
+		try{	
 			Credentials cre = (Credentials) Component
 					.getInstance(Credentials.class);
 		
@@ -187,7 +187,7 @@ public class UsuarioSeleccionadoBean implements IUsuarioSeleccionado {
 		if(nuev.size()==0){
 			return "/css/images/calendario.png";
 		}
-		try{
+		
 		} catch (Exception e) {
 			return "/css/images/calendario.png";
 		}

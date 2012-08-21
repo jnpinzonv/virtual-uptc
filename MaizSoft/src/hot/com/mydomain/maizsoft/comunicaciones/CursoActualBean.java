@@ -79,8 +79,8 @@ public class CursoActualBean implements ICursoActual {
 
 		return listaGrupos;
 	}
-
-
+	
+	
 
 	/**
 	 * Asigna el valor de listaGrupos

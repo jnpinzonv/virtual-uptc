@@ -79,7 +79,7 @@
 					rendered="#{actividadHome.instance.tipo.idTipo==13}">
 					<ui:define name="label">Justificación: </ui:define>
 					<h:panelGrid style="margin-left:80px">
-						<h:panelGroup style="height:400px;width:800px;" layout="block">
+						<h:panelGroup style="height:280px;width:800px;" layout="block">
 							<rich:editor id="editor"
 								value="#{actividadHome.instance.justificacion}"
 								style="margin-bottom: 1em" theme="advanced"
@@ -167,10 +167,11 @@
 								<a:support event="onblur" reRender="asuntoField"
 									bypassUpdates="true" ajaxSingle="true" />
 							</h:inputText>
+							<br />
+						<br />
 						</s:decorate>
 
-						<br />
-						<br />
+						
 
 						<s:decorate id="mensajeField" template="layout/edit.xhtml">
 							<ui:define name="label">Descripción</ui:define>

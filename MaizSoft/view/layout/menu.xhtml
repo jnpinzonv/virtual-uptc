@@ -43,5 +43,6 @@
 		<s:link id="menuLogoutId" view="/home.xhtml"
 			action="#{identity.logout}" value="Salir"
 			rendered="#{identity.loggedIn}" propagation="none" style="color:#FFFFFF"/>
+			<s:conversationPropagation type="end"></s:conversationPropagation>
 	</rich:toolBarGroup>
 </rich:toolBar>

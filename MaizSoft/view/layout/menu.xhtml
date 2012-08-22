@@ -19,9 +19,7 @@
 				image="#{usuarioSeleccionadoBean.hayMensajes()}" style="width:30px" rendered="#{s:hasRole('admin') || s:hasRole('estudiante') || s:hasRole('docente')}"/>
 			<h:outputLabel value="  " />
 			 
-			<h:commandButton image="/css/images/actualizacion.png"
-				style="width:30px" rendered="#{s:hasRole('admin') || s:hasRole('estudiante') || s:hasRole('docente')}"/>
-				<h:outputLabel value="  " /> 
+			
 			<h:commandButton image="/css/images/buscar.png"
 			action="/ActividadList.xhtml"
 				style="width:30px" 

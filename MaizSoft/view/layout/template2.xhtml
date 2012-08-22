@@ -184,9 +184,9 @@
 											style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
 												<s:link value="Estadisticas" propagation="end"
-												action="/Estadisticas.seam"></s:link>
+													action="/Estadisticas.seam"></s:link>
 											</rich:panelMenuItem>
-											
+
 										</rich:panelMenuGroup>
 										<rich:panelMenuGroup label="Administrar Repositorio"
 											style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
@@ -249,12 +249,26 @@
 										<rich:panelMenuGroup label="Altas de Cursos"
 											style="color: #FFFFFF;" rendered="#{s:hasRole('docente')}">
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
-												<a href="css/images/FormatoCurso.doc">Formato para curso</a>
+												<a
+													href="http://localhost/archivos/utilidades/Formato Curso.docx"
+													target="_blank">Formato para Curso</a>
 											</rich:panelMenuItem>
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
-												<a href="css/images/FormatoCurso.doc">Formato para
-													Usuarios</a>
+												<a
+													href="http://localhost/archivos/utilidades/pruebaMasiva.xls"
+													target="_blank">Formato para Usuarios</a>
+
 											</rich:panelMenuItem>
+										</rich:panelMenuGroup>
+										
+										<rich:panelMenuGroup label="Generar SCORM e IMS"
+											style="color: #FFFFFF;" rendered="#{s:hasRole('docente')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<a
+													href="http://localhost/archivos/utilidades/MANUAL DE USUARIO ESTUDIANTE.pdf"
+													target="_blank">Generar</a>
+											</rich:panelMenuItem>
+											
 										</rich:panelMenuGroup>
 									</rich:panelMenu>
 									<a4j:outputPanel ajaxRendered="true">
@@ -328,33 +342,39 @@
 
 								</rich:panel>
 								<h:panelGrid rendered="#{s:hasRole('admin')}">
-								<h:commandButton image="/css/images/pdf.jpg"
-									style="width:100px; margin-left:25px"
-									rendered="#{s:hasRole('admin')}" />
-								
-								<h:outputLabel value="Manual de Administrador"
-									style="color:black; margin-left:20px" rendered="#{s:hasRole('admin')}" />
-								<br />
-								<br />
+									<h:commandButton image="/css/images/pdf.jpg"
+										style="width:100px; margin-left:25px"
+										rendered="#{s:hasRole('admin')}" />
+
+									<a
+										href="http://localhost/archivos/utilidades/MANUAL DE USUARIO ADMINISTRADOR.pdf"
+										target="_blank" style="margin-left: 10px">Manual de
+										Administrador</a>
+									<br />
+									<br />
 								</h:panelGrid>
 								<h:panelGrid rendered="#{s:hasRole('docente')}">
-								<h:commandButton image="/css/images/pdf.jpg"
-									style="width:100px; margin-left:25px"
-									rendered="#{s:hasRole('docente')}" />
-							
-								<h:outputLabel value="Manual de Docente" style="color:black; margin-left:20px"
-									rendered="#{s:hasRole('docente')}" />
-								<br />
-								<br />
+									<h:commandButton image="/css/images/pdf.jpg"
+										style="width:100px; margin-left:25px"
+										rendered="#{s:hasRole('docente')}" />
+
+									<a
+										href="http://localhost/archivos/utilidades/MANUAL DE USUARIO DOCENTE.pdf"
+										target="_blank" style="margin-left: 10px">Manual del
+										Docente</a>
+									<br />
+									<br />
 								</h:panelGrid>
 								<h:panelGrid rendered="#{s:hasRole('estudiante')}">
-								<h:commandButton image="/css/images/pdf.jpg"
-									style="width:100px; margin-left:25px"
-									rendered="#{s:hasRole('estudiante')}" />
-								
-								<h:outputLabel value="Manual de Estudiante" style="color:black; margin-left:20px"
-									rendered="#{s:hasRole('estudiante')}" />
-									</h:panelGrid>
+									<h:commandButton image="/css/images/pdf.jpg"
+										style="width:100px; margin-left:25px"
+										rendered="#{s:hasRole('estudiante')}" />
+
+									<a
+										href="http://localhost/archivos/utilidades/MANUAL DE USUARIO ESTUDIANTE.pdf"
+										target="_blank" style="margin-left: 10px">Manual del
+										Estudiante</a>
+								</h:panelGrid>
 							</rich:panel>
 
 						</h:form>
@@ -379,11 +399,11 @@
 					<rich:separator height="4" />
 					<br />
 					<div style="float: left; margin-left: 270px">
-						<img src="css/images/uptc.png" style="height: 80px" />
+						<img src="http://localhost/archivos/utilidades/uptc.png" style="height: 80px" />
 					</div>
 
 					<div style="float: right; margin-right: 270px">
-						<img src="css/images/gis.png" style="height: 80px" />
+						<img src="http://localhost/archivos/utilidades/gis.png" style="height: 80px" />
 					</div>
 					<div style="position: relative;">
 						<p>

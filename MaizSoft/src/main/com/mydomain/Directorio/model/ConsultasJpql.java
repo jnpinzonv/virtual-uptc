@@ -236,4 +236,8 @@ public interface ConsultasJpql {
 	String BUSCAR_ADJUNTO="SELECT n FROM nota_actividad n WHERE n.id_actividad=?" +
 			" and n.id_usuario=?";
 	
+	String BUSCAR_RECEPTOR_MENSAJE= "select n from ReceptorMensajes n" +
+									" where n.userAccount.id=?" +
+									" and n.gestorMensajeria.idMensaje=?";
+	
 }

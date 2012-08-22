@@ -192,7 +192,7 @@ public class UsuarioSeleccionadoBean implements IUsuarioSeleccionado {
 			return "/css/images/calendario.png";
 		}
 		
-		System.out.println("holaaaaaaa"+ nuev.size());
+		
 			return "/css/images/calendario2.png";
 	}
 	

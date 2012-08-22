@@ -59,7 +59,7 @@
 									propagation="#{empty from ? 'none' : 'default'}"
 									id="gestorMensajeriaViewId">
 									<f:param name="gestorMensajeriaIdMensaje"
-										value="#{_listaMensajes.idMensaje}" />
+										value="#{gestorMensajeriaHome.addMensajeLeido(_listaMensajes.idMensaje)}" />
 								</s:link>
 							</rich:column>
 						</rich:dataTable>

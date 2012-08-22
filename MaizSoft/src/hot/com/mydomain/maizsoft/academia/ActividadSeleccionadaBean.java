@@ -383,6 +383,7 @@ public class ActividadSeleccionadaBean implements IActividadSeleccionada{
 
 	public List<Usuario> getListaDocentes(){
 		Query q1 = entityManager.createNativeQuery(ConsultasJpql.DOCENTE_ASIGNATURA);
+		q1.setParameter(1, 2);
 		
 		return q1.getResultList();
 	}

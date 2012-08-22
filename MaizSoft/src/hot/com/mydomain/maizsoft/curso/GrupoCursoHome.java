@@ -28,14 +28,11 @@ public class GrupoCursoHome extends EntityHome<GrupoCurso> {
 	@In(create = true)
 	CursoHome cursoHome;
 	
-	@DataModel("listaGrupos")
-	private List<GrupoCurso> listaGrupos;
+	
 	
 	FacesContext facesContext;
 	
 	
-	@DataModelSelection
-	GrupoCurso seleccionado;
 
 	public void setGrupoCursoIdGrupo(Long id) {
 		setId(id);
@@ -102,56 +99,6 @@ public class GrupoCursoHome extends EntityHome<GrupoCurso> {
 	}
 
 
-	/**
-	 * Se obtiene el valor de listaGrupos
-	 * @return El valor de listaGrupos
-	 */
-	public List<GrupoCurso> getListaGrupos() {
-		Query q = getEntityManager().createNamedQuery("gruposTotalCurso");
-		listaGrupos=q.getResultList();
-		return listaGrupos;
-	}
-
-	/**
-	 * Asigna el valor de listaGrupos
-	 * @param listaGrupos El valor por establecer para listaGrupos
-	 */
-	public void setListaGrupos(List<GrupoCurso> listaGrupos) {
-		this.listaGrupos = listaGrupos;
-	}
-
-	public List<GrupoCurso> listaGrupos(){
-		Query q = getEntityManager().createNamedQuery("gruposTotalCurso");
-		listaGrupos=q.getResultList();
-		return listaGrupos;
-	}
-	/**
-	 * Se obtiene el valor de seleccionado
-	 * @return El valor de seleccionado
-	 */
-	public GrupoCurso getSeleccionado() {
-		return seleccionado;
-	}
-
-	/**
-	 * Asigna el valor de seleccionado
-	 * @param seleccionado El valor por establecer para seleccionado
-	 */
-	public void setSeleccionado(GrupoCurso seleccionado) {
-		this.seleccionado = seleccionado;
-	}
-	
-	
-	public String selecionado(long grupo){
-		
-		instance=seleccionado;
-		/*System.out.println(grupo+ "holaaaaaaaaaaaaaa");
-		//System.out.println(instance.getIdGrupo()+ "hola mundooooooooooooooooooooo");
-		System.out.println(facesContext.getCurrentInstance().getExternalContext().getRequestMap().get("grupoCursoIdGrupo")+ "holooooooooooooooo");
-*/
-		return"/CuerpoCurso.xhtml";
-		
-	}
 	
 	
 

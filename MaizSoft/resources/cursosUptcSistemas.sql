@@ -1,12 +1,12 @@
 -- Cursos de Ingenieria de Sistemas y Computaciï¿½n
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8107550,'Algoritmos y programacion',16);
+values(8107550,'Algoritmos y programación',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108255,'Programacion I',16);
+values(8108255,'Programación I',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108256,'Programacion II',16);
+values(8108256,'Programación II',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108257,'Programacion III',16);
+values(8108257,'Programación III',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8108259,'Bases de datos I',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
@@ -16,7 +16,7 @@ values(8106174,'Profundización de Bases de datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8106179,'Investigación de Bases de datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108258,'Ingenieria de Requisitos',16);
+values(8108258,'Ingeniería de Requisitos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8108261,'Electronica General',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
@@ -26,13 +26,13 @@ values(8105524,'Microcontroladores',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8108260,'Teoria General de Sistemas',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105430,'Matemï¿½ticas Discretas',16);
+values(8105430,'Matemáticas Discretas',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105530,'Investigacion de Operaciones',16);
+values(8105530,'Investigación de Operaciones',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105517,'Ingenieria de Software I',16);
+values(8105517,'Ingeniería de Software I',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105526,'Ingenieria de Software II',16);
+values(8105526,'Ingeniería de Software II',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8106173,'Profundización de Software',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
@@ -46,7 +46,7 @@ values(8105519,'Arquitectura de Computadores',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8106177,'Inteligencia Computacional',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105528,'Transmision de Datos',16);
+values(8105528,'Transmisión de Datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8105531,'Redes de Datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
@@ -56,13 +56,13 @@ values(8106180,'Investigación de Redes de Datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8106181,'Auditoria de Sistemas',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106176,'Gerencia Informatica',16);
+values(8106176,'Gerencia Informática',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8107230,'Seminario de Trabajo de Grado',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8105529,'Simulaciï¿½n por computador',16);
+values(8105529,'Simulación por computador',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8108220,'Metodologia de la Investigacion y Diseï¿½o Experimental',16);
+values(8108220,'Metodologia de la Investigación y Diseño Experimental',16);
 
 -- Grupos de Ingenieria de Sistemas y Computaciï¿½n
 -- Grupo Algoritmos y programacion

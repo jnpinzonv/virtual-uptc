@@ -263,5 +263,31 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 		}
 
 	}
+	
+	
+	public  long addMensajeLeido(long idMensaje){
+		
+		Credentials cre = (Credentials) Component
+				.getInstance(Credentials.class);
+
+		Query q = getEntityManager().createQuery(
+				ConsultasJpql.USUARIO_POR_USERNAME).setParameter("parametro",
+				cre.getUsername());
+		Usuario deUsuario = (Usuario) q.getSingleResult();
+		
+		Query q2 = getEntityManager().createQuery(
+				ConsultasJpql.BUSCAR_RECEPTOR_MENSAJE);
+		
+		q2.setParameter(1,deUsuario.getId());
+		q2.setParameter(2,idMensaje);
+		
+		ReceptorMensajes r = (ReceptorMensajes) q2.getSingleResult();
+		r.setLeido(true);
+		getEntityManager().merge(r);
+		getEntityManager().flush();		
+	
+		return idMensaje;
+		
+	}
 
 }

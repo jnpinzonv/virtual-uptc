@@ -12,9 +12,9 @@ values(8108259,'Bases de datos I',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8105534,'Bases de datos II',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106174,'Profundizaci贸n de Bases de datos',16);
+values(8106174,'Profundizaci髇 de Bases de datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106179,'Investigaci贸n de Bases de datos',16);
+values(8106179,'Investigaci髇 de Bases de datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8108258,'Ingenieria de Requisitos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
@@ -34,9 +34,9 @@ values(8105517,'Ingenieria de Software I',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8105526,'Ingenieria de Software II',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106173,'Profundizaci贸n de Software',16);
+values(8106173,'Profundizaci髇 de Software',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106178,'Investigaci贸n de Software',16);
+values(8106178,'Investigaci髇 de Software',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8105518,'Lenguajes Formales',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
@@ -50,9 +50,9 @@ values(8105528,'Transmision de Datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8105531,'Redes de Datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106175,'Profundizaci贸n de Redes de Datos',16);
+values(8106175,'Profundizaci髇 de Redes de Datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
-values(8106180,'Investigaci贸n de Redes de Datos',16);
+values(8106180,'Investigaci髇 de Redes de Datos',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
 values(8106181,'Auditoria de Sistemas',16);
 insert into curso (codigo_curso,nombre_asignatura,id_ente_universitario) 
@@ -83,7 +83,7 @@ values (6,1,25,0,6,8105534,16);
 -- Grupo Profundizaci锟絥 de Bases de datos
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (7,1,25,0,9,8106174,16);
--- Grupo Investigaci贸n de Bases de datos
+-- Grupo Investigaci髇 de Bases de datos
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (8,1,25,0,10,8106179,16);
 -- Grupo Ingenieria de Requisitos
@@ -112,10 +112,10 @@ insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, i
 values (16,1,25,0,6,8105517,16);
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (17,1,25,0,7,8105526,16);
--- Grupo Profundizaci贸n de Software
+-- Grupo Profundizaci髇 de Software
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (18,1,25,0,9,8106173,16);
--- Grupo Investigaci贸n de Software
+-- Grupo Investigaci髇 de Software
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (19,1,25,0,10,8106178,16);
 -- Grupo Lenguajes Formales
@@ -136,10 +136,10 @@ values (24,1,25,0,7,8105528,16);
 -- Grupo Redes de Datos
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (25,1,25,0,8,8105531,16);
--- Grupo Profundizaci贸n de Redes de Datos
+-- Grupo Profundizaci髇 de Redes de Datos
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (26,1,25,0,9,8106175,16);
--- Grupo Investigaci贸n de Redes de Datos
+-- Grupo Investigaci髇 de Redes de Datos
 insert into grupo_curso(id_grupo, id_codigo_grupo, cupos, inscritos, semestre, id_curso_grupo,numero_total_divisiones)
 values (27,1,25,0,10,8106180,16);
 -- Grupo Auditoria de Sistemas

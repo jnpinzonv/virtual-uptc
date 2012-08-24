@@ -132,7 +132,9 @@
 						<ui:param name="propertyPath" value="actividad.fechaFinalizacion" />
 					</ui:include>
 				</f:facet>
-				<h:outputText value="#{_actividad.fechaFinalizacion}" escape="false" />
+				<h:outputText value="#{_actividad.fechaFinalizacion}">
+				 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" /> 
+				 </h:outputText>
 			</h:column>
 			<h:column>
 				<f:facet name="header">

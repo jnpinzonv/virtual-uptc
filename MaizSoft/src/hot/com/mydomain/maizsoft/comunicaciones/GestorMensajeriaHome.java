@@ -134,7 +134,7 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 		return sItems;
 	}
 
-	public void saveMensaje() {
+	public String saveMensaje() {
 		List<Usuario> someObjects = instance.getListaUsuarios();
 		GestorMensajeria nuevoG = instance;
 		nuevoG.setMensaje(prepocesar(nuevoG.getMensaje(),40));
@@ -160,6 +160,7 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 			getEntityManager().persist(nuevoG);
 			getEntityManager().persist(nuevo);
 		}
+		return "/MensajeListEnviado.xhtml";
 	}
 
 	@Factory("listaMensajesPorUsuario")
@@ -175,6 +176,23 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 				.getResultList();
 
 		return lista;
+	}
+	
+	
+	public String mensajeLeido(long idGestor){
+		Credentials cre = (Credentials) Component
+				.getInstance(Credentials.class);
+		
+		Query q1 = getEntityManager().createQuery(ConsultasJpql.LISTA_LEIDOS);
+		q1.setParameter("parametro", cre.getUsername());
+		q1.setParameter("parametro1",idGestor);
+				
+		ReceptorMensajes receptor =  (ReceptorMensajes) q1.getSingleResult();
+		
+		if(receptor.isLeido())
+			return "Si";
+		else
+			return  "No";
 	}
 
 	@Factory("listaMensajesEnviadosPorUsuario")
@@ -289,5 +307,8 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 		return idMensaje;
 		
 	}
+	
+	
+	
 
 }

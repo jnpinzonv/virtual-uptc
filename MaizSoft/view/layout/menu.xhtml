@@ -15,7 +15,7 @@
 				action="/Calendario.xhtml"
 				style="width:30px" rendered="#{s:hasRole('admin') || s:hasRole('estudiante') || s:hasRole('docente')}"/>
 			<h:outputLabel value="  " />
-			<h:commandButton action="/GestorMensajeriaEdit.xhtml"
+			<h:commandButton action="/MensajeList.xhtml"
 				image="#{usuarioSeleccionadoBean.hayMensajes()}" style="width:30px" rendered="#{s:hasRole('admin') || s:hasRole('estudiante') || s:hasRole('docente')}"/>
 			<h:outputLabel value="  " />
 			 

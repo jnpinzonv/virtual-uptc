@@ -26,7 +26,7 @@
 				<s:decorate id="asuntoField" template="layout/edit.xhtml">
 					<ui:define name="label">Asunto</ui:define>
 					<h:inputText id="asunto" size="100" maxlength="50"
-						value="#{gestorMensajeriaHome.instance.asunto}">
+						value="#{gestorMensajeriaHome.instance.asunto}" escape="false">
 						<a:support event="onblur" reRender="asuntoField"
 							bypassUpdates="true" ajaxSingle="true" />
 					</h:inputText>

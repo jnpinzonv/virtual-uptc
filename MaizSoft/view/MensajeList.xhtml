@@ -26,6 +26,14 @@
 							value="#{listaMensajesPorUsuario}" rows="10" width="650px">
 							
 							<h:column>
+								<f:facet name="header">Leido							
+								</f:facet>
+								<h:outputText style="size:10px" 
+									value="#{gestorMensajeriaHome.mensajeLeido(_listaMensajes.idMensaje)}" />
+							</h:column>
+						
+							
+							<h:column>
 								<f:facet name="header">De							
 								</f:facet>
 								<h:outputText style="size:10px" 

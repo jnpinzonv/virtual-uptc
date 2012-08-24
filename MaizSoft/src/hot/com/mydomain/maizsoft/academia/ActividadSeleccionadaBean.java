@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.ejb.Timeout;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -15,6 +17,7 @@ import javax.persistence.Query;
 import org.jboss.seam.Component;
 import org.jboss.seam.Instance;
 import org.jboss.seam.ScopeType;
+import org.jboss.seam.annotations.Begin;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
@@ -364,13 +367,16 @@ public class ActividadSeleccionadaBean implements IActividadSeleccionada{
 			listaNotaActi();
 		return "";
 	}
-
+	
+	
 	public String rutaAdjunto(long idActividad){
-		Usuario nuevo = getListaDocentes().get(0);
-		System.out.println(idActividad+"holaa"+nuevo.getId());
+		System.out.println("hola");
+//		Usuario nuevo = getListaDocentes().get(0);
+		System.out.println("holaa");
 		Query q1 = entityManager.createNativeQuery(ConsultasJpql.BUSCAR_ADJUNTO);
 		q1.setParameter(1,idActividad);
-		q1.setParameter(2,nuevo.getId());
+		q1.setParameter(2,3);
+		System.out.println("sdfsdf");
 		
 		NotaActividad nota =  (NotaActividad) q1.getSingleResult();
 		
@@ -383,8 +389,8 @@ public class ActividadSeleccionadaBean implements IActividadSeleccionada{
 
 	public List<Usuario> getListaDocentes(){
 		Query q1 = entityManager.createNativeQuery(ConsultasJpql.DOCENTE_ASIGNATURA);
-		q1.setParameter(1, 2);
-		
+//		q1.setParameter(1, 2);
+	
 		return q1.getResultList();
 	}
 	

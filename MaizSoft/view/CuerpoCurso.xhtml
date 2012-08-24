@@ -83,7 +83,9 @@
 									<p>&nbsp;&nbsp; &nbsp;&nbsp;</p>
 
 									<h:outputLabel value="Fecha Finalización: " />
-									<b> <h:outputText value="#{_actividad.fechaFinalizacion}" />
+									<b> <h:outputText value="#{_actividad.fechaFinalizacion}">
+									 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" /> 
+									 </h:outputText>
 									</b>
 									<div align="right">
 										<s:link view="/ActividadEdit.xhtml" value="Editar"
@@ -138,7 +140,9 @@
 
 									<h:outputLabel value="Fecha Finalización: " />
 									<b> <h:outputText
-											value="#{_actividadListAutoevaluacion.fechaFinalizacion}" />
+											value="#{_actividadListAutoevaluacion.fechaFinalizacion}">
+											 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" /> 
+											 </h:outputText>
 									</b>
 									
 									#{' '}
@@ -146,7 +150,7 @@
 
 									<h:outputLabel value="Archivo Adjunto: " />
 									<b> <h:outputText
-											value="#{actividadSeleccionadaBean.rutaAdjunto(_actividadListAutoevaluacion.idActividad)}" />
+											value="#{gestorMensajeriaHome.rutaAdjuntos(_actividadListAutoevaluacion.idActividad)}" />
 									</b>
 									<div align="right">
 										<s:link view="/ActividadEdit.xhtml" value="Editar"
@@ -201,7 +205,9 @@
 
 									<h:outputLabel value="Fecha Finalización: " />
 									<b> <h:outputText
-											value="#{_actividadListAnuncios.fechaFinalizacion}" />
+											value="#{_actividadListAnuncios.fechaFinalizacion}">
+											 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" /> 
+											 </h:outputText>
 									</b>
 									<div align="right">
 										<s:link view="/ActividadEdit.xhtml" value="Editar"
@@ -259,7 +265,9 @@
 
 									<h:outputLabel value="Fecha Finalización: " />
 									<b> <h:outputText
-											value="#{_actividadListCargaArchivo.fechaFinalizacion}" />
+											value="#{_actividadListCargaArchivo.fechaFinalizacion}">
+											 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" /> 
+											 </h:outputText>
 									</b>
 									<div align="right">
 										<s:link view="/ActividadEdit.xhtml" value="Editar"
@@ -314,7 +322,9 @@
 
 									<h:outputLabel value="Fecha Finalización: " />
 									<b> <h:outputText
-											value="#{_actividadListVideo.fechaFinalizacion}" />
+											value="#{_actividadListVideo.fechaFinalizacion}">
+											 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" /> 
+											 </h:outputText>
 									</b>
 									<div align="right">
 										<s:link view="/ActividadEdit.xhtml" value="Editar"
@@ -367,7 +377,9 @@
 
 									<h:outputLabel value="Fecha Finalización: " />
 									<b> <h:outputText
-											value="#{_actividadListAudio.fechaFinalizacion}" />
+											value="#{_actividadListAudio.fechaFinalizacion}">
+											 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" /> 
+											 </h:outputText>
 									</b>
 									<div align="right">
 										<s:link view="/ActividadEdit.xhtml" value="Editar"
@@ -422,7 +434,9 @@
 
 									<h:outputLabel value="Fecha Finalización: " />
 									<b> <h:outputText
-											value="#{_actividadListEnlaces.fechaFinalizacion}" />
+											value="#{_actividadListEnlaces.fechaFinalizacion}">
+											 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" /> 
+											 </h:outputText>
 									</b>
 									<div align="right">
 										<s:link view="/ActividadEdit.xhtml" value="Editar"
@@ -478,7 +492,9 @@
 
 									<h:outputLabel value="Fecha Finalización: " />
 									<b> <h:outputText
-											value="#{_actividadListObjeto.fechaFinalizacion}" />
+											value="#{_actividadListObjeto.fechaFinalizacion}">
+											 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" /> 
+											 </h:outputText>
 									</b>
 									<div align="right">
 										<s:link view="/ActividadEdit.xhtml" value="Editar"

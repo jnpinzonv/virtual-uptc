@@ -149,7 +149,6 @@ public class UsuarioSeleccionadoBean implements IUsuarioSeleccionado {
 		q.setParameter("parametro", cre.getUsername());
 		Usuario nuev = (Usuario) q.getSingleResult();
 		
-		
 		Query q2 = entityManager.createQuery(
 				ConsultasJpql.MENSAJES_NO_LEIDOS);
 		q2.setParameter("parametro", nuev.getId());

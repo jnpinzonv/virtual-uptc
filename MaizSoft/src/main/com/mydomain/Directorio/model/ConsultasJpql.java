@@ -226,7 +226,7 @@ public interface ConsultasJpql {
 	
 	String DOCENTE_ASIGNATURA="select u.* from grupo_curso gc, grupo_usuarios gu, user_account_role uar, cuentas_usuario cu, usuario u" +
 			" where gu.id_grupo_curso=gc.id_grupo" +
-			" and gc.id_grupo=?" +
+			" and gc.id_grupo=2" +
 			" and gu.id_usuario=cu.id_usuarios" +
 			" and cu.id_usuarios=u.id_usuario" +
 			" and cu.id_user_account=uar.account_id" +
@@ -240,4 +240,10 @@ public interface ConsultasJpql {
 									" where n.userAccount.id=?" +
 									" and n.gestorMensajeria.idMensaje=?";
 	
+	String LISTA_LEIDOS = "SELECT r FROM ReceptorMensajes r, CuentasUsuario u, UserAccount ua" +
+			" where r.gestorMensajeria.idMensaje=:parametro1" +
+			" and r.userAccount.id=u.userAccounts.id" +
+			" and u.userAccounts.id = ua.id"
+			+ " AND u.usuarios.id = r.userAccount.id"
+			+ " AND ua.username=:parametro";
 }

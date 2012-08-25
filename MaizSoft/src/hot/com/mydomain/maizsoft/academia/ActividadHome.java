@@ -263,7 +263,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 			} catch (MessagingException e) {
 				FacesMessages mensaje = (FacesMessages) Component
 						.getInstance(FacesMessages.class);
-				mensaje.add("Se produjo un error técnico :(");
+				mensaje.add("Se produjo un error tï¿½cnico :(");
 			}
 		}
 
@@ -400,7 +400,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
 		log.info("<--" + "[" + ConstantesLog.NOMBRE_PLATAFORMA + "]"
-				+ "Acción:" + "[" + ConstantesLog.CREAR_ACTIVIDAD + "]"
+				+ "Acciï¿½n:" + "[" + ConstantesLog.CREAR_ACTIVIDAD + "]"
 				+ "Tipo:" + "[" + instance.getTipo().getNombre() + "]"
 				+ "Sobre el grupo con ID:" + "[" + "N/A" + "]"
 				+ "Realizada por:" + "[" + cre.getUsername() + "]"
@@ -414,7 +414,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
 		log.info("<--" + "[" + ConstantesLog.NOMBRE_PLATAFORMA + "]"
-				+ "Acción:" + "[" + ConstantesLog.CREAR_ACTIVIDAD + "]"
+				+ "Acciï¿½n:" + "[" + ConstantesLog.CREAR_ACTIVIDAD + "]"
 				+ "Tipo:" + "[" + instance.getTipo().getNombre() + "]"
 				+ "Sobre el grupo con ID:" + "[" + grupo.getIdGrupo() + "]"
 				+ "Realizada por:" + "[" + cre.getUsername() + "]"
@@ -546,7 +546,7 @@ public class ActividadHome extends EntityHome<Actividad> {
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
 		log.info("<--" + "[" + ConstantesLog.NOMBRE_PLATAFORMA + "]"
-				+ "Acción:" + "[" + ConstantesLog.OBJETO_VISITADO + "]"
+				+ "Acciï¿½n:" + "[" + ConstantesLog.OBJETO_VISITADO + "]"
 				+ "Tipo:" + "[" + "N/A" + "]"
 				+ "Sobre el grupo con ID:" + "[" +"N/A" + "]"
 				+ "Realizada por:" + "[" + cre.getUsername() + "]"
@@ -579,5 +579,16 @@ public class ActividadHome extends EntityHome<Actividad> {
 		NotaActividad n= (NotaActividad) q.getSingleResult();	 		
 		
 		return n.getGestorCargaArchivos().getRuta();
+	}
+	
+	
+	public List<Actividad> listaActividades(){
+		Credentials cre = (Credentials) Component
+				.getInstance(Credentials.class);
+		
+		Query q = getEntityManager().createQuery(ConsultasJpql.ACTIVIDAD_ESTUDIANTE);
+		q.setParameter("parametro",cre.getUsername());
+		
+		return q.getResultList();		
 	}
 }

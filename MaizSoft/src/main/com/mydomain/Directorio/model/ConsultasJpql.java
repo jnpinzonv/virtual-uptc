@@ -144,16 +144,15 @@ public interface ConsultasJpql {
 	 * 
 	 */
 	String NOTAS_ESTUDIANTE = "SELECT c.nombre_asignatura, sum((n.nota * a.porcentaje)/100)" +
-				" FROM cuentas_usuario cu, user_account ua, user_account_role uar, nota_actividad n, actividad a,grupo_curso gc, curso c" +
-				" where n.id_usuario = cu.id_usuarios and ua.id_user_account = cu.id_user_account" +
-				" and uar.account_id=ua.id_user_account" +
-				" and uar.member_of_role= 3" +
-				" and gc.id_grupo= n.id_grupo_usuarios" +
-				" and gc.id_curso_grupo = c.codigo_curso" +
+				" FROM grupo_usuarios gu, curso c, nota_actividad n, actividad a, grupo_curso gc" +
+				" where gu.id_usuario=:parametro" +
+				" and n.id_grupo_usuarios=gu.id_grupo_usuarios" +
+				" and gu.id_grupo_curso=gc.id_grupo" +
+				" and gc.id_curso_grupo=c.codigo_curso" +
 				" and n.id_actividad = a.id_actividad" +
-				" and n.id_usuario=:parametro" +
 				" group by c.nombre_asignatura";
 
+	
 	/**
 	 * 
 	 */
@@ -224,17 +223,18 @@ public interface ConsultasJpql {
 			" and n.grupoCurso.idGrupoUsuarios=g.idGrupoUsuarios" +
 			" and g.grupoCurso.idGrupo=#{cursoActualBean.select()}";
 	
-	String DOCENTE_ASIGNATURA="select u.* from grupo_curso gc, grupo_usuarios gu, user_account_role uar, cuentas_usuario cu, usuario u" +
-			" where gu.id_grupo_curso=gc.id_grupo" +
-			" and gc.id_grupo=2" +
-			" and gu.id_usuario=cu.id_usuarios" +
-			" and cu.id_usuarios=u.id_usuario" +
-			" and cu.id_user_account=uar.account_id" +
-			" and uar.member_of_role=2";
+	
+	String DOCENTE_ASIGNATURA="select us from GrupoCurso gc, GrupoUsuarios gu, UserAccount u JOIN u.roles r, CuentasUsuario cu, Usuario us" +
+			" where gu.grupoCurso.idGrupo=gc.idGrupo" +
+			" and gc.idGrupo=#{cursoActualBean.select()}" +
+			" and gu.userGrupoCurso.id=cu.usuarios.id" +
+			" and cu.usuarios.id=us.id" +
+			" and u.id=cu.userAccounts.id" +
+			" and r.name='docente'";
 	
 	
-	String BUSCAR_ADJUNTO="SELECT n FROM nota_actividad n WHERE n.id_actividad=?" +
-			" and n.id_usuario=?";
+	String BUSCAR_ADJUNTO="SELECT n FROM NotaActividad n WHERE n.actividad.idActividad=?" +
+			" and n.usuario.id=?";
 	
 	String BUSCAR_RECEPTOR_MENSAJE= "select n from ReceptorMensajes n" +
 									" where n.userAccount.id=?" +
@@ -246,4 +246,15 @@ public interface ConsultasJpql {
 			" and u.userAccounts.id = ua.id"
 			+ " AND u.usuarios.id = r.userAccount.id"
 			+ " AND ua.username=:parametro";
+	
+	String DESTINATARIOS_MENSAJE = "Select u FROM ReceptorMensajes r, Usuario u" +
+			" where r.gestorMensajeria.idMensaje=:parametro" +
+			" and r.userAccount.id=u.id";
+	
+	String ACTIVIDAD_ESTUDIANTE= "select a from Actividad a, NotaActividad n, CuentasUsuario c, UserAccount ua" +
+			" where n.usuario.id=c.usuarios.id" +
+			" and ua.username=:parametro"
+			+ " and ua.id = c.userAccounts.id" +
+			" and a.idActividad= n.actividad.idActividad";
+	
 }

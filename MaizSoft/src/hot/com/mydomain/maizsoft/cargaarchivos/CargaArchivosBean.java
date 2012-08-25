@@ -36,7 +36,7 @@ import com.mydomain.maizsoft.usuarios.UsuarioHome;
 /**
  * Descripcion: Esta Clase se encarga de ... Modulo de Desarrollo :CU- ...
  * 
- * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+ * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
  * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com Grupo de
  *         Investigacion Ingenieria Software (GIS) Semillero de Investigacion
  *         Moviles Sabatt (SIMS) Universidad Pedagogica y Tecnologica de
@@ -147,7 +147,7 @@ public class CargaArchivosBean implements ICargaArchivos {
 		} catch (IOException e) {
 			FacesMessages mensaje = (FacesMessages) Component
 					.getInstance(FacesMessages.class);
-			mensaje.add("Se produjo un error técnico :(");
+			mensaje.add("Se produjo un error tï¿½cnico :(");
 		}
 	}
 
@@ -163,6 +163,8 @@ public class CargaArchivosBean implements ICargaArchivos {
 		try {
 			ConfiguracionesSistema path = entityManager.find(
 					ConfiguracionesSistema.class, 1l);
+			ConfiguracionesSistema rutaSer = entityManager.find(
+					ConfiguracionesSistema.class, 19l);
 			ConfiguracionesSistema pathArchivos = entityManager.find(
 					ConfiguracionesSistema.class, 8l);
 			String pathFinal = path.getDetallesPropiedad()
@@ -173,17 +175,24 @@ public class CargaArchivosBean implements ICargaArchivos {
 							.getCodigoGrupo() + "//"
 					+ credentials.getUsername();
 			
+			String rutaRelativa = rutaSer.getDetallesPropiedad()+pathArchivos.getDetallesPropiedad()
+					+ "//"
+					+ listaGrupoUsuarios().get(0).getGrupoCurso()
+							.getCodigoGrupo() + "//"
+					+ credentials.getUsername();
 			handleUpload(pathFinal);
 
-			actividadHome.getInstance().setRutaArchivo(pathFinal);
+			actividadHome.getInstance().setRutaArchivo(rutaRelativa);
 			actividadHome.getInstance().setNombreArchivo(nombreArchivo);
 			actividadHome.getInstance().setAdjuntarArchivo(true);
-			rutaFinal=pathFinal;
+			
+			rutaFinal= rutaRelativa;
+			
 			crearLog(ConstantesLog.CARGA_ARCHIVO_ADJUNTO);
 		} catch (IOException e) {
 			FacesMessages mensaje = (FacesMessages) Component
 					.getInstance(FacesMessages.class);
-			mensaje.add("Se produjo un error técnico :(");
+			mensaje.add("Se produjo un error tï¿½cnico :(");
 		}
 	}
 
@@ -214,7 +223,7 @@ public class CargaArchivosBean implements ICargaArchivos {
 		} catch (IOException e) {
 			FacesMessages mensaje = (FacesMessages) Component
 					.getInstance(FacesMessages.class);
-			mensaje.add("Se produjo un error técnico :(");
+			mensaje.add("Se produjo un error tï¿½cnico :(");
 		}
 
 	}
@@ -260,7 +269,7 @@ public class CargaArchivosBean implements ICargaArchivos {
 				else{
 					FacesMessages mensaje = (FacesMessages) Component
 							.getInstance(FacesMessages.class);
-					mensaje.add("Recuerde que solo se puede cargar archivos compresos extensión .zip :(");
+					mensaje.add("Recuerde que solo se puede cargar archivos compresos extensiï¿½n .zip :(");
 				}
 			}
 			else{
@@ -272,7 +281,7 @@ public class CargaArchivosBean implements ICargaArchivos {
 	} catch (IOException e) {
 		FacesMessages mensaje = (FacesMessages) Component
 				.getInstance(FacesMessages.class);
-		mensaje.add("Se produjo un error técnico :(");
+		mensaje.add("Se produjo un error tï¿½cnico :(");
 	}
 	
 }
@@ -312,7 +321,7 @@ public class CargaArchivosBean implements ICargaArchivos {
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
 		log.info("<--" + "[" + ConstantesLog.NOMBRE_PLATAFORMA + "]"
-				+ "Acción:" + "[" + accion + "]"
+				+ "Acciï¿½n:" + "[" + accion + "]"
 				+ "Tipo:" + "[" + "N/A" + "]"
 				+ "Sobre el grupo con ID:" + "[" + "N/A" + "]"
 				+ "Realizada por:" + "[" + cre.getUsername() + "]"

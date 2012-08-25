@@ -11,171 +11,88 @@
 	<ui:define name="head">
 		<link href="css/default.css" rel="stylesheet" type="text/css" />
 
-		<link type="text/css" rel="stylesheet"
-			href="css/scriptsCalendario/src/css/jscal2.css" />
-		<link type="text/css" rel="stylesheet"
-			href="css/scriptsCalendario/src/css/border-radius.css" />
-
-		<link id="skin-win2k" title="Win 2K" type="text/css"
-			rel="alternate stylesheet"
-			href="css/scriptsCalendario/src/css/win2k/win2k.css" />
-		<link id="skin-steel" title="Steel" type="text/css"
-			rel="alternate stylesheet"
-			href="css/scriptsCalendario/src/css/steel/steel.css" />
-		<link id="skin-gold" title="Gold" type="text/css"
-			rel="alternate stylesheet"
-			href="css/scriptsCalendario/src/css/gold/gold.css" />
-		<link id="skin-matrix" title="Matrix" type="text/css"
-			rel="alternate stylesheet"
-			href="css/scriptsCalendario/src/css/matrix/matrix.css" />
-
-		<link id="skinhelper-compact" type="text/css"
-			rel="alternate stylesheet"
-			href="css/scriptsCalendario/src/css/reduce-spacing.css" />
-
-		<script src="css/scriptsCalendario/src/js/jscal2.js"></script>
-
-		<script src="css/scriptsCalendario/src/js/lang/es.js"></script>
-
-		<link type="text/css" rel="stylesheet"
-			href="css/scriptsCalendario/demopage.css" />
-
-		<style type="text/css">
-.highlight {
-	color: #16FD06 !important;
-	font-weight: bold;
-	font-size: 13px;
-}
-
-.highlight2 {
-	color: #0f0 !important;
-	font-weight: bold;
-}
-</style>
-
 
 	</ui:define>
 
 	<ui:define name="centroT">
+
 		<rich:panel>
-			<f:facet name="header">Agenda</f:facet>
-			<br />
-
-			<table>
-				<tr>
-					<td valign="top" style="width: 60em;">
-						<div id="cont"></div>
-					</td>
-					<td></td>
-				</tr>
-			</table>
-
-
-			<script type="text/javascript">
-    //<![CDATA[
-      
-      
-      var DATE_INFO = {
-              20120706: { klass: "highlight", tooltip: "%Y/%m/%d (%A)/>Prueba" },
-              20120706: { klass: "highlight", tooltip: "%Y/%m/%d (%A)/>Prueba2" },
-              20120708: { klass: "highlight", tooltip: "Hola, hola, hola,Hola, hola, hola,Hola, hola, hola,Hola, hola, hola,Hola, hola, hola,Hola, hola, hola,Hola, hola, hola,Hola, hola, hola,Hola, hola, hola,Hola, hola, hola,Hola, hola, hola,Hola, hola, hola,Hola, hola, hola,Hola, hola, hola" }
-      };
-
-      function getDateInfo(date, wantsClassName) {
-              var as_number = Calendar.dateToInt(date);
-              
-              return DATE_INFO[as_number];
-      };
-
-      var cal = Calendar.setup({
-              cont     : "cont",
-              fdow     : 1,
-              dateInfo : getDateInfo              
-      });
-
-    //]]>
-      </script>
-
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
+			<h4 style="color: blue">Buscar:</h4>
 			
-			<h4 style="color: blue">Actividades Pendientes</h4>
+			<s:decorate id="fechaCompromisoField" template="/layout/edit.xhtml"
+					style="position:absolute;">
+					<ui:define name="label">Fecha Inicio</ui:define>
+					<rich:calendar id="fechaEnvio"
+						value="#{actividadHome.instance.fechaFinalizacion}"
+						datePattern="dd/MM/yyyy HH:mm" />
+					<br/>
+				</s:decorate>
+				<br/>
+				<br/>
+				<br/>
+				<s:decorate id="fechaCompromisoFieldtwo" template="/layout/edit.xhtml"
+					style="position:absolute;">
+					<ui:define name="label">Fecha Fin</ui:define>
+					<rich:calendar id="fechaEnvio2"
+						value="#{actividadHome.instance.fechaCreacion}"
+						datePattern="dd/MM/yyyy HH:mm" />
+
+				</s:decorate>
+				<br/>
+				<br/>
+				
+				<h:commandButton value="Buscar" />
+				
+			<h4 style="color: blue">Actividades</h4>	
 			<rich:dataTable id="actividadList" var="_actividad"
-			value="#{actividadList.resultList}"
-			rendered="#{not empty actividadList.resultList}">
-			
-			<h:column>
-				<f:facet name="header">
-					<ui:include src="layout/sort.xhtml">
-						<ui:param name="entityList" value="#{actividadList}" />
-						<ui:param name="propertyLabel" value="Descripcion actividad" />
-						<ui:param name="propertyPath"
-							value="actividad.descripcionActividad" />
-					</ui:include>
-				</f:facet>
-				<h:outputText value="#{_actividad.descripcionActividad}"
-					escape="false" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<ui:include src="layout/sort.xhtml">
-						<ui:param name="entityList" value="#{actividadList}" />
-						<ui:param name="propertyLabel" value="Fecha" />
-						<ui:param name="propertyPath" value="actividad.fechaFinalizacion" />
-					</ui:include>
-				</f:facet>
-				<h:outputText value="#{_actividad.fechaFinalizacion}">
-				 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" /> 
-				 </h:outputText>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<ui:include src="layout/sort.xhtml">
-						<ui:param name="entityList" value="#{actividadList}" />
-						<ui:param name="propertyLabel" value="Porcentaje Nota" />
-						<ui:param name="propertyPath" value="actividad.porcentaje" />
-					</ui:include>
-				</f:facet>
-				<h:outputText value="#{_actividad.porcentaje}" escape="false" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<ui:include src="layout/sort.xhtml">
-						<ui:param name="entityList" value="#{actividadList}" />
-						<ui:param name="propertyLabel" value="Adjunto" />
-						<ui:param name="propertyPath" value="actividad.rutaArchivo" />
-					</ui:include>
-				</f:facet>
-				<h:outputText value="#{_actividad.rutaArchivo}" escape="false" />
-			</h:column>
-			<rich:column styleClass="action">
-				<f:facet name="header">Acción</f:facet>
-				<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
-					value="#{empty from ? 'Ver' : 'Seleccionar'}"
-					propagation="#{empty from ? 'none' : 'default'}"
-					id="actividadViewId">
-					<f:param name="actividadIdActividad"
-						value="#{_actividad.idActividad}" />
-				</s:link>
+				value="#{actividadHome.listaActividades()}"
+				rendered="#{not empty actividadHome.listaActividades()}">
+				<h:column>
+					<f:facet name="header">
+						<ui:include src="layout/sort.xhtml">
+							<ui:param name="entityList" value="#{actividadList}" />
+							<ui:param name="propertyLabel" value="Fecha" />
+							<ui:param name="propertyPath" value="actividad.fechaFinalizacion" />
+						</ui:include>
+					</f:facet>
+					<h:outputText value="#{_actividad.fechaFinalizacion}">
+						<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<ui:include src="layout/sort.xhtml">
+							<ui:param name="entityList" value="#{actividadList}" />
+							<ui:param name="propertyLabel" value="Descripcion actividad" />
+							<ui:param name="propertyPath"
+								value="actividad.descripcionActividad" />
+						</ui:include>
+					</f:facet>
+					<h:outputText value="#{_actividad.descripcionActividad}"
+						escape="false" />
+				</h:column>
+				
+				
+				<rich:column styleClass="action">
+					<f:facet name="header">Acción</f:facet>
+					<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+						value="#{empty from ? 'Ver' : 'Seleccionar'}"
+						propagation="#{empty from ? 'none' : 'default'}"
+						id="actividadViewId">
+						<f:param name="actividadIdActividad"
+							value="#{_actividad.idActividad}" />
+					</s:link>
 
-			</rich:column>
+				</rich:column>
 
-		</rich:dataTable>
-			
-			
+			</rich:dataTable>
+
+
 
 		</rich:panel>
 
 
-		
+
 
 	</ui:define>
 

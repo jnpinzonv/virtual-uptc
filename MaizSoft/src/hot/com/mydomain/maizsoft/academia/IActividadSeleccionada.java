@@ -22,7 +22,7 @@ import com.mydomain.Directorio.model.Usuario;
 /**
  * Descripcion: Esta Clase se encarga de ...
  * Modulo de Desarrollo :CU- ...
- * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+ * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
  * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
  * Grupo de Investigacion Ingenieria Software (GIS)
  * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -175,6 +175,8 @@ public interface IActividadSeleccionada {
 		public List<NotaActividad> listaNotaActi();
 
 		public String rutaAdjunto(long idActividad);	
+		
+		public String rutaAdjuntos(long idActividad);
 		
 		public List<Usuario> getListaDocentes();
 	

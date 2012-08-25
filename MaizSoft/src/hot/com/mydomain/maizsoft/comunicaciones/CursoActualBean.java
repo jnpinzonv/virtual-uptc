@@ -126,13 +126,16 @@ public class CursoActualBean implements ICursoActual {
 	}
 
 	public void crearLog(long grupo) {
+		if(grupo!=0){
+			
+		
 		Calendar calendar = Calendar.getInstance();
 		EstadisticasGenerales nueva = new EstadisticasGenerales();
 		Credentials cre = (Credentials) Component
 				.getInstance(Credentials.class);
 		log.info(
 				"<--" + "[" + ConstantesLog.NOMBRE_PLATAFORMA + "]" + "Acci�n:"
-						+ "[" + ConstantesLog.CREAR_ACTIVIDAD + "]" + "Tipo:"
+						+ "[" + ConstantesLog.CURSO_VISITADO + "]" + "Tipo:"
 						+ "[" + "N/A" + "]" + "Sobre el grupo con ID:" + "["
 						+ grupo + "]" + "Realizada por:" + "["
 						+ cre.getUsername() + "]" + "en la fecha:" + "["
@@ -143,6 +146,7 @@ public class CursoActualBean implements ICursoActual {
 		nueva.setLogin(cre.getUsername());
 		nueva.setIdGrupoCurso(grupo);
 		entityManager.persist(nueva);
+		}
 	}
 
 	public String selecionadoDos(long grupo) {

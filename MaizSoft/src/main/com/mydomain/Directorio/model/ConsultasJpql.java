@@ -257,4 +257,8 @@ public interface ConsultasJpql {
 			+ " and ua.id = c.userAccounts.id" +
 			" and a.idActividad= n.actividad.idActividad";
 	
+String HISTORIAL_NOTAS_ESTUDIANTES ="select hn.userAccount from HistorialNotas hn";
+	
+	String HISTORIAL_NOTAS = "select hn from HistorialNotas hn" +
+										" where hn.hn.userAccount.id=:parametro";
 }

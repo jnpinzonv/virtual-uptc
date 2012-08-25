@@ -86,5 +86,15 @@ public class ReceptorMensajesHome extends EntityHome<ReceptorMensajes> {
 		
 		return q.getResultList();
 	}
+	
+
+	public List<Usuario> listaDestinatarios(long idMensaje){
+				
+		Query q = getEntityManager().createQuery(
+				ConsultasJpql.DESTINATARIOS_MENSAJE);
+		q.setParameter("parametro", idMensaje);
+
+		return q.getResultList();
+	}
 
 }

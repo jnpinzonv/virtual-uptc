@@ -230,7 +230,7 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 			String nuw = nuevo.substring(i, subFinal);
 
 			mensaje.append(nuw);
-			mensaje.append("</br>");
+			mensaje.append("<br/>");
 			i = subFinal;
 			subFinal += 30;
 

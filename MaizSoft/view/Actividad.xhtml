@@ -54,8 +54,8 @@
 					style="position:absolute;">
 					<ui:define name="label">Fecha máxima de entrega:</ui:define>
 					<h:outputText value="#{actividadHome.instance.fechaFinalizacion}"
-						escape="false">
-						<f:convertDateTime datePattern="dd/MM/yyyy" type="date" />
+						>
+						 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" /> 
 					</h:outputText>
 				</s:decorate>
 
@@ -157,24 +157,22 @@
 						</ui:repeat>
 
 						<br />
-						<br />
-						<br />
-
+						
 						<s:decorate id="asuntoField" template="layout/edit.xhtml">
 							<ui:define name="label">Nombre</ui:define>
-							<h:inputText id="asunto" size="100" maxlength="100"
+							<h:inputText id="asunto" size="80" maxlength="80"
 								value="#{gestorMensajeriaHome.instance.asunto}">
 								<a:support event="onblur" reRender="asuntoField"
 									bypassUpdates="true" ajaxSingle="true" />
 							</h:inputText>
 							<br />
-						<br />
+						
 						</s:decorate>
 
 						
 
 						<s:decorate id="mensajeField" template="layout/edit.xhtml">
-							<ui:define name="label">Descripción</ui:define>
+							<ui:define name="label">Respuesta</ui:define>
 							<h:panelGrid style="margin-left:80px">
 								<h:panelGroup layout="block">
 									<rich:editor id="editor"

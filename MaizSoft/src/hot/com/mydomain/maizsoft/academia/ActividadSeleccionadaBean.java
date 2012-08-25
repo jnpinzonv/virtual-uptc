@@ -35,7 +35,7 @@ import com.mydomain.maizsoft.tipos.TipoHome;
 /**
  * Descripcion: Esta Clase se encarga de ...
  * Modulo de Desarrollo :CU- ...
- * @author Edwin Jose Hernandez Niño edwher.123@hotmail.com
+ * @author Edwin Jose Hernandez Niï¿½o edwher.123@hotmail.com
  * @author Josue Nicolas Pinzon Villamil jnpinzonv@hotmail.com
  * Grupo de Investigacion Ingenieria Software (GIS)
  * Semillero de Investigacion Moviles Sabatt (SIMS)
@@ -370,28 +370,53 @@ public class ActividadSeleccionadaBean implements IActividadSeleccionada{
 	
 	
 	public String rutaAdjunto(long idActividad){
-		System.out.println("hola");
-//		Usuario nuevo = getListaDocentes().get(0);
-		System.out.println("holaa");
-		Query q1 = entityManager.createNativeQuery(ConsultasJpql.BUSCAR_ADJUNTO);
+	
+		Usuario nuevo = getListaDocentes().get(0);
+		
+		Query q1 = entityManager.createQuery(ConsultasJpql.BUSCAR_ADJUNTO);
 		q1.setParameter(1,idActividad);
-		q1.setParameter(2,3);
-		System.out.println("sdfsdf");
+		q1.setParameter(2,nuevo.getId());
+		
+		
+		NotaActividad nota =  (NotaActividad) q1.getSingleResult();
+		
+		if(nota.getGestorCargaArchivos()==null)
+			return "No hay archivo adjunto";
+		else{
+			
+			String ruta = nota.getGestorCargaArchivos().getRuta()+"//"+nota.getGestorCargaArchivos().getNombre();
+			return  ruta;
+		}
+			
+	}
+	
+	
+	public String rutaAdjuntos(long idActividad){
+		
+		Usuario nuevo = getListaDocentes().get(0);
+		
+		Query q1 = entityManager.createQuery(ConsultasJpql.BUSCAR_ADJUNTO);
+		q1.setParameter(1,idActividad);
+		q1.setParameter(2,nuevo.getId());
+		
 		
 		NotaActividad nota =  (NotaActividad) q1.getSingleResult();
 		
 		if(nota.getGestorCargaArchivos()==null)
 			return "No hay archivo adjunto";
 		else
-			return  nota.getGestorCargaArchivos().getRuta();
+			return  nota.getGestorCargaArchivos().getNombre();
 	}
-	
 
 	public List<Usuario> getListaDocentes(){
-		Query q1 = entityManager.createNativeQuery(ConsultasJpql.DOCENTE_ASIGNATURA);
+		System.out.println("sdfsdfdsf");
+		Query q1 = entityManager.createQuery(ConsultasJpql.DOCENTE_ASIGNATURA);
+		System.out.println("sdf");
+		List<Usuario> usuarios = (List<Usuario>)q1.getResultList();
+		System.out.println(usuarios.get(0).getApellidos()+"SDfdsf");
 //		q1.setParameter(1, 2);
 	
-		return q1.getResultList();
+		return usuarios;
 	}
 	
 	

@@ -45,7 +45,7 @@
 								</f:facet>
 								
 								
-								<h:outputText value="#{_listaMensajes.asunto}" />
+								<h:outputText value="#{_listaMensajes.asunto}" escape="false"/>
 							</h:column>
 							
 							<h:column>
@@ -58,7 +58,9 @@
 							<h:column>
 								<f:facet name="header">Fecha							
 								</f:facet>
-								<h:outputText value="#{_listaMensajes.fechaEnvio}" />
+								<h:outputText value="#{_listaMensajes.fechaEnvio}">
+								<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" /> 
+								</h:outputText>
 							</h:column>
 							<rich:column styleClass="action">
 								<f:facet name="header">Acción</f:facet>

@@ -52,7 +52,7 @@
 				<ui:insert name="izquierdaT">
 
 					<div id="izquierda"
-						style="float: left; background-image: url(images/MenuMiddle2.jpg); padding: 5px; width: 190px;">
+						style="float: left; background-image: url(images/MenuMiddle2.jpg); padding: 5px; width: 200px;" align="center">
 						<rich:panel>
 							<h:form id="form">
 
@@ -161,10 +161,14 @@
 													propagation="end"></s:link>
 											</rich:panelMenuItem>
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
-												<s:link value="Adicionar Estudiante" propagation="end"></s:link>
+												<s:link value="Matricula Masiva" propagation="end"></s:link>
 											</rich:panelMenuItem>
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
 												<s:link value="Matricular Usuarios"
+													action="/admin/MatricularUsuarios.seam" propagation="end"></s:link>
+											</rich:panelMenuItem>
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Eliminar Usuario"
 													action="/admin/MatricularUsuarios.seam" propagation="end"></s:link>
 											</rich:panelMenuItem>
 										</rich:panelMenuGroup>
@@ -201,13 +205,40 @@
 													propagation="end"></s:link>
 											</rich:panelMenuItem>
 										</rich:panelMenuGroup>
+										
+										<rich:panelMenuGroup label="Cierre Académico"
+											style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Cerrar"
+													action="/GestorRepositoriosVirtualesEdit.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Hacer Backup"
+													action="/GestorRepositoriosVirtualesEdit.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+												<s:link value="Cargar Backup"
+													action="/GestorRepositoriosVirtualesEdit.seam"
+													propagation="end"></s:link>
+											</rich:panelMenuItem>
+											
+										</rich:panelMenuGroup>
 
 										<rich:panelMenuGroup label="Notas" style="color: #FFFFFF;"
 											rendered="#{s:hasRole('estudiante')}">
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
-												<s:link value="Ver" action="/NotasUsuario.seam"
+												<s:link value="Actual" action="/NotasUsuario.seam"
 													propagation="end"></s:link>
+													
 											</rich:panelMenuItem>
+											<rich:panelMenuItem style="color: #045491;" icon="disc">
+													<s:link value="Historial" action="/NotasUsuario.seam"
+													propagation="end"></s:link>
+													
+											</rich:panelMenuItem>
+										
 										</rich:panelMenuGroup>
 
 										<rich:panelMenuGroup label="Enlaces Externos"
@@ -226,7 +257,6 @@
 													propagation="end"></s:link>
 											</rich:panelMenuItem>
 										</rich:panelMenuGroup>
-
 
 										<rich:panelMenuGroup label="Enlaces Externos"
 											style="color: #FFFFFF;" rendered="#{s:hasRole('docente')}">
@@ -265,7 +295,7 @@
 											style="color: #FFFFFF;" rendered="#{s:hasRole('docente')}">
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
 												<a
-													href="http://localhost/archivos/utilidades/MANUAL DE USUARIO ESTUDIANTE.pdf"
+													href="http://localhost/archivos/utilidades/reload.zip"
 													target="_blank">Generar</a>
 											</rich:panelMenuItem>
 											
@@ -298,8 +328,7 @@
 										<h:outputText value="" style="color:red" />
 									</f:facet>
 								</rich:calendar>
-								<s:link value="Agenda" action="/GestorNoticiasList.seam"
-									rendered="#{s:hasRole('docente')}" propagation="end" />
+								
 								<s:link value="Agenda" action="/Calendario.seam"
 									rendered="#{s:hasRole('estudiante')}" propagation="end" />
 								<br />

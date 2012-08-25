@@ -68,6 +68,7 @@ Su contraseña es: ' ,'cuerpoMensaje');
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(17,'imagenesUsario','imagenUsuario');
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(18,'objetosAprendizaje','objetoUsuario');
 insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(19,'http://localhost//archivos//','rutaServidorLocal');
+insert into configuraciones_sistema(id_configuraciones_sistema,detalles_propiedad,nombre_propiedad) values(20,'backupNotas','rutabackup');
 
 
 

@@ -28,8 +28,9 @@
 							<h:column>
 								<f:facet name="header">Leido							
 								</f:facet>
-								<h:outputText style="size:10px" 
-									value="#{gestorMensajeriaHome.mensajeLeido(_listaMensajes.idMensaje)}" />
+								<h:commandButton action="/MensajeList.xhtml"
+								image="#{gestorMensajeriaHome.mensajeLeido(_listaMensajes.idMensaje)}" style="width:30px"/>
+								
 							</h:column>
 						
 							

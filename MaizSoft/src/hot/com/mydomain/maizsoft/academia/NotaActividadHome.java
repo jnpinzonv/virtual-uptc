@@ -153,6 +153,21 @@ public class NotaActividadHome extends EntityHome<NotaActividad> {
 	}
 		return nueva;
 }
+	
+	
+	@Factory("notasHistorialUsuario")
+	public List<HistorialNotas> listaHistorialNotas(){
+		Query q = null;
+		
+		Credentials crede = (Credentials) Component.getInstance(Credentials.class);
+		Query q1 = getEntityManager().createQuery(ConsultasJpql.USUARIO_POR_USERNAME);
+		q1.setParameter("parametro", crede.getUsername());
+		Usuario usu = (Usuario) q1.getSingleResult();
+		q = getEntityManager().createQuery(ConsultasJpql.HISTORIAL_NOTAS);
+		q.setParameter("parametro", usu.getId());	
+		
+		return q.getResultList();
+}
 
 	public List<NotaActividad> listaNotasActividad(){
 		Credentials crede = (Credentials) Component.getInstance(Credentials.class);

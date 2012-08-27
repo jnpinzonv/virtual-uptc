@@ -190,9 +190,9 @@ public class GestorMensajeriaHome extends EntityHome<GestorMensajeria> {
 		ReceptorMensajes receptor =  (ReceptorMensajes) q1.getSingleResult();
 		
 		if(receptor.isLeido())
-			return "Si";
+			return "/css/images/mensajes.png";
 		else
-			return  "No";
+			return "/css/images/mensajes2.png";
 	}
 
 	@Factory("listaMensajesEnviadosPorUsuario")

@@ -51,16 +51,17 @@
 				<br />
 
 				<s:decorate id="fecha" template="layout/edit.xhtml"
-					style="position:absolute;">
+					style="position:absolute;"
+					rendered="#{actividadHome.instance.tipo.idTipo!=8}">
 					<ui:define name="label">Fecha máxima de entrega:</ui:define>
-					<h:outputText value="#{actividadHome.instance.fechaFinalizacion}"
-						>
-						 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" /> 
+					<h:outputText value="#{actividadHome.instance.fechaFinalizacion}">
+						<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
 					</h:outputText>
+					<br />
+					<br />
 				</s:decorate>
 
-				<br />
-				<br />
+
 
 				<s:decorate id="adjunto" template="layout/edit.xhtml"
 					style="position:absolute;"
@@ -129,18 +130,22 @@
 						for="autoevaluacionNota" id="tool" followMouse="true"
 						direction="top-right" showDelay="500"></rich:toolTip>
 				</s:decorate>
-				
-				
-				<s:decorate id="obejtoAprendizajeList"
-					template="layout/edit.xhtml"
+
+
+				<s:decorate id="obejtoAprendizajeList" template="layout/edit.xhtml"
 					rendered="#{actividadHome.instance.tipo.idTipo==18}">
 					<ui:define name="label">Objeto de Aprendizaje: </ui:define>
-					<h:panelGrid style="margin-left:10px" rendered="#{actividadHome.instance.urlExterna!=null}">
-						<iframe width="500px" height="500px" src="#{actividadHome.instance.urlExterna}" scrolling="auto"></iframe>
+					<h:panelGrid style="margin-left:10px"
+						rendered="#{actividadHome.instance.urlExterna!=null}">
+						<iframe width="500px" height="500px"
+							src="#{actividadHome.instance.urlExterna}" scrolling="auto"></iframe>
 					</h:panelGrid>
-					
-					<h:panelGrid style="margin-left:10px" rendered="#{actividadHome.instance.urlExterna==null}">
-						<iframe width="500px" height="500px" src="#{actividadHome.rutaObjetoAprendizaje(actividadHome.instance.idActividad)}" scrolling="auto"></iframe>
+
+					<h:panelGrid style="margin-left:10px"
+						rendered="#{actividadHome.instance.urlExterna==null}">
+						<iframe width="500px" height="500px"
+							src="#{actividadHome.rutaObjetoAprendizaje(actividadHome.instance.idActividad)}"
+							scrolling="auto"></iframe>
 					</h:panelGrid>
 				</s:decorate>
 
@@ -157,7 +162,7 @@
 						</ui:repeat>
 
 						<br />
-						
+
 						<s:decorate id="asuntoField" template="layout/edit.xhtml">
 							<ui:define name="label">Nombre</ui:define>
 							<h:inputText id="asunto" size="80" maxlength="80"
@@ -166,10 +171,10 @@
 									bypassUpdates="true" ajaxSingle="true" />
 							</h:inputText>
 							<br />
-						
+
 						</s:decorate>
 
-						
+
 
 						<s:decorate id="mensajeField" template="layout/edit.xhtml">
 							<ui:define name="label">Respuesta</ui:define>
@@ -209,17 +214,88 @@
 					</h:panelGrid>
 				</div>
 
-				<h:panelGrid rendered="#{actividadHome.instance.tipo.idTipo==14 || actividadHome.instance.tipo.idTipo==15}">
-					
-					<h:outputLabel value="Para Ingresar a la video Conferencia dele clicl a Ir" />
-					<s:link value="Ir" view="/Videoconferencia.xhtml"/>
-					<br/>
-					<h:outputLabel value="Para acceder ingrese con los siguientes datos:" />
-					
+				<h:panelGrid
+					rendered="#{actividadHome.instance.tipo.idTipo==14 || actividadHome.instance.tipo.idTipo==15}">
+
+					<h:outputLabel
+						value="Para Ingresar a la video Conferencia dele clicl a Ir" />
+					<s:link value="Ir" view="/Videoconferencia.xhtml" />
+					<br />
+					<h:outputLabel
+						value="Para acceder ingrese con los siguientes datos:" />
+
 					<h:outputLabel value="Nombre: #{credentials.username}" />
-					<h:outputLabel value="Id Curso: #{cursoActualBean.seleccionado.cursoGrupo.codigo} #{cursoActualBean.seleccionado.codigoGrupo}" />
-				
+					<h:outputLabel
+						value="Id Curso: #{cursoActualBean.seleccionado.cursoGrupo.codigo} #{cursoActualBean.seleccionado.codigoGrupo}" />
+
 				</h:panelGrid>
+
+
+				<div align="center">
+					<h:panelGrid rendered="#{actividadHome.instance.tipo.idTipo==8}">
+						<ui:repeat var="_usuario"
+							value="#{actividadHome.getListaReceptoresForos(actividadHome.instance.idActividad)}">
+							<rich:simpleTogglePanel switchType="client" opened="false"
+								label="#{_usuario.userAccount.primerNombre}">
+								<h:outputLabel value="#{_usuario.gestorMensajeria.mensaje}"
+									escape="false" />
+
+							</rich:simpleTogglePanel>
+						</ui:repeat>
+
+						<br />
+
+						<s:decorate id="asuntoField3" template="layout/edit.xhtml">
+							<ui:define name="label">Nombre</ui:define>
+							<h:inputText id="asunto" size="80" maxlength="80"
+								value="#{gestorMensajeriaHome.instance.asunto}">
+								<a:support event="onblur" reRender="asuntoField"
+									bypassUpdates="true" ajaxSingle="true" />
+							</h:inputText>
+							<br />
+
+						</s:decorate>
+
+
+
+						<s:decorate id="mensajeField3" template="layout/edit.xhtml">
+							<ui:define name="label">Respuesta</ui:define>
+							<h:panelGrid style="margin-left:80px">
+								<h:panelGroup layout="block">
+									<rich:editor id="editor"
+										value="#{gestorMensajeriaHome.instance.mensaje}"
+										style="margin-bottom: 1em" theme="advanced"
+										plugins="print,contextmenu,save,paste">
+
+										<f:param name="theme_advanced_buttons1"
+											value="newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontselect,fontsizeselect"></f:param>
+
+										<f:param name="theme_advanced_buttons2"
+											value="cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor"></f:param>
+										<f:param name="theme_advanced_buttons3"
+											value="sub,sup,|,charmap,emotions,iespell,media,advhr,|,print"></f:param>
+
+										<f:param name="theme_advanced_toolbar_location" value="top"></f:param>
+										<f:param name="theme_advanced_toolbar_align" value="left"></f:param>
+										<f:param name="theme_advanced_statusbar_location"
+											value="bottom"></f:param>
+
+										<a4j:support event="onchange" ajaxSingle="true"
+											requestDelay="1000" />
+
+									</rich:editor>
+								</h:panelGroup>
+
+
+							</h:panelGrid>
+						</s:decorate>
+
+						<h:commandButton value="Contestar"
+							action="#{actividadHome.agregarForoEstudiante(actividadHome.instance.idActividad)}" />
+
+					</h:panelGrid>
+				</div>
+
 
 				<div style="clear: both" />
 

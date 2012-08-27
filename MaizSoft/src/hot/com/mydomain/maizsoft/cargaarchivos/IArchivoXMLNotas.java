@@ -18,9 +18,22 @@ import javax.ejb.Local;
 @Local
 public interface IArchivoXMLNotas {
 	
-	void guardarArchivoXml();
+	String guardarArchivoXml();
 	
-	void leerArchivoXMl();
+	String leerArchivoXMl();
+	
+	/**
+	 * Se obtiene el valor de nombreArchivo
+	 * @return El valor de nombreArchivo
+	 */
+	public String getNombreArchivo();
+
+	/**
+	 * Asigna el valor de nombreArchivo
+	 * @param nombreArchivo El valor por establecer para nombreArchivo
+	 */
+	public void setNombreArchivo(String nombreArchivo) ;
+	
 	
 
 }

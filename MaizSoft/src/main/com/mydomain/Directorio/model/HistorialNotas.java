@@ -49,7 +49,7 @@ public class HistorialNotas implements Serializable {
 	 * Variable que almacena la nota o calificaci�n obtenida por un inscrito
 	 * al curso.
 	 */
-	private Long nota;
+	private Double nota;
 
 	/**
 	 * Variable que almacena informaci�n relacionada a los usuarios. Instancia
@@ -62,6 +62,8 @@ public class HistorialNotas implements Serializable {
 	 * de los diferentes cursos.
 	 */
 	private GrupoCurso grupoCurso;
+	
+	private String semestre;
 
 	/**
 	 * Se obtiene el valor de idHistorialNotas
@@ -91,8 +93,8 @@ public class HistorialNotas implements Serializable {
 	 * @return El valor de nota
 	 */
 	@NotNull
-	@Column(name = "nota", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "numeric(1)")
-	public Long getNota() {
+	@Column(name = "nota", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "double")
+	public Double getNota() {
 		return nota;
 	}
 
@@ -102,7 +104,7 @@ public class HistorialNotas implements Serializable {
 	 * @param nota
 	 *            El valor por establecer para nota
 	 */
-	public void setNota(Long nota) {
+	public void setNota(Double nota) {
 		this.nota = nota;
 	}
 
@@ -149,4 +151,24 @@ public class HistorialNotas implements Serializable {
 	public void setGrupoCurso(GrupoCurso grupoCurso) {
 		this.grupoCurso = grupoCurso;
 	}
+
+	/**
+	 * Se obtiene el valor de semestre
+	 * @return El valor de semestre
+	 */
+	@NotNull
+	@Column(name = "semestre", unique = false, nullable = false, insertable = true, updatable = true, columnDefinition = "varchar(30)")
+	public String getSemestre() {
+		return semestre;
+	}
+
+	/**
+	 * Asigna el valor de semestre
+	 * @param semestre El valor por establecer para semestre
+	 */
+	public void setSemestre(String semestre) {
+		this.semestre = semestre;
+	}
+	
+	
 }

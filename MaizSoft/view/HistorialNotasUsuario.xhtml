@@ -1,0 +1,63 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	template="layout/template2.xhtml">
+
+	<ui:define name="head">
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
+	</ui:define>
+
+	<ui:define name="centroT">
+
+		<rich:panel>
+			<f:facet name="header">Notas de las asignaturas</f:facet>
+			<div class="results" id="actividadList">
+
+				<rich:dataTable id="notasList" var="_notas"
+					value="#{notasHistorialUsuario}">
+					<h:column>
+						<f:facet name="header">
+							<ui:include src="layout/sort.xhtml">
+								<ui:param name="entityList" value="#{actividadList}" />
+								<ui:param name="propertyLabel" value="Asignatura" />
+								<ui:param name="propertyPath" value="actividad.idActividad" />
+							</ui:include>
+						</f:facet>
+						<h:outputText value="#{_notas.grupoCurso.cursoGrupo.nombreAsignatura}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<ui:include src="layout/sort.xhtml">
+								<ui:param name="entityList" value="#{actividadList}" />
+								<ui:param name="propertyLabel" value="Nota" />
+								<ui:param name="propertyPath"
+									value="actividad.descripcionActividad" />
+							</ui:include>
+						</f:facet>
+						<h:outputText value="#{_notas.nota}"
+							escape="false" />
+					</h:column>
+					
+				</rich:dataTable>
+
+			</div>
+		</rich:panel>
+
+		
+
+		<s:div styleClass="actionButtons" rendered="#{empty from}">
+			<s:button view="/ActividadEdit.xhtml" id="create" propagation="none"
+				value="Crear actividad"
+				rendered="#{s:hasRole('admin')}">
+				<f:param name="actividadIdActividad" />
+			</s:button>
+		</s:div>
+
+	</ui:define>
+
+</ui:composition>

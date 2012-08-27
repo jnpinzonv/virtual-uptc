@@ -63,6 +63,55 @@
 				<br />
 				<a4j:outputPanel id="actividadess" ajaxRendered="true">
 					<rich:tabPanel switchType="client" id="actividades" >
+						
+						<rich:tab label="Cafeteria">
+
+							<rich:dataTable var="_actividad"
+								value="#{actividadSeleccionadaBean.getListaActividadesDivision(8)}">
+
+								<rich:column>
+									<f:facet name="header">Actividades
+										
+									</f:facet>
+									<h:graphicImage url="/css/images/foros.jpg"
+										style="width:25px" />
+
+									<h:outputLabel value="Nombre Actividad: " />
+									<b> <h:outputText value="#{_actividad.nombreActividad}" />
+									</b>
+																															
+									<div align="right">
+										
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('estudiante')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividad.idActividad}" />
+										</s:link>
+										#{' '}
+										<s:link view="/#{empty from ? 'Actividad' : from}.xhtml"
+											value="#{empty from ? 'Ver' : 'Seleccionar'}"
+											propagation="#{empty from ? 'none' : 'default'}"
+											rendered="#{s:hasRole('docente')}">
+											<f:param name="actividadIdActividad"
+												value="#{_actividad.idActividad}" />
+										</s:link>
+										
+									</div>
+
+								</rich:column>
+
+							</rich:dataTable>
+
+						</rich:tab>
+						
+						
+						
+						
+						
+						
+						
 						<rich:tab label="foro" rendered="#{actividadSeleccionadaBean.getListaActividadesDivision(11).size()>0}">
 
 							<rich:dataTable var="_actividad"

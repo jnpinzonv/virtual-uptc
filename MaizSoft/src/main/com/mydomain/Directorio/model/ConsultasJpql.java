@@ -144,9 +144,6 @@ public interface ConsultasJpql {
 			+ " and n.id_actividad = a.id_actividad"
 			+ " group by c.nombre_asignatura";
 
-	/**
-	 * 
-	 */
 	String NOTAS_ESTUDIANTE_HISTORIAL = "SELECT gc.id_grupo, sum((n.nota * a.porcentaje)/100), gc.semestre"
 			+ " FROM grupo_usuarios gu, curso c, nota_actividad n, actividad a, grupo_curso gc"
 			+ " where gu.id_usuario=:parametro"
@@ -155,7 +152,6 @@ public interface ConsultasJpql {
 			+ " and gc.id_curso_grupo=c.codigo_curso"
 			+ " and n.id_actividad = a.id_actividad"
 			+ " group by c.nombre_asignatura";
-
 	/**
 	 * 
 	 */
@@ -258,7 +254,7 @@ public interface ConsultasJpql {
 
 	String HISTORIAL_NOTAS = "select hn from HistorialNotas hn"
 			+ " where hn.userAccount.id=:parametro";
-
+	
 	String LISTA_USUARIOS_ESTUDIANTES = "select us from Usuario us,UserAccount u JOIN u.roles r, CuentasUsuario cu"
 			+ " where cu.usuarios.id=us.id"
 			+ " and u.id=cu.userAccounts.id"

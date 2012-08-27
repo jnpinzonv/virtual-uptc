@@ -9,25 +9,19 @@
 
 
 	<ui:define name="head">
-		<link href="/css/default.css" rel="stylesheet" type="text/css" />	
+		<link href="css/default.css" rel="stylesheet" type="text/css" />
 	</ui:define>
 	
-	<style>
-.top {
-	vertical-align: top;
-}
-
-.info {
-	height: 202px;
-	overflow: auto;
-}
-</style>
+	
 	<ui:define name="centroT">
 
 
 		<rich:panel>
+		<f:facet name="header">cargar Backup</f:facet>
 			<h:form>
-			<f:facet name="header">cargaBackup</f:facet>
+			<h:outputLabel value="Seleccione el archivo con las notas para cargarlo en la plataforma" />
+			<br/>
+			<br/>
 			<h:inputText value="#{archivoXMLNotasBean.nombreArchivo}" />
 				<h:commandButton id="upload" value="Subir !!"
 					action="#{archivoXMLNotasBean.leerArchivoXMl()}"/>

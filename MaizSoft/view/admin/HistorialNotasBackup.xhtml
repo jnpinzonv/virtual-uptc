@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich"
+	template="../layout/template2.xhtml">
+
+
+	<ui:define name="head">
+		<link href="/css/default.css" rel="stylesheet" type="text/css" />	
+	</ui:define>
+	
+	<style>
+.top {
+	vertical-align: top;
+}
+
+.info {
+	height: 202px;
+	overflow: auto;
+}
+</style>
+	<ui:define name="centroT">
+
+
+		<rich:panel>
+			<h:form>
+			<f:facet name="header">cargaBackup</f:facet>
+			<h:inputText value="#{archivoXMLNotasBean.nombreArchivo}" />
+				<h:commandButton id="upload" value="Subir !!"
+					action="#{archivoXMLNotasBean.leerArchivoXMl()}"/>
+			</h:form>	
+			
+			
+		</rich:panel>
+
+	</ui:define>
+</ui:composition>

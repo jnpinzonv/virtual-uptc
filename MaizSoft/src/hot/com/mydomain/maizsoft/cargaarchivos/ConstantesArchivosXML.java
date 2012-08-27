@@ -27,35 +27,39 @@ public interface ConstantesArchivosXML {
 	/**
 	 * 
 	 */
-	String PADREPRIMERNOMBRE="PERSONAPRIMERNOMBRE";
+	String PADREPRIMERNOMBRE="PRIMERNOMBRE";
 	/**
 	 * 
 	 */
-	String PADRESEGUNDONOMBRE="PERSONASEGUNDONOMBRE";
+	String PADRESEGUNDONOMBRE="SEGUNDONOMBRE";
 	/**
 	 * 
 	 */
-	String PADREAPELLIDO="PERSONAAPELLIDO";
+	String PADREAPELLIDO="APELLIDO";
 	/**
 	 * 
 	 */
-	String PADREIDENTIFICACION="PERSONAIDENTIFICACION";
+	String PADREIDENTIFICACION="IDENTIFICACION";
 	/**
 	 * 
 	 */
-	String PADRETIPOIDENTIFICACION="PERSONATIPOIDENTIFICACION";
+	String PADRETIPOIDENTIFICACION="TIPOIDENTIFICACION";
 	/**
 	 * 
 	 */
-	String PADRECODIGO="PERSONACODIGO";
+	String PADRECODIGO="CODIGO";
 	/**
 	 * 
 	 */
-	String PADRECORREO="PERSONACORREO";
+	String PADRECORREO="CORREO";
 	/**
 	 * 
 	 */
-	String PADREFACULTAD="FACULTAD";
+	String PADREESCUELA="Escuela";
+	/**
+	 * 
+	 */
+	String PADREID="ID";
 	/**
 	 * 
 	 */
@@ -63,18 +67,26 @@ public interface ConstantesArchivosXML {
 	/**
 	 * 
 	 */
-	String HIJONOMBRE="HIJONOMBRE";
+	String HIJONOMBRE="NOMBRE";
 	/**
 	 * 
 	 */
-	String HIJOCODIGO="HIJOCODIGO";
+	String HIJOCODIGO="CODIGO";
 	/**
 	 * 
 	 */
-	String HIJOESCUELA="HIJOESCUELA";
+	String HIJOESCUELA="ESCUELA";
 	/**
 	 * 
 	 */
-	String HIJONOTA="HIJONOTA";
+	String HIJONOTA="NOTAFINAL";	
+	/**
+	 * 
+	 */
+	String HIJOID="ID";
 	
+	/**
+	 * 
+	 */
+	String HIJOSEMESTRE="SEMESTRE";
 }

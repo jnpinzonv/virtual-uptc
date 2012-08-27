@@ -83,8 +83,8 @@ public abstract class ArchivoXML {
 		this.archivo = archivo;
 	}
 	
-	public void open() throws FileNotFoundException{
-		archivo = new FileOutputStream(path+nombre);
+	public void open() throws FileNotFoundException{		
+		archivo = new FileOutputStream(path+nombre);		
 	}
 	
 	public void close() throws IOException {

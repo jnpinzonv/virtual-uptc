@@ -48,7 +48,7 @@ public interface ConsultasJpql {
 	 * 
 	 */
 	String USUARIOS_POR_ROL_Y_ENTEUNIVERSITARIO = "SELECT us FROM UserAccount u JOIN u.roles r,EnteUniversitario e,Usuario us,CuentasUsuario c"
-			+ " where u.id = c.id"			
+			+ " where u.id = c.id"
 			+ " and c.id = us.id"
 			+ " and us.enteUniversitarios.idEnteUniversitario = e.idEnteUniversitario"
 			+ " and us.enteUniversitarios.idEnteUniversitario =:escuela";
@@ -92,15 +92,14 @@ public interface ConsultasJpql {
 	 * 
 	 */
 	String PORCENTAJE_TOTAL_ACTIVIDAD = "SELECT a.porcentaje*c.nota FROM nota_actividad c, actividad a WHERE c.id_grupo_curso = 13 and a.id_actividad=c.`id_actividad`";
-	
+
 	/**
 	 * 
 	 */
 	String NOTAS_ACTIVIDAD = "select n from NotaActividad n, CuentasUsuario c, UserAccount u JOIN u.roles r"
-			+ " where n.actividad.idActividad=:parametro" +
-			" and n.usuario.id = c.usuarios.id" +
-			" and c.userAccounts.id = u.id" +			
-			" and r.name='estudiante'";
+			+ " where n.actividad.idActividad=:parametro"
+			+ " and n.usuario.id = c.usuarios.id"
+			+ " and c.userAccounts.id = u.id" + " and r.name='estudiante'";
 
 	/**
 	 * 
@@ -109,55 +108,59 @@ public interface ConsultasJpql {
 			+ " where n.usuario.id=:parametro"
 			+ " and  r.name=estudiante"
 			+ " and n.grupoCurso.grupoCurso.idGrupo=:parametro2";
-	
-	/**
-	 * 
-	 */
-	String ACTIVIDADES_NO_VENCIDAS_ESTUDIANTE = "SELECT * FROM actividad,user_account_role uar"+
-			" WHERE fecha_finalizacion> now()"+
-			" and uar.member_of_role= 3";
-			
-	
-	String ACTIVIDADES_NO_VENCIDAS_ESTUDIANTE2 = "select a.*"+
-			" FROM cuentas_usuario c, user_account ua, user_account_role uar, actividad a, nota_actividad n"+
-			" where a.id_actividad = n.id_actividad"+
-			" and n.id_usuario = c.id_usuarios"+
-			" and ua.username=?"+
-			" and a.fecha_Finalizacion > now()"+
-			" and ua.id_user_account = c.id_user_account"+
-			" and uar.account_id=ua.id_user_account"+
-			" and uar.member_of_role= 3"+
-			" and n.estado_pendiente=0";
-			
-	
-	/**
-	 * 
-	 */
-	String MENSAJES_NO_LEIDOS ="select men from GestorMensajeria men, ReceptorMensajes re" +
-								" where re.gestorMensajeria=men.idMensaje" +
-								" and re.leido=0" +
-								" and re.userAccount.id =:parametro" +
-								" AND men.tipo.idTipo = 9";
-								
-	
-	/**
-	 * 
-	 */
-	String NOTAS_ESTUDIANTE = "SELECT c.nombre_asignatura, sum((n.nota * a.porcentaje)/100)" +
-				" FROM grupo_usuarios gu, curso c, nota_actividad n, actividad a, grupo_curso gc" +
-				" where gu.id_usuario=:parametro" +
-				" and n.id_grupo_usuarios=gu.id_grupo_usuarios" +
-				" and gu.id_grupo_curso=gc.id_grupo" +
-				" and gc.id_curso_grupo=c.codigo_curso" +
-				" and n.id_actividad = a.id_actividad" +
-				" group by c.nombre_asignatura";
 
-	
 	/**
 	 * 
 	 */
-	String LISTA_TIPOS_ACTIVIDADES ="select t from Tipo t where t.tipo=10";
-	
+	String ACTIVIDADES_NO_VENCIDAS_ESTUDIANTE = "SELECT * FROM actividad,user_account_role uar"
+			+ " WHERE fecha_finalizacion> now()" + " and uar.member_of_role= 3";
+
+	String ACTIVIDADES_NO_VENCIDAS_ESTUDIANTE2 = "select a.*"
+			+ " FROM cuentas_usuario c, user_account ua, user_account_role uar, actividad a, nota_actividad n"
+			+ " where a.id_actividad = n.id_actividad"
+			+ " and n.id_usuario = c.id_usuarios" + " and ua.username=?"
+			+ " and a.fecha_Finalizacion > now()"
+			+ " and ua.id_user_account = c.id_user_account"
+			+ " and uar.account_id=ua.id_user_account"
+			+ " and uar.member_of_role= 3" + " and n.estado_pendiente=0";
+
+	/**
+	 * 
+	 */
+	String MENSAJES_NO_LEIDOS = "select men from GestorMensajeria men, ReceptorMensajes re"
+			+ " where re.gestorMensajeria=men.idMensaje"
+			+ " and re.leido=0"
+			+ " and re.userAccount.id =:parametro" + " AND men.tipo.idTipo = 9";
+
+	/**
+	 * 
+	 */
+	String NOTAS_ESTUDIANTE = "SELECT c.nombre_asignatura, sum((n.nota * a.porcentaje)/100)"
+			+ " FROM grupo_usuarios gu, curso c, nota_actividad n, actividad a, grupo_curso gc"
+			+ " where gu.id_usuario=:parametro"
+			+ " and n.id_grupo_usuarios=gu.id_grupo_usuarios"
+			+ " and gu.id_grupo_curso=gc.id_grupo"
+			+ " and gc.id_curso_grupo=c.codigo_curso"
+			+ " and n.id_actividad = a.id_actividad"
+			+ " group by c.nombre_asignatura";
+
+	/**
+	 * 
+	 */
+	String NOTAS_ESTUDIANTE_HISTORIAL = "SELECT gc.id_grupo, sum((n.nota * a.porcentaje)/100), gc.semestre"
+			+ " FROM grupo_usuarios gu, curso c, nota_actividad n, actividad a, grupo_curso gc"
+			+ " where gu.id_usuario=:parametro"
+			+ " and n.id_grupo_usuarios=gu.id_grupo_usuarios"
+			+ " and gu.id_grupo_curso=gc.id_grupo"
+			+ " and gc.id_curso_grupo=c.codigo_curso"
+			+ " and n.id_actividad = a.id_actividad"
+			+ " group by c.nombre_asignatura";
+
+	/**
+	 * 
+	 */
+	String LISTA_TIPOS_ACTIVIDADES = "select t from Tipo t where t.tipo=10";
+
 	/**
 	 * 
 	 */
@@ -165,100 +168,99 @@ public interface ConsultasJpql {
 			+ " where m.numeroDivision = #{seccionSeleccionadaBean.seccionSeleccionada}"
 			+ " and m.grupoCurso.idGrupo=#{cursoActualBean.select()}"
 			+ " and m.actividad.idActividad= a.idActividad";
-	
-	
-	/**
-	 * 
-	 */
-	String AGREGAR_ACTIVIDAD_PARA_NOTA="select n from NotaActividad n where n.usuario.id=:parametro" +
-						" and n.actividad.idActividad=:parametro2";
 
-	
 	/**
 	 * 
 	 */
-	String LISTA_FOROS_POR_PARTICIPACION="SELECT rm FROM  ReceptorMensajes rm" 
-										+" where rm.gestorMensajeria.idMensaje in (" 
-										+" select gm.idMensaje" 
-										+" from GestorMensajeria gm" 
-										+" where gm.idMensaje =:parametro" 
-										+" or gm.gestorMensajeria.idMensaje=:parametro)"
-										+" and rm.leido=true";
-	
-	
+	String AGREGAR_ACTIVIDAD_PARA_NOTA = "select n from NotaActividad n where n.usuario.id=:parametro"
+			+ " and n.actividad.idActividad=:parametro2";
+
 	/**
 	 * 
 	 */
-	String ACTIVIDAD_NOTA_ACTIVIDAD= "select n.gestorMensajeria.idMensaje from NotaActividad n " 
-								   +" where n.actividad.idActividad=:parametro";
-	
+	String LISTA_FOROS_POR_PARTICIPACION = "SELECT rm FROM  ReceptorMensajes rm"
+			+ " where rm.gestorMensajeria.idMensaje in ("
+			+ " select gm.idMensaje"
+			+ " from GestorMensajeria gm"
+			+ " where gm.idMensaje =:parametro"
+			+ " or gm.gestorMensajeria.idMensaje=:parametro)"
+			+ " and rm.leido=true";
+
 	/**
 	 * 
 	 */
-	String ACTIVIDAD_NOTA_ACTIVIDAD_ESTU= "select n from NotaActividad n " 
-			   +" where n.actividad.idActividad=:parametro" 
-			   +" and n.usuario.id=:parametro2";
-	
+	String ACTIVIDAD_NOTA_ACTIVIDAD = "select n.gestorMensajeria.idMensaje from NotaActividad n "
+			+ " where n.actividad.idActividad=:parametro";
+
 	/**
 	 * 
 	 */
-	String RECEPTOR_FORO="select m from ReceptorMensajes m"
-			            +" where m.gestorMensajeria.idMensaje=:parametro" 
-			            +" and m.userAccount.id=:parametro2";
-	
-	String ESTADISTICAS_ACCION="Select p from EstadisticasGenerales p" +
-			" where p.accionElemento=:parametro" +
-			" and p.idGrupoCurso>0" +
-			" group by p.fechaSuceso, p.accionElemento";
-	
-	String REUTILIZACION_OA="Select p.idOA, COUNT(p) FROM EstadisticasGenerales p" +
-			" where p.accionElemento='CrearActividad'" +
-			" and p.idOA>0" +
-			" group by p.idOA";
-	
-	String ACTIVIDAD_NOTAS_ESTUDIANTE= "select n from NotaActividad n, CuentasUsuario c, UserAccount ua, GrupoUsuarios g" +
-			" where n.usuario.id=c.usuarios.id" +
-			" and ua.username=:parametro"
-			+ " and ua.id = c.userAccounts.id" + 
-			" and n.grupoCurso.idGrupoUsuarios=g.idGrupoUsuarios" +
-			" and g.grupoCurso.idGrupo=#{cursoActualBean.select()}";
-	
-	
-	String DOCENTE_ASIGNATURA="select us from GrupoCurso gc, GrupoUsuarios gu, UserAccount u JOIN u.roles r, CuentasUsuario cu, Usuario us" +
-			" where gu.grupoCurso.idGrupo=gc.idGrupo" +
-			" and gc.idGrupo=#{cursoActualBean.select()}" +
-			" and gu.userGrupoCurso.id=cu.usuarios.id" +
-			" and cu.usuarios.id=us.id" +
-			" and u.id=cu.userAccounts.id" +
-			" and r.name='docente'";
-	
-	
-	String BUSCAR_ADJUNTO="SELECT n FROM NotaActividad n WHERE n.actividad.idActividad=?" +
-			" and n.usuario.id=?";
-	
-	String BUSCAR_RECEPTOR_MENSAJE= "select n from ReceptorMensajes n" +
-									" where n.userAccount.id=?" +
-									" and n.gestorMensajeria.idMensaje=?";
-	
-	String LISTA_LEIDOS = "SELECT r FROM ReceptorMensajes r, CuentasUsuario u, UserAccount ua" +
-			" where r.gestorMensajeria.idMensaje=:parametro1" +
-			" and r.userAccount.id=u.userAccounts.id" +
-			" and u.userAccounts.id = ua.id"
+	String ACTIVIDAD_NOTA_ACTIVIDAD_ESTU = "select n from NotaActividad n "
+			+ " where n.actividad.idActividad=:parametro"
+			+ " and n.usuario.id=:parametro2";
+
+	/**
+	 * 
+	 */
+	String RECEPTOR_FORO = "select m from ReceptorMensajes m"
+			+ " where m.gestorMensajeria.idMensaje=:parametro"
+			+ " and m.userAccount.id=:parametro2";
+
+	String ESTADISTICAS_ACCION = "Select p from EstadisticasGenerales p"
+			+ " where p.accionElemento=:parametro" + " and p.idGrupoCurso>0"
+			+ " group by p.fechaSuceso, p.accionElemento";
+
+	String REUTILIZACION_OA = "Select p.idOA, COUNT(p) FROM EstadisticasGenerales p"
+			+ " where p.accionElemento='CrearActividad'"
+			+ " and p.idOA>0"
+			+ " group by p.idOA";
+
+	String ACTIVIDAD_NOTAS_ESTUDIANTE = "select n from NotaActividad n, CuentasUsuario c, UserAccount ua, GrupoUsuarios g"
+			+ " where n.usuario.id=c.usuarios.id"
+			+ " and ua.username=:parametro"
+			+ " and ua.id = c.userAccounts.id"
+			+ " and n.grupoCurso.idGrupoUsuarios=g.idGrupoUsuarios"
+			+ " and g.grupoCurso.idGrupo=#{cursoActualBean.select()}";
+
+	String DOCENTE_ASIGNATURA = "select us from GrupoCurso gc, GrupoUsuarios gu, UserAccount u JOIN u.roles r, CuentasUsuario cu, Usuario us"
+			+ " where gu.grupoCurso.idGrupo=gc.idGrupo"
+			+ " and gc.idGrupo=#{cursoActualBean.select()}"
+			+ " and gu.userGrupoCurso.id=cu.usuarios.id"
+			+ " and cu.usuarios.id=us.id"
+			+ " and u.id=cu.userAccounts.id"
+			+ " and r.name='docente'";
+
+	String BUSCAR_ADJUNTO = "SELECT n FROM NotaActividad n WHERE n.actividad.idActividad=?"
+			+ " and n.usuario.id=?";
+
+	String BUSCAR_RECEPTOR_MENSAJE = "select n from ReceptorMensajes n"
+			+ " where n.userAccount.id=?"
+			+ " and n.gestorMensajeria.idMensaje=?";
+
+	String LISTA_LEIDOS = "SELECT r FROM ReceptorMensajes r, CuentasUsuario u, UserAccount ua"
+			+ " where r.gestorMensajeria.idMensaje=:parametro1"
+			+ " and r.userAccount.id=u.userAccounts.id"
+			+ " and u.userAccounts.id = ua.id"
 			+ " AND u.usuarios.id = r.userAccount.id"
 			+ " AND ua.username=:parametro";
-	
-	String DESTINATARIOS_MENSAJE = "Select u FROM ReceptorMensajes r, Usuario u" +
-			" where r.gestorMensajeria.idMensaje=:parametro" +
-			" and r.userAccount.id=u.id";
-	
-	String ACTIVIDAD_ESTUDIANTE= "select a from Actividad a, NotaActividad n, CuentasUsuario c, UserAccount ua" +
-			" where n.usuario.id=c.usuarios.id" +
-			" and ua.username=:parametro"
-			+ " and ua.id = c.userAccounts.id" +
-			" and a.idActividad= n.actividad.idActividad";
-	
-String HISTORIAL_NOTAS_ESTUDIANTES ="select hn.userAccount from HistorialNotas hn";
-	
-	String HISTORIAL_NOTAS = "select hn from HistorialNotas hn" +
-										" where hn.hn.userAccount.id=:parametro";
+
+	String DESTINATARIOS_MENSAJE = "Select u FROM ReceptorMensajes r, Usuario u"
+			+ " where r.gestorMensajeria.idMensaje=:parametro"
+			+ " and r.userAccount.id=u.id";
+
+	String ACTIVIDAD_ESTUDIANTE = "select a from Actividad a, NotaActividad n, CuentasUsuario c, UserAccount ua"
+			+ " where n.usuario.id=c.usuarios.id"
+			+ " and ua.username=:parametro"
+			+ " and ua.id = c.userAccounts.id"
+			+ " and a.idActividad= n.actividad.idActividad";
+
+	String HISTORIAL_NOTAS_ESTUDIANTES = "select hn.userAccount from HistorialNotas hn";
+
+	String HISTORIAL_NOTAS = "select hn from HistorialNotas hn"
+			+ " where hn.userAccount.id=:parametro";
+
+	String LISTA_USUARIOS_ESTUDIANTES = "select us from Usuario us,UserAccount u JOIN u.roles r, CuentasUsuario cu"
+			+ " where cu.usuarios.id=us.id"
+			+ " and u.id=cu.userAccounts.id"
+			+ " and r.name='estudiante'";
 }

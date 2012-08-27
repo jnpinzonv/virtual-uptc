@@ -3,8 +3,10 @@
  */
 package com.mydomain.maizsoft.cargaarchivos;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -23,6 +25,7 @@ import org.jdom2.output.XMLOutputter;
 
 import com.mydomain.Directorio.model.ConfiguracionesSistema;
 import com.mydomain.Directorio.model.Curso;
+import com.mydomain.Directorio.model.GrupoCurso;
 import com.mydomain.Directorio.model.HistorialNotas;
 import com.mydomain.Directorio.model.Usuario;
 import com.mydomain.Directorio.model.ConsultasJpql;
@@ -41,8 +44,14 @@ import com.mydomain.Directorio.model.ConsultasJpql;
 @Name("archivoXMLNotasBean")
 public class ArchivoXMLNotasBean extends ArchivoXML implements IArchivoXMLNotas {
 
+	public ArchivoXMLNotasBean() {
+		super();
+	}
+	
+	private String nombreArchivo;
+
 	/*
-	 * (non-Javadoc)
+	 * (non-Javadoc) [
 	 * 
 	 * @see com.mydomain.maizsoft.cargaarchivos.IArchivoXMLNotas#write()
 	 */
@@ -65,6 +74,8 @@ public class ArchivoXMLNotasBean extends ArchivoXML implements IArchivoXMLNotas 
 
 	private Element crearXMLUsuario(Usuario usuario) {
 		Element element = new Element(ConstantesArchivosXML.PADRE);
+		element.addContent(new Element(ConstantesArchivosXML.PADREID)
+		.setText(usuario.getId()+""));
 		element.addContent(new Element(ConstantesArchivosXML.PADREAPELLIDO)
 				.setText(usuario.getApellidos()));
 		element.addContent(new Element(ConstantesArchivosXML.PADREPRIMERNOMBRE)
@@ -78,7 +89,7 @@ public class ArchivoXMLNotasBean extends ArchivoXML implements IArchivoXMLNotas 
 				.setText(usuario.getCodigoUsuarios()));
 		element.addContent(new Element(ConstantesArchivosXML.PADRECORREO)
 				.setText(usuario.getCorreoElectronico()));
-		element.addContent(new Element(ConstantesArchivosXML.PADREFACULTAD)
+		element.addContent(new Element(ConstantesArchivosXML.PADREESCUELA)
 				.setText(usuario.getEnteUniversitarios()
 						.getNombreEnteUniversitario()));
 		element.addContent(new Element(
@@ -88,7 +99,7 @@ public class ArchivoXMLNotasBean extends ArchivoXML implements IArchivoXMLNotas 
 		return element;
 	}
 
-	private Element crearXMLCurso(Curso curso, double nota) {
+	private Element crearXMLCurso(Curso curso, double nota, long id, String semestre) {
 
 		Element element = new Element(ConstantesArchivosXML.HIJO);
 		element.addContent(new Element(ConstantesArchivosXML.HIJOCODIGO)
@@ -100,6 +111,10 @@ public class ArchivoXMLNotasBean extends ArchivoXML implements IArchivoXMLNotas 
 		element.addContent(new Element(ConstantesArchivosXML.HIJOESCUELA)
 				.setText(curso.getEnteUniversitario()
 						.getNombreEnteUniversitario()));
+		element.addContent(new Element(ConstantesArchivosXML.HIJOSEMESTRE)
+		.setText(semestre));
+		element.addContent(new Element(ConstantesArchivosXML.HIJOID).setText(id
+				+ ""));
 
 		return element;
 	}
@@ -107,16 +122,21 @@ public class ArchivoXMLNotasBean extends ArchivoXML implements IArchivoXMLNotas 
 	private Element crearEstructuraXML() {
 
 		Element historialNotas = new Element(ConstantesArchivosXML.SUPERPADRE);
-		Query q = entityManager.createQuery(ConsultasJpql.HISTORIAL_NOTAS_ESTUDIANTES);
-		List<Usuario> usuarios = (List<Usuario>)q.getResultList();
+		Query q = entityManager
+				.createQuery(ConsultasJpql.HISTORIAL_NOTAS_ESTUDIANTES);
+		@SuppressWarnings("unchecked")
+		List<Usuario> usuarios = (List<Usuario>) q.getResultList();
 		for (Usuario usuario : usuarios) {
 			Element usuarioXML = crearXMLUsuario(usuario);
 			Query q2 = entityManager.createQuery(ConsultasJpql.HISTORIAL_NOTAS);
 			q2.setParameter("parametro", usuario.getId());
-			List<HistorialNotas> notasCurso = (List<HistorialNotas>)q2.getResultList();
+			@SuppressWarnings("unchecked")
+			List<HistorialNotas> notasCurso = (List<HistorialNotas>) q2
+					.getResultList();
 			for (HistorialNotas curso : notasCurso) {
 				Element cursoXML = crearXMLCurso(curso.getGrupoCurso()
-						.getCursoGrupo(), curso.getNota());
+						.getCursoGrupo(), curso.getNota(), curso
+						.getGrupoCurso().getIdGrupo(),curso.getGrupoCurso().getSemestre());
 				usuarioXML.addContent(cursoXML);
 			}
 			historialNotas.addContent(usuarioXML);
@@ -139,21 +159,51 @@ public class ArchivoXMLNotasBean extends ArchivoXML implements IArchivoXMLNotas 
 
 			Element raiz = document.getRootElement();
 			raiz.getAttributeValue(ConstantesArchivosXML.SUPERPADRE);
+				
+			Element padre=raiz.getChild(ConstantesArchivosXML.PADRE);
 
-			Element raiz2 = document.getRootElement();
-			raiz2.getAttributeValue(ConstantesArchivosXML.PADRE);
-			@SuppressWarnings("unchecked")
-			List<Usuario> usuarios = (List<Usuario>) raiz
-					.getChild(ConstantesArchivosXML.HIJO);
-
-			for (Usuario usuario : usuarios) {
-
+			List usuarios =  raiz.getChildren(ConstantesArchivosXML.PADRE);
+			
+			
+			
+			Iterator padres =usuarios.iterator();
+			
+			
+			while(padres.hasNext()){
+				Element elePadre=(Element)padres.next();
+				Element idPadre= elePadre.getChild(ConstantesArchivosXML.PADREID);
+				List cursos = elePadre.getChildren(ConstantesArchivosXML.HIJO);
+				Iterator hijos = cursos.iterator();
+				long var2=Long.parseLong(idPadre.getText());
+				HistorialNotas nueva = new HistorialNotas();
+				nueva.setUserAccount(entityManager.find(Usuario.class,var2));
+				
+				
+				
+				while(hijos.hasNext()){
+					Element eleHijo=(Element)hijos.next();
+					Element idHijo= eleHijo.getChild(ConstantesArchivosXML.HIJOID);
+					Element semestre= eleHijo.getChild(ConstantesArchivosXML.HIJOSEMESTRE);
+					Element nota= eleHijo.getChild(ConstantesArchivosXML.HIJONOTA);
+					long var=Long.parseLong(idHijo.getText());
+					nueva.setGrupoCurso(entityManager.find(GrupoCurso.class,var));
+					double notad=Double.parseDouble(nota.getText());
+					nueva.setSemestre(semestre.getText());
+					nueva.setNota(notad);
+					entityManager.persist(nueva);
+				}
 			}
+			
+			
 		} catch (Exception e) {
 			FacesMessages mensaje = (FacesMessages) Component
 					.getInstance(FacesMessages.class);
 			mensaje.add("Se produjo un error técnico :(");
 		}
+		
+		FacesMessages mensaje = (FacesMessages) Component
+				.getInstance(FacesMessages.class);
+		mensaje.add("Proceso exitoso :-)");
 	}
 
 	/*
@@ -163,17 +213,23 @@ public class ArchivoXMLNotasBean extends ArchivoXML implements IArchivoXMLNotas 
 	 * com.mydomain.maizsoft.cargaarchivos.IArchivoXMLNotas#guardarArchivoXml()
 	 */
 	@Override
-	public void guardarArchivoXml() {
+	public String guardarArchivoXml() {
 
 		ConfiguracionesSistema path = entityManager.find(
 				ConfiguracionesSistema.class, 1l);
 		ConfiguracionesSistema pathbackup = entityManager.find(
 				ConfiguracionesSistema.class, 20l);
 		String pathFinal = path.getDetallesPropiedad() + "//"
-				+ pathbackup.getDetallesPropiedad();
+				+ pathbackup.getDetallesPropiedad() + "//";
 		Calendar calendar = Calendar.getInstance();
-		setNombre(calendar.getTime() + "_backupNotas");
+		SimpleDateFormat simple = new SimpleDateFormat("yyyyddMMhhmmss");
+		String date = simple.format(calendar.getTime());
+		setNombre(date + "_backupNotas.xml");
 		setPath(pathFinal);
+		File directorio = new File(pathFinal);
+		if (!directorio.exists()) {
+			directorio.mkdirs();
+		}
 
 		try {
 			open();
@@ -184,6 +240,12 @@ public class ArchivoXMLNotasBean extends ArchivoXML implements IArchivoXMLNotas 
 					.getInstance(FacesMessages.class);
 			mensaje.add("Se produjo un error técnico :(");
 		}
+		
+		FacesMessages mensaje = (FacesMessages) Component
+				.getInstance(FacesMessages.class);
+		mensaje.add( "Se genero el archivo "+ getNombre()+ " exitosamente :-)");
+
+		return "";
 	}
 
 	/*
@@ -193,7 +255,29 @@ public class ArchivoXMLNotasBean extends ArchivoXML implements IArchivoXMLNotas 
 	 * com.mydomain.maizsoft.cargaarchivos.IArchivoXMLNotas#leerArchivoXMl()
 	 */
 	@Override
-	public void leerArchivoXMl() {
-
+	public String leerArchivoXMl() {
+		setPath("C:\\xampp\\htdocs\\archivos\\backupNotas\\");
+		setNombre(nombreArchivo);
+		read();
+		
+		return "";
 	}
+
+	/**
+	 * Se obtiene el valor de nombreArchivo
+	 * @return El valor de nombreArchivo
+	 */
+	public String getNombreArchivo() {
+		return nombreArchivo;
+	}
+
+	/**
+	 * Asigna el valor de nombreArchivo
+	 * @param nombreArchivo El valor por establecer para nombreArchivo
+	 */
+	public void setNombreArchivo(String nombreArchivo) {
+		this.nombreArchivo = nombreArchivo;
+	}
+	
+	
 }

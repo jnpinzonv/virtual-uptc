@@ -210,17 +210,17 @@
 											style="color: #FFFFFF;" rendered="#{s:hasRole('admin')}">
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
 												<s:link value="Cerrar"
-													action="/GestorRepositoriosVirtualesEdit.seam"
+													action="#{historialNotasHome.cierreSemestre()}"
 													propagation="end"></s:link>
 											</rich:panelMenuItem>
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
 												<s:link value="Hacer Backup"
-													action="/GestorRepositoriosVirtualesEdit.seam"
+													action="#{archivoXMLNotasBean.guardarArchivoXml()}"
 													propagation="end"></s:link>
 											</rich:panelMenuItem>
 											<rich:panelMenuItem style="color: #045491;" icon="disc">
 												<s:link value="Cargar Backup"
-													action="/GestorRepositoriosVirtualesEdit.seam"
+													action="/admin/HistorialNotasBackup.xhtml"
 													propagation="end"></s:link>
 											</rich:panelMenuItem>
 											
